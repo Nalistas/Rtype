@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  gameengine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./build:/app/build
+    working_dir: /app
+    command: >
+      bash -c "cmake -S . -B build && cmake --build build"
+    stdin_open: true
+    tty: true
