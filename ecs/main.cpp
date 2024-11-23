@@ -1,40 +1,29 @@
+#include "registry.hpp"
 #include <iostream>
-#include "sparse_array.hpp"
-#include "Entity.hpp"
+#include <string>
 
 int main() {
-    // Test de la classe Entity
-    Entity e1(1), e2(2);
-    std::cout << "Entity 1 ID: " << static_cast<size_t>(e1) << "\n";
-    std::cout << "Entity 2 ID: " << static_cast<size_t>(e2) << "\n";
+    registry reg;
 
-    // Test de la classe sparse_array
-    sparse_array<int> sa;
+    // Enregistrer des composants int
+    auto& int_components = reg.register_component<int>();
+    int_components.insert_at(0, 42);
+    int_components.insert_at(1, 100);
 
-    // Insertion de valeurs
-    sa.insert_at(0, 42);
-    sa.insert_at(3, 99);
-    sa.emplace_at(5, 123);
+    // Accéder aux composants int
+    auto& ints = reg.get_components<int>();
+    std::cout << "Int at index 0: " << ints[0].value() << "\n";
+    std::cout << "Int at index 1: " << ints[1].value() << "\n";
 
-    // Affichage des valeurs
-    for (size_t i = 0; i < sa.size(); ++i) {
-        if (sa[i].has_value()) {
-            std::cout << "Index " << i << ": " << *sa[i] << "\n";
-        } else {
-            std::cout << "Index " << i << ": empty\n";
-        }
-    }
+    // Enregistrer des composants std::string
+    auto& string_components = reg.register_component<std::string>();
+    string_components.insert_at(0, "Hello");
+    string_components.insert_at(1, "World");
 
-    // Suppression
-    sa.erase(3);
-    std::cout << "\nAfter erase:\n";
-    for (size_t i = 0; i < sa.size(); ++i) {
-        if (sa[i].has_value()) {
-            std::cout << "Index " << i << ": " << *sa[i] << "\n";
-        } else {
-            std::cout << "Index " << i << ": empty\n";
-        }
-    }
+    // Accéder aux composants std::string
+    auto& strings = reg.get_components<std::string>();
+    std::cout << "String at index 0: " << strings[0].value() << "\n";
+    std::cout << "String at index 1: " << strings[1].value() << "\n";
 
     return 0;
 }

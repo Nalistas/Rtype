@@ -5,6 +5,8 @@
 ** SparseArray
 */
 
+#include <algorithm>
+
 #ifndef SPARSE_ARRAY_TPP
     #define SPARSE_ARRAY_TPP
 

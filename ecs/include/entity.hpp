@@ -10,14 +10,14 @@
 #ifndef ENTITY_HPP_
     #define ENTITY_HPP_
 
-class Entity {
+class entity {
     public:
-        explicit Entity(size_t const &s);
-        ~Entity();
+        explicit entity(size_t const &s);
+        ~entity();
 
         operator size_t() const;
-        bool operator==(Entity const &other) const;
-        bool operator!=(Entity const &other) const;
+        bool operator==(entity const &other) const;
+        bool operator!=(entity const &other) const;
 
     private:
         size_t _id;
