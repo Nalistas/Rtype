@@ -17,6 +17,7 @@ add_executable(ECSProject ${SOURCES} ${HEADERS})
 target_sources(ECSProject
     PRIVATE
     src/entity.cpp
+    src/registry.cpp
     main.cpp
 )
 
