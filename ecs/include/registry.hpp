@@ -17,6 +17,9 @@
 #ifndef REGISTRY_HPP_
     #define REGISTRY_HPP_
 
+namespace ecs {
+
+
 class registry {
     public :
 
@@ -65,6 +68,9 @@ class registry {
         std::set<entity> _unused_entities;
         std::size_t _total_entity_count = 0;
 };
+
+
+}
 
 #include "registry.tpp"
 

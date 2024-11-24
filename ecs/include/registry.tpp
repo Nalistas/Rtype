@@ -5,10 +5,15 @@
 ** registry template implementation
 */
 
+#include <stdexcept>
+
 #ifndef REGISTRY_TPP_
     #define REGISTRY_TPP_
 
 #include "registry.hpp"
+
+namespace ecs {
+
 
 /////////////////////////////////////////////////////////////
 // Handle the components in the registry
@@ -33,6 +38,11 @@ template <class Component>
 sparse_array<Component>& registry::get_components()
 {
     std::type_index type = typeid(Component);
+
+    if (this->_components_arrays.find(type) == this->_components_arrays.end()) {
+        std::string error("Component not registered in registry ");
+        throw std::runtime_error(error + type.name());
+    }
     std::any_cast<sparse_array<Component>&>(this->_components_arrays.at(type));
     return std::any_cast<sparse_array<Component>&>(this->_components_arrays.at(type));
 }
@@ -41,6 +51,10 @@ template <class Component>
 sparse_array<Component> const& registry::get_components() const
 {
     std::type_index type = typeid(Component);
+    if (this->_components_arrays.find(type) == this->_components_arrays.end()) {
+        std::string error("Component not registered in registry ");
+        throw std::runtime_error(error + type.name());
+    }
     return std::any_cast<sparse_array<Component> const&>(this->_components_arrays.at(type));
 }
 
@@ -61,6 +75,8 @@ void registry::remove_component(entity const &from)
     auto& type = typeid(Component);
     auto& destructor = this->_destructors.at(type);
     destructor(*this, from);
+}
+
 }
 
 #endif /* !REGISTRY_TPP_ */

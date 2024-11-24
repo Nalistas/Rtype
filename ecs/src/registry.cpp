@@ -8,7 +8,7 @@
 #include "registry.hpp"
 #include "entity.hpp"
 
-entity registry::create_entity()
+ecs::entity ecs::registry::create_entity()
 {
     if (this->_unused_entities.empty()) {
         this->_total_entity_count++;
@@ -17,12 +17,12 @@ entity registry::create_entity()
     return entity(this->_unused_entities.begin().operator*());
 }
 
-entity registry::entity_from_index(std::size_t idx)
+ecs::entity ecs::registry::entity_from_index(std::size_t idx)
 {
     return entity(idx);
 }
 
-void registry::delete_entity(entity const &e)
+void ecs::registry::delete_entity(entity const &e)
 {
     for (auto &destructor : this->_destructors) {
         destructor.second(*this, e);

@@ -7,24 +7,24 @@
 
 #include "entity.hpp"
 
-entity::entity(size_t const &s) :
+ecs::entity::entity(size_t const &s) :
     _id(s)
 {}
 
-entity::~entity()
+ecs::entity::~entity()
 {}
 
-entity::operator size_t() const
+ecs::entity::operator size_t() const
 {
     return _id;
 }
 
-bool entity::operator==(entity const &other) const
+bool ecs::entity::operator==(entity const &other) const
 {
     return _id == other._id;
 }
 
-bool entity::operator!=(entity const &other) const
+bool ecs::entity::operator!=(entity const &other) const
 {
     return _id != other._id;
 }

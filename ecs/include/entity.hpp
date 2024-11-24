@@ -10,6 +10,10 @@
 #ifndef ENTITY_HPP_
     #define ENTITY_HPP_
 
+
+namespace ecs {
+
+
 class entity {
     public:
         explicit entity(size_t const &s);
@@ -22,5 +26,8 @@ class entity {
     private:
         size_t _id;
 };
+
+
+}
 
 #endif /* !ENTITY_HPP_ */

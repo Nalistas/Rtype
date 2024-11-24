@@ -4,7 +4,6 @@
 #include <vector>
 #include <optional>
 
-// Classe template sparse_array
 template <typename Component>
 class sparse_array {
 public:
