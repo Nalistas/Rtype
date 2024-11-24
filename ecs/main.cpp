@@ -1,4 +1,5 @@
 #include "registry.hpp"
+#include "system.hpp"
 #include <iostream>
 #include <string>
 
@@ -16,28 +17,24 @@ struct velocity {
     velocity(int vx, int vy) : vx(vx), vy(vy) {}
 };
 
-void logging_system(ecs::registry &r)
-{
-    auto const &positions = r.get_components<position>();
-    auto const &velocities = r.get_components<velocity>();
-
-    std::cerr << "Found " << positions.size() << " positions and " << velocities.size() << " velocities." << std::endl;
-    for (size_t i = 0; i < positions.size(); ++i) {
-        auto const &pos = positions[i];
-        if (!pos.has_value()) {
-            continue;
+class logging_system : public ecs::system<position, velocity> {
+    public:
+    void operator()( sparse_array<position>& positions, sparse_array<velocity>& velocities) const override
+    {
+        std::cout << "Positions:" << std::endl;
+        for (auto const &pos : positions) {
+            if (pos.has_value()) {
+                std::cout << pos->x << " " << pos->y << std::endl;
+            }
         }
-        std::cerr << "Position: " << pos->x << ", " << pos->y << std::endl;
-    }
-
-    for (size_t i = 0; i < velocities.size(); ++i) {
-        auto const &vel = velocities[i];
-        if (!vel.has_value()) {
-            continue;
+        std::cout << "Velocities:" << std::endl;
+        for (auto const &vel : velocities) {
+            if (vel.has_value()) {
+                std::cout << vel->vx << " " << vel->vy << std::endl;
+            }
         }
-        std::cerr << "Velocity: " << vel->vx << ", " << vel->vy << std::endl;
     }
-}
+};
 
 int main() {
     ecs::registry reg;
@@ -47,15 +44,19 @@ int main() {
     reg.register_component<velocity>();
 
     reg.emplace_component<velocity>(e, 3, 4);
-    // reg.emplace_component<position>(e, 1, 2);
     reg.emplace_component<position>(e, 5, 6);
 
     ecs::entity e2 = reg.create_entity();
 
     reg.emplace_component<position>(e2, 7, 8);
 
-    logging_system(reg);
+    // reg.add_system<position, velocity>([](auto& positions, auto& velocities) {
+    //     std::cout << "Hello" << std::endl;
+    // });
 
+    reg.add_system<position, velocity>(logging_system());
+
+    reg.run_systems();
     reg.delete_entity(e);
 
     return 0;

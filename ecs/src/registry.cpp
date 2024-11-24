@@ -30,3 +30,9 @@ void ecs::registry::delete_entity(entity const &e)
     this->_unused_entities.insert(e);
 }
 
+void ecs::registry::run_systems(void)
+{
+    for (auto &system : this->_systems) {
+        system(*this);
+    }
+}

@@ -53,6 +53,20 @@ class registry {
         template<typename Component>
         void remove_component(entity const &from) ;
 
+
+        /////////////////////////////////////////////////////////////
+        // Handle the systems
+        /////////////////////////////////////////////////////////////
+        template<class ...Components, typename Function>
+        void add_system(Function &&f);
+
+
+        template<class ...Components, typename Function>
+        void add_system(Function const &f);
+
+
+        void run_systems () ;
+
     private :
         std::unordered_map<std::type_index, std::any> _components_arrays;
 
@@ -67,6 +81,11 @@ class registry {
         /////////////////////////////////////////////////////////////
         std::set<entity> _unused_entities;
         std::size_t _total_entity_count = 0;
+
+        /////////////////////////////////////////////////////////////
+        // Handle the systems
+        /////////////////////////////////////////////////////////////
+        std::vector<std::function<void(registry &)>> _systems;
 };
 
 

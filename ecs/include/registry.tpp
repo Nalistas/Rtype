@@ -19,7 +19,7 @@ namespace ecs {
 // Handle the components in the registry
 /////////////////////////////////////////////////////////////
 template <class Component>
-sparse_array<Component>& registry::register_component()
+sparse_array<Component> &registry::register_component()
 {
     std::type_index type = typeid(Component);
     if (this->_components_arrays.find(type) == this->_components_arrays.end()) {
@@ -65,17 +65,25 @@ sparse_array<Component> const& registry::get_components() const
 template<typename Component, typename ...Params >
 typename sparse_array<Component>::reference_type registry::emplace_component(entity const &to, Params &&...p)
 {
-    auto& components = this->get_components<Component>();
+    auto &components = this->get_components<Component>();
     return components.emplace_at(to, std::forward<Params>(p)...);
 }
 
 template<typename Component>
 void registry::remove_component(entity const &from)
 {
-    auto& type = typeid(Component);
-    auto& destructor = this->_destructors.at(type);
+    auto &type = typeid(Component);
+    auto &destructor = this->_destructors.at(type);
     destructor(*this, from);
 }
+
+template <class... Components, typename Function>
+void registry::add_system(Function&& f) {
+    _systems.emplace_back([f = std::forward<Function>(f)](registry& reg) {
+        f(reg.get_components<Components>()...);
+    });
+}
+
 
 }
 
