@@ -82,20 +82,28 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Base class for all the systems.  
+<p>Base class for all the systems. All systems must be classes that inherit from this class.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="isystem_8hpp_source.html">isystem.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aabd5c765c2a3567835f400bb1cf124fe" id="r_aabd5c765c2a3567835f400bb1cf124fe"><td class="memItemLeft" align="right" valign="top"><a id="aabd5c765c2a3567835f400bb1cf124fe" name="aabd5c765c2a3567835f400bb1cf124fe"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (<a class="el" href="classsparse__array.html">sparse_array</a>&lt; Components &gt; &amp;...) const =0</td></tr>
+<tr class="memitem:acf994aa668e56219129cb03d59936dcc" id="r_acf994aa668e56219129cb03d59936dcc"><td class="memItemLeft" align="right" valign="top"><a id="acf994aa668e56219129cb03d59936dcc" name="acf994aa668e56219129cb03d59936dcc"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>isystem</b> ()=default</td></tr>
+<tr class="memdesc:acf994aa668e56219129cb03d59936dcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:acf994aa668e56219129cb03d59936dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad82d73147d9922f6df227d431808e6d9" id="r_ad82d73147d9922f6df227d431808e6d9"><td class="memItemLeft" align="right" valign="top"><a id="ad82d73147d9922f6df227d431808e6d9" name="ad82d73147d9922f6df227d431808e6d9"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~isystem</b> ()=default</td></tr>
+<tr class="memdesc:ad82d73147d9922f6df227d431808e6d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor. <br /></td></tr>
+<tr class="separator:ad82d73147d9922f6df227d431808e6d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabd5c765c2a3567835f400bb1cf124fe" id="r_aabd5c765c2a3567835f400bb1cf124fe"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabd5c765c2a3567835f400bb1cf124fe">operator()</a> (<a class="el" href="classsparse__array.html">sparse_array</a>&lt; Components &gt; &amp;...) const =0</td></tr>
+<tr class="memdesc:aabd5c765c2a3567835f400bb1cf124fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call the system.  <br /></td></tr>
 <tr class="separator:aabd5c765c2a3567835f400bb1cf124fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class... Components&gt;<br />
-class ecs::isystem&lt; Components &gt;</div><p>Base class for all the systems. </p>
+class ecs::isystem&lt; Components &gt;</div><p>Base class for all the systems. All systems must be classes that inherit from this class. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Components</td><td>the components used by the system to process <div class="fragment"><div class="line"><span class="keyword">class </span>MySystem : <span class="keyword">public</span> ecs::system&lt;MyComponent1, MyComponent2&gt; { <span class="comment">// inherit from ecs::system and use template</span></div>
@@ -111,7 +119,44 @@ class ecs::isystem&lt; Components &gt;</div><p>Base class for all the systems. <
   </table>
   </dd>
 </dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aabd5c765c2a3567835f400bb1cf124fe" name="aabd5c765c2a3567835f400bb1cf124fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabd5c765c2a3567835f400bb1cf124fe">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Components&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsparse__array.html">virtual</a> <a class="el" href="classsparse__array.html">void</a> <a class="el" href="classecs_1_1isystem.html">ecs::isystem</a>&lt; <a class="el" href="classsparse__array.html">Components</a> &gt;<a class="el" href="classsparse__array.html">::operator</a>() </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsparse__array.html">sparse_array</a>&lt; <a class="el" href="classsparse__array.html">Components</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>...</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Call the system. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Components</td><td>the components used by the system </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function is pure virtual and is mandatory to implement because it is the entry point of the system </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>/home/solype/delivery/current_days/rtype/ecs/include/<a class="el" href="isystem_8hpp_source.html">isystem.hpp</a></li>
 </ul>
 </div><!-- contents -->
