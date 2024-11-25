@@ -50,10 +50,6 @@ int main() {
 
     reg.emplace_component<position>(e2, 7, 8);
 
-    // reg.add_system<position, velocity>([](auto& positions, auto& velocities) {
-    //     std::cout << "Hello" << std::endl;
-    // });
-
     reg.add_system<position, velocity>(logging_system());
 
     reg.run_systems();
