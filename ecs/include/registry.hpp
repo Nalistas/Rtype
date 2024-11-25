@@ -20,6 +20,58 @@
 namespace ecs {
 
 /**
+ * @brief Diagramme UML pour la classe registry
+ *
+ * @startuml
+ * class registry {
+ *   + register_component()
+ *   + get_components()
+ *   + create_entity()
+ *   + entity_from_index()
+ *   + delete_entity()
+ *   + emplace_component()
+ *   + remove_component()
+ *   + add_system()
+ *   + run_systems()
+ * }
+ * class sparse_array {
+ *   + register_component()
+ *   + get_components()
+ * }
+ * class entity {
+ *   + id: int
+ *   + getInfo()
+ * }
+ * registry "1" -- "0..*" sparse_array : contains
+ * registry "1" -- "0..*" entity : creates
+ * registry "1" -- "0..*" unordered_map : stores
+ * registry "1" -- "0..*" std::function : manages
+ * @enduml
+ */
+
+
+/**
+ * @brief Diagramme de la classe registry
+ *
+ * @dot
+ * digraph registry {
+ *     node [shape=record, fontname="Helvetica"];
+ *
+ *     registry [label="{ registry | + register_component() | + get_components() | + create_entity() | + entity_from_index() | + delete_entity() | + emplace_component() | + remove_component() | + add_system() | + run_systems() }"];
+ *     sparse_array [label="{ sparse_array\<\> | + operator[]() }"];
+ *     entity [label="{ entity | + id: int | + operator size_t() }"];
+ *     std_function [label="{ std::function | + operator()() }"];
+ *     unordered_map [label="{ unordered_map | + insert() | + erase() }"];
+ *
+ *     registry -> sparse_array [label="contains"];
+ *     registry -> entity [label="creates"];
+ *     registry -> unordered_map [label="stores"];
+ *     registry -> std_function [label="manages"];
+ * }
+ * @enddot
+ */
+
+/**
  * @class registry
  * @brief Management of the entities, components and systems
  */
