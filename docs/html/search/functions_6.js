@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['register_5fcomponent_0',['register_component',['../classecs_1_1registry.html#a7d177ae0500e0559a4c34abb43f5a26f',1,'ecs::registry']]],
-  ['remove_5fcomponent_1',['remove_component',['../classecs_1_1registry.html#aa40cf7e9c44e3aec51388c8a07bbf50a',1,'ecs::registry']]],
-  ['run_5fsystems_2',['run_systems',['../classecs_1_1registry.html#a2a7c2252aa8be3c9adfc9b3e511789f2',1,'ecs::registry']]]
+  ['operator_20size_5ft_0',['operator size_t',['../classecs_1_1entity.html#a0050ebe498a07c5dbb0ca65c76ea8f50',1,'ecs::entity']]],
+  ['operator_21_3d_1',['operator!=',['../classecs_1_1entity.html#a645676e8fde5b988dc14955bacc9939d',1,'ecs::entity']]],
+  ['operator_3d_2',['operator=',['../classsparse__array.html#a7ef594b28d5a04d4cb9c5cb06edae7b2',1,'sparse_array::operator=(sparse_array const &amp;)'],['../classsparse__array.html#a5c899516f3e0e3400eacc7185fef499c',1,'sparse_array::operator=(sparse_array &amp;&amp;) noexcept']]],
+  ['operator_3d_3d_3',['operator==',['../classecs_1_1entity.html#a528b805325c990efab83772a150a6ca3',1,'ecs::entity']]],
+  ['operator_5b_5d_4',['operator[]',['../classsparse__array.html#a4aa1f2fae14ff1cecdc6e42ded260cad',1,'sparse_array::operator[](size_t idx)'],['../classsparse__array.html#a1d66e1a1e11a9bcef70425c3c09eb6b4',1,'sparse_array::operator[](size_t idx) const']]]
 ];

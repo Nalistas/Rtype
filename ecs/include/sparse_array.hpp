@@ -12,6 +12,8 @@ public:
     //      Used types
     /////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////
+    /// @name Used types
+    /// @{
 
     /**
      * @brief The type of a component
@@ -48,15 +50,14 @@ public:
      */
     using const_iterator = typename container_t::const_iterator;
 
-
-
-
-
+    /// @}
     /////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////
     //      Constructors & destructors
     /////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////
+    /// @name Constructors & destructors
+    /// @{
 
     /**
      * @brief Default constructor
@@ -81,15 +82,14 @@ public:
      */
     ~sparse_array();
 
-
-
-
-
+    /// @}
     /////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////
     //      Operators
     /////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////
+    /// @name Operators
+    /// @{
 
     /**
      * @brief Assignment operator
@@ -104,10 +104,30 @@ public:
      * @return a reference to the sparse array
      */
     sparse_array& operator=(sparse_array&&) noexcept;
+
+    /**
+     * @brief Subscript operator
+     * @param idx the index of the component
+     * @return a reference to the component
+     */
     reference_type operator[](size_t idx);
+
+    /**
+     * @brief Subscript operator
+     * @param idx the index of the component
+     * @return a const reference to the component
+     */
     const_reference_type operator[](size_t idx) const;
 
-    // Iterators
+    /// @}
+    ///////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
+    //      Iterators
+    ///////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
+    /// @name Iterators
+    /// @{
+        
     iterator begin();
     const_iterator begin() const;
     const_iterator cbegin() const;
@@ -115,23 +135,71 @@ public:
     const_iterator end() const;
     const_iterator cend() const;
 
-    // Insertion
+    /// @}
+    ///////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
+    //      Insertion
+    ///////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
+
+    /**
+     * @brief Get the size of the sparse array
+     * @return the size
+     */
     size_type size() const;
+
+    /**
+     * @brief Insert a component at a specific position by copy
+     * @param pos the position
+     */
     reference_type insert_at(size_type pos, Component const&);
+
+    /**
+     * @brief Insert a component at a specific position by moving it
+     * @param pos the position
+     */
     reference_type insert_at(size_type pos, Component&&);
 
+    /**
+     * @brief Insert a component at a specific position by creating it based on the parameters passed
+     * @param pos the position
+     */
     template <class... Params>
     reference_type emplace_at(size_type pos, Params&&... params);
 
 
-    // Suppression
+    /// @}
+    ///////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
+    //      Suppression
+    ///////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
+    /// @name Suppression
+    /// @{
     void erase(size_type pos);
 
-    // Researching
+    /// @}
+    ///////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
+    //      Researching
+    ///////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
+    /// @name Researching
+    /// @{
+        
     size_type get_index(value_type const&) const;
 
+    /// @}
 private:
+    /**
+     * @brief The container
+     */
     container_t _data;
+
+    /**
+     * @brief Ensure the size of the container
+     * @param size the size
+     */
     void ensure_size(size_type size);
 };
 

@@ -72,7 +72,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classsparse__array-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">sparse_array&lt; Component &gt; Class Template Reference</div></div>
@@ -81,6 +80,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Used types</div></td></tr>
 <tr class="memitem:ab7403a6f935fa66034cce5bdcf49a9fc" id="r_ab7403a6f935fa66034cce5bdcf49a9fc"><td class="memItemLeft" align="right" valign="top"><a id="ab7403a6f935fa66034cce5bdcf49a9fc" name="ab7403a6f935fa66034cce5bdcf49a9fc"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = std::optional&lt;Component&gt;</td></tr>
 <tr class="memdesc:ab7403a6f935fa66034cce5bdcf49a9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of a component. <br /></td></tr>
@@ -112,6 +112,20 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>const_iterator</b> =
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a6679a2315be266da4c01ad97f00e51fd" id="r_a6679a2315be266da4c01ad97f00e51fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#af1468a11a30a58090580d1fb399e3cc0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6679a2315be266da4c01ad97f00e51fd">size</a> () const</td></tr>
+<tr class="memdesc:a6679a2315be266da4c01ad97f00e51fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of the sparse array.  <br /></td></tr>
+<tr class="separator:a6679a2315be266da4c01ad97f00e51fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a148de23c16b154614541d8c3ba6d4686" id="r_a148de23c16b154614541d8c3ba6d4686"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a639d023286962a7b28f77fc4741e3f89">reference_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a148de23c16b154614541d8c3ba6d4686">insert_at</a> (<a class="el" href="#af1468a11a30a58090580d1fb399e3cc0">size_type</a> pos, Component const &amp;)</td></tr>
+<tr class="memdesc:a148de23c16b154614541d8c3ba6d4686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a component at a specific position by copy.  <br /></td></tr>
+<tr class="separator:a148de23c16b154614541d8c3ba6d4686"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34bcc8149a3c76ebe297201d0905fae0" id="r_a34bcc8149a3c76ebe297201d0905fae0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a639d023286962a7b28f77fc4741e3f89">reference_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34bcc8149a3c76ebe297201d0905fae0">insert_at</a> (<a class="el" href="#af1468a11a30a58090580d1fb399e3cc0">size_type</a> pos, Component &amp;&amp;)</td></tr>
+<tr class="memdesc:a34bcc8149a3c76ebe297201d0905fae0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a component at a specific position by moving it.  <br /></td></tr>
+<tr class="separator:a34bcc8149a3c76ebe297201d0905fae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29ce1fbf70d7518e96d0003afa74ec93" id="r_a29ce1fbf70d7518e96d0003afa74ec93"><td class="memTemplParams" colspan="2">template&lt;class... Params&gt; </td></tr>
+<tr class="memitem:a29ce1fbf70d7518e96d0003afa74ec93"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="#a639d023286962a7b28f77fc4741e3f89">reference_type</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a29ce1fbf70d7518e96d0003afa74ec93">emplace_at</a> (<a class="el" href="#af1468a11a30a58090580d1fb399e3cc0">size_type</a> pos, Params &amp;&amp;... params)</td></tr>
+<tr class="memdesc:a29ce1fbf70d7518e96d0003afa74ec93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a component at a specific position by creating it based on the parameters passed.  <br /></td></tr>
+<tr class="separator:a29ce1fbf70d7518e96d0003afa74ec93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constructors &amp; destructors</div></td></tr>
 <tr class="memitem:a34c792f0a28f90cffd87e58c52f20017" id="r_a34c792f0a28f90cffd87e58c52f20017"><td class="memItemLeft" align="right" valign="top"><a id="a34c792f0a28f90cffd87e58c52f20017" name="a34c792f0a28f90cffd87e58c52f20017"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>sparse_array</b> ()</td></tr>
 <tr class="memdesc:a34c792f0a28f90cffd87e58c52f20017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
@@ -126,18 +140,20 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>~sparse_array</b> ()</td></tr>
 <tr class="memdesc:a4fcfd9065975ddcb90f2a84c91313867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor. <br /></td></tr>
 <tr class="separator:a4fcfd9065975ddcb90f2a84c91313867"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Operators</div></td></tr>
 <tr class="memitem:a7ef594b28d5a04d4cb9c5cb06edae7b2" id="r_a7ef594b28d5a04d4cb9c5cb06edae7b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsparse__array.html">sparse_array</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ef594b28d5a04d4cb9c5cb06edae7b2">operator=</a> (<a class="el" href="classsparse__array.html">sparse_array</a> const &amp;)</td></tr>
 <tr class="memdesc:a7ef594b28d5a04d4cb9c5cb06edae7b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assignment operator.  <br /></td></tr>
 <tr class="separator:a7ef594b28d5a04d4cb9c5cb06edae7b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c899516f3e0e3400eacc7185fef499c" id="r_a5c899516f3e0e3400eacc7185fef499c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsparse__array.html">sparse_array</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c899516f3e0e3400eacc7185fef499c">operator=</a> (<a class="el" href="classsparse__array.html">sparse_array</a> &amp;&amp;) noexcept</td></tr>
 <tr class="memdesc:a5c899516f3e0e3400eacc7185fef499c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment operator.  <br /></td></tr>
 <tr class="separator:a5c899516f3e0e3400eacc7185fef499c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4aa1f2fae14ff1cecdc6e42ded260cad" id="r_a4aa1f2fae14ff1cecdc6e42ded260cad"><td class="memItemLeft" align="right" valign="top"><a id="a4aa1f2fae14ff1cecdc6e42ded260cad" name="a4aa1f2fae14ff1cecdc6e42ded260cad"></a>
-<a class="el" href="#a639d023286962a7b28f77fc4741e3f89">reference_type</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (size_t idx)</td></tr>
+<tr class="memitem:a4aa1f2fae14ff1cecdc6e42ded260cad" id="r_a4aa1f2fae14ff1cecdc6e42ded260cad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a639d023286962a7b28f77fc4741e3f89">reference_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4aa1f2fae14ff1cecdc6e42ded260cad">operator[]</a> (size_t idx)</td></tr>
+<tr class="memdesc:a4aa1f2fae14ff1cecdc6e42ded260cad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscript operator.  <br /></td></tr>
 <tr class="separator:a4aa1f2fae14ff1cecdc6e42ded260cad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d66e1a1e11a9bcef70425c3c09eb6b4" id="r_a1d66e1a1e11a9bcef70425c3c09eb6b4"><td class="memItemLeft" align="right" valign="top"><a id="a1d66e1a1e11a9bcef70425c3c09eb6b4" name="a1d66e1a1e11a9bcef70425c3c09eb6b4"></a>
-<a class="el" href="#ab45a3b0d907508f61baa7c185d6ed07f">const_reference_type</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (size_t idx) const</td></tr>
+<tr class="memitem:a1d66e1a1e11a9bcef70425c3c09eb6b4" id="r_a1d66e1a1e11a9bcef70425c3c09eb6b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ab45a3b0d907508f61baa7c185d6ed07f">const_reference_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d66e1a1e11a9bcef70425c3c09eb6b4">operator[]</a> (size_t idx) const</td></tr>
+<tr class="memdesc:a1d66e1a1e11a9bcef70425c3c09eb6b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscript operator.  <br /></td></tr>
 <tr class="separator:a1d66e1a1e11a9bcef70425c3c09eb6b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Iterators</div></td></tr>
 <tr class="memitem:a1cdf824b5897fb3ffc857843b37453b2" id="r_a1cdf824b5897fb3ffc857843b37453b2"><td class="memItemLeft" align="right" valign="top"><a id="a1cdf824b5897fb3ffc857843b37453b2" name="a1cdf824b5897fb3ffc857843b37453b2"></a>
 <a class="el" href="#a1293c5b64d77bb97ed87e57c6276925e">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> ()</td></tr>
 <tr class="separator:a1cdf824b5897fb3ffc857843b37453b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,22 +172,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adb95eba3fb7e88207a4374c04950d167" id="r_adb95eba3fb7e88207a4374c04950d167"><td class="memItemLeft" align="right" valign="top"><a id="adb95eba3fb7e88207a4374c04950d167" name="adb95eba3fb7e88207a4374c04950d167"></a>
 <a class="el" href="#a9beecc69673481f79844336194dfc1a2">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><b>cend</b> () const</td></tr>
 <tr class="separator:adb95eba3fb7e88207a4374c04950d167"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6679a2315be266da4c01ad97f00e51fd" id="r_a6679a2315be266da4c01ad97f00e51fd"><td class="memItemLeft" align="right" valign="top"><a id="a6679a2315be266da4c01ad97f00e51fd" name="a6679a2315be266da4c01ad97f00e51fd"></a>
-<a class="el" href="#af1468a11a30a58090580d1fb399e3cc0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const</td></tr>
-<tr class="separator:a6679a2315be266da4c01ad97f00e51fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a148de23c16b154614541d8c3ba6d4686" id="r_a148de23c16b154614541d8c3ba6d4686"><td class="memItemLeft" align="right" valign="top"><a id="a148de23c16b154614541d8c3ba6d4686" name="a148de23c16b154614541d8c3ba6d4686"></a>
-<a class="el" href="#a639d023286962a7b28f77fc4741e3f89">reference_type</a>&#160;</td><td class="memItemRight" valign="bottom"><b>insert_at</b> (<a class="el" href="#af1468a11a30a58090580d1fb399e3cc0">size_type</a> pos, Component const &amp;)</td></tr>
-<tr class="separator:a148de23c16b154614541d8c3ba6d4686"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34bcc8149a3c76ebe297201d0905fae0" id="r_a34bcc8149a3c76ebe297201d0905fae0"><td class="memItemLeft" align="right" valign="top"><a id="a34bcc8149a3c76ebe297201d0905fae0" name="a34bcc8149a3c76ebe297201d0905fae0"></a>
-<a class="el" href="#a639d023286962a7b28f77fc4741e3f89">reference_type</a>&#160;</td><td class="memItemRight" valign="bottom"><b>insert_at</b> (<a class="el" href="#af1468a11a30a58090580d1fb399e3cc0">size_type</a> pos, Component &amp;&amp;)</td></tr>
-<tr class="separator:a34bcc8149a3c76ebe297201d0905fae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29ce1fbf70d7518e96d0003afa74ec93" id="r_a29ce1fbf70d7518e96d0003afa74ec93"><td class="memTemplParams" colspan="2"><a id="a29ce1fbf70d7518e96d0003afa74ec93" name="a29ce1fbf70d7518e96d0003afa74ec93"></a>
-template&lt;class... Params&gt; </td></tr>
-<tr class="memitem:a29ce1fbf70d7518e96d0003afa74ec93"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="#a639d023286962a7b28f77fc4741e3f89">reference_type</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>emplace_at</b> (<a class="el" href="#af1468a11a30a58090580d1fb399e3cc0">size_type</a> pos, Params &amp;&amp;... params)</td></tr>
-<tr class="separator:a29ce1fbf70d7518e96d0003afa74ec93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Suppression</div></td></tr>
 <tr class="memitem:ac0bea77704ce39c1a731dc69de8d9d2d" id="r_ac0bea77704ce39c1a731dc69de8d9d2d"><td class="memItemLeft" align="right" valign="top"><a id="ac0bea77704ce39c1a731dc69de8d9d2d" name="ac0bea77704ce39c1a731dc69de8d9d2d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>erase</b> (<a class="el" href="#af1468a11a30a58090580d1fb399e3cc0">size_type</a> pos)</td></tr>
 <tr class="separator:ac0bea77704ce39c1a731dc69de8d9d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Researching</div></td></tr>
 <tr class="memitem:a67e3ada4da4286c0a6a0971d40d7f9c3" id="r_a67e3ada4da4286c0a6a0971d40d7f9c3"><td class="memItemLeft" align="right" valign="top"><a id="a67e3ada4da4286c0a6a0971d40d7f9c3" name="a67e3ada4da4286c0a6a0971d40d7f9c3"></a>
 <a class="el" href="#af1468a11a30a58090580d1fb399e3cc0">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_index</b> (<a class="el" href="#ab7403a6f935fa66034cce5bdcf49a9fc">value_type</a> const &amp;) const</td></tr>
 <tr class="separator:a67e3ada4da4286c0a6a0971d40d7f9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -241,6 +246,101 @@ template&lt;typename Component &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a29ce1fbf70d7518e96d0003afa74ec93" name="a29ce1fbf70d7518e96d0003afa74ec93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29ce1fbf70d7518e96d0003afa74ec93">&#9670;&#160;</a></span>emplace_at()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Component &gt; </div>
+<div class="memtemplate">
+template&lt;class... Params&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a639d023286962a7b28f77fc4741e3f89">reference_type</a> <a class="el" href="classsparse__array.html">sparse_array</a>&lt; Component &gt;::emplace_at </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#af1468a11a30a58090580d1fb399e3cc0">size_type</a></td>          <td class="paramname"><span class="paramname"><em>pos</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Params &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>params</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Insert a component at a specific position by creating it based on the parameters passed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>the position </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a34bcc8149a3c76ebe297201d0905fae0" name="a34bcc8149a3c76ebe297201d0905fae0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34bcc8149a3c76ebe297201d0905fae0">&#9670;&#160;</a></span>insert_at() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Component &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a639d023286962a7b28f77fc4741e3f89">reference_type</a> <a class="el" href="classsparse__array.html">sparse_array</a>&lt; Component &gt;::insert_at </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#af1468a11a30a58090580d1fb399e3cc0">size_type</a></td>          <td class="paramname"><span class="paramname"><em>pos</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Component &amp;&amp;</td>          <td class="paramname"><span class="paramname"></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Insert a component at a specific position by moving it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>the position </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a148de23c16b154614541d8c3ba6d4686" name="a148de23c16b154614541d8c3ba6d4686"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a148de23c16b154614541d8c3ba6d4686">&#9670;&#160;</a></span>insert_at() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Component &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a639d023286962a7b28f77fc4741e3f89">reference_type</a> <a class="el" href="classsparse__array.html">sparse_array</a>&lt; Component &gt;::insert_at </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#af1468a11a30a58090580d1fb399e3cc0">size_type</a></td>          <td class="paramname"><span class="paramname"><em>pos</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Component const &amp;</td>          <td class="paramname"><span class="paramname"></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Insert a component at a specific position by copy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>the position </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a5c899516f3e0e3400eacc7185fef499c" name="a5c899516f3e0e3400eacc7185fef499c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5c899516f3e0e3400eacc7185fef499c">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
 
@@ -302,6 +402,84 @@ template&lt;typename Component &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a reference to the sparse array </dd></dl>
+
+</div>
+</div>
+<a id="a4aa1f2fae14ff1cecdc6e42ded260cad" name="a4aa1f2fae14ff1cecdc6e42ded260cad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4aa1f2fae14ff1cecdc6e42ded260cad">&#9670;&#160;</a></span>operator[]() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Component &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a639d023286962a7b28f77fc4741e3f89">reference_type</a> <a class="el" href="classsparse__array.html">sparse_array</a>&lt; Component &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>idx</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Subscript operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">idx</td><td>the index of the component </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a reference to the component </dd></dl>
+
+</div>
+</div>
+<a id="a1d66e1a1e11a9bcef70425c3c09eb6b4" name="a1d66e1a1e11a9bcef70425c3c09eb6b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d66e1a1e11a9bcef70425c3c09eb6b4">&#9670;&#160;</a></span>operator[]() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Component &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ab45a3b0d907508f61baa7c185d6ed07f">const_reference_type</a> <a class="el" href="classsparse__array.html">sparse_array</a>&lt; Component &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>idx</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Subscript operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">idx</td><td>the index of the component </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a const reference to the component </dd></dl>
+
+</div>
+</div>
+<a id="a6679a2315be266da4c01ad97f00e51fd" name="a6679a2315be266da4c01ad97f00e51fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6679a2315be266da4c01ad97f00e51fd">&#9670;&#160;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Component &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#af1468a11a30a58090580d1fb399e3cc0">size_type</a> <a class="el" href="classsparse__array.html">sparse_array</a>&lt; Component &gt;::size </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the size of the sparse array. </p>
+<dl class="section return"><dt>Returns</dt><dd>the size </dd></dl>
 
 </div>
 </div>

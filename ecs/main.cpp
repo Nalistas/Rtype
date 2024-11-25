@@ -1,5 +1,5 @@
 #include "registry.hpp"
-#include "system.hpp"
+#include "isystem.hpp"
 #include <iostream>
 #include <string>
 
@@ -17,7 +17,7 @@ struct velocity {
     velocity(int vx, int vy) : vx(vx), vy(vy) {}
 };
 
-class logging_system : public ecs::system<position, velocity> {
+class logging_system : public ecs::isystem<position, velocity> {
     public:
     void operator()( sparse_array<position>& positions, sparse_array<velocity>& velocities) const override
     {

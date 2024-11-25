@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operator_3d_0',['operator=',['../classsparse__array.html#a7ef594b28d5a04d4cb9c5cb06edae7b2',1,'sparse_array::operator=(sparse_array const &amp;)'],['../classsparse__array.html#a5c899516f3e0e3400eacc7185fef499c',1,'sparse_array::operator=(sparse_array &amp;&amp;) noexcept']]]
+  ['insert_5fat_0',['insert_at',['../classsparse__array.html#a148de23c16b154614541d8c3ba6d4686',1,'sparse_array::insert_at(size_type pos, Component const &amp;)'],['../classsparse__array.html#a34bcc8149a3c76ebe297201d0905fae0',1,'sparse_array::insert_at(size_type pos, Component &amp;&amp;)']]]
 ];

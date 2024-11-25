@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['position_0',['position',['../structposition.html',1,'']]]
+  ['logging_5fsystem_0',['logging_system',['../classlogging__system.html',1,'']]]
 ];
