@@ -16,7 +16,7 @@ class registry;
 
 
 /**
- * @brief Base class for all the systems.
+ * @brief Base class for all the systems. All systems must be classes that inherit from this class
  * @tparam Components the components used by the system to process
  * @code
  * class MySystem : public ecs::system<MyComponent1, MyComponent2> { // inherit from ecs::system and use template
@@ -32,9 +32,21 @@ class registry;
 template <class... Components>
 class isystem {
     public:
+        /**
+         * @brief Default constructor
+         */
         isystem() = default;
+
+        /**
+         * @brief Default destructor
+         */
         virtual ~isystem() = default;
 
+        /**
+         * @brief Call the system
+         * @tparam Components the components used by the system
+         * @note This function is pure virtual and is mandatory to implement because it is the entry point of the system
+         */
         virtual void operator()(sparse_array<Components>& ...) const = 0;
 };
 

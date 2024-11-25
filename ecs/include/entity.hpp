@@ -16,7 +16,7 @@ namespace ecs {
 
 /**
  * @class entity
- * @brief Entity
+ * @brief Entity class, used to get information about an entity using its id and the ecs::registry
  */
 
 class entity {
