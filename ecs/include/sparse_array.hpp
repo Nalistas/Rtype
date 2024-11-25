@@ -7,23 +7,102 @@
 template <typename Component>
 class sparse_array {
 public:
-    // Types utilisés
+    /////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////
+    //      Used types
+    /////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////
+
+    /**
+     * @brief The type of a component
+    */
     using value_type = std::optional<Component>;
+
+    /**
+     * @brief The type of a reference to a component
+     */
     using reference_type = value_type&;
+
+    /**
+     * @brief The type of a const reference to a component
+    */
     using const_reference_type = value_type const&;
+
+    /**
+     * @brief The type of the container
+     */
     using container_t = std::vector<value_type>;
+
+    /**
+     * @brief The type of the size
+     */
     using size_type = typename container_t::size_type;
+
+    /**
+     * @brief The type of the iterator
+     */
     using iterator = typename container_t::iterator;
+
+    /**
+     * @brief The type of the const iterator
+     */
     using const_iterator = typename container_t::const_iterator;
 
-    // Constructors & destructors
+
+
+
+
+    /////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////
+    //      Constructors & destructors
+    /////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////
+
+    /**
+     * @brief Default constructor
+     */
     sparse_array();
-    sparse_array(sparse_array const&);
-    sparse_array(sparse_array&&) noexcept;
+
+    /**
+     * @brief Copy constructor
+     * @param other the sparse array to copy
+     */
+    sparse_array(sparse_array const &other);
+
+    /**
+     * @brief Move constructor
+     * @param other the sparse array to move
+     * @note This constructor is noexcept
+     */
+    sparse_array(sparse_array &&other) noexcept;
+
+    /**
+     * @brief Default destructor
+     */
     ~sparse_array();
 
-    // Operators
+
+
+
+
+    /////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////
+    //      Operators
+    /////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////
+
+    /**
+     * @brief Assignment operator
+     * @param other the sparse array to copy
+     * @return a reference to the sparse array
+     */
     sparse_array& operator=(sparse_array const&);
+
+    /**
+     * @brief Move assignment operator
+     * @param other the sparse array to move
+     * @return a reference to the sparse array
+     */
     sparse_array& operator=(sparse_array&&) noexcept;
     reference_type operator[](size_t idx);
     const_reference_type operator[](size_t idx) const;
