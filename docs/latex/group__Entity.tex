@@ -1,0 +1,73 @@
+\doxysection{Management}
+\hypertarget{group__Entity}{}\label{group__Entity}\index{Management@{Management}}
+
+
+Management of the entities stored in the registry.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{group__Entity_ga3dd0770aa04c88c98c260b64daee967c}{ecs\+::registry\+::create\+\_\+entity}} ()
+\begin{DoxyCompactList}\small\item\em Give a new entity to the registry and return it. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{group__Entity_ga6cff4216d7f32bc8fc3df84631079bf4}{ecs\+::registry\+::entity\+\_\+from\+\_\+index}} (std\+::size\+\_\+t idx)
+\begin{DoxyCompactList}\small\item\em Retrieve an entity from its index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Entity_ga00e2fbde9b3ce99b1aa4f0c0b12ff13d}{ecs\+::registry\+::delete\+\_\+entity}} (\mbox{\hyperlink{classecs_1_1entity}{entity}} const \&e)
+\begin{DoxyCompactList}\small\item\em Delete all the components of an entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Management of the entities stored in the registry. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__Entity_ga3dd0770aa04c88c98c260b64daee967c}\label{group__Entity_ga3dd0770aa04c88c98c260b64daee967c} 
+\index{Management@{Management}!create\_entity@{create\_entity}}
+\index{create\_entity@{create\_entity}!Management@{Management}}
+\doxysubsubsection{\texorpdfstring{create\_entity()}{create\_entity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classecs_1_1entity}{ecs\+::entity}} ecs\+::registry\+::create\+\_\+entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Give a new entity to the registry and return it. 
+
+\begin{DoxyNote}{Note}
+this function will increment the total entity count or take an entity from the unused entities set 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+the new entity 
+\end{DoxyReturn}
+\Hypertarget{group__Entity_ga00e2fbde9b3ce99b1aa4f0c0b12ff13d}\label{group__Entity_ga00e2fbde9b3ce99b1aa4f0c0b12ff13d} 
+\index{Management@{Management}!delete\_entity@{delete\_entity}}
+\index{delete\_entity@{delete\_entity}!Management@{Management}}
+\doxysubsubsection{\texorpdfstring{delete\_entity()}{delete\_entity()}}
+{\footnotesize\ttfamily void ecs\+::registry\+::delete\+\_\+entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classecs_1_1entity}{entity}} const \&}]{e }\end{DoxyParamCaption})}
+
+
+
+Delete all the components of an entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & the entity to delete and add the unused entity to the unused entities set \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__Entity_ga6cff4216d7f32bc8fc3df84631079bf4}\label{group__Entity_ga6cff4216d7f32bc8fc3df84631079bf4} 
+\index{Management@{Management}!entity\_from\_index@{entity\_from\_index}}
+\index{entity\_from\_index@{entity\_from\_index}!Management@{Management}}
+\doxysubsubsection{\texorpdfstring{entity\_from\_index()}{entity\_from\_index()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classecs_1_1entity}{ecs\+::entity}} ecs\+::registry\+::entity\+\_\+from\+\_\+index (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{idx }\end{DoxyParamCaption})}
+
+
+
+Retrieve an entity from its index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the index of the entity \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the entity 
+\end{DoxyReturn}

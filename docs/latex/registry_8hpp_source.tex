@@ -1,0 +1,83 @@
+\doxysection{registry.\+hpp}
+\hypertarget{registry_8hpp_source}{}\label{registry_8hpp_source}\index{/home/solype/delivery/current\_days/rtype/ecs/include/registry.hpp@{/home/solype/delivery/current\_days/rtype/ecs/include/registry.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ rtype}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ registry}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}sparse\_array.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}entity.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <any>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <typeindex>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <typeinfo>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#ifndef\ REGISTRY\_HPP\_}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\ \ \ \ \#define\ REGISTRY\_HPP\_}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }ecs\ \{}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classecs_1_1registry}{registry}}\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ public\ :}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ Handle\ the\ components\ in\ the\ registry}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Component>}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsparse__array}{sparse\_array<Component>}}\ \&\mbox{\hyperlink{classecs_1_1registry_a7d177ae0500e0559a4c34abb43f5a26f}{register\_component}}();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Component>}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsparse__array}{sparse\_array<Component>}}\ \&\mbox{\hyperlink{classecs_1_1registry_af80da5c955ffc61f56854ad364fb788a}{get\_components}}();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Component>}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsparse__array}{sparse\_array<Component>}}\ \textcolor{keyword}{const}\ \&\mbox{\hyperlink{classecs_1_1registry_ad173e2489d681d013517cc87a41a90ff}{get\_components}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ Handle\ the\ entities\ in\ the\ registry}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classecs_1_1entity}{entity}}\ \mbox{\hyperlink{classecs_1_1registry_a3dd0770aa04c88c98c260b64daee967c}{create\_entity}}();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classecs_1_1entity}{entity}}\ \mbox{\hyperlink{classecs_1_1registry_a6cff4216d7f32bc8fc3df84631079bf4}{entity\_from\_index}}(std::size\_t\ idx);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classecs_1_1registry_a00e2fbde9b3ce99b1aa4f0c0b12ff13d}{delete\_entity}}(\mbox{\hyperlink{classecs_1_1entity}{entity}}\ \textcolor{keyword}{const}\ \&e);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ Handle\ the\ components\ in\ the\ registry}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Component,\ \textcolor{keyword}{typename}\ ...Params>}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classsparse__array_a639d023286962a7b28f77fc4741e3f89}{sparse\_array<Component>::reference\_type}}\ \mbox{\hyperlink{classecs_1_1registry_a6b015662562cf3d2168ed54427f5ea27}{emplace\_component}}(\mbox{\hyperlink{classecs_1_1entity}{entity}}\ \textcolor{keyword}{const}\ \&to,\ Params\ \&\&...p);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Component>}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classecs_1_1registry_aa40cf7e9c44e3aec51388c8a07bbf50a}{remove\_component}}(\mbox{\hyperlink{classecs_1_1entity}{entity}}\ \textcolor{keyword}{const}\ \&from);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ Handle\ the\ systems}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class\ }...Components,\ \textcolor{keyword}{typename}\ Function>}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classecs_1_1registry_af0765f4fd5e36738b878684c45af332b}{add\_system}}(Function\ \&\&f);}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classecs_1_1registry_a2a7c2252aa8be3c9adfc9b3e511789f2}{run\_systems}}\ ()\ ;}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ private\ :}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ std::unordered\_map<std::type\_index,\ std::any>\ \_components\_arrays;}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }destructor\_t\ =\ std::function<void(\mbox{\hyperlink{classecs_1_1registry}{registry}}\ \&,\ \mbox{\hyperlink{classecs_1_1entity}{entity}}\ \textcolor{keyword}{const}\ \&)>;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ std::unordered\_map<std::type\_index,\ destructor\_t>\ \_destructors;}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ std::set<entity>\ \_unused\_entities;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ std::size\_t\ \_total\_entity\_count\ =\ 0;}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ std::vector<std::function<void(\mbox{\hyperlink{classecs_1_1registry}{registry}}\ \&)>>\ \_systems;}
+\DoxyCodeLine{00165\ \};}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#include\ "{}registry.tpp"{}}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !REGISTRY\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}
