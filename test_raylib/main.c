@@ -17,9 +17,9 @@ int main() {
     float target_width = 80.0f;
     float target_height = 60.0f;
 
-    Rectangle source = {0, 0, (float)orange.width, (float)orange.height};
-    Rectangle destination = {100, 100, target_width, target_height};
-    Vector2 origin = {0, 0.0f};
+    Rectangle source = {500, 500, (float)orange.width - 500, (float)orange.height - 500}; // 
+    Rectangle destination = {400, 300, target_width, target_height};
+    Vector2 origin = {40.0f, 30.0f};
 
     bool running = true;
 
@@ -39,7 +39,7 @@ int main() {
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
-        DrawTexturePro(orange, source, destination, origin, 180, WHITE);
+        DrawTexturePro(orange, source, destination, origin, 90, WHITE);
         DrawText("Appuyez sur ESPACE pour jouer un effet sonore !", 150, 250, 20, DARKGRAY);
         DrawText("La musique de fond joue en continu.", 200, 300, 20, GRAY);
         EndDrawing();

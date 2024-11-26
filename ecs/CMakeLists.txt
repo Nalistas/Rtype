@@ -12,13 +12,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 include_directories(include)
 
 # Crée un exécutable pour le projet
-add_executable(ecs ${SOURCES} ${HEADERS})
+add_library(ecs ${SOURCES} ${HEADERS})
 
 target_sources(ecs
     PRIVATE
     src/entity.cpp
     src/registry.cpp
-    main.cpp
 )
 
 target_include_directories(ecs

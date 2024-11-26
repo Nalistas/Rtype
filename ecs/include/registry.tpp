@@ -80,7 +80,7 @@ void registry::remove_component(entity const &from)
 template <class... Components, typename Function>
 void registry::add_system(Function&& f) {
     _systems.emplace_back([f = std::forward<Function>(f)](registry& reg) {
-        f(reg.get_components<Components>()...);
+        f(reg, reg.get_components<Components>()...);
     });
 }
 
