@@ -18,7 +18,7 @@ Base class for all the systems. All systems must be classes that inherit from th
 \Hypertarget{classecs_1_1isystem_ad82d73147d9922f6df227d431808e6d9}\label{classecs_1_1isystem_ad82d73147d9922f6df227d431808e6d9} 
 virtual {\bfseries \texorpdfstring{$\sim$}{\string~}isystem} ()=default
 \begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classecs_1_1isystem_aabd5c765c2a3567835f400bb1cf124fe}{operator()}} (\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Components $>$ \&...) const =0
+virtual void \mbox{\hyperlink{classecs_1_1isystem_ac303c5b938728cd4af418b97b9da497b}{operator()}} (\mbox{\hyperlink{classecs_1_1iregistry}{iregistry}} \&, \mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Components $>$ \&...) const =0
 \begin{DoxyCompactList}\small\item\em Call the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -31,7 +31,7 @@ Base class for all the systems. All systems must be classes that inherit from th
 \begin{DoxyTemplParams}{Template Parameters}
 {\em Components} & the components used by the system to process 
 \begin{DoxyCode}{1}
-\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{classsparse__array}{MySystem}}\ :\ \textcolor{keyword}{public}\ ecs::system<MyComponent1,\ MyComponent2>\ \{\ \textcolor{comment}{//\ inherit\ from\ ecs::system\ and\ use\ template}}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{classMySystem}{MySystem}}\ :\ \textcolor{keyword}{public}\ ecs::system<MyComponent1,\ MyComponent2>\ \{\ \textcolor{comment}{//\ inherit\ from\ ecs::system\ and\ use\ template}}
 \DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ operator()(}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ ecs::sparse\_array<MyComponent1>\&\ \mbox{\hyperlink{classsparse__array}{sa1}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ ecs::sparse\_array<MyComponent2>\&\ \mbox{\hyperlink{classsparse__array}{sa2}})\textcolor{keyword}{\ const}}
@@ -47,12 +47,12 @@ Base class for all the systems. All systems must be classes that inherit from th
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classecs_1_1isystem_aabd5c765c2a3567835f400bb1cf124fe}\label{classecs_1_1isystem_aabd5c765c2a3567835f400bb1cf124fe} 
+\Hypertarget{classecs_1_1isystem_ac303c5b938728cd4af418b97b9da497b}\label{classecs_1_1isystem_ac303c5b938728cd4af418b97b9da497b} 
 \index{ecs::isystem$<$ Components $>$@{ecs::isystem$<$ Components $>$}!operator()@{operator()}}
 \index{operator()@{operator()}!ecs::isystem$<$ Components $>$@{ecs::isystem$<$ Components $>$}}
 \doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
 {\footnotesize\ttfamily template$<$class... Components$>$ \\
-\mbox{\hyperlink{classsparse__array}{virtual}} \mbox{\hyperlink{classsparse__array}{void}} \mbox{\hyperlink{classecs_1_1isystem}{ecs\+::isystem}}$<$ \mbox{\hyperlink{classsparse__array}{Components}} $>$\mbox{\hyperlink{classsparse__array}{\+::operator}}() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ \mbox{\hyperlink{classsparse__array}{Components}} $>$ \&}]{... }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+\mbox{\hyperlink{classsparse__array}{virtual}} \mbox{\hyperlink{classsparse__array}{void}} \mbox{\hyperlink{classecs_1_1isystem}{ecs\+::isystem}}$<$ \mbox{\hyperlink{classsparse__array}{Components}} $>$\mbox{\hyperlink{classsparse__array}{\+::operator}}() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classecs_1_1iregistry}{iregistry}} \&}]{,  }\item[{\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ \mbox{\hyperlink{classsparse__array}{Components}} $>$ \&}]{... }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 

@@ -1,0 +1,73 @@
+\doxysection{ecs\+::iregistry Class Reference}
+\hypertarget{classecs_1_1iregistry}{}\label{classecs_1_1iregistry}\index{ecs::iregistry@{ecs::iregistry}}
+
+
+Interface for the registry, it doesn\textquotesingle{}t have any implementation and only declare the pure virtual functions that has no template.  
+
+
+
+
+{\ttfamily \#include $<$iregistry.\+hpp$>$}
+
+
+
+Inheritance diagram for ecs\+::iregistry\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{classecs_1_1iregistry__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classecs_1_1iregistry_a2348df324f78a7c097dc40564bef0184}\label{classecs_1_1iregistry_a2348df324f78a7c097dc40564bef0184} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}iregistry} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classecs_1_1iregistry_ac253305e27c8ea1298d9bff9b0cb15a6}{create\+\_\+entity}} ()=0
+\begin{DoxyCompactList}\small\item\em Virtual function to create an entity. \end{DoxyCompactList}\item 
+\Hypertarget{classecs_1_1iregistry_a72c698566bcad36d9110d58336791a4f}\label{classecs_1_1iregistry_a72c698566bcad36d9110d58336791a4f} 
+virtual \mbox{\hyperlink{classecs_1_1entity}{entity}} {\bfseries entity\+\_\+from\+\_\+index} (size\+\_\+t index)=0
+\begin{DoxyCompactList}\small\item\em Virtual function to get an entity from its index. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classecs_1_1iregistry_a2bea4aecd9531da32ddc1e38e37b8e6c}{delete\+\_\+entity}} (\mbox{\hyperlink{classecs_1_1entity}{entity}} const \&e)=0
+\begin{DoxyCompactList}\small\item\em Virtual function to delete an entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for the registry, it doesn\textquotesingle{}t have any implementation and only declare the pure virtual functions that has no template. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classecs_1_1iregistry_ac253305e27c8ea1298d9bff9b0cb15a6}\label{classecs_1_1iregistry_ac253305e27c8ea1298d9bff9b0cb15a6} 
+\index{ecs::iregistry@{ecs::iregistry}!create\_entity@{create\_entity}}
+\index{create\_entity@{create\_entity}!ecs::iregistry@{ecs::iregistry}}
+\doxysubsubsection{\texorpdfstring{create\_entity()}{create\_entity()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classecs_1_1entity}{entity}} ecs\+::iregistry\+::create\+\_\+entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Virtual function to create an entity. 
+
+
+
+Implemented in \mbox{\hyperlink{classecs_1_1registry_aa2ee7f9351e6ddbfa28902ff0efcaf9e}{ecs\+::registry}}.
+
+\Hypertarget{classecs_1_1iregistry_a2bea4aecd9531da32ddc1e38e37b8e6c}\label{classecs_1_1iregistry_a2bea4aecd9531da32ddc1e38e37b8e6c} 
+\index{ecs::iregistry@{ecs::iregistry}!delete\_entity@{delete\_entity}}
+\index{delete\_entity@{delete\_entity}!ecs::iregistry@{ecs::iregistry}}
+\doxysubsubsection{\texorpdfstring{delete\_entity()}{delete\_entity()}}
+{\footnotesize\ttfamily virtual void ecs\+::iregistry\+::delete\+\_\+entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classecs_1_1entity}{entity}} const \&}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Virtual function to delete an entity. 
+
+
+
+Implemented in \mbox{\hyperlink{classecs_1_1registry_a8625559dd38b79b57740e23a81d27767}{ecs\+::registry}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/solype/delivery/current\+\_\+days/rtype/ecs/include/iregistry.\+hpp\end{DoxyCompactItemize}

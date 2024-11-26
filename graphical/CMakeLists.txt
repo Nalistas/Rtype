@@ -1,8 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
-project(MyRaylibProject)
+
+project(rtype LANGUAGES CXX)
 
 # Configuration standard
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+include_directories(include)
 
 # Télécharger et intégrer Raylib
 include(FetchContent)
@@ -14,7 +19,14 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(raylib)
 
 # Ajoutez vos fichiers source
-add_executable(${PROJECT_NAME} main.c)
+add_executable(${PROJECT_NAME})
+
+target_sources(${PROJECT_NAME}
+    PRIVATE
+    main.cpp
+    src/Window.cpp
+    src/Sprite.cpp
+)
 
 # Liez Raylib avec votre projet
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
