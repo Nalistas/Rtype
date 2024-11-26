@@ -21,7 +21,7 @@ target_sources(ecs
 )
 
 target_include_directories(ecs
-    PRIVATE
+    PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR} # Répertoire actuel
 )
 

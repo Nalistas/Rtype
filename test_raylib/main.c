@@ -48,6 +48,7 @@ int main() {
     // Libérer les ressources
     UnloadMusicStream(music);
     UnloadSound(fx);
+    UnloadTexture(orange);
 
     // Fermer l'audio et la fenêtre
     CloseAudioDevice();
