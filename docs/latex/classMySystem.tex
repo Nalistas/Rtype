@@ -7,7 +7,7 @@ Inheritance diagram for My\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=206pt]{classMySystem__inherit__graph}
+\includegraphics[width=344pt]{classMySystem__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -17,15 +17,27 @@ Collaboration diagram for My\+System\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=206pt]{classMySystem__coll__graph}
+\includegraphics[width=344pt]{classMySystem__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\Hypertarget{classMySystem_a7f24f15d375d1a3a6707095c5deba2c9}\label{classMySystem_a7f24f15d375d1a3a6707095c5deba2c9} 
+void {\bfseries operator()} (\mbox{\hyperlink{classecs_1_1iregistry}{ecs\+::iregistry}} \&r, \mbox{\hyperlink{classPosition}{Position}} \&p, \mbox{\hyperlink{classVelocity}{Velocity}} \&v) const override
+\item 
 \Hypertarget{classMySystem_a99499100fdadcdf7b178db4bc801e157}\label{classMySystem_a99499100fdadcdf7b178db4bc801e157} 
 void {\bfseries operator()} (\mbox{\hyperlink{classecs_1_1iregistry}{ecs\+::iregistry}} \&r, \mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ \mbox{\hyperlink{classPosition}{Position}} $>$ \&sa2) const override
 \end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classecs_1_1isystem}{ecs\+::isystem$<$ Position, Velocity $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries isystem} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}isystem} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classecs_1_1isystem_a83abdabf8f810d55542d0eeb6b20175a}{operator()}} (\mbox{\hyperlink{classecs_1_1iregistry}{iregistry}} \&, Components \&...) const=0
+\begin{DoxyCompactList}\small\item\em Call the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classecs_1_1isystem}{ecs\+::isystem$<$ Position $>$}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -33,10 +45,11 @@ void {\bfseries operator()} (\mbox{\hyperlink{classecs_1_1iregistry}{ecs\+::ireg
 \begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
 virtual {\bfseries \texorpdfstring{$\sim$}{\string~}isystem} ()=default
 \begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classecs_1_1isystem_ac303c5b938728cd4af418b97b9da497b}{operator()}} (\mbox{\hyperlink{classecs_1_1iregistry}{iregistry}} \&, \mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Components $>$ \&...) const=0
+virtual void \mbox{\hyperlink{classecs_1_1isystem_a83abdabf8f810d55542d0eeb6b20175a}{operator()}} (\mbox{\hyperlink{classecs_1_1iregistry}{iregistry}} \&, Components \&...) const=0
 \begin{DoxyCompactList}\small\item\em Call the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
+/home/solype/delivery/current\+\_\+days/rtype/ecs/main.\+cpp\item 
 /home/solype/delivery/current\+\_\+days/rtype/main.\+cpp\end{DoxyCompactItemize}

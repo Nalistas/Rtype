@@ -1,28 +1,49 @@
 // #include "raylib.h"
 #include <stdio.h>
+#include <unistd.h>
 #include "Window.hpp"
 #include "Sprite.hpp"
+#include "RaySound.hpp"
+#include "AudioDevice.hpp"
+#include "RayMusic.hpp"
 
 int main(void)
 {
     raylib::Window window(800, 600);
-    raylib::Sprite sprite("orange.png");
+    raylib::AudioDevice device;
+    raylib::RaySound sound("sound.wav");
+    raylib::RayMusic music("music.mp3");
 
-    sprite.set_size(50, 50);
-    sprite.set_position(400, 300);
+    window.set_fps(10);
+
+    music.play();
 
     while (window.is_running()) {
-        std::list<int> keys = window.get_keys();
+        std::list<int> keys = window.get_keys(raylib::Window::BUTTON_STATE::DOWN);
+        music.update();
 
         if (keys.size() > 0) {
-            sprite.set_rotation(sprite.get_rotation() + 1);
+            printf("here\n");
+            sound.play();
         }
 
         window.start_drawing();
         window.clear();
-        sprite.draw();
-        window.draw_text("test", 10, 10, 20, BLACK);
+
+        unsigned int i = 0;
+        for (auto it = keys.begin(); it != keys.end(); it++) {
+            window.draw_text(std::to_string(*it), 10, 50 + i * 20, 20, BLACK);
+            i++;
+        }
+
+        keys = window.get_mouse_buttons();
+        i = 0;
+        for (auto it = keys.begin(); it != keys.end(); it++) {
+            window.draw_text(std::to_string(*it), 100, 50 + i * 20, 20, BLACK);
+            i++;
+        }
         window.end_drawing();
+
     }
     return 0;
 }

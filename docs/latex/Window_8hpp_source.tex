@@ -1,0 +1,76 @@
+\doxysection{Window.\+hpp}
+\hypertarget{Window_8hpp_source}{}\label{Window_8hpp_source}\index{/home/solype/delivery/current\_days/rtype/graphical/include/Window.hpp@{/home/solype/delivery/current\_days/rtype/graphical/include/Window.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ rtype}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Window}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}raylib.h"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ WINDOW\_HPP\_}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \#define\ WINDOW\_HPP\_}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }raylib\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classraylib_1_1Window}{Window}}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classraylib_1_1Window_abf9c66c2dfab997dbc63337694de0ac3}{BUTTON\_STATE}}\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ RELEASED\ \ \ \ =\ 0,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ PRESSED\ \ \ \ \ =\ 1,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ DOWN\ \ \ \ \ \ \ \ =\ 2,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ UP\ \ \ \ \ \ \ \ \ \ =\ 3}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classraylib_1_1Window_abe04f4c1c07354187f7360aaad4d6da7}{Window}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ width\ =\ 500,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ height\ =\ 500);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classraylib_1_1Window_a6071f03b18e0f2d3817b0da3699f24af}{\string~Window}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classraylib_1_1Window_a5204720f30e67400fb42eb279194b356}{set\_fps}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ fps);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classraylib_1_1Window_a1a7d0bb59ec6227cf22ba59c46bd0cbc}{close}}();}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classraylib_1_1Window_a20dd6ac442b39156fec016cf57ee5ecc}{resize}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ height);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ std::list<int>\ \mbox{\hyperlink{classraylib_1_1Window_a925c4e46a265cb71e3b1ec98e18dcac8}{get\_keys}}(\mbox{\hyperlink{classraylib_1_1Window_abf9c66c2dfab997dbc63337694de0ac3}{BUTTON\_STATE}}\ state\ =\ BUTTON\_STATE::PRESSED)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ Vector2\ \mbox{\hyperlink{classraylib_1_1Window_ab4e3f9ac56d71ef76f2463a8a70fa15e}{get\_mouse\_position}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ std::list<int>\ \mbox{\hyperlink{classraylib_1_1Window_aa0d6458b87a74e7bac263987f3df1f0d}{get\_mouse\_buttons}}(\mbox{\hyperlink{classraylib_1_1Window_abf9c66c2dfab997dbc63337694de0ac3}{BUTTON\_STATE}}\ state\ =\ BUTTON\_STATE::PRESSED)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classraylib_1_1Window_aaa3caf140c64d380ab28463746e30191}{start\_drawing}}();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classraylib_1_1Window_a58bf91382d9b7b65e1a77448d9375bf1}{end\_drawing}}();}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classraylib_1_1Window_a23064d5207fac3a70758aec37c629a83}{clear}}(Color\ color\ =\ WHITE);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classraylib_1_1Window_acd0cf33b154971bc19d0be8cc8dea4ce}{set\_title}}(std::string\ \textcolor{keyword}{const}\ \&title);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classraylib_1_1Window_ac8073501a03257ddd27808fb291d29a7}{is\_running}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ std::pair<unsigned\ int,\ unsigned\ int>\ \mbox{\hyperlink{classraylib_1_1Window_a6f6622cc3c7af1c33f98c2bab938861a}{get\_size}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classraylib_1_1Window_a16addf4dd065850a56bbc55287baac5d}{draw\_text}}(std::string\ \textcolor{keyword}{const}\ \&text,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ fontSize,\ Color\ color);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classraylib_1_1Window_aaa1b0c351ea614ad701fab872eeb25d8}{draw\_rectangle}}(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height,\ Color\ color);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_running;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \_width;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \_height;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \_fps;}
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !WINDOW\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

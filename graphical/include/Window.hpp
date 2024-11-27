@@ -16,28 +16,74 @@ namespace raylib {
 
 class Window {
     public:
+
+        /**
+         * @brief The state of the keys
+         * @details RELEASED, PRESSED, DOWN, UP.
+         * - RELEASED: The key is not pressed anymore, its value is 0
+         * - PRESSED: The key is pressed, its value is 1
+         * - DOWN: The key is pressed and down, its value is 2
+         * - UP: The key is pressed and up, its value is 3
+         */
+        enum BUTTON_STATE {
+            RELEASED    = 0,
+            PRESSED     = 1,
+            DOWN        = 2,
+            UP          = 3
+        };
+
+        /**
+         * @brief Construct a new Window object
+         * @param width the width of the window, by default 500
+         * @param height the height of the window, by default 500
+         */
         Window(unsigned int width = 500, unsigned int height = 500);
+
+        /**
+         * @brief destructor of the window
+         */
         ~Window();
 
         /**
          * @brief Set the fps of the window
+         * @param fps the new fps
          */
         void set_fps(unsigned int fps);
 
         /**
-         * @brief Close the window
+         * @brief Close the window by setting _running to false
          */
         void close();
 
         /**
          * @brief Resize the window
+         * @param width the new width of the window
+         * @param height the new height of the window
          */
         void resize(unsigned int width, unsigned int height);
 
         /**
-         * @brief Get the keys pressed
+         * @brief Get the keys in the state defined in the parameter
+         * @param state the state of the keys, based on the enum ecs::Window::BUTTON_STATE, by defauld, it is pressed
+         * @return a list of keys
+         * @note the int inside correspond to the key corresponding in the enum of raylib, see the raylib documentation
          */
-        std::list<int> get_keys() const;
+        std::list<int> get_keys(BUTTON_STATE state = BUTTON_STATE::PRESSED) const;
+
+
+        /**
+         * @brief Get the mouse position
+         * @return the mouse position using the function GetMousePosition from raylib
+         */
+        Vector2 get_mouse_position() const;
+
+        /**
+         * @brief Get the mouse button in the state defined in the parameter
+         * @param state the state of the keys, based on the enum ecs::Window::BUTTON_STATE, by defauld, it is pressed
+         * @return a list of mouse buttons, the list is empty if no button is pressed
+         * @note the int inside correspond to the mouse button corresponding in the enum of raylib, see the raylib documentation
+         */
+        std::list<int> get_mouse_buttons(BUTTON_STATE state = BUTTON_STATE::PRESSED) const;
 
         /**
          * @brief Start the drawing
@@ -78,8 +124,6 @@ class Window {
          * @brief Draw a rectangle
          */
         void draw_rectangle(int x, int y, int width, int height, Color color);
-
-
 
 
     private:

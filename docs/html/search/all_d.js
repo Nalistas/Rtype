@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7esparse_5farray_0',['~sparse_array',['../classsparse__array.html#a4fcfd9065975ddcb90f2a84c91313867',1,'sparse_array']]]
+  ['value_5ftype_0',['value_type',['../classsparse__array.html#ab7403a6f935fa66034cce5bdcf49a9fc',1,'sparse_array']]],
+  ['velocity_1',['Velocity',['../classVelocity.html',1,'']]]
 ];

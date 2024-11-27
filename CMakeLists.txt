@@ -15,7 +15,7 @@ add_subdirectory(ecs)
 add_executable(main main.cpp)
 
 # Link the ecs library to the main executable
-target_link_libraries(main PRIVATE ecs)
+# target_link_libraries(main PRIVATE ecs)
 
 # Include headers from the ecs library
-target_include_directories(main PRIVATE ecs/include)
+# target_include_directories(main PRIVATE ecs/include)

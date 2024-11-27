@@ -141,10 +141,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa40cf7e9c44e3aec51388c8a07bbf50a"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove a component from an entity  <br /></td></tr>
 <tr class="separator:aa40cf7e9c44e3aec51388c8a07bbf50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Handling systems</div></td></tr>
-<tr class="memitem:af0765f4fd5e36738b878684c45af332b" id="r_af0765f4fd5e36738b878684c45af332b"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classsparse__array.html">class</a> ... Components, <a class="el" href="classsparse__array.html">typename</a> <a class="el" href="classsparse__array.html">Function</a> &gt; </td></tr>
+<tr class="memitem:af0765f4fd5e36738b878684c45af332b" id="r_af0765f4fd5e36738b878684c45af332b"><td class="memTemplParams" colspan="2">template&lt;class... Components, <a class="el" href="classsparse__array.html">typename</a> <a class="el" href="classsparse__array.html">Function</a> &gt; </td></tr>
 <tr class="memitem:af0765f4fd5e36738b878684c45af332b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsparse__array.html">void</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#af0765f4fd5e36738b878684c45af332b">add_system</a> (<a class="el" href="classsparse__array.html">Function</a> &amp;&amp;<a class="el" href="classsparse__array.html">f</a>)</td></tr>
-<tr class="memdesc:af0765f4fd5e36738b878684c45af332b"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a system to the registry  <br /></td></tr>
+<tr class="memdesc:af0765f4fd5e36738b878684c45af332b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a system to the registry that operates on specific components. This version is used for systems that process entities with specific components.  <br /></td></tr>
 <tr class="separator:af0765f4fd5e36738b878684c45af332b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a951449af23c710d65dd8a51ccc935cfb" id="r_a951449af23c710d65dd8a51ccc935cfb"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classsparse__array.html">typename</a> <a class="el" href="classsparse__array.html">Function</a> &gt; </td></tr>
+<tr class="memitem:a951449af23c710d65dd8a51ccc935cfb"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsparse__array.html">void</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a951449af23c710d65dd8a51ccc935cfb">add_standalone_system</a> (<a class="el" href="classsparse__array.html">Function</a> &amp;&amp;<a class="el" href="classsparse__array.html">f</a>)</td></tr>
+<tr class="memdesc:a951449af23c710d65dd8a51ccc935cfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a system that does not depend on any components. This version is used for systems that operate independently of specific components in the registry.  <br /></td></tr>
+<tr class="separator:a951449af23c710d65dd8a51ccc935cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a7c2252aa8be3c9adfc9b3e511789f2" id="r_a2a7c2252aa8be3c9adfc9b3e511789f2"><td class="memItemLeft" align="right" valign="top"><a id="a2a7c2252aa8be3c9adfc9b3e511789f2" name="a2a7c2252aa8be3c9adfc9b3e511789f2"></a>
 <a class="el" href="classsparse__array.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>run_systems</b> ()</td></tr>
 <tr class="memdesc:a2a7c2252aa8be3c9adfc9b3e511789f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">run all the systems in the registry <br /></td></tr>
@@ -167,13 +171,47 @@ Public Member Functions</h2></td></tr>
 </div>
 <p>Management of the entities, components and systems </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a951449af23c710d65dd8a51ccc935cfb" name="a951449af23c710d65dd8a51ccc935cfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a951449af23c710d65dd8a51ccc935cfb">&#9670;&#160;</a></span>add_standalone_system()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classsparse__array.html">typename</a> <a class="el" href="classsparse__array.html">Function</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsparse__array.html">void</a> ecs::registry::add_standalone_system </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsparse__array.html">Function</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>f</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a system that does not depend on any components. This version is used for systems that operate independently of specific components in the registry. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Function</td><td>The type of the system (should inherit from ecs::isystem&lt;&gt; or be a compatible callable). The system must implement <code>void operator()(iregistry &amp;) const</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>The system to add. It is a callable that takes only a reference to the registry. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function is intended for global systems or those that do not process entity components. </dd></dl>
+
+</div>
+</div>
 <a id="af0765f4fd5e36738b878684c45af332b" name="af0765f4fd5e36738b878684c45af332b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af0765f4fd5e36738b878684c45af332b">&#9670;&#160;</a></span>add_system()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="classsparse__array.html">class</a> ... Components, <a class="el" href="classsparse__array.html">typename</a> <a class="el" href="classsparse__array.html">Function</a> &gt; </div>
+template&lt;class... Components, <a class="el" href="classsparse__array.html">typename</a> <a class="el" href="classsparse__array.html">Function</a> &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classsparse__array.html">void</a> ecs::registry::add_system </td>
@@ -184,20 +222,21 @@ template&lt;<a class="el" href="classsparse__array.html">class</a> ... Component
       </table>
 </div><div class="memdoc">
 
-<p>add a system to the registry </p>
+<p>Add a system to the registry that operates on specific components. This version is used for systems that process entities with specific components. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">...Components</td><td>the components used by the system </td></tr>
-    <tr><td class="paramname">Function</td><td>the type of the system (inherit from ecs::system) with #import "system.hpp" </td></tr>
+    <tr><td class="paramname">Components</td><td>The components used by the system. </td></tr>
+    <tr><td class="paramname">Function</td><td>The type of the system (should inherit from ecs::isystem&lt;Components...&gt;). The system must implement <code>void operator()(iregistry &amp;, Components&amp; ...) const</code>. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">f</td><td>the system to add </td></tr>
+    <tr><td class="paramname">f</td><td>The system to add. It is a callable that takes a reference to the registry and the required components as parameters. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section note"><dt>Note</dt><dd>Requires the specified components to be present in the sparse arrays of the registry. This function will encapsulate the system call to process entities with matching components. </dd></dl>
 
 </div>
 </div>

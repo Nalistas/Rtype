@@ -8,21 +8,23 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Ajoute les répertoires include et src
+# Ajoute les répertoires include
 include_directories(include)
 
 # Crée un exécutable pour le projet
-add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+add_executable(${PROJECT_NAME} main.cpp)
 
+# Ajoute les fichiers source au projet
 target_sources(${PROJECT_NAME}
     PRIVATE
-    src/entity.cpp
-    src/registry.cpp
+        src/entity.cpp
+        src/registry.cpp
 )
 
+# Ajoute les répertoires include au projet
 target_include_directories(${PROJECT_NAME}
     PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR} # Répertoire actuel
+        ${CMAKE_CURRENT_SOURCE_DIR}/include # Répertoire include spécifique
 )
 
 # Option pour activer les warnings

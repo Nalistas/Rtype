@@ -8,12 +8,15 @@
 #include "sparse_array.hpp"
 #include "entity.hpp"
 #include "iregistry.hpp"
+#include "isystem.hpp"
 #include <unordered_map>
 #include <any>
 #include <typeindex>
 #include <typeinfo>
 #include <set>
 #include <functional>
+#include <list>
+#include <vector>
 
 #ifndef REGISTRY_HPP_
     #define REGISTRY_HPP_
@@ -180,14 +183,29 @@ class registry : public iregistry {
         /// @{
 
         /**
-         * @brief add a system to the registry
-         * @tparam ...Components the components used by the system
-         * @tparam Function the type of the system (inherit from ecs::system)
-         * with #import "system.hpp"
-         * @param f the system to add
-        */
-        template<class ...Components, typename Function>
-        void add_system(Function &&f);
+         * @brief Add a system to the registry that operates on specific components.
+         * This version is used for systems that process entities with specific components.
+         * @tparam Components The components used by the system.
+         * @tparam Function The type of the system (should inherit from ecs::isystem<Components...>).
+         *        The system must implement `void operator()(iregistry &, Components& ...) const`.
+         * @param f The system to add. It is a callable that takes a reference to the registry and
+         *          the required components as parameters.
+         * @note Requires the specified components to be present in the sparse arrays of the registry.
+         *       This function will encapsulate the system call to process entities with matching components.
+         */
+        template<class... Components, typename Function>
+        void add_system(Function&& f);
+
+        /**
+         * @brief Add a system that does not depend on any components.
+         * This version is used for systems that operate independently of specific components in the registry.
+         * @tparam Function The type of the system (should inherit from ecs::isystem<> or be a compatible callable).
+         *        The system must implement `void operator()(iregistry &) const`.
+         * @param f The system to add. It is a callable that takes only a reference to the registry.
+         * @note This function is intended for global systems or those that do not process entity components.
+         */
+        template<typename Function>
+        void add_standalone_system(Function&& f);
 
         /**
          * @brief run all the systems in the registry
@@ -197,6 +215,18 @@ class registry : public iregistry {
         /// @}
 
     private :
+
+        /**
+         * @brief Encapsulate the call to the system, it gets the sparse arrays of the components
+         * and pass all composant of one entity if the entity has all the components. This function is only
+         * used by the add_system function in order to encapsulate the call to the system and make it easier.
+         * @param system the system to call
+         * @param arrays the sparse arrays of the components needed by the system
+         * @tparam Components the components used by the system
+         */
+        template <class ...Components>
+        void encapsulate_system_call(ecs::isystem<Components ...> const &system, sparse_array<Components> &... arrays);
+
         std::unordered_map<std::type_index, std::any> _components_arrays;
 
         /**
@@ -214,7 +244,7 @@ class registry : public iregistry {
         /**
          * @brief Handle the systems
          */
-        std::vector<std::function<void(registry &)>> _systems;
+        std::list<std::function<void(registry &)>> _systems;
 };
 
 

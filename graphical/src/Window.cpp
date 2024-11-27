@@ -9,6 +9,7 @@
 #include "Window.hpp"
 
 #include <list>
+#include <functional>
 
 raylib::Window::Window(unsigned int width, unsigned int height) :
     _running(true), _width(width), _height(height), _fps(60)
@@ -40,14 +41,69 @@ void raylib::Window::set_fps(unsigned int fps)
     SetTargetFPS(fps);
 }
 
-std::list<int> raylib::Window::get_keys() const
+std::list<int> raylib::Window::get_keys(BUTTON_STATE state) const
 {
     std::list<int> keys;
+
+    std::function<bool(int)> fct;
+
+    switch (state) {
+        case RELEASED:
+            fct = IsKeyReleased;
+            break;
+        case PRESSED:
+            fct = IsKeyPressed;
+            break;
+        case DOWN:
+            fct = IsKeyDown;
+            break;
+        case UP:
+            fct = IsKeyUp;
+            break;
+        default:
+            return keys;
+    }
+
     for (int i = 0; i < 348; i++) {
-        if (IsKeyDown(i))
+        if (fct(i))
             keys.push_back(i);
     }
     return keys;
+}
+
+Vector2 raylib::Window::get_mouse_position() const
+{
+    return GetMousePosition();
+}
+
+std::list<int> raylib::Window::get_mouse_buttons(BUTTON_STATE state) const
+{
+    std::list<int> buttons;
+
+    std::function<bool(int)> fct;
+
+    switch (state) {
+        case RELEASED:
+            fct = IsMouseButtonReleased;
+            break;
+        case PRESSED:
+            fct = IsMouseButtonPressed;
+            break;
+        case DOWN:
+            fct = IsMouseButtonDown;
+            break;
+        case UP:
+            fct = IsMouseButtonUp;
+            break;
+        default:
+            return buttons;
+    }
+
+    for (int i = 0; i < 7; i++) {
+        if (fct(i))
+            buttons.push_back(i);
+    }
+    return buttons;
 }
 
 void raylib::Window::start_drawing()

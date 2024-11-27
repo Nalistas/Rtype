@@ -1,9 +1,10 @@
 var indexSectionsWithContent =
 {
-  0: "acdegimoprsv~",
-  1: "ceimprs",
-  2: "acdegiors~",
-  3: "cirsv"
+  0: "abcdegimoprsuvw~",
+  1: "aceimprsvw",
+  2: "acdegioprsuw~",
+  3: "cirsv",
+  4: "b"
 };
 
 var indexSectionNames =
@@ -11,7 +12,8 @@ var indexSectionNames =
   0: "all",
   1: "classes",
   2: "functions",
-  3: "typedefs"
+  3: "typedefs",
+  4: "enums"
 };
 
 var indexSectionLabels =
@@ -19,6 +21,7 @@ var indexSectionLabels =
   0: "All",
   1: "Classes",
   2: "Functions",
-  3: "Typedefs"
+  3: "Typedefs",
+  4: "Enumerations"
 };
 
