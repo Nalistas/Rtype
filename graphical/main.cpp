@@ -21,7 +21,21 @@ int main(void)
         window.clear();
         sprite.draw();
         window.draw_text("test", 10, 10, 20, BLACK);
+        
+        unsigned int i = 0;
+        for (auto it = keys.begin(); it != keys.end(); it++) {
+            window.draw_text(std::to_string(*it), 10, 50 + i * 20, 20, BLACK);
+            i++;
+        }
+
+        keys = window.get_mouse_buttons();
+        i = 0;
+        for (auto it = keys.begin(); it != keys.end(); it++) {
+            window.draw_text(std::to_string(*it), 100, 50 + i * 20, 20, BLACK);
+            i++;
+        }
         window.end_drawing();
+
     }
     return 0;
 }
