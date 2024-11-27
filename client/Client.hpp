@@ -15,8 +15,9 @@ using asio::ip::udp;
 
 class Client {
     public:
-        Client();
+        Client(const std::string &hostname);
         ~Client();
+        void send_message(const std::string &message);  // Nouvelle méthode pour envoyer des messages
         int loop();
 
     private:
