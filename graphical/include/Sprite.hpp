@@ -77,52 +77,6 @@ class Sprite {
          */
         float get_rotation() const;
 
-        /**
-         * @brief get the offset of the animation
-         */
-        Vector2 get_offset() const;
-
-        /**
-         * @brief set the offset of the animation
-         * @param offset the offset {x, y}
-         */
-        void set_offset(Vector2 offset);
-
-        /**
-         * @brief set the offset of the animation
-         * @param x the x offset
-         * @param y the y offset
-         */
-        void set_offset(float x, float y);
-
-        /**
-         * @brief Go to the next frame of the animation based on the offset by modifying the source rect
-         * @see set_offset
-         * @see set_source_rect
-         */
-        void next_frame();
-
-        /**
-         * @brief Get the current frame of the animation
-         */
-        unsigned int get_current_frame() const;
-
-        /**
-         * @brief Set the current frame of the animation
-         */
-        void set_current_frame(unsigned int frame);
-
-        /**
-         * @brief Get the frame count of the animation
-         */
-        unsigned int get_frame_count() const;
-
-        /**
-         * @brief Set the frame count of the animation
-         */
-        void set_frame_count(unsigned int frame_count);
-
-
     private:
         /// @name the basics attributes
         /// @{

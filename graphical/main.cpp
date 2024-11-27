@@ -12,9 +12,7 @@ int main(void)
     window.set_fps(10);
     sprite.set_size(50, 50);
     sprite.set_position(400, 300);
-    sprite.set_offset({145, 0});
     sprite.set_source_rect({30, 150, 70, 150});
-    sprite.set_frame_count(4);
 
     while (window.is_running()) {
         std::list<int> keys = window.get_keys();
@@ -24,10 +22,6 @@ int main(void)
         sprite.draw();
         window.draw_text("test", 10, 10, 20, BLACK);
         window.end_drawing();
-
-        if (keys.size() > 0) {
-            sprite.next_frame();
-        }
     }
     return 0;
 }
