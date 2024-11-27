@@ -12,21 +12,20 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 include_directories(include)
 
 # Crée un exécutable pour le projet
-add_executable(ecs ${SOURCES} ${HEADERS})
+add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
-target_sources(ecs
+target_sources(${PROJECT_NAME}
     PRIVATE
     src/entity.cpp
     src/registry.cpp
-    main.cpp
 )
 
-target_include_directories(ecs
-    PRIVATE
+target_include_directories(${PROJECT_NAME}
+    PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR} # Répertoire actuel
 )
 
 # Option pour activer les warnings
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    target_compile_options(ecs PRIVATE -Wall -Wextra -pedantic)
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic)
 endif()

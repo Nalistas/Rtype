@@ -9,6 +9,26 @@ Diagramme UML pour la classe registry.
 
 {\ttfamily \#include $<$registry.\+hpp$>$}
 
+
+
+Inheritance diagram for ecs\+::registry\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{classecs_1_1registry__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ecs\+::registry\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{classecs_1_1registry__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsubsection*{Public Member Functions}
 \begin{Indent}\textbf{ Registering components}\par
 \begin{DoxyCompactItemize}
@@ -23,11 +43,11 @@ Diagramme UML pour la classe registry.
 \begin{Indent}\textbf{ Handling entities}\par
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classecs_1_1registry_a3dd0770aa04c88c98c260b64daee967c}{create\+\_\+entity}} ()
+\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classecs_1_1registry_aa2ee7f9351e6ddbfa28902ff0efcaf9e}{create\+\_\+entity}} () \mbox{\hyperlink{classsparse__array}{override}}
 \begin{DoxyCompactList}\small\item\em Give a new entity to the registry and return it. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classecs_1_1registry_a6cff4216d7f32bc8fc3df84631079bf4}{entity\+\_\+from\+\_\+index}} (\mbox{\hyperlink{classsparse__array_a34c792f0a28f90cffd87e58c52f20017}{std\+::size\+\_\+t}} \mbox{\hyperlink{classsparse__array}{idx}})
+\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classecs_1_1registry_aecf406044a63ce56e645db7199a10fb5}{entity\+\_\+from\+\_\+index}} (\mbox{\hyperlink{classsparse__array_a34c792f0a28f90cffd87e58c52f20017}{std\+::size\+\_\+t}} \mbox{\hyperlink{classsparse__array}{idx}}) \mbox{\hyperlink{classsparse__array}{override}}
 \begin{DoxyCompactList}\small\item\em Retrieve an entity from its index. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classsparse__array}{void}} \mbox{\hyperlink{classecs_1_1registry_a00e2fbde9b3ce99b1aa4f0c0b12ff13d}{delete\+\_\+entity}} (\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classsparse__array}{const}} \&\mbox{\hyperlink{classsparse__array}{e}})
+\mbox{\hyperlink{classsparse__array}{void}} \mbox{\hyperlink{classecs_1_1registry_a8625559dd38b79b57740e23a81d27767}{delete\+\_\+entity}} (\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classsparse__array}{const}} \&\mbox{\hyperlink{classsparse__array}{e}}) \mbox{\hyperlink{classsparse__array}{override}}
 \begin{DoxyCompactList}\small\item\em Delete all the components of an entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \end{Indent}
 \begin{Indent}\textbf{ Handling components}\par
@@ -47,6 +67,13 @@ Diagramme UML pour la classe registry.
 \mbox{\hyperlink{classsparse__array}{void}} {\bfseries run\+\_\+systems} ()
 \begin{DoxyCompactList}\small\item\em run all the systems in the registry \end{DoxyCompactList}\end{DoxyCompactItemize}
 \end{Indent}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classecs_1_1iregistry}{ecs\+::iregistry}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsparse__array}{virtual}} {\bfseries \texorpdfstring{$\sim$}{\string~}iregistry} ()=\mbox{\hyperlink{classsparse__array}{default}}
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsparse__array}{virtual}} \mbox{\hyperlink{classecs_1_1entity}{entity}} {\bfseries entity\+\_\+from\+\_\+index} (\mbox{\hyperlink{classsparse__array}{size\+\_\+t}} \mbox{\hyperlink{classsparse__array}{index}})=0
+\begin{DoxyCompactList}\small\item\em Virtual function to get an entity from its index. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -86,11 +113,11 @@ add a system to the registry
 {\em f} & the system to add \\
 \hline
 \end{DoxyParams}
-\Hypertarget{classecs_1_1registry_a3dd0770aa04c88c98c260b64daee967c}\label{classecs_1_1registry_a3dd0770aa04c88c98c260b64daee967c} 
+\Hypertarget{classecs_1_1registry_aa2ee7f9351e6ddbfa28902ff0efcaf9e}\label{classecs_1_1registry_aa2ee7f9351e6ddbfa28902ff0efcaf9e} 
 \index{ecs::registry@{ecs::registry}!create\_entity@{create\_entity}}
 \index{create\_entity@{create\_entity}!ecs::registry@{ecs::registry}}
 \doxysubsubsection{\texorpdfstring{create\_entity()}{create\_entity()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classecs_1_1entity}{ecs\+::entity}} ecs\+::registry\+::create\+\_\+entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classecs_1_1entity}{ecs\+::entity}} ecs\+::registry\+::create\+\_\+entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -102,11 +129,15 @@ this function will increment the total entity count or take an entity from the u
 \begin{DoxyReturn}{Returns}
 the new entity 
 \end{DoxyReturn}
-\Hypertarget{classecs_1_1registry_a00e2fbde9b3ce99b1aa4f0c0b12ff13d}\label{classecs_1_1registry_a00e2fbde9b3ce99b1aa4f0c0b12ff13d} 
+
+
+Implements \mbox{\hyperlink{classecs_1_1iregistry_ac253305e27c8ea1298d9bff9b0cb15a6}{ecs\+::iregistry}}.
+
+\Hypertarget{classecs_1_1registry_a8625559dd38b79b57740e23a81d27767}\label{classecs_1_1registry_a8625559dd38b79b57740e23a81d27767} 
 \index{ecs::registry@{ecs::registry}!delete\_entity@{delete\_entity}}
 \index{delete\_entity@{delete\_entity}!ecs::registry@{ecs::registry}}
 \doxysubsubsection{\texorpdfstring{delete\_entity()}{delete\_entity()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classsparse__array}{void}} ecs\+::registry\+::delete\+\_\+entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classsparse__array}{const}} \&}]{e }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsparse__array}{void}} ecs\+::registry\+::delete\+\_\+entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classsparse__array}{const}} \&}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -117,6 +148,10 @@ Delete all the components of an entity.
 {\em e} & the entity to delete and add the unused entity to the unused entities set \\
 \hline
 \end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classecs_1_1iregistry_a2bea4aecd9531da32ddc1e38e37b8e6c}{ecs\+::iregistry}}.
+
 \Hypertarget{classecs_1_1registry_a6b015662562cf3d2168ed54427f5ea27}\label{classecs_1_1registry_a6b015662562cf3d2168ed54427f5ea27} 
 \index{ecs::registry@{ecs::registry}!emplace\_component@{emplace\_component}}
 \index{emplace\_component@{emplace\_component}!ecs::registry@{ecs::registry}}
@@ -145,11 +180,11 @@ add a component to an entity and return it
 \begin{DoxyReturn}{Returns}
 return the component just added 
 \end{DoxyReturn}
-\Hypertarget{classecs_1_1registry_a6cff4216d7f32bc8fc3df84631079bf4}\label{classecs_1_1registry_a6cff4216d7f32bc8fc3df84631079bf4} 
+\Hypertarget{classecs_1_1registry_aecf406044a63ce56e645db7199a10fb5}\label{classecs_1_1registry_aecf406044a63ce56e645db7199a10fb5} 
 \index{ecs::registry@{ecs::registry}!entity\_from\_index@{entity\_from\_index}}
 \index{entity\_from\_index@{entity\_from\_index}!ecs::registry@{ecs::registry}}
 \doxysubsubsection{\texorpdfstring{entity\_from\_index()}{entity\_from\_index()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classecs_1_1entity}{ecs\+::entity}} ecs\+::registry\+::entity\+\_\+from\+\_\+index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array_a34c792f0a28f90cffd87e58c52f20017}{std\+::size\+\_\+t}}}]{idx }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classecs_1_1entity}{ecs\+::entity}} ecs\+::registry\+::entity\+\_\+from\+\_\+index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array_a34c792f0a28f90cffd87e58c52f20017}{std\+::size\+\_\+t}}}]{idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
 
 
 

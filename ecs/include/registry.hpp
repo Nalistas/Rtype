@@ -7,6 +7,7 @@
 
 #include "sparse_array.hpp"
 #include "entity.hpp"
+#include "iregistry.hpp"
 #include <unordered_map>
 #include <any>
 #include <typeindex>
@@ -75,7 +76,7 @@ namespace ecs {
  * @class registry
  * @brief Management of the entities, components and systems
  */
-class registry {
+class registry : public iregistry {
     public :
 
         /////////////////////////////////////////////////////////////
@@ -125,21 +126,21 @@ class registry {
          * or take an entity from the unused entities set
          * @return the new entity
         */
-        entity create_entity();
+        entity create_entity() override;
 
         /**
          * @brief Retrieve an entity from its index
          * @param idx the index of the entity
          * @return the entity
         */
-        entity entity_from_index(std::size_t idx);
+        entity entity_from_index(std::size_t idx) override;
 
         /**
          * @brief Delete all the components of an entity
          * @param e the entity to delete and add the unused entity to
          * the unused entities set
         */
-        void delete_entity(entity const &e);
+        void delete_entity(entity const &e) override;
 
         /// @}
         /////////////////////////////////////////////////////////////

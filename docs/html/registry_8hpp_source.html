@@ -92,86 +92,88 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;sparse_array.hpp&quot;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;entity.hpp&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;any&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;typeindex&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;typeinfo&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;set&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#ifndef REGISTRY_HPP_</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">    #define REGISTRY_HPP_</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span>ecs {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="foldopen" id="foldopen00078" data-start="{" data-end="};">
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classecs_1_1registry.html">   78</a></span><span class="keyword">class </span><a class="code hl_class" href="classecs_1_1registry.html">registry</a> {</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    public :</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="comment">//      Handle the components in the registry</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keyword">template</span> &lt;<span class="keyword">class</span> Component&gt;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classecs_1_1registry.html#a7d177ae0500e0559a4c34abb43f5a26f">   95</a></span>        <a class="code hl_class" href="classsparse__array.html">sparse_array&lt;Component&gt;</a> &amp;<a class="code hl_function" href="classecs_1_1registry.html#a7d177ae0500e0559a4c34abb43f5a26f">register_component</a>();</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keyword">template</span> &lt;<span class="keyword">class</span> Component&gt;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classecs_1_1registry.html#af80da5c955ffc61f56854ad364fb788a">  103</a></span>        <a class="code hl_class" href="classsparse__array.html">sparse_array&lt;Component&gt;</a> &amp;<a class="code hl_function" href="classecs_1_1registry.html#af80da5c955ffc61f56854ad364fb788a">get_components</a>();</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keyword">template</span> &lt;<span class="keyword">class</span> Component&gt;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classecs_1_1registry.html#ad173e2489d681d013517cc87a41a90ff">  111</a></span>        <a class="code hl_class" href="classsparse__array.html">sparse_array&lt;Component&gt;</a> <span class="keyword">const</span> &amp;<a class="code hl_function" href="classecs_1_1registry.html#ad173e2489d681d013517cc87a41a90ff">get_components</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="comment">//      Handle the entities in the registry</span></div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <a class="code hl_class" href="classecs_1_1entity.html">entity</a> <a class="code hl_function" href="classecs_1_1registry.html#a3dd0770aa04c88c98c260b64daee967c">create_entity</a>();</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <a class="code hl_class" href="classecs_1_1entity.html">entity</a> <a class="code hl_function" href="classecs_1_1registry.html#a6cff4216d7f32bc8fc3df84631079bf4">entity_from_index</a>(std::size_t idx);</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classecs_1_1registry.html#a00e2fbde9b3ce99b1aa4f0c0b12ff13d">delete_entity</a>(<a class="code hl_class" href="classecs_1_1entity.html">entity</a> <span class="keyword">const</span> &amp;e);</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <span class="comment">//      Handle the components in the registry</span></div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Component, <span class="keyword">typename</span> ...Params&gt;</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="classecs_1_1registry.html#a6b015662562cf3d2168ed54427f5ea27">  162</a></span>        <span class="keyword">typename</span> <a class="code hl_typedef" href="classsparse__array.html#a639d023286962a7b28f77fc4741e3f89">sparse_array&lt;Component&gt;::reference_type</a> <a class="code hl_function" href="classecs_1_1registry.html#a6b015662562cf3d2168ed54427f5ea27">emplace_component</a>(<a class="code hl_class" href="classecs_1_1entity.html">entity</a> <span class="keyword">const</span> &amp;to, Params &amp;&amp;...p);</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Component&gt;</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="classecs_1_1registry.html#aa40cf7e9c44e3aec51388c8a07bbf50a">  170</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classecs_1_1registry.html#aa40cf7e9c44e3aec51388c8a07bbf50a">remove_component</a>(<a class="code hl_class" href="classecs_1_1entity.html">entity</a> <span class="keyword">const</span> &amp;from);</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        <span class="comment">//      Handle the systems</span></div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        <span class="keyword">template</span>&lt;<span class="keyword">class </span>...Components, <span class="keyword">typename</span> Function&gt;</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="classecs_1_1registry.html#af0765f4fd5e36738b878684c45af332b">  189</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classecs_1_1registry.html#af0765f4fd5e36738b878684c45af332b">add_system</a>(Function &amp;&amp;f);</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classecs_1_1registry.html#a2a7c2252aa8be3c9adfc9b3e511789f2">run_systems</a> () ;</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    private :</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        std::unordered_map&lt;std::type_index, std::any&gt; _components_arrays;</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <span class="keyword">using </span>destructor_t = std::function&lt;void(<a class="code hl_class" href="classecs_1_1registry.html">registry</a> &amp;, <a class="code hl_class" href="classecs_1_1entity.html">entity</a> <span class="keyword">const</span> &amp;)&gt;;</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        std::unordered_map&lt;std::type_index, destructor_t&gt; _destructors;</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        std::set&lt;entity&gt; _unused_entities;</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        std::size_t _total_entity_count = 0;</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        std::vector&lt;std::function&lt;void(<a class="code hl_class" href="classecs_1_1registry.html">registry</a> &amp;)&gt;&gt; _systems;</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>};</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;iregistry.hpp&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;any&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;typeindex&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;typeinfo&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifndef REGISTRY_HPP_</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">    #define REGISTRY_HPP_</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span>ecs {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="foldopen" id="foldopen00079" data-start="{" data-end="};">
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classecs_1_1registry.html">   79</a></span><span class="keyword">class </span><a class="code hl_class" href="classecs_1_1registry.html">registry</a> : <span class="keyword">public</span> <a class="code hl_class" href="classecs_1_1iregistry.html">iregistry</a> {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    public :</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="comment">//      Handle the components in the registry</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keyword">template</span> &lt;<span class="keyword">class</span> Component&gt;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classecs_1_1registry.html#a7d177ae0500e0559a4c34abb43f5a26f">   96</a></span>        <a class="code hl_class" href="classsparse__array.html">sparse_array&lt;Component&gt;</a> &amp;<a class="code hl_function" href="classecs_1_1registry.html#a7d177ae0500e0559a4c34abb43f5a26f">register_component</a>();</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keyword">template</span> &lt;<span class="keyword">class</span> Component&gt;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classecs_1_1registry.html#af80da5c955ffc61f56854ad364fb788a">  104</a></span>        <a class="code hl_class" href="classsparse__array.html">sparse_array&lt;Component&gt;</a> &amp;<a class="code hl_function" href="classecs_1_1registry.html#af80da5c955ffc61f56854ad364fb788a">get_components</a>();</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keyword">template</span> &lt;<span class="keyword">class</span> Component&gt;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="classecs_1_1registry.html#ad173e2489d681d013517cc87a41a90ff">  112</a></span>        <a class="code hl_class" href="classsparse__array.html">sparse_array&lt;Component&gt;</a> <span class="keyword">const</span> &amp;<a class="code hl_function" href="classecs_1_1registry.html#ad173e2489d681d013517cc87a41a90ff">get_components</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="comment">//      Handle the entities in the registry</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <a class="code hl_class" href="classecs_1_1entity.html">entity</a> <a class="code hl_function" href="classecs_1_1registry.html#aa2ee7f9351e6ddbfa28902ff0efcaf9e">create_entity</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <a class="code hl_class" href="classecs_1_1entity.html">entity</a> <a class="code hl_function" href="classecs_1_1registry.html#aecf406044a63ce56e645db7199a10fb5">entity_from_index</a>(std::size_t idx) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classecs_1_1registry.html#a8625559dd38b79b57740e23a81d27767">delete_entity</a>(<a class="code hl_class" href="classecs_1_1entity.html">entity</a> <span class="keyword">const</span> &amp;e) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="comment">//      Handle the components in the registry</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Component, <span class="keyword">typename</span> ...Params&gt;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="classecs_1_1registry.html#a6b015662562cf3d2168ed54427f5ea27">  163</a></span>        <span class="keyword">typename</span> <a class="code hl_typedef" href="classsparse__array.html#a639d023286962a7b28f77fc4741e3f89">sparse_array&lt;Component&gt;::reference_type</a> <a class="code hl_function" href="classecs_1_1registry.html#a6b015662562cf3d2168ed54427f5ea27">emplace_component</a>(<a class="code hl_class" href="classecs_1_1entity.html">entity</a> <span class="keyword">const</span> &amp;to, Params &amp;&amp;...p);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Component&gt;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="classecs_1_1registry.html#aa40cf7e9c44e3aec51388c8a07bbf50a">  171</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classecs_1_1registry.html#aa40cf7e9c44e3aec51388c8a07bbf50a">remove_component</a>(<a class="code hl_class" href="classecs_1_1entity.html">entity</a> <span class="keyword">const</span> &amp;from);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        <span class="comment">//      Handle the systems</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        <span class="keyword">template</span>&lt;<span class="keyword">class </span>...Components, <span class="keyword">typename</span> Function&gt;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classecs_1_1registry.html#af0765f4fd5e36738b878684c45af332b">  190</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classecs_1_1registry.html#af0765f4fd5e36738b878684c45af332b">add_system</a>(Function &amp;&amp;f);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classecs_1_1registry.html#a2a7c2252aa8be3c9adfc9b3e511789f2">run_systems</a> () ;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    private :</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        std::unordered_map&lt;std::type_index, std::any&gt; _components_arrays;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        <span class="keyword">using </span>destructor_t = std::function&lt;void(<a class="code hl_class" href="classecs_1_1registry.html">registry</a> &amp;, <a class="code hl_class" href="classecs_1_1entity.html">entity</a> <span class="keyword">const</span> &amp;)&gt;;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        std::unordered_map&lt;std::type_index, destructor_t&gt; _destructors;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        std::set&lt;entity&gt; _unused_entities;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        std::size_t _total_entity_count = 0;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        std::vector&lt;std::function&lt;void(<a class="code hl_class" href="classecs_1_1registry.html">registry</a> &amp;)&gt;&gt; _systems;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>};</div>
 </div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>}</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="preprocessor">#include &quot;registry.tpp&quot;</span></div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="preprocessor">#endif </span><span class="comment">/* !REGISTRY_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>}</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="preprocessor">#include &quot;registry.tpp&quot;</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="preprocessor">#endif </span><span class="comment">/* !REGISTRY_HPP_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aclassecs_1_1entity_html"><div class="ttname"><a href="classecs_1_1entity.html">ecs::entity</a></div><div class="ttdoc">Entity class, used to get information about an entity using its id and the ecs::registry.</div><div class="ttdef"><b>Definition</b> entity.hpp:22</div></div>
-<div class="ttc" id="aclassecs_1_1registry_html"><div class="ttname"><a href="classecs_1_1registry.html">ecs::registry</a></div><div class="ttdoc">Diagramme UML pour la classe registry.</div><div class="ttdef"><b>Definition</b> registry.hpp:78</div></div>
-<div class="ttc" id="aclassecs_1_1registry_html_a00e2fbde9b3ce99b1aa4f0c0b12ff13d"><div class="ttname"><a href="classecs_1_1registry.html#a00e2fbde9b3ce99b1aa4f0c0b12ff13d">ecs::registry::delete_entity</a></div><div class="ttdeci">void delete_entity(entity const &amp;e)</div><div class="ttdoc">Delete all the components of an entity.</div><div class="ttdef"><b>Definition</b> registry.cpp:25</div></div>
+<div class="ttc" id="aclassecs_1_1iregistry_html"><div class="ttname"><a href="classecs_1_1iregistry.html">ecs::iregistry</a></div><div class="ttdoc">Interface for the registry, it doesn't have any implementation and only declare the pure virtual func...</div><div class="ttdef"><b>Definition</b> iregistry.hpp:18</div></div>
+<div class="ttc" id="aclassecs_1_1registry_html"><div class="ttname"><a href="classecs_1_1registry.html">ecs::registry</a></div><div class="ttdoc">Diagramme UML pour la classe registry.</div><div class="ttdef"><b>Definition</b> registry.hpp:79</div></div>
 <div class="ttc" id="aclassecs_1_1registry_html_a2a7c2252aa8be3c9adfc9b3e511789f2"><div class="ttname"><a href="classecs_1_1registry.html#a2a7c2252aa8be3c9adfc9b3e511789f2">ecs::registry::run_systems</a></div><div class="ttdeci">void run_systems()</div><div class="ttdoc">run all the systems in the registry</div><div class="ttdef"><b>Definition</b> registry.cpp:33</div></div>
-<div class="ttc" id="aclassecs_1_1registry_html_a3dd0770aa04c88c98c260b64daee967c"><div class="ttname"><a href="classecs_1_1registry.html#a3dd0770aa04c88c98c260b64daee967c">ecs::registry::create_entity</a></div><div class="ttdeci">entity create_entity()</div><div class="ttdoc">Give a new entity to the registry and return it.</div><div class="ttdef"><b>Definition</b> registry.cpp:11</div></div>
 <div class="ttc" id="aclassecs_1_1registry_html_a6b015662562cf3d2168ed54427f5ea27"><div class="ttname"><a href="classecs_1_1registry.html#a6b015662562cf3d2168ed54427f5ea27">ecs::registry::emplace_component</a></div><div class="ttdeci">sparse_array&lt; Component &gt;::reference_type emplace_component(entity const &amp;to, Params &amp;&amp;...p)</div><div class="ttdoc">add a component to an entity and return it</div></div>
-<div class="ttc" id="aclassecs_1_1registry_html_a6cff4216d7f32bc8fc3df84631079bf4"><div class="ttname"><a href="classecs_1_1registry.html#a6cff4216d7f32bc8fc3df84631079bf4">ecs::registry::entity_from_index</a></div><div class="ttdeci">entity entity_from_index(std::size_t idx)</div><div class="ttdoc">Retrieve an entity from its index.</div><div class="ttdef"><b>Definition</b> registry.cpp:20</div></div>
 <div class="ttc" id="aclassecs_1_1registry_html_a7d177ae0500e0559a4c34abb43f5a26f"><div class="ttname"><a href="classecs_1_1registry.html#a7d177ae0500e0559a4c34abb43f5a26f">ecs::registry::register_component</a></div><div class="ttdeci">sparse_array&lt; Component &gt; &amp; register_component()</div><div class="ttdoc">Register a component in the registry.</div></div>
+<div class="ttc" id="aclassecs_1_1registry_html_a8625559dd38b79b57740e23a81d27767"><div class="ttname"><a href="classecs_1_1registry.html#a8625559dd38b79b57740e23a81d27767">ecs::registry::delete_entity</a></div><div class="ttdeci">void delete_entity(entity const &amp;e) override</div><div class="ttdoc">Delete all the components of an entity.</div><div class="ttdef"><b>Definition</b> registry.cpp:25</div></div>
+<div class="ttc" id="aclassecs_1_1registry_html_aa2ee7f9351e6ddbfa28902ff0efcaf9e"><div class="ttname"><a href="classecs_1_1registry.html#aa2ee7f9351e6ddbfa28902ff0efcaf9e">ecs::registry::create_entity</a></div><div class="ttdeci">entity create_entity() override</div><div class="ttdoc">Give a new entity to the registry and return it.</div><div class="ttdef"><b>Definition</b> registry.cpp:11</div></div>
 <div class="ttc" id="aclassecs_1_1registry_html_aa40cf7e9c44e3aec51388c8a07bbf50a"><div class="ttname"><a href="classecs_1_1registry.html#aa40cf7e9c44e3aec51388c8a07bbf50a">ecs::registry::remove_component</a></div><div class="ttdeci">void remove_component(entity const &amp;from)</div><div class="ttdoc">remove a component from an entity</div></div>
 <div class="ttc" id="aclassecs_1_1registry_html_ad173e2489d681d013517cc87a41a90ff"><div class="ttname"><a href="classecs_1_1registry.html#ad173e2489d681d013517cc87a41a90ff">ecs::registry::get_components</a></div><div class="ttdeci">sparse_array&lt; Component &gt; const &amp; get_components() const</div><div class="ttdoc">Retrieve the sparse array of a registered component but const.</div></div>
+<div class="ttc" id="aclassecs_1_1registry_html_aecf406044a63ce56e645db7199a10fb5"><div class="ttname"><a href="classecs_1_1registry.html#aecf406044a63ce56e645db7199a10fb5">ecs::registry::entity_from_index</a></div><div class="ttdeci">entity entity_from_index(std::size_t idx) override</div><div class="ttdoc">Retrieve an entity from its index.</div><div class="ttdef"><b>Definition</b> registry.cpp:20</div></div>
 <div class="ttc" id="aclassecs_1_1registry_html_af0765f4fd5e36738b878684c45af332b"><div class="ttname"><a href="classecs_1_1registry.html#af0765f4fd5e36738b878684c45af332b">ecs::registry::add_system</a></div><div class="ttdeci">void add_system(Function &amp;&amp;f)</div><div class="ttdoc">add a system to the registry</div></div>
 <div class="ttc" id="aclassecs_1_1registry_html_af80da5c955ffc61f56854ad364fb788a"><div class="ttname"><a href="classecs_1_1registry.html#af80da5c955ffc61f56854ad364fb788a">ecs::registry::get_components</a></div><div class="ttdeci">sparse_array&lt; Component &gt; &amp; get_components()</div><div class="ttdoc">Retrieve the sparse array of a registered component.</div></div>
 <div class="ttc" id="aclasssparse__array_html"><div class="ttname"><a href="classsparse__array.html">sparse_array</a></div><div class="ttdef"><b>Definition</b> sparse_array.hpp:8</div></div>
