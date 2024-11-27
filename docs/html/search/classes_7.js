@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['velocity_0',['velocity',['../structvelocity.html',1,'']]]
+  ['window_0',['Window',['../classraylib_1_1Window.html',1,'raylib']]]
 ];

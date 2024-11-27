@@ -17,6 +17,14 @@ namespace raylib {
 class Window {
     public:
 
+        /**
+         * @brief The state of the keys
+         * @details RELEASED, PRESSED, DOWN, UP.
+         * - RELEASED: The key is not pressed anymore, its value is 0
+         * - PRESSED: The key is pressed, its value is 1
+         * - DOWN: The key is pressed and down, its value is 2
+         * - UP: The key is pressed and up, its value is 3
+         */
         enum BUTTON_STATE {
             RELEASED    = 0,
             PRESSED     = 1,
@@ -30,6 +38,10 @@ class Window {
          * @param height the height of the window, by default 500
          */
         Window(unsigned int width = 500, unsigned int height = 500);
+
+        /**
+         * @brief destructor of the window
+         */
         ~Window();
 
         /**
@@ -39,7 +51,7 @@ class Window {
         void set_fps(unsigned int fps);
 
         /**
-         * @brief Close the window
+         * @brief Close the window by setting _running to false
          */
         void close();
 
@@ -61,6 +73,7 @@ class Window {
 
         /**
          * @brief Get the mouse position
+         * @return the mouse position using the function GetMousePosition from raylib
          */
         Vector2 get_mouse_position() const;
 
