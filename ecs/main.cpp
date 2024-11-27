@@ -5,7 +5,6 @@
 ** main
 */
 
-#include "ecs.hpp"
 #include "registry.hpp"
 #include "isystem.hpp"
 #include <iostream>
