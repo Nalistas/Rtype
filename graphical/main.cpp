@@ -1,28 +1,33 @@
 // #include "raylib.h"
 #include <stdio.h>
+#include <unistd.h>
 #include "Window.hpp"
 #include "Sprite.hpp"
 
 int main(void)
 {
     raylib::Window window(800, 600);
-    raylib::Sprite sprite("orange.png");
+    raylib::Sprite sprite("sprite.png");
 
+    window.set_fps(10);
     sprite.set_size(50, 50);
     sprite.set_position(400, 300);
+    sprite.set_offset({145, 0});
+    sprite.set_source_rect({30, 150, 70, 150});
+    sprite.set_frame_count(4);
 
     while (window.is_running()) {
         std::list<int> keys = window.get_keys();
-
-        if (keys.size() > 0) {
-            sprite.set_rotation(sprite.get_rotation() + 1);
-        }
 
         window.start_drawing();
         window.clear();
         sprite.draw();
         window.draw_text("test", 10, 10, 20, BLACK);
         window.end_drawing();
+
+        if (keys.size() > 0) {
+            sprite.next_frame();
+        }
     }
     return 0;
 }

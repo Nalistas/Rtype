@@ -102,6 +102,27 @@ class Sprite {
          */
         void next_frame();
 
+        /**
+         * @brief Get the current frame of the animation
+         */
+        unsigned int get_current_frame() const;
+
+        /**
+         * @brief Set the current frame of the animation
+         */
+        void set_current_frame(unsigned int frame);
+
+        /**
+         * @brief Get the frame count of the animation
+         */
+        unsigned int get_frame_count() const;
+
+        /**
+         * @brief Set the frame count of the animation
+         */
+        void set_frame_count(unsigned int frame_count);
+
+
     private:
         /// @name the basics attributes
         /// @{
@@ -125,6 +146,15 @@ class Sprite {
 
         /// @brief The source rectangle, what part of the texture to draw
         Rectangle _source_rect;
+
+        /// @brief the original origin of the rect of the Frame 1
+        Rectangle _source_rect_origin;
+
+        /// @brief The number of state in the animation
+        unsigned int _frame_count;
+
+        /// @brief The current frame of the animation
+        unsigned int _current_frame;
 
         /// @brief The offset of the source rect to get the next frame of the animation
         Vector2 _offset;

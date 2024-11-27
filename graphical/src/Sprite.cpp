@@ -9,7 +9,7 @@
 #include <stdexcept>
 
 raylib::Sprite::Sprite(std::string const &texture_path) :
-    _rotation(0)
+    _rotation(0), _frame_count(0), _offset({0, 0}), _current_frame(0)
 {
     _texture = LoadTexture(texture_path.c_str());
     if (_texture.id == 0) {
@@ -17,12 +17,14 @@ raylib::Sprite::Sprite(std::string const &texture_path) :
     }
 
     _source_rect = {0, 0, static_cast<float>(_texture.width), static_cast<float>(_texture.height)};
+    _source_rect_origin = _source_rect;
     _destination_rect = {0, 0, static_cast<float>(_texture.width), static_cast<float>(_texture.height)};
     _center = {_destination_rect.width / 2, _destination_rect.height / 2};
 }
 
 raylib::Sprite::Sprite(std::string const &texture_path, Rectangle texture_rect, Rectangle on_window_rect)
-    : _source_rect(texture_rect), _destination_rect(on_window_rect), _rotation(0)
+    : _source_rect(texture_rect), _destination_rect(on_window_rect), _rotation(0), _source_rect_origin(texture_rect),
+      _frame_count(0), _offset({0, 0}), _current_frame(0)
 {
     _texture = LoadTexture(texture_path.c_str());
     if (_texture.id == 0) {
@@ -65,6 +67,7 @@ void raylib::Sprite::set_texture(std::string const &texture_path)
 void raylib::Sprite::set_source_rect(Rectangle texture_rect)
 {
     _source_rect = texture_rect;
+    _source_rect_origin = texture_rect;
 }
 
 void raylib::Sprite::set_destination_rect(Rectangle on_window_rect)
@@ -109,10 +112,35 @@ void raylib::Sprite::set_offset(float x, float y)
     _offset.y = y;
 }
 
+unsigned int raylib::Sprite::get_frame_count() const
+{
+    return _frame_count;
+}
+
+void raylib::Sprite::set_frame_count(unsigned int frame_count)
+{
+    _frame_count = frame_count;
+}
+
+void raylib::Sprite::set_current_frame(unsigned int current_frame)
+{
+    _current_frame = current_frame;
+}
+
+unsigned int raylib::Sprite::get_current_frame() const
+{
+    return _current_frame;
+}
+
 void raylib::Sprite::next_frame()
 {
-    _source_rect.x += _source_rect.width;
-    if (_source_rect.x >= _texture.width) {
-        _source_rect.x = 0;
+    _source_rect.x += _offset.x;
+    _source_rect.y += _offset.y;
+
+    _current_frame++;
+    if (_current_frame >= _frame_count) {
+        _source_rect.x = _source_rect_origin.x;
+        _source_rect.y = _source_rect_origin.y;
+        _current_frame = 0;
     }
 }
