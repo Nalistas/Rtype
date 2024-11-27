@@ -8,6 +8,7 @@
 #include "sparse_array.hpp"
 #include "entity.hpp"
 #include "iregistry.hpp"
+#include "isystem.hpp"
 #include <unordered_map>
 #include <any>
 #include <typeindex>
@@ -197,6 +198,18 @@ class registry : public iregistry {
         /// @}
 
     private :
+
+        /**
+         * @brief Encapsulate the call to the system, it gets the sparse arrays of the components
+         * and pass all composant of one entity if the entity has all the components. This function is only
+         * used by the add_system function in order to encapsulate the call to the system and make it easier.
+         * @param system the system to call
+         * @param arrays the sparse arrays of the components needed by the system
+         * @tparam Components the components used by the system
+         */
+        template <class ...Components>
+        void encapsulate_system_call(ecs::isystem<Components ...> const &system, sparse_array<Components> &... arrays);
+
         std::unordered_map<std::type_index, std::any> _components_arrays;
 
         /**

@@ -8,7 +8,7 @@
 #include "sparse_array.hpp"
 #include "iregistry.hpp"
 
-#ifndef SYSTEM_HPP_
+#ifndef ECS_SYSTEM_HPP_
     #define ECS_SYSTEM_HPP_
 
 namespace ecs {
@@ -45,7 +45,7 @@ class isystem {
          * @tparam Components the components used by the system
          * @note This function is pure virtual and is mandatory to implement because it is the entry point of the system
          */
-        virtual void operator()(iregistry &, sparse_array<Components>& ...) const = 0;
+        virtual void operator()(iregistry &, Components& ...) const = 0;
 };
 
 }
