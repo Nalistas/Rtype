@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['window_0',['Window',['../classraylib_1_1Window.html',1,'raylib::Window'],['../classraylib_1_1Window.html#abe04f4c1c07354187f7360aaad4d6da7',1,'raylib::Window::Window()']]]
+  ['value_5ftype_0',['value_type',['../classsparse__array.html#ab7403a6f935fa66034cce5bdcf49a9fc',1,'sparse_array']]]
 ];
