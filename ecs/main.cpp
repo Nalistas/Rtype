@@ -31,6 +31,14 @@ class MySystem : public ecs::isystem<Position, Velocity> {
         }
 };
 
+class MySystem2 : public ecs::isystem<> {
+    public:
+        void operator()(ecs::iregistry &r) const override {
+            (void)r;
+            std::cout << "hello" << std::endl;
+        }
+};
+
 void run_systems(ecs::registry &r)
 {
     r.run_systems();
@@ -55,6 +63,7 @@ int main()
     reg.emplace_component<Velocity>(e3, 7, 8);
 
     reg.add_system<Position, Velocity>(MySystem());
+    reg.add_standalone_system(MySystem2());
 
     run_systems(reg);
 

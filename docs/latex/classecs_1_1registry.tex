@@ -59,8 +59,10 @@ Collaboration diagram for ecs\+::registry\+:\nopagebreak
 \begin{Indent}\textbf{ Handling systems}\par
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$\mbox{\hyperlink{classsparse__array}{class}} ... Components, \mbox{\hyperlink{classsparse__array}{typename}} \mbox{\hyperlink{classsparse__array}{Function}} $>$ }\\\mbox{\hyperlink{classsparse__array}{void}} \mbox{\hyperlink{classecs_1_1registry_af0765f4fd5e36738b878684c45af332b}{add\+\_\+system}} (\mbox{\hyperlink{classsparse__array}{Function}} \&\&\mbox{\hyperlink{classsparse__array}{f}})
-\begin{DoxyCompactList}\small\item\em add a system to the registry \end{DoxyCompactList}\item 
+{\footnotesize template$<$class... Components, \mbox{\hyperlink{classsparse__array}{typename}} \mbox{\hyperlink{classsparse__array}{Function}} $>$ }\\\mbox{\hyperlink{classsparse__array}{void}} \mbox{\hyperlink{classecs_1_1registry_af0765f4fd5e36738b878684c45af332b}{add\+\_\+system}} (\mbox{\hyperlink{classsparse__array}{Function}} \&\&\mbox{\hyperlink{classsparse__array}{f}})
+\begin{DoxyCompactList}\small\item\em Add a system to the registry that operates on specific components. This version is used for systems that process entities with specific components. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{classsparse__array}{typename}} \mbox{\hyperlink{classsparse__array}{Function}} $>$ }\\\mbox{\hyperlink{classsparse__array}{void}} \mbox{\hyperlink{classecs_1_1registry_a951449af23c710d65dd8a51ccc935cfb}{add\+\_\+standalone\+\_\+system}} (\mbox{\hyperlink{classsparse__array}{Function}} \&\&\mbox{\hyperlink{classsparse__array}{f}})
+\begin{DoxyCompactList}\small\item\em Add a system that does not depend on any components. This version is used for systems that operate independently of specific components in the registry. \end{DoxyCompactList}\item 
 \Hypertarget{classecs_1_1registry_a2a7c2252aa8be3c9adfc9b3e511789f2}\label{classecs_1_1registry_a2a7c2252aa8be3c9adfc9b3e511789f2} 
 \mbox{\hyperlink{classsparse__array}{void}} {\bfseries run\+\_\+systems} ()
 \begin{DoxyCompactList}\small\item\em run all the systems in the registry \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -88,29 +90,56 @@ Diagramme de la classe registry
 Management of the entities, components and systems 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classecs_1_1registry_af0765f4fd5e36738b878684c45af332b}\label{classecs_1_1registry_af0765f4fd5e36738b878684c45af332b} 
-\index{ecs::registry@{ecs::registry}!add\_system@{add\_system}}
-\index{add\_system@{add\_system}!ecs::registry@{ecs::registry}}
-\doxysubsubsection{\texorpdfstring{add\_system()}{add\_system()}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classsparse__array}{class}} ... Components, \mbox{\hyperlink{classsparse__array}{typename}} \mbox{\hyperlink{classsparse__array}{Function}} $>$ \\
-\mbox{\hyperlink{classsparse__array}{void}} ecs\+::registry\+::add\+\_\+system (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array}{Function}} \&\&}]{f }\end{DoxyParamCaption})}
+\Hypertarget{classecs_1_1registry_a951449af23c710d65dd8a51ccc935cfb}\label{classecs_1_1registry_a951449af23c710d65dd8a51ccc935cfb} 
+\index{ecs::registry@{ecs::registry}!add\_standalone\_system@{add\_standalone\_system}}
+\index{add\_standalone\_system@{add\_standalone\_system}!ecs::registry@{ecs::registry}}
+\doxysubsubsection{\texorpdfstring{add\_standalone\_system()}{add\_standalone\_system()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classsparse__array}{typename}} \mbox{\hyperlink{classsparse__array}{Function}} $>$ \\
+\mbox{\hyperlink{classsparse__array}{void}} ecs\+::registry\+::add\+\_\+standalone\+\_\+system (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array}{Function}} \&\&}]{f }\end{DoxyParamCaption})}
 
 
 
-add a system to the registry 
+Add a system that does not depend on any components. This version is used for systems that operate independently of specific components in the registry. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em ...\+Components} & the components used by the system \\
-\hline
-{\em Function} & the type of the system (inherit from ecs\+::system) with \#import "{}system.\+hpp"{} \\
+{\em Function} & The type of the system (should inherit from ecs\+::isystem$<$$>$ or be a compatible callable). The system must implement {\ttfamily void operator()(iregistry \&) const}. \\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em f} & the system to add \\
+{\em f} & The system to add. It is a callable that takes only a reference to the registry. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function is intended for global systems or those that do not process entity components. 
+\end{DoxyNote}
+\Hypertarget{classecs_1_1registry_af0765f4fd5e36738b878684c45af332b}\label{classecs_1_1registry_af0765f4fd5e36738b878684c45af332b} 
+\index{ecs::registry@{ecs::registry}!add\_system@{add\_system}}
+\index{add\_system@{add\_system}!ecs::registry@{ecs::registry}}
+\doxysubsubsection{\texorpdfstring{add\_system()}{add\_system()}}
+{\footnotesize\ttfamily template$<$class... Components, \mbox{\hyperlink{classsparse__array}{typename}} \mbox{\hyperlink{classsparse__array}{Function}} $>$ \\
+\mbox{\hyperlink{classsparse__array}{void}} ecs\+::registry\+::add\+\_\+system (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array}{Function}} \&\&}]{f }\end{DoxyParamCaption})}
+
+
+
+Add a system to the registry that operates on specific components. This version is used for systems that process entities with specific components. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Components} & The components used by the system. \\
+\hline
+{\em Function} & The type of the system (should inherit from ecs\+::isystem$<$\+Components...$>$). The system must implement {\ttfamily void operator()(iregistry \&, Components\& ...) const}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em f} & The system to add. It is a callable that takes a reference to the registry and the required components as parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Requires the specified components to be present in the sparse arrays of the registry. This function will encapsulate the system call to process entities with matching components. 
+\end{DoxyNote}
 \Hypertarget{classecs_1_1registry_aa2ee7f9351e6ddbfa28902ff0efcaf9e}\label{classecs_1_1registry_aa2ee7f9351e6ddbfa28902ff0efcaf9e} 
 \index{ecs::registry@{ecs::registry}!create\_entity@{create\_entity}}
 \index{create\_entity@{create\_entity}!ecs::registry@{ecs::registry}}
