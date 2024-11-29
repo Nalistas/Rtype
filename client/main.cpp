@@ -1,22 +1,23 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include <memory>
 #include "Window.hpp"
 #include "Sprite.hpp"
 #include "Client.hpp"
 
 int main() {
     raylib::Window window(800, 600);
-    raylib::Sprite sprite("./orange.png");
+    // raylib::Sprite sprite("./orange.png");
 
-    sprite.set_size(50, 50);
-    sprite.set_position(400, 300);
+    // sprite.set_size(50, 50);
+    // sprite.set_position(400, 300);
 
     std::string hostname = "";
     std::string message = "";
     bool enteringHostname = true;
     bool connected = false;
-    Client* client = nullptr;
+    Client client;
 
     while (!WindowShouldClose()) {
         if (enteringHostname) {
@@ -38,7 +39,7 @@ int main() {
             if (IsKeyPressed(KEY_ENTER)) {
                 enteringHostname = false;
                 connected = true;
-                client = new Client(hostname);
+                client.connect(hostname);
             }
         } 
         else if (connected) {
@@ -58,16 +59,20 @@ int main() {
             }
 
             if (IsKeyPressed(KEY_ENTER)) {
-                if (!message.empty() && client != nullptr) {
-                    client->send_message(message);
+                if (!message.empty()) {
+                    client.send_message(message);
                     message = "";
                 }
+            }
+            if (client.has_data()) {
+                std::string data = client.get_data();
+                std::cout << "Received data: " << data << std::endl;
             }
         }
 
         window.start_drawing();
         window.clear();
-        sprite.draw();
+        // sprite.draw();
 
         if (enteringHostname) {
             window.draw_text("Entrez le hostname: " + hostname, 10, 10, 20, BLACK);
@@ -76,10 +81,6 @@ int main() {
         }
 
         window.end_drawing();
-    }
-
-    if (client != nullptr) {
-        delete client;
     }
 
     return 0;
