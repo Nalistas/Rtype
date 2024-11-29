@@ -1,0 +1,46 @@
+\doxysection{ecs\+::system\texorpdfstring{$<$}{<} Components \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classecs_1_1system}{}\label{classecs_1_1system}\index{ecs::system$<$ Components $>$@{ecs::system$<$ Components $>$}}
+
+
+Base class for all the systems.  
+
+
+
+
+{\ttfamily \#include $<$system.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classecs_1_1system_a637041963382913a8a742cefe3ced76a}\label{classecs_1_1system_a637041963382913a8a742cefe3ced76a} 
+virtual void {\bfseries operator()} (\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Components $>$ \&...) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class... Components$>$\newline
+class ecs\+::system$<$ Components $>$}
+Base class for all the systems. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Components} & the components used by the system to process 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{classsparse__array}{MySystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classecs_1_1system}{ecs::system}}<MyComponent1,\ MyComponent2>\ \{\ \textcolor{comment}{//\ inherit\ from\ ecs::system\ and\ use\ template}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ operator()(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ ecs::sparse\_array<MyComponent1>\&\ \mbox{\hyperlink{classsparse__array}{sa1}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ ecs::sparse\_array<MyComponent2>\&\ \mbox{\hyperlink{classsparse__array}{sa2}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\textcolor{keyword}{\ \ \ \ \ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ do\ something}}
+\DoxyCodeLine{\ \ \ \ \ \}}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+ \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/solype/delivery/current\+\_\+days/rtype/ecs/include/system.\+hpp\end{DoxyCompactItemize}

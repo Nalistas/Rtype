@@ -1,0 +1,286 @@
+\doxysection{sparse\+\_\+array\texorpdfstring{$<$}{<} Component \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classsparse__array}{}\label{classsparse__array}\index{sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}}
+\doxysubsubsection*{Public Types}
+\begin{Indent}\textbf{ Used types}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsparse__array_ab7403a6f935fa66034cce5bdcf49a9fc}\label{classsparse__array_ab7403a6f935fa66034cce5bdcf49a9fc} 
+using {\bfseries value\+\_\+type} = std\+::optional$<$Component$>$
+\begin{DoxyCompactList}\small\item\em The type of a component. \end{DoxyCompactList}\item 
+\Hypertarget{classsparse__array_a639d023286962a7b28f77fc4741e3f89}\label{classsparse__array_a639d023286962a7b28f77fc4741e3f89} 
+using {\bfseries reference\+\_\+type} = \mbox{\hyperlink{classsparse__array_ab7403a6f935fa66034cce5bdcf49a9fc}{value\+\_\+type}}\&
+\begin{DoxyCompactList}\small\item\em The type of a reference to a component. \end{DoxyCompactList}\item 
+\Hypertarget{classsparse__array_ab45a3b0d907508f61baa7c185d6ed07f}\label{classsparse__array_ab45a3b0d907508f61baa7c185d6ed07f} 
+using {\bfseries const\+\_\+reference\+\_\+type} = \mbox{\hyperlink{classsparse__array_ab7403a6f935fa66034cce5bdcf49a9fc}{value\+\_\+type}} const\&
+\begin{DoxyCompactList}\small\item\em The type of a const reference to a component. \end{DoxyCompactList}\item 
+\Hypertarget{classsparse__array_a5f747e93a9406474b106bde9c66f01b7}\label{classsparse__array_a5f747e93a9406474b106bde9c66f01b7} 
+using {\bfseries container\+\_\+t} = std\+::vector$<$\mbox{\hyperlink{classsparse__array_ab7403a6f935fa66034cce5bdcf49a9fc}{value\+\_\+type}}$>$
+\begin{DoxyCompactList}\small\item\em The type of the container. \end{DoxyCompactList}\item 
+\Hypertarget{classsparse__array_af1468a11a30a58090580d1fb399e3cc0}\label{classsparse__array_af1468a11a30a58090580d1fb399e3cc0} 
+using {\bfseries size\+\_\+type} = typename container\+\_\+t\+::size\+\_\+type
+\begin{DoxyCompactList}\small\item\em The type of the size. \end{DoxyCompactList}\item 
+\Hypertarget{classsparse__array_a1293c5b64d77bb97ed87e57c6276925e}\label{classsparse__array_a1293c5b64d77bb97ed87e57c6276925e} 
+using {\bfseries iterator} = typename container\+\_\+t\+::iterator
+\begin{DoxyCompactList}\small\item\em The type of the iterator. \end{DoxyCompactList}\item 
+\Hypertarget{classsparse__array_a9beecc69673481f79844336194dfc1a2}\label{classsparse__array_a9beecc69673481f79844336194dfc1a2} 
+using {\bfseries const\+\_\+iterator} = typename container\+\_\+t\+::const\+\_\+iterator
+\begin{DoxyCompactList}\small\item\em The type of the const iterator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsparse__array_af1468a11a30a58090580d1fb399e3cc0}{size\+\_\+type}} \mbox{\hyperlink{classsparse__array_a6679a2315be266da4c01ad97f00e51fd}{size}} () const
+\begin{DoxyCompactList}\small\item\em Get the size of the sparse array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsparse__array_a639d023286962a7b28f77fc4741e3f89}{reference\+\_\+type}} \mbox{\hyperlink{classsparse__array_a148de23c16b154614541d8c3ba6d4686}{insert\+\_\+at}} (\mbox{\hyperlink{classsparse__array_af1468a11a30a58090580d1fb399e3cc0}{size\+\_\+type}} pos, Component const \&)
+\begin{DoxyCompactList}\small\item\em Insert a component at a specific position by copy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsparse__array_a639d023286962a7b28f77fc4741e3f89}{reference\+\_\+type}} \mbox{\hyperlink{classsparse__array_a34bcc8149a3c76ebe297201d0905fae0}{insert\+\_\+at}} (\mbox{\hyperlink{classsparse__array_af1468a11a30a58090580d1fb399e3cc0}{size\+\_\+type}} pos, Component \&\&)
+\begin{DoxyCompactList}\small\item\em Insert a component at a specific position by moving it. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class... Params$>$ }\\\mbox{\hyperlink{classsparse__array_a639d023286962a7b28f77fc4741e3f89}{reference\+\_\+type}} \mbox{\hyperlink{classsparse__array_a29ce1fbf70d7518e96d0003afa74ec93}{emplace\+\_\+at}} (\mbox{\hyperlink{classsparse__array_af1468a11a30a58090580d1fb399e3cc0}{size\+\_\+type}} pos, Params \&\&... params)
+\begin{DoxyCompactList}\small\item\em Insert a component at a specific position by creating it based on the parameters passed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Constructors \& destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsparse__array_a34c792f0a28f90cffd87e58c52f20017}\label{classsparse__array_a34c792f0a28f90cffd87e58c52f20017} 
+{\bfseries sparse\+\_\+array} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsparse__array_a2530f93c4d5c88e06ba6c69b4e04ca40}{sparse\+\_\+array}} (\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}} const \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsparse__array_abce5f36fcd9fba0ef3ce5280cbe241db}{sparse\+\_\+array}} (\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}} \&\&other) noexcept
+\begin{DoxyCompactList}\small\item\em Move constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classsparse__array_a4fcfd9065975ddcb90f2a84c91313867}\label{classsparse__array_a4fcfd9065975ddcb90f2a84c91313867} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}sparse\+\_\+array} ()
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}} \& \mbox{\hyperlink{classsparse__array_a7ef594b28d5a04d4cb9c5cb06edae7b2}{operator=}} (\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}} const \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}} \& \mbox{\hyperlink{classsparse__array_a5c899516f3e0e3400eacc7185fef499c}{operator=}} (\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}} \&\&) noexcept
+\begin{DoxyCompactList}\small\item\em Move assignment operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsparse__array_a639d023286962a7b28f77fc4741e3f89}{reference\+\_\+type}} \mbox{\hyperlink{classsparse__array_a4aa1f2fae14ff1cecdc6e42ded260cad}{operator\mbox{[}$\,$\mbox{]}}} (size\+\_\+t idx)
+\begin{DoxyCompactList}\small\item\em Subscript operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsparse__array_ab45a3b0d907508f61baa7c185d6ed07f}{const\+\_\+reference\+\_\+type}} \mbox{\hyperlink{classsparse__array_a1d66e1a1e11a9bcef70425c3c09eb6b4}{operator\mbox{[}$\,$\mbox{]}}} (size\+\_\+t idx) const
+\begin{DoxyCompactList}\small\item\em Subscript operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Iterators}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsparse__array_a1cdf824b5897fb3ffc857843b37453b2}\label{classsparse__array_a1cdf824b5897fb3ffc857843b37453b2} 
+\mbox{\hyperlink{classsparse__array_a1293c5b64d77bb97ed87e57c6276925e}{iterator}} {\bfseries begin} ()
+\item 
+\Hypertarget{classsparse__array_a25c3a93f84f860ee55bb25f8da67e358}\label{classsparse__array_a25c3a93f84f860ee55bb25f8da67e358} 
+\mbox{\hyperlink{classsparse__array_a9beecc69673481f79844336194dfc1a2}{const\+\_\+iterator}} {\bfseries begin} () const
+\item 
+\Hypertarget{classsparse__array_a8f6e23b67ea783baf53129f8907e297a}\label{classsparse__array_a8f6e23b67ea783baf53129f8907e297a} 
+\mbox{\hyperlink{classsparse__array_a9beecc69673481f79844336194dfc1a2}{const\+\_\+iterator}} {\bfseries cbegin} () const
+\item 
+\Hypertarget{classsparse__array_af6749bdfbdc5200a77549f52594107eb}\label{classsparse__array_af6749bdfbdc5200a77549f52594107eb} 
+\mbox{\hyperlink{classsparse__array_a1293c5b64d77bb97ed87e57c6276925e}{iterator}} {\bfseries end} ()
+\item 
+\Hypertarget{classsparse__array_a094425cbf56a592e130b67ecda68cd3d}\label{classsparse__array_a094425cbf56a592e130b67ecda68cd3d} 
+\mbox{\hyperlink{classsparse__array_a9beecc69673481f79844336194dfc1a2}{const\+\_\+iterator}} {\bfseries end} () const
+\item 
+\Hypertarget{classsparse__array_adb95eba3fb7e88207a4374c04950d167}\label{classsparse__array_adb95eba3fb7e88207a4374c04950d167} 
+\mbox{\hyperlink{classsparse__array_a9beecc69673481f79844336194dfc1a2}{const\+\_\+iterator}} {\bfseries cend} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Suppression}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsparse__array_ac0bea77704ce39c1a731dc69de8d9d2d}\label{classsparse__array_ac0bea77704ce39c1a731dc69de8d9d2d} 
+void {\bfseries erase} (\mbox{\hyperlink{classsparse__array_af1468a11a30a58090580d1fb399e3cc0}{size\+\_\+type}} pos)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Researching}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsparse__array_a67e3ada4da4286c0a6a0971d40d7f9c3}\label{classsparse__array_a67e3ada4da4286c0a6a0971d40d7f9c3} 
+\mbox{\hyperlink{classsparse__array_af1468a11a30a58090580d1fb399e3cc0}{size\+\_\+type}} {\bfseries get\+\_\+index} (\mbox{\hyperlink{classsparse__array_ab7403a6f935fa66034cce5bdcf49a9fc}{value\+\_\+type}} const \&) const
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsparse__array_a2530f93c4d5c88e06ba6c69b4e04ca40}\label{classsparse__array_a2530f93c4d5c88e06ba6c69b4e04ca40} 
+\index{sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}!sparse\_array@{sparse\_array}}
+\index{sparse\_array@{sparse\_array}!sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}}
+\doxysubsubsection{\texorpdfstring{sparse\_array()}{sparse\_array()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Component $>$ \\
+\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Component $>$\mbox{\hyperlink{classsparse__array}{\+::sparse\+\_\+array}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Component $>$ const \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the sparse array to copy \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsparse__array_abce5f36fcd9fba0ef3ce5280cbe241db}\label{classsparse__array_abce5f36fcd9fba0ef3ce5280cbe241db} 
+\index{sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}!sparse\_array@{sparse\_array}}
+\index{sparse\_array@{sparse\_array}!sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}}
+\doxysubsubsection{\texorpdfstring{sparse\_array()}{sparse\_array()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Component $>$ \\
+\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Component $>$\mbox{\hyperlink{classsparse__array}{\+::sparse\+\_\+array}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Component $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Move constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the sparse array to move \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This constructor is noexcept 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsparse__array_a29ce1fbf70d7518e96d0003afa74ec93}\label{classsparse__array_a29ce1fbf70d7518e96d0003afa74ec93} 
+\index{sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}!emplace\_at@{emplace\_at}}
+\index{emplace\_at@{emplace\_at}!sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}}
+\doxysubsubsection{\texorpdfstring{emplace\_at()}{emplace\_at()}}
+{\footnotesize\ttfamily template$<$typename Component $>$ \\
+template$<$class... Params$>$ \\
+\mbox{\hyperlink{classsparse__array_a639d023286962a7b28f77fc4741e3f89}{reference\+\_\+type}} \mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Component $>$\+::emplace\+\_\+at (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array_af1468a11a30a58090580d1fb399e3cc0}{size\+\_\+type}}}]{pos,  }\item[{Params \&\&...}]{params }\end{DoxyParamCaption})}
+
+
+
+Insert a component at a specific position by creating it based on the parameters passed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & the position \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsparse__array_a34bcc8149a3c76ebe297201d0905fae0}\label{classsparse__array_a34bcc8149a3c76ebe297201d0905fae0} 
+\index{sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}!insert\_at@{insert\_at}}
+\index{insert\_at@{insert\_at}!sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}}
+\doxysubsubsection{\texorpdfstring{insert\_at()}{insert\_at()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Component $>$ \\
+\mbox{\hyperlink{classsparse__array_a639d023286962a7b28f77fc4741e3f89}{reference\+\_\+type}} \mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Component $>$\+::insert\+\_\+at (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array_af1468a11a30a58090580d1fb399e3cc0}{size\+\_\+type}}}]{pos,  }\item[{Component \&\&}]{ }\end{DoxyParamCaption})}
+
+
+
+Insert a component at a specific position by moving it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & the position \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsparse__array_a148de23c16b154614541d8c3ba6d4686}\label{classsparse__array_a148de23c16b154614541d8c3ba6d4686} 
+\index{sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}!insert\_at@{insert\_at}}
+\index{insert\_at@{insert\_at}!sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}}
+\doxysubsubsection{\texorpdfstring{insert\_at()}{insert\_at()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Component $>$ \\
+\mbox{\hyperlink{classsparse__array_a639d023286962a7b28f77fc4741e3f89}{reference\+\_\+type}} \mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Component $>$\+::insert\+\_\+at (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array_af1468a11a30a58090580d1fb399e3cc0}{size\+\_\+type}}}]{pos,  }\item[{Component const \&}]{ }\end{DoxyParamCaption})}
+
+
+
+Insert a component at a specific position by copy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & the position \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsparse__array_a5c899516f3e0e3400eacc7185fef499c}\label{classsparse__array_a5c899516f3e0e3400eacc7185fef499c} 
+\index{sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Component $>$ \\
+\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}} \& \mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Component $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Component $>$ \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Move assignment operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the sparse array to move \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a reference to the sparse array 
+\end{DoxyReturn}
+\Hypertarget{classsparse__array_a7ef594b28d5a04d4cb9c5cb06edae7b2}\label{classsparse__array_a7ef594b28d5a04d4cb9c5cb06edae7b2} 
+\index{sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Component $>$ \\
+\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}} \& \mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Component $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Component $>$ const \&}]{ }\end{DoxyParamCaption})}
+
+
+
+Assignment operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the sparse array to copy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a reference to the sparse array 
+\end{DoxyReturn}
+\Hypertarget{classsparse__array_a4aa1f2fae14ff1cecdc6e42ded260cad}\label{classsparse__array_a4aa1f2fae14ff1cecdc6e42ded260cad} 
+\index{sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Component $>$ \\
+\mbox{\hyperlink{classsparse__array_a639d023286962a7b28f77fc4741e3f89}{reference\+\_\+type}} \mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Component $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{idx }\end{DoxyParamCaption})}
+
+
+
+Subscript operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the index of the component \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a reference to the component 
+\end{DoxyReturn}
+\Hypertarget{classsparse__array_a1d66e1a1e11a9bcef70425c3c09eb6b4}\label{classsparse__array_a1d66e1a1e11a9bcef70425c3c09eb6b4} 
+\index{sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Component $>$ \\
+\mbox{\hyperlink{classsparse__array_ab45a3b0d907508f61baa7c185d6ed07f}{const\+\_\+reference\+\_\+type}} \mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Component $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{idx }\end{DoxyParamCaption}) const}
+
+
+
+Subscript operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the index of the component \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a const reference to the component 
+\end{DoxyReturn}
+\Hypertarget{classsparse__array_a6679a2315be266da4c01ad97f00e51fd}\label{classsparse__array_a6679a2315be266da4c01ad97f00e51fd} 
+\index{sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}!size@{size}}
+\index{size@{size}!sparse\_array$<$ Component $>$@{sparse\_array$<$ Component $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$typename Component $>$ \\
+\mbox{\hyperlink{classsparse__array_af1468a11a30a58090580d1fb399e3cc0}{size\+\_\+type}} \mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ Component $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the size of the sparse array. 
+
+\begin{DoxyReturn}{Returns}
+the size 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/solype/delivery/current\+\_\+days/rtype/ecs/include/sparse\+\_\+array.\+hpp\end{DoxyCompactItemize}

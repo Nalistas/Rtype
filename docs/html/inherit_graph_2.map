@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classecs_1_1iregistry.html" title="Interface for the registry, it doesn&#39;t have any implementation and only declare the pure virtual func..." alt="" coords="5,5,102,32"/>
+<area shape="rect" id="Node000001" href="$classecs_1_1registry.html" title="Diagramme UML pour la classe registry." alt="" coords="150,5,243,32"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="118,16,149,16,149,21,118,21"/>
+</map>

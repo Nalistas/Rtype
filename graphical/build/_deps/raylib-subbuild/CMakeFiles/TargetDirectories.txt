@@ -1,0 +1,3 @@
+/home/solype/delivery/current_days/rtype/graphical/build/_deps/raylib-subbuild/CMakeFiles/raylib-populate.dir
+/home/solype/delivery/current_days/rtype/graphical/build/_deps/raylib-subbuild/CMakeFiles/edit_cache.dir
+/home/solype/delivery/current_days/rtype/graphical/build/_deps/raylib-subbuild/CMakeFiles/rebuild_cache.dir
