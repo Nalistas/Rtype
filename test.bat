@@ -1,4 +1,4 @@
 @echo off
 echo Bonjour, utilisateur !
-echo test
+echo test push
 pause
