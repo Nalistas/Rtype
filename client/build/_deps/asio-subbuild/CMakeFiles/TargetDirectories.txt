@@ -1,0 +1,3 @@
+/home/solype/delivery/current_days/rtype/client/build/_deps/asio-subbuild/CMakeFiles/asio-populate.dir
+/home/solype/delivery/current_days/rtype/client/build/_deps/asio-subbuild/CMakeFiles/edit_cache.dir
+/home/solype/delivery/current_days/rtype/client/build/_deps/asio-subbuild/CMakeFiles/rebuild_cache.dir

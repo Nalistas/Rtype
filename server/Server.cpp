@@ -22,11 +22,23 @@ int Server::loop()
         udp::endpoint sender_endpoint;
 
         size_t length = socket.receive_from(asio::buffer(data, 1024), sender_endpoint);
-        std::cout << "Message reçu : " << std::string(data, length) << std::endl;
 
-        std::string reply(data, length);
+        std::string message(data, length);
+        std::cout << "Message reçu de " << sender_endpoint.address().to_string()
+                  << ":" << sender_endpoint.port() << " -> " << message << std::endl;
+
+        // add client if not exist
+        if (clients.find(sender_endpoint) == clients.end()) {
+            clients[sender_endpoint] = {};
+            std::cout << "Nouveau client ajouté : " 
+                      << sender_endpoint.address().to_string()
+                      << ":" << sender_endpoint.port() << std::endl;
+        }
+
+        // Préparer une réponse
+        std::string reply = "Echo: " + message;
         socket.send_to(asio::buffer(reply), sender_endpoint);
     }
+
     return 0;
 }
-
