@@ -11,10 +11,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Ajoute les répertoires include
 include_directories(include)
 
-# Crée un exécutable pour le projet
-add_executable(${PROJECT_NAME} main.cpp)
+# Crée une bibliothèque statique
+add_library(${PROJECT_NAME} STATIC)
 
-# Ajoute les fichiers source au projet
+# Ajoute les fichiers source à la bibliothèque
 target_sources(${PROJECT_NAME}
     PRIVATE
         src/entity.cpp
@@ -24,7 +24,7 @@ target_sources(${PROJECT_NAME}
 # Ajoute les répertoires include au projet
 target_include_directories(${PROJECT_NAME}
     PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/include # Répertoire include spécifique
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 # Option pour activer les warnings

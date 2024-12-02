@@ -1,4 +1,0 @@
-<map id="ecs::iregistry" name="ecs::iregistry">
-<area shape="rect" id="node1" title="Interface for the registry, it doesn&#39;t have any implementation and only declare the pure virtual func..." alt="" coords="5,5,112,32"/>
-<area shape="rect" id="node2" href="$classecs_1_1registry.html" title="Diagramme UML pour la classe registry." alt="" coords="7,80,110,107"/>
-</map>

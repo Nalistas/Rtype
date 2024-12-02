@@ -40,6 +40,9 @@ target_sources(${PROJECT_NAME}
         main.cpp
         src/Window.cpp
         src/Sprite.cpp
+        src/RaySound.cpp
+        src/RayMusic.cpp
+        src/AudioDevice.cpp
         Client.cpp
 )
 

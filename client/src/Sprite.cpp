@@ -9,7 +9,7 @@
 #include <stdexcept>
 
 raylib::Sprite::Sprite(std::string const &texture_path) :
-    _rotation(0)
+    _rotation(0), _frame_count(0), _current_frame(0), _offset({0, 0})
 {
     _texture = LoadTexture(texture_path.c_str());
     if (_texture.id == 0) {
@@ -17,12 +17,14 @@ raylib::Sprite::Sprite(std::string const &texture_path) :
     }
 
     _source_rect = {0, 0, static_cast<float>(_texture.width), static_cast<float>(_texture.height)};
+    _source_rect_origin = _source_rect;
     _destination_rect = {0, 0, static_cast<float>(_texture.width), static_cast<float>(_texture.height)};
     _center = {_destination_rect.width / 2, _destination_rect.height / 2};
 }
 
 raylib::Sprite::Sprite(std::string const &texture_path, Rectangle texture_rect, Rectangle on_window_rect)
-    : _source_rect(texture_rect), _destination_rect(on_window_rect), _rotation(0)
+    : _destination_rect(on_window_rect), _rotation(0), _source_rect(texture_rect), _source_rect_origin(texture_rect),
+      _frame_count(0), _current_frame(0), _offset({0, 0})
 {
     _texture = LoadTexture(texture_path.c_str());
     if (_texture.id == 0) {
@@ -65,6 +67,7 @@ void raylib::Sprite::set_texture(std::string const &texture_path)
 void raylib::Sprite::set_source_rect(Rectangle texture_rect)
 {
     _source_rect = texture_rect;
+    _source_rect_origin = texture_rect;
 }
 
 void raylib::Sprite::set_destination_rect(Rectangle on_window_rect)
@@ -91,28 +94,4 @@ void raylib::Sprite::set_rotation(float rotation)
 float raylib::Sprite::get_rotation() const
 {
     return _rotation;
-}
-
-Vector2 raylib::Sprite::get_offset() const
-{
-    return _offset;
-}
-
-void raylib::Sprite::set_offset(Vector2 offset)
-{
-    _offset = offset;
-}
-
-void raylib::Sprite::set_offset(float x, float y)
-{
-    _offset.x = x;
-    _offset.y = y;
-}
-
-void raylib::Sprite::next_frame()
-{
-    _source_rect.x += _source_rect.width;
-    if (_source_rect.x >= _texture.width) {
-        _source_rect.x = 0;
-    }
 }

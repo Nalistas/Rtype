@@ -4,6 +4,8 @@
 # Prerequisites
 *.d
 
+*.test
+
 # Compiled Object files
 *.slo
 *.lo
