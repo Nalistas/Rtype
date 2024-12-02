@@ -29,3 +29,10 @@ jobs:
 
       - name: Build documentation
         run: doxygen
+      
+      - name: Deploy documentation
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs/html
+          branch: gh-pages
+          target-folder: docs/
