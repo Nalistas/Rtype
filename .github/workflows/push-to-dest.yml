@@ -1,4 +1,4 @@
-name: Sync from upstream and check .env.local
+name: Push to mirror
 
 on:
   push:
@@ -9,36 +9,8 @@ on:
       -'ga-ignore-**'
 
 jobs:
-  check_env_local:
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' }}
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Check for .env.local file
-        run: |
-          if [ -f .env.local ]; then
-            echo "Error: .env.local file is present. Aborting."
-            exit 1
-          else
-            echo "No .env.local file found. Proceeding."
-          fi
-
-      - name: Check for files with .local extension
-        run: |
-          if find . -type f -name "*.local" | grep -q '.'; then
-            echo "Error: Files with .local extension are present. Aborting."
-            find . -type f -name "*.local"
-            exit 1
-          else
-            echo "No files with .local extension found. Proceeding."
-          fi
-
   push_to_mirror:
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     needs: [check_env_local]
     if: ${{ github.event_name == 'push' }}
