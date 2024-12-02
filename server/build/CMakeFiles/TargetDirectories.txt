@@ -1,3 +1,0 @@
-/home/solype/delivery/current_days/rtype/server/build/CMakeFiles/MainTest.dir
-/home/solype/delivery/current_days/rtype/server/build/CMakeFiles/edit_cache.dir
-/home/solype/delivery/current_days/rtype/server/build/CMakeFiles/rebuild_cache.dir
