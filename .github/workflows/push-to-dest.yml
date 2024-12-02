@@ -12,8 +12,6 @@ jobs:
   push_to_mirror:
     if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
-    needs: [check_env_local]
-    if: ${{ github.event_name == 'push' }}
     steps:
       - uses: actions/checkout@v3
         with:
