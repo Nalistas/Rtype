@@ -9,6 +9,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Ajoute les sous-répertoires
-# add_subdirectory(ecs)
+add_subdirectory(ecs)
 add_subdirectory(client)
 add_subdirectory(server)

@@ -10,8 +10,6 @@ project(Client
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Inclure ECS
-add_subdirectory(../ecs ecs_build) # Ajoute ECS comme dépendance
 
 # Télécharger et intégrer Raylib via FetchContent
 include(FetchContent)
