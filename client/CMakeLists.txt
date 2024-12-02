@@ -27,14 +27,11 @@ FetchContent_Declare(
     GIT_TAG asio-1-18-2
 )
 FetchContent_MakeAvailable(asio)
-
 include_directories(${asio_SOURCE_DIR}/asio/include)
 
 
 add_executable(Client)
-
 target_include_directories(Client PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-
 target_sources(Client
     PRIVATE
         main.cpp
@@ -47,6 +44,8 @@ target_sources(Client
 )
 
 target_link_libraries(Client PRIVATE raylib)
+target_link_libraries(Client PRIVATE ecs)
+target_include_directories(Client PRIVATE ${CMAKE_SOURCE_DIR}/ecs)
 
 target_compile_options(Client
     PRIVATE
