@@ -1,3 +1,0 @@
-<map id="ecs::entity" name="ecs::entity">
-<area shape="rect" id="Node000001" title="Entity class, used to get information about an entity using its id and the ecs::registry." alt="" coords="5,5,123,267"/>
-</map>

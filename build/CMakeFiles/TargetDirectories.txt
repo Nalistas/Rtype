@@ -1,6 +1,0 @@
-/home/solype/delivery/current_days/rtype/build/CMakeFiles/main.dir
-/home/solype/delivery/current_days/rtype/build/CMakeFiles/edit_cache.dir
-/home/solype/delivery/current_days/rtype/build/CMakeFiles/rebuild_cache.dir
-/home/solype/delivery/current_days/rtype/build/ecs/CMakeFiles/ecs.dir
-/home/solype/delivery/current_days/rtype/build/ecs/CMakeFiles/edit_cache.dir
-/home/solype/delivery/current_days/rtype/build/ecs/CMakeFiles/rebuild_cache.dir
