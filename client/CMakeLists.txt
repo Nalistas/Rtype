@@ -1,22 +1,24 @@
 cmake_minimum_required(VERSION 3.16)
 
-# Nom du projet
-project(rtype LANGUAGES CXX VERSION 1.0 DESCRIPTION "C++ Project combining Raylib and ASIO")
+project(Client
+    VERSION 1.0
+    DESCRIPTION "Client for Rtype"
+    LANGUAGES CXX
+)
 
 # Configuration standard C++
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Directories pour les includes
-include_directories(include)
+# Inclure ECS
+add_subdirectory(../ecs ecs_build) # Ajoute ECS comme dépendance
 
 # Télécharger et intégrer Raylib via FetchContent
 include(FetchContent)
 FetchContent_Declare(
     raylib
     GIT_REPOSITORY https://github.com/raysan5/raylib.git
-    GIT_TAG 4.5.0 # Remplacez par la version souhaitée
+    GIT_TAG 4.5.0
 )
 FetchContent_MakeAvailable(raylib)
 
@@ -28,14 +30,14 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(asio)
 
-# Ajouter les répertoires d'inclusion pour ASIO
 include_directories(${asio_SOURCE_DIR}/asio/include)
 
-# Définir l'exécutable principal
-add_executable(${PROJECT_NAME})
 
-# Ajouter les fichiers sources pour l'exécutable
-target_sources(${PROJECT_NAME}
+add_executable(Client)
+
+target_include_directories(Client PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+target_sources(Client
     PRIVATE
         main.cpp
         src/Window.cpp
@@ -46,27 +48,19 @@ target_sources(${PROJECT_NAME}
         Client.cpp
 )
 
-# Lier les bibliothèques avec l'exécutable
-target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
+target_link_libraries(Client PRIVATE raylib)
 
-# Ajouter des options de compilation
-target_compile_options(${PROJECT_NAME}
+target_compile_options(Client
     PRIVATE
         -Wall
         -Wextra
         -Wpedantic
 )
 
-# Plateformes spécifiques
 if(WIN32)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE _USE_MATH_DEFINES)
+    target_compile_definitions(Client PRIVATE _USE_MATH_DEFINES)
 elseif(APPLE)
-    target_link_libraries(${PROJECT_NAME} PRIVATE "-framework OpenGL")
+    target_link_libraries(Client PRIVATE "-framework OpenGL")
 elseif(UNIX)
-    target_link_libraries(${PROJECT_NAME} PRIVATE m pthread dl GL X11)
+    target_link_libraries(Client PRIVATE m pthread dl GL X11)
 endif()
-
-# Afficher des informations sur le projet
-message(STATUS "Project: ${PROJECT_NAME}")
-message(STATUS "Version: ${PROJECT_VERSION}")
-message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")

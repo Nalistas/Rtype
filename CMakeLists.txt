@@ -1,21 +1,14 @@
-# Minimum version of CMake
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
+project(MyProject LANGUAGES CXX)
 
-# Project name
-project(MainProject)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
 
-# Specify the C++ standard
+# Définit la version de C++ à utiliser
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Add the ecs library as a subdirectory
-add_subdirectory(ecs)
-
-# Add the main executable
-add_executable(main main.cpp)
-
-# Link the ecs library to the main executable
-# target_link_libraries(main PRIVATE ecs)
-
-# Include headers from the ecs library
-# target_include_directories(main PRIVATE ecs/include)
+# Ajoute les sous-répertoires
+# add_subdirectory(ecs)
+add_subdirectory(client)
+add_subdirectory(server)
