@@ -33,6 +33,9 @@ target_sources(Server
     src/Server.cpp
     src/IDirectoryLister.cpp
     src/SafeDirectoryLister.cpp
+    src/Thread/ScopeLock.cpp
+    src/Thread/Mutex.cpp
+    src/Thread/ConditionVariable.cpp
 )
 
 
