@@ -30,6 +30,8 @@ target_sources(Server
     PRIVATE
     src/main.cpp
     src/Server.cpp
+    src/IDirectoryLister.cpp
+    src/SafeDirectoryLister.cpp
 )
 
 
