@@ -1,0 +1,37 @@
+\chapter{Number}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2number}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2number}\index{Number@{Number}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2number_autotoc_md6653}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2number_autotoc_md6653}%
+ {\itshape number} primitive\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2number_autotoc_md6654}{}\doxysection{\texorpdfstring{{\ttfamily number/coerce}}{{\ttfamily number/coerce}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2number_autotoc_md6654}
+Restricted number coercion. Returns number presentation for every value that follows below constraints
+
+
+\begin{DoxyItemize}
+\item is implicitly coercible to number
+\item is neither {\ttfamily null} nor {\ttfamily undefined}
+\item is not {\ttfamily NaN} and doesn\textquotesingle{}t coerce to {\ttfamily NaN}
+\end{DoxyItemize}
+
+For all other values {\ttfamily null} is returned
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ coerceToNumber\ =\ require("{}type/number/coerce"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{coerceToNumber("{}12"{});\ //\ 12}
+\DoxyCodeLine{coerceToNumber(\{\});\ //\ null}
+\DoxyCodeLine{coerceToNumber(null);\ //\ null}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2number_autotoc_md6655}{}\doxysection{\texorpdfstring{{\ttfamily number/ensure}}{{\ttfamily number/ensure}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2number_autotoc_md6655}
+If given argument is a number coercible value (via \`{}number/coerce\`{}) returns result number. Otherwise {\ttfamily Type\+Error} is thrown.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureNumber\ =\ require("{}type/number/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{ensureNumber(12);\ //\ "{}12"{}}
+\DoxyCodeLine{ensureNumber(null);\ //\ Thrown\ TypeError:\ null\ is\ not\ a\ number}
+
+\end{DoxyCode}
+ 

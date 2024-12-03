@@ -1,0 +1,113 @@
+\chapter{Resize\+Observer Polyfill}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2resize-observer-polyfill_2README}{}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2resize-observer-polyfill_2README}\index{ResizeObserver Polyfill@{ResizeObserver Polyfill}}
+\href{https://travis-ci.org/que-etc/resize-observer-polyfill}{\texttt{ }}
+
+A polyfill for the Resize Observer API.
+
+Implementation is based on the Mutation\+Observer and uses Mutation Events as a fall back if the first one is not supported, so there will be no polling unless DOM changes. Doesn\textquotesingle{}t modify observed elements. Handles CSS transitions/animations and can possibly observe changes caused by dynamic CSS pseudo-\/classes, e.\+g. by {\ttfamily \+:hover}.
+
+Follows the \href{http://rawgit.com/WICG/ResizeObserver/master/index.html}{\texttt{ spec}} and the native implementation. The size is {\itshape 2.\+44 KiB} when minified and gzipped.
+
+\href{http://que-etc.github.io/resize-observer-polyfill}{\texttt{ Live demo}} (has style problems in IE10 and lower).\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2resize-observer-polyfill_2README_autotoc_md12163}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2resize-observer-polyfill_2README_autotoc_md12163}
+From NPM\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ resize-\/observer-\/polyfill\ -\/-\/save-\/dev}
+
+\end{DoxyCode}
+
+
+\sout{From Bower\+:} (will be removed with the next major release)
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{bower\ install\ resize-\/observer-\/polyfill\ -\/-\/save-\/dev}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2resize-observer-polyfill_2README_autotoc_md12164}{}\doxysection{\texorpdfstring{Browser Support}{Browser Support}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2resize-observer-polyfill_2README_autotoc_md12164}
+Polyfill has been tested in the following browsers\+:
+
+\href{https://saucelabs.com/beta/builds/303f5344a7214ba5b62bc7079a15d376}{\texttt{ }}
+
+{\bfseries{NOTE\+:}} Internet Explorer 8 and its earlier versions are not supported.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2resize-observer-polyfill_2README_autotoc_md12165}{}\doxysection{\texorpdfstring{Usage Example}{Usage Example}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2resize-observer-polyfill_2README_autotoc_md12165}
+It\textquotesingle{}s recommended to use this library in the form of a \href{https://github.com/sindresorhus/ponyfill}{\texttt{ ponyfill}}, which doesn\textquotesingle{}t inflict modifications of the global object.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ ResizeObserver\ from\ 'resize-\/observer-\/polyfill';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ ro\ =\ new\ ResizeObserver((entries,\ observer)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ for\ (const\ entry\ of\ entries)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ const\ \{left,\ top,\ width,\ height\}\ =\ entry.contentRect;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ console.log('Element:',\ entry.target);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ console.log(`Element's\ size:\ \$\{\ width\ \}px\ x\ \$\{\ height\ \}px`);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ console.log(`Element's\ paddings:\ \$\{\ top\ \}px\ ;\ \$\{\ left\ \}px`);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{ro.observe(document.body);}
+
+\end{DoxyCode}
+
+
+Package\textquotesingle{}s main file is a ES5 \href{https://github.com/umdjs/umd}{\texttt{ UMD}} bundle that will be swapped with the ES6 modules version for those bundlers that are aware of the \href{https://github.com/rollup/rollup/wiki/pkg.module}{\texttt{ module}} field, e.\+g. for \href{https://github.com/rollup/rollup}{\texttt{ Rollup}} or webpack 2+.
+
+{\bfseries{Note}}\+: global version of the polyfill ({\ttfamily dist/\+Resize\+Observer.\+global}) is deprecated and will be removed in the next major release.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2resize-observer-polyfill_2README_autotoc_md12166}{}\doxysection{\texorpdfstring{Observation Strategy}{Observation Strategy}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2resize-observer-polyfill_2README_autotoc_md12166}
+As mentioned above, this implementation primarily (but not solely) relies on Mutation Observer with a fallback to Mutation Events for IE 9 and IE 10.
+
+Speaking of Mutation Events as a fallback approach\+: they might not be as ugly as they are being rendered, particularly when their calls are batched, throttled and there is no need to analyze changes. Given that, they won\textquotesingle{}t interrupt browser\textquotesingle{}s reflow/repaint cycles (same for Mutation\+Observer) and may even outperform Internet Explorer\textquotesingle{}s implementation of MO causing little to no performance degradation. In contemporary browsers (Chrome, Firefox, etc.) Mutation Observer slows down \href{https://jsfiddle.net/que_etc/gaqLe8rn/}{\texttt{ the suite}} that includes 200 iterations of adding/removing elements, changing attributes and modifying text data by less than 1\%. Internet Explorer gives different results with MO slowing down the same suite by 2-\/3\% while Mutation Events show the difference of \texorpdfstring{$\sim$}{\string~}0.6\%.
+
+As for the reasons why other approaches, namely the iframe/object and {\ttfamily scroll} strategies, were ruled out\+:
+\begin{DoxyItemize}
+\item They require the observed element to be non-\/statically positioned.
+\item You can\textquotesingle{}t apply them directly to quite a number of elements\+: {\ttfamily \texorpdfstring{$<$}{<}img\texorpdfstring{$>$}{>}}, {\ttfamily \texorpdfstring{$<$}{<}input\texorpdfstring{$>$}{>}}, {\ttfamily \texorpdfstring{$<$}{<}textarea\texorpdfstring{$>$}{>}}, {\ttfamily \texorpdfstring{$<$}{<}canvas\texorpdfstring{$>$}{>}}, {\ttfamily \texorpdfstring{$<$}{<}tr\texorpdfstring{$>$}{>}}, {\ttfamily \texorpdfstring{$<$}{<}tbody\texorpdfstring{$>$}{>}}, {\ttfamily \texorpdfstring{$<$}{<}thead\texorpdfstring{$>$}{>}}, {\ttfamily \texorpdfstring{$<$}{<}table\texorpdfstring{$>$}{>}}, etc. For most of them you would need to keep an extra {\ttfamily \texorpdfstring{$<$}{<}div\texorpdfstring{$>$}{>}} wrapper and almost all instances of the SVGGraphics\+Element will be out of scope.
+\item The Resize\+Observer spec requires to deliver notifications when a non-\/empty visible element becomes hidden, i.\+e. when either this element directly or one of its parent nodes receive the {\ttfamily display\+: none} state. Same goes for when it\textquotesingle{}s being removed from or added to the DOM. It\textquotesingle{}s not possible to handle these cases merely by using former approaches, so you\textquotesingle{}d still need to either subscribe for DOM mutations or to continuously check the element\textquotesingle{}s state.
+\end{DoxyItemize}
+
+And though every approach has its own limitations, I reckon that it\textquotesingle{}d be too much of a trade-\/off to have those constraints when building a polyfill.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2resize-observer-polyfill_2README_autotoc_md12167}{}\doxysection{\texorpdfstring{Limitations}{Limitations}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2resize-observer-polyfill_2README_autotoc_md12167}
+
+\begin{DoxyItemize}
+\item Notifications are delivered \texorpdfstring{$\sim$}{\string~}20ms after actual changes happen.
+\item Changes caused by dynamic pseudo-\/classes, e.\+g. {\ttfamily \+:hover} and {\ttfamily \+:focus}, are not tracked. As a workaround you could add a short transition which would trigger the {\ttfamily transitionend} event when an element receives one of the former classes (\href{https://jsfiddle.net/que_etc/7fudzqng/}{\texttt{ example}}).
+\item Delayed transitions will receive only one notification with the latest dimensions of an element.
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2resize-observer-polyfill_2README_autotoc_md12168}{}\doxysection{\texorpdfstring{Building and Testing}{Building and Testing}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2resize-observer-polyfill_2README_autotoc_md12168}
+To build polyfill. Creates UMD bundle in the {\ttfamily dist} folder\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ run\ build}
+
+\end{DoxyCode}
+
+
+To run a code style test\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ run\ test:lint}
+
+\end{DoxyCode}
+
+
+Running unit tests\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ run\ test:spec}
+
+\end{DoxyCode}
+
+
+To test in a browser that is not present in karma\textquotesingle{}s config file\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ run\ test:spec:custom}
+
+\end{DoxyCode}
+
+
+Testing against a native implementation\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ run\ test:spec:native}
+
+\end{DoxyCode}
+
+
+{\bfseries{NOTE\+:}} after you invoke {\ttfamily spec\+:native} and {\ttfamily spec\+:custom} commands head to the {\ttfamily \href{http://localhost:9876/debug.html}{\texttt{ http\+://localhost\+:9876/debug.\+html}}} page. 

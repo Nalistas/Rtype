@@ -1,0 +1,321 @@
+\chapter{mdast-\/util-\/from-\/markdown}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme}\index{mdast-\/util-\/from-\/markdown@{mdast-\/util-\/from-\/markdown}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3849}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3849}%
+ \href{https://github.com/syntax-tree/mdast-util-from-markdown/actions}{\texttt{ }} \href{https://codecov.io/github/syntax-tree/mdast-util-from-markdown}{\texttt{ }} \href{https://www.npmjs.com/package/mdast-util-from-markdown}{\texttt{ }} \href{https://bundlejs.com/?q=mdast-util-from-markdown}{\texttt{ }} \href{https://opencollective.com/unified}{\texttt{ }} \href{https://opencollective.com/unified}{\texttt{ }} \href{https://github.com/syntax-tree/unist/discussions}{\texttt{ }}
+
+{\bfseries{\href{https://github.com/syntax-tree/mdast}{\texttt{ mdast}}}} utility that turns markdown into a syntax tree.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3850}{}\doxysection{\texorpdfstring{Contents}{Contents}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3850}
+
+\begin{DoxyItemize}
+\item What is this?
+\item When should I use this?
+\item Install
+\item Use
+\item API
+\begin{DoxyItemize}
+\item \`{}from\+Markdown(value\mbox{[}, encoding\mbox{]}\mbox{[}, options\mbox{]})\`{}
+\item \`{}\+Compile\+Context\`{}
+\item \`{}\+Compile\+Data\`{}
+\item \`{}\+Encoding\`{}
+\item \`{}\+Extension\`{}
+\item \`{}\+Handle\`{}
+\item \`{}\+On\+Enter\+Error\`{}
+\item \`{}\+On\+Exit\+Error\`{}
+\item \`{}\+Options\`{}
+\item \`{}\+Token\`{}
+\item \`{}\+Transform\`{}
+\item \`{}\+Value\`{}
+\end{DoxyItemize}
+\item List of extensions
+\item Syntax
+\item Syntax tree
+\item Types
+\item Compatibility
+\item Security
+\item Related
+\item Contribute
+\item License
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3851}{}\doxysection{\texorpdfstring{What is this?}{What is this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3851}
+This package is a utility that takes markdown input and turns it into an \href{https://github.com/syntax-tree/mdast}{\texttt{ mdast}} syntax tree.
+
+This utility uses \href{https://github.com/micromark/micromark}{\texttt{ {\ttfamily micromark}}}, which turns markdown into tokens, and then turns those tokens into nodes. This package is used inside \href{https://github.com/remarkjs/remark/tree/main/packages/remark-parse}{\texttt{ {\ttfamily remark-\/parse}}}, which focusses on making it easier to transform content by abstracting these internals away.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3852}{}\doxysection{\texorpdfstring{When should I use this?}{When should I use this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3852}
+If you want to handle syntax trees manually, use this. When you {\itshape just} want to turn markdown into HTML, use \href{https://github.com/micromark/micromark}{\texttt{ {\ttfamily micromark}}} instead. For an easier time processing content, use the {\bfseries{\href{https://github.com/remarkjs/remark}{\texttt{ remark}}}} ecosystem instead.
+
+You can combine this package with other packages to add syntax extensions to markdown. Notable examples that deeply integrate with this package are \href{https://github.com/syntax-tree/mdast-util-gfm}{\texttt{ {\ttfamily mdast-\/util-\/gfm}}}, \href{https://github.com/syntax-tree/mdast-util-mdx}{\texttt{ {\ttfamily mdast-\/util-\/mdx}}}, \href{https://github.com/syntax-tree/mdast-util-frontmatter}{\texttt{ {\ttfamily mdast-\/util-\/frontmatter}}}, \href{https://github.com/syntax-tree/mdast-util-math}{\texttt{ {\ttfamily mdast-\/util-\/math}}}, and \href{https://github.com/syntax-tree/mdast-util-directive}{\texttt{ {\ttfamily mdast-\/util-\/directive}}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3853}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3853}
+This package is \href{https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c}{\texttt{ ESM only}}. In Node.\+js (version 16+), install with \href{https://docs.npmjs.com/cli/install}{\texttt{ npm}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ mdast-\/util-\/from-\/markdown}
+
+\end{DoxyCode}
+
+
+In Deno with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{fromMarkdown\}\ from\ 'https://esm.sh/mdast-\/util-\/from-\/markdown@2'}
+
+\end{DoxyCode}
+
+
+In browsers with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{fromMarkdown\}\ from\ 'https://esm.sh/mdast-\/util-\/from-\/markdown@2?bundle'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3854}{}\doxysection{\texorpdfstring{Use}{Use}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3854}
+Say we have the following markdown file {\ttfamily example.\+md}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\ Hello,\ *World*!}
+
+\end{DoxyCode}
+
+
+…and our module {\ttfamily example.\+js} looks as follows\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ fs\ from\ 'node:fs/promises'}
+\DoxyCodeLine{import\ \{fromMarkdown\}\ from\ 'mdast-\/util-\/from-\/markdown'}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ doc\ =\ await\ fs.readFile('example.md')}
+\DoxyCodeLine{const\ tree\ =\ fromMarkdown(doc)}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(tree)}
+
+\end{DoxyCode}
+
+
+…now running {\ttfamily node example.\+js} yields (positional info removed for brevity)\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ type:\ 'root',}
+\DoxyCodeLine{\ \ children:\ [}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ type:\ 'heading',}
+\DoxyCodeLine{\ \ \ \ \ \ depth:\ 2,}
+\DoxyCodeLine{\ \ \ \ \ \ children:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{type:\ 'text',\ value:\ 'Hello,\ '\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{type:\ 'emphasis',\ children:\ [\{type:\ 'text',\ value:\ 'World'\}]\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{type:\ 'text',\ value:\ '!'\}}
+\DoxyCodeLine{\ \ \ \ \ \ ]}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ ]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3855}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3855}
+This package exports the identifier \`{}from\+Markdown\`{}. There is no default export.
+
+The export map supports the \href{https://nodejs.org/api/packages.html\#packages_resolving_user_conditions}{\texttt{ {\ttfamily development} condition}}. Run {\ttfamily node -\/-\/conditions development example.\+js} to get instrumented dev code. Without this condition, production code is loaded.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3856}{}\doxysubsection{\texorpdfstring{{\ttfamily from\+Markdown(value\mbox{[}, encoding\mbox{]}\mbox{[}, options\mbox{]})}}{{\ttfamily from\+Markdown(value\mbox{[}, encoding\mbox{]}\mbox{[}, options\mbox{]})}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3856}
+Turn markdown into a syntax tree.
+
+\doxysubparagraph*{Overloads}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily (value\+: Value, encoding\+: Encoding, options?\+: Options) =\texorpdfstring{$>$}{>} Root}
+\item {\ttfamily (value\+: Value, options?\+: Options) =\texorpdfstring{$>$}{>} Root}
+\end{DoxyItemize}
+
+\doxysubparagraph*{Parameters}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily value} (\`{}\+Value\`{}) — markdown to parse
+\item {\ttfamily encoding} (\`{}\+Encoding\`{}, default\+: `\textquotesingle{}utf8'{\ttfamily ) — \mbox{[}character encoding\mbox{]}\mbox{[}encoding\mbox{]} for when}value{\ttfamily is \mbox{[}}Uint8\+Array{\ttfamily \mbox{]}\mbox{[}uint8-\/array\mbox{]} \texorpdfstring{$\ast$}{*}}options{\ttfamily (\mbox{[}}Options\`{}\mbox{]}api-\/options, optional) — configuration
+\end{DoxyItemize}
+
+\doxysubparagraph*{Returns}
+
+mdast tree (\href{https://github.com/syntax-tree/mdast\#root}{\texttt{ {\ttfamily Root}}}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3857}{}\doxysubsection{\texorpdfstring{{\ttfamily Compile\+Context}}{{\ttfamily Compile\+Context}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3857}
+mdast compiler context (Type\+Script type).
+
+\doxysubparagraph*{Fields}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily stack} (\href{https://github.com/syntax-tree/mdast\#nodes}{\texttt{ {\ttfamily Array\texorpdfstring{$<$}{<}Node\texorpdfstring{$>$}{>}}}}) — stack of nodes
+\item {\ttfamily token\+Stack} ({\ttfamily Array\texorpdfstring{$<$}{<}\mbox{[}Token, On\+Enter\+Error \texorpdfstring{$\vert$}{|} undefined\mbox{]}\texorpdfstring{$>$}{>}}) — stack of tokens
+\item {\ttfamily data} (\`{}\+Compile\+Data\`{}) — info passed around; key/value store
+\item {\ttfamily buffer} ({\ttfamily () =\texorpdfstring{$>$}{>} undefined}) — capture some of the output data
+\item {\ttfamily resume} ({\ttfamily () =\texorpdfstring{$>$}{>} string}) — stop capturing and access the output data
+\item {\ttfamily enter} ({\ttfamily (node\+: Node, token\+: Token, on\+Error?\+: On\+Enter\+Error) =\texorpdfstring{$>$}{>} undefined}) — enter a node
+\item {\ttfamily exit} ({\ttfamily (token\+: Token, on\+Error?\+: On\+Exit\+Error) =\texorpdfstring{$>$}{>} undefined}) — exit a node
+\item {\ttfamily slice\+Serialize} ({\ttfamily (token\+: Token, expand\+Tabs?\+: boolean) =\texorpdfstring{$>$}{>} string}) — get the string value of a token
+\item {\ttfamily config} ({\ttfamily Required\texorpdfstring{$<$}{<}Extension\texorpdfstring{$>$}{>}}) — configuration
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3858}{}\doxysubsection{\texorpdfstring{{\ttfamily Compile\+Data}}{{\ttfamily Compile\+Data}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3858}
+Interface of tracked data (Type\+Script type).
+
+\doxysubparagraph*{Type}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{interface\ CompileData\ \{\ /*\ see\ code\ */\ \}}
+
+\end{DoxyCode}
+
+
+When working on extensions that use more data, extend the corresponding interface to register their types\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{declare\ module\ 'mdast-\/util-\/from-\/markdown'\ \{}
+\DoxyCodeLine{\ \ interface\ CompileData\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Register\ a\ new\ field.}
+\DoxyCodeLine{\ \ \ \ mathFlowInside?:\ boolean\ |\ undefined}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3859}{}\doxysubsection{\texorpdfstring{{\ttfamily Encoding}}{{\ttfamily Encoding}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3859}
+Encodings supported by the \href{https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}{\texttt{ {\ttfamily Uint8\+Array}}} class (Type\+Script type).
+
+See \href{https://github.com/micromark/micromark/tree/main/packages/micromark\#micromarkvalue-encoding-options}{\texttt{ {\ttfamily micromark}}} for more info.
+
+\doxysubparagraph*{Type}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{type\ Encoding\ =\ 'utf8'\ |\ /*\ …\ */}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3860}{}\doxysubsection{\texorpdfstring{{\ttfamily Extension}}{{\ttfamily Extension}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3860}
+Change how markdown tokens from micromark are turned into mdast (Type\+Script type).
+
+\doxysubparagraph*{Properties}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily can\+Contain\+Eols} ({\ttfamily Array\texorpdfstring{$<$}{<}string\texorpdfstring{$>$}{>}}, optional) — token types where line endings are used
+\item {\ttfamily enter} (\`{}\+Record\texorpdfstring{$<$}{<}string, Handle\texorpdfstring{$>$}{>}\`{}, optional) — opening handles
+\item {\ttfamily exit} (\`{}\+Record\texorpdfstring{$<$}{<}string, Handle\texorpdfstring{$>$}{>}\`{}, optional) — closing handles
+\item {\ttfamily transforms} (\`{}\+Array\`{}, optional) — tree transforms
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3861}{}\doxysubsection{\texorpdfstring{{\ttfamily Handle}}{{\ttfamily Handle}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3861}
+Handle a token (Type\+Script type).
+
+\doxysubparagraph*{Parameters}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily this} (\`{}\+Compile\+Context\`{}) — context
+\item {\ttfamily token} (\`{}\+Token\`{}) — current token
+\end{DoxyItemize}
+
+\doxysubparagraph*{Returns}
+
+Nothing ({\ttfamily undefined}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3862}{}\doxysubsection{\texorpdfstring{{\ttfamily On\+Enter\+Error}}{{\ttfamily On\+Enter\+Error}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3862}
+Handle the case where the {\ttfamily right} token is open, but it is closed (by the {\ttfamily left} token) or because we reached the end of the document (Type\+Script type).
+
+\doxysubparagraph*{Parameters}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily this} (\`{}\+Compile\+Context\`{}) — context
+\item {\ttfamily left} (\`{}\+Token\`{} or {\ttfamily undefined}) — left token
+\item {\ttfamily right} (\`{}\+Token\`{}) — right token
+\end{DoxyItemize}
+
+\doxysubparagraph*{Returns}
+
+Nothing ({\ttfamily undefined}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3863}{}\doxysubsection{\texorpdfstring{{\ttfamily On\+Exit\+Error}}{{\ttfamily On\+Exit\+Error}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3863}
+Handle the case where the {\ttfamily right} token is open but it is closed by exiting the {\ttfamily left} token (Type\+Script type).
+
+\doxysubparagraph*{Parameters}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily this} (\`{}\+Compile\+Context\`{}) — context
+\item {\ttfamily left} (\`{}\+Token\`{}) — left token
+\item {\ttfamily right} (\`{}\+Token\`{}) — right token
+\end{DoxyItemize}
+
+\doxysubparagraph*{Returns}
+
+Nothing ({\ttfamily undefined}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3864}{}\doxysubsection{\texorpdfstring{{\ttfamily Options}}{{\ttfamily Options}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3864}
+Configuration (Type\+Script type).
+
+\doxysubparagraph*{Properties}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily extensions} (\href{https://github.com/micromark/micromark\#extensions}{\texttt{ {\ttfamily Array\texorpdfstring{$<$}{<}Micromark\+Extension\texorpdfstring{$>$}{>}}}}, optional) — micromark extensions to change how markdown is parsed
+\item {\ttfamily mdast\+Extensions} (\`{}\+Array\texorpdfstring{$<$}{<}Extension \texorpdfstring{$\vert$}{|} Array\texorpdfstring{$>$}{>}\`{}, optional) — extensions for this utility to change how tokens are turned into a tree
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3865}{}\doxysubsection{\texorpdfstring{{\ttfamily Token}}{{\ttfamily Token}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3865}
+Token from micromark (Type\+Script type).
+
+\doxysubparagraph*{Type}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{type\ Token\ =\ \{\ /*\ …\ */\ \}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3866}{}\doxysubsection{\texorpdfstring{{\ttfamily Transform}}{{\ttfamily Transform}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3866}
+Extra transform, to change the AST afterwards (Type\+Script type).
+
+\doxysubparagraph*{Parameters}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily tree} (\href{https://github.com/syntax-tree/mdast\#root}{\texttt{ {\ttfamily Root}}}) — tree to transform
+\end{DoxyItemize}
+
+\doxysubparagraph*{Returns}
+
+New tree (\href{https://github.com/syntax-tree/mdast\#root}{\texttt{ {\ttfamily Root}}}) or nothing (in which case the current tree is used).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3867}{}\doxysubsection{\texorpdfstring{{\ttfamily Value}}{{\ttfamily Value}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3867}
+Contents of the file (Type\+Script type).
+
+See \href{https://github.com/micromark/micromark/tree/main/packages/micromark\#micromarkvalue-encoding-options}{\texttt{ {\ttfamily micromark}}} for more info.
+
+\doxysubparagraph*{Type}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{type\ Value\ =\ Uint8Array\ |\ string}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3868}{}\doxysection{\texorpdfstring{List of extensions}{List of extensions}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3868}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/syntax-tree/mdast-util-directive}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/directive}}} — directives
+\item \href{https://github.com/syntax-tree/mdast-util-frontmatter}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/frontmatter}}} — frontmatter (YAML, TOML, more)
+\item \href{https://github.com/syntax-tree/mdast-util-gfm}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/gfm}}} — GFM
+\item \href{https://github.com/syntax-tree/mdast-util-gfm-autolink-literal}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/gfm-\/autolink-\/literal}}} — GFM autolink literals
+\item \href{https://github.com/syntax-tree/mdast-util-gfm-footnote}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/gfm-\/footnote}}} — GFM footnotes
+\item \href{https://github.com/syntax-tree/mdast-util-gfm-strikethrough}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/gfm-\/strikethrough}}} — GFM strikethrough
+\item \href{https://github.com/syntax-tree/mdast-util-gfm-table}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/gfm-\/table}}} — GFM tables
+\item \href{https://github.com/syntax-tree/mdast-util-gfm-task-list-item}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/gfm-\/task-\/list-\/item}}} — GFM task list items
+\item \href{https://github.com/syntax-tree/mdast-util-math}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/math}}} — math
+\item \href{https://github.com/syntax-tree/mdast-util-mdx}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/mdx}}} — MDX
+\item \href{https://github.com/syntax-tree/mdast-util-mdx-expression}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/mdx-\/expression}}} — MDX expressions
+\item \href{https://github.com/syntax-tree/mdast-util-mdx-jsx}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/mdx-\/jsx}}} — MDX JSX
+\item \href{https://github.com/syntax-tree/mdast-util-mdxjs-esm}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/mdxjs-\/esm}}} — MDX ESM
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3869}{}\doxysection{\texorpdfstring{Syntax}{Syntax}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3869}
+Markdown is parsed according to Common\+Mark. Extensions can add support for other syntax. If you’re interested in extending markdown, \href{https://github.com/micromark/micromark\#extensions}{\texttt{ more information is available in micromark’s readme}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3870}{}\doxysection{\texorpdfstring{Syntax tree}{Syntax tree}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3870}
+The syntax tree is \href{https://github.com/syntax-tree/mdast}{\texttt{ mdast}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3871}{}\doxysection{\texorpdfstring{Types}{Types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3871}
+This package is fully typed with \href{https://www.typescriptlang.org}{\texttt{ Type\+Script}}. It exports the additional types \`{}\+Compile\+Context\`{}, \`{}\+Compile\+Data\`{}, \`{}\+Encoding\`{}, \`{}\+Extension\`{}, \`{}\+Handle\`{}, \`{}\+On\+Enter\+Error\`{}, \`{}\+On\+Exit\+Error\`{}, \`{}\+Options\`{}, \`{}\+Token\`{}, \`{}\+Transform\`{}, and \`{}\+Value\`{}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3872}{}\doxysection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3872}
+Projects maintained by the unified collective are compatible with maintained versions of Node.\+js.
+
+When we cut a new major release, we drop support for unmaintained versions of Node. This means we try to keep the current release line, {\ttfamily mdast-\/util-\/from-\/markdown@\texorpdfstring{$^\wedge$}{\string^}2}, compatible with Node.\+js 16.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3873}{}\doxysection{\texorpdfstring{Security}{Security}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3873}
+As markdown is sometimes used for HTML, and improper use of HTML can open you up to a \href{https://en.wikipedia.org/wiki/Cross-site_scripting}{\texttt{ cross-\/site scripting (XSS)}} attack, use of {\ttfamily mdast-\/util-\/from-\/markdown} can also be unsafe. When going to HTML, use this utility in combination with \href{https://github.com/syntax-tree/hast-util-sanitize}{\texttt{ {\ttfamily hast-\/util-\/sanitize}}} to make the tree safe.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3874}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3874}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/syntax-tree/mdast-util-to-markdown}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/to-\/markdown}}} — serialize mdast as markdown
+\item \href{https://github.com/micromark/micromark}{\texttt{ {\ttfamily micromark/micromark}}} — parse markdown
+\item \href{https://github.com/remarkjs/remark}{\texttt{ {\ttfamily remarkjs/remark}}} — process markdown
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3875}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3875}
+See \href{https://github.com/syntax-tree/.github/blob/main/contributing.md}{\texttt{ {\ttfamily contributing.\+md}}} in \href{https://github.com/syntax-tree/.github}{\texttt{ {\ttfamily syntax-\/tree/.github}}} for ways to get started. See \href{https://github.com/syntax-tree/.github/blob/main/support.md}{\texttt{ {\ttfamily support.\+md}}} for ways to get help.
+
+This project has a \href{https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md}{\texttt{ code of conduct}}. By interacting with this repository, organization, or community you agree to abide by its terms.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3876}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-from-markdown_2readme_autotoc_md3876}
+\mbox{[}MIT\mbox{]}\mbox{[}license\mbox{]} © \href{https://wooorm.com}{\texttt{ Titus Wormer}} 

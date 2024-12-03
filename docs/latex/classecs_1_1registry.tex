@@ -1,0 +1,311 @@
+\doxysection{ecs\+::registry Class Reference}
+\hypertarget{classecs_1_1registry}{}\label{classecs_1_1registry}\index{ecs::registry@{ecs::registry}}
+
+
+Diagramme UML pour la classe registry.  
+
+
+
+
+{\ttfamily \#include $<$registry.\+hpp$>$}
+
+
+
+Inheritance diagram for ecs\+::registry\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{classecs_1_1registry__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ecs\+::registry\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{classecs_1_1registry__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{Indent}\textbf{ Registering components}\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{classsparse__array}{class}} \mbox{\hyperlink{classsparse__array}{Component}} $>$ }\\\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ \mbox{\hyperlink{classsparse__array}{Component}} $>$ \& \mbox{\hyperlink{classecs_1_1registry_a7d177ae0500e0559a4c34abb43f5a26f}{register\+\_\+component}} ()
+\begin{DoxyCompactList}\small\item\em Register a component in the registry. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{classsparse__array}{class}} \mbox{\hyperlink{classsparse__array}{Component}} $>$ }\\\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ \mbox{\hyperlink{classsparse__array}{Component}} $>$ \& \mbox{\hyperlink{classecs_1_1registry_af80da5c955ffc61f56854ad364fb788a}{get\+\_\+components}} ()
+\begin{DoxyCompactList}\small\item\em Retrieve the sparse array of a registered component. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{classsparse__array}{class}} \mbox{\hyperlink{classsparse__array}{Component}} $>$ }\\\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ \mbox{\hyperlink{classsparse__array}{Component}} $>$ \mbox{\hyperlink{classsparse__array}{const}} \& \mbox{\hyperlink{classecs_1_1registry_ad173e2489d681d013517cc87a41a90ff}{get\+\_\+components}} () \mbox{\hyperlink{classsparse__array}{const}}
+\begin{DoxyCompactList}\small\item\em Retrieve the sparse array of a registered component but const. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Handling entities}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classecs_1_1registry_aa2ee7f9351e6ddbfa28902ff0efcaf9e}{create\+\_\+entity}} () \mbox{\hyperlink{classsparse__array}{override}}
+\begin{DoxyCompactList}\small\item\em Give a new entity to the registry and return it. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classecs_1_1registry_aecf406044a63ce56e645db7199a10fb5}{entity\+\_\+from\+\_\+index}} (\mbox{\hyperlink{classsparse__array_a34c792f0a28f90cffd87e58c52f20017}{std\+::size\+\_\+t}} \mbox{\hyperlink{classsparse__array}{idx}}) \mbox{\hyperlink{classsparse__array}{override}}
+\begin{DoxyCompactList}\small\item\em Retrieve an entity from its index. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsparse__array}{void}} \mbox{\hyperlink{classecs_1_1registry_a8625559dd38b79b57740e23a81d27767}{delete\+\_\+entity}} (\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classsparse__array}{const}} \&\mbox{\hyperlink{classsparse__array}{e}}) \mbox{\hyperlink{classsparse__array}{override}}
+\begin{DoxyCompactList}\small\item\em Delete all the components of an entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Handling components}\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{classsparse__array}{typename}} \mbox{\hyperlink{classsparse__array}{Component}} , \mbox{\hyperlink{classsparse__array}{typename}} ... Params$>$ }\\\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ \mbox{\hyperlink{classsparse__array}{Component}} $>$\+::reference\+\_\+type \mbox{\hyperlink{classecs_1_1registry_a6b015662562cf3d2168ed54427f5ea27}{emplace\+\_\+component}} (\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classsparse__array}{const}} \&\mbox{\hyperlink{classsparse__array}{to}}, \mbox{\hyperlink{classsparse__array}{Params}} \&\&...\mbox{\hyperlink{classsparse__array}{p}})
+\begin{DoxyCompactList}\small\item\em add a component to an entity and return it \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{classsparse__array}{typename}} \mbox{\hyperlink{classsparse__array}{Component}} $>$ }\\\mbox{\hyperlink{classsparse__array}{void}} \mbox{\hyperlink{classecs_1_1registry_aa40cf7e9c44e3aec51388c8a07bbf50a}{remove\+\_\+component}} (\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classsparse__array}{const}} \&\mbox{\hyperlink{classsparse__array}{from}})
+\begin{DoxyCompactList}\small\item\em remove a component from an entity \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Handling systems}\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class... Components, \mbox{\hyperlink{classsparse__array}{typename}} \mbox{\hyperlink{classsparse__array}{Function}} $>$ }\\\mbox{\hyperlink{classsparse__array}{void}} \mbox{\hyperlink{classecs_1_1registry_af0765f4fd5e36738b878684c45af332b}{add\+\_\+system}} (\mbox{\hyperlink{classsparse__array}{Function}} \&\&\mbox{\hyperlink{classsparse__array}{f}})
+\begin{DoxyCompactList}\small\item\em Add a system to the registry that operates on specific components. This version is used for systems that process entities with specific components. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{classsparse__array}{typename}} \mbox{\hyperlink{classsparse__array}{Function}} $>$ }\\\mbox{\hyperlink{classsparse__array}{void}} \mbox{\hyperlink{classecs_1_1registry_a951449af23c710d65dd8a51ccc935cfb}{add\+\_\+standalone\+\_\+system}} (\mbox{\hyperlink{classsparse__array}{Function}} \&\&\mbox{\hyperlink{classsparse__array}{f}})
+\begin{DoxyCompactList}\small\item\em Add a system that does not depend on any components. This version is used for systems that operate independently of specific components in the registry. \end{DoxyCompactList}\item 
+\Hypertarget{classecs_1_1registry_a2a7c2252aa8be3c9adfc9b3e511789f2}\label{classecs_1_1registry_a2a7c2252aa8be3c9adfc9b3e511789f2} 
+\mbox{\hyperlink{classsparse__array}{void}} {\bfseries run\+\_\+systems} ()
+\begin{DoxyCompactList}\small\item\em run all the systems in the registry \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classecs_1_1iregistry}{ecs\+::iregistry}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsparse__array}{virtual}} {\bfseries \texorpdfstring{$\sim$}{\string~}iregistry} ()=\mbox{\hyperlink{classsparse__array}{default}}
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsparse__array}{virtual}} \mbox{\hyperlink{classecs_1_1entity}{entity}} {\bfseries entity\+\_\+from\+\_\+index} (\mbox{\hyperlink{classsparse__array}{size\+\_\+t}} index)=0
+\begin{DoxyCompactList}\small\item\em Virtual function to get an entity from its index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Diagramme UML pour la classe registry. 
+
+Diagramme de la classe registry
+
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{dot_inline_dotgraph_1}}
+\end{DoxyImageNoCaption}
+
+
+Management of the entities, components and systems 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classecs_1_1registry_a951449af23c710d65dd8a51ccc935cfb}\label{classecs_1_1registry_a951449af23c710d65dd8a51ccc935cfb} 
+\index{ecs::registry@{ecs::registry}!add\_standalone\_system@{add\_standalone\_system}}
+\index{add\_standalone\_system@{add\_standalone\_system}!ecs::registry@{ecs::registry}}
+\doxysubsubsection{\texorpdfstring{add\_standalone\_system()}{add\_standalone\_system()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classsparse__array}{typename}} \mbox{\hyperlink{classsparse__array}{Function}} $>$ \\
+\mbox{\hyperlink{classsparse__array}{void}} ecs\+::registry\+::add\+\_\+standalone\+\_\+system (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array}{Function}} \&\&}]{f }\end{DoxyParamCaption})}
+
+
+
+Add a system that does not depend on any components. This version is used for systems that operate independently of specific components in the registry. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Function} & The type of the system (should inherit from ecs\+::isystem$<$$>$ or be a compatible callable). The system must implement {\ttfamily void operator()(iregistry \&) const}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em f} & The system to add. It is a callable that takes only a reference to the registry. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function is intended for global systems or those that do not process entity components. 
+\end{DoxyNote}
+\Hypertarget{classecs_1_1registry_af0765f4fd5e36738b878684c45af332b}\label{classecs_1_1registry_af0765f4fd5e36738b878684c45af332b} 
+\index{ecs::registry@{ecs::registry}!add\_system@{add\_system}}
+\index{add\_system@{add\_system}!ecs::registry@{ecs::registry}}
+\doxysubsubsection{\texorpdfstring{add\_system()}{add\_system()}}
+{\footnotesize\ttfamily template$<$class... Components, \mbox{\hyperlink{classsparse__array}{typename}} \mbox{\hyperlink{classsparse__array}{Function}} $>$ \\
+\mbox{\hyperlink{classsparse__array}{void}} ecs\+::registry\+::add\+\_\+system (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array}{Function}} \&\&}]{f }\end{DoxyParamCaption})}
+
+
+
+Add a system to the registry that operates on specific components. This version is used for systems that process entities with specific components. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Components} & The components used by the system. \\
+\hline
+{\em Function} & The type of the system (should inherit from ecs\+::isystem$<$\+Components...$>$). The system must implement {\ttfamily void operator()(iregistry \&, Components\& ...) const}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em f} & The system to add. It is a callable that takes a reference to the registry and the required components as parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Requires the specified components to be present in the sparse arrays of the registry. This function will encapsulate the system call to process entities with matching components. 
+\end{DoxyNote}
+\Hypertarget{classecs_1_1registry_aa2ee7f9351e6ddbfa28902ff0efcaf9e}\label{classecs_1_1registry_aa2ee7f9351e6ddbfa28902ff0efcaf9e} 
+\index{ecs::registry@{ecs::registry}!create\_entity@{create\_entity}}
+\index{create\_entity@{create\_entity}!ecs::registry@{ecs::registry}}
+\doxysubsubsection{\texorpdfstring{create\_entity()}{create\_entity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classecs_1_1entity}{ecs\+::entity}} ecs\+::registry\+::create\+\_\+entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Give a new entity to the registry and return it. 
+
+\begin{DoxyNote}{Note}
+this function will increment the total entity count or take an entity from the unused entities set 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+the new entity 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classecs_1_1iregistry_ac253305e27c8ea1298d9bff9b0cb15a6}{ecs\+::iregistry}}.
+
+\Hypertarget{classecs_1_1registry_a8625559dd38b79b57740e23a81d27767}\label{classecs_1_1registry_a8625559dd38b79b57740e23a81d27767} 
+\index{ecs::registry@{ecs::registry}!delete\_entity@{delete\_entity}}
+\index{delete\_entity@{delete\_entity}!ecs::registry@{ecs::registry}}
+\doxysubsubsection{\texorpdfstring{delete\_entity()}{delete\_entity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsparse__array}{void}} ecs\+::registry\+::delete\+\_\+entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classsparse__array}{const}} \&}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Delete all the components of an entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & the entity to delete and add the unused entity to the unused entities set \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classecs_1_1iregistry_a2bea4aecd9531da32ddc1e38e37b8e6c}{ecs\+::iregistry}}.
+
+\Hypertarget{classecs_1_1registry_a6b015662562cf3d2168ed54427f5ea27}\label{classecs_1_1registry_a6b015662562cf3d2168ed54427f5ea27} 
+\index{ecs::registry@{ecs::registry}!emplace\_component@{emplace\_component}}
+\index{emplace\_component@{emplace\_component}!ecs::registry@{ecs::registry}}
+\doxysubsubsection{\texorpdfstring{emplace\_component()}{emplace\_component()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classsparse__array}{typename}} \mbox{\hyperlink{classsparse__array}{Component}} , \mbox{\hyperlink{classsparse__array}{typename}} ... Params$>$ \\
+\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ \mbox{\hyperlink{classsparse__array}{Component}} $>$\+::reference\+\_\+type ecs\+::registry\+::emplace\+\_\+component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classsparse__array}{const}} \&}]{to,  }\item[{\mbox{\hyperlink{classsparse__array}{Params}} \&\&...}]{p }\end{DoxyParamCaption})}
+
+
+
+add a component to an entity and return it 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Component} & \+: the component to add \\
+\hline
+{\em ...\+Params} & \+: the parameters to pass to the constructor of the component \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em to} & \+: the entity to add the component to \\
+\hline
+{\em ...\+p} & \+: the parameters to pass to the constructor of the component \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return the component just added 
+\end{DoxyReturn}
+\Hypertarget{classecs_1_1registry_aecf406044a63ce56e645db7199a10fb5}\label{classecs_1_1registry_aecf406044a63ce56e645db7199a10fb5} 
+\index{ecs::registry@{ecs::registry}!entity\_from\_index@{entity\_from\_index}}
+\index{entity\_from\_index@{entity\_from\_index}!ecs::registry@{ecs::registry}}
+\doxysubsubsection{\texorpdfstring{entity\_from\_index()}{entity\_from\_index()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classecs_1_1entity}{ecs\+::entity}} ecs\+::registry\+::entity\+\_\+from\+\_\+index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsparse__array_a34c792f0a28f90cffd87e58c52f20017}{std\+::size\+\_\+t}}}]{idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Retrieve an entity from its index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the index of the entity \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the entity 
+\end{DoxyReturn}
+\Hypertarget{classecs_1_1registry_af80da5c955ffc61f56854ad364fb788a}\label{classecs_1_1registry_af80da5c955ffc61f56854ad364fb788a} 
+\index{ecs::registry@{ecs::registry}!get\_components@{get\_components}}
+\index{get\_components@{get\_components}!ecs::registry@{ecs::registry}}
+\doxysubsubsection{\texorpdfstring{get\_components()}{get\_components()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classsparse__array}{class}} \mbox{\hyperlink{classsparse__array}{Component}} $>$ \\
+\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ \mbox{\hyperlink{classsparse__array}{Component}} $>$ \& ecs\+::registry\+::get\+\_\+components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieve the sparse array of a registered component. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Component} & \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+the sparse array of the component 
+\end{DoxyReturn}
+\Hypertarget{classecs_1_1registry_ad173e2489d681d013517cc87a41a90ff}\label{classecs_1_1registry_ad173e2489d681d013517cc87a41a90ff} 
+\index{ecs::registry@{ecs::registry}!get\_components@{get\_components}}
+\index{get\_components@{get\_components}!ecs::registry@{ecs::registry}}
+\doxysubsubsection{\texorpdfstring{get\_components()}{get\_components()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classsparse__array}{class}} \mbox{\hyperlink{classsparse__array}{Component}} $>$ \\
+\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ \mbox{\hyperlink{classsparse__array}{Component}} $>$ \mbox{\hyperlink{classsparse__array}{const}}  \& ecs\+::registry\+::get\+\_\+components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Retrieve the sparse array of a registered component but const. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Component} & \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+the sparse array of the component as const 
+\end{DoxyReturn}
+\Hypertarget{classecs_1_1registry_a7d177ae0500e0559a4c34abb43f5a26f}\label{classecs_1_1registry_a7d177ae0500e0559a4c34abb43f5a26f} 
+\index{ecs::registry@{ecs::registry}!register\_component@{register\_component}}
+\index{register\_component@{register\_component}!ecs::registry@{ecs::registry}}
+\doxysubsubsection{\texorpdfstring{register\_component()}{register\_component()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classsparse__array}{class}} \mbox{\hyperlink{classsparse__array}{Component}} $>$ \\
+\mbox{\hyperlink{classsparse__array}{sparse\+\_\+array}}$<$ \mbox{\hyperlink{classsparse__array}{Component}} $>$ \& ecs\+::registry\+::register\+\_\+component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Register a component in the registry. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Component} & \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The sparse array of the component just registered 
+\end{DoxyReturn}
+\Hypertarget{classecs_1_1registry_aa40cf7e9c44e3aec51388c8a07bbf50a}\label{classecs_1_1registry_aa40cf7e9c44e3aec51388c8a07bbf50a} 
+\index{ecs::registry@{ecs::registry}!remove\_component@{remove\_component}}
+\index{remove\_component@{remove\_component}!ecs::registry@{ecs::registry}}
+\doxysubsubsection{\texorpdfstring{remove\_component()}{remove\_component()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classsparse__array}{typename}} \mbox{\hyperlink{classsparse__array}{Component}} $>$ \\
+\mbox{\hyperlink{classsparse__array}{void}} ecs\+::registry\+::remove\+\_\+component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classecs_1_1entity}{entity}} \mbox{\hyperlink{classsparse__array}{const}} \&}]{from }\end{DoxyParamCaption})}
+
+
+
+remove a component from an entity 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Component} & the component to remove \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em from} & the entity to remove the component from \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+ecs/include/registry.\+hpp\item 
+ecs/src/registry.\+cpp\end{DoxyCompactItemize}

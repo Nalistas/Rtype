@@ -1,0 +1,144 @@
+\chapter{zwitch}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme}\index{zwitch@{zwitch}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7584}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7584}%
+ \href{https://github.com/wooorm/zwitch/actions}{\texttt{ }} \href{https://codecov.io/github/wooorm/zwitch}{\texttt{ }} \href{https://www.npmjs.com/package/zwitch}{\texttt{ }} \href{https://bundlephobia.com/result?p=zwitch}{\texttt{ }}
+
+Handle values based on a field.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7585}{}\doxysection{\texorpdfstring{Contents}{Contents}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7585}
+
+\begin{DoxyItemize}
+\item What is this?
+\item When should I use this?
+\item Install
+\item Use
+\item API
+\begin{DoxyItemize}
+\item \`{}zwitch(key\mbox{[}, options\mbox{]})\`{}
+\item \`{}one(value\mbox{[}, rest…\mbox{]})\`{}
+\item \`{}function handler(value\mbox{[}, rest…\mbox{]})\`{}
+\end{DoxyItemize}
+\item Types
+\item Compatibility
+\item Related
+\item Contribute
+\item Security
+\item License
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7586}{}\doxysection{\texorpdfstring{What is this?}{What is this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7586}
+This is a tiny package that lets you {\ttfamily switch} between some field on objects.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7587}{}\doxysection{\texorpdfstring{When should I use this?}{When should I use this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7587}
+This package is very useful when mapping one AST to another. It’s a lot like a {\ttfamily switch} statement on one field, but it’s extensible.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7588}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7588}
+This package is \href{https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c}{\texttt{ ESM only}}. In Node.\+js (version 14.\+14+, 16.\+0+), install with \href{https://docs.npmjs.com/cli/install}{\texttt{ npm}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ zwitch}
+
+\end{DoxyCode}
+
+
+In Deno with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{zwitch\}\ from\ 'https://esm.sh/zwitch@2'}
+
+\end{DoxyCode}
+
+
+In browsers with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{zwitch\}\ from\ 'https://esm.sh/zwitch@2?bundle'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7589}{}\doxysection{\texorpdfstring{Use}{Use}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7589}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{zwitch\}\ from\ 'zwitch'}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ handle\ =\ zwitch('type',\ \{invalid,\ unknown,\ handlers:\ \{alpha:\ handleAlpha\}\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{handle(\{type:\ 'alpha'\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ handleAlpha()\ \{\ /*\ …\ */\ \}}
+
+\end{DoxyCode}
+
+
+Or, with a {\ttfamily switch} statement\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ field\ =\ 'type'}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ handle(value)\ \{}
+\DoxyCodeLine{\ \ let\ fn\ =\ invalid}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ if\ (value\ \&\&\ typeof\ value\ ===\ 'object'\ \&\&\ field\ in\ value)\ \{}
+\DoxyCodeLine{\ \ \ \ switch\ (value[field])\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ case\ 'alpha':}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ fn\ =\ handleAlpha}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ break}
+\DoxyCodeLine{\ \ \ \ \ \ default:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ fn\ =\ unknown}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ break}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ return\ fn.apply(this,\ arguments)}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{handle(\{type:\ 'alpha'\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ handleAlpha()\ \{\ /*\ …\ */\ \}}
+\DoxyCodeLine{function\ unknown()\ \{\ /*\ …\ */\ \}}
+\DoxyCodeLine{function\ invalid()\ \{\ /*\ …\ */\ \}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7590}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7590}
+This package exports the identifier {\ttfamily zwitch}. There is no default export.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7591}{}\doxysubsection{\texorpdfstring{{\ttfamily zwitch(key\mbox{[}, options\mbox{]})}}{{\ttfamily zwitch(key\mbox{[}, options\mbox{]})}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7591}
+Create a switch, based on a {\ttfamily key} ({\ttfamily string}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7592}{}\doxyparagraph{\texorpdfstring{{\ttfamily options}}{{\ttfamily options}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7592}
+Options can be omitted and added later to {\ttfamily one}.
+
+\doxysubparagraph*{{\ttfamily options.\+handlers}}
+
+Handlers to use, stored on {\ttfamily one.\+handlers} ({\ttfamily Record\texorpdfstring{$<$}{<}string, Function\texorpdfstring{$>$}{>}}, optional).
+
+\doxysubparagraph*{{\ttfamily options.\+unknown}}
+
+Handler to use for unknown values, stored on {\ttfamily one.\+unknown} ({\ttfamily Function}, optional).
+
+\doxysubparagraph*{{\ttfamily options.\+invalid}}
+
+Handler to use for invalid values, stored on {\ttfamily one.\+invalid} ({\ttfamily Function}, optional).
+
+\doxysubparagraph*{Returns}
+
+See \`{}one\`{} ({\ttfamily Function}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7593}{}\doxysubsection{\texorpdfstring{{\ttfamily one(value\mbox{[}, rest…\mbox{]})}}{{\ttfamily one(value\mbox{[}, rest…\mbox{]})}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7593}
+Handle one value. Based on the bound {\ttfamily key}, a respective handler will be called. If {\ttfamily value} is not an object, or doesn’t have a {\ttfamily key} property, the special “invalid” handler will be called. If {\ttfamily value} has an unknown {\ttfamily key}, the special “unknown” handler will be called.
+
+All arguments, and the context object ({\ttfamily this}), are passed through to the handler, and it’s result is returned.
+
+\doxysubparagraph*{{\ttfamily one.\+handlers}}
+
+Map of handlers ({\ttfamily Record\texorpdfstring{$<$}{<}string, Function\texorpdfstring{$>$}{>}}).
+
+\doxysubparagraph*{{\ttfamily one.\+invalid}}
+
+Special \`{}handler\`{} called if a value doesn’t have a {\ttfamily key} property. If not set, {\ttfamily undefined} is returned for invalid values.
+
+\doxysubparagraph*{{\ttfamily one.\+unknown}}
+
+Special \`{}handler\`{} called if a value does not have a matching handler. If not set, {\ttfamily undefined} is returned for unknown values.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7594}{}\doxysubsection{\texorpdfstring{{\ttfamily function handler(value\mbox{[}, rest…\mbox{]})}}{{\ttfamily function handler(value\mbox{[}, rest…\mbox{]})}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7594}
+Handle one value.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7595}{}\doxysection{\texorpdfstring{Types}{Types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7595}
+This package is fully typed with \href{https://www.typescriptlang.org}{\texttt{ Type\+Script}}. It exports the types {\ttfamily Handler}, {\ttfamily Unknown\+Handler}, {\ttfamily Invalid\+Handler}, and {\ttfamily Options}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7596}{}\doxysection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7596}
+This package is at least compatible with all maintained versions of Node.\+js. As of now, that is Node.\+js 14.\+14+ and 16.\+0+. It also works in Deno and modern browsers.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7597}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7597}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/wooorm/mapz}{\texttt{ {\ttfamily mapz}}} — functional map
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7598}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7598}
+Yes please! See \href{https://opensource.guide/how-to-contribute/}{\texttt{ How to Contribute to Open Source}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7599}{}\doxysection{\texorpdfstring{Security}{Security}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7599}
+This package is safe.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7600}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2zwitch_2readme_autotoc_md7600}
+\mbox{[}MIT\mbox{]}\mbox{[}license\mbox{]} © \href{https://wooorm.com}{\texttt{ Titus Wormer}} 

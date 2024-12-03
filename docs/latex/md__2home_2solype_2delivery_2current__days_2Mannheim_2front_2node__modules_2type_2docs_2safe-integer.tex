@@ -1,0 +1,28 @@
+\chapter{Safe Integer Number}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2safe-integer}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2safe-integer}\index{Safe Integer Number@{Safe Integer Number}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2safe-integer_autotoc_md6675}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2safe-integer_autotoc_md6675}%
+ Safe integer {\itshape number} primitive\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2safe-integer_autotoc_md6676}{}\doxysection{\texorpdfstring{{\ttfamily safe-\/integer/coerce}}{{\ttfamily safe-\/integer/coerce}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2safe-integer_autotoc_md6676}
+Follows \href{integer.md\#integercoerce}{\texttt{ {\ttfamily integer/coerce}}} but returns {\ttfamily null} in place of values which are beyond {\ttfamily Number.\+MIN\+\_\+\+SAFE\+\_\+\+INTEGER} and {\ttfamily Number.\+MAX\+\_\+\+SAFE\+\_\+\+INTEGER} range.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ coerceToSafeInteger\ =\ require("{}type/safe-\/integer/coerce"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{coerceToInteger("{}12.95"{});\ //\ 12}
+\DoxyCodeLine{coerceToInteger(9007199254740992);\ //\ null}
+\DoxyCodeLine{coerceToInteger(null);\ //\ null}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2safe-integer_autotoc_md6677}{}\doxysection{\texorpdfstring{{\ttfamily safe-\/integer/ensure}}{{\ttfamily safe-\/integer/ensure}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2safe-integer_autotoc_md6677}
+If given argument is a safe integer coercible value (via \`{}safe-\/integer/coerce\`{}) returns result number. Otherwise {\ttfamily Type\+Error} is thrown.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureSafeInteger\ =\ require("{}type/safe-\/integer/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{ensureSafeInteger(12.93);\ //\ "{}12"{}}
+\DoxyCodeLine{ensureSafeInteger(9007199254740992);\ //\ Thrown\ TypeError:\ null\ is\ not\ a\ safe\ integer}
+
+\end{DoxyCode}
+ 

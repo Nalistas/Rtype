@@ -1,0 +1,473 @@
+\chapter{README}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README}{}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README}\index{README@{README}}
+  \href{https://github.com/postcss/postcss}{\texttt{  }}  \doxysection*{Load Config}
+
+ 
+
+\doxysubsection*{Install}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ i\ -\/D\ postcss-\/load-\/config}
+
+\end{DoxyCode}
+
+
+\doxysubsection*{Usage}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ i\ -\/S|-\/D\ postcss-\/plugin}
+
+\end{DoxyCode}
+
+
+Install all required Post\+CSS plugins and save them to your {\bfseries{package.\+json}} {\ttfamily dependencies}/{\ttfamily dev\+Dependencies}
+
+Then create a Post\+CSS config file by choosing one of the following formats\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11656}{}\doxysubsubsection{\texorpdfstring{{\ttfamily package.\+json}}{{\ttfamily package.\+json}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11656}
+Create a \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily postcss}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} section in your project\textquotesingle{}s \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily package.\+json}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Project\ (Root)}
+\DoxyCodeLine{\ \ |–\ client}
+\DoxyCodeLine{\ \ |–\ public}
+\DoxyCodeLine{\ \ |}
+\DoxyCodeLine{\ \ |-\/\ package.json}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}postcss"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}parser"{}:\ "{}sugarss"{},}
+\DoxyCodeLine{\ \ \ \ "{}map"{}:\ false,}
+\DoxyCodeLine{\ \ \ \ "{}plugins"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}postcss-\/plugin"{}:\ \{\}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11657}{}\doxysubsubsection{\texorpdfstring{{\ttfamily .postcssrc}}{{\ttfamily .postcssrc}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11657}
+Create a \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily .postcssrc}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} file in JSON or YAML format
+
+\begin{quote}
+ℹ️ It\textquotesingle{}s recommended to use an extension (e.\+g \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily .postcssrc.\+json}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} or \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily .postcssrc.\+yml}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}) instead of {\ttfamily .postcssrc} \end{quote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Project\ (Root)}
+\DoxyCodeLine{\ \ |–\ client}
+\DoxyCodeLine{\ \ |–\ public}
+\DoxyCodeLine{\ \ |}
+\DoxyCodeLine{\ \ |-\/\ (.postcssrc|.postcssrc.json|.postcssrc.yml)}
+\DoxyCodeLine{\ \ |-\/\ package.json}
+
+\end{DoxyCode}
+
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily .postcssrc.\+json}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}parser"{}:\ "{}sugarss"{},}
+\DoxyCodeLine{\ \ "{}map"{}:\ false,}
+\DoxyCodeLine{\ \ "{}plugins"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}postcss-\/plugin"{}:\ \{\}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily .postcssrc.\+yml}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser:\ sugarss}
+\DoxyCodeLine{map:\ false}
+\DoxyCodeLine{plugins:}
+\DoxyCodeLine{\ \ postcss-\/plugin:\ \{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11658}{}\doxysubsubsection{\texorpdfstring{{\ttfamily .postcssrc.\+js} or {\ttfamily postcss.\+config.\+js}}{{\ttfamily .postcssrc.\+js} or {\ttfamily postcss.\+config.\+js}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11658}
+You may need some logic within your config. In this case create JS file named\+:
+\begin{DoxyItemize}
+\item {\ttfamily .postcssrc.\+js}
+\item {\ttfamily .postcssrc.\+mjs}
+\item {\ttfamily .postcssrc.\+cjs}
+\item {\ttfamily .postcssrc.\+ts}
+\item {\ttfamily .postcssrc.\+cts}
+\item {\ttfamily postcss.\+config.\+js}
+\item {\ttfamily postcss.\+config.\+mjs}
+\item {\ttfamily postcss.\+config.\+cjs}
+\item {\ttfamily postcss.\+config.\+ts}
+\item {\ttfamily postcss.\+config.\+cts}
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Project\ (Root)}
+\DoxyCodeLine{\ \ |–\ client}
+\DoxyCodeLine{\ \ |–\ public}
+\DoxyCodeLine{\ \ |-\/\ (.postcssrc|postcss.config).(js|mjs|cjs|ts|cts)}
+\DoxyCodeLine{\ \ |-\/\ package.json}
+
+\end{DoxyCode}
+
+
+You can export the config as an {\ttfamily \{Object\}}
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}.postcssrc.\+js\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ parser:\ 'sugarss',}
+\DoxyCodeLine{\ \ map:\ false,}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ \{\}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Or export a {\ttfamily \{Function\}} that returns the config (more about the {\ttfamily ctx} param below)
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}.postcssrc.\+js\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ (ctx)\ =>\ (\{}
+\DoxyCodeLine{\ \ parser:\ ctx.parser\ ?\ 'sugarss'\ :\ false,}
+\DoxyCodeLine{\ \ map:\ ctx.env\ ===\ 'development'\ ?\ ctx.map\ :\ false,}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ ctx.options.plugin}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+Plugins can be loaded either using an {\ttfamily \{Object\}} or an {\ttfamily \{Array\}}\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11659}{}\doxyparagraph{\texorpdfstring{{\ttfamily \{Object\}}}{{\ttfamily \{Object\}}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11659}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}.postcssrc.\+js\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ (\{\ env\ \})\ =>\ (\{}
+\DoxyCodeLine{\ \ ...options,}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ env\ ===\ 'production'\ ?\ \{\}\ :\ false}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+ℹ️ When using an {\ttfamily \{Object\}}, the key can be a Node.\+js module name, a path to a Java\+Script file that is relative to the directory of the Post\+CSS config file, or an absolute path to a Java\+Script file. \end{quote}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11660}{}\doxyparagraph{\texorpdfstring{{\ttfamily \{Array\}}}{{\ttfamily \{Array\}}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11660}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}.postcssrc.\+js\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ (\{\ env\ \})\ =>\ (\{}
+\DoxyCodeLine{\ \ ...options,}
+\DoxyCodeLine{\ \ plugins:\ [}
+\DoxyCodeLine{\ \ \ \ env\ ===\ 'production'\ ?\ require('postcss-\/plugin')()\ :\ false}
+\DoxyCodeLine{\ \ ]}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+ \begin{quote}
+\+:warning\+: When using an {\ttfamily \{Array\}}, make sure to {\ttfamily require()} each plugin \end{quote}
+\doxysubsection*{Options}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Default   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Default   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endhead
+\PBS\centering \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\`{}to\`{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &\PBS\centering {\ttfamily \{String\}}   &\PBS\centering {\ttfamily undefined}   &Destination File Path    \\\cline{1-4}
+\PBS\centering \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\`{}map\`{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &\PBS\centering {\ttfamily \{String\textbackslash{}\texorpdfstring{$\vert$}{|}\+Object\}}   &\PBS\centering {\ttfamily false}   &Enable/\+Disable Source Maps    \\\cline{1-4}
+\PBS\centering \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\`{}from\`{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &\PBS\centering {\ttfamily \{String\}}   &\PBS\centering {\ttfamily undefined}   &Source File Path    \\\cline{1-4}
+\PBS\centering \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\`{}parser\`{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &\PBS\centering {\ttfamily \{String\textbackslash{}\texorpdfstring{$\vert$}{|}\+Function\}}   &\PBS\centering {\ttfamily false}   &Custom Post\+CSS Parser    \\\cline{1-4}
+\PBS\centering \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\`{}syntax\`{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &\PBS\centering {\ttfamily \{String\textbackslash{}\texorpdfstring{$\vert$}{|}\+Function\}}   &\PBS\centering {\ttfamily false}   &Custom Post\+CSS Syntax    \\\cline{1-4}
+\PBS\centering \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\`{}stringifier\`{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &\PBS\centering {\ttfamily \{String\textbackslash{}\texorpdfstring{$\vert$}{|}\+Function\}}   &\PBS\centering {\ttfamily false}   &Custom Post\+CSS Stringifier   \\\cline{1-4}
+\end{longtabu}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11661}{}\doxysubsubsection{\texorpdfstring{{\ttfamily parser}}{{\ttfamily parser}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11661}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}.postcssrc.\+js\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ parser:\ 'sugarss'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11662}{}\doxysubsubsection{\texorpdfstring{{\ttfamily syntax}}{{\ttfamily syntax}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11662}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}.postcssrc.\+js\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ syntax:\ 'postcss-\/scss'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11663}{}\doxysubsubsection{\texorpdfstring{{\ttfamily stringifier}}{{\ttfamily stringifier}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11663}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}.postcssrc.\+js\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ stringifier:\ 'midas'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11664}{}\doxysubsubsection{\texorpdfstring{\href{https://github.com/postcss/postcss/blob/master/docs/source-maps.md}{\texttt{ \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily map}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}}}{\href{https://github.com/postcss/postcss/blob/master/docs/source-maps.md}{\texttt{ \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily map}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11664}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}.postcssrc.\+js\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ map:\ 'inline'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+\+:warning\+: In most cases {\ttfamily options.\+from} \&\& {\ttfamily options.\+to} are set by the third-\/party which integrates this package (CLI, gulp, webpack). It\textquotesingle{}s unlikely one needs to set/use {\ttfamily options.\+from} \&\& {\ttfamily options.\+to} within a config file. Unless you\textquotesingle{}re a third-\/party plugin author using this module and its Node API directly {\bfseries{dont\textquotesingle{}t set {\ttfamily options.\+from} \&\& {\ttfamily options.\+to} yourself}} \end{quote}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11665}{}\doxysubsubsection{\texorpdfstring{{\ttfamily to}}{{\ttfamily to}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11665}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ to:\ 'path/to/dest.css'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11666}{}\doxysubsubsection{\texorpdfstring{{\ttfamily from}}{{\ttfamily from}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11666}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ from:\ 'path/to/src.css'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection*{Plugins}\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11667}{}\doxysubsubsection{\texorpdfstring{{\ttfamily \{\} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} null}}{{\ttfamily \{\} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} null}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11667}
+The plugin will be loaded with defaults
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{'postcss-\/plugin':\ \{\}\ ||\ null}
+
+\end{DoxyCode}
+
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}.postcssrc.\+js\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ \{\}\ ||\ null}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+\+:warning\+: {\ttfamily \{\}} must be an {\bfseries{empty}} {\ttfamily \{Object\}} literal \end{quote}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11668}{}\doxysubsubsection{\texorpdfstring{{\ttfamily \{Object\}}}{{\ttfamily \{Object\}}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11668}
+The plugin will be loaded with given options
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{'postcss-\/plugin':\ \{\ option:\ '',\ option:\ ''\ \}}
+
+\end{DoxyCode}
+
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}.postcssrc.\+js\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ \{\ option:\ '',\ option:\ ''\ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11669}{}\doxysubsubsection{\texorpdfstring{{\ttfamily false}}{{\ttfamily false}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11669}
+The plugin will not be loaded
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{'postcss-\/plugin':\ false}
+
+\end{DoxyCode}
+
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}.postcssrc.\+js\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ false}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11670}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Ordering}}{{\ttfamily Ordering}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11670}
+Plugin {\bfseries{execution order}} is determined by declaration in the plugins section ({\bfseries{top-\/down}})
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ \{\},\ //\ [0]}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ \{\},\ //\ [1]}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ \{\}\ \ //\ [2]}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection*{Context}
+
+When using a {\ttfamily \{Function\}} ({\ttfamily postcss.\+config.\+js} or {\ttfamily .postcssrc.\+js}), it\textquotesingle{}s possible to pass context to {\ttfamily postcss-\/load-\/config}, which will be evaluated while loading your config. By default {\ttfamily ctx.\+env (process.\+env.\+NODE\+\_\+\+ENV)} and {\ttfamily ctx.\+cwd (process.\+cwd())} are available on the {\ttfamily ctx} {\ttfamily \{Object\}}
+
+\begin{quote}
+ℹ️ Most third-\/party integrations add additional properties to the {\ttfamily ctx} (e.\+g {\ttfamily postcss-\/loader}). Check the specific module\textquotesingle{}s README for more information about what is available on the respective {\ttfamily ctx} \end{quote}
+\doxysubsection*{Examples}
+
+{\bfseries{postcss.\+config.\+js}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ (ctx)\ =>\ (\{}
+\DoxyCodeLine{\ \ parser:\ ctx.parser\ ?\ 'sugarss'\ :\ false,}
+\DoxyCodeLine{\ \ map:\ ctx.env\ ===\ 'development'\ ?\ ctx.map\ :\ false,}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/import':\ \{\},}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/nested':\ \{\},}
+\DoxyCodeLine{\ \ \ \ cssnano:\ ctx.env\ ===\ 'production'\ ?\ \{\}\ :\ false}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+  
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}scripts"{}:\ \{}
+\DoxyCodeLine{\ \ "{}build"{}:\ "{}NODE\_ENV=production\ node\ postcss"{},}
+\DoxyCodeLine{\ \ "{}start"{}:\ "{}NODE\_ENV=development\ node\ postcss"{}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ \{\ readFileSync\ \}\ =\ require('fs')}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ postcss\ =\ require('postcss')}
+\DoxyCodeLine{const\ postcssrc\ =\ require('postcss-\/load-\/config')}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ css\ =\ readFileSync('index.sss',\ 'utf8')}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ ctx\ =\ \{\ parser:\ true,\ map:\ 'inline'\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{postcssrc(ctx).then((\{\ plugins,\ options\ \})\ =>\ \{}
+\DoxyCodeLine{\ \ postcss(plugins)}
+\DoxyCodeLine{\ \ \ \ .process(css,\ options)}
+\DoxyCodeLine{\ \ \ \ .then((result)\ =>\ console.log(result.css))}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+  
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}scripts"{}:\ \{}
+\DoxyCodeLine{\ \ "{}build"{}:\ "{}NODE\_ENV=production\ gulp"{},}
+\DoxyCodeLine{\ \ "{}start"{}:\ "{}NODE\_ENV=development\ gulp"{}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ \{\ task,\ src,\ dest,\ series,\ watch\ \}\ =\ require('gulp')}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ postcss\ =\ require('gulp-\/postcssrc')}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ css\ =\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ src('src/*.css')}
+\DoxyCodeLine{\ \ \ \ .pipe(postcss())}
+\DoxyCodeLine{\ \ \ \ .pipe(dest('dest'))}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{task('watch',\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ watch(['src/*.css',\ 'postcss.config.js'],\ css)}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{task('default',\ series(css,\ 'watch'))}
+
+\end{DoxyCode}
+
+
+  
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}scripts"{}:\ \{}
+\DoxyCodeLine{\ \ "{}build"{}:\ "{}NODE\_ENV=production\ webpack"{},}
+\DoxyCodeLine{\ \ "{}start"{}:\ "{}NODE\_ENV=development\ webpack-\/dev-\/server"{}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+{\bfseries{webpack.\+config.\+js}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ (env)\ =>\ (\{}
+\DoxyCodeLine{\ \ module:\ \{}
+\DoxyCodeLine{\ \ \ \ rules:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ test:\ /\(\backslash\).css\$/,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ use:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ 'style-\/loader',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ 'css-\/loader',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ 'postcss-\/loader'}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ ]}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+\doxysubsection*{Maintainers}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering  ~\newline
+ \href{https://github.com/michael-ciniawsky}{\texttt{ Michael Ciniawsky}}  &\PBS\centering  ~\newline
+ \href{https://github.com/ertrzyiks}{\texttt{ Mateusz Derks}}    \\\cline{1-2}
+\end{longtabu}
+
+
+\doxysubsection*{Contributors}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering  ~\newline
+ \href{https://github.com/sparty02}{\texttt{ Ryan Dunckel}}  &\PBS\centering  ~\newline
+ \href{https://github.com/pcgilday}{\texttt{ Patrick Gilday}}  &\PBS\centering  ~\newline
+ \href{https://github.com/daltones}{\texttt{ Dalton Santos}}  &\PBS\centering  ~\newline
+ \href{https://github.com/fwouts}{\texttt{ François Wouts}}    \texorpdfstring{$<$}{<}/table
+
+\\\cline{1-4}
+\end{longtabu}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11671}{}\doxysubsection{\texorpdfstring{Security Contact}{Security Contact}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2postcss-load-config_2README_autotoc_md11671}
+To report a security vulnerability, please use the \href{https://tidelift.com/security}{\texttt{ Tidelift security contact}}. Tidelift will coordinate the fix and disclosure. 

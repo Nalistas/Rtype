@@ -1,0 +1,48 @@
+\chapter{is-\/path-\/inside}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme}\index{is-\/path-\/inside@{is-\/path-\/inside}}
+\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme_autotoc_md10674}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme_autotoc_md10674}%
+ \begin{quote}
+Check if a path is inside another path \end{quote}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme_autotoc_md10675}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme_autotoc_md10675}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ is-\/path-\/inside}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme_autotoc_md10676}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme_autotoc_md10676}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ isPathInside\ =\ require('is-\/path-\/inside');}
+\DoxyCodeLine{}
+\DoxyCodeLine{isPathInside('a/b/c',\ 'a/b');}
+\DoxyCodeLine{//=>\ true}
+\DoxyCodeLine{}
+\DoxyCodeLine{isPathInside('a/b/c',\ 'x/y');}
+\DoxyCodeLine{//=>\ false}
+\DoxyCodeLine{}
+\DoxyCodeLine{isPathInside('a/b/c',\ 'a/b/c');}
+\DoxyCodeLine{//=>\ false}
+\DoxyCodeLine{}
+\DoxyCodeLine{isPathInside('/Users/sindresorhus/dev/unicorn',\ '/Users/sindresorhus');}
+\DoxyCodeLine{//=>\ true}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme_autotoc_md10677}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme_autotoc_md10677}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme_autotoc_md10678}{}\doxysubsection{\texorpdfstring{is\+Path\+Inside(child\+Path, parent\+Path)}{is\+Path\+Inside(child\+Path, parent\+Path)}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme_autotoc_md10678}
+Note that relative paths are resolved against {\ttfamily process.\+cwd()} to make them absolute.
+
+{\bfseries{Important\+:}} This package is meant for use with path manipulation. It does not check if the paths exist nor does it resolve symlinks. You should not use this as a security mechanism to guard against access to certain places on the file system.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme_autotoc_md10679}{}\doxysubsubsection{\texorpdfstring{child\+Path}{child\+Path}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme_autotoc_md10679}
+Type\+: {\ttfamily string}
+
+The path that should be inside {\ttfamily parent\+Path}.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme_autotoc_md10680}{}\doxysubsubsection{\texorpdfstring{parent\+Path}{parent\+Path}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2is-path-inside_2readme_autotoc_md10680}
+Type\+: {\ttfamily string}
+
+The path that should contain {\ttfamily child\+Path}.
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{ \href{https://tidelift.com/subscription/pkg/npm-is-path-inside?utm_source=npm-is-path-inside&utm_medium=referral&utm_campaign=readme}{\texttt{ Get professional support for this package with a Tidelift subscription}} }} ~\newline
+ \textsubscript{ Tidelift helps make open source sustainable for maintainers while giving companies~\newline
+assurances about security, maintenance, and licensing for their dependencies. }  

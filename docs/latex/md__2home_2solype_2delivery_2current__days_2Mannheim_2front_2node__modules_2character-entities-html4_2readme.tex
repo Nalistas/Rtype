@@ -1,0 +1,80 @@
+\chapter{character-\/entities-\/html4}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme}\index{character-\/entities-\/html4@{character-\/entities-\/html4}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1478}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1478}%
+ \href{https://github.com/wooorm/character-entities-html4/actions}{\texttt{ }} \href{https://codecov.io/github/wooorm/character-entities-html4}{\texttt{ }} \href{https://www.npmjs.com/package/character-entities-html4}{\texttt{ }} \href{https://bundlephobia.com/result?p=character-entities-html4}{\texttt{ }}
+
+Map of named character references from HTML 4.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1479}{}\doxysection{\texorpdfstring{Contents}{Contents}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1479}
+
+\begin{DoxyItemize}
+\item What is this?
+\item When should I use this?
+\item Install
+\item Use
+\item API
+\begin{DoxyItemize}
+\item \`{}character\+Entities\+Html4\`{}
+\end{DoxyItemize}
+\item Types
+\item Compatibility
+\item Security
+\item Related
+\item Contribute
+\item License
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1480}{}\doxysection{\texorpdfstring{What is this?}{What is this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1480}
+This is a map of named character references in HTML 4 to the characters they represent.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1481}{}\doxysection{\texorpdfstring{When should I use this?}{When should I use this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1481}
+Maybe when you’re writing an HTML parser or minifier, but otherwise probably never! Even then, it might be better to use \href{https://github.com/wooorm/parse-entities}{\texttt{ {\ttfamily parse-\/entities}}} or \href{https://github.com/wooorm/stringify-entities}{\texttt{ {\ttfamily stringify-\/entities}}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1482}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1482}
+This package is \href{https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c}{\texttt{ ESM only}}. In Node.\+js (version 12.\+20+, 14.\+14+, or 16.\+0+), install with \href{https://docs.npmjs.com/cli/install}{\texttt{ npm}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ character-\/entities-\/html4}
+
+\end{DoxyCode}
+
+
+In Deno with \href{https://www.skypack.dev}{\texttt{ Skypack}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{characterEntitiesHtml4\}\ from\ 'https://cdn.skypack.dev/character-\/entities-\/html4@2?dts'}
+
+\end{DoxyCode}
+
+
+In browsers with \href{https://www.skypack.dev}{\texttt{ Skypack}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{characterEntitiesHtml4\}\ from\ 'https://cdn.skypack.dev/character-\/entities-\/html4@2?min'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1483}{}\doxysection{\texorpdfstring{Use}{Use}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1483}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{characterEntitiesHtml4\}\ from\ 'character-\/entities-\/html4'}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(characterEntitiesHtml4.AElig)\ //\ =>\ 'Æ'}
+\DoxyCodeLine{console.log(characterEntitiesHtml4.aelig)\ //\ =>\ 'æ'}
+\DoxyCodeLine{console.log(characterEntitiesHtml4.amp)\ //\ =>\ '\&'}
+\DoxyCodeLine{console.log(characterEntitiesHtml4.apos)\ //\ =>\ undefined}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1484}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1484}
+This package exports the following identifiers\+: {\ttfamily character\+Entities\+Html4}. There is no default export.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1485}{}\doxysubsection{\texorpdfstring{{\ttfamily character\+Entities\+Html4}}{{\ttfamily character\+Entities\+Html4}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1485}
+Map of case sensitive named character references from HTML 4. See \href{https://www.w3.org/TR/html4/sgml/entities.html}{\texttt{ {\ttfamily w3.\+org}}} for more info.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1486}{}\doxysection{\texorpdfstring{Types}{Types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1486}
+This package is fully typed with \href{https://www.typescriptlang.org}{\texttt{ Type\+Script}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1487}{}\doxysection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1487}
+This package is at least compatible with all maintained versions of Node.\+js. As of now, that is Node.\+js 12.\+20+, 14.\+14+, and 16.\+0+. It also works in Deno and modern browsers.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1488}{}\doxysection{\texorpdfstring{Security}{Security}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1488}
+This package is safe.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1489}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1489}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/wooorm/parse-entities}{\texttt{ {\ttfamily parse-\/entities}}} — parse (decode) character references
+\item \href{https://github.com/wooorm/stringify-entities}{\texttt{ {\ttfamily stringify-\/entities}}} — serialize (encode) character references
+\item \href{https://github.com/wooorm/character-entities}{\texttt{ {\ttfamily character-\/entities}}} — info on character entities
+\item \href{https://github.com/wooorm/character-entities-invalid}{\texttt{ {\ttfamily character-\/entities-\/invalid}}} — info on invalid numeric character references
+\item \href{https://github.com/wooorm/character-entities-legacy}{\texttt{ {\ttfamily character-\/entities-\/legacy}}} — info on legacy named character references
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1490}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1490}
+Yes please! See \href{https://opensource.guide/how-to-contribute/}{\texttt{ How to Contribute to Open Source}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1491}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-entities-html4_2readme_autotoc_md1491}
+\mbox{[}MIT\mbox{]}\mbox{[}license\mbox{]} © \href{https://wooorm.com}{\texttt{ Titus Wormer}} 

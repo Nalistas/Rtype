@@ -1,0 +1,216 @@
+\chapter{README}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README}\index{README@{README}}
+\href{https://github.com/medikoo/type/actions?query=workflow\%3AIntegrate}{\texttt{ }} \href{https://codecov.io/gh/medikoo/type}{\texttt{ }} \href{https://www.npmjs.com/package/type}{\texttt{ }}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6693}{}\doxysection{\texorpdfstring{type}{type}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6693}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6694}{}\doxysubsection{\texorpdfstring{Runtime validation and processing of Java\+Script types}{Runtime validation and processing of Java\+Script types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6694}
+
+\begin{DoxyItemize}
+\item Respects language nature and acknowledges its quirks
+\item Allows coercion in restricted forms (rejects clearly invalid input, normalizes permissible type deviations)
+\item No transpilation implied, written to work in all ECMAScript 3+ engines
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6695}{}\doxysubsection{\texorpdfstring{Use case}{Use case}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6695}
+Validate arguments input in public API endpoints.
+
+{\itshape For validation of more sophisticated input structures (as deeply nested configuration objects) it\textquotesingle{}s recommended to consider more powerful schema based utlities (as \href{https://ajv.js.org/}{\texttt{ AJV}} or \href{https://hapi.dev/family/joi/}{\texttt{ @hapi/joi}})}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6696}{}\doxysubsubsection{\texorpdfstring{Example usage}{Example usage}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6696}
+Bulletproof input arguments normalization and validation\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureString\ \ \ \ \ \ \ \ =\ require('type/string/ensure')}
+\DoxyCodeLine{\ \ \ \ ,\ ensureDate\ \ \ \ \ \ \ \ \ \ =\ require('type/date/ensure')}
+\DoxyCodeLine{\ \ \ \ ,\ ensureNaturalNumber\ =\ require('type/natural-\/number/ensure')}
+\DoxyCodeLine{\ \ \ \ ,\ isObject\ \ \ \ \ \ \ \ \ \ \ \ =\ require('type/object/is');}
+\DoxyCodeLine{}
+\DoxyCodeLine{module.exports\ =\ (path,\ options\ =\ \{\ min:\ 0\ \})\ \{}
+\DoxyCodeLine{\ \ path\ =\ ensureString(path,\ \{\ errorMessage:\ "{}\%v\ is\ not\ a\ path"{}\ \});}
+\DoxyCodeLine{\ \ if\ (!isObject(options))\ options\ =\ \{\};}
+\DoxyCodeLine{\ \ const\ min\ =\ ensureNaturalNumber(options.min,\ \{\ default:\ 0\ \})}
+\DoxyCodeLine{\ \ \ \ \ \ ,\ max\ =\ ensureNaturalNumber(options.max,\ \{\ isOptional:\ true\ \})}
+\DoxyCodeLine{\ \ \ \ \ \ ,\ startTime\ =\ ensureDate(options.startTime,\ \{\ isOptional:\ true\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ ...logic}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6697}{}\doxysubsubsection{\texorpdfstring{Installation}{Installation}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6697}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ type}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6698}{}\doxysubsection{\texorpdfstring{Utilities}{Utilities}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6698}
+Aside of general \doxysectlink{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2ensure}{{\ttfamily ensure}}{0} validation util, following kind of utilities for recognized Java\+Script types are provided\+:
+
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6699}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6699}%
+ \doxysubparagraph*{{\ttfamily \texorpdfstring{$\ast$}{*}/coerce}}
+
+Restricted coercion into primitive type. Returns coerced value or {\ttfamily null} if value is not coercible per rules.
+
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6700}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6700}%
+ \doxysubparagraph*{{\ttfamily \texorpdfstring{$\ast$}{*}/is}}
+
+Object type/kind confirmation, returns either {\ttfamily true} or {\ttfamily false}.
+
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6701}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6701}%
+ \doxysubparagraph*{{\ttfamily \texorpdfstring{$\ast$}{*}/ensure}}
+
+Value validation. Returns input value (in primitive cases possibly coerced) or if value doesn\textquotesingle{}t meet the constraints throws {\ttfamily Type\+Error} .
+
+Each {\ttfamily \texorpdfstring{$\ast$}{*}/ensure} utility, accepts following options (eventually passed with second argument)\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily is\+Optional} -\/ Makes {\ttfamily null} or {\ttfamily undefined} accepted as valid value. In such case instead of {\ttfamily Type\+Error} being thrown, {\ttfamily null} is returned.
+\item {\ttfamily default} -\/ A value to be returned if {\ttfamily null} or {\ttfamily undefined} is passed as an input value.
+\item {\ttfamily error\+Message} -\/ Custom error message. Following placeholders can be used\+:
+\begin{DoxyItemize}
+\item {\ttfamily v} -\/ To be replaced with short string representation of invalid value
+\item {\ttfamily n} -\/ To be replaced with meaninfgul name (to be passed with {\ttfamily name} option) of validated value. Not effective if {\ttfamily name} option is not present
+\end{DoxyItemize}
+\item {\ttfamily error\+Code} -\/ Eventual error code to be exposed on {\ttfamily .code} error property
+\item {\ttfamily name} -\/ Meaningful name for validated value, to be used in error message, assuming it contains {\ttfamily n} placeholder
+\item {\ttfamily Error} -\/ Alternative error constructor to be used (defaults to {\ttfamily Type\+Error})
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6702}{}\doxysubsubsection{\texorpdfstring{Index}{Index}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6702}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6703}{}\doxyparagraph{\texorpdfstring{General utils\+:}{General utils\+:}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6703}
+
+\begin{DoxyItemize}
+\item \doxysectlink{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2ensure}{{\ttfamily ensure}}{0}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6704}{}\doxyparagraph{\texorpdfstring{Type specific utils\+:}{Type specific utils\+:}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6704}
+
+\begin{DoxyItemize}
+\item {\bfseries{Value}}
+\begin{DoxyItemize}
+\item \href{docs/value.md\#valueis}{\texttt{ {\ttfamily value/is}}}
+\item \href{docs/value.md\#valueensure}{\texttt{ {\ttfamily value/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Object}}
+\begin{DoxyItemize}
+\item \href{docs/object.md\#objectis}{\texttt{ {\ttfamily object/is}}}
+\item \href{docs/object.md\#objectensure}{\texttt{ {\ttfamily object/ensure}}}
+\item {\bfseries{Plain Object}}
+\begin{DoxyItemize}
+\item \href{docs/plain-object.md\#plain-objectis}{\texttt{ {\ttfamily plain-\/object/is}}}
+\item \href{docs/plain-object.md\#plain-objectensure}{\texttt{ {\ttfamily plain-\/object/ensure}}}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item {\bfseries{String}}
+\begin{DoxyItemize}
+\item \href{docs/string.md\#stringcoerce}{\texttt{ {\ttfamily string/coerce}}}
+\item \href{docs/string.md\#stringensure}{\texttt{ {\ttfamily string/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Number}}
+\begin{DoxyItemize}
+\item \href{docs/number.md\#numbercoerce}{\texttt{ {\ttfamily number/coerce}}}
+\item \href{docs/number.md\#numberensure}{\texttt{ {\ttfamily number/ensure}}}
+\item {\bfseries{Finite Number}}
+\begin{DoxyItemize}
+\item \href{docs/finite.md\#finitecoerce}{\texttt{ {\ttfamily finite/coerce}}}
+\item \href{docs/finite.md\#finiteensure}{\texttt{ {\ttfamily finite/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Integer Number}}
+\begin{DoxyItemize}
+\item \href{docs/integer.md\#integercoerce}{\texttt{ {\ttfamily integer/coerce}}}
+\item \href{docs/integer.md\#integerensure}{\texttt{ {\ttfamily integer/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Safe Integer Number}}
+\begin{DoxyItemize}
+\item \href{docs/safe-integer.md\#safe-integercoerce}{\texttt{ {\ttfamily safe-\/integer/coerce}}}
+\item \href{docs/.md\#safe-integerensure}{\texttt{ {\ttfamily safe-\/integer/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Natural Number}}
+\begin{DoxyItemize}
+\item \href{docs/natural-number.md\#natural-numbercoerce}{\texttt{ {\ttfamily natural-\/number/coerce}}}
+\item \href{docs/natural-number.md\#natural-numberensure}{\texttt{ {\ttfamily natural-\/number/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Array Length}}
+\begin{DoxyItemize}
+\item \href{docs/array-length.md\#array-lengthcoerce}{\texttt{ {\ttfamily array-\/length/coerce}}}
+\item \href{docs/array-length.md\#array-lengthensure}{\texttt{ {\ttfamily array-\/length/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Time Value}}
+\begin{DoxyItemize}
+\item \href{docs/time-value.md\#time-valuecoerce}{\texttt{ {\ttfamily time-\/value/coerce}}}
+\item \href{docs/time-value.md\#time-valueensure}{\texttt{ {\ttfamily time-\/value/ensure}}}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item {\bfseries{Big\+Int}}
+\begin{DoxyItemize}
+\item \href{docs/big-int.md\#big-intcoerce}{\texttt{ {\ttfamily big-\/int/coerce}}}
+\item \href{docs/big-int.md\#big-intensure}{\texttt{ {\ttfamily big-\/int/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Array Like}}
+\begin{DoxyItemize}
+\item \href{docs/array-like.md\#array-likeis}{\texttt{ {\ttfamily array-\/like/is}}}
+\item \href{docs/array-like.md\#array-likeensure}{\texttt{ {\ttfamily array-\/like/ensure}}}
+\item {\bfseries{Array}}
+\begin{DoxyItemize}
+\item \href{docs/array.md\#arrayis}{\texttt{ {\ttfamily array/is}}}
+\item \href{docs/array.md\#arrayensure}{\texttt{ {\ttfamily array/ensure}}}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item {\bfseries{Iterable}}
+\begin{DoxyItemize}
+\item \href{docs/iterable.md\#iterableis}{\texttt{ {\ttfamily iterable/is}}}
+\item \href{docs/iterable.md\#iterableensure}{\texttt{ {\ttfamily iterable/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Set}}
+\begin{DoxyItemize}
+\item \href{docs/set.md\#setis}{\texttt{ {\ttfamily set/is}}}
+\item \href{docs/set.md\#setensure}{\texttt{ {\ttfamily set/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Map}}
+\begin{DoxyItemize}
+\item \href{docs/map.md\#mapis}{\texttt{ {\ttfamily map/is}}}
+\item \href{docs/map.md\#mapensure}{\texttt{ {\ttfamily map/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Date}}
+\begin{DoxyItemize}
+\item \href{docs/date.md\#dateis}{\texttt{ {\ttfamily date/is}}}
+\item \href{docs/date.md\#dateensure}{\texttt{ {\ttfamily date/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Function}}
+\begin{DoxyItemize}
+\item \href{docs/function.md\#functionis}{\texttt{ {\ttfamily function/is}}}
+\item \href{docs/function.md\#functionensure}{\texttt{ {\ttfamily function/ensure}}}
+\item {\bfseries{Constructor}}
+\begin{DoxyItemize}
+\item \href{docs/constructor.md\#plain-functionis}{\texttt{ {\ttfamily constructor/is}}}
+\item \href{docs/constructor.md\#plain-functionensure}{\texttt{ {\ttfamily constructor/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Plain Function}}
+\begin{DoxyItemize}
+\item \href{docs/plain-function.md\#plain-functionis}{\texttt{ {\ttfamily plain-\/function/is}}}
+\item \href{docs/plain-function.md\#plain-functionensure}{\texttt{ {\ttfamily plain-\/function/ensure}}}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item {\bfseries{Reg Exp}}
+\begin{DoxyItemize}
+\item \href{docs/reg-exp.md\#reg-expis}{\texttt{ {\ttfamily reg-\/exp/is}}}
+\item \href{docs/.md\#reg-expensure}{\texttt{ {\ttfamily reg-\/exp/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Thenable}}
+\begin{DoxyItemize}
+\item \href{docs/thenable.md\#thenableis}{\texttt{ {\ttfamily thenable/is}}}
+\item \href{docs/thenable.md\#thenableensure}{\texttt{ {\ttfamily thenable/ensure}}}
+\item {\bfseries{Promise}}
+\begin{DoxyItemize}
+\item \href{docs/promise.md\#promiseis}{\texttt{ {\ttfamily promise/is}}}
+\item \href{docs/promise.md\#promiseensure}{\texttt{ {\ttfamily promise/ensure}}}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item {\bfseries{Error}}
+\begin{DoxyItemize}
+\item \href{docs/error.md\#erroris}{\texttt{ {\ttfamily error/is}}}
+\item \href{docs/error.md\#errorensure}{\texttt{ {\ttfamily error/ensure}}}
+\end{DoxyItemize}
+\item {\bfseries{Prototype}}
+\begin{DoxyItemize}
+\item \href{docs/prototype.md\#prototypeis}{\texttt{ {\ttfamily prototype/is}}}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6705}{}\doxysubsubsection{\texorpdfstring{Tests}{Tests}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6705}
+\begin{DoxyVerb}$ npm test
+\end{DoxyVerb}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6706}{}\doxysubsection{\texorpdfstring{Security contact information}{Security contact information}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2README_autotoc_md6706}
+To report a security vulnerability, please use the \href{https://tidelift.com/security}{\texttt{ Tidelift security contact}}. Tidelift will coordinate the fix and disclosure. 

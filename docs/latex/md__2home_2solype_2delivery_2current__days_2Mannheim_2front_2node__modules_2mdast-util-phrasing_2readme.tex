@@ -1,0 +1,97 @@
+\chapter{mdast-\/util-\/phrasing}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme}\index{mdast-\/util-\/phrasing@{mdast-\/util-\/phrasing}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3959}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3959}%
+ \href{https://github.com/syntax-tree/mdast-util-phrasing/actions}{\texttt{ }} \href{https://codecov.io/github/syntax-tree/mdast-util-phrasing}{\texttt{ }} \href{https://www.npmjs.com/package/mdast-util-phrasing}{\texttt{ }} \href{https://bundlejs.com/?q=mdast-util-phrasing}{\texttt{ }} \href{https://opencollective.com/unified}{\texttt{ }} \href{https://opencollective.com/unified}{\texttt{ }} \href{https://github.com/syntax-tree/unist/discussions}{\texttt{ }}
+
+\href{https://github.com/syntax-tree/mdast}{\texttt{ mdast}} utility to check if a node is phrasing content.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3960}{}\doxysection{\texorpdfstring{Contents}{Contents}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3960}
+
+\begin{DoxyItemize}
+\item What is this?
+\item When should I use this?
+\item Install
+\item Use
+\item API
+\begin{DoxyItemize}
+\item \`{}phrasing(value)\`{}
+\end{DoxyItemize}
+\item Types
+\item Compatibility
+\item Security
+\item Related
+\item Contribute
+\item License
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3961}{}\doxysection{\texorpdfstring{What is this?}{What is this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3961}
+This package is a tiny utility to check that a given \href{https://github.com/syntax-tree/mdast\#nodes}{\texttt{ node}} is \href{https://github.com/syntax-tree/mdast\#phrasingcontent}{\texttt{ phrasing content}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3962}{}\doxysection{\texorpdfstring{When should I use this?}{When should I use this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3962}
+This utility is typically useful if you’re making other utilities. It uses \href{https://github.com/syntax-tree/unist-util-is}{\texttt{ {\ttfamily unist-\/util-\/is}}}, which you can use for your own checks.
+
+A different utility, \href{https://github.com/syntax-tree/hast-util-phrasing}{\texttt{ {\ttfamily hast-\/util-\/phrasing}}}, does the same but on \href{https://github.com/syntax-tree/hast}{\texttt{ hast}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3963}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3963}
+This package is \href{https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c}{\texttt{ ESM only}}. In Node.\+js (version 16+), install with \href{https://docs.npmjs.com/cli/install}{\texttt{ npm}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ mdast-\/util-\/phrasing}
+
+\end{DoxyCode}
+
+
+In Deno with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{phrasing\}\ from\ 'https://esm.sh/mdast-\/util-\/phrasing@4'}
+
+\end{DoxyCode}
+
+
+In browsers with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{phrasing\}\ from\ 'https://esm.sh/mdast-\/util-\/phrasing@4?bundle'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3964}{}\doxysection{\texorpdfstring{Use}{Use}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3964}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{phrasing\}\ from\ 'mdast-\/util-\/phrasing'}
+\DoxyCodeLine{}
+\DoxyCodeLine{phrasing(\{type:\ 'paragraph',\ children:\ [\{type:\ 'text',\ value:\ 'Alpha'\}]\})}
+\DoxyCodeLine{//\ =>\ false}
+\DoxyCodeLine{}
+\DoxyCodeLine{phrasing(\{type:\ 'strong',\ children:\ [\{type:\ 'text',\ value:\ 'Delta'\}]\})}
+\DoxyCodeLine{//\ =>\ true}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3965}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3965}
+This package exports the identifier \`{}phrasing\`{}. There is no default export.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3966}{}\doxysubsection{\texorpdfstring{{\ttfamily phrasing(value)}}{{\ttfamily phrasing(value)}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3966}
+Check if the given value is {\itshape \href{https://github.com/syntax-tree/mdast\#phrasingcontent}{\texttt{ phrasing content}}}.
+
+\begin{quote}
+👉 {\bfseries{Note}}\+: Excludes {\ttfamily html}, which can be both phrasing or flow. \end{quote}
+\doxysubparagraph*{Parameters}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily value} ({\ttfamily unknown}) — thing to check, typically \href{https://github.com/syntax-tree/mdast\#nodes}{\texttt{ {\ttfamily Node}}}
+\end{DoxyItemize}
+
+\doxysubparagraph*{Returns}
+
+Whether {\ttfamily value} is phrasing content ({\ttfamily boolean}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3967}{}\doxysection{\texorpdfstring{Types}{Types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3967}
+This package is fully typed with \href{https://www.typescriptlang.org}{\texttt{ Type\+Script}}. It does not export extra types.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3968}{}\doxysection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3968}
+Projects maintained by the unified collective are compatible with maintained versions of Node.\+js.
+
+When we cut a new major release, we drop support for unmaintained versions of Node. This means we try to keep the current release line, {\ttfamily mdast-\/util-\/phrasing@\texorpdfstring{$^\wedge$}{\string^}4}, compatible with Node.\+js 16.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3969}{}\doxysection{\texorpdfstring{Security}{Security}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3969}
+Use of {\ttfamily mdast-\/util-\/phrasing} does not involve {\bfseries{\href{https://github.com/syntax-tree/hast}{\texttt{ hast}}}}, user content, or change the tree, so there are no openings for \href{https://en.wikipedia.org/wiki/Cross-site_scripting}{\texttt{ cross-\/site scripting (XSS)}} attacks.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3970}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3970}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/syntax-tree/hast-util-phrasing}{\texttt{ {\ttfamily hast-\/util-\/phrasing}}} — check if a hast node is phrasing content
+\item \href{https://github.com/syntax-tree/unist-util-is}{\texttt{ {\ttfamily unist-\/util-\/is}}} — check if a node passes a test
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3971}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3971}
+See \href{https://github.com/syntax-tree/.github/blob/main/contributing.md}{\texttt{ {\ttfamily contributing.\+md}}} in \href{https://github.com/syntax-tree/.github}{\texttt{ {\ttfamily syntax-\/tree/.github}}} for ways to get started. See \href{https://github.com/syntax-tree/.github/blob/main/support.md}{\texttt{ {\ttfamily support.\+md}}} for ways to get help.
+
+This project has a \href{https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md}{\texttt{ code of conduct}}. By interacting with this repository, organization, or community you agree to abide by its terms.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3972}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-phrasing_2readme_autotoc_md3972}
+\mbox{[}MIT\mbox{]}\mbox{[}license\mbox{]} © \href{https://draft.li}{\texttt{ Victor Felder}} 

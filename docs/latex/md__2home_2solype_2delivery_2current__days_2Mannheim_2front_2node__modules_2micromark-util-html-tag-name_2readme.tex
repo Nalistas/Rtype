@@ -1,0 +1,91 @@
+\chapter{micromark-\/util-\/html-\/tag-\/name}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme}\index{micromark-\/util-\/html-\/tag-\/name@{micromark-\/util-\/html-\/tag-\/name}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4252}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4252}%
+ \href{https://github.com/micromark/micromark/actions}{\texttt{ }} \href{https://codecov.io/github/micromark/micromark}{\texttt{ }} \href{https://www.npmjs.com/package/micromark-util-html-tag-name}{\texttt{ }} \href{https://bundlejs.com/?q=micromark-util-html-tag-name}{\texttt{ }} \href{https://opencollective.com/unified}{\texttt{ }} \href{https://opencollective.com/unified}{\texttt{ }} \href{https://github.com/micromark/micromark/discussions}{\texttt{ }}
+
+\href{https://github.com/micromark/micromark}{\texttt{ micromark}} utility with list of html tag names.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4253}{}\doxysection{\texorpdfstring{Contents}{Contents}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4253}
+
+\begin{DoxyItemize}
+\item What is this?
+\item When should I use this?
+\item Install
+\item Use
+\item API
+\begin{DoxyItemize}
+\item \`{}html\+Block\+Names\`{}
+\item \`{}html\+Raw\+Names\`{}
+\end{DoxyItemize}
+\item Types
+\item Compatibility
+\item Security
+\item Contribute
+\item License
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4254}{}\doxysection{\texorpdfstring{What is this?}{What is this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4254}
+This package exposes a list of known tag names to markdown.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4255}{}\doxysection{\texorpdfstring{When should I use this?}{When should I use this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4255}
+This package is only useful if you want to build an alternative to micromark.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4256}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4256}
+This package is \href{https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c}{\texttt{ ESM only}}. In Node.\+js (version 16+), install with \href{https://docs.npmjs.com/cli/install}{\texttt{ npm}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ micromark-\/util-\/html-\/tag-\/name}
+
+\end{DoxyCode}
+
+
+In Deno with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{htmlBlockNames,\ htmlRawNames\}\ from\ 'https://esm.sh/micromark-\/util-\/html-\/tag-\/name@1'}
+
+\end{DoxyCode}
+
+
+In browsers with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{htmlBlockNames,\ htmlRawNames\}\ from\ 'https://esm.sh/micromark-\/util-\/html-\/tag-\/name@1?bundle'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4257}{}\doxysection{\texorpdfstring{Use}{Use}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4257}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{htmlBlockNames,\ htmlRawNames\}\ from\ 'micromark-\/util-\/html-\/tag-\/name'}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(htmlBlockNames)\ //\ ['address',\ 'article',\ …]}
+\DoxyCodeLine{console.log(htmlRawNames)\ //\ ['pre',\ 'script',\ …]}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4258}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4258}
+This module exports the identifiers \`{}html\+Block\+Names\`{} and \`{}html\+Raw\+Names\`{}. There is no default export.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4259}{}\doxysubsection{\texorpdfstring{{\ttfamily html\+Block\+Names}}{{\ttfamily html\+Block\+Names}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4259}
+List of lowercase HTML “block” tag names ({\ttfamily Array\texorpdfstring{$<$}{<}string\texorpdfstring{$>$}{>}}).
+
+The list, when parsing HTML (flow), results in more relaxed rules (condition 6). Because they are known blocks, the HTML-\/like syntax doesn’t have to be strictly parsed. For tag names not in this list, a more strict algorithm (condition 7) is used to detect whether the HTML-\/like syntax is seen as HTML (flow) or not.
+
+This is copied from\+: \href{https://spec.commonmark.org/0.30/\#html-blocks}{\texttt{ https\+://spec.\+commonmark.\+org/0.\+30/\#html-\/blocks}}.
+
+\begin{quote}
+👉 {\bfseries{Note}}\+: {\ttfamily search} was added in {\ttfamily Common\+Mark@0.\+31}. \end{quote}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4260}{}\doxysubsection{\texorpdfstring{{\ttfamily html\+Raw\+Names}}{{\ttfamily html\+Raw\+Names}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4260}
+List of lowercase HTML “raw” tag names ({\ttfamily Array\texorpdfstring{$<$}{<}string\texorpdfstring{$>$}{>}}).
+
+The list, when parsing HTML (flow), results in HTML that can include lines without exiting, until a closing tag also in this list is found (condition 1).
+
+This module is copied from\+: \href{https://spec.commonmark.org/0.30/\#html-blocks}{\texttt{ https\+://spec.\+commonmark.\+org/0.\+30/\#html-\/blocks}}.
+
+\begin{quote}
+👉 {\bfseries{Note}}\+: {\ttfamily textarea} was added in {\ttfamily Common\+Mark@0.\+30}. \end{quote}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4261}{}\doxysection{\texorpdfstring{Types}{Types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4261}
+This package is fully typed with \href{https://www.typescriptlang.org}{\texttt{ Type\+Script}}. It exports no additional types.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4262}{}\doxysection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4262}
+Projects maintained by the unified collective are compatible with maintained versions of Node.\+js.
+
+When we cut a new major release, we drop support for unmaintained versions of Node. This means we try to keep the current release line, {\ttfamily micromark-\/util-\/html-\/tag-\/name@\texorpdfstring{$^\wedge$}{\string^}2}, compatible with Node.\+js 16. This package works with {\ttfamily micromark@\texorpdfstring{$^\wedge$}{\string^}3}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4263}{}\doxysection{\texorpdfstring{Security}{Security}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4263}
+This package is safe. See \href{https://github.com/micromark/.github/blob/main/security.md}{\texttt{ {\ttfamily security.\+md}}} in \href{https://github.com/micromark/.github}{\texttt{ {\ttfamily micromark/.github}}} for how to submit a security report.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4264}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4264}
+See \href{https://github.com/micromark/.github/blob/main/contributing.md}{\texttt{ {\ttfamily contributing.\+md}}} in \href{https://github.com/micromark/.github}{\texttt{ {\ttfamily micromark/.github}}} for ways to get started. See \href{https://github.com/micromark/.github/blob/main/support.md}{\texttt{ {\ttfamily support.\+md}}} for ways to get help.
+
+This project has a \href{https://github.com/micromark/.github/blob/main/code-of-conduct.md}{\texttt{ code of conduct}}. By interacting with this repository, organisation, or community you agree to abide by its terms.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4265}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-util-html-tag-name_2readme_autotoc_md4265}
+\href{https://github.com/micromark/micromark/blob/main/license}{\texttt{ MIT}} © \href{https://wooorm.com}{\texttt{ Titus Wormer}} 

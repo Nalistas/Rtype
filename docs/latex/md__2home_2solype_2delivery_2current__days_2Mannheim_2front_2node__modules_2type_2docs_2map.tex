@@ -1,0 +1,29 @@
+\chapter{Map}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2map}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2map}\index{Map@{Map}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2map_autotoc_md6647}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2map_autotoc_md6647}%
+ {\itshape Map} instance\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2map_autotoc_md6648}{}\doxysection{\texorpdfstring{{\ttfamily map/is}}{{\ttfamily map/is}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2map_autotoc_md6648}
+Confirms if given object is a native {\itshape map}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ isMap\ =\ require("{}type/map/is"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{isMap(new\ Map());\ //\ true}
+\DoxyCodeLine{isMap(new\ Set());\ //\ false}
+\DoxyCodeLine{isMap(\{\});\ //\ false}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2map_autotoc_md6649}{}\doxysection{\texorpdfstring{{\ttfamily map/ensure}}{{\ttfamily map/ensure}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2map_autotoc_md6649}
+If given argument is a {\itshape map}, it is returned back. Otherwise {\ttfamily Type\+Error} is thrown.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureMap\ =\ require("{}type/map/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ map\ =\ new\ Map();}
+\DoxyCodeLine{ensureMap(map);\ //\ map}
+\DoxyCodeLine{eensureMap(\{\});\ //\ Thrown\ TypeError:\ [object\ Object]\ is\ not\ a\ map}
+
+\end{DoxyCode}
+ 

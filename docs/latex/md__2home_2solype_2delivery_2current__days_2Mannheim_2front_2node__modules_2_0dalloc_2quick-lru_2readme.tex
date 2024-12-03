@@ -1,0 +1,77 @@
+\chapter{quick-\/lru \texorpdfstring{$<$}{<}a href="{}https\+://travis-\/ci.\+org/sindresorhus/quick-\/lru"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://travis-\/ci.\+org/sindresorhus/quick-\/lru.\+svg?branch=master"{} alt="{}\+Build Status"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://coveralls.\+io/github/sindresorhus/quick-\/lru?branch=master"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://coveralls.\+io/repos/github/sindresorhus/quick-\/lru/badge.\+svg?branch=master"{} alt="{}\+Coverage Status"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>}}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme}\index{quick-\/lru $<$a href="{}https://travis-\/ci.org/sindresorhus/quick-\/lru"{} $>$$<$img src="{}https://travis-\/ci.org/sindresorhus/quick-\/lru.svg?branch=master"{} alt="{}Build Status"{}/$>$$<$/a$>$ $<$a href="{}https://coveralls.io/github/sindresorhus/quick-\/lru?branch=master"{} $>$$<$img src="{}https://coveralls.io/repos/github/sindresorhus/quick-\/lru/badge.svg?branch=master"{} alt="{}Coverage Status"{}/$>$$<$/a$>$@{quick-\/lru $<$a href=""https://travis-\/ci.org/sindresorhus/quick-\/lru"" $>$$<$img src=""https://travis-\/ci.org/sindresorhus/quick-\/lru.svg?branch=master"" alt=""Build Status""/$>$$<$/a$>$ $<$a href=""https://coveralls.io/github/sindresorhus/quick-\/lru?branch=master"" $>$$<$img src=""https://coveralls.io/repos/github/sindresorhus/quick-\/lru/badge.svg?branch=master"" alt=""Coverage Status""/$>$$<$/a$>$}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md2}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md2}%
+ \begin{quote}
+Simple \href{https://en.m.wikipedia.org/wiki/Cache_replacement_policies\#Least_Recently_Used_.28LRU.29}{\texttt{ “\+Least Recently Used” (LRU) cache}} \end{quote}
+Useful when you need to cache something and limit memory usage.
+
+Inspired by the \href{https://github.com/dominictarr/hashlru\#algorithm}{\texttt{ {\ttfamily hashlru} algorithm}}, but instead uses \href{https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map}{\texttt{ {\ttfamily Map}}} to support keys of any type, not just strings, and values can be {\ttfamily undefined}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md3}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md3}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ quick-\/lru}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md4}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ QuickLRU\ =\ require('quick-\/lru');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ lru\ =\ new\ QuickLRU(\{maxSize:\ 1000\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{lru.set('🦄',\ '🌈');}
+\DoxyCodeLine{}
+\DoxyCodeLine{lru.has('🦄');}
+\DoxyCodeLine{//=>\ true}
+\DoxyCodeLine{}
+\DoxyCodeLine{lru.get('🦄');}
+\DoxyCodeLine{//=>\ '🌈'}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md5}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md5}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md6}{}\doxysubsection{\texorpdfstring{new Quick\+LRU(options?)}{new Quick\+LRU(options?)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md6}
+Returns a new instance.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md7}{}\doxysubsection{\texorpdfstring{options}{options}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md7}
+Type\+: {\ttfamily object}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md8}{}\doxysubsubsection{\texorpdfstring{max\+Size}{max\+Size}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md8}
+{\itshape Required}\textbackslash{} Type\+: {\ttfamily number}
+
+The maximum number of items before evicting the least recently used items.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md9}{}\doxysubsubsection{\texorpdfstring{max\+Age}{max\+Age}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md9}
+Type\+: {\ttfamily number}\textbackslash{} Default\+: {\ttfamily Infinity}
+
+The maximum number of milliseconds an item should remain in cache. By default max\+Age will be Infinity, which means that items will never expire.
+
+Lazy expiration happens upon the next {\ttfamily write} or {\ttfamily read} call.
+
+Individual expiration of an item can be specified by the {\ttfamily set(key, value, options)} method.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md10}{}\doxysubsubsection{\texorpdfstring{on\+Eviction}{on\+Eviction}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md10}
+{\itshape Optional}\textbackslash{} Type\+: {\ttfamily (key, value) =\texorpdfstring{$>$}{>} void}
+
+Called right before an item is evicted from the cache.
+
+Useful for side effects or for items like object URLs that need explicit cleanup ({\ttfamily revoke\+Object\+URL}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md11}{}\doxysubsection{\texorpdfstring{Instance}{Instance}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md11}
+The instance is \href{https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Iteration_protocols}{\texttt{ {\ttfamily iterable}}} so you can use it directly in a \href{https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...of}{\texttt{ {\ttfamily for…of}}} loop.
+
+Both {\ttfamily key} and {\ttfamily value} can be of any type.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md12}{}\doxysubsubsection{\texorpdfstring{.set(key, value, options?)}{.set(key, value, options?)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md12}
+Set an item. Returns the instance.
+
+Individual expiration of an item can be specified with the {\ttfamily max\+Age} option. If not specified, the global {\ttfamily max\+Age} value will be used in case it is specified on the constructor, otherwise the item will never expire.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md13}{}\doxysubsubsection{\texorpdfstring{.get(key)}{.get(key)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md13}
+Get an item.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md14}{}\doxysubsubsection{\texorpdfstring{.has(key)}{.has(key)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md14}
+Check if an item exists.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md15}{}\doxysubsubsection{\texorpdfstring{.peek(key)}{.peek(key)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md15}
+Get an item without marking it as recently used.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md16}{}\doxysubsubsection{\texorpdfstring{.delete(key)}{.delete(key)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md16}
+Delete an item.
+
+Returns {\ttfamily true} if the item is removed or {\ttfamily false} if the item doesn\textquotesingle{}t exist.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md17}{}\doxysubsubsection{\texorpdfstring{.clear()}{.clear()}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md17}
+Delete all items.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md18}{}\doxysubsubsection{\texorpdfstring{.resize(max\+Size)}{.resize(max\+Size)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md18}
+Update the {\ttfamily max\+Size}, discarding items as necessary. Insertion order is mostly preserved, though this is not a strong guarantee.
+
+Useful for on-\/the-\/fly tuning of cache sizes in live systems.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md19}{}\doxysubsubsection{\texorpdfstring{.keys()}{.keys()}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md19}
+Iterable for all the keys.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md20}{}\doxysubsubsection{\texorpdfstring{.values()}{.values()}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md20}
+Iterable for all the values.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md21}{}\doxysubsubsection{\texorpdfstring{.entries\+Ascending()}{.entries\+Ascending()}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md21}
+Iterable for all entries, starting with the oldest (ascending in recency).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md22}{}\doxysubsubsection{\texorpdfstring{.entries\+Descending()}{.entries\+Descending()}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md22}
+Iterable for all entries, starting with the newest (descending in recency).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md23}{}\doxysubsubsection{\texorpdfstring{.size}{.size}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0dalloc_2quick-lru_2readme_autotoc_md23}
+The stored item count.
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{ \href{https://tidelift.com/subscription/pkg/npm-quick-lru?utm_source=npm-quick-lru&utm_medium=referral&utm_campaign=readme}{\texttt{ Get professional support for this package with a Tidelift subscription}} }} ~\newline
+ \textsubscript{ Tidelift helps make open source sustainable for maintainers while giving companies~\newline
+assurances about security, maintenance, and licensing for their dependencies. }  

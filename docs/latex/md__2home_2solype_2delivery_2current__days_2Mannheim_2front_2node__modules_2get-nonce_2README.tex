@@ -1,0 +1,49 @@
+\chapter{get-\/nonce}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README}\index{get-\/nonce@{get-\/nonce}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README_autotoc_md2941}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README_autotoc_md2941}%
+ just returns a {\bfseries{nonce}} (number used once). No batteries included in those 46 bytes of this library.
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyItemize}
+\item ✅ build in {\ttfamily webpack} support via {\ttfamily \+\_\+\+\_\+webpack\+\_\+nonce\+\_\+\+\_\+}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README_autotoc_md2943}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README_autotoc_md2943}
+
+\begin{DoxyItemize}
+\item {\ttfamily get\+Nonce()\+: string\texorpdfstring{$\vert$}{|}undefined} -\/ returns the current {\ttfamily nonce}
+\item {\ttfamily set\+Nonce(new\+Value)} -\/ set\textquotesingle{}s nonce value
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README_autotoc_md2944}{}\doxysubsection{\texorpdfstring{Why?}{Why?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README_autotoc_md2944}
+Why we need a library to access {\ttfamily \+\_\+\+\_\+webpack\+\_\+nonce\+\_\+\+\_\+}? Abstractions!
+
+"{}\+I"{}, as a library author, don\textquotesingle{}t want to "{}predict"{} the platform "{}you"{} going to use. "{}\+I"{}, as well, want an easier way to test and control {\ttfamily nonce} value.
+
+Like -\/ {\ttfamily nonce} is supported out of the box only by webpack, what you are going to do?
+
+This is why this "{}man-\/in-\/the-\/middle"{} was created. Yep, think about {\ttfamily left-\/pad} \+:)\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README_autotoc_md2945}{}\doxysubsection{\texorpdfstring{Webpack}{Webpack}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README_autotoc_md2945}
+\begin{quote}
+\href{https://webpack.js.org/guides/csp/}{\texttt{ https\+://webpack.\+js.\+org/guides/csp/}} \end{quote}
+To activate the feature set a {\bfseries{webpack\+\_\+nonce}} variable needs to be included in your entry script.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_\_webpack\_nonce\_\_\ =\ uuid();\ //\ for\ example}
+
+\end{DoxyCode}
+
+
+Without {\ttfamily webpack} {\ttfamily \+\_\+\+\_\+webpack\+\_\+nonce\+\_\+\+\_\+} is actually just a global variable, which makes it actually bundler independent, however "{}other bundlers"{} are able to replicate it only setting it as a global variable (as here in tests) which violates a "{}secure"{} nature of {\ttfamily nonce}.
+
+{\ttfamily get-\/nonce} is not global.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README_autotoc_md2946}{}\doxysubsection{\texorpdfstring{Used in}{Used in}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README_autotoc_md2946}
+
+\begin{DoxyItemize}
+\item {\ttfamily react-\/style-\/singleton} \texorpdfstring{$<$}{<}-\/ {\ttfamily react-\/remove-\/scroll} \texorpdfstring{$<$}{<}-\/ {\ttfamily react-\/focus-\/on}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README_autotoc_md2947}{}\doxysubsection{\texorpdfstring{Inspiration}{Inspiration}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README_autotoc_md2947}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/theKashey/react-remove-scroll/issues/21}{\texttt{ this issue}}
+\item \href{https://github.com/styled-components/styled-components/blob/147b0e9a1f10786551b13fd27452fcd5c678d5e0/packages/styled-components/src/utils/nonce.js}{\texttt{ styled-\/components}}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README_autotoc_md2948}{}\doxysection{\texorpdfstring{Licence}{Licence}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2get-nonce_2README_autotoc_md2948}
+MIT 

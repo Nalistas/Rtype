@@ -1,0 +1,72 @@
+\chapter{Iterable}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2iterable}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2iterable}\index{Iterable@{Iterable}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2iterable_autotoc_md6642}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2iterable_autotoc_md6642}%
+ Value which implements {\itshape iterable} protocol\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2iterable_autotoc_md6643}{}\doxysection{\texorpdfstring{{\ttfamily iterable/is}}{{\ttfamily iterable/is}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2iterable_autotoc_md6643}
+Confirms if given object is an {\itshape iterable} and is not a {\itshape string} (unless {\ttfamily allow\+String} option is passed)
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ isIterable\ =\ require("{}type/iterable/is"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{isIterable([]);\ //\ true}
+\DoxyCodeLine{isIterable(\{\});\ //\ false}
+\DoxyCodeLine{isIterable("{}foo"{});\ //\ false}
+\DoxyCodeLine{isIterable("{}foo"{},\ \{\ allowString:\ true\ \});\ //\ true}
+
+\end{DoxyCode}
+
+
+Supports also {\ttfamily deny\+Empty} option
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{isIterable([],\ \{\ denyEmpty:\ true\ \});\ //\ false}
+\DoxyCodeLine{isIterable(["{}foo"{}],\ \{\ denyEmpty:\ true\ \});\ //\ true}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2iterable_autotoc_md6644}{}\doxysection{\texorpdfstring{{\ttfamily iterable/ensure}}{{\ttfamily iterable/ensure}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2iterable_autotoc_md6644}
+If given argument is an {\itshape iterable}, it is returned back. Otherwise {\ttfamily Type\+Error} is thrown. By default {\itshape string} primitives are rejected unless {\ttfamily allow\+String} option is passed.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureIterable\ =\ require("{}type/iterable/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{ensureIterable([]);\ //\ []}
+\DoxyCodeLine{ensureIterable("{}foo"{},\ \{\ allowString:\ true\ \});\ //\ "{}foo"{}}
+\DoxyCodeLine{ensureIterable(\{\});\ //\ Thrown\ TypeError:\ null\ is\ not\ expected\ iterable}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2iterable_autotoc_md6645}{}\doxysubsection{\texorpdfstring{Denying empty iterables}{Denying empty iterables}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2iterable_autotoc_md6645}
+Pass {\ttfamily deny\+Empty} option to require non empty iterables
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ensureIterable([],\ \{\ denyEmpty:\ true\ \});\ //\ Thrown\ TypeError:\ []\ is\ not\ expected\ iterable}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2iterable_autotoc_md6646}{}\doxysubsection{\texorpdfstring{Confirming on items}{Confirming on items}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2iterable_autotoc_md6646}
+Items can be validated by passing {\ttfamily ensure\+Item} option. Note that in this case\+:
+
+
+\begin{DoxyItemize}
+\item A newly created instance of array with coerced values is returned
+\item Error message lists up to three invalid items
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureString\ =\ require("{}type/string/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{ensureIterable(new\ Set(["{}foo"{},\ 12]),\ \{\ ensureItem:\ ensureString\ \});\ //\ ["{}foo"{},\ "{}12"{}]}
+\DoxyCodeLine{}
+\DoxyCodeLine{/*}
+\DoxyCodeLine{\ Below\ invocation\ with\ crash\ with:}
+\DoxyCodeLine{\ TypeError:\ [object\ Set]\ is\ not\ expected\ iterable\ value.}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ Following\ items\ are\ invalid:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ [object\ Object]}
+\DoxyCodeLine{*/}
+\DoxyCodeLine{ensureIterable(new\ Set(["{}foo"{},\ \{\}]),\ \{\ ensureItem:\ ensureString\ \});}
+
+\end{DoxyCode}
+ 

@@ -1,0 +1,84 @@
+\chapter{README}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README}\index{README@{README}}
+\href{https://github.com/medikoo/es6-symbol/actions?query=workflow\%3AIntegrate}{\texttt{ }} \href{https://codecov.io/gh/medikoo/es6-symbol}{\texttt{ }} \href{https://www.npmjs.com/package/es6-symbol}{\texttt{ }}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2332}{}\doxysection{\texorpdfstring{es6-\/symbol}{es6-\/symbol}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2332}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2333}{}\doxysubsection{\texorpdfstring{ECMAScript 6 Symbol polyfill}{ECMAScript 6 Symbol polyfill}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2333}
+For more information about symbols see following links
+
+
+\begin{DoxyItemize}
+\item \href{http://www.2ality.com/2014/12/es6-symbols.html}{\texttt{ Symbols in ECMAScript 6 by Axel Rauschmayer}}
+\item \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol}{\texttt{ MDN Documentation}}
+\item \href{https://tc39.github.io/ecma262/\#sec-symbol-objects}{\texttt{ Specification}}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2334}{}\doxysubsubsection{\texorpdfstring{Limitations}{Limitations}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2334}
+Underneath it uses real string property names which can easily be retrieved, however accidental collision with other property names is unlikely.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2335}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2335}
+If you\textquotesingle{}d like to use native version when it exists and fallback to \href{https://ponyfill.com}{\texttt{ ponyfill}} if it doesn\textquotesingle{}t, use {\itshape es6-\/symbol} as following\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ Symbol\ =\ require("{}es6-\/symbol"{});}
+
+\end{DoxyCode}
+
+
+If you want to make sure your environment implements {\ttfamily Symbol} globally, do\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{require("{}es6-\/symbol/implement"{});}
+
+\end{DoxyCode}
+
+
+If you strictly want to use polyfill even if native {\ttfamily Symbol} exists (hard to find a good reason for that), do\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ Symbol\ =\ require("{}es6-\/symbol/polyfill"{});}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2336}{}\doxyparagraph{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2336}
+Best is to refer to \href{https://tc39.github.io/ecma262/\#sec-symbol-objects}{\texttt{ specification}}. Still if you want quick look, follow examples\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ Symbol\ =\ require("{}es6-\/symbol"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ symbol\ =\ Symbol("{}My\ custom\ symbol"{});}
+\DoxyCodeLine{var\ x\ =\ \{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{x[symbol]\ =\ "{}foo"{};}
+\DoxyCodeLine{console.log(x[symbol]);}
+\DoxyCodeLine{("{}foo"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Detect\ iterable:}
+\DoxyCodeLine{var\ iterator,\ result;}
+\DoxyCodeLine{if\ (possiblyIterable[Symbol.iterator])\ \{}
+\DoxyCodeLine{\ \ iterator\ =\ possiblyIterable[Symbol.iterator]();}
+\DoxyCodeLine{\ \ result\ =\ iterator.next();}
+\DoxyCodeLine{\ \ while\ (!result.done)\ \{}
+\DoxyCodeLine{\ \ \ \ console.log(result.value);}
+\DoxyCodeLine{\ \ \ \ result\ =\ iterator.next();}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2337}{}\doxysubsubsection{\texorpdfstring{Installation}{Installation}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2337}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2338}{}\doxyparagraph{\texorpdfstring{NPM}{NPM}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2338}
+In your project path\+: \begin{DoxyVerb}$ npm install es6-symbol
+\end{DoxyVerb}
+ \label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2339}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2339}%
+ \doxysubparagraph*{Browser}
+
+To port it to Browser or any other (non CJS) environment, use your favorite CJS bundler. No favorite yet? Try\+: \href{http://browserify.org/}{\texttt{ Browserify}}, \href{https://github.com/medikoo/modules-webmake}{\texttt{ Webmake}} or \href{http://webpack.github.io/}{\texttt{ Webpack}}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2340}{}\doxysubsection{\texorpdfstring{Tests}{Tests}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2340}
+\begin{DoxyVerb}$ npm test
+\end{DoxyVerb}
+ \hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2341}{}\doxysubsection{\texorpdfstring{Security contact information}{Security contact information}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2es6-symbol_2README_autotoc_md2341}
+To report a security vulnerability, please use the \href{https://tidelift.com/security}{\texttt{ Tidelift security contact}}. Tidelift will coordinate the fix and disclosure.
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{ \href{https://tidelift.com/subscription/pkg/npm-es6-symbol?utm_source=npm-es6-symbol&utm_medium=referral&utm_campaign=readme}{\texttt{ Get professional support for d with a Tidelift subscription}} }} ~\newline
+ \textsubscript{ Tidelift helps make open source sustainable for maintainers while giving companies~\newline
+assurances about security, maintenance, and licensing for their dependencies. }  

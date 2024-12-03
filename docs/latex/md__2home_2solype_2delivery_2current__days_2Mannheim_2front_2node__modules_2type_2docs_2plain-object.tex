@@ -1,0 +1,80 @@
+\chapter{Plain Object}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2plain-object}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2plain-object}\index{Plain Object@{Plain Object}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2plain-object_autotoc_md6662}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2plain-object_autotoc_md6662}%
+ A {\itshape plain object}
+
+
+\begin{DoxyItemize}
+\item Inherits directly from {\ttfamily Object.\+prototype} or {\ttfamily null}
+\item Is not a constructor\textquotesingle{}s {\ttfamily prototype} property
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2plain-object_autotoc_md6663}{}\doxysection{\texorpdfstring{{\ttfamily plain-\/object/is}}{{\ttfamily plain-\/object/is}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2plain-object_autotoc_md6663}
+Confirms if given object is a {\itshape plain object}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ isPlainObject\ =\ require("{}type/plain-\/object/is"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{isPlainObject(\{\});\ //\ true}
+\DoxyCodeLine{isPlainObject(Object.create(null));\ //\ true}
+\DoxyCodeLine{isPlainObject([]);\ //\ false}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2plain-object_autotoc_md6664}{}\doxysection{\texorpdfstring{{\ttfamily plain-\/object/ensure}}{{\ttfamily plain-\/object/ensure}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2plain-object_autotoc_md6664}
+If given argument is a plain object it is returned back. Otherwise {\ttfamily Type\+Error} is thrown.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensurePlainObject\ =\ require("{}type/plain-\/object/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{ensurePlainObject(\{\});\ //\ \{\}}
+\DoxyCodeLine{ensurePlainObject("{}foo"{});\ //\ Thrown\ TypeError:\ foo\ is\ not\ a\ plain\ object}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2plain-object_autotoc_md6665}{}\doxysubsection{\texorpdfstring{Confirming on keys}{Confirming on keys}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2plain-object_autotoc_md6665}
+Keys can be validated by passing {\ttfamily allowed\+Keys} option. Note that in this case\+:
+
+
+\begin{DoxyItemize}
+\item Error message lists up to three invalid keys
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ allowedKeys\ =\ ["{}foo"{}];}
+\DoxyCodeLine{}
+\DoxyCodeLine{ensurePlainObject(\{\},\ \{\ allowedKeys\ \});\ //\ \{\}}
+\DoxyCodeLine{ensurePlainObject(\{\ foo:\ "{}bar"{}\ \},\ \{\ allowedKeys\ \});\ //\ \{\ foo:\ 'bar'\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{/*}
+\DoxyCodeLine{\ Below\ invocation\ with\ crash\ with:}
+\DoxyCodeLine{\ TypeError:\ [object\ Object]\ is\ not\ a\ valid\ plain\ object.}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ Following\ keys\ are\ unexpected:\ lorem,\ ipsum}
+\DoxyCodeLine{*/}
+\DoxyCodeLine{ensurePlainObject(\{\ foo:\ "{}bar"{},\ lorem:\ 1,\ ipsum:\ 2\ \},\ \{\ allowedKeys\ \});}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2plain-object_autotoc_md6666}{}\doxysubsection{\texorpdfstring{Confirming on property values}{Confirming on property values}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2plain-object_autotoc_md6666}
+Property values can be validated by passing {\ttfamily ensure\+Property\+Value} option. Note that in this case\+:
+
+
+\begin{DoxyItemize}
+\item A newly created instance of plain object with coerced values is returned
+\item Error message lists up to three keys that contain invalid values
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureString\ =\ require("{}type/string/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{ensurePlainObject(\{\ foo:\ 12\ \},\ \{\ ensurePropertyValue:\ ensureString\ \});\ //\ \{\ foo:\ '12'\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{/*}
+\DoxyCodeLine{\ Below\ invocation\ with\ crash\ with:}
+\DoxyCodeLine{\ TypeError:\ [object\ Object]\ is\ not\ a\ valid\ plain\ object.}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ Valuees\ for\ following\ keys\ are\ invalid:\ lorem,\ ipsum}
+\DoxyCodeLine{*/}
+\DoxyCodeLine{ensurePlainObject(\{\ foo:\ 23,\ lorem:\ \{\},\ ipsum:\ \{\}\ \},\ \{\ ensurePropertyValue:\ ensureString\ \});}
+
+\end{DoxyCode}
+ 

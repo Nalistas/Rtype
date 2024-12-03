@@ -1,0 +1,60 @@
+\chapter{bufferutil}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README}\index{bufferutil@{bufferutil}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1423}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1423}%
+ \href{https://www.npmjs.com/package/bufferutil}{\texttt{ }} \href{https://github.com/websockets/bufferutil/actions?query=workflow\%3ACI+branch\%3Amaster}{\texttt{ }}
+
+{\ttfamily bufferutil} is what makes {\ttfamily ws} fast. It provides some utilities to efficiently perform some operations such as masking and unmasking the data payload of Web\+Socket frames.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1424}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1424}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ bufferutil\ -\/-\/save-\/optional}
+
+\end{DoxyCode}
+
+
+The {\ttfamily -\/-\/save-\/optional} flag tells npm to save the package in your package.\+json under the \href{https://docs.npmjs.com/files/package.json\#optionaldependencies}{\texttt{ {\ttfamily optional\+Dependencies}}} key.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1425}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1425}
+The module exports two functions.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1426}{}\doxysubsection{\texorpdfstring{{\ttfamily buffer\+Util.\+mask(source, mask, output, offset, length)}}{{\ttfamily buffer\+Util.\+mask(source, mask, output, offset, length)}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1426}
+Masks a buffer using the given masking-\/key as specified by the Web\+Socket protocol.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1427}{}\doxysubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1427}
+
+\begin{DoxyItemize}
+\item {\ttfamily source} -\/ The buffer to mask.
+\item {\ttfamily mask} -\/ A buffer representing the masking-\/key.
+\item {\ttfamily output} -\/ The buffer where to store the result.
+\item {\ttfamily offset} -\/ The offset at which to start writing.
+\item {\ttfamily length} -\/ The number of bytes to mask.
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1428}{}\doxysubsubsection{\texorpdfstring{Example}{Example}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1428}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{'use\ strict';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ bufferUtil\ =\ require('bufferutil');}
+\DoxyCodeLine{const\ crypto\ =\ require('crypto');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ source\ =\ crypto.randomBytes(10);}
+\DoxyCodeLine{const\ mask\ =\ crypto.randomBytes(4);}
+\DoxyCodeLine{}
+\DoxyCodeLine{bufferUtil.mask(source,\ mask,\ source,\ 0,\ source.length);}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1429}{}\doxysubsection{\texorpdfstring{{\ttfamily buffer\+Util.\+unmask(buffer, mask)}}{{\ttfamily buffer\+Util.\+unmask(buffer, mask)}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1429}
+Unmasks a buffer using the given masking-\/key as specified by the Web\+Socket protocol.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1430}{}\doxysubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1430}
+
+\begin{DoxyItemize}
+\item {\ttfamily buffer} -\/ The buffer to unmask.
+\item {\ttfamily mask} -\/ A buffer representing the masking-\/key.
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1431}{}\doxysubsubsection{\texorpdfstring{Example}{Example}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1431}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{'use\ strict';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ bufferUtil\ =\ require('bufferutil');}
+\DoxyCodeLine{const\ crypto\ =\ require('crypto');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ buffer\ =\ crypto.randomBytes(10);}
+\DoxyCodeLine{const\ mask\ =\ crypto.randomBytes(4);}
+\DoxyCodeLine{}
+\DoxyCodeLine{bufferUtil.unmask(buffer,\ mask);}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1432}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bufferutil_2README_autotoc_md1432}
+\mbox{[}MIT\mbox{]}(LICENSE) 

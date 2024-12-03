@@ -1,0 +1,80 @@
+\chapter{is-\/alphabetical}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme}\index{is-\/alphabetical@{is-\/alphabetical}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3211}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3211}%
+ \href{https://github.com/wooorm/is-alphabetical/actions}{\texttt{ }} \href{https://codecov.io/github/wooorm/is-alphabetical}{\texttt{ }} \href{https://www.npmjs.com/package/is-alphabetical}{\texttt{ }} \href{https://bundlephobia.com/result?p=is-alphabetical}{\texttt{ }}
+
+Check if a character is alphabetical.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3212}{}\doxysection{\texorpdfstring{Contents}{Contents}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3212}
+
+\begin{DoxyItemize}
+\item What is this?
+\item When should I use this?
+\item Install
+\item Use
+\item API
+\begin{DoxyItemize}
+\item \`{}is\+Alphabetical(character\texorpdfstring{$\vert$}{|}code)\`{}
+\end{DoxyItemize}
+\item Types
+\item Compatibility
+\item Security
+\item Related
+\item Contribute
+\item License
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3213}{}\doxysection{\texorpdfstring{What is this?}{What is this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3213}
+This is a function that checks if a given character is ASCII alphabetical\+: matching {\ttfamily \mbox{[}a-\/z\mbox{]}}, case insensitive.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3214}{}\doxysection{\texorpdfstring{When should I use this?}{When should I use this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3214}
+Not often, as it’s relatively simple to do yourself. This package exists because it’s needed in several related packages, at which point it becomes useful to defer to one shared function.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3215}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3215}
+This package is \href{https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c}{\texttt{ ESM only}}. In Node.\+js (version 12.\+20+, 14.\+14+, or 16.\+0+), install with \href{https://docs.npmjs.com/cli/install}{\texttt{ npm}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ is-\/alphabetical}
+
+\end{DoxyCode}
+
+
+In Deno with \href{https://www.skypack.dev}{\texttt{ Skypack}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{isAlphabetical\}\ from\ 'https://cdn.skypack.dev/is-\/alphabetical@2?dts'}
+
+\end{DoxyCode}
+
+
+In browsers with \href{https://www.skypack.dev}{\texttt{ Skypack}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{isAlphabetical\}\ from\ 'https://cdn.skypack.dev/is-\/alphabetical@2?min'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3216}{}\doxysection{\texorpdfstring{Use}{Use}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3216}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{isAlphabetical\}\ from\ 'is-\/alphabetical'}
+\DoxyCodeLine{}
+\DoxyCodeLine{isAlphabetical('a')\ //\ =>\ true}
+\DoxyCodeLine{isAlphabetical('B')\ //\ =>\ true}
+\DoxyCodeLine{isAlphabetical('0')\ //\ =>\ false}
+\DoxyCodeLine{isAlphabetical('💩')\ //\ =>\ false}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3217}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3217}
+This package exports the following identifier\+: {\ttfamily is\+Alphabetical}. There is no default export.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3218}{}\doxysubsection{\texorpdfstring{{\ttfamily is\+Alphabetical(character\texorpdfstring{$\vert$}{|}code)}}{{\ttfamily is\+Alphabetical(character\texorpdfstring{$\vert$}{|}code)}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3218}
+Check whether the given character code ({\ttfamily number}), or the character code at the first position ({\ttfamily string}), is alphabetical.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3219}{}\doxysection{\texorpdfstring{Types}{Types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3219}
+This package is fully typed with \href{https://www.typescriptlang.org}{\texttt{ Type\+Script}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3220}{}\doxysection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3220}
+This package is at least compatible with all maintained versions of Node.\+js. As of now, that is Node.\+js 12.\+20+, 14.\+14+, and 16.\+0+. It also works in Deno and modern browsers.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3221}{}\doxysection{\texorpdfstring{Security}{Security}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3221}
+This package is safe.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3222}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3222}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/wooorm/is-decimal}{\texttt{ {\ttfamily wooorm/is-\/decimal}}}
+\item \href{https://github.com/wooorm/is-hexadecimal}{\texttt{ {\ttfamily wooorm/is-\/hexadecimal}}}
+\item \href{https://github.com/wooorm/is-alphanumerical}{\texttt{ {\ttfamily wooorm/is-\/alphanumerical}}}
+\item \href{https://github.com/wooorm/is-whitespace-character}{\texttt{ {\ttfamily wooorm/is-\/whitespace-\/character}}}
+\item \href{https://github.com/wooorm/is-word-character}{\texttt{ {\ttfamily wooorm/is-\/word-\/character}}}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3223}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3223}
+Yes please! See \href{https://opensource.guide/how-to-contribute/}{\texttt{ How to Contribute to Open Source}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3224}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-alphabetical_2readme_autotoc_md3224}
+\mbox{[}MIT\mbox{]}\mbox{[}license\mbox{]} © \href{https://wooorm.com}{\texttt{ Titus Wormer}} 

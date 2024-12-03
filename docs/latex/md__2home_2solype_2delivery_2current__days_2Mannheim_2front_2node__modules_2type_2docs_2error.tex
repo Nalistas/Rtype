@@ -1,0 +1,28 @@
+\chapter{Error}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2error}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2error}\index{Error@{Error}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2error_autotoc_md6630}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2error_autotoc_md6630}%
+ {\itshape Error} instance\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2error_autotoc_md6631}{}\doxysection{\texorpdfstring{{\ttfamily error/is}}{{\ttfamily error/is}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2error_autotoc_md6631}
+Confirms if given object is a native error object
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ isError\ =\ require("{}type/error/is"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{isError(new\ Error());\ //\ true}
+\DoxyCodeLine{isError(\{\ message:\ "{}Fake\ error"{}\ \});\ //\ false}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2error_autotoc_md6632}{}\doxysection{\texorpdfstring{{\ttfamily error/ensure}}{{\ttfamily error/ensure}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2error_autotoc_md6632}
+If given argument is an error object, it is returned back. Otherwise {\ttfamily Type\+Error} is thrown.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureError\ =\ require("{}type/error/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ someError\ =\ new\ Error("{}Some\ error"{});}
+\DoxyCodeLine{ensureError(someError);\ //\ someError}
+\DoxyCodeLine{ensureError(\{\ message:\ "{}Fake\ error"{}\ \});\ //\ Thrown\ TypeError:\ [object\ Object]\ is\ not\ an\ error\ object}
+
+\end{DoxyCode}
+ 

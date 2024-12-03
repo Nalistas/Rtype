@@ -1,0 +1,66 @@
+\chapter{strip-\/json-\/comments \texorpdfstring{$<$}{<}a href="{}https\+://travis-\/ci.\+com/github/sindresorhus/strip-\/json-\/comments"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://travis-\/ci.\+com/sindresorhus/strip-\/json-\/comments.\+svg?branch=master"{} alt="{}\+Build Status"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>}}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme}\index{strip-\/json-\/comments $<$a href="{}https://travis-\/ci.com/github/sindresorhus/strip-\/json-\/comments"{} $>$$<$img src="{}https://travis-\/ci.com/sindresorhus/strip-\/json-\/comments.svg?branch=master"{} alt="{}Build Status"{}/$>$$<$/a$>$@{strip-\/json-\/comments $<$a href=""https://travis-\/ci.com/github/sindresorhus/strip-\/json-\/comments"" $>$$<$img src=""https://travis-\/ci.com/sindresorhus/strip-\/json-\/comments.svg?branch=master"" alt=""Build Status""/$>$$<$/a$>$}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5805}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5805}%
+ \begin{quote}
+Strip comments from JSON. Lets you use comments in your JSON files! \end{quote}
+This is now possible\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ //\ Rainbows}
+\DoxyCodeLine{\ \ \ \ "{}unicorn"{}:\ /*\ ❤\ */\ "{}cake"{}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+It will replace single-\/line comments {\ttfamily //} and multi-\/line comments {\ttfamily /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/} with whitespace. This allows JSON error positions to remain as close as possible to the original source.
+
+Also available as a \href{https://github.com/sindresorhus/gulp-strip-json-comments}{\texttt{ Gulp}}/\href{https://github.com/sindresorhus/grunt-strip-json-comments}{\texttt{ Grunt}}/\href{https://github.com/sindresorhus/broccoli-strip-json-comments}{\texttt{ Broccoli}} plugin.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5806}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5806}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ strip-\/json-\/comments}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5807}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5807}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ json\ =\ \`{}\{}
+\DoxyCodeLine{\ \ \ \ //\ Rainbows}
+\DoxyCodeLine{\ \ \ \ "{}unicorn"{}:\ /*\ ❤\ */\ "{}cake"{}}
+\DoxyCodeLine{\}`;}
+\DoxyCodeLine{}
+\DoxyCodeLine{JSON.parse(stripJsonComments(json));}
+\DoxyCodeLine{//=>\ \{unicorn:\ 'cake'\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5808}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5808}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5809}{}\doxysubsection{\texorpdfstring{strip\+Json\+Comments(json\+String, options?)}{strip\+Json\+Comments(json\+String, options?)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5809}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5810}{}\doxysubsubsection{\texorpdfstring{json\+String}{json\+String}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5810}
+Type\+: {\ttfamily string}
+
+Accepts a string with JSON and returns a string without comments.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5811}{}\doxysubsubsection{\texorpdfstring{options}{options}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5811}
+Type\+: {\ttfamily object}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5812}{}\doxyparagraph{\texorpdfstring{whitespace}{whitespace}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5812}
+Type\+: {\ttfamily boolean}\textbackslash{} Default\+: {\ttfamily true}
+
+Replace comments with whitespace instead of stripping them entirely.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5813}{}\doxysection{\texorpdfstring{Benchmark}{Benchmark}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5813}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ run\ bench}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5814}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2strip-json-comments_2readme_autotoc_md5814}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/strip-json-comments-cli}{\texttt{ strip-\/json-\/comments-\/cli}} -\/ CLI for this module
+\item \href{https://github.com/sindresorhus/strip-css-comments}{\texttt{ strip-\/css-\/comments}} -\/ Strip comments from CSS
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{ \href{https://tidelift.com/subscription/pkg/npm-strip-json-comments?utm_source=npm-strip-json-comments&utm_medium=referral&utm_campaign=readme}{\texttt{ Get professional support for this package with a Tidelift subscription}} }} ~\newline
+ \textsubscript{ Tidelift helps make open source sustainable for maintainers while giving companies~\newline
+assurances about security, maintenance, and licensing for their dependencies. }  

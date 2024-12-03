@@ -1,0 +1,33 @@
+\chapter{invariant}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2invariant_2README}{}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2invariant_2README}\index{invariant@{invariant}}
+\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2invariant_2README_autotoc_md10570}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2invariant_2README_autotoc_md10570}%
+ \href{https://travis-ci.org/zertosh/invariant}{\texttt{ }}
+
+A mirror of Facebook\textquotesingle{}s {\ttfamily invariant} (e.\+g. \href{https://github.com/facebook/react/blob/v0.13.3/src/vendor/core/invariant.js}{\texttt{ React}}, \href{https://github.com/facebook/flux/blob/2.0.2/src/invariant.js}{\texttt{ flux}}).
+
+A way to provide descriptive errors in development but generic errors in production.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2invariant_2README_autotoc_md10571}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2invariant_2README_autotoc_md10571}
+With \href{http://npmjs.org}{\texttt{ npm}} do\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ invariant}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2invariant_2README_autotoc_md10572}{}\doxysection{\texorpdfstring{{\ttfamily invariant(condition, message)}}{{\ttfamily invariant(condition, message)}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2invariant_2README_autotoc_md10572}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ invariant\ =\ require('invariant');}
+\DoxyCodeLine{}
+\DoxyCodeLine{invariant(someTruthyVal,\ 'This\ will\ not\ throw');}
+\DoxyCodeLine{//\ No\ errors}
+\DoxyCodeLine{}
+\DoxyCodeLine{invariant(someFalseyVal,\ 'This\ will\ throw\ an\ error\ with\ this\ message');}
+\DoxyCodeLine{//\ Error:\ Invariant\ Violation:\ This\ will\ throw\ an\ error\ with\ this\ message}
+
+\end{DoxyCode}
+
+
+{\bfseries{Note\+:}} When {\ttfamily process.\+env.\+NODE\+\_\+\+ENV} is not {\ttfamily production}, the message is required. If omitted, {\ttfamily invariant} will throw regardless of the truthiness of the condition. When {\ttfamily process.\+env.\+NODE\+\_\+\+ENV} is {\ttfamily production}, the message is optional – so they can be minified away.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2invariant_2README_autotoc_md10573}{}\doxysubsection{\texorpdfstring{Browser}{Browser}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2invariant_2README_autotoc_md10573}
+When used with \href{https://github.com/substack/node-browserify}{\texttt{ browserify}}, it\textquotesingle{}ll use {\ttfamily browser.\+js} (instead of {\ttfamily invariant.\+js}) and the \href{https://github.com/hughsk/envify}{\texttt{ envify}} transform will inline the value of {\ttfamily process.\+env.\+NODE\+\_\+\+ENV}.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2invariant_2README_autotoc_md10574}{}\doxysubsection{\texorpdfstring{Node}{Node}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2invariant_2README_autotoc_md10574}
+The node version is optimized around the performance implications of accessing {\ttfamily process.\+env}. The value of {\ttfamily process.\+env.\+NODE\+\_\+\+ENV} is cached, and repeatedly used instead of reading {\ttfamily process.\+env}. See \href{https://github.com/facebook/react/issues/812}{\texttt{ Server rendering is slower with npm react \#812}} 

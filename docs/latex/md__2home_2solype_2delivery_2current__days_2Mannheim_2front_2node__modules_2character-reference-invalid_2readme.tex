@@ -1,0 +1,81 @@
+\chapter{character-\/reference-\/invalid}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme}\index{character-\/reference-\/invalid@{character-\/reference-\/invalid}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1520}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1520}%
+ \href{https://github.com/wooorm/character-reference-invalid/actions}{\texttt{ }} \href{https://codecov.io/github/wooorm/character-reference-invalid}{\texttt{ }} \href{https://www.npmjs.com/package/character-reference-invalid}{\texttt{ }} \href{https://bundlephobia.com/result?p=character-reference-invalid}{\texttt{ }}
+
+Map of invalid numeric character references to their replacements, according to HTML.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1521}{}\doxysection{\texorpdfstring{Contents}{Contents}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1521}
+
+\begin{DoxyItemize}
+\item What is this?
+\item When should I use this?
+\item Install
+\item Use
+\item API
+\begin{DoxyItemize}
+\item \`{}character\+Reference\+Invalid\`{}
+\end{DoxyItemize}
+\item Source
+\item Types
+\item Compatibility
+\item Security
+\item Related
+\item Contribute
+\item License
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1522}{}\doxysection{\texorpdfstring{What is this?}{What is this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1522}
+This is a map from the \href{https://html.spec.whatwg.org/multipage/parsing.html\#table-charref-overrides}{\texttt{ HTML spec}} of C1 ASCII/\+Unicode control characters (which are disallowed by HTML) to the characters those code points would have in Windows 1252. For example, U+0080 (Padding Character) maps to {\ttfamily €}, because that’s used for 0x80 in Windows 1252.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1523}{}\doxysection{\texorpdfstring{When should I use this?}{When should I use this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1523}
+Probably never, unless you’re dealing with parsing HTML or similar XML-\/like things, or in a place where Unicode is not the primary encoding (it is in most places).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1524}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1524}
+This package is \href{https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c}{\texttt{ ESM only}}. In Node.\+js (version 12.\+20+, 14.\+14+, or 16.\+0+), install with \href{https://docs.npmjs.com/cli/install}{\texttt{ npm}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ character-\/reference-\/invalid}
+
+\end{DoxyCode}
+
+
+In Deno with \href{https://www.skypack.dev}{\texttt{ Skypack}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{characterReferenceInvalid\}\ from\ 'https://cdn.skypack.dev/character-\/reference-\/invalid@2?dts'}
+
+\end{DoxyCode}
+
+
+In browsers with \href{https://www.skypack.dev}{\texttt{ Skypack}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{characterReferenceInvalid\}\ from\ 'https://cdn.skypack.dev/character-\/reference-\/invalid@2?min'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1525}{}\doxysection{\texorpdfstring{Use}{Use}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1525}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{characterReferenceInvalid\}\ from\ 'character-\/reference-\/invalid'}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(characterReferenceInvalid[0x80])\ //\ =>\ '€'}
+\DoxyCodeLine{console.log(characterReferenceInvalid[0x89])\ //\ =>\ '‰'}
+\DoxyCodeLine{console.log(characterReferenceInvalid[0x99])\ //\ =>\ '™'}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1526}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1526}
+This package exports the following identifiers\+: {\ttfamily character\+Reference\+Invalid}. There is no default export.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1527}{}\doxysubsection{\texorpdfstring{{\ttfamily character\+Reference\+Invalid}}{{\ttfamily character\+Reference\+Invalid}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1527}
+{\ttfamily Record\texorpdfstring{$<$}{<}number, string\texorpdfstring{$>$}{>}} — mapping between invalid numeric character reference codes to replacements characters.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1528}{}\doxysection{\texorpdfstring{Source}{Source}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1528}
+See \href{https://html.spec.whatwg.org/multipage/parsing.html\#table-charref-overrides}{\texttt{ {\ttfamily html.\+spec.\+whatwg.\+org}}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1529}{}\doxysection{\texorpdfstring{Types}{Types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1529}
+This package is fully typed with \href{https://www.typescriptlang.org}{\texttt{ Type\+Script}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1530}{}\doxysection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1530}
+This package is at least compatible with all maintained versions of Node.\+js. As of now, that is Node.\+js 12.\+20+, 14.\+14+, and 16.\+0+. It also works in Deno and modern browsers.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1531}{}\doxysection{\texorpdfstring{Security}{Security}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1531}
+This package is safe.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1532}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1532}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/wooorm/character-entities}{\texttt{ {\ttfamily wooorm/character-\/entities}}} — HTML character entity info
+\item \href{https://github.com/wooorm/character-entities-html4}{\texttt{ {\ttfamily wooorm/character-\/entities-\/html4}}} — HTML 4 character entity info
+\item \href{https://github.com/wooorm/character-entities-legacy}{\texttt{ {\ttfamily wooorm/character-\/entities-\/legacy}}} — legacy character entity info
+\item \href{https://github.com/wooorm/parse-entities}{\texttt{ {\ttfamily wooorm/parse-\/entities}}} — parse HTML character references
+\item \href{https://github.com/wooorm/stringify-entities}{\texttt{ {\ttfamily wooorm/stringify-\/entities}}} — serialize HTML character references
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1533}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1533}
+Yes please! See \href{https://opensource.guide/how-to-contribute/}{\texttt{ How to Contribute to Open Source}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1534}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2character-reference-invalid_2readme_autotoc_md1534}
+\mbox{[}MIT\mbox{]}\mbox{[}license\mbox{]} © \href{https://wooorm.com}{\texttt{ Titus Wormer}} 

@@ -1,0 +1,28 @@
+\chapter{Finite Number}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2finite}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2finite}\index{Finite Number@{Finite Number}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2finite_autotoc_md6633}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2finite_autotoc_md6633}%
+ Finite {\itshape number} primitive\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2finite_autotoc_md6634}{}\doxysection{\texorpdfstring{{\ttfamily finite/coerce}}{{\ttfamily finite/coerce}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2finite_autotoc_md6634}
+Follows \href{number.md\#numbercoerce}{\texttt{ {\ttfamily number/coerce}}} additionally rejecting {\ttfamily Infinity} and {\ttfamily -\/Infinity} values ({\ttfamily null} is returned if given values coerces to them)
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ coerceToFinite\ =\ require("{}type/finite/coerce"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{coerceToFinite("{}12"{});\ //\ 12}
+\DoxyCodeLine{coerceToFinite(Infinity);\ //\ null}
+\DoxyCodeLine{coerceToFinite(null);\ //\ null}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2finite_autotoc_md6635}{}\doxysection{\texorpdfstring{{\ttfamily finite/ensure}}{{\ttfamily finite/ensure}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2finite_autotoc_md6635}
+If given argument is a finite number coercible value (via \`{}finite/coerce\`{}) returns result number. Otherwise {\ttfamily Type\+Error} is thrown.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureFinite\ =\ require("{}type/finite/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{ensureFinite(12);\ //\ "{}12"{}}
+\DoxyCodeLine{ensureFinite(null);\ //\ Thrown\ TypeError:\ null\ is\ not\ a\ finite\ number}
+
+\end{DoxyCode}
+ 

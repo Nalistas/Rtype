@@ -1,0 +1,30 @@
+\chapter{lines-\/and-\/columns}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2lines-and-columns_2README}{}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2lines-and-columns_2README}\index{lines-\/and-\/columns@{lines-\/and-\/columns}}
+\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2lines-and-columns_2README_autotoc_md11090}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2lines-and-columns_2README_autotoc_md11090}%
+ Maps lines and columns to character offsets and back. This is useful for parsers and other text processors that deal in character ranges but process text with meaningful lines and columns.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2lines-and-columns_2README_autotoc_md11091}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2lines-and-columns_2README_autotoc_md11091}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ [-\/-\/save]\ lines-\/and-\/columns}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2lines-and-columns_2README_autotoc_md11092}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2lines-and-columns_2README_autotoc_md11092}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ LinesAndColumns\ \}\ from\ 'lines-\/and-\/columns'}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ lines\ =\ new\ LinesAndColumns(}
+\DoxyCodeLine{\ \ \`{}table\ \{}
+\DoxyCodeLine{\ \ border:\ 0}
+\DoxyCodeLine{\}`}
+\DoxyCodeLine{)}
+\DoxyCodeLine{}
+\DoxyCodeLine{lines.locationForIndex(9)}
+\DoxyCodeLine{//\ \{\ line:\ 1,\ column:\ 1\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{lines.indexForLocation(\{\ line:\ 1,\ column:\ 2\ \})}
+\DoxyCodeLine{//\ 10}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2lines-and-columns_2README_autotoc_md11093}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2lines-and-columns_2README_autotoc_md11093}
+MIT 

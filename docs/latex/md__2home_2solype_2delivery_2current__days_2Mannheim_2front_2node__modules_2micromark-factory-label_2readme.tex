@@ -1,0 +1,131 @@
+\chapter{micromark-\/factory-\/label}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme}\index{micromark-\/factory-\/label@{micromark-\/factory-\/label}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4096}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4096}%
+ \href{https://github.com/micromark/micromark/actions}{\texttt{ }} \href{https://codecov.io/github/micromark/micromark}{\texttt{ }} \href{https://www.npmjs.com/package/micromark-factory-label}{\texttt{ }} \href{https://bundlejs.com/?q=micromark-factory-label}{\texttt{ }} \href{https://opencollective.com/unified}{\texttt{ }} \href{https://opencollective.com/unified}{\texttt{ }} \href{https://github.com/micromark/micromark/discussions}{\texttt{ }}
+
+\href{https://github.com/micromark/micromark}{\texttt{ micromark}} factory to parse labels (found in media, definitions).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4097}{}\doxysection{\texorpdfstring{Contents}{Contents}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4097}
+
+\begin{DoxyItemize}
+\item What is this?
+\item When should I use this?
+\item Install
+\item Use
+\item API
+\begin{DoxyItemize}
+\item \`{}factory\+Label(…)\`{}
+\end{DoxyItemize}
+\item Types
+\item Compatibility
+\item Security
+\item Contribute
+\item License
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4098}{}\doxysection{\texorpdfstring{What is this?}{What is this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4098}
+This package exposes states to parse labels.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4099}{}\doxysection{\texorpdfstring{When should I use this?}{When should I use this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4099}
+This package is useful when you are making your own micromark extensions.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4100}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4100}
+This package is \href{https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c}{\texttt{ ESM only}}. In Node.\+js (version 16+), install with \href{https://docs.npmjs.com/cli/install}{\texttt{ npm}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ micromark-\/factory-\/label}
+
+\end{DoxyCode}
+
+
+In Deno with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{factoryLabel\}\ from\ 'https://esm.sh/micromark-\/factory-\/label@1'}
+
+\end{DoxyCode}
+
+
+In browsers with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{factoryLabel\}\ from\ 'https://esm.sh/micromark-\/factory-\/label@1?bundle'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4101}{}\doxysection{\texorpdfstring{Use}{Use}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4101}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{ok\ as\ assert\}\ from\ 'devlop'}
+\DoxyCodeLine{import\ \{factoryLabel\}\ from\ 'micromark-\/factory-\/label'}
+\DoxyCodeLine{import\ \{codes,\ types\}\ from\ 'micromark-\/util-\/symbol'}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ A\ micromark\ tokenizer\ that\ uses\ the\ factory:}
+\DoxyCodeLine{/**}
+\DoxyCodeLine{\ *\ @this\ \{TokenizeContext\}}
+\DoxyCodeLine{\ *\ @type\ \{Tokenizer\}}
+\DoxyCodeLine{\ */}
+\DoxyCodeLine{function\ tokenizeDefinition(effects,\ ok,\ nok)\ \{}
+\DoxyCodeLine{\ \ return\ start}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ …}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ /**\ @type\ \{State\}\ */}
+\DoxyCodeLine{\ \ function\ start(code)\ \{}
+\DoxyCodeLine{\ \ \ \ assert(code\ ===\ codes.leftSquareBracket,\ 'expected\ \`{}[`')}
+\DoxyCodeLine{\ \ \ \ effects.enter(types.definition)}
+\DoxyCodeLine{\ \ \ \ return\ factoryLabel.call(}
+\DoxyCodeLine{\ \ \ \ \ \ self,}
+\DoxyCodeLine{\ \ \ \ \ \ effects,}
+\DoxyCodeLine{\ \ \ \ \ \ labelAfter,}
+\DoxyCodeLine{\ \ \ \ \ \ nok,}
+\DoxyCodeLine{\ \ \ \ \ \ types.definitionLabel,}
+\DoxyCodeLine{\ \ \ \ \ \ types.definitionLabelMarker,}
+\DoxyCodeLine{\ \ \ \ \ \ types.definitionLabelString}
+\DoxyCodeLine{\ \ \ \ )(code)}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ …}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4102}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4102}
+This module exports the identifier \`{}factory\+Label\`{}. There is no default export.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4103}{}\doxysubsection{\texorpdfstring{{\ttfamily factory\+Label(…)}}{{\ttfamily factory\+Label(…)}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4103}
+Parse labels.
+
+\begin{quote}
+👉 {\bfseries{Note}}\+: labels in markdown are capped at 999 characters in the string. \end{quote}
+\doxysubparagraph*{Examples}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[a]}
+\DoxyCodeLine{[a}
+\DoxyCodeLine{b]}
+\DoxyCodeLine{[a\(\backslash\)]b]}
+
+\end{DoxyCode}
+
+
+\doxysubparagraph*{Parameters}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily this} ({\ttfamily Tokenize\+Context}) — tokenize context
+\item {\ttfamily effects} ({\ttfamily Effects}) — context
+\item {\ttfamily ok} ({\ttfamily State}) — state switched to when successful
+\item {\ttfamily nok} ({\ttfamily State}) — state switched to when unsuccessful
+\item {\ttfamily type} ({\ttfamily string}) — type of the whole label ({\ttfamily \mbox{[}a\mbox{]}})
+\item {\ttfamily marker\+Type} ({\ttfamily string}) — type for the markers ({\ttfamily \mbox{[}} and {\ttfamily \mbox{]}})
+\item {\ttfamily string\+Type} ({\ttfamily string}) — type for the identifier ({\ttfamily a})
+\end{DoxyItemize}
+
+\doxysubparagraph*{Returns}
+
+Start state ({\ttfamily State}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4104}{}\doxysection{\texorpdfstring{Types}{Types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4104}
+This package is fully typed with \href{https://www.typescriptlang.org}{\texttt{ Type\+Script}}. It exports no additional types.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4105}{}\doxysection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4105}
+Projects maintained by the unified collective are compatible with maintained versions of Node.\+js.
+
+When we cut a new major release, we drop support for unmaintained versions of Node. This means we try to keep the current release line, {\ttfamily micromark-\/factory-\/label@\texorpdfstring{$^\wedge$}{\string^}2}, compatible with Node.\+js 16. This package works with {\ttfamily micromark@\texorpdfstring{$^\wedge$}{\string^}3}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4106}{}\doxysection{\texorpdfstring{Security}{Security}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4106}
+This package is safe. See \href{https://github.com/micromark/.github/blob/main/security.md}{\texttt{ {\ttfamily security.\+md}}} in \href{https://github.com/micromark/.github}{\texttt{ {\ttfamily micromark/.github}}} for how to submit a security report.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4107}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4107}
+See \href{https://github.com/micromark/.github/blob/main/contributing.md}{\texttt{ {\ttfamily contributing.\+md}}} in \href{https://github.com/micromark/.github}{\texttt{ {\ttfamily micromark/.github}}} for ways to get started. See \href{https://github.com/micromark/.github/blob/main/support.md}{\texttt{ {\ttfamily support.\+md}}} for ways to get help.
+
+This project has a \href{https://github.com/micromark/.github/blob/main/code-of-conduct.md}{\texttt{ code of conduct}}. By interacting with this repository, organisation, or community you agree to abide by its terms.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4108}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2micromark-factory-label_2readme_autotoc_md4108}
+\href{https://github.com/micromark/micromark/blob/main/license}{\texttt{ MIT}} © \href{https://wooorm.com}{\texttt{ Titus Wormer}} 

@@ -1,0 +1,28 @@
+\chapter{Time value}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2time-value}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2time-value}\index{Time value@{Time value}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2time-value_autotoc_md6687}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2time-value_autotoc_md6687}%
+ {\itshape number} primitive which is a valid {\itshape time value} (as used internally in {\itshape Date} instances)\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2time-value_autotoc_md6688}{}\doxysection{\texorpdfstring{{\ttfamily time-\/value/coerce}}{{\ttfamily time-\/value/coerce}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2time-value_autotoc_md6688}
+Follows \href{integer.md\#integercoerce}{\texttt{ {\ttfamily integer/coerce}}} but returns {\ttfamily null} in place of values which go beyond 100 000 0000 days from unix epoch
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ coerceToTimeValue\ =\ require("{}type/time-\/value/coerce"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{coerceToTimeValue(12312312);\ //\ true}
+\DoxyCodeLine{coerceToTimeValue(Number.MAX\_SAFE\_INTEGER);\ //\ false}
+\DoxyCodeLine{coerceToTimeValue("{}foo"{});\ //\ false}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2time-value_autotoc_md6689}{}\doxysection{\texorpdfstring{{\ttfamily time-\/value/ensure}}{{\ttfamily time-\/value/ensure}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2time-value_autotoc_md6689}
+If given argument is a {\itshape time value} coercible value (via \`{}time-\/value/coerce\`{}) returns result number. Otherwise {\ttfamily Type\+Error} is thrown.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureTimeValue\ =\ require("{}type/time-\/value/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{ensureTimeValue(12.93);\ //\ "{}12"{}}
+\DoxyCodeLine{ensureTimeValue(Number.MAX\_SAFE\_INTEGER);\ //\ Thrown\ TypeError:\ null\ is\ not\ a\ natural\ number}
+
+\end{DoxyCode}
+ 

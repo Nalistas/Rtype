@@ -1,0 +1,30 @@
+\chapter{Function}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2function}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2function}\index{Function@{Function}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2function_autotoc_md6636}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2function_autotoc_md6636}%
+ {\itshape Function} instance\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2function_autotoc_md6637}{}\doxysection{\texorpdfstring{{\ttfamily function/is}}{{\ttfamily function/is}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2function_autotoc_md6637}
+Confirms if given object is a native function
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ isFunction\ =\ require("{}type/function/is"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{isFunction(function\ ()\ \{\});\ //\ true}
+\DoxyCodeLine{isFunction(()\ =>\ \{\});\ //\ true}
+\DoxyCodeLine{isFunction(class\ \{\});\ //\ true}
+\DoxyCodeLine{isFunction("{}foo"{});\ //\ false}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2function_autotoc_md6638}{}\doxysection{\texorpdfstring{{\ttfamily function/ensure}}{{\ttfamily function/ensure}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2function_autotoc_md6638}
+If given argument is a function object, it is returned back. Otherwise {\ttfamily Type\+Error} is thrown.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureFunction\ =\ require("{}type/function/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ fn\ =\ function\ ()\ \{\};}
+\DoxyCodeLine{ensureFunction(fn);\ //\ fn}
+\DoxyCodeLine{ensureFunction(/foo/);\ //\ Thrown\ TypeError:\ /foo/\ is\ not\ a\ function}
+
+\end{DoxyCode}
+ 

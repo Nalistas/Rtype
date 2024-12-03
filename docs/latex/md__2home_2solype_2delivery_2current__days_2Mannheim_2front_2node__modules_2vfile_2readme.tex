@@ -1,0 +1,513 @@
+\chapter{readme}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme}\index{readme@{readme}}
+\doxysection*{ }
+
+\href{https://github.com/vfile/vfile/actions}{\texttt{ }} \href{https://codecov.io/github/vfile/vfile}{\texttt{ }} \href{https://www.npmjs.com/package/vfile}{\texttt{ }} \href{https://bundlejs.com/?q=vfile}{\texttt{ }} \href{https://opencollective.com/unified}{\texttt{ }} \href{https://opencollective.com/unified}{\texttt{ }} \href{https://github.com/vfile/vfile/discussions}{\texttt{ }}
+
+{\bfseries{vfile}} is a small and browser friendly virtual file format that tracks metadata about files (such as its {\ttfamily path} and {\ttfamily value}) and lint messages.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6947}{}\doxysubsection{\texorpdfstring{Contents}{Contents}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6947}
+
+\begin{DoxyItemize}
+\item unified
+\item What is this?
+\item When should I use this?
+\item Install
+\item Use
+\item API
+\begin{DoxyItemize}
+\item \`{}\+VFile(options?)\`{}
+\item \`{}file.cwd\`{}
+\item \`{}file.data\`{}
+\item \`{}file.history\`{}
+\item \`{}file.messages\`{}
+\item \`{}file.value\`{}
+\item \`{}file.basename\`{}
+\item \`{}file.dirname\`{}
+\item \`{}file.extname\`{}
+\item \`{}file.path\`{}
+\item \`{}file.stem\`{}
+\item \`{}\+VFile\#fail(reason\mbox{[}, options\mbox{]})\`{}
+\item \`{}\+VFile\#info(reason\mbox{[}, options\mbox{]})\`{}
+\item \`{}\+VFile\#message(reason\mbox{[}, options\mbox{]})\`{}
+\item \`{}\+VFile\#to\+String(encoding?)\`{}
+\item \`{}\+Compatible\`{}
+\item \`{}\+Data\`{}
+\item \`{}\+Data\+Map\`{}
+\item \`{}\+Map\`{}
+\item \`{}\+Message\+Options\`{}
+\item \`{}\+Options\`{}
+\item \`{}\+Reporter\`{}
+\item \`{}\+Reporter\+Settings\`{}
+\item \`{}\+Value\`{}
+\item Well-\/known
+\end{DoxyItemize}
+\item List of utilities
+\item Reporters
+\item Types
+\item Compatibility
+\item Contribute
+\item Sponsor
+\item Acknowledgments
+\item License
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6948}{}\doxysubsection{\texorpdfstring{unified}{unified}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6948}
+{\bfseries{vfile}} is part of the unified collective.
+
+
+\begin{DoxyItemize}
+\item for more about us, see \href{https://unifiedjs.com}{\texttt{ {\ttfamily unifiedjs.\+com}}}
+\item for how the collective is governed, see \href{https://github.com/unifiedjs/collective}{\texttt{ {\ttfamily unifiedjs/collective}}}
+\item for updates, see \href{https://twitter.com/unifiedjs}{\texttt{ @unifiedjs}} on Twitter
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6949}{}\doxysubsection{\texorpdfstring{What is this?}{What is this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6949}
+This package provides a virtual file format. It exposes an API to access the file value, path, metadata about the file, and specifically supports attaching lint messages and errors to certain places in these files.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6950}{}\doxysubsection{\texorpdfstring{When should I use this?}{When should I use this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6950}
+The virtual file format is useful when dealing with the concept of files in places where you might not be able to access the file system. The message API is particularly useful when making things that check files (as in, linting).
+
+vfile is made for \href{https://github.com/unifiedjs/unified}{\texttt{ unified}}, which amongst other things checks files. However, vfile can be used in other projects that deal with parsing, transforming, and serializing data, to build linters, compilers, static site generators, and other build tools.
+
+This is different from the excellent \href{https://github.com/gulpjs/vinyl}{\texttt{ {\ttfamily vinyl}}} in that vfile has a smaller API, a smaller size, and focuses on messages.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6951}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6951}
+This package is \href{https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c}{\texttt{ ESM only}}. In Node.\+js (version 16+), install with \href{https://docs.npmjs.com/cli/install}{\texttt{ npm}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ vfile}
+
+\end{DoxyCode}
+
+
+In Deno with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{VFile\}\ from\ 'https://esm.sh/vfile@6'}
+
+\end{DoxyCode}
+
+
+In browsers with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{VFile\}\ from\ 'https://esm.sh/vfile@6?bundle'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6952}{}\doxysubsection{\texorpdfstring{Use}{Use}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6952}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{VFile\}\ from\ 'vfile'}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ file\ =\ new\ VFile(\{}
+\DoxyCodeLine{\ \ path:\ '\string~/example.txt',}
+\DoxyCodeLine{\ \ value:\ 'Alpha\ *braavo*\ charlie.'}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(file.path)\ //\ =>\ '\string~/example.txt'}
+\DoxyCodeLine{console.log(file.dirname)\ //\ =>\ '\string~'}
+\DoxyCodeLine{}
+\DoxyCodeLine{file.extname\ =\ '.md'}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(file.basename)\ //\ =>\ 'example.md'}
+\DoxyCodeLine{}
+\DoxyCodeLine{file.basename\ =\ 'index.text'}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(file.history)\ //\ =>\ ['\string~/example.txt',\ '\string~/example.md',\ '\string~/index.text']}
+\DoxyCodeLine{}
+\DoxyCodeLine{file.message('Unexpected\ unknown\ word\ \`{}braavo`,\ did\ you\ mean\ \`{}bravo`?',\ \{}
+\DoxyCodeLine{\ \ place:\ \{line:\ 1,\ column:\ 8\},}
+\DoxyCodeLine{\ \ source:\ 'spell',}
+\DoxyCodeLine{\ \ ruleId:\ 'typo'}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(file.messages)}
+
+\end{DoxyCode}
+
+
+Yields\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ [\string~/index.text:1:8:\ Unexpected\ unknown\ word\ \`{}braavo\`{},\ did\ you\ mean\ \`{}bravo\`{}?]\ \{}
+\DoxyCodeLine{\ \ \ \ ancestors:\ undefined,}
+\DoxyCodeLine{\ \ \ \ cause:\ undefined,}
+\DoxyCodeLine{\ \ \ \ column:\ 8,}
+\DoxyCodeLine{\ \ \ \ fatal:\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\ \ \ \ line:\ 1,}
+\DoxyCodeLine{\ \ \ \ place:\ \{\ line:\ 1,\ column:\ 8\ \},}
+\DoxyCodeLine{\ \ \ \ reason:\ \textcolor{stringliteral}{'Unexpected\ unknown\ word\ \`{}braavo`,\ did\ you\ mean\ \`{}bravo`?'},}
+\DoxyCodeLine{\ \ \ \ ruleId:\ \textcolor{stringliteral}{'typo'},}
+\DoxyCodeLine{\ \ \ \ source:\ \textcolor{stringliteral}{'spell'},}
+\DoxyCodeLine{\ \ \ \ file:\ \textcolor{stringliteral}{'\string~/index.text'}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6953}{}\doxysubsection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6953}
+This package exports the identifier \`{}\+VFile\`{}. There is no default export.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6954}{}\doxysubsubsection{\texorpdfstring{{\ttfamily VFile(options?)}}{{\ttfamily VFile(options?)}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6954}
+Create a new virtual file.
+
+{\ttfamily options} is treated as\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily string} or \href{https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}{\texttt{ {\ttfamily Uint8\+Array}}} — {\ttfamily \{value\+: options\}}
+\item {\ttfamily URL} — {\ttfamily \{path\+: options\}}
+\item {\ttfamily VFile} — shallow copies its data over to the new file
+\item {\ttfamily object} — all fields are shallow copied over to the new file
+\end{DoxyItemize}
+
+Path related fields are set in the following order (least specific to most specific)\+: {\ttfamily history}, {\ttfamily path}, {\ttfamily basename}, {\ttfamily stem}, {\ttfamily extname}, {\ttfamily dirname}.
+
+You cannot set {\ttfamily dirname} or {\ttfamily extname} without setting either {\ttfamily history}, {\ttfamily path}, {\ttfamily basename}, or {\ttfamily stem} too.
+
+\doxysubparagraph*{Parameters}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily options} (\`{}\+Compatible\`{}, optional) — file value
+\end{DoxyItemize}
+
+\doxysubparagraph*{Returns}
+
+New instance ({\ttfamily VFile}).
+
+\doxysubparagraph*{Example}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{new\ VFile()}
+\DoxyCodeLine{new\ VFile('console.log("{}alpha"{});')}
+\DoxyCodeLine{new\ VFile(new\ Uint8Array([0x65,\ 0x78,\ 0x69,\ 0x74,\ 0x20,\ 0x31]))}
+\DoxyCodeLine{new\ VFile(\{path:\ path.join('path',\ 'to',\ 'readme.md')\})}
+\DoxyCodeLine{new\ VFile(\{stem:\ 'readme',\ extname:\ '.md',\ dirname:\ path.join('path',\ 'to')\})}
+\DoxyCodeLine{new\ VFile(\{other:\ 'properties',\ are:\ 'copied',\ ov:\ \{e:\ 'r'\}\})}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6955}{}\doxysubsubsection{\texorpdfstring{{\ttfamily file.\+cwd}}{{\ttfamily file.\+cwd}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6955}
+Base of {\ttfamily path} ({\ttfamily string}, default\+: {\ttfamily process.\+cwd()} or `'/\textquotesingle{}\`{} in browsers).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6956}{}\doxysubsubsection{\texorpdfstring{{\ttfamily file.\+data}}{{\ttfamily file.\+data}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6956}
+Place to store custom info ({\ttfamily Record\texorpdfstring{$<$}{<}string, unknown\texorpdfstring{$>$}{>}}, default\+: {\ttfamily \{\}}).
+
+It’s OK to store custom data directly on the file but moving it to {\ttfamily data} is recommended.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6957}{}\doxysubsubsection{\texorpdfstring{{\ttfamily file.\+history}}{{\ttfamily file.\+history}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6957}
+List of file paths the file moved between ({\ttfamily Array\texorpdfstring{$<$}{<}string\texorpdfstring{$>$}{>}}).
+
+The first is the original path and the last is the current path.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6958}{}\doxysubsubsection{\texorpdfstring{{\ttfamily file.\+messages}}{{\ttfamily file.\+messages}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6958}
+List of messages associated with the file (\`{}\+Array\`{}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6959}{}\doxysubsubsection{\texorpdfstring{{\ttfamily file.\+value}}{{\ttfamily file.\+value}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6959}
+Raw value (\href{https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}{\texttt{ {\ttfamily Uint8\+Array}}}, {\ttfamily string}, {\ttfamily undefined}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6960}{}\doxysubsubsection{\texorpdfstring{{\ttfamily file.\+basename}}{{\ttfamily file.\+basename}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6960}
+Get or set the basename (including extname) ({\ttfamily string?}, example\+: `\textquotesingle{}index.\+min.\+js'\`{}).
+
+Cannot contain path separators (`'/\textquotesingle{}{\ttfamily on unix, mac\+OS, and browsers,}\textquotesingle{}\textbackslash{}\textquotesingle{}{\ttfamily on windows). Cannot be nullified (use}file.\+path = file.\+dirname\`{} instead).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6961}{}\doxysubsubsection{\texorpdfstring{{\ttfamily file.\+dirname}}{{\ttfamily file.\+dirname}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6961}
+Get or set the parent path ({\ttfamily string?}, example\+: `'\texorpdfstring{$\sim$}{\string~}\textquotesingle{}\`{}).
+
+Cannot be set if there’s no {\ttfamily path} yet.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6962}{}\doxysubsubsection{\texorpdfstring{{\ttfamily file.\+extname}}{{\ttfamily file.\+extname}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6962}
+Get or set the extname (including dot) ({\ttfamily string?}, example\+: `'.js\textquotesingle{}\`{}).
+
+Cannot contain path separators (`'/\textquotesingle{}{\ttfamily on unix, mac\+OS, and browsers,}\textquotesingle{}\textbackslash{}\textquotesingle{}{\ttfamily on windows). Cannot be set if there’s no}path\`{} yet.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6963}{}\doxysubsubsection{\texorpdfstring{{\ttfamily file.\+path}}{{\ttfamily file.\+path}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6963}
+Get or set the full path ({\ttfamily string?}, example\+: `'\texorpdfstring{$\sim$}{\string~}/index.min.\+js\textquotesingle{}\`{}).
+
+Cannot be nullified. You can set a file URL (a {\ttfamily URL} object with a {\ttfamily file\+:} protocol) which will be turned into a path with \href{https://nodejs.org/api/url.html\#url_url_fileurltopath_url}{\texttt{ {\ttfamily url.\+file\+URLTo\+Path}}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6964}{}\doxysubsubsection{\texorpdfstring{{\ttfamily file.\+stem}}{{\ttfamily file.\+stem}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6964}
+Get or set the stem (basename w/o extname) ({\ttfamily string?}, example\+: `\textquotesingle{}index.\+min'\`{}).
+
+Cannot contain path separators (`'/\textquotesingle{}{\ttfamily on unix, mac\+OS, and browsers,}\textquotesingle{}\textbackslash{}\textquotesingle{}\`{} on windows). Cannot be nullified.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6965}{}\doxysubsubsection{\texorpdfstring{{\ttfamily VFile\#fail(reason\mbox{[}, options\mbox{]})}}{{\ttfamily VFile\#fail(reason\mbox{[}, options\mbox{]})}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6965}
+Create a fatal message for {\ttfamily reason} associated with the file.
+
+The {\ttfamily fatal} field of the message is set to {\ttfamily true} (error; file not usable) and the {\ttfamily file} field is set to the current file path. The message is added to the {\ttfamily messages} field on {\ttfamily file}.
+
+\begin{quote}
+🪦 {\bfseries{Note}}\+: also has obsolete signatures. \end{quote}
+\doxysubparagraph*{Parameters}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily reason} ({\ttfamily string}) — reason for message, should use markdown
+\item {\ttfamily options} (\`{}\+Message\+Options\`{}, optional) — configuration
+\end{DoxyItemize}
+
+\doxysubparagraph*{Returns}
+
+Nothing ({\ttfamily never}).
+
+\doxysubparagraph*{Throws}
+
+Message (\href{https://github.com/vfile/vfile-message}{\texttt{ {\ttfamily VFile\+Message}}}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6966}{}\doxysubsubsection{\texorpdfstring{{\ttfamily VFile\#info(reason\mbox{[}, options\mbox{]})}}{{\ttfamily VFile\#info(reason\mbox{[}, options\mbox{]})}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6966}
+Create an info message for {\ttfamily reason} associated with the file.
+
+The {\ttfamily fatal} field of the message is set to {\ttfamily undefined} (info; change likely not needed) and the {\ttfamily file} field is set to the current file path. The message is added to the {\ttfamily messages} field on {\ttfamily file}.
+
+\begin{quote}
+🪦 {\bfseries{Note}}\+: also has obsolete signatures. \end{quote}
+\doxysubparagraph*{Parameters}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily reason} ({\ttfamily string}) — reason for message, should use markdown
+\item {\ttfamily options} (\`{}\+Message\+Options\`{}, optional) — configuration
+\end{DoxyItemize}
+
+\doxysubparagraph*{Returns}
+
+Message (\href{https://github.com/vfile/vfile-message}{\texttt{ {\ttfamily VFile\+Message}}}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6967}{}\doxysubsubsection{\texorpdfstring{{\ttfamily VFile\#message(reason\mbox{[}, options\mbox{]})}}{{\ttfamily VFile\#message(reason\mbox{[}, options\mbox{]})}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6967}
+Create a message for {\ttfamily reason} associated with the file.
+
+The {\ttfamily fatal} field of the message is set to {\ttfamily false} (warning; change may be needed) and the {\ttfamily file} field is set to the current file path. The message is added to the {\ttfamily messages} field on {\ttfamily file}.
+
+\begin{quote}
+🪦 {\bfseries{Note}}\+: also has obsolete signatures. \end{quote}
+\doxysubparagraph*{Parameters}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily reason} ({\ttfamily string}) — reason for message, should use markdown
+\item {\ttfamily options} (\`{}\+Message\+Options\`{}, optional) — configuration
+\end{DoxyItemize}
+
+\doxysubparagraph*{Returns}
+
+Message (\href{https://github.com/vfile/vfile-message}{\texttt{ {\ttfamily VFile\+Message}}}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6968}{}\doxysubsubsection{\texorpdfstring{{\ttfamily VFile\#to\+String(encoding?)}}{{\ttfamily VFile\#to\+String(encoding?)}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6968}
+Serialize the file.
+
+\begin{quote}
+{\bfseries{Note}}\+: which encodings are supported depends on the engine. For info on Node.\+js, see\+: \href{https://nodejs.org/api/util.html\#whatwg-supported-encodings}{\texttt{ https\+://nodejs.\+org/api/util.\+html\#whatwg-\/supported-\/encodings}}. \end{quote}
+\doxysubparagraph*{Parameters}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily encoding} ({\ttfamily string}, default\+: `\textquotesingle{}utf8'{\ttfamily ) — character encoding to understand}value{\ttfamily as when it’s a \mbox{[}}Uint8\+Array\`{}\mbox{]}\href{https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}{\texttt{ mdn-\/uint8-\/array}}
+\end{DoxyItemize}
+
+\doxysubparagraph*{Returns}
+
+Serialized file ({\ttfamily string}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6969}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Compatible}}{{\ttfamily Compatible}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6969}
+Things that can be passed to the constructor (Type\+Script type).
+
+\doxysubparagraph*{Type}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{type\ Compatible\ =\ Options\ |\ URL\ |\ VFile\ |\ Value}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6970}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Data}}{{\ttfamily Data}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6970}
+Custom info (Type\+Script type).
+
+Known attributes can be added to \`{}\+Data\+Map\`{}.
+
+\doxysubparagraph*{Type}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{type\ Data\ =\ Record<string,\ unknown>\ \&\ Partial<DataMap>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6971}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Data\+Map}}{{\ttfamily Data\+Map}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6971}
+This map registers the type of the {\ttfamily data} key of a {\ttfamily VFile} (Type\+Script type).
+
+This type can be augmented to register custom {\ttfamily data} types.
+
+\doxysubparagraph*{Type}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{interface\ DataMap\ \{\}}
+
+\end{DoxyCode}
+
+
+\doxysubparagraph*{Example}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{declare\ module\ 'vfile'\ \{}
+\DoxyCodeLine{\ \ interface\ DataMap\ \{}
+\DoxyCodeLine{\ \ \ \ //\ \`{}file.data.name`\ is\ typed\ as\ \`{}string`}
+\DoxyCodeLine{\ \ \ \ name:\ string}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6972}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Map}}{{\ttfamily Map}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6972}
+Raw source map (Type\+Script type).
+
+See \href{https://github.com/mozilla/source-map/blob/58819f0/source-map.d.ts\#L15-L23}{\texttt{ {\ttfamily source-\/map}}}.
+
+\doxysubparagraph*{Fields}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily version} ({\ttfamily number}) — which version of the source map spec this map is following
+\item {\ttfamily sources} ({\ttfamily Array\texorpdfstring{$<$}{<}string\texorpdfstring{$>$}{>}}) — an array of URLs to the original source files
+\item {\ttfamily names} ({\ttfamily Array\texorpdfstring{$<$}{<}string\texorpdfstring{$>$}{>}}) — an array of identifiers which can be referenced by individual mappings
+\item {\ttfamily source\+Root} ({\ttfamily string}, optional) — the URL root from which all sources are relative
+\item {\ttfamily sources\+Content} ({\ttfamily Array\texorpdfstring{$<$}{<}string\texorpdfstring{$>$}{>}}, optional) — an array of contents of the original source files
+\item {\ttfamily mappings} ({\ttfamily string}) — a string of base64 VLQs which contain the actual mappings
+\item {\ttfamily file} ({\ttfamily string}) — the generated file this source map is associated with
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6973}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Message\+Options}}{{\ttfamily Message\+Options}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6973}
+Options to create messages (Type\+Script type).
+
+See \href{https://github.com/vfile/vfile-message\#options}{\texttt{ {\ttfamily Options} in {\ttfamily vfile-\/message}}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6974}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Options}}{{\ttfamily Options}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6974}
+An object with arbitrary fields and the following known fields (Type\+Script type).
+
+\doxysubparagraph*{Fields}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily basename} ({\ttfamily string}, optional) — set {\ttfamily basename} (name)
+\item {\ttfamily cwd} ({\ttfamily string}, optional) — set {\ttfamily cwd} (working directory)
+\item {\ttfamily data} (\`{}\+Data\`{}, optional) — set {\ttfamily data} (associated info)
+\item {\ttfamily dirname} ({\ttfamily string}, optional) — set {\ttfamily dirname} (path w/o basename)
+\item {\ttfamily extname} ({\ttfamily string}, optional) — set {\ttfamily extname} (extension with dot)
+\item {\ttfamily history} ({\ttfamily Array\texorpdfstring{$<$}{<}string\texorpdfstring{$>$}{>}}, optional) — set {\ttfamily history} (paths the file moved between)
+\item {\ttfamily path} ({\ttfamily URL \texorpdfstring{$\vert$}{|} string}, optional) — set {\ttfamily path} (current path)
+\item {\ttfamily stem} ({\ttfamily string}, optional) — set {\ttfamily stem} (name without extension)
+\item {\ttfamily value} (\`{}\+Value\`{}, optional) — set {\ttfamily value} (the contents of the file)
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6975}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Reporter}}{{\ttfamily Reporter}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6975}
+Type for a reporter (Type\+Script type).
+
+\doxysubparagraph*{Type}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{type\ Reporter<Settings\ =\ ReporterSettings>\ =\ (}
+\DoxyCodeLine{\ \ files:\ Array<VFile>,}
+\DoxyCodeLine{\ \ options:\ Settings}
+\DoxyCodeLine{)\ =>\ string}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6976}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Reporter\+Settings}}{{\ttfamily Reporter\+Settings}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6976}
+Configuration for reporters (Type\+Script type).
+
+\doxysubparagraph*{Type}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{type\ ReporterSettings\ =\ Record<string,\ unknown>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6977}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Value}}{{\ttfamily Value}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6977}
+Contents of the file (Type\+Script type).
+
+Can either be text or a \href{https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}{\texttt{ {\ttfamily Uint8\+Array}}} structure.
+
+\doxysubparagraph*{Type}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{type\ Value\ =\ Uint8Array\ |\ string}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6978}{}\doxysubsubsection{\texorpdfstring{Well-\/known}{Well-\/known}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6978}
+The following fields are considered “non-\/standard”, but they are allowed, and some utilities use them\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily map} (\`{}\+Map\`{}) — source map; this type is equivalent to the {\ttfamily Raw\+Source\+Map} type from the {\ttfamily source-\/map} module
+\item {\ttfamily result} ({\ttfamily unknown}) — custom, non-\/string, compiled, representation; this is used by unified to store non-\/string results; one example is when turning markdown into React nodes
+\item {\ttfamily stored} ({\ttfamily boolean}) — whether a file was saved to disk; this is used by vfile reporters
+\end{DoxyItemize}
+
+There are also well-\/known fields on messages, see \href{https://github.com/vfile/vfile-message\#well-known}{\texttt{ them in a similar section of {\ttfamily vfile-\/message}}}.
+
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_utilities}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_utilities}%
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6979}{}\doxysubsection{\texorpdfstring{List of utilities}{List of utilities}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6979}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/dustinspecker/convert-vinyl-to-vfile}{\texttt{ {\ttfamily convert-\/vinyl-\/to-\/vfile}}} — transform from \href{https://github.com/gulpjs/vinyl}{\texttt{ Vinyl}}
+\item \href{https://github.com/vfile/to-vfile}{\texttt{ {\ttfamily to-\/vfile}}} — create a file from a file path and read and write to the file system
+\item \href{https://github.com/vfile/vfile-find-down}{\texttt{ {\ttfamily vfile-\/find-\/down}}} — find files by searching the file system downwards
+\item \href{https://github.com/vfile/vfile-find-up}{\texttt{ {\ttfamily vfile-\/find-\/up}}} — find files by searching the file system upwards
+\item \href{https://github.com/shinnn/vfile-glob}{\texttt{ {\ttfamily vfile-\/glob}}} — find files by glob patterns
+\item \href{https://github.com/vfile/vfile-is}{\texttt{ {\ttfamily vfile-\/is}}} — check if a file passes a test
+\item \href{https://github.com/vfile/vfile-location}{\texttt{ {\ttfamily vfile-\/location}}} — convert between positional and offset locations
+\item \href{https://github.com/vfile/vfile-matter}{\texttt{ {\ttfamily vfile-\/matter}}} — parse the YAML front matter
+\item \href{https://github.com/vfile/vfile-message}{\texttt{ {\ttfamily vfile-\/message}}} — create a file message
+\item \href{https://github.com/shinnn/vfile-messages-to-vscode-diagnostics}{\texttt{ {\ttfamily vfile-\/messages-\/to-\/vscode-\/diagnostics}}} — transform file messages to VS Code diagnostics
+\item \href{https://github.com/vfile/vfile-mkdirp}{\texttt{ {\ttfamily vfile-\/mkdirp}}} — make sure the directory of a file exists on the file system
+\item \href{https://github.com/vfile/vfile-rename}{\texttt{ {\ttfamily vfile-\/rename}}} — rename the path parts of a file
+\item \href{https://github.com/vfile/vfile-sort}{\texttt{ {\ttfamily vfile-\/sort}}} — sort messages by line/column
+\item \href{https://github.com/vfile/vfile-statistics}{\texttt{ {\ttfamily vfile-\/statistics}}} — count messages per category\+: failures, warnings, etc
+\item \href{https://github.com/vfile/vfile-to-eslint}{\texttt{ {\ttfamily vfile-\/to-\/eslint}}} — convert to ESLint formatter compatible output
+\end{DoxyItemize}
+
+\begin{quote}
+👉 {\bfseries{Note}}\+: see \href{https://github.com/syntax-tree/unist\#list-of-utilities}{\texttt{ unist}} for projects that work with nodes. \end{quote}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6980}{}\doxysubsection{\texorpdfstring{Reporters}{Reporters}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6980}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/vfile/vfile-reporter}{\texttt{ {\ttfamily vfile-\/reporter}}} — create a report
+\item \href{https://github.com/vfile/vfile-reporter-json}{\texttt{ {\ttfamily vfile-\/reporter-\/json}}} — create a JSON report
+\item \href{https://github.com/vfile/vfile-reporter-folder-json}{\texttt{ {\ttfamily vfile-\/reporter-\/folder-\/json}}} — create a JSON representation of vfiles
+\item \href{https://github.com/vfile/vfile-reporter-pretty}{\texttt{ {\ttfamily vfile-\/reporter-\/pretty}}} — create a pretty report
+\item \href{https://github.com/kellyselden/vfile-reporter-junit}{\texttt{ {\ttfamily vfile-\/reporter-\/junit}}} — create a j\+Unit report
+\item \href{https://github.com/Hocdoc/vfile-reporter-position}{\texttt{ {\ttfamily vfile-\/reporter-\/position}}} — create a report with content excerpts
+\end{DoxyItemize}
+
+\begin{quote}
+👉 {\bfseries{Note}}\+: want to make your own reporter? Reporters {\itshape must} accept {\ttfamily Array\texorpdfstring{$<$}{<}VFile\texorpdfstring{$>$}{>}} as their first argument, and return {\ttfamily string}. Reporters {\itshape may} accept other values too, in which case it’s suggested to stick to {\ttfamily vfile-\/reporter}s interface. \end{quote}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6981}{}\doxysubsection{\texorpdfstring{Types}{Types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6981}
+This package is fully typed with \href{https://www.typescriptlang.org}{\texttt{ Type\+Script}}. It exports the additional types \`{}\+Compatible\`{}, \`{}\+Data\`{}, \`{}\+Data\+Map\`{}, \`{}\+Map\`{}, \`{}\+Message\+Options\`{}, \`{}\+Options\`{}, \`{}\+Reporter\`{}, \`{}\+Reporter\+Settings\`{}, and \`{}\+Value\`{}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6982}{}\doxysubsection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6982}
+Projects maintained by the unified collective are compatible with maintained versions of Node.\+js.
+
+When we cut a new major release, we drop support for unmaintained versions of Node. This means we try to keep the current release line, {\ttfamily vfile@\texorpdfstring{$^\wedge$}{\string^}6}, compatible with Node.\+js 16.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6983}{}\doxysubsection{\texorpdfstring{Contribute}{Contribute}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6983}
+See \href{https://github.com/vfile/.github/blob/main/contributing.md}{\texttt{ {\ttfamily contributing.\+md}}} in \href{https://github.com/vfile/.github}{\texttt{ {\ttfamily vfile/.github}}} for ways to get started. See \href{https://github.com/vfile/.github/blob/main/support.md}{\texttt{ {\ttfamily support.\+md}}} for ways to get help.
+
+This project has a \href{https://github.com/vfile/.github/blob/main/code-of-conduct.md}{\texttt{ code of conduct}}. By interacting with this repository, organization, or community you agree to abide by its terms.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6984}{}\doxysubsection{\texorpdfstring{Sponsor}{Sponsor}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6984}
+Support this effort and give back by sponsoring on \href{https://opencollective.com/unified}{\texttt{ Open\+Collective}}!
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{10}{|X[-1]}|}
+\hline
+\multicolumn{2}{|c|}{\multirow{2}{*}{\PBS\centering \href{https://vercel.com}{\texttt{ Vercel}}~\newline
+~\newline
+ \href{https://vercel.com}{\texttt{ }}  }}&\multicolumn{2}{c|}{\multirow{2}{*}{\PBS\centering \href{https://motif.land}{\texttt{ Motif}}~\newline
+~\newline
+ \href{https://motif.land}{\texttt{ }}  }}&\multicolumn{2}{c|}{\multirow{2}{*}{\PBS\centering \href{https://www.hashicorp.com}{\texttt{ Hashi\+Corp}}~\newline
+~\newline
+ \href{https://www.hashicorp.com}{\texttt{ }}  }}&\multicolumn{2}{c|}{\multirow{2}{*}{\PBS\centering \href{https://www.gitbook.com}{\texttt{ Git\+Book}}~\newline
+~\newline
+ \href{https://www.gitbook.com}{\texttt{ }}  }}&\multicolumn{2}{c|}{\multirow{2}{*}{\PBS\centering \href{https://www.gatsbyjs.org}{\texttt{ Gatsby}}~\newline
+~\newline
+ \href{https://www.gatsbyjs.org}{\texttt{ }}   }}\\
+&\multicolumn{2}{}|}{}&\multicolumn{2}{}|}{}&\multicolumn{2}{}|}{}&\multicolumn{2}{}|}{}&\multicolumn{2}{}|}{}\\\cline{1-10}
+\end{longtabu}
+
+
+\href{https://www.netlify.com}{\texttt{ Netlify}}~\newline
+~\newline
+
+
+\href{https://www.netlify.com}{\texttt{ }}  
+
+\href{https://www.coinbase.com}{\texttt{ Coinbase}}~\newline
+~\newline
+ \href{https://www.coinbase.com}{\texttt{ }}  
+
+\href{https://themeisle.com}{\texttt{ Theme\+Isle}}~\newline
+~\newline
+ \href{https://themeisle.com}{\texttt{ }}  
+
+\href{https://expo.io}{\texttt{ Expo}}~\newline
+~\newline
+ \href{https://expo.io}{\texttt{ }}  
+
+\href{https://boostnote.io}{\texttt{ Boost Note}}~\newline
+~\newline
+ \href{https://boostnote.io}{\texttt{ }}  
+
+\href{https://markdown.space}{\texttt{ Markdown Space}}~\newline
+~\newline
+ \href{https://markdown.space}{\texttt{ }}  
+
+\href{https://www.holloway.com}{\texttt{ Holloway}}~\newline
+~\newline
+ \href{https://www.holloway.com}{\texttt{ }}  
+
+~\newline
+ \href{https://opencollective.com/unified}{\texttt{ {\bfseries{You?}}}} ~\newline
+~\newline
+   \hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6985}{}\doxysubsection{\texorpdfstring{Acknowledgments}{Acknowledgments}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6985}
+The initial release of this project was authored by \href{https://github.com/wooorm}{\texttt{ {\bfseries{@wooorm}}}}.
+
+Thanks to \href{https://github.com/contra}{\texttt{ {\bfseries{@contra}}}}, \href{https://github.com/phated}{\texttt{ {\bfseries{@phated}}}}, and others for their work on \href{https://github.com/gulpjs/vinyl}{\texttt{ Vinyl}}, which was a huge inspiration.
+
+Thanks to \href{https://github.com/brendo}{\texttt{ {\bfseries{@brendo}}}}, \href{https://github.com/shinnn}{\texttt{ {\bfseries{@shinnn}}}}, \href{https://github.com/KyleAMathews}{\texttt{ {\bfseries{@\+Kyle\+AMathews}}}}, \href{https://github.com/sindresorhus}{\texttt{ {\bfseries{@sindresorhus}}}}, and \href{https://github.com/denysdovhan}{\texttt{ {\bfseries{@denysdovhan}}}} for contributing commits since!\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6986}{}\doxysubsection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2vfile_2readme_autotoc_md6986}
+\mbox{[}MIT\mbox{]}\mbox{[}license\mbox{]} © \href{https://wooorm.com}{\texttt{ Titus Wormer}} 

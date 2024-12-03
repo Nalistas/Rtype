@@ -1,0 +1,45 @@
+\chapter{detect-\/node}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2detect-node-es_2Readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2detect-node-es_2Readme}\index{detect-\/node@{detect-\/node}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2detect-node-es_2Readme_autotoc_md1896}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2detect-node-es_2Readme_autotoc_md1896}%
+\begin{quote}
+This is a fork of {\ttfamily detect-\/node}. \end{quote}
+Differences\+:
+\begin{DoxyItemize}
+\item uses named export \{is\+Node\}
+\item has d.\+ts integrated
+\item supports ESM
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2detect-node-es_2Readme_autotoc_md1897}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2detect-node-es_2Readme_autotoc_md1897}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ -\/-\/save\ detect-\/node-\/es}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2detect-node-es_2Readme_autotoc_md1898}{}\doxysubsection{\texorpdfstring{Usage\+:}{Usage\+:}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2detect-node-es_2Readme_autotoc_md1898}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/var\ isNode\ =\ require('detect-\/node');}
+\DoxyCodeLine{+var\ \{isNode\}\ =\ require('detect-\/node-\/es');}
+\DoxyCodeLine{}
+\DoxyCodeLine{if\ (isNode)\ \{}
+\DoxyCodeLine{\ \ console.log("{}Running\ under\ Node.JS"{});}
+\DoxyCodeLine{\}\ else\ \{}
+\DoxyCodeLine{\ \ alert("{}Hello\ from\ browser\ (or\ whatever\ not-\/a-\/node\ env)"{});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The check is performed as\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ false;}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Only\ Node.JS\ has\ a\ process\ variable\ that\ is\ of\ [[Class]]\ process}
+\DoxyCodeLine{try\ \{}
+\DoxyCodeLine{\ module.exports\ =\ Object.prototype.toString.call(global.process)\ ===\ '[object\ process]'\ }
+\DoxyCodeLine{\}\ catch(e)\ \{\}}
+
+\end{DoxyCode}
+
+
+Thanks to Ingvar Stepanyan for the initial idea. This check is both {\bfseries{the most reliable I could find}} and it does not use {\ttfamily process} env directly, which would cause browserify to include it into the build. 

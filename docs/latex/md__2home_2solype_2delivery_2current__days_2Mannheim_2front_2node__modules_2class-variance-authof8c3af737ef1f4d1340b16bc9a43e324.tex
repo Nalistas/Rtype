@@ -1,0 +1,106 @@
+\chapter{clsx \texorpdfstring{$<$}{<}a href="{}https\+://github.\+com/lukeed/clsx/actions?query=workflow\%3\+ACI"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://github.\+com/lukeed/clsx/workflows/\+CI/badge.\+svg"{} alt="{}\+CI"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://codecov.\+io/gh/lukeed/clsx"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://badgen.\+net/codecov/c/github/lukeed/clsx"{} alt="{}codecov"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>}}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324}\index{clsx $<$a href="{}https://github.com/lukeed/clsx/actions?query=workflow\%3ACI"{} $>$$<$img src="{}https://github.com/lukeed/clsx/workflows/CI/badge.svg"{} alt="{}CI"{}/$>$$<$/a$>$ $<$a href="{}https://codecov.io/gh/lukeed/clsx"{} $>$$<$img src="{}https://badgen.net/codecov/c/github/lukeed/clsx"{} alt="{}codecov"{}/$>$$<$/a$>$@{clsx $<$a href=""https://github.com/lukeed/clsx/actions?query=workflow\%3ACI"" $>$$<$img src=""https://github.com/lukeed/clsx/workflows/CI/badge.svg"" alt=""CI""/$>$$<$/a$>$ $<$a href=""https://codecov.io/gh/lukeed/clsx"" $>$$<$img src=""https://badgen.net/codecov/c/github/lukeed/clsx"" alt=""codecov""/$>$$<$/a$>$}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1589}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1589}%
+ \begin{quote}
+A tiny (234B) utility for constructing {\ttfamily class\+Name} strings conditionally.~\newline
+Also serves as a \href{/bench}{\texttt{ faster}} \& smaller drop-\/in replacement for the {\ttfamily classnames} module. \end{quote}
+This module is available in three formats\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{ES Module}}\+: {\ttfamily dist/clsx.\+m.\+js}
+\item {\bfseries{Common\+JS}}\+: {\ttfamily dist/clsx.\+js}
+\item {\bfseries{UMD}}\+: {\ttfamily dist/clsx.\+min.\+js}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1590}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1590}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ -\/-\/save\ clsx}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1591}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1591}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ clsx\ from\ 'clsx';}
+\DoxyCodeLine{//\ or}
+\DoxyCodeLine{import\ \{\ clsx\ \}\ from\ 'clsx';}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Strings\ (variadic)}
+\DoxyCodeLine{clsx('foo',\ true\ \&\&\ 'bar',\ 'baz');}
+\DoxyCodeLine{//=>\ 'foo\ bar\ baz'}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Objects}
+\DoxyCodeLine{clsx(\{\ foo:true,\ bar:false,\ baz:isTrue()\ \});}
+\DoxyCodeLine{//=>\ 'foo\ baz'}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Objects\ (variadic)}
+\DoxyCodeLine{clsx(\{\ foo:true\ \},\ \{\ bar:false\ \},\ null,\ \{\ '-\/-\/foobar':'hello'\ \});}
+\DoxyCodeLine{//=>\ 'foo\ -\/-\/foobar'}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Arrays}
+\DoxyCodeLine{clsx(['foo',\ 0,\ false,\ 'bar']);}
+\DoxyCodeLine{//=>\ 'foo\ bar'}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Arrays\ (variadic)}
+\DoxyCodeLine{clsx(['foo'],\ ['',\ 0,\ false,\ 'bar'],\ [['baz',\ [['hello'],\ 'there']]]);}
+\DoxyCodeLine{//=>\ 'foo\ bar\ baz\ hello\ there'}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Kitchen\ sink\ (with\ nesting)}
+\DoxyCodeLine{clsx('foo',\ [1\ \&\&\ 'bar',\ \{\ baz:false,\ bat:null\ \},\ ['hello',\ ['world']]],\ 'cya');}
+\DoxyCodeLine{//=>\ 'foo\ bar\ hello\ world\ cya'}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1592}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1592}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1593}{}\doxysubsection{\texorpdfstring{clsx(...\+input)}{clsx(...\+input)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1593}
+Returns\+: {\ttfamily String}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1594}{}\doxysubsubsection{\texorpdfstring{input}{input}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1594}
+Type\+: {\ttfamily Mixed}
+
+The {\ttfamily clsx} function can take {\itshape {\bfseries{any}}} number of arguments, each of which can be an Object, Array, Boolean, or String.
+
+\begin{quote}
+{\bfseries{Important\+:}} {\itshape Any} falsey values are discarded!~\newline
+Standalone Boolean values are discarded as well. \end{quote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{clsx(true,\ false,\ '',\ null,\ undefined,\ 0,\ NaN);}
+\DoxyCodeLine{//=>\ ''}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1595}{}\doxysection{\texorpdfstring{Benchmarks}{Benchmarks}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1595}
+For snapshots of cross-\/browser results, check out the \href{/bench}{\texttt{ {\ttfamily bench}}} directory\texorpdfstring{$\sim$}{\string~}!\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1596}{}\doxysection{\texorpdfstring{Support}{Support}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1596}
+All versions of Node.\+js are supported.
+
+All browsers that support \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray\#Browser_compatibility}{\texttt{ {\ttfamily Array.\+is\+Array}}} are supported (IE9+).
+
+\texorpdfstring{$>$}{>}{\bfseries{Note\+:}} For IE8 support and older, please install {\ttfamily clsx@1.\+0.\+x} and beware of \href{https://github.com/lukeed/clsx/issues/17}{\texttt{ \#17}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1597}{}\doxysection{\texorpdfstring{Tailwind Support}{Tailwind Support}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1597}
+Here some additional (optional) steps to enable classes autocompletion using {\ttfamily clsx} with Tailwind CSS. 
+
+{\bfseries{}}\begin{adjustwidth}{1em}{0em}
+
+
+Visual Studio Code 
+
+
+
+
+\begin{DoxyEnumerate}
+\item \href{https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss}{\texttt{ Install the "{}Tailwind CSS Intelli\+Sense"{} Visual Studio Code extension}}
+\item Add the following to your \href{https://code.visualstudio.com/docs/getstarted/settings}{\texttt{ {\ttfamily settings.\+json}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ "{}tailwindCSS.experimental.classRegex"{}:\ [}
+\DoxyCodeLine{\ \ \ ["{}clsx\(\backslash\)\(\backslash\)(([\string^)]*)\(\backslash\)\(\backslash\))"{},\ "{}(?:'|\(\backslash\)"{}|`)([\string^']*)(?:'|\(\backslash\)"{}|`)"{}]}
+\DoxyCodeLine{\ ]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyEnumerate}\end{adjustwidth}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1598}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1598}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/lukeed/obj-str}{\texttt{ obj-\/str}} -\/ A smaller (96B) and similiar utility that only works with Objects.
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1599}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2class-variance-authof8c3af737ef1f4d1340b16bc9a43e324_autotoc_md1599}
+MIT © \href{https://lukeed.com}{\texttt{ Luke Edwards}} 

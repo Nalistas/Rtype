@@ -1,0 +1,28 @@
+\chapter{Integer Number}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2integer}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2integer}\index{Integer Number@{Integer Number}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2integer_autotoc_md6639}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2integer_autotoc_md6639}%
+ Integer {\itshape number} primitive\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2integer_autotoc_md6640}{}\doxysection{\texorpdfstring{{\ttfamily integer/coerce}}{{\ttfamily integer/coerce}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2integer_autotoc_md6640}
+Follows \href{finite.md\#finitecoerce}{\texttt{ {\ttfamily finite/coerce}}} additionally stripping decimal part from the number
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ coerceToInteger\ =\ require("{}type/integer/coerce"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{coerceToInteger("{}12.95"{});\ //\ 12}
+\DoxyCodeLine{coerceToInteger(Infinity);\ //\ null}
+\DoxyCodeLine{coerceToInteger(null);\ //\ null}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2integer_autotoc_md6641}{}\doxysection{\texorpdfstring{{\ttfamily integer/ensure}}{{\ttfamily integer/ensure}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2integer_autotoc_md6641}
+If given argument is an integer coercible value (via \`{}integer/coerce\`{}) returns result number. Otherwise {\ttfamily Type\+Error} is thrown.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureInteger\ =\ require("{}type/integer/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{ensureInteger(12.93);\ //\ "{}12"{}}
+\DoxyCodeLine{ensureInteger(null);\ //\ Thrown\ TypeError:\ null\ is\ not\ an\ integer}
+
+\end{DoxyCode}
+ 

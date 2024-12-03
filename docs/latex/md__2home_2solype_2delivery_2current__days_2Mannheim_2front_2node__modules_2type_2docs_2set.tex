@@ -1,0 +1,29 @@
+\chapter{Set}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2set}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2set}\index{Set@{Set}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2set_autotoc_md6678}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2set_autotoc_md6678}%
+ {\itshape Set} instance\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2set_autotoc_md6679}{}\doxysection{\texorpdfstring{{\ttfamily set/is}}{{\ttfamily set/is}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2set_autotoc_md6679}
+Confirms if given object is a native set\+\_\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ isSet\ =\ require("{}type/set/is"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{isSet(new\ Set());\ //\ true}
+\DoxyCodeLine{isSet(new\ Map());\ //\ false}
+\DoxyCodeLine{isSet(\{\});\ //\ false}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2set_autotoc_md6680}{}\doxysection{\texorpdfstring{{\ttfamily Set/ensure}}{{\ttfamily Set/ensure}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2set_autotoc_md6680}
+If given argument is a {\itshape set}, it is returned back. Otherwise {\ttfamily Type\+Error} is thrown.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureSet\ =\ require("{}type/set/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ set\ =\ new\ Set();}
+\DoxyCodeLine{ensureSet(set);\ //\ set}
+\DoxyCodeLine{eensureSet(\{\});\ //\ Thrown\ TypeError:\ [object\ Object]\ is\ not\ a\ set}
+
+\end{DoxyCode}
+ 

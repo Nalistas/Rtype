@@ -1,0 +1,28 @@
+\chapter{Array length}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2array-length}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2array-length}\index{Array length@{Array length}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2array-length_autotoc_md6606}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2array-length_autotoc_md6606}%
+ {\itshape number} primitive that conforms as valid {\itshape array length}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2array-length_autotoc_md6607}{}\doxysection{\texorpdfstring{{\ttfamily array-\/length/coerce}}{{\ttfamily array-\/length/coerce}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2array-length_autotoc_md6607}
+Follows \href{safe-integer.md\#safe-integercoerce}{\texttt{ {\ttfamily safe-\/integer/coerce}}} but returns {\ttfamily null} in place of values which are below {\ttfamily 0}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ coerceToArrayLength\ =\ require("{}type/safe-\/integer/coerce"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{coerceToArrayLength("{}12.95"{});\ //\ 12}
+\DoxyCodeLine{coerceToArrayLength(9007199254740992);\ //\ null}
+\DoxyCodeLine{coerceToArrayLength(null);\ //\ null}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2array-length_autotoc_md6608}{}\doxysection{\texorpdfstring{{\ttfamily array-\/length/ensure}}{{\ttfamily array-\/length/ensure}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2array-length_autotoc_md6608}
+If given argument is an {\itshape array length} coercible value (via \`{}array-\/length/coerce\`{}) returns result number. Otherwise {\ttfamily Type\+Error} is thrown.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureArrayLength\ =\ require("{}type/array-\/length/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{ensureArrayLength(12.93);\ //\ "{}12"{}}
+\DoxyCodeLine{ensureArrayLength(9007199254740992);\ //\ Thrown\ TypeError:\ 9007199254740992\ is\ not\ a\ valid\ array\ length}
+
+\end{DoxyCode}
+ 

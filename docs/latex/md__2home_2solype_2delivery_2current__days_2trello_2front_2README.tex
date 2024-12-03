@@ -1,0 +1,64 @@
+\chapter{React + Type\+Script + Vite}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2README}{}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2README}\index{React + TypeScript + Vite@{React + TypeScript + Vite}}
+\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2README_autotoc_md13717}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2README_autotoc_md13717}%
+ This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available\+:
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md}{\texttt{ @vitejs/plugin-\/react}} uses \href{https://babeljs.io/}{\texttt{ Babel}} for Fast Refresh
+\item \href{https://github.com/vitejs/vite-plugin-react-swc}{\texttt{ @vitejs/plugin-\/react-\/swc}} uses \href{https://swc.rs/}{\texttt{ SWC}} for Fast Refresh
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2README_autotoc_md13718}{}\doxysection{\texorpdfstring{Expanding the ESLint configuration}{Expanding the ESLint configuration}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2README_autotoc_md13718}
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules\+:
+
+
+\begin{DoxyItemize}
+\item Configure the top-\/level {\ttfamily parser\+Options} property like this\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ default\ tseslint.config(\{}
+\DoxyCodeLine{\ \ languageOptions:\ \{}
+\DoxyCodeLine{\ \ \ \ //\ other\ options...}
+\DoxyCodeLine{\ \ \ \ parserOptions:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ project:\ ['./tsconfig.node.json',\ './tsconfig.app.json'],}
+\DoxyCodeLine{\ \ \ \ \ \ tsconfigRootDir:\ import.meta.dirname,}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Replace {\ttfamily tseslint.\+configs.\+recommended} to {\ttfamily tseslint.\+configs.\+recommended\+Type\+Checked} or {\ttfamily tseslint.\+configs.\+strict\+Type\+Checked}
+\item Optionally add {\ttfamily ...tseslint.\+configs.\+stylistic\+Type\+Checked}
+\item Install \href{https://github.com/jsx-eslint/eslint-plugin-react}{\texttt{ eslint-\/plugin-\/react}} and update the config\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ eslint.config.js}
+\DoxyCodeLine{import\ react\ from\ 'eslint-\/plugin-\/react'}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ tseslint.config(\{}
+\DoxyCodeLine{\ \ //\ Set\ the\ react\ version}
+\DoxyCodeLine{\ \ settings:\ \{\ react:\ \{\ version:\ '18.3'\ \}\ \},}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Add\ the\ react\ plugin}
+\DoxyCodeLine{\ \ \ \ react,}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ rules:\ \{}
+\DoxyCodeLine{\ \ \ \ //\ other\ rules...}
+\DoxyCodeLine{\ \ \ \ //\ Enable\ its\ recommended\ rules}
+\DoxyCodeLine{\ \ \ \ ...react.configs.recommended.rules,}
+\DoxyCodeLine{\ \ \ \ ...react.configs['jsx-\/runtime'].rules,}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+ 

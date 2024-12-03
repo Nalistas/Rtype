@@ -1,0 +1,33 @@
+\chapter{\texorpdfstring{$<$}{<}tt\texorpdfstring{$>$}{>}react\texorpdfstring{$<$}{<}/tt\texorpdfstring{$>$}{>}}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react_2README}{}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react_2README}\index{$<$tt$>$react$<$/tt$>$@{$<$tt$>$react$<$/tt$>$}}
+\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react_2README_autotoc_md12144}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react_2README_autotoc_md12144}%
+ React is a Java\+Script library for creating user interfaces.
+
+The {\ttfamily react} package contains only the functionality necessary to define React components. It is typically used together with a React renderer like {\ttfamily react-\/dom} for the web, or {\ttfamily react-\/native} for the native environments.
+
+{\bfseries{Note\+:}} by default, React will be in development mode. The development version includes extra warnings about common mistakes, whereas the production version includes extra performance optimizations and strips all error messages. Don\textquotesingle{}t forget to use the \href{https://reactjs.org/docs/optimizing-performance.html\#use-the-production-build}{\texttt{ production build}} when deploying your application.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react_2README_autotoc_md12145}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react_2README_autotoc_md12145}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ useState\ \}\ from\ 'react';}
+\DoxyCodeLine{import\ \{\ createRoot\ \}\ from\ 'react-\/dom/client';}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ Counter()\ \{}
+\DoxyCodeLine{\ \ const\ [count,\ setCount]\ =\ useState(0);}
+\DoxyCodeLine{\ \ return\ (}
+\DoxyCodeLine{\ \ \ \ <>}
+\DoxyCodeLine{\ \ \ \ \ \ <h1>\{count\}</h1>}
+\DoxyCodeLine{\ \ \ \ \ \ <button\ onClick=\{()\ =>\ setCount(count\ +\ 1)\}>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Increment}
+\DoxyCodeLine{\ \ \ \ \ \ </button>}
+\DoxyCodeLine{\ \ \ \ </>}
+\DoxyCodeLine{\ \ );}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ root\ =\ createRoot(document.getElementById('root'));}
+\DoxyCodeLine{root.render(<App\ />);}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react_2README_autotoc_md12146}{}\doxysection{\texorpdfstring{Documentation}{Documentation}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react_2README_autotoc_md12146}
+See \href{https://reactjs.org/}{\texttt{ https\+://reactjs.\+org/}}\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react_2README_autotoc_md12147}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react_2README_autotoc_md12147}
+See \href{https://reactjs.org/docs/react-api.html}{\texttt{ https\+://reactjs.\+org/docs/react-\/api.\+html}} 

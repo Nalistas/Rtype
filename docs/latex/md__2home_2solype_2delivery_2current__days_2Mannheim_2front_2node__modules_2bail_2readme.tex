@@ -1,0 +1,81 @@
+\chapter{bail}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme}\index{bail@{bail}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1351}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1351}%
+ \href{https://github.com/wooorm/bail/actions}{\texttt{ }} \href{https://codecov.io/github/wooorm/bail}{\texttt{ }} \href{https://www.npmjs.com/package/bail}{\texttt{ }} \href{https://bundlephobia.com/result?p=bail}{\texttt{ }}
+
+Throw if given an error.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1352}{}\doxysection{\texorpdfstring{Contents}{Contents}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1352}
+
+\begin{DoxyItemize}
+\item What is this?
+\item When should I use this?
+\item Install
+\item Use
+\item API
+\begin{DoxyItemize}
+\item \`{}bail(err?)\`{}
+\end{DoxyItemize}
+\item Types
+\item Compatibility
+\item Security
+\item Related
+\item Contribute
+\item License
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1353}{}\doxysection{\texorpdfstring{What is this?}{What is this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1353}
+This package throws a given error.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1354}{}\doxysection{\texorpdfstring{When should I use this?}{When should I use this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1354}
+Use this package if you’re building some scripts that might theoretically get errors but frequently don’t and you keep writing {\ttfamily if (error) throw error} over and over again and you’re just really done with that.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1355}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1355}
+This package is \href{https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c}{\texttt{ ESM only}}. In Node.\+js (version 12.\+20+, 14.\+14+, or 16.\+0+), install with \href{https://docs.npmjs.com/cli/install}{\texttt{ npm}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ bail}
+
+\end{DoxyCode}
+
+
+In Deno with \href{https://www.skypack.dev}{\texttt{ Skypack}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{bail\}\ from\ 'https://cdn.skypack.dev/bail@2?dts'}
+
+\end{DoxyCode}
+
+
+In browsers with \href{https://www.skypack.dev}{\texttt{ Skypack}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{bail\}\ from\ 'https://cdn.skypack.dev/bail@2?min'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1356}{}\doxysection{\texorpdfstring{Use}{Use}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1356}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{bail\}\ from\ 'bail'}
+\DoxyCodeLine{}
+\DoxyCodeLine{bail()}
+\DoxyCodeLine{}
+\DoxyCodeLine{bail(new\ Error('failure'))}
+\DoxyCodeLine{//\ Error:\ failure}
+\DoxyCodeLine{//\ \ \ \ \ at\ repl:1:6}
+\DoxyCodeLine{//\ \ \ \ \ at\ REPLServer.defaultEval\ (repl.js:154:27)}
+\DoxyCodeLine{//\ \ \ \ \ …}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1357}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1357}
+This package exports the following identifier\+: {\ttfamily bail}. There is no default export.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1358}{}\doxysubsection{\texorpdfstring{{\ttfamily bail(err?)}}{{\ttfamily bail(err?)}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1358}
+Throw a given error ({\ttfamily Error?}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1359}{}\doxysection{\texorpdfstring{Types}{Types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1359}
+This package is fully typed with \href{https://www.typescriptlang.org}{\texttt{ Type\+Script}}. There are no extra exported types.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1360}{}\doxysection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1360}
+This package is at least compatible with all maintained versions of Node.\+js. As of now, that is Node.\+js 12.\+20+, 14.\+14+, and 16.\+0+. It also works in Deno and modern browsers.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1361}{}\doxysection{\texorpdfstring{Security}{Security}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1361}
+This package is safe.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1362}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1362}
+
+\begin{DoxyItemize}
+\item \href{https://www.npmjs.com/package/noop}{\texttt{ {\ttfamily noop}}}
+\item \href{https://www.npmjs.com/package/noop2}{\texttt{ {\ttfamily noop2}}}
+\item \href{https://www.npmjs.com/package/noop3}{\texttt{ {\ttfamily noop3}}}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1363}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1363}
+Yes please! See \href{https://opensource.guide/how-to-contribute/}{\texttt{ How to Contribute to Open Source}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1364}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2bail_2readme_autotoc_md1364}
+\mbox{[}MIT\mbox{]}\mbox{[}license\mbox{]} © \href{https://wooorm.com}{\texttt{ Titus Wormer}} 

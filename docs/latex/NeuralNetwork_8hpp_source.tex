@@ -1,0 +1,42 @@
+\doxysection{Neural\+Network.\+hpp}
+\hypertarget{NeuralNetwork_8hpp_source}{}\label{NeuralNetwork_8hpp_source}\index{/home/solype/delivery/current\_days/my\_tests/include/NeuralNetwork.hpp@{/home/solype/delivery/current\_days/my\_tests/include/NeuralNetwork.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ my\_tests}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ NeuralNetwork}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ NEURALNETWORK\_HPP}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#define\ NEURALNETWORK\_HPP}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}Matrix.hpp"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classNeuralNetwork}{NeuralNetwork}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classNeuralNetwork}{NeuralNetwork}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ input\_size,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ hidden\_size,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ output\_size);}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ predict(\textcolor{keyword}{const}\ \mbox{\hyperlink{classMatrix}{Matrix}}\&\ input)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ train(\textcolor{keyword}{const}\ std::vector<Matrix>\&\ inputs,\ \textcolor{keyword}{const}\ std::vector<Matrix>\&\ targets);}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeRandom(\mbox{\hyperlink{classMatrix}{Matrix}}\&\ m);}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ train(\textcolor{keyword}{const}\ \mbox{\hyperlink{classMatrix}{Matrix}}\&\ inputs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classMatrix}{Matrix}}\&\ targets,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ epochs,\ \textcolor{keywordtype}{double}\ learning\_rate);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ input\_size;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ hidden\_size;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ output\_size;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ weights\_input\_hidden;}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ weights\_hidden\_output;}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ bias\_hidden;}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ bias\_output;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ sigmoid(\textcolor{keyword}{const}\ \mbox{\hyperlink{classMatrix}{Matrix}}\&\ m)\ \textcolor{keyword}{const};\ \ \textcolor{comment}{//\ Fonction\ d'activation}}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ sigmoid\_derivative(\textcolor{keyword}{const}\ \mbox{\hyperlink{classMatrix}{Matrix}}\&\ m)\ \textcolor{keyword}{const};\ \ \textcolor{comment}{//\ Dérivée\ de\ la\ fonction\ d'activation}}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ NEURALNETWORK\_HPP}}
+
+\end{DoxyCode}

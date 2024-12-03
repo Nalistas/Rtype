@@ -1,0 +1,65 @@
+\chapter{wrap-\/ansi}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme}\index{wrap-\/ansi@{wrap-\/ansi}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7475}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7475}%
+ \begin{quote}
+Wordwrap a string with \href{https://en.wikipedia.org/wiki/ANSI_escape_code\#Colors_and_Styles}{\texttt{ ANSI escape codes}} \end{quote}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7476}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7476}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ wrap-\/ansi}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7477}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7477}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ chalk\ from\ 'chalk';}
+\DoxyCodeLine{import\ wrapAnsi\ from\ 'wrap-\/ansi';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ input\ =\ 'The\ quick\ brown\ '\ +\ chalk.red('fox\ jumped\ over\ ')\ +}
+\DoxyCodeLine{\ \ \ \ 'the\ lazy\ '\ +\ chalk.green('dog\ and\ then\ ran\ away\ with\ the\ unicorn.');}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(wrapAnsi(input,\ 20));}
+
+\end{DoxyCode}
+
+
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7478}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7478}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7479}{}\doxysubsection{\texorpdfstring{wrap\+Ansi(string, columns, options?)}{wrap\+Ansi(string, columns, options?)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7479}
+Wrap words to the specified column width.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7480}{}\doxysubsubsection{\texorpdfstring{string}{string}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7480}
+Type\+: {\ttfamily string}
+
+String with ANSI escape codes. Like one styled by \href{https://github.com/chalk/chalk}{\texttt{ {\ttfamily chalk}}}. Newline characters will be normalized to {\ttfamily \textbackslash{}n}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7481}{}\doxysubsubsection{\texorpdfstring{columns}{columns}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7481}
+Type\+: {\ttfamily number}
+
+Number of columns to wrap the text to.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7482}{}\doxysubsubsection{\texorpdfstring{options}{options}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7482}
+Type\+: {\ttfamily object}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7483}{}\doxyparagraph{\texorpdfstring{hard}{hard}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7483}
+Type\+: {\ttfamily boolean}\textbackslash{} Default\+: {\ttfamily false}
+
+By default the wrap is soft, meaning long words may extend past the column width. Setting this to {\ttfamily true} will make it hard wrap at the column width.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7484}{}\doxyparagraph{\texorpdfstring{word\+Wrap}{word\+Wrap}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7484}
+Type\+: {\ttfamily boolean}\textbackslash{} Default\+: {\ttfamily true}
+
+By default, an attempt is made to split words at spaces, ensuring that they don\textquotesingle{}t extend past the configured columns. If word\+Wrap is {\ttfamily false}, each column will instead be completely filled splitting words as necessary.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7485}{}\doxyparagraph{\texorpdfstring{trim}{trim}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7485}
+Type\+: {\ttfamily boolean}\textbackslash{} Default\+: {\ttfamily true}
+
+Whitespace on all lines is removed by default. Set this option to {\ttfamily false} if you don\textquotesingle{}t want to trim.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7486}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7486}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/chalk/slice-ansi}{\texttt{ slice-\/ansi}} -\/ Slice a string with ANSI escape codes
+\item \href{https://github.com/sindresorhus/cli-truncate}{\texttt{ cli-\/truncate}} -\/ Truncate a string to a specific width in the terminal
+\item \href{https://github.com/chalk/chalk}{\texttt{ chalk}} -\/ Terminal string styling done right
+\item \href{https://github.com/mathiasbynens/jsesc}{\texttt{ jsesc}} -\/ Generate ASCII-\/only output from Unicode strings. Useful for creating test fixtures.
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7487}{}\doxysection{\texorpdfstring{Maintainers}{Maintainers}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2wrap-ansi_2readme_autotoc_md7487}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus}{\texttt{ Sindre Sorhus}}
+\item \href{https://github.com/qix-}{\texttt{ Josh Junon}}
+\item \href{https://github.com/bcoe}{\texttt{ Benjamin Coe}}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{ \href{https://tidelift.com/subscription/pkg/npm-wrap_ansi?utm_source=npm-wrap-ansi&utm_medium=referral&utm_campaign=readme}{\texttt{ Get professional support for this package with a Tidelift subscription}} }} ~\newline
+ \textsubscript{ Tidelift helps make open source sustainable for maintainers while giving companies~\newline
+assurances about security, maintenance, and licensing for their dependencies. }  

@@ -1,0 +1,109 @@
+\chapter{Time zones}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2date-fns_2docs_2timeZones}{}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2date-fns_2docs_2timeZones}\index{Time zones@{Time zones}}
+\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2date-fns_2docs_2timeZones_autotoc_md9698}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2date-fns_2docs_2timeZones_autotoc_md9698}%
+ Starting from v4, date-\/fns has first-\/class support for time zones. It is provided via \href{https://github.com/date-fns/tz}{\texttt{ {\ttfamily @date-\/fns/tz}}} and \href{https://github.com/date-fns/utc}{\texttt{ {\ttfamily @date-\/fns/utc}}} packages. Visit the links to learn more about corresponding packages.
+
+Just like with everything else in date-\/fns, the time zones support has a minimal bundle size footprint with {\ttfamily UTCDate\+Mini} and {\ttfamily TZDate\+Mini} being {\ttfamily 239 B} and {\ttfamily 761 B}, respectively.
+
+If you\textquotesingle{}re looking for time zone support prior to date-\/fns v4, see the third-\/party \href{https://github.com/marnusw/date-fns-tz}{\texttt{ {\ttfamily date-\/fns-\/tz}}} package.
+
+\href{https://blog.date-fns.org/v40-with-time-zone-support/}{\texttt{ See the announcement blog post}} for details about the motivation and implementation and \href{https://date-fns.org/v4.0.0/docs/Change-Log\#v4.0.0-2024-09-16}{\texttt{ the change log entry for the list of changes in v4.\+0}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2date-fns_2docs_2timeZones_autotoc_md9699}{}\doxysection{\texorpdfstring{Working with time zones}{Working with time zones}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2date-fns_2docs_2timeZones_autotoc_md9699}
+There are two ways to start working with time zones\+:
+
+
+\begin{DoxyItemize}
+\item Using the \`{}\+Date\`{} extensions \`{}\+TZDate\`{} and \`{}\+UTCDate\`{}
+\item Using the date-\/fns functions\textquotesingle{} \`{}in\`{} option
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2date-fns_2docs_2timeZones_autotoc_md9700}{}\doxysubsection{\texorpdfstring{Using {\ttfamily TZDate} \& {\ttfamily UTCDate}}{Using {\ttfamily TZDate} \& {\ttfamily UTCDate}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2date-fns_2docs_2timeZones_autotoc_md9700}
+One way is to use \href{https://github.com/date-fns/tz}{\texttt{ {\ttfamily TZDate}}} or \href{https://github.com/date-fns/tz}{\texttt{ {\ttfamily UTCDate}}} {\ttfamily Date} extensions,with regular date-\/fns functions\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ TZDate\ \}\ from\ "{}@date-\/fns/tz"{};}
+\DoxyCodeLine{import\ \{\ addHours\ \}\ from\ "{}date-\/fns"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Given\ that\ the\ system\ time\ zone\ is\ America/Los\_Angeles}
+\DoxyCodeLine{//\ where\ DST\ happens\ on\ Sunday,\ 13\ March\ 2022,\ 02:00:00}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Using\ the\ system\ time\ zone\ will\ produce\ 03:00\ instead\ of\ 02:00\ because\ of\ DST:}
+\DoxyCodeLine{const\ date\ =\ new\ Date(2022,\ 2,\ 13);}
+\DoxyCodeLine{addHours(date,\ 2).toString();}
+\DoxyCodeLine{//=>\ 'Sun\ Mar\ 13\ 2022\ 03:00:00\ GMT-\/0700\ (Pacific\ Daylight\ Time)'}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Using\ Asia/Singapore\ will\ provide\ the\ expected\ 02:00:}
+\DoxyCodeLine{const\ tzDate\ =\ new\ TZDate(2022,\ 2,\ 13,\ "{}Asia/Singapore"{});}
+\DoxyCodeLine{addHours(tzDate,\ 2).toString();}
+\DoxyCodeLine{//=>\ 'Sun\ Mar\ 13\ 2022\ 02:00:00\ GMT+0800\ (Singapore\ Standard\ Time)'}
+
+\end{DoxyCode}
+
+
+You can safely mix and match regular {\ttfamily Date} instances, as well as {\ttfamily UTCDate} or {\ttfamily TZDate} in different time zones and primitive values (timestamps and strings). date-\/fns will normalize the arguments, taking the first object argument ({\ttfamily Date} or a {\ttfamily Date} extension instance) as the reference and return the result in the reference type\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ TZDate\ \}\ from\ "{}@date-\/fns/tz"{};}
+\DoxyCodeLine{import\ \{\ differenceInBusinessDays\ \}\ from\ "{}date-\/fns"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ laterDate\ =\ new\ TZDate(2025,\ 0,\ 1,\ "{}Asia/Singapore"{});}
+\DoxyCodeLine{const\ earlierDate\ =\ new\ TZDate(2024,\ 0,\ 1,\ "{}America/New\_York"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Will\ calculate\ in\ Asia/Singapore}
+\DoxyCodeLine{differenceInBusinessDays(laterDate,\ earlierDate);}
+\DoxyCodeLine{//=>\ 262}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Will\ calculate\ in\ America/New\_York}
+\DoxyCodeLine{differenceInBusinessDays(earlierDate,\ laterDate);}
+\DoxyCodeLine{//=>\ -\/261}
+
+\end{DoxyCode}
+
+
+In the given example, the one-\/day difference comes from the fact that in New York (UTC-\/5), the {\ttfamily earlier\+Date} will be {\ttfamily Dec 31} rather than {\ttfamily Jan 1}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{laterDate.withTimeZone("{}Asia/Singapore"{}).toString();}
+\DoxyCodeLine{//=>\ 'Wed\ Jan\ 01\ 2025\ 00:00:00\ GMT+0800\ (Singapore\ Standard\ Time)'}
+\DoxyCodeLine{earlierDate.withTimeZone("{}Asia/Singapore"{}).toString();}
+\DoxyCodeLine{//=>\ 'Mon\ Jan\ 01\ 2024\ 13:00:00\ GMT+0800\ (Singapore\ Standard\ Time)'}
+\DoxyCodeLine{}
+\DoxyCodeLine{laterDate.withTimeZone("{}America/New\_York"{}).toString();}
+\DoxyCodeLine{//=>\ 'Tue\ Dec\ 31\ 2024\ 11:00:00\ GMT-\/0500\ (Eastern\ Standard\ Time)'}
+\DoxyCodeLine{earlierDate.withTimeZone("{}America/New\_York"{}).toString();}
+\DoxyCodeLine{//=>\ 'Mon\ Jan\ 01\ 2024\ 00:00:00\ GMT-\/0500\ (Eastern\ Standard\ Time)'}
+
+\end{DoxyCode}
+
+
+This is essential to understand and consider when making calculations.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2date-fns_2docs_2timeZones_autotoc_md9701}{}\doxysubsection{\texorpdfstring{Using {\ttfamily in} option}{Using {\ttfamily in} option}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2date-fns_2docs_2timeZones_autotoc_md9701}
+When it is important to get the value in a specific time zone or when you are unsure about the type of arguments, use the function context {\ttfamily in} option.
+
+Each function, where the calculation might be affected by the time zone, like with {\ttfamily difference\+In\+Business\+Days}, accepts the {\ttfamily in} option that provides the context for the arguments and the result, so you can explicitly say what time zone to use\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ tz\ \}\ from\ "{}@date-\/fns/tz"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Will\ calculate\ in\ Asia/Singapore}
+\DoxyCodeLine{differenceInBusinessDays(laterDate,\ earlierDate);}
+\DoxyCodeLine{//=>\ 262}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Will\ normalize\ to\ America/Los\_Angeles}
+\DoxyCodeLine{differenceInBusinessDays(laterDate,\ earlierDate,\ \{}
+\DoxyCodeLine{\ \ in:\ tz("{}America/Los\_Angeles"{}),}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//=>\ 261}
+
+\end{DoxyCode}
+
+
+In the example, we forced {\ttfamily difference\+In\+Business\+Days} to use the Los Angeles time zone.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2date-fns_2docs_2timeZones_autotoc_md9702}{}\doxysection{\texorpdfstring{Further reading}{Further reading}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2date-fns_2docs_2timeZones_autotoc_md9702}
+Read more about the time zone packages visiting their READMEs\+:
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/date-fns/tz}{\texttt{ {\ttfamily @date-\/fns/tz}}}
+\item \href{https://github.com/date-fns/utc}{\texttt{ {\ttfamily @date-\/fns/utc}}} 
+\end{DoxyItemize}

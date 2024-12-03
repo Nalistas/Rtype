@@ -1,0 +1,50 @@
+\chapter{typedarray-\/to-\/buffer \texorpdfstring{$<$}{<}a href="{}https\+://travis-\/ci.\+org/feross/typedarray-\/to-\/buffer"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://img.\+shields.\+io/travis/feross/typedarray-\/to-\/buffer/master.\+svg"{} alt="{}travis"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://npmjs.\+org/package/typedarray-\/to-\/buffer"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://img.\+shields.\+io/npm/v/typedarray-\/to-\/buffer.\+svg"{} alt="{}npm"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://npmjs.\+org/package/typedarray-\/to-\/buffer"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://img.\+shields.\+io/npm/dm/typedarray-\/to-\/buffer.\+svg"{} alt="{}downloads"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://standardjs.\+com"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://img.\+shields.\+io/badge/code\+\_\+style-\/standard-\/brightgreen.\+svg"{} alt="{}javascript style guide"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>}}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2typedarray-to-buffer_2README}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2typedarray-to-buffer_2README}\index{typedarray-\/to-\/buffer $<$a href="{}https://travis-\/ci.org/feross/typedarray-\/to-\/buffer"{} $>$$<$img src="{}https://img.shields.io/travis/feross/typedarray-\/to-\/buffer/master.svg"{} alt="{}travis"{}/$>$$<$/a$>$ $<$a href="{}https://npmjs.org/package/typedarray-\/to-\/buffer"{} $>$$<$img src="{}https://img.shields.io/npm/v/typedarray-\/to-\/buffer.svg"{} alt="{}npm"{}/$>$$<$/a$>$ $<$a href="{}https://npmjs.org/package/typedarray-\/to-\/buffer"{} $>$$<$img src="{}https://img.shields.io/npm/dm/typedarray-\/to-\/buffer.svg"{} alt="{}downloads"{}/$>$$<$/a$>$ $<$a href="{}https://standardjs.com"{} $>$$<$img src="{}https://img.shields.io/badge/code\_style-\/standard-\/brightgreen.svg"{} alt="{}javascript style guide"{}/$>$$<$/a$>$@{typedarray-\/to-\/buffer $<$a href=""https://travis-\/ci.org/feross/typedarray-\/to-\/buffer"" $>$$<$img src=""https://img.shields.io/travis/feross/typedarray-\/to-\/buffer/master.svg"" alt=""travis""/$>$$<$/a$>$ $<$a href=""https://npmjs.org/package/typedarray-\/to-\/buffer"" $>$$<$img src=""https://img.shields.io/npm/v/typedarray-\/to-\/buffer.svg"" alt=""npm""/$>$$<$/a$>$ $<$a href=""https://npmjs.org/package/typedarray-\/to-\/buffer"" $>$$<$img src=""https://img.shields.io/npm/dm/typedarray-\/to-\/buffer.svg"" alt=""downloads""/$>$$<$/a$>$ $<$a href=""https://standardjs.com"" $>$$<$img src=""https://img.shields.io/badge/code\_style-\/standard-\/brightgreen.svg"" alt=""javascript style guide""/$>$$<$/a$>$}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2typedarray-to-buffer_2README_autotoc_md6707}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2typedarray-to-buffer_2README_autotoc_md6707}%
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2typedarray-to-buffer_2README_autotoc_md6708}{}\doxysubsubsection{\texorpdfstring{Convert a typed array to a \href{https://github.com/feross/buffer}{\texttt{ Buffer}} without a copy.}{Convert a typed array to a \href{https://github.com/feross/buffer}{\texttt{ Buffer}} without a copy.}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2typedarray-to-buffer_2README_autotoc_md6708}
+\href{https://saucelabs.com/u/typedarray-to-buffer}{\texttt{ }}
+
+Say you\textquotesingle{}re using the \href{https://github.com/feross/buffer}{\texttt{ \textquotesingle{}buffer\textquotesingle{}}} module on npm, or \href{http://browserify.org/}{\texttt{ browserify}} and you\textquotesingle{}re working with lots of binary data.
+
+Unfortunately, sometimes the browser or someone else\textquotesingle{}s API gives you a typed array like {\ttfamily Uint8\+Array} to work with and you need to convert it to a {\ttfamily Buffer}. What do you do?
+
+Of course\+: {\ttfamily Buffer.\+from(uint8array)}
+
+But, alas, every time you do {\ttfamily Buffer.\+from(uint8array)} {\bfseries{the entire array gets copied}}. The {\ttfamily Buffer} constructor does a copy; this is defined by the \href{http://nodejs.org/api/buffer.html}{\texttt{ node docs}} and the \textquotesingle{}buffer\textquotesingle{} module matches the node API exactly.
+
+So, how can we avoid this expensive copy in \href{https://github.com/feross/buffer/issues/22}{\texttt{ performance critical applications}}?
+
+{\itshape {\bfseries{Simply use this module, of course!}}}
+
+If you have an {\ttfamily Array\+Buffer}, you don\textquotesingle{}t need this module, because {\ttfamily Buffer.\+from(array\+Buffer)} \href{https://nodejs.org/api/buffer.html\#buffer_class_method_buffer_from_arraybuffer_byteoffset_length}{\texttt{ is already efficient}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2typedarray-to-buffer_2README_autotoc_md6709}{}\doxysection{\texorpdfstring{install}{install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2typedarray-to-buffer_2README_autotoc_md6709}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ typedarray-\/to-\/buffer}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2typedarray-to-buffer_2README_autotoc_md6710}{}\doxysection{\texorpdfstring{usage}{usage}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2typedarray-to-buffer_2README_autotoc_md6710}
+To convert a typed array to a {\ttfamily Buffer} {\bfseries{without a copy}}, do this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ toBuffer\ =\ require('typedarray-\/to-\/buffer')}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ arr\ =\ new\ Uint8Array([1,\ 2,\ 3])}
+\DoxyCodeLine{arr\ =\ toBuffer(arr)}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ arr\ is\ a\ buffer\ now!}
+\DoxyCodeLine{}
+\DoxyCodeLine{arr.toString()\ \ //\ '\(\backslash\)u0001\(\backslash\)u0002\(\backslash\)u0003'}
+\DoxyCodeLine{arr.readUInt16BE(0)\ \ //\ 258}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2typedarray-to-buffer_2README_autotoc_md6711}{}\doxysection{\texorpdfstring{how it works}{how it works}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2typedarray-to-buffer_2README_autotoc_md6711}
+If the browser supports typed arrays, then {\ttfamily to\+Buffer} will {\bfseries{augment the typed array}} you pass in with the {\ttfamily Buffer} methods and return it. See \href{https://github.com/feross/buffer\#how-does-it-work}{\texttt{ how does Buffer work?}} for more about how augmentation works.
+
+This module uses the typed array\textquotesingle{}s underlying {\ttfamily Array\+Buffer} to back the new {\ttfamily Buffer}. This respects the "{}view"{} on the {\ttfamily Array\+Buffer}, i.\+e. {\ttfamily byte\+Offset} and {\ttfamily byte\+Length}. In other words, if you do {\ttfamily to\+Buffer(new Uint32\+Array(\mbox{[}1, 2, 3\mbox{]}))}, then the new {\ttfamily Buffer} will contain {\ttfamily \mbox{[}1, 0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0\mbox{]}}, {\bfseries{not}} {\ttfamily \mbox{[}1, 2, 3\mbox{]}}. And it still doesn\textquotesingle{}t require a copy.
+
+If the browser doesn\textquotesingle{}t support typed arrays, then {\ttfamily to\+Buffer} will create a new {\ttfamily Buffer} object, copy the data into it, and return it. There\textquotesingle{}s no simple performance optimization we can do for old browsers. Oh well.
+
+If this module is used in node, then it will just call {\ttfamily Buffer.\+from}. This is just for the convenience of modules that work in both node and the browser.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2typedarray-to-buffer_2README_autotoc_md6712}{}\doxysection{\texorpdfstring{license}{license}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2typedarray-to-buffer_2README_autotoc_md6712}
+MIT. Copyright (C) \href{http://feross.org}{\texttt{ Feross Aboukhadijeh}}. 

@@ -1,0 +1,53 @@
+\chapter{json2mq}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2json2mq_2README}{}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2json2mq_2README}\index{json2mq@{json2mq}}
+\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2json2mq_2README_autotoc_md10984}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2json2mq_2README_autotoc_md10984}%
+ json2mq is used to generate media query string from JSON or javascript object.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2json2mq_2README_autotoc_md10985}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2json2mq_2README_autotoc_md10985}
+npm install json2mq\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2json2mq_2README_autotoc_md10986}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2json2mq_2README_autotoc_md10986}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ json2mq\ =\ require('json2mq');}
+\DoxyCodeLine{json2mq(\{minWidth:\ 100,\ maxWidth:\ 200\});}
+\DoxyCodeLine{//\ -\/>\ '(min-\/width:\ 100px)\ and\ (max-\/width:\ 200px)'}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item Media type 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{json2mq(\{screen:\ true\});\ \ //\ -\/>\ 'screen'}
+
+\end{DoxyCode}
+
+\item Media type with negation 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{json2mq(\{handheld:\ false\});\ \ //\ -\/>\ 'not\ handheld'}
+
+\end{DoxyCode}
+
+\item Media features can be specified in camel case 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{json2mq(\{minWidth:\ 100,\ maxWidth:\ 200\});}
+\DoxyCodeLine{//\ -\/>\ '(min-\/width:\ 100px)\ and\ (max-\/width:\ 200px)'}
+
+\end{DoxyCode}
+
+\item px is added to numeric dimension values 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{json2mq(\{minWidth:\ 100,\ maxWidth:\ '20em'\});}
+\DoxyCodeLine{//\ -\/>\ '(min-\/width:\ 100px)\ and\ (max-\/width:\ 20em)'}
+
+\end{DoxyCode}
+
+\item Multiple media queries can be passed as an array 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{json2mq([\{screen:\ true,\ minWidth:\ 100\},\ \{handheld:\ true,\ orientation:\ 'landscape'\}]);\ }
+\DoxyCodeLine{//\ -\/>\ 'screen\ and\ (min-\/width:\ 100px),\ handheld\ and\ (orientation:\ landscape)'}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2json2mq_2README_autotoc_md10987}{}\doxysection{\texorpdfstring{Contributors}{Contributors}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2json2mq_2README_autotoc_md10987}
+
+\begin{DoxyItemize}
+\item Eric Schoffstall 
+\end{DoxyItemize}

@@ -1,0 +1,109 @@
+\chapter{mdast-\/util-\/to-\/string}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme}\index{mdast-\/util-\/to-\/string@{mdast-\/util-\/to-\/string}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4041}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4041}%
+ \href{https://github.com/syntax-tree/mdast-util-to-string/actions}{\texttt{ }} \href{https://codecov.io/github/syntax-tree/mdast-util-to-string}{\texttt{ }} \href{https://www.npmjs.com/package/mdast-util-to-string}{\texttt{ }} \href{https://bundlejs.com/?q=mdast-util-to-string}{\texttt{ }} \href{https://opencollective.com/unified}{\texttt{ }} \href{https://opencollective.com/unified}{\texttt{ }} \href{https://github.com/syntax-tree/unist/discussions}{\texttt{ }}
+
+\href{https://github.com/syntax-tree/mdast}{\texttt{ mdast}} utility to get the text content of a node.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4042}{}\doxysection{\texorpdfstring{Contents}{Contents}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4042}
+
+\begin{DoxyItemize}
+\item What is this?
+\item When should I use this?
+\item Install
+\item Use
+\item API
+\begin{DoxyItemize}
+\item \`{}to\+String(value\mbox{[}, options\mbox{]})\`{}
+\item \`{}\+Options\`{}
+\end{DoxyItemize}
+\item Types
+\item Compatibility
+\item Security
+\item Related
+\item Contribute
+\item License
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4043}{}\doxysection{\texorpdfstring{What is this?}{What is this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4043}
+This package is a tiny utility that gets the textual content of a node.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4044}{}\doxysection{\texorpdfstring{When should I use this?}{When should I use this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4044}
+This utility is useful when you have a node, say a heading, and want to get the text inside it.
+
+This package does not serialize markdown, that’s what \href{https://github.com/syntax-tree/mdast-util-to-markdown}{\texttt{ {\ttfamily mdast-\/util-\/to-\/markdown}}} does.
+
+Similar packages, \href{https://github.com/rehypejs/rehype-minify/tree/main/packages/hast-util-to-string}{\texttt{ {\ttfamily hast-\/util-\/to-\/string}}} and \href{https://github.com/syntax-tree/hast-util-to-text}{\texttt{ {\ttfamily hast-\/util-\/to-\/text}}}, do the same but on \href{https://github.com/syntax-tree/hast}{\texttt{ hast}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4045}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4045}
+This package is \href{https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c}{\texttt{ ESM only}}. In Node.\+js (version 16+), install with \href{https://docs.npmjs.com/cli/install}{\texttt{ npm}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ mdast-\/util-\/to-\/string}
+
+\end{DoxyCode}
+
+
+In Deno with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{toString\}\ from\ 'https://esm.sh/mdast-\/util-\/to-\/string@4'}
+
+\end{DoxyCode}
+
+
+In browsers with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{toString\}\ from\ 'https://esm.sh/mdast-\/util-\/to-\/string@4?bundle'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4046}{}\doxysection{\texorpdfstring{Use}{Use}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4046}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{fromMarkdown\}\ from\ 'mdast-\/util-\/from-\/markdown'}
+\DoxyCodeLine{import\ \{toString\}\ from\ 'mdast-\/util-\/to-\/string'}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ tree\ =\ fromMarkdown('Some\ \_emphasis\_,\ **importance**,\ and\ \`{}code`.')}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(toString(tree))\ //\ =>\ 'Some\ emphasis,\ importance,\ and\ code.'}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4047}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4047}
+This package exports the identifier \`{}to\+String\`{}. There is no default export.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4048}{}\doxysubsection{\texorpdfstring{{\ttfamily to\+String(value\mbox{[}, options\mbox{]})}}{{\ttfamily to\+String(value\mbox{[}, options\mbox{]})}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4048}
+Get the text content of a node or list of nodes.
+
+Prefers the node’s plain-\/text fields, otherwise serializes its children, and if the given value is an array, serialize the nodes in it.
+
+\doxysubparagraph*{Parameters}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily value} ({\ttfamily unknown}) — thing to serialize, typically \href{https://github.com/syntax-tree/mdast\#nodes}{\texttt{ {\ttfamily Node}}}
+\item {\ttfamily options} (\`{}\+Options\`{}, optional) — configuration
+\end{DoxyItemize}
+
+\doxysubparagraph*{Returns}
+
+Serialized {\ttfamily value} ({\ttfamily string}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4049}{}\doxysubsection{\texorpdfstring{{\ttfamily Options}}{{\ttfamily Options}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4049}
+Configuration (Type\+Script type).
+
+\doxysubparagraph*{Fields}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily include\+Image\+Alt} ({\ttfamily boolean}, default\+: {\ttfamily true}) — whether to use {\ttfamily alt} for {\ttfamily image}s
+\item {\ttfamily include\+Html} ({\ttfamily boolean}, default\+: {\ttfamily true}) — whether to use {\ttfamily value} of HTML
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4050}{}\doxysection{\texorpdfstring{Types}{Types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4050}
+This package is fully typed with \href{https://www.typescriptlang.org}{\texttt{ Type\+Script}}. It exports the additional type \`{}\+Options\`{}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4051}{}\doxysection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4051}
+Projects maintained by the unified collective are compatible with maintained versions of Node.\+js.
+
+When we cut a new major release, we drop support for unmaintained versions of Node. This means we try to keep the current release line, {\ttfamily mdast-\/util-\/to-\/string@\texorpdfstring{$^\wedge$}{\string^}4}, compatible with Node.\+js 16.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4052}{}\doxysection{\texorpdfstring{Security}{Security}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4052}
+Use of {\ttfamily mdast-\/util-\/to-\/string} does not involve {\bfseries{\href{https://github.com/syntax-tree/hast}{\texttt{ hast}}}}, user content, or change the tree, so there are no openings for \href{https://en.wikipedia.org/wiki/Cross-site_scripting}{\texttt{ cross-\/site scripting (XSS)}} attacks.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4053}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4053}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/wooorm/rehype-minify/tree/main/packages/hast-util-to-string}{\texttt{ {\ttfamily hast-\/util-\/to-\/string}}} — get text content in hast
+\item \href{https://github.com/syntax-tree/hast-util-to-text}{\texttt{ {\ttfamily hast-\/util-\/to-\/text}}} — get text content in hast according to the {\ttfamily inner\+Text} algorithm
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4054}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4054}
+See \href{https://github.com/syntax-tree/.github/blob/main/contributing.md}{\texttt{ {\ttfamily contributing.\+md}}} in \href{https://github.com/syntax-tree/.github}{\texttt{ {\ttfamily syntax-\/tree/.github}}} for ways to get started. See \href{https://github.com/syntax-tree/.github/blob/main/support.md}{\texttt{ {\ttfamily support.\+md}}} for ways to get help.
+
+This project has a \href{https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md}{\texttt{ code of conduct}}. By interacting with this repository, organization, or community you agree to abide by its terms.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4055}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-to-string_2readme_autotoc_md4055}
+\mbox{[}MIT\mbox{]}\mbox{[}license\mbox{]} © \href{https://wooorm.com}{\texttt{ Titus Wormer}} 

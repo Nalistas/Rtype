@@ -1,0 +1,121 @@
+\chapter{dequal \texorpdfstring{$<$}{<}a href="{}https\+://github.\+com/lukeed/dequal/actions"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://github.\+com/lukeed/dequal/workflows/\+CI/badge.\+svg"{} alt="{}\+CI"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>}}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme}\index{dequal $<$a href="{}https://github.com/lukeed/dequal/actions"{} $>$$<$img src="{}https://github.com/lukeed/dequal/workflows/CI/badge.svg"{} alt="{}CI"{}/$>$$<$/a$>$@{dequal $<$a href=""https://github.com/lukeed/dequal/actions"" $>$$<$img src=""https://github.com/lukeed/dequal/workflows/CI/badge.svg"" alt=""CI""/$>$$<$/a$>$}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1886}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1886}%
+ \begin{quote}
+A tiny (304B to 489B) utility to check for deep equality \end{quote}
+This module supports comparison of all types, including {\ttfamily Function}, {\ttfamily Reg\+Exp}, {\ttfamily Date}, {\ttfamily Set}, {\ttfamily Map}, {\ttfamily Typed\+Array}s, {\ttfamily Data\+View}, {\ttfamily null}, {\ttfamily undefined}, and {\ttfamily NaN} values. Complex values (eg, Objects, Arrays, Sets, Maps, etc) are traversed recursively.
+
+\begin{quote}
+{\bfseries{Important\+:}}
+\begin{DoxyItemize}
+\item key order {\bfseries{within Objects}} does not matter
+\item value order {\bfseries{within Arrays}} {\itshape does} matter
+\item values {\bfseries{within Sets and Maps}} use value equality
+\item keys {\bfseries{within Maps}} use value equality 
+\end{DoxyItemize}\end{quote}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1887}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1887}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ -\/-\/save\ dequal}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1888}{}\doxysection{\texorpdfstring{Modes}{Modes}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1888}
+There are two "{}versions"{} of {\ttfamily dequal} available\+:\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1889}{}\doxysubsubsection{\texorpdfstring{{\ttfamily dequal}}{{\ttfamily dequal}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1889}
+\begin{quote}
+{\bfseries{Size (gzip)\+:}} 489 bytes~\newline
+ {\bfseries{Availability\+:}} \href{https://unpkg.com/dequal/dist/index.js}{\texttt{ Common\+JS}}, \href{https://unpkg.com/dequal/dist/index.mjs}{\texttt{ ES Module}}, \href{https://unpkg.com/dequal/dist/index.min.js}{\texttt{ UMD}} \end{quote}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1890}{}\doxysubsubsection{\texorpdfstring{{\ttfamily dequal/lite}}{{\ttfamily dequal/lite}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1890}
+\begin{quote}
+{\bfseries{Size (gzip)\+:}} 304 bytes~\newline
+ {\bfseries{Availability\+:}} \href{https://unpkg.com/dequal/lite/index.js}{\texttt{ Common\+JS}}, \href{https://unpkg.com/dequal/lite/index.mjs}{\texttt{ ES Module}} \end{quote}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{14}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ IE9+   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Number   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ String   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Date   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Reg\+Exp   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Object   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Class   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Set   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Map   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array\+Buffer   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray\#TypedArray_objects}{\texttt{ Typed\+Array}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView}{\texttt{ Data\+View}}    }\\\cline{1-14}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ IE9+   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Number   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ String   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Date   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Reg\+Exp   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Object   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Class   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Set   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Map   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Array\+Buffer   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray\#TypedArray_objects}{\texttt{ Typed\+Array}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView}{\texttt{ Data\+View}}    }\\\cline{1-14}
+\endhead
+{\ttfamily dequal}   &\PBS\centering \+:x\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:    \\\cline{1-14}
+{\ttfamily dequal/lite}   &\PBS\centering \+:+1\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:white\+\_\+check\+\_\+mark\+:   &\PBS\centering \+:x\+:   &\PBS\centering \+:x\+:   &\PBS\centering \+:x\+:   &\PBS\centering \+:x\+:   &\PBS\centering \+:x\+:   \\\cline{1-14}
+\end{longtabu}
+
+
+\begin{quote}
+\textsuperscript{{\bfseries{Note\+:}} Table scrolls horizontally!} \end{quote}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1891}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1891}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ dequal\ \}\ from\ 'dequal';}
+\DoxyCodeLine{}
+\DoxyCodeLine{dequal(1,\ 1);\ //=>\ true}
+\DoxyCodeLine{dequal(\{\},\ \{\});\ //=>\ true}
+\DoxyCodeLine{dequal('foo',\ 'foo');\ //=>\ true}
+\DoxyCodeLine{dequal([1,\ 2,\ 3],\ [1,\ 2,\ 3]);\ //=>\ true}
+\DoxyCodeLine{dequal(dequal,\ dequal);\ //=>\ true}
+\DoxyCodeLine{dequal(/foo/,\ /foo/);\ //=>\ true}
+\DoxyCodeLine{dequal(null,\ null);\ //=>\ true}
+\DoxyCodeLine{dequal(NaN,\ NaN);\ //=>\ true}
+\DoxyCodeLine{dequal([],\ []);\ //=>\ true}
+\DoxyCodeLine{dequal(}
+\DoxyCodeLine{\ \ [\{\ a:1\ \},\ [\{\ b:\{\ c:[1]\ \}\ \}]],}
+\DoxyCodeLine{\ \ [\{\ a:1\ \},\ [\{\ b:\{\ c:[1]\ \}\ \}]]}
+\DoxyCodeLine{);\ //=>\ true}
+\DoxyCodeLine{}
+\DoxyCodeLine{dequal(1,\ '1');\ //=>\ false}
+\DoxyCodeLine{dequal(null,\ undefined);\ //=>\ false}
+\DoxyCodeLine{dequal(\{\ a:1,\ b:[2,3]\ \},\ \{\ a:1,\ b:[2,5]\ \});\ //=>\ false}
+\DoxyCodeLine{dequal(/foo/i,\ /bar/g);\ //=>\ false}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1892}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1892}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1893}{}\doxysubsection{\texorpdfstring{dequal(foo, bar)}{dequal(foo, bar)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1893}
+Returns\+: {\ttfamily Boolean}
+
+Both {\ttfamily foo} and {\ttfamily bar} can be of any type.~\newline
+ A {\ttfamily Boolean} is returned indicating if the two were deeply equal.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1894}{}\doxysection{\texorpdfstring{Benchmarks}{Benchmarks}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1894}
+\begin{quote}
+Running Node v10.\+13.\+0 \end{quote}
+The benchmarks can be found in the \href{/bench}{\texttt{ {\ttfamily /bench}}} directory. They are separated into two categories\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily basic} – compares an object comprised of {\ttfamily String}, {\ttfamily Number}, {\ttfamily Date}, {\ttfamily Array}, and {\ttfamily Object} values.
+\item {\ttfamily complex} – like {\ttfamily basic}, but adds {\ttfamily Reg\+Exp}, {\ttfamily Map}, {\ttfamily Set}, and {\ttfamily Uint8\+Array} values.
+\end{DoxyItemize}
+
+\begin{quote}
+{\bfseries{Note\+:}} Only candidates that pass validation step(s) are listed. ~\newline
+For example, {\ttfamily fast-\/deep-\/equal/es6} handles {\ttfamily Set} and {\ttfamily Map} values, but uses {\itshape referential equality} while those listed use {\itshape value equality}. \end{quote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Load\ times:}
+\DoxyCodeLine{\ \ assert\ \ \ \ \ \ \ \ \ \ \ \ \ 0.109ms}
+\DoxyCodeLine{\ \ util\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.006ms}
+\DoxyCodeLine{\ \ fast-\/deep-\/equal\ \ \ \ 0.479ms}
+\DoxyCodeLine{\ \ lodash/isequal\ \ \ \ 22.826ms}
+\DoxyCodeLine{\ \ nano-\/equal\ \ \ \ \ \ \ \ \ 0.417ms}
+\DoxyCodeLine{\ \ dequal\ \ \ \ \ \ \ \ \ \ \ \ \ 0.396ms}
+\DoxyCodeLine{\ \ dequal/lite\ \ \ \ \ \ \ \ 0.264ms}
+\DoxyCodeLine{}
+\DoxyCodeLine{Benchmark\ ::\ basic}
+\DoxyCodeLine{\ \ assert.deepStrictEqual\ \ x\ \ \ \ 325,262\ ops/sec\ ±0.57\%\ (94\ runs\ sampled)}
+\DoxyCodeLine{\ \ util.isDeepStrictEqual\ \ x\ \ \ \ 318,812\ ops/sec\ ±0.87\%\ (94\ runs\ sampled)}
+\DoxyCodeLine{\ \ fast-\/deep-\/equal\ \ \ \ \ \ \ \ \ x\ \ 1,332,393\ ops/sec\ ±0.36\%\ (93\ runs\ sampled)}
+\DoxyCodeLine{\ \ lodash.isEqual\ \ \ \ \ \ \ \ \ \ x\ \ \ \ 269,129\ ops/sec\ ±0.59\%\ (95\ runs\ sampled)}
+\DoxyCodeLine{\ \ nano-\/equal\ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ \ 1,122,053\ ops/sec\ ±0.36\%\ (96\ runs\ sampled)}
+\DoxyCodeLine{\ \ dequal/lite\ \ \ \ \ \ \ \ \ \ \ \ \ x\ \ 1,700,972\ ops/sec\ ±0.31\%\ (94\ runs\ sampled)}
+\DoxyCodeLine{\ \ dequal\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ \ 1,698,972\ ops/sec\ ±0.63\%\ (97\ runs\ sampled)}
+\DoxyCodeLine{}
+\DoxyCodeLine{Benchmark\ ::\ complex}
+\DoxyCodeLine{\ \ assert.deepStrictEqual\ \ x\ \ \ \ 124,518\ ops/sec\ ±0.64\%\ (96\ runs\ sampled)}
+\DoxyCodeLine{\ \ util.isDeepStrictEqual\ \ x\ \ \ \ 125,113\ ops/sec\ ±0.24\%\ (96\ runs\ sampled)}
+\DoxyCodeLine{\ \ lodash.isEqual\ \ \ \ \ \ \ \ \ \ x\ \ \ \ \ 58,677\ ops/sec\ ±0.49\%\ (96\ runs\ sampled)}
+\DoxyCodeLine{\ \ dequal\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ \ \ \ 345,386\ ops/sec\ ±0.27\%\ (96\ runs\ sampled)}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1895}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2dequal_2readme_autotoc_md1895}
+MIT © \href{https://lukeed.com}{\texttt{ Luke Edwards}} 

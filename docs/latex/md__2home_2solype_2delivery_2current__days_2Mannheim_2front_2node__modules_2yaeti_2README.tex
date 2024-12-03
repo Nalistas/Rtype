@@ -1,0 +1,84 @@
+\chapter{yaeti}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README}\index{yaeti@{yaeti}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7522}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7522}%
+ Yet Another \href{https://developer.mozilla.org/es/docs/Web/API/EventTarget}{\texttt{ Event\+Target}} Implementation.
+
+The library exposes both the \href{https://developer.mozilla.org/es/docs/Web/API/EventTarget}{\texttt{ Event\+Target}} interface and the \href{https://developer.mozilla.org/en-US/docs/Web/API/Event}{\texttt{ Event}} interface.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7523}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7523}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ yaeti\ -\/-\/save}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7524}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7524}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ yaeti\ =\ require('yaeti');}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Custom\ class\ we\ want\ to\ make\ an\ EventTarget.}
+\DoxyCodeLine{function\ Foo()\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Make\ Foo\ an\ EventTarget.}
+\DoxyCodeLine{\ \ \ \ yaeti.EventTarget.call(this);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Create\ an\ instance.}
+\DoxyCodeLine{var\ foo\ =\ new\ Foo();}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ listener1()\ \{}
+\DoxyCodeLine{\ \ \ \ console.log('listener1');}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ listener2()\ \{}
+\DoxyCodeLine{\ \ \ \ console.log('listener2');}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\ }
+\DoxyCodeLine{foo.addEventListener('bar',\ listener1);}
+\DoxyCodeLine{foo.addEventListener('bar',\ listener2);}
+\DoxyCodeLine{foo.removeEventListener('bar',\ listener1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ event\ =\ new\ yaeti.Event('bar');}
+\DoxyCodeLine{}
+\DoxyCodeLine{foo.dispatchEvent(event);}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Output:}
+\DoxyCodeLine{//\ =>\ "{}listener2"{}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7525}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7525}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7526}{}\doxysubsubsection{\texorpdfstring{{\ttfamily yaeti.\+Event\+Target} interface}{{\ttfamily yaeti.\+Event\+Target} interface}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7526}
+Implementation of the \href{https://developer.mozilla.org/es/docs/Web/API/EventTarget}{\texttt{ Event\+Target}} interface.
+
+
+\begin{DoxyItemize}
+\item Make a custom class inherit from {\ttfamily Event\+Target}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{function\ Foo()\ \{}
+\DoxyCodeLine{\ \ \ \ yaeti.EventTarget.call(this);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\item Make an existing object an {\ttfamily Event\+Target}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{yaeti.EventTarget.call(obj);}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+The interface implements the {\ttfamily add\+Event\+Listener}, {\ttfamily remove\+Event\+Listener} and {\ttfamily dispatch\+Event} methods as defined by the W3C.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7527}{}\doxyparagraph{\texorpdfstring{{\ttfamily listeners} read-\/only property}{{\ttfamily listeners} read-\/only property}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7527}
+Returns an object whose keys are configured event types (String) and whose values are an array of listeners (functions) for those event types.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7528}{}\doxysubsubsection{\texorpdfstring{{\ttfamily yaeti.\+Event} interface}{{\ttfamily yaeti.\+Event} interface}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7528}
+Implementation of the \href{https://developer.mozilla.org/en-US/docs/Web/API/Event}{\texttt{ Event}} interface.
+
+{\itshape NOTE\+:} Just useful in Node (the browser already exposes the native {\ttfamily Event} interface).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ event\ =\ new\ yaeti.Event('bar');}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7529}{}\doxysection{\texorpdfstring{Author}{Author}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7529}
+\href{https://github.com/ibc}{\texttt{ Iñaki Baz Castillo}}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7530}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yaeti_2README_autotoc_md7530}
+\href{./LICENSE}{\texttt{ MIT}} 

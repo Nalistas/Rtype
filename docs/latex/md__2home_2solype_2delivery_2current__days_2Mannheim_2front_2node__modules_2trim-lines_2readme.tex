@@ -1,0 +1,66 @@
+\chapter{trim-\/lines}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme}\index{trim-\/lines@{trim-\/lines}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6487}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6487}%
+ \href{https://github.com/wooorm/trim-lines/actions}{\texttt{ }} \href{https://codecov.io/github/wooorm/trim-lines}{\texttt{ }} \href{https://www.npmjs.com/package/trim-lines}{\texttt{ }} \href{https://bundlephobia.com/result?p=trim-lines}{\texttt{ }}
+
+Remove spaces and tabs around line breaks.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6488}{}\doxysection{\texorpdfstring{Contents}{Contents}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6488}
+
+\begin{DoxyItemize}
+\item What is this?
+\item When should I use this?
+\item Install
+\item Use
+\item API
+\begin{DoxyItemize}
+\item \`{}trim\+Lines(value)\`{}
+\end{DoxyItemize}
+\item Types
+\item Compatibility
+\item Contribute
+\item License
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6489}{}\doxysection{\texorpdfstring{What is this?}{What is this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6489}
+This package is a tiny utility that removes spaces and tabs around line endings, keeping the line endings, and not removing whitespace at the start or end of the string. It might look trivial, but it’s actually pretty complex to get performant.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6490}{}\doxysection{\texorpdfstring{When should I use this?}{When should I use this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6490}
+When you need to trim markdown-\/like whitespace around line endings and don’t want to run into performance problems.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6491}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6491}
+This package is \href{https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c}{\texttt{ ESM only}}. In Node.\+js (version 14.\+14+, 16.\+0+, or 18.\+0+), install with \href{https://docs.npmjs.com/cli/install}{\texttt{ npm}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ trim-\/lines}
+
+\end{DoxyCode}
+
+
+In Deno with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ trimLines\ from\ 'https://esm.sh/trim-\/lines@3'}
+
+\end{DoxyCode}
+
+
+In browsers with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ trimLines\ from\ 'https://esm.sh/trim-\/lines@3?bundle'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6492}{}\doxysection{\texorpdfstring{Use}{Use}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6492}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{trimLines\}\ from\ 'trim-\/lines'}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(trimLines('\ foo\(\backslash\)t\(\backslash\)n\(\backslash\)n\ bar\ \(\backslash\)n\(\backslash\)tbaz\ '))\ //\ =>\ '\ foo\(\backslash\)n\(\backslash\)nbar\(\backslash\)nbaz\ '}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6493}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6493}
+This package exports the identifier {\ttfamily trim\+Lines}. There is no default export.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6494}{}\doxysubsection{\texorpdfstring{{\ttfamily trim\+Lines(value)}}{{\ttfamily trim\+Lines(value)}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6494}
+Remove spaces and tabs around line breaks in {\ttfamily value} ({\ttfamily string}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6495}{}\doxysection{\texorpdfstring{Types}{Types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6495}
+This package is fully typed with \href{https://www.typescriptlang.org}{\texttt{ Type\+Script}}. It exports no additional types.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6496}{}\doxysection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6496}
+This package is at least compatible with all maintained versions of Node.\+js. As of now, that is Node.\+js 14.\+14+, 16.\+0+, and 18.\+0+. It also works in Deno and modern browsers.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6497}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6497}
+Yes please! See \href{https://opensource.guide/how-to-contribute/}{\texttt{ How to Contribute to Open Source}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6498}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2trim-lines_2readme_autotoc_md6498}
+\mbox{[}MIT\mbox{]}\mbox{[}license\mbox{]} © \href{https://wooorm.com}{\texttt{ Titus Wormer}} 

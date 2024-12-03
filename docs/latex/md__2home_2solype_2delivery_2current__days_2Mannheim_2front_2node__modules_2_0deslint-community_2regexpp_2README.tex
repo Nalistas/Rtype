@@ -1,0 +1,202 @@
+\chapter{@eslint-\/community/regexpp}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README}\index{"@eslint-\/community/regexpp@{"@eslint-\/community/regexpp}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md200}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md200}%
+ \href{https://www.npmjs.com/package/@eslint-community/regexpp}{\texttt{ }} \href{http://www.npmtrends.com/@eslint-community/regexpp}{\texttt{ }} \href{https://github.com/eslint-community/regexpp/actions}{\texttt{ }} \href{https://codecov.io/gh/eslint-community/regexpp}{\texttt{ }}
+
+A regular expression parser for ECMAScript.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md201}{}\doxysection{\texorpdfstring{💿 Installation}{💿 Installation}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md201}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ @eslint-\/community/regexpp}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item require Node@\texorpdfstring{$^\wedge$}{\string^}12.0.\+0 \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} \texorpdfstring{$^\wedge$}{\string^}14.0.\+0 \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} \texorpdfstring{$>$}{>}=16.\+0.\+0.
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md202}{}\doxysection{\texorpdfstring{📖 Usage}{📖 Usage}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md202}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{}
+\DoxyCodeLine{\ \ \ \ AST,}
+\DoxyCodeLine{\ \ \ \ RegExpParser,}
+\DoxyCodeLine{\ \ \ \ RegExpValidator,}
+\DoxyCodeLine{\ \ \ \ RegExpVisitor,}
+\DoxyCodeLine{\ \ \ \ parseRegExpLiteral,}
+\DoxyCodeLine{\ \ \ \ validateRegExpLiteral,}
+\DoxyCodeLine{\ \ \ \ visitRegExpAST}
+\DoxyCodeLine{\}\ from\ "{}@eslint-\/community/regexpp"{}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md203}{}\doxysubsection{\texorpdfstring{parse\+Reg\+Exp\+Literal(source, options?)}{parse\+Reg\+Exp\+Literal(source, options?)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md203}
+Parse a given regular expression literal then make AST object.
+
+This is equivalent to {\ttfamily new Reg\+Exp\+Parser(options).parse\+Literal(source)}.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string \texorpdfstring{$\vert$}{|} Reg\+Exp}) The source code to parse.
+\item {\ttfamily options?} (\href{src/parser.ts\#L743}{\texttt{ {\ttfamily Reg\+Exp\+Parser.\+Options}}}) The options to parse.
+\end{DoxyItemize}
+\item {\bfseries{Return\+:}}
+\begin{DoxyItemize}
+\item The AST of the regular expression.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md204}{}\doxysubsection{\texorpdfstring{validate\+Reg\+Exp\+Literal(source, options?)}{validate\+Reg\+Exp\+Literal(source, options?)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md204}
+Validate a given regular expression literal.
+
+This is equivalent to {\ttfamily new Reg\+Exp\+Validator(options).validate\+Literal(source)}.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string}) The source code to validate.
+\item {\ttfamily options?} (\href{src/validator.ts\#L220}{\texttt{ {\ttfamily Reg\+Exp\+Validator.\+Options}}}) The options to validate.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md205}{}\doxysubsection{\texorpdfstring{visit\+Reg\+Exp\+AST(ast, handlers)}{visit\+Reg\+Exp\+AST(ast, handlers)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md205}
+Visit each node of a given AST.
+
+This is equivalent to {\ttfamily new Reg\+Exp\+Visitor(handlers).visit(ast)}.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily ast} (\href{src/ast.ts\#L4}{\texttt{ {\ttfamily AST.\+Node}}}) The AST to visit.
+\item {\ttfamily handlers} (\href{src/visitor.ts\#L291}{\texttt{ {\ttfamily Reg\+Exp\+Visitor.\+Handlers}}}) The callbacks.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md206}{}\doxysubsection{\texorpdfstring{Reg\+Exp\+Parser}{Reg\+Exp\+Parser}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md206}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md207}{}\doxysubsubsection{\texorpdfstring{new Reg\+Exp\+Parser(options?)}{new Reg\+Exp\+Parser(options?)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md207}
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily options?} (\href{src/parser.ts\#L743}{\texttt{ {\ttfamily Reg\+Exp\+Parser.\+Options}}}) The options to parse.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md208}{}\doxysubsubsection{\texorpdfstring{parser.\+parse\+Literal(source, start?, end?)}{parser.\+parse\+Literal(source, start?, end?)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md208}
+Parse a regular expression literal.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string}) The source code to parse. E.\+g. {\ttfamily "{}/abc/g"{}}.
+\item {\ttfamily start?} ({\ttfamily number}) The start index in the source code. Default is {\ttfamily 0}.
+\item {\ttfamily end?} ({\ttfamily number}) The end index in the source code. Default is {\ttfamily source.\+length}.
+\end{DoxyItemize}
+\item {\bfseries{Return\+:}}
+\begin{DoxyItemize}
+\item The AST of the regular expression.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md209}{}\doxysubsubsection{\texorpdfstring{parser.\+parse\+Pattern(source, start?, end?, flags?)}{parser.\+parse\+Pattern(source, start?, end?, flags?)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md209}
+Parse a regular expression pattern.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string}) The source code to parse. E.\+g. {\ttfamily "{}abc"{}}.
+\item {\ttfamily start?} ({\ttfamily number}) The start index in the source code. Default is {\ttfamily 0}.
+\item {\ttfamily end?} ({\ttfamily number}) The end index in the source code. Default is {\ttfamily source.\+length}.
+\item {\ttfamily flags?} ({\ttfamily \{ unicode?\+: boolean, unicode\+Sets?\+: boolean \}}) The flags to enable Unicode mode, and Unicode Set mode.
+\end{DoxyItemize}
+\item {\bfseries{Return\+:}}
+\begin{DoxyItemize}
+\item The AST of the regular expression pattern.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md210}{}\doxysubsubsection{\texorpdfstring{parser.\+parse\+Flags(source, start?, end?)}{parser.\+parse\+Flags(source, start?, end?)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md210}
+Parse a regular expression flags.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string}) The source code to parse. E.\+g. {\ttfamily "{}gim"{}}.
+\item {\ttfamily start?} ({\ttfamily number}) The start index in the source code. Default is {\ttfamily 0}.
+\item {\ttfamily end?} ({\ttfamily number}) The end index in the source code. Default is {\ttfamily source.\+length}.
+\end{DoxyItemize}
+\item {\bfseries{Return\+:}}
+\begin{DoxyItemize}
+\item The AST of the regular expression flags.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md211}{}\doxysubsection{\texorpdfstring{Reg\+Exp\+Validator}{Reg\+Exp\+Validator}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md211}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md212}{}\doxysubsubsection{\texorpdfstring{new Reg\+Exp\+Validator(options)}{new Reg\+Exp\+Validator(options)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md212}
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily options} (\href{src/validator.ts\#L220}{\texttt{ {\ttfamily Reg\+Exp\+Validator.\+Options}}}) The options to validate.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md213}{}\doxysubsubsection{\texorpdfstring{validator.\+validate\+Literal(source, start, end)}{validator.\+validate\+Literal(source, start, end)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md213}
+Validate a regular expression literal.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string}) The source code to validate.
+\item {\ttfamily start?} ({\ttfamily number}) The start index in the source code. Default is {\ttfamily 0}.
+\item {\ttfamily end?} ({\ttfamily number}) The end index in the source code. Default is {\ttfamily source.\+length}.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md214}{}\doxysubsubsection{\texorpdfstring{validator.\+validate\+Pattern(source, start, end, flags)}{validator.\+validate\+Pattern(source, start, end, flags)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md214}
+Validate a regular expression pattern.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string}) The source code to validate.
+\item {\ttfamily start?} ({\ttfamily number}) The start index in the source code. Default is {\ttfamily 0}.
+\item {\ttfamily end?} ({\ttfamily number}) The end index in the source code. Default is {\ttfamily source.\+length}.
+\item {\ttfamily flags?} ({\ttfamily \{ unicode?\+: boolean, unicode\+Sets?\+: boolean \}}) The flags to enable Unicode mode, and Unicode Set mode.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md215}{}\doxysubsubsection{\texorpdfstring{validator.\+validate\+Flags(source, start, end)}{validator.\+validate\+Flags(source, start, end)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md215}
+Validate a regular expression flags.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily source} ({\ttfamily string}) The source code to validate.
+\item {\ttfamily start?} ({\ttfamily number}) The start index in the source code. Default is {\ttfamily 0}.
+\item {\ttfamily end?} ({\ttfamily number}) The end index in the source code. Default is {\ttfamily source.\+length}.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md216}{}\doxysubsection{\texorpdfstring{Reg\+Exp\+Visitor}{Reg\+Exp\+Visitor}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md216}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md217}{}\doxysubsubsection{\texorpdfstring{new Reg\+Exp\+Visitor(handlers)}{new Reg\+Exp\+Visitor(handlers)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md217}
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily handlers} (\href{src/visitor.ts\#L291}{\texttt{ {\ttfamily Reg\+Exp\+Visitor.\+Handlers}}}) The callbacks.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md218}{}\doxysubsubsection{\texorpdfstring{visitor.\+visit(ast)}{visitor.\+visit(ast)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md218}
+Validate a regular expression literal.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Parameters\+:}}
+\begin{DoxyItemize}
+\item {\ttfamily ast} (\href{src/ast.ts\#L4}{\texttt{ {\ttfamily AST.\+Node}}}) The AST to visit.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md219}{}\doxysection{\texorpdfstring{📰 Changelog}{📰 Changelog}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md219}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/eslint-community/regexpp/releases}{\texttt{ Git\+Hub Releases}}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md220}{}\doxysection{\texorpdfstring{🍻 Contributing}{🍻 Contributing}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md220}
+Welcome contributing!
+
+Please use Git\+Hub\textquotesingle{}s Issues/\+PRs.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md221}{}\doxysubsection{\texorpdfstring{Development Tools}{Development Tools}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2_0deslint-community_2regexpp_2README_autotoc_md221}
+
+\begin{DoxyItemize}
+\item {\ttfamily npm test} runs tests and measures coverage.
+\item {\ttfamily npm run build} compiles Type\+Script source code to {\ttfamily index.\+js}, {\ttfamily index.\+js.\+map}, and {\ttfamily index.\+d.\+ts}.
+\item {\ttfamily npm run clean} removes the temporary files which are created by {\ttfamily npm test} and {\ttfamily npm run build}.
+\item {\ttfamily npm run lint} runs ESLint.
+\item {\ttfamily npm run update\+:test} updates test fixtures.
+\item {\ttfamily npm run update\+:ids} updates {\ttfamily src/unicode/ids.\+ts}.
+\item {\ttfamily npm run watch} runs tests with {\ttfamily -\/-\/watch} option. 
+\end{DoxyItemize}

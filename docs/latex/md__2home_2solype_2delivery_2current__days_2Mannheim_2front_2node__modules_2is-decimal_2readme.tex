@@ -1,0 +1,79 @@
+\chapter{is-\/decimal}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme}\index{is-\/decimal@{is-\/decimal}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3294}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3294}%
+ \href{https://github.com/wooorm/is-decimal/actions}{\texttt{ }} \href{https://codecov.io/github/wooorm/is-decimal}{\texttt{ }} \href{https://www.npmjs.com/package/is-decimal}{\texttt{ }} \href{https://bundlephobia.com/result?p=is-decimal}{\texttt{ }}
+
+Check if a character is a decimal.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3295}{}\doxysection{\texorpdfstring{Contents}{Contents}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3295}
+
+\begin{DoxyItemize}
+\item What is this?
+\item When should I use this?
+\item Install
+\item Use
+\item API
+\begin{DoxyItemize}
+\item \`{}is\+Decimal(character\texorpdfstring{$\vert$}{|}code)\`{}
+\end{DoxyItemize}
+\item Types
+\item Compatibility
+\item Security
+\item Related
+\item Contribute
+\item License
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3296}{}\doxysection{\texorpdfstring{What is this?}{What is this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3296}
+This is a function that checks if a given character is an ASCII decimal.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3297}{}\doxysection{\texorpdfstring{When should I use this?}{When should I use this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3297}
+Not often, as it’s relatively simple to do yourself. This package exists because it’s needed in several related packages, at which point it becomes useful to defer to one shared function.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3298}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3298}
+This package is \href{https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c}{\texttt{ ESM only}}. In Node.\+js (version 12.\+20+, 14.\+14+, or 16.\+0+), install with \href{https://docs.npmjs.com/cli/install}{\texttt{ npm}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ is-\/decimal}
+
+\end{DoxyCode}
+
+
+In Deno with \href{https://www.skypack.dev}{\texttt{ Skypack}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{isDecimal\}\ from\ 'https://cdn.skypack.dev/is-\/decimal@2?dts'}
+
+\end{DoxyCode}
+
+
+In browsers with \href{https://www.skypack.dev}{\texttt{ Skypack}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{isDecimal\}\ from\ 'https://cdn.skypack.dev/is-\/decimal@2?min'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3299}{}\doxysection{\texorpdfstring{Use}{Use}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3299}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{isDecimal\}\ from\ 'is-\/decimal'}
+\DoxyCodeLine{}
+\DoxyCodeLine{isDecimal('0')\ //\ =>\ true}
+\DoxyCodeLine{isDecimal('9')\ //\ =>\ true}
+\DoxyCodeLine{isDecimal('a')\ //\ =>\ false}
+\DoxyCodeLine{isDecimal('💩')\ //\ =>\ false}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3300}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3300}
+This package exports the following identifiers\+: {\ttfamily is\+Decimal}. There is no default export.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3301}{}\doxysubsection{\texorpdfstring{{\ttfamily is\+Decimal(character\texorpdfstring{$\vert$}{|}code)}}{{\ttfamily is\+Decimal(character\texorpdfstring{$\vert$}{|}code)}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3301}
+Check whether the given character code ({\ttfamily number}), or the character code at the first position ({\ttfamily string}), is decimal.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3302}{}\doxysection{\texorpdfstring{Types}{Types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3302}
+This package is fully typed with \href{https://www.typescriptlang.org}{\texttt{ Type\+Script}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3303}{}\doxysection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3303}
+This package is at least compatible with all maintained versions of Node.\+js. As of now, that is Node.\+js 12.\+20+, 14.\+14+, and 16.\+0+. It also works in Deno and modern browsers.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3304}{}\doxysection{\texorpdfstring{Security}{Security}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3304}
+This package is safe.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3305}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3305}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/wooorm/is-alphabetical}{\texttt{ {\ttfamily wooorm/is-\/alphabetical}}}
+\item \href{https://github.com/wooorm/is-hexadecimal}{\texttt{ {\ttfamily wooorm/is-\/hexadecimal}}}
+\item \href{https://github.com/wooorm/is-whitespace-character}{\texttt{ {\ttfamily wooorm/is-\/whitespace-\/character}}}
+\item \href{https://github.com/wooorm/is-word-character}{\texttt{ {\ttfamily wooorm/is-\/word-\/character}}}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3306}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3306}
+Yes please! See \href{https://opensource.guide/how-to-contribute/}{\texttt{ How to Contribute to Open Source}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3307}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2is-decimal_2readme_autotoc_md3307}
+\mbox{[}MIT\mbox{]}\mbox{[}license\mbox{]} © \href{https://wooorm.com}{\texttt{ Titus Wormer}} 

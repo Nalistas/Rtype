@@ -1,0 +1,107 @@
+\chapter{README}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README}\index{README@{README}}
+\href{https://marked.js.org}{\texttt{  }}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3841}{}\doxysection{\texorpdfstring{Marked}{Marked}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3841}
+\href{https://www.npmjs.com/package/marked}{\texttt{ }} \href{https://packagephobia.now.sh/result?p=marked}{\texttt{ }} \href{https://www.npmjs.com/package/marked}{\texttt{ }} \href{https://github.com/markedjs/marked/actions}{\texttt{ }} \href{https://snyk.io/test/npm/marked}{\texttt{ }}
+
+
+\begin{DoxyItemize}
+\item ⚡ built for speed
+\item ⬇️ low-\/level compiler for parsing markdown without caching or blocking for long periods of time
+\item ⚖️ light-\/weight while implementing all markdown features from the supported flavors \& specifications
+\item 🌐 works in a browser, on a server, or from a command line interface (CLI)
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3842}{}\doxysubsection{\texorpdfstring{Demo}{Demo}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3842}
+Checkout the \href{https://marked.js.org/demo/}{\texttt{ demo page}} to see marked in action ⛹️\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3843}{}\doxysubsection{\texorpdfstring{Docs}{Docs}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3843}
+Our \href{https://marked.js.org}{\texttt{ documentation pages}} are also rendered using marked 💯
+
+Also read about\+:
+
+
+\begin{DoxyItemize}
+\item \href{https://marked.js.org/using_advanced}{\texttt{ Options}}
+\item \href{https://marked.js.org/using_pro}{\texttt{ Extensibility}}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3844}{}\doxysubsection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3844}
+{\bfseries{Node.\+js\+:}} Only \href{https://nodejs.org/en/about/releases/}{\texttt{ current and LTS}} Node.\+js versions are supported. End of life Node.\+js versions may become incompatible with Marked at any point in time.
+
+{\bfseries{Browser\+:}} Not IE11 \+:)\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3845}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3845}
+{\bfseries{CLI\+:}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ -\/g\ marked}
+
+\end{DoxyCode}
+
+
+{\bfseries{In-\/browser\+:}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ marked}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3846}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3846}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3847}{}\doxysubsubsection{\texorpdfstring{Warning\+: 🚨 Marked does not \href{https://marked.js.org/using_advanced\#options}{\texttt{ sanitize}} the output HTML. Please use a sanitize library, like \href{https://github.com/cure53/DOMPurify}{\texttt{ DOMPurify}} (recommended), \href{https://github.com/apostrophecms/sanitize-html}{\texttt{ sanitize-\/html}} or \href{https://github.com/bevacqua/insane}{\texttt{ insane}} on the {\itshape output} HTML! 🚨}{Warning\+: 🚨 Marked does not \href{https://marked.js.org/using_advanced\#options}{\texttt{ sanitize}} the output HTML. Please use a sanitize library, like \href{https://github.com/cure53/DOMPurify}{\texttt{ DOMPurify}} (recommended), \href{https://github.com/apostrophecms/sanitize-html}{\texttt{ sanitize-\/html}} or \href{https://github.com/bevacqua/insane}{\texttt{ insane}} on the {\itshape output} HTML! 🚨}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3847}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{DOMPurify.sanitize(marked.parse(`<img\ src="{}x"{}\ onerror="{}alert('not\ happening')"{}>`));}
+
+\end{DoxyCode}
+
+
+{\bfseries{CLI}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ bash}
+\DoxyCodeLine{\#\ Example\ with\ stdin\ input}
+\DoxyCodeLine{\$\ marked\ -\/o\ hello.html}
+\DoxyCodeLine{hello\ world}
+\DoxyCodeLine{\string^D}
+\DoxyCodeLine{\$\ cat\ hello.html}
+\DoxyCodeLine{<p>hello\ world</p>}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Print\ all\ options}
+\DoxyCodeLine{\$\ marked\ -\/-\/help}
+
+\end{DoxyCode}
+
+
+{\bfseries{Browser}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<!doctype\ html>}
+\DoxyCodeLine{<html>}
+\DoxyCodeLine{<head>}
+\DoxyCodeLine{\ \ <meta\ charset="{}utf-\/8"{}/>}
+\DoxyCodeLine{\ \ <title>Marked\ in\ the\ browser</title>}
+\DoxyCodeLine{</head>}
+\DoxyCodeLine{<body>}
+\DoxyCodeLine{\ \ <div\ id="{}content"{}></div>}
+\DoxyCodeLine{\ \ <script\ src="{}https://cdn.jsdelivr.net/npm/marked/marked.min.js"{}></script>}
+\DoxyCodeLine{\ \ <script>}
+\DoxyCodeLine{\ \ \ \ document.getElementById('content').innerHTML\ =}
+\DoxyCodeLine{\ \ \ \ \ \ marked.parse('\#\ Marked\ in\ the\ browser\(\backslash\)n\(\backslash\)nRendered\ by\ **marked**.');}
+\DoxyCodeLine{\ \ </script>}
+\DoxyCodeLine{</body>}
+\DoxyCodeLine{</html>}
+
+\end{DoxyCode}
+ or import esm module
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{\ marked\ \}\ from\ "{}https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js"{};}
+\DoxyCodeLine{\ \ document.getElementById('content').innerHTML\ =}
+\DoxyCodeLine{\ \ \ \ marked.parse('\#\ Marked\ in\ the\ browser\(\backslash\)n\(\backslash\)nRendered\ by\ **marked**.');}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3848}{}\doxysubsection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2README_autotoc_md3848}
+Copyright (c) 2011-\/2022, Christopher Jeffrey. (MIT License) 

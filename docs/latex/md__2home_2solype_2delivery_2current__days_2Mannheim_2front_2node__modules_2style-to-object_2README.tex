@@ -1,0 +1,213 @@
+\chapter{style-\/to-\/object}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README}\index{style-\/to-\/object@{style-\/to-\/object}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5816}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5816}%
+ \href{https://nodei.co/npm/style-to-object/}{\texttt{ }}
+
+\href{https://www.npmjs.com/package/style-to-object}{\texttt{ }} \href{https://bundlephobia.com/package/style-to-object}{\texttt{ }} \href{https://github.com/remarkablemark/style-to-object/actions/workflows/build.yml}{\texttt{ }} \href{https://codecov.io/gh/remarkablemark/style-to-object}{\texttt{ }} \href{https://www.npmjs.com/package/style-to-object}{\texttt{ }}
+
+Parse CSS inline style to Java\+Script object\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ parse\ from\ 'style-\/to-\/object';}
+\DoxyCodeLine{}
+\DoxyCodeLine{parse('color:\ \#C0FFEE;\ background:\ \#BADA55;');}
+
+\end{DoxyCode}
+
+
+Output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\ color:\ '\#C0FFEE',\ background:\ '\#BADA55'\ \}}
+
+\end{DoxyCode}
+
+
+\href{https://jsfiddle.net/remarkablemark/ykz2meot/}{\texttt{ JSFiddle}} \texorpdfstring{$\vert$}{|} \href{https://replit.com/@remarkablemark/style-to-object}{\texttt{ Replit}} \texorpdfstring{$\vert$}{|} \href{https://github.com/remarkablemark/style-to-object/tree/master/examples}{\texttt{ Examples}}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5817}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5817}
+\href{https://www.npmjs.com/package/style-to-object}{\texttt{ NPM}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ style-\/to-\/object\ -\/-\/save}
+
+\end{DoxyCode}
+
+
+\href{https://yarn.fyi/style-to-object}{\texttt{ Yarn}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{yarn\ add\ style-\/to-\/object}
+
+\end{DoxyCode}
+
+
+\href{https://unpkg.com/style-to-object/}{\texttt{ CDN}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ src="{}https://unpkg.com/style-\/to-\/object@latest/dist/style-\/to-\/object.min.js"{}></script>}
+\DoxyCodeLine{<script>}
+\DoxyCodeLine{\ \ window.StyleToObject(/*\ string\ */);}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5818}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5818}
+Import with ES Modules\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ parse\ from\ 'style-\/to-\/object';}
+
+\end{DoxyCode}
+
+
+Require with Common\+JS\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ parse\ =\ require('style-\/to-\/object').default;}
+
+\end{DoxyCode}
+
+
+Parse single declaration\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parse('line-\/height:\ 42');}
+
+\end{DoxyCode}
+
+
+Output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\ 'line-\/height':\ '42'\ \}}
+
+\end{DoxyCode}
+
+
+Parse multiple declarations\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parse(`}
+\DoxyCodeLine{\ \ border-\/color:\ \#ACE;}
+\DoxyCodeLine{\ \ z-\/index:\ 1337;}
+\DoxyCodeLine{\`{});}
+
+\end{DoxyCode}
+
+
+Output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\ 'border-\/color':\ '\#ACE',\ 'z-\/index':\ '1337'\ \}}
+
+\end{DoxyCode}
+
+
+Parse unknown declarations\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parse('answer:\ 42;');}
+
+\end{DoxyCode}
+
+
+Output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\ 'answer':\ '42'\ \}}
+
+\end{DoxyCode}
+
+
+Invalid declarations/arguments\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parse(`}
+\DoxyCodeLine{\ \ top:\ ;}
+\DoxyCodeLine{\ \ right:\ 1em;}
+\DoxyCodeLine{\`{});\ //\ \{\ right:\ '1em'\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{parse();\ \ \ \ \ \ \ \ //\ null}
+\DoxyCodeLine{parse(null);\ \ \ \ //\ null}
+\DoxyCodeLine{parse(1);\ \ \ \ \ \ \ //\ null}
+\DoxyCodeLine{parse(true);\ \ \ \ //\ null}
+\DoxyCodeLine{parse('top:');\ \ //\ null}
+\DoxyCodeLine{parse(':12px');\ //\ null}
+\DoxyCodeLine{parse(':');\ \ \ \ \ //\ null}
+\DoxyCodeLine{parse(';');\ \ \ \ \ //\ null}
+\DoxyCodeLine{}
+\DoxyCodeLine{parse('top');\ //\ throws\ Error}
+\DoxyCodeLine{parse('/*');\ \ //\ throws\ Error}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5819}{}\doxysubsection{\texorpdfstring{Iterator}{Iterator}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5819}
+If the 2nd argument is a function, then the parser will return {\ttfamily null}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parse('color:\ \#f00',\ ()\ =>\ \{\});\ //\ null}
+
+\end{DoxyCode}
+
+
+But the function will iterate through each declaration\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parse('color:\ \#f00',\ (name,\ value,\ declaration)\ =>\ \{}
+\DoxyCodeLine{\ \ console.log(name);\ \ \ \ \ \ \ \ //\ 'color'}
+\DoxyCodeLine{\ \ console.log(value);\ \ \ \ \ \ \ //\ '\#f00'}
+\DoxyCodeLine{\ \ console.log(declaration);\ //\ \{\ type:\ 'declaration',\ property:\ 'color',\ value:\ '\#f00'\ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+This makes it easy to customize the output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ style\ =\ \`{}}
+\DoxyCodeLine{\ \ color:\ red;}
+\DoxyCodeLine{\ \ background:\ blue;}
+\DoxyCodeLine{\`{};}
+\DoxyCodeLine{const\ output\ =\ [];}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ iterator(name,\ value)\ \{}
+\DoxyCodeLine{\ \ output.push([name,\ value]);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{parse(style,\ iterator);}
+\DoxyCodeLine{console.log(output);\ //\ [['color',\ 'red'],\ ['background',\ 'blue']]}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5820}{}\doxysection{\texorpdfstring{Migration}{Migration}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5820}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5821}{}\doxysubsection{\texorpdfstring{v1}{v1}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5821}
+Migrated to Type\+Script. Iterator excludes {\ttfamily Comment}. Common\+JS requires the {\ttfamily .default} key\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ parse\ =\ require('style-\/to-\/object').default;}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5822}{}\doxysection{\texorpdfstring{Release}{Release}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5822}
+Release and publish are automated by \href{https://github.com/googleapis/release-please}{\texttt{ Release Please}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5823}{}\doxysection{\texorpdfstring{Special Thanks}{Special Thanks}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5823}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/remarkablemark/inline-style-parser}{\texttt{ inline-\/style-\/parser}}
+\item \href{https://github.com/remarkablemark/style-to-object/graphs/contributors}{\texttt{ Contributors}}
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5824}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2style-to-object_2README_autotoc_md5824}
+\href{https://github.com/remarkablemark/style-to-object/blob/master/LICENSE}{\texttt{ MIT}} 

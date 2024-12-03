@@ -1,0 +1,52 @@
+\chapter{string-\/width}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme}\index{string-\/width@{string-\/width}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5754}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5754}%
+ \begin{quote}
+Get the visual width of a string -\/ the number of columns required to display it \end{quote}
+Some Unicode characters are \href{https://en.wikipedia.org/wiki/Halfwidth_and_fullwidth_forms}{\texttt{ fullwidth}} and use double the normal width. \href{https://en.wikipedia.org/wiki/ANSI_escape_code}{\texttt{ ANSI escape codes}} are stripped and doesn\textquotesingle{}t affect the width.
+
+Useful to be able to measure the actual width of command-\/line output.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5755}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5755}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ string-\/width}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5756}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5756}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ stringWidth\ from\ 'string-\/width';}
+\DoxyCodeLine{}
+\DoxyCodeLine{stringWidth('a');}
+\DoxyCodeLine{//=>\ 1}
+\DoxyCodeLine{}
+\DoxyCodeLine{stringWidth('古');}
+\DoxyCodeLine{//=>\ 2}
+\DoxyCodeLine{}
+\DoxyCodeLine{stringWidth('\(\backslash\)u001B[1m古\(\backslash\)u001B[22m');}
+\DoxyCodeLine{//=>\ 2}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5757}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5757}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5758}{}\doxysubsection{\texorpdfstring{string\+Width(string, options?)}{string\+Width(string, options?)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5758}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5759}{}\doxysubsubsection{\texorpdfstring{string}{string}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5759}
+Type\+: {\ttfamily string}
+
+The string to be counted.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5760}{}\doxysubsubsection{\texorpdfstring{options}{options}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5760}
+Type\+: {\ttfamily object}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5761}{}\doxyparagraph{\texorpdfstring{ambiguous\+Is\+Narrow}{ambiguous\+Is\+Narrow}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5761}
+Type\+: {\ttfamily boolean}\textbackslash{} Default\+: {\ttfamily false}
+
+Count \href{https://www.unicode.org/reports/tr11/\#Ambiguous}{\texttt{ ambiguous width characters}} as having narrow width (count of 1) instead of wide width (count of 2).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5762}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2string-width_2readme_autotoc_md5762}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/string-width-cli}{\texttt{ string-\/width-\/cli}} -\/ CLI for this module
+\item \href{https://github.com/sindresorhus/string-length}{\texttt{ string-\/length}} -\/ Get the real length of a string
+\item \href{https://github.com/sindresorhus/widest-line}{\texttt{ widest-\/line}} -\/ Get the visual width of the widest line in a string
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{ \href{https://tidelift.com/subscription/pkg/npm-string-width?utm_source=npm-string-width&utm_medium=referral&utm_campaign=readme}{\texttt{ Get professional support for this package with a Tidelift subscription}} }} ~\newline
+ \textsubscript{ Tidelift helps make open source sustainable for maintainers while giving companies~\newline
+assurances about security, maintenance, and licensing for their dependencies. }  

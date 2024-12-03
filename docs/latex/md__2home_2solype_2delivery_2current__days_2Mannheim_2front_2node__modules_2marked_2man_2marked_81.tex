@@ -1,0 +1,64 @@
+\chapter{marked(1) -- a javascript markdown parser}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81}\index{marked(1) -- a javascript markdown parser@{marked(1) -- a javascript markdown parser}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3832}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3832}%
+ \hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3833}{}\doxysection{\texorpdfstring{SYNOPSIS}{SYNOPSIS}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3833}
+{\ttfamily marked} \mbox{[}{\ttfamily -\/o} $<$output file$>$\mbox{]} \mbox{[}{\ttfamily -\/i} $<$input file$>$\mbox{]} \mbox{[}{\ttfamily -\/s} $<$markdown string$>$\mbox{]} \mbox{[}{\ttfamily -\/c} $<$config file$>$\mbox{]} \mbox{[}{\ttfamily -\/-\/help}\mbox{]} \mbox{[}{\ttfamily -\/-\/version}\mbox{]} \mbox{[}{\ttfamily -\/-\/tokens}\mbox{]} \mbox{[}{\ttfamily -\/-\/no-\/clobber}\mbox{]} \mbox{[}{\ttfamily -\/-\/pedantic}\mbox{]} \mbox{[}{\ttfamily -\/-\/gfm}\mbox{]} \mbox{[}{\ttfamily -\/-\/breaks}\mbox{]} \mbox{[}{\ttfamily -\/-\/no-\/etc...}\mbox{]} \mbox{[}{\ttfamily -\/-\/silent}\mbox{]} \mbox{[}filename\mbox{]}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3834}{}\doxysection{\texorpdfstring{DESCRIPTION}{DESCRIPTION}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3834}
+marked is a full-\/featured javascript markdown parser, built for speed. It also includes multiple GFM features.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3835}{}\doxysection{\texorpdfstring{EXAMPLES}{EXAMPLES}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3835}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cat\ in.md\ |\ marked\ >\ out.html}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{echo\ "{}hello\ *world*"{}\ |\ marked}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{marked\ -\/o\ out.html\ -\/i\ in.md\ -\/-\/gfm}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{marked\ -\/-\/output="{}hello\ world.html"{}\ -\/i\ in.md\ -\/-\/no-\/breaks}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3836}{}\doxysection{\texorpdfstring{OPTIONS}{OPTIONS}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3836}
+
+\begin{DoxyItemize}
+\item -\/o, --output \mbox{[}output file\mbox{]} Specify file output. If none is specified, write to stdout.
+\item -\/i, --input \mbox{[}input file\mbox{]} Specify file input, otherwise use last argument as input file. If no input file is specified, read from stdin.
+\item -\/s, --string \mbox{[}markdown string\mbox{]} Specify string input instead of a file.
+\item -\/c, --config \mbox{[}config file\mbox{]} Specify config file to use instead of the default {\ttfamily \texorpdfstring{$\sim$}{\string~}/.marked.\+json} or {\ttfamily \texorpdfstring{$\sim$}{\string~}/.marked.\+js} or {\ttfamily \texorpdfstring{$\sim$}{\string~}/.marked/index.\+js}.
+\item -\/t, --tokens Output a token list instead of html.
+\item -\/n, --no-\/clobber Do not overwrite {\ttfamily output} if it exists.
+\item --pedantic Conform to obscure parts of markdown.\+pl as much as possible. Don\textquotesingle{}t fix original markdown bugs.
+\item --gfm Enable github flavored markdown.
+\item --breaks Enable GFM line breaks. Only works with the gfm option.
+\item --no-\/breaks, -\/no-\/etc... The inverse of any of the marked options above.
+\item --silent Silence error output.
+\item -\/h, --help Display help information.
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3837}{}\doxysection{\texorpdfstring{CONFIGURATION}{CONFIGURATION}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3837}
+For configuring and running programmatically.
+
+Example
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ Marked\ \}\ from\ 'marked';}
+\DoxyCodeLine{const\ marked\ =\ new\ Marked(\{\ gfm:\ true\ \});}
+\DoxyCodeLine{marked.parse('*foo*');}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3838}{}\doxysection{\texorpdfstring{BUGS}{BUGS}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3838}
+Please report any bugs to \href{https://github.com/markedjs/marked}{\texttt{ https\+://github.\+com/markedjs/marked}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3839}{}\doxysection{\texorpdfstring{LICENSE}{LICENSE}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3839}
+Copyright (c) 2011-\/2014, Christopher Jeffrey (MIT License).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3840}{}\doxysection{\texorpdfstring{SEE ALSO}{SEE ALSO}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2marked_2man_2marked_81_autotoc_md3840}
+markdown(1), nodejs(1) 

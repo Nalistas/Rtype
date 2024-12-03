@@ -1,0 +1,29 @@
+\chapter{Thenable}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2thenable}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2thenable}\index{Thenable@{Thenable}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2thenable_autotoc_md6684}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2thenable_autotoc_md6684}%
+ {\itshape Thenable} object (an object with {\ttfamily then} method)\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2thenable_autotoc_md6685}{}\doxysection{\texorpdfstring{{\ttfamily thenable/is}}{{\ttfamily thenable/is}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2thenable_autotoc_md6685}
+Confirms if given object is a {\itshape thenable}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ isThenable\ =\ require("{}type/thenable/is"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{isThenable(Promise.resolve());\ //\ true}
+\DoxyCodeLine{isThenable(\{\ then:\ ()\ =>\ \{\}\ \});\ //\ true}
+\DoxyCodeLine{isThenable(\{\});\ //\ false}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2thenable_autotoc_md6686}{}\doxysection{\texorpdfstring{{\ttfamily thenable/ensure}}{{\ttfamily thenable/ensure}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2thenable_autotoc_md6686}
+If given argument is a {\itshape thenable} object, it is returned back. Otherwise {\ttfamily Type\+Error} is thrown.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureThenable\ =\ require("{}type/thenable/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ promise\ =\ Promise.resolve();}
+\DoxyCodeLine{ensureThenable(promise);\ //\ promise}
+\DoxyCodeLine{ensureThenable(\{\});\ //\ Thrown\ TypeError:\ [object\ Object]\ is\ not\ a\ thenable\ object}
+
+\end{DoxyCode}
+ 

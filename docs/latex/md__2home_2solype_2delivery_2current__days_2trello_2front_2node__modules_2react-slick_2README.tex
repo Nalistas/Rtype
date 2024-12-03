@@ -1,0 +1,112 @@
+\chapter{react-\/slick}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README}{}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README}\index{react-\/slick@{react-\/slick}}
+\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12130}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12130}%
+ !\mbox{[}Backers on Open Collective\mbox{]}(https\+://opencollective.com/react-\/slick/backers/badge.svg) !\mbox{[}Sponsors on Open Collective\mbox{]}(https\+://opencollective.com/react-\/slick/sponsors/badge.svg)\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12131}{}\doxyparagraph{\texorpdfstring{Carousel component built with React. It is a react port of \href{http://kenwheeler.github.io/slick/}{\texttt{ slick carousel}}}{Carousel component built with React. It is a react port of \href{http://kenwheeler.github.io/slick/}{\texttt{ slick carousel}}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12131}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12132}{}\doxysection{\texorpdfstring{\href{http://react-slick.neostack.com}{\texttt{ Documentation}}}{\href{http://react-slick.neostack.com}{\texttt{ Documentation}}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12132}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12133}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12133}
+{\bfseries{npm}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ react-\/slick\ -\/-\/save}
+
+\end{DoxyCode}
+
+
+{\bfseries{yarn}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{yarn\ add\ react-\/slick}
+
+\end{DoxyCode}
+
+
+{\bfseries{Also install slick-\/carousel for css and font}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ slick-\/carousel}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Import\ css\ files}
+\DoxyCodeLine{import\ "{}slick-\/carousel/slick/slick.css"{};}
+\DoxyCodeLine{import\ "{}slick-\/carousel/slick/slick-\/theme.css"{};}
+
+\end{DoxyCode}
+
+
+or add cdn link in your html
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<link}
+\DoxyCodeLine{\ \ rel="{}stylesheet"{}}
+\DoxyCodeLine{\ \ type="{}text/css"{}}
+\DoxyCodeLine{\ \ charset="{}UTF-\/8"{}}
+\DoxyCodeLine{\ \ href="{}https://cdnjs.cloudflare.com/ajax/libs/slick-\/carousel/1.8.1/slick.min.css"{}}
+\DoxyCodeLine{/>}
+\DoxyCodeLine{<link}
+\DoxyCodeLine{\ \ rel="{}stylesheet"{}}
+\DoxyCodeLine{\ \ type="{}text/css"{}}
+\DoxyCodeLine{\ \ href="{}https://cdnjs.cloudflare.com/ajax/libs/slick-\/carousel/1.8.1/slick-\/theme.min.css"{}}
+\DoxyCodeLine{/>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12134}{}\doxysubsection{\texorpdfstring{\href{https://stackblitz.com/edit/vitejs-vite-ownrun?file=src\%2FImageSlider.jsx}{\texttt{ Play\+Ground}}}{\href{https://stackblitz.com/edit/vitejs-vite-ownrun?file=src\%2FImageSlider.jsx}{\texttt{ Play\+Ground}}}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12134}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12135}{}\doxysubsection{\texorpdfstring{Example}{Example}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12135}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ React\ from\ "{}react"{};}
+\DoxyCodeLine{import\ Slider\ from\ "{}react-\/slick"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ function\ SimpleSlider()\ \{}
+\DoxyCodeLine{\ \ var\ settings\ =\ \{}
+\DoxyCodeLine{\ \ \ \ dots:\ true,}
+\DoxyCodeLine{\ \ \ \ infinite:\ true,}
+\DoxyCodeLine{\ \ \ \ speed:\ 500,}
+\DoxyCodeLine{\ \ \ \ slidesToShow:\ 1,}
+\DoxyCodeLine{\ \ \ \ slidesToScroll:\ 1}
+\DoxyCodeLine{\ \ \};}
+\DoxyCodeLine{\ \ return\ (}
+\DoxyCodeLine{\ \ \ \ <Slider\ \{...settings\}>}
+\DoxyCodeLine{\ \ \ \ \ \ <div>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <h3>1</h3>}
+\DoxyCodeLine{\ \ \ \ \ \ </div>}
+\DoxyCodeLine{\ \ \ \ \ \ <div>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <h3>2</h3>}
+\DoxyCodeLine{\ \ \ \ \ \ </div>}
+\DoxyCodeLine{\ \ \ \ \ \ <div>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <h3>3</h3>}
+\DoxyCodeLine{\ \ \ \ \ \ </div>}
+\DoxyCodeLine{\ \ \ \ \ \ <div>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <h3>4</h3>}
+\DoxyCodeLine{\ \ \ \ \ \ </div>}
+\DoxyCodeLine{\ \ \ \ \ \ <div>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <h3>5</h3>}
+\DoxyCodeLine{\ \ \ \ \ \ </div>}
+\DoxyCodeLine{\ \ \ \ \ \ <div>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <h3>6</h3>}
+\DoxyCodeLine{\ \ \ \ \ \ </div>}
+\DoxyCodeLine{\ \ \ \ </Slider>}
+\DoxyCodeLine{\ \ );}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12136}{}\doxysubsection{\texorpdfstring{Props}{Props}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12136}
+For all available props, go \href{https://react-slick.neostack.com/docs/api/}{\texttt{ here}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12137}{}\doxysubsection{\texorpdfstring{Methods}{Methods}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12137}
+For all available methods, go \href{https://react-slick.neostack.com/docs/api\#methods}{\texttt{ here}}\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12138}{}\doxysubsection{\texorpdfstring{Development}{Development}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12138}
+Want to run demos locally
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/akiran/react-\/slick}
+\DoxyCodeLine{cd\ react-\/slick}
+\DoxyCodeLine{npm\ install}
+\DoxyCodeLine{npm\ start}
+\DoxyCodeLine{open\ http://localhost:8080}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12139}{}\doxysection{\texorpdfstring{Community}{Community}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12139}
+Join our \href{https://discord.gg/z7stRE4Cyb}{\texttt{ discord channel}} to discuss react-\/slick bugs and ask for help\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12140}{}\doxysection{\texorpdfstring{Contributing}{Contributing}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2react-slick_2README_autotoc_md12140}
+Please see the contributing guidelines 

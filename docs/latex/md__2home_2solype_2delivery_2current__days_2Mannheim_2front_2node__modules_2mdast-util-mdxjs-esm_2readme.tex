@@ -1,0 +1,302 @@
+\chapter{mdast-\/util-\/mdxjs-\/esm}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme}\index{mdast-\/util-\/mdxjs-\/esm@{mdast-\/util-\/mdxjs-\/esm}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3936}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3936}%
+ \href{https://github.com/syntax-tree/mdast-util-mdxjs-esm/actions}{\texttt{ }} \href{https://codecov.io/github/syntax-tree/mdast-util-mdxjs-esm}{\texttt{ }} \href{https://www.npmjs.com/package/mdast-util-mdxjs-esm}{\texttt{ }} \href{https://bundlejs.com/?q=mdast-util-mdxjs-esm}{\texttt{ }} \href{https://opencollective.com/unified}{\texttt{ }} \href{https://opencollective.com/unified}{\texttt{ }} \href{https://github.com/syntax-tree/unist/discussions}{\texttt{ }}
+
+\href{https://github.com/syntax-tree/mdast}{\texttt{ mdast}} extensions to parse and serialize \href{https://mdxjs.com}{\texttt{ MDX}} ESM (import/exports).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3937}{}\doxysection{\texorpdfstring{Contents}{Contents}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3937}
+
+\begin{DoxyItemize}
+\item What is this?
+\item When to use this
+\item Install
+\item Use
+\item API
+\begin{DoxyItemize}
+\item \`{}mdxjs\+Esm\+From\+Markdown()\`{}
+\item \`{}mdxjs\+Esm\+To\+Markdown()\`{}
+\item \`{}\+Mdxjs\+Esm\`{}
+\item \`{}\+Mdxjs\+Esm\+Hast\`{}
+\end{DoxyItemize}
+\item HTML
+\item Syntax
+\item Syntax tree
+\begin{DoxyItemize}
+\item Nodes
+\item Content model
+\end{DoxyItemize}
+\item Types
+\item Compatibility
+\item Related
+\item Contribute
+\item License
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3938}{}\doxysection{\texorpdfstring{What is this?}{What is this?}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3938}
+This package contains two extensions that add support for MDX ESM syntax in markdown to \href{https://github.com/syntax-tree/mdast}{\texttt{ mdast}}. These extensions plug into \href{https://github.com/syntax-tree/mdast-util-from-markdown}{\texttt{ {\ttfamily mdast-\/util-\/from-\/markdown}}} (to support parsing ESM in markdown into a syntax tree) and \href{https://github.com/syntax-tree/mdast-util-to-markdown}{\texttt{ {\ttfamily mdast-\/util-\/to-\/markdown}}} (to support serializing ESM in syntax trees to markdown).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3939}{}\doxysection{\texorpdfstring{When to use this}{When to use this}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3939}
+You can use these extensions when you are working with {\ttfamily mdast-\/util-\/from-\/markdown} and {\ttfamily mdast-\/util-\/to-\/markdown} already.
+
+When working with {\ttfamily mdast-\/util-\/from-\/markdown}, you must combine this package with \href{https://github.com/micromark/micromark-extension-mdxjs-esm}{\texttt{ {\ttfamily micromark-\/extension-\/mdxjs-\/esm}}}.
+
+When you are working with syntax trees and want all of MDX, use \href{https://github.com/syntax-tree/mdast-util-mdx}{\texttt{ {\ttfamily mdast-\/util-\/mdx}}} instead.
+
+All these packages are used in \href{https://mdxjs.com/packages/remark-mdx/}{\texttt{ {\ttfamily remark-\/mdx}}}, which focusses on making it easier to transform content by abstracting these internals away.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3940}{}\doxysection{\texorpdfstring{Install}{Install}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3940}
+This package is \href{https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c}{\texttt{ ESM only}}. In Node.\+js (version 16+), install with \href{https://docs.npmjs.com/cli/install}{\texttt{ npm}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ mdast-\/util-\/mdxjs-\/esm}
+
+\end{DoxyCode}
+
+
+In Deno with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{mdxjsEsmFromMarkdown,\ mdxjsEsmToMarkdown\}\ from\ 'https://esm.sh/mdast-\/util-\/mdxjs-\/esm@2'}
+
+\end{DoxyCode}
+
+
+In browsers with \href{https://esm.sh}{\texttt{ {\ttfamily esm.\+sh}}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{mdxjsEsmFromMarkdown,\ mdxjsEsmToMarkdown\}\ from\ 'https://esm.sh/mdast-\/util-\/mdxjs-\/esm@2?bundle'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3941}{}\doxysection{\texorpdfstring{Use}{Use}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3941}
+Say our document {\ttfamily example.\+mdx} contains\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ a\ from\ 'b'}
+\DoxyCodeLine{export\ const\ c\ =\ ''}
+\DoxyCodeLine{}
+\DoxyCodeLine{d}
+
+\end{DoxyCode}
+
+
+…and our module {\ttfamily example.\+js} looks as follows\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ fs\ from\ 'node:fs/promises'}
+\DoxyCodeLine{import\ *\ as\ acorn\ from\ 'acorn'}
+\DoxyCodeLine{import\ \{fromMarkdown\}\ from\ 'mdast-\/util-\/from-\/markdown'}
+\DoxyCodeLine{import\ \{toMarkdown\}\ from\ 'mdast-\/util-\/to-\/markdown'}
+\DoxyCodeLine{import\ \{mdxjsEsm\}\ from\ 'micromark-\/extension-\/mdxjs-\/esm'}
+\DoxyCodeLine{import\ \{mdxjsEsmFromMarkdown,\ mdxjsEsmToMarkdown\}\ from\ 'mdast-\/util-\/mdxjs-\/esm'}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ doc\ =\ await\ fs.readFile('example.mdx')}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ tree\ =\ fromMarkdown(doc,\ \{}
+\DoxyCodeLine{\ \ extensions:\ [mdxjsEsm(\{acorn,\ addResult:\ true\})],}
+\DoxyCodeLine{\ \ mdastExtensions:\ [mdxjsEsmFromMarkdown()]}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(tree)}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ out\ =\ toMarkdown(tree,\ \{extensions:\ [mdxjsEsmToMarkdown()]\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(out)}
+
+\end{DoxyCode}
+
+
+…now running {\ttfamily node example.\+js} yields (positional info removed for brevity)\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ type:\ 'root',}
+\DoxyCodeLine{\ \ children:\ [}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ type:\ 'mdxjsEsm',}
+\DoxyCodeLine{\ \ \ \ \ \ value:\ "{}import\ a\ from\ 'b'\(\backslash\)nexport\ const\ c\ =\ ''"{},}
+\DoxyCodeLine{\ \ \ \ \ \ data:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ estree:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ type:\ 'Program',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ body:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ type:\ 'ImportDeclaration',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ specifiers:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ type:\ 'ImportDefaultSpecifier',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ local:\ \{type:\ 'Identifier',\ name:\ 'a'\}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ source:\ \{type:\ 'Literal',\ value:\ 'b',\ raw:\ "{}'b'"{}\}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ type:\ 'ExportNamedDeclaration',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ declaration:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ type:\ 'VariableDeclaration',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ declarations:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ type:\ 'VariableDeclarator',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ id:\ \{type:\ 'Identifier',\ name:\ 'c'\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ init:\ \{type:\ 'Literal',\ value:\ '',\ raw:\ "{}''"{}\}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kind:\ 'const'}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ specifiers:\ [],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ source:\ null}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ sourceType:\ 'module'}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \{type:\ 'paragraph',\ children:\ [\{type:\ 'text',\ value:\ 'd'\}]\}}
+\DoxyCodeLine{\ \ ]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ a\ from\ 'b'}
+\DoxyCodeLine{export\ const\ c\ =\ ''}
+\DoxyCodeLine{}
+\DoxyCodeLine{d}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3942}{}\doxysection{\texorpdfstring{API}{API}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3942}
+This package exports the identifiers \`{}mdxjs\+Esm\+From\+Markdown\`{} and \`{}mdxjs\+Esm\+To\+Markdown\`{}. There is no default export.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3943}{}\doxysubsection{\texorpdfstring{{\ttfamily mdxjs\+Esm\+From\+Markdown()}}{{\ttfamily mdxjs\+Esm\+From\+Markdown()}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3943}
+Create an extension for \href{https://github.com/syntax-tree/mdast-util-from-markdown}{\texttt{ {\ttfamily mdast-\/util-\/from-\/markdown}}} to enable MDX.\+js ESM in markdown.
+
+When using the \href{https://github.com/micromark/micromark-extension-mdxjs-esm}{\texttt{ micromark syntax extension}} with {\ttfamily add\+Result}, nodes will have a {\ttfamily data.\+estree} field set to an ESTree \href{https://github.com/estree/estree/blob/master/es2015.md\#programs}{\texttt{ {\ttfamily Program}}} node.
+
+\doxysubparagraph*{Returns}
+
+Extension for {\ttfamily mdast-\/util-\/from-\/markdown} to enable MDX.\+js ESM (\href{https://github.com/syntax-tree/mdast-util-from-markdown\#extension}{\texttt{ {\ttfamily From\+Markdown\+Extension}}}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3944}{}\doxysubsection{\texorpdfstring{{\ttfamily mdxjs\+Esm\+To\+Markdown()}}{{\ttfamily mdxjs\+Esm\+To\+Markdown()}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3944}
+Create an extension for \href{https://github.com/syntax-tree/mdast-util-to-markdown}{\texttt{ {\ttfamily mdast-\/util-\/to-\/markdown}}} to enable MDX.\+js ESM in markdown.
+
+\doxysubparagraph*{Returns}
+
+Extension for {\ttfamily mdast-\/util-\/to-\/markdown} to enable MDX.\+js ESM (\href{https://github.com/syntax-tree/mdast-util-to-markdown\#options}{\texttt{ {\ttfamily To\+Markdown\+Extension}}}).\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3945}{}\doxysubsection{\texorpdfstring{{\ttfamily Mdxjs\+Esm}}{{\ttfamily Mdxjs\+Esm}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3945}
+MDX ESM (import/export) node (Type\+Script type).
+
+\doxysubparagraph*{Type}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ type\ \{Program\}\ from\ 'estree-\/jsx'}
+\DoxyCodeLine{import\ type\ \{Data,\ Literal\}\ from\ 'mdast'}
+\DoxyCodeLine{}
+\DoxyCodeLine{interface\ MdxjsEsm\ extends\ Literal\ \{}
+\DoxyCodeLine{\ \ type:\ 'mdxjsEsm'}
+\DoxyCodeLine{\ \ data?:\ MdxjsEsmData\ |\ undefined}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ interface\ MdxjsEsmData\ extends\ Data\ \{}
+\DoxyCodeLine{\ \ estree?:\ Program\ |\ null\ |\ undefined}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3946}{}\doxysubsection{\texorpdfstring{{\ttfamily Mdxjs\+Esm\+Hast}}{{\ttfamily Mdxjs\+Esm\+Hast}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3946}
+Same as \`{}\+Mdxjs\+Esm\`{}, but registered with {\ttfamily @types/hast} (Type\+Script type).
+
+\doxysubparagraph*{Type}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ type\ \{Program\}\ from\ 'estree-\/jsx'}
+\DoxyCodeLine{import\ type\ \{Data,\ Literal\}\ from\ 'hast'}
+\DoxyCodeLine{}
+\DoxyCodeLine{interface\ MdxjsEsmHast\ extends\ Literal\ \{}
+\DoxyCodeLine{\ \ type:\ 'mdxjsEsm'}
+\DoxyCodeLine{\ \ data?:\ MdxjsEsmHastData\ |\ undefined}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ interface\ MdxjsEsmHastData\ extends\ Data\ \{}
+\DoxyCodeLine{\ \ estree?:\ Program\ |\ null\ |\ undefined}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3947}{}\doxysection{\texorpdfstring{HTML}{HTML}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3947}
+MDX ESM has no representation in HTML. Though, when you are dealing with MDX, you will likely go {\itshape through} hast. You can enable passing MDX ESM through to hast by configuring \href{https://github.com/syntax-tree/mdast-util-to-hast}{\texttt{ {\ttfamily mdast-\/util-\/to-\/hast}}} with `pass\+Through\+: \mbox{[}\textquotesingle{}mdxjs\+Esm'\mbox{]}\`{}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3948}{}\doxysection{\texorpdfstring{Syntax}{Syntax}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3948}
+See \href{https://github.com/micromark/micromark-extension-mdxjs-esm\#syntax}{\texttt{ Syntax in {\ttfamily micromark-\/extension-\/mdxjs-\/esm}}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3949}{}\doxysection{\texorpdfstring{Syntax tree}{Syntax tree}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3949}
+The following interfaces are added to {\bfseries{\href{https://github.com/syntax-tree/mdast}{\texttt{ mdast}}}} by this utility.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3950}{}\doxysubsection{\texorpdfstring{Nodes}{Nodes}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3950}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3951}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Mdxjs\+Esm}}{{\ttfamily Mdxjs\+Esm}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3951}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{interface\ }MdxjsEsm\ <:\ Literal\ \{}
+\DoxyCodeLine{\ \ type:\ \textcolor{stringliteral}{'mdxjsEsm'}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+{\bfseries{Mdxjs\+Esm}} ({\bfseries{\href{https://github.com/syntax-tree/mdast\#literal}{\texttt{ Literal}}}}) represents ESM import/exports embedded in MDX. It can be used where {\bfseries{flow}} content is expected. Its content is represented by its {\ttfamily value} field.
+
+For example, the following Markdown\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ a\ from\ 'b'}
+
+\end{DoxyCode}
+
+
+Yields\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ type:\ 'mdxjsEsm',}
+\DoxyCodeLine{\ \ value:\ 'import\ a\ from\ \(\backslash\)'b\(\backslash\)''}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3952}{}\doxysubsection{\texorpdfstring{Content model}{Content model}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3952}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3953}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Flow\+Content} (MDX.\+js ESM)}{{\ttfamily Flow\+Content} (MDX.\+js ESM)}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3953}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{type\ FlowContentMdxjsEsm\ =\ MdxjsEsm\ |\ FlowContent}
+
+\end{DoxyCode}
+
+
+Note that when ESM is present, it can only exist as top-\/level content\+: if it has a {\itshape \href{https://github.com/syntax-tree/unist\#parent-1}{\texttt{ parent}}}, that parent must be {\bfseries{\href{https://github.com/syntax-tree/mdast\#root}{\texttt{ Root}}}}.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3954}{}\doxysection{\texorpdfstring{Types}{Types}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3954}
+This package is fully typed with \href{https://www.typescriptlang.org}{\texttt{ Type\+Script}}. It exports the additional types \`{}\+Mdxjs\+Esm\`{} and \`{}\+Mdxjs\+Esm\+Hast\`{}.
+
+It also registers the node type with {\ttfamily @types/mdast} and {\ttfamily @types/hast}. If you’re working with the syntax tree, make sure to import this utility somewhere in your types, as that registers the new node types in the tree.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{/**}
+\DoxyCodeLine{\ *\ @typedef\ \{import('mdast-\/util-\/mdxjs-\/esm')\}}
+\DoxyCodeLine{\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{import\ \{visit\}\ from\ 'unist-\/util-\/visit'}
+\DoxyCodeLine{}
+\DoxyCodeLine{/**\ @type\ \{import('mdast').Root\}\ */}
+\DoxyCodeLine{const\ tree\ =\ getMdastNodeSomeHow()}
+\DoxyCodeLine{}
+\DoxyCodeLine{visit(tree,\ function\ (node)\ \{}
+\DoxyCodeLine{\ \ //\ \`{}node`\ can\ now\ be\ an\ ESM\ node.}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3955}{}\doxysection{\texorpdfstring{Compatibility}{Compatibility}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3955}
+Projects maintained by the unified collective are compatible with maintained versions of Node.\+js.
+
+When we cut a new major release, we drop support for unmaintained versions of Node. This means we try to keep the current release line, {\ttfamily mdast-\/util-\/mdxjs-\/esm@\texorpdfstring{$^\wedge$}{\string^}2}, compatible with Node.\+js 16.
+
+This utility works with {\ttfamily mdast-\/util-\/from-\/markdown} version 2+ and {\ttfamily mdast-\/util-\/to-\/markdown} version 2+.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3956}{}\doxysection{\texorpdfstring{Related}{Related}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3956}
+
+\begin{DoxyItemize}
+\item \href{https://mdxjs.com/packages/remark-mdx/}{\texttt{ {\ttfamily remarkjs/remark-\/mdx}}} — remark plugin to support MDX
+\item \href{https://github.com/syntax-tree/mdast-util-mdx}{\texttt{ {\ttfamily syntax-\/tree/mdast-\/util-\/mdx}}} — mdast utility to support MDX
+\item \href{https://github.com/micromark/micromark-extension-mdxjs-esm}{\texttt{ {\ttfamily micromark/micromark-\/extension-\/mdxjs-\/esm}}} — micromark extension to parse MDX.\+js ESM
+\end{DoxyItemize}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3957}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3957}
+See \href{https://github.com/syntax-tree/.github/blob/main/contributing.md}{\texttt{ {\ttfamily contributing.\+md}}} in \href{https://github.com/syntax-tree/.github}{\texttt{ {\ttfamily syntax-\/tree/.github}}} for ways to get started. See \href{https://github.com/syntax-tree/.github/blob/main/support.md}{\texttt{ {\ttfamily support.\+md}}} for ways to get help.
+
+This project has a \href{https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md}{\texttt{ code of conduct}}. By interacting with this repository, organization, or community you agree to abide by its terms.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3958}{}\doxysection{\texorpdfstring{License}{License}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2mdast-util-mdxjs-esm_2readme_autotoc_md3958}
+\mbox{[}MIT\mbox{]}\mbox{[}license\mbox{]} © \href{https://wooorm.com}{\texttt{ Titus Wormer}} 

@@ -1,0 +1,91 @@
+\chapter{event-\/emitter}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README}\index{event-\/emitter@{event-\/emitter}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2532}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2532}%
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2533}{}\doxysection{\texorpdfstring{Environment agnostic event emitter}{Environment agnostic event emitter}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2533}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2534}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2534}
+\begin{DoxyVerb}$ npm install event-emitter
+\end{DoxyVerb}
+ To port it to Browser or any other (non CJS) environment, use your favorite CJS bundler. No favorite yet? Try\+: \href{http://browserify.org/}{\texttt{ Browserify}}, \href{https://github.com/medikoo/modules-webmake}{\texttt{ Webmake}} or \href{http://webpack.github.io/}{\texttt{ Webpack}}\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2535}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2535}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ ee\ =\ require('event-\/emitter');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ MyClass\ =\ function\ ()\ \{\ /*\ ..\ */\ \};}
+\DoxyCodeLine{ee(MyClass.prototype);\ //\ All\ instances\ of\ MyClass\ will\ expose\ event-\/emitter\ interface}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ emitter\ =\ new\ MyClass(),\ listener;}
+\DoxyCodeLine{}
+\DoxyCodeLine{emitter.on('test',\ listener\ =\ function\ (args)\ \{}
+\DoxyCodeLine{\ \ //\ …\ react\ to\ 'test'\ event}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{emitter.once('test',\ function\ (args)\ \{}
+\DoxyCodeLine{\ \ //\ …\ react\ to\ first\ 'test'\ event\ (invoked\ only\ once!)}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{emitter.emit('test',\ arg1,\ arg2/*…args*/);\ //\ Two\ above\ listeners\ invoked}
+\DoxyCodeLine{emitter.emit('test',\ arg1,\ arg2/*…args*/);\ //\ Only\ first\ listener\ invoked}
+\DoxyCodeLine{}
+\DoxyCodeLine{emitter.off('test',\ listener);\ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Removed\ first\ listener}
+\DoxyCodeLine{emitter.emit('test',\ arg1,\ arg2/*…args*/);\ //\ No\ listeners\ invoked}
+
+\end{DoxyCode}
+ \hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2536}{}\doxysubsection{\texorpdfstring{Additional utilities}{Additional utilities}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2536}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2537}{}\doxysubsubsection{\texorpdfstring{all\+Off(obj) \+\_\+(event-\/emitter/all-\/off)\+\_\+}{all\+Off(obj) \+\_\+(event-\/emitter/all-\/off)\+\_\+}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2537}
+Removes all listeners from given event emitter object\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2538}{}\doxysubsubsection{\texorpdfstring{has\+Listeners(obj\mbox{[}, name\mbox{]}) \+\_\+(event-\/emitter/has-\/listeners)\+\_\+}{has\+Listeners(obj\mbox{[}, name\mbox{]}) \+\_\+(event-\/emitter/has-\/listeners)\+\_\+}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2538}
+Whether object has some listeners attached to the object. When {\ttfamily name} is provided, it checks listeners for specific event name
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ emitter\ =\ ee();}
+\DoxyCodeLine{var\ hasListeners\ =\ require('event-\/emitter/has-\/listeners');}
+\DoxyCodeLine{var\ listener\ =\ function\ ()\ \{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{hasListeners(emitter);\ //\ false}
+\DoxyCodeLine{}
+\DoxyCodeLine{emitter.on('foo',\ listener);}
+\DoxyCodeLine{hasListeners(emitter);\ //\ true}
+\DoxyCodeLine{hasListeners(emitter,\ 'foo');\ //\ true}
+\DoxyCodeLine{hasListeners(emitter,\ 'bar');\ //\ false}
+\DoxyCodeLine{}
+\DoxyCodeLine{emitter.off('foo',\ listener);}
+\DoxyCodeLine{hasListeners(emitter,\ 'foo');\ //\ false}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2539}{}\doxysubsubsection{\texorpdfstring{pipe(source, target\mbox{[}, emit\+Method\+Name\mbox{]}) \+\_\+(event-\/emitter/pipe)\+\_\+}{pipe(source, target\mbox{[}, emit\+Method\+Name\mbox{]}) \+\_\+(event-\/emitter/pipe)\+\_\+}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2539}
+Pipes all events from {\itshape source} emitter onto {\itshape target} emitter (all events from {\itshape source} emitter will be emitted also on {\itshape target} emitter, but not other way). ~\newline
+ Returns {\itshape pipe} object which exposes {\ttfamily pipe.\+close} function. Invoke it to close configured {\itshape pipe}. ~\newline
+ It works internally by redefinition of {\ttfamily emit} method, if in your interface this method is referenced differently, provide its name (or symbol) with third argument.\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2540}{}\doxysubsubsection{\texorpdfstring{unify(emitter1, emitter2) \+\_\+(event-\/emitter/unify)\+\_\+}{unify(emitter1, emitter2) \+\_\+(event-\/emitter/unify)\+\_\+}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2540}
+Unifies event handling for two objects. Events emitted on {\itshape emitter1} would be also emitted on {\itshape emitter2}, and other way back. ~\newline
+ Non reversible.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ eeUnify\ =\ require('event-\/emitter/unify');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ emitter1\ =\ ee(),\ listener1,\ listener3;}
+\DoxyCodeLine{var\ emitter2\ =\ ee(),\ listener2,\ listener4;}
+\DoxyCodeLine{}
+\DoxyCodeLine{emitter1.on('test',\ listener1\ =\ function\ ()\ \{\ \});}
+\DoxyCodeLine{emitter2.on('test',\ listener2\ =\ function\ ()\ \{\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{emitter1.emit('test');\ //\ Invoked\ listener1}
+\DoxyCodeLine{emitter2.emit('test');\ //\ Invoked\ listener2}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ unify\ =\ eeUnify(emitter1,\ emitter2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{emitter1.emit('test');\ //\ Invoked\ listener1\ and\ listener2}
+\DoxyCodeLine{emitter2.emit('test');\ //\ Invoked\ listener1\ and\ listener2}
+\DoxyCodeLine{}
+\DoxyCodeLine{emitter1.on('test',\ listener3\ =\ function\ ()\ \{\ \});}
+\DoxyCodeLine{emitter2.on('test',\ listener4\ =\ function\ ()\ \{\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{emitter1.emit('test');\ //\ Invoked\ listener1,\ listener2,\ listener3\ and\ listener4}
+\DoxyCodeLine{emitter2.emit('test');\ //\ Invoked\ listener1,\ listener2,\ listener3\ and\ listener4}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2541}{}\doxysubsection{\texorpdfstring{Tests \href{https://travis-ci.org/medikoo/event-emitter}{\texttt{ }}}{Tests \href{https://travis-ci.org/medikoo/event-emitter}{\texttt{ }}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2event-emitter_2README_autotoc_md2541}
+\begin{DoxyVerb}$ npm test
+\end{DoxyVerb}
+ 

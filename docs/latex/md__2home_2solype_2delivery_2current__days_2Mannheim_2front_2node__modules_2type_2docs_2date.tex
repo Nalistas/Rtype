@@ -1,0 +1,30 @@
+\chapter{Date}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2date}{}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2date}\index{Date@{Date}}
+\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2date_autotoc_md6622}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2date_autotoc_md6622}%
+ {\itshape Date} instance\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2date_autotoc_md6623}{}\doxysection{\texorpdfstring{{\ttfamily date/is}}{{\ttfamily date/is}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2date_autotoc_md6623}
+Confirms if given object is a native date, and is not an {\itshape Invalid Date}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ isDate\ =\ require("{}type/date/is"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{isDate(new\ Date());\ //\ true}
+\DoxyCodeLine{isDate(new\ Date("{}Invalid\ date"{}));\ //\ false}
+\DoxyCodeLine{isDate(Date.now());\ //\ false}
+\DoxyCodeLine{isDate("{}foo"{});\ //\ false}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2date_autotoc_md6624}{}\doxysection{\texorpdfstring{{\ttfamily date/ensure}}{{\ttfamily date/ensure}}}\label{md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2type_2docs_2date_autotoc_md6624}
+If given argument is a date object, it is returned back. Otherwise {\ttfamily Type\+Error} is thrown.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ensureDate\ =\ require("{}type/date/ensure"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ date\ =\ new\ Date();}
+\DoxyCodeLine{ensureDate(date);\ //\ date}
+\DoxyCodeLine{ensureDate(123123);\ //\ Thrown\ TypeError:\ 123123\ is\ not\ a\ date\ object}
+
+\end{DoxyCode}
+ 

@@ -1,0 +1,63 @@
+\chapter{j\+Query}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README}{}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README}\index{jQuery@{jQuery}}
+\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README_autotoc_md10737}%
+\Hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README_autotoc_md10737}%
+ \begin{quote}
+j\+Query is a fast, small, and feature-\/rich Java\+Script library. \end{quote}
+For information on how to get started and how to use j\+Query, please see \href{https://api.jquery.com/}{\texttt{ j\+Query\textquotesingle{}s documentation}}. For source files and issues, please visit the \href{https://github.com/jquery/jquery}{\texttt{ j\+Query repo}}.
+
+If upgrading, please see the \href{https://blog.jquery.com/2023/08/28/jquery-3-7-1-released-reliable-table-row-dimensions/}{\texttt{ blog post for 3.\+7.\+1}}. This includes notable differences from the previous version and a more readable changelog.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README_autotoc_md10738}{}\doxysection{\texorpdfstring{Including j\+Query}{Including j\+Query}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README_autotoc_md10738}
+Below are some of the most common ways to include j\+Query.\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README_autotoc_md10739}{}\doxysubsection{\texorpdfstring{Browser}{Browser}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README_autotoc_md10739}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README_autotoc_md10740}{}\doxysubsubsection{\texorpdfstring{Script tag}{Script tag}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README_autotoc_md10740}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ src="{}https://code.jquery.com/jquery-\/3.7.1.min.js"{}></script>}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README_autotoc_md10741}{}\doxysubsubsection{\texorpdfstring{Webpack / Browserify / Babel}{Webpack / Browserify / Babel}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README_autotoc_md10741}
+There are several ways to use \href{https://webpack.js.org/}{\texttt{ Webpack}}, \href{http://browserify.org/}{\texttt{ Browserify}} or \href{https://babeljs.io/}{\texttt{ Babel}}. For more information on using these tools, please refer to the corresponding project\textquotesingle{}s documentation. In the script, including j\+Query will usually look like this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \$\ from\ "{}jquery"{};}
+
+\end{DoxyCode}
+
+
+If you need to use j\+Query in a file that\textquotesingle{}s not an ECMAScript module, you can use the Common\+JS syntax\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ \$\ =\ require(\ "{}jquery"{}\ );}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README_autotoc_md10742}{}\doxysubsubsection{\texorpdfstring{AMD (Asynchronous Module Definition)}{AMD (Asynchronous Module Definition)}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README_autotoc_md10742}
+AMD is a module format built for the browser. For more information, we recommend \href{https://requirejs.org/docs/whyamd.html}{\texttt{ require.\+js\textquotesingle{} documentation}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{define(\ [\ "{}jquery"{}\ ],\ function(\ \$\ )\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}\ );}
+
+\end{DoxyCode}
+\hypertarget{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README_autotoc_md10743}{}\doxysubsection{\texorpdfstring{Node}{Node}}\label{md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2jquery_2README_autotoc_md10743}
+To include j\+Query in \href{https://nodejs.org/}{\texttt{ Node}}, first install with npm.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ jquery}
+
+\end{DoxyCode}
+
+
+For j\+Query to work in Node, a window with a document is required. Since no such window exists natively in Node, one can be mocked by tools such as \href{https://github.com/jsdom/jsdom}{\texttt{ jsdom}}. This can be useful for testing purposes.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ \{\ JSDOM\ \}\ =\ require(\ "{}jsdom"{}\ );}
+\DoxyCodeLine{const\ \{\ window\ \}\ =\ new\ JSDOM(\ "{}"{}\ );}
+\DoxyCodeLine{const\ \$\ =\ require(\ "{}jquery"{}\ )(\ window\ );}
+
+\end{DoxyCode}
+ 
