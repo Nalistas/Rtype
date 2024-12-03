@@ -6,6 +6,13 @@
 */
 
 #include "Server.hpp"
+#include <string>
+
+
+std::size_t endpoint_hash_class::operator()(const udp::endpoint &ep) const {
+    return std::hash<std::string>()(ep.address().to_string() + ":" + std::to_string(ep.port()));
+}
+
 
 Server::Server() : socket(io_context, udp::endpoint(udp::v4(), 5000))
 {
@@ -28,12 +35,12 @@ int Server::loop()
                   << ":" << sender_endpoint.port() << " -> " << message << std::endl;
 
         // add client if not exist
-        // if (clients.find(sender_endpoint) == clients.end()) {
-            // clients[sender_endpoint] = {};
-            // std::cout << "Nouveau client ajouté : " 
-            //           << sender_endpoint.address().to_string()
-            //           << ":" << sender_endpoint.port() << std::endl;
-        // }
+        if (clients.find(sender_endpoint) == clients.end()) {
+            clients.insert(sender_endpoint);
+            std::cout << "Nouveau client ajouté : " 
+                      << sender_endpoint.address().to_string()
+                      << ":" << sender_endpoint.port() << std::endl;
+        }
 
         // Préparer une réponse
         std::string reply = "Echo: " + message;
