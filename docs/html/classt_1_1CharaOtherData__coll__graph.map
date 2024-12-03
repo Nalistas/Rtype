@@ -1,7 +1,0 @@
-<map id="t.CharaOtherData" name="t.CharaOtherData">
-<area shape="rect" id="Node000001" title=" " alt="" coords="30,96,155,123"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,92,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,45,89,94,84,97,59,47"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="115,5,158,32"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="126,47,101,97,96,94,121,45"/>
-</map>

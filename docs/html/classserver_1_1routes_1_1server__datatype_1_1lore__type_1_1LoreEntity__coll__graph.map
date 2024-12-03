@@ -1,7 +1,0 @@
-<map id="server.routes.server_datatype.lore_type.LoreEntity" name="server.routes.server_datatype.lore_type.LoreEntity">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,112,204,155"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="11,5,97,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,45,98,110,93,113,63,47"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="121,5,190,32"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="146,47,116,113,111,110,141,45"/>
-</map>

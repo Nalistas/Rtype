@@ -1,7 +1,0 @@
-<map id="t.CharaRoles" name="t.CharaRoles">
-<area shape="rect" id="Node000001" title=" " alt="" coords="43,112,142,139"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,92,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,45,90,111,85,113,57,47"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="115,5,158,32"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="128,47,100,113,95,111,123,45"/>
-</map>

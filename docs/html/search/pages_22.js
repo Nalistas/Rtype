@@ -1,4 +1,0 @@
-var searchData=
-[
-  ['yocto_20queue_20a_20href_20https_3a_20bundlephobia_20com_20result_20p_20yocto_20queue_20img_20src_20https_3a_20badgen_20net_20bundlephobia_20minzip_20yocto_20queue_20alt_20a_0',['yocto queue a href https: bundlephobia com result p yocto queue img src https: badgen net bundlephobia minzip yocto queue alt a',['../md__2home_2solype_2delivery_2current__days_2Mannheim_2front_2node__modules_2yocto-queue_2readme.html',1,'yocto-queue &lt;a href=&quot;https://bundlephobia.com/result?p=yocto-queue&quot; &gt;&lt;img src=&quot;https://badgen.net/bundlephobia/minzip/yocto-queue&quot; alt=&quot;&quot;/&gt;&lt;/a&gt;'],['../md__2home_2solype_2delivery_2current__days_2trello_2front_2node__modules_2yocto-queue_2readme.html',1,'yocto-queue &lt;a href=&quot;https://bundlephobia.com/result?p=yocto-queue&quot; &gt;&lt;img src=&quot;https://badgen.net/bundlephobia/minzip/yocto-queue&quot; alt=&quot;&quot;/&gt;&lt;/a&gt;']]]
-];
