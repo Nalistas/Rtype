@@ -25,7 +25,7 @@ class Server {
         udp::socket socket;
 
         // List of clients (key = endpoint, value = name)
-        std::unordered_map<udp::endpoint, std::string, std::hash<std::string>> clients;
+        // std::unordered_map<udp::endpoint, std::string, std::hash<std::string>> clients;
 };
 
 #endif /* !SERVER_HPP_ */
