@@ -23,6 +23,7 @@ FetchContent_MakeAvailable(asio)
 include_directories(${asio_SOURCE_DIR}/asio/include)
 
 
+# Compose the project
 add_executable(Server)
 target_include_directories(Server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
