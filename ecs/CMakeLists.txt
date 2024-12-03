@@ -11,23 +11,19 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Ajoute les répertoires include
 include_directories(include)
 
-# Crée une bibliothèque statique
-add_library(${PROJECT_NAME} STATIC)
-
-# Ajoute les fichiers source à la bibliothèque
-target_sources(${PROJECT_NAME}
-    PRIVATE
-        src/entity.cpp
-        src/registry.cpp
+# Crée une bibliothèque statique (changer le nom de "myecs" en "ecs")
+add_library(ecs STATIC
+    src/entity.cpp
+    src/registry.cpp
 )
 
 # Ajoute les répertoires include au projet
-target_include_directories(${PROJECT_NAME}
+target_include_directories(ecs
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 # Option pour activer les warnings
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic)
+    target_compile_options(ecs PRIVATE -Wall -Wextra -pedantic)
 endif()
