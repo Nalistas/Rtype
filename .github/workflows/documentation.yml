@@ -29,6 +29,15 @@ jobs:
 
       - name: Build documentation
         run: doxygen
+
+      - name: Commit README.md to gh-pages
+        run: |
+          git checkout gh-pages
+          cp README.md .
+          git add README.md
+          git commit -m "Update README.md on gh-pages"
+          git push origin gh-pages
+
       
       - name: Deploy documentation
         uses: JamesIves/github-pages-deploy-action@v4
