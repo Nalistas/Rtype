@@ -125,6 +125,32 @@ class Window {
          */
         void draw_rectangle(int x, int y, int width, int height, Color color);
 
+        /**
+         * @brief Check if a key is in the state defined in the parameter
+         * @param state the state of the keys, based on the enum ecs::Window::BUTTON_STATE
+         * @param key the key to check, see the raylib documentation
+         * @return true if the key is in the state defined in the parameter, false otherwise
+         */
+        bool is_key(BUTTON_STATE state, int key) const;
+
+        /**
+         * @brief Check if a mouse button is in the state defined in the parameter
+         * @param state the state of the mouse buttons, based on the enum ecs::Window::BUTTON_STATE
+         * @param button the mouse button to check, see the raylib documentation
+         * @return true if the mouse button is in the state defined in the parameter, false otherwise
+         */
+        bool is_mouse_button(BUTTON_STATE state, int button) const;
+
+        /**
+         * @brief Get the character pressed, this function only works if the key is a letter
+         */
+        char get_char_pressed() const;
+
+        /**
+         * @brief Get the ascii value of the key. This function follow the raylib documentation
+         * @note it only goes from 32 to 126, the printable characters
+         */
+        char get_char_from_enum(int key) const;
 
     private:
         bool _running;

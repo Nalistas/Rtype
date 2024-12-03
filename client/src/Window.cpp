@@ -146,4 +146,47 @@ void raylib::Window::draw_rectangle(int x, int y, int width, int height, Color c
     DrawRectangle(x, y, width, height, color);
 }
 
+bool raylib::Window::is_key(BUTTON_STATE state, int key) const
+{
+    switch (state) {
+        case RELEASED:
+            return IsKeyReleased(key);
+        case PRESSED:
+            return IsKeyPressed(key);
+        case DOWN:
+            return IsKeyDown(key);
+        case UP:
+            return IsKeyUp(key);
+        default:
+            return false;
+    }
+}
+
+bool raylib::Window::is_mouse_button(BUTTON_STATE state, int button) const
+{
+    switch (state) {
+        case RELEASED:
+            return IsMouseButtonReleased(button);
+        case PRESSED:
+            return IsMouseButtonPressed(button);
+        case DOWN:
+            return IsMouseButtonDown(button);
+        case UP:
+            return IsMouseButtonUp(button);
+        default:
+            return false;
+    }
+}
+
+char raylib::Window::get_char_pressed() const
+{
+    return GetCharPressed();
+}
+
+char raylib::Window::get_char_from_enum(int key) const
+{
+    if (key < 32 || key > 126)
+        return 0;
+    return static_cast<char>(key);
+}
 
