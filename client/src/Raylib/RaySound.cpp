@@ -5,7 +5,7 @@
 ** RaySound
 */
 
-#include "RaySound.hpp"
+#include "Raylib/RaySound.hpp"
 #include <stdexcept>
 
 raylib::RaySound::RaySound(std::string const &path)

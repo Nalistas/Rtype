@@ -5,7 +5,7 @@
 ** AudioDevice
 */
 
-#include "AudioDevice.hpp"
+#include "Raylib/AudioDevice.hpp"
 #include "raylib.h"
 
 raylib::AudioDevice::AudioDevice()

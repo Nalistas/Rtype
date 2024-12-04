@@ -15,6 +15,7 @@ namespace raylib {
 
 class Sprite {
     public:
+        Sprite();
         Sprite(std::string const &texture_path);
         Sprite(std::string const &texture_path, Rectangle texture_rect, Rectangle on_window_rect);
         ~Sprite();

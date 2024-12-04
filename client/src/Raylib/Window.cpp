@@ -6,7 +6,7 @@
 */
 
 #include "raylib.h"
-#include "Window.hpp"
+#include "Raylib/Window.hpp"
 
 #include <list>
 #include <functional>

@@ -5,7 +5,7 @@
 ** RayMusic
 */
 
-#include "RayMusic.hpp"
+#include "Raylib/RayMusic.hpp"
 #include <stdexcept>
 
 raylib::RayMusic::RayMusic(std::string const &path) :

@@ -5,8 +5,10 @@
 ** Sprite
 */
 
-#include "Sprite.hpp"
+#include "Raylib/Sprite.hpp"
 #include <stdexcept>
+
+raylib::Sprite::Sprite() : _rotation(0), _frame_count(0), _current_frame(0), _offset({0, 0}) {}
 
 raylib::Sprite::Sprite(std::string const &texture_path) :
     _rotation(0), _frame_count(0), _current_frame(0), _offset({0, 0})
@@ -55,6 +57,9 @@ raylib::Sprite::~Sprite()
 
 void raylib::Sprite::draw()
 {
+    if (_texture.id == 0) {
+        return;
+    }
     DrawTexturePro(_texture, _source_rect, _destination_rect, _center, _rotation, WHITE);
 }
 

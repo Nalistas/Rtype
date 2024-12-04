@@ -35,12 +35,12 @@ target_include_directories(Client PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_sources(Client
     PRIVATE
         main.cpp
-        src/Window.cpp
-        src/Sprite.cpp
-        src/RaySound.cpp
-        src/RayMusic.cpp
-        src/AudioDevice.cpp
-        Client.cpp
+        src/Raylib/Window.cpp
+        src/Raylib/Sprite.cpp
+        src/Raylib/RaySound.cpp
+        src/Raylib/RayMusic.cpp
+        src/Raylib/AudioDevice.cpp
+        src/Client.cpp
 )
 
 target_link_libraries(Client PRIVATE raylib)

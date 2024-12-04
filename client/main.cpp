@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include "Window.hpp"
-#include "Sprite.hpp"
+#include "Raylib/Window.hpp"
+#include "Raylib/Sprite.hpp"
 #include "Client.hpp"
 
 int main() {
