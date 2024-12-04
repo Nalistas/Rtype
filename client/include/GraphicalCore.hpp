@@ -8,10 +8,12 @@
 #include "raylib.h"
 #include "Raylib/AudioDevice.hpp"
 #include "Raylib/Window.hpp"
-#include "Raylib/Sprite.hpp"
 #include "Raylib/RayMusic.hpp"
+#include "Background.hpp"
+
 
 #include <list>
+#include <memory>
 
 
 #ifndef GRAPHICALCORE_HPP_
@@ -26,7 +28,7 @@ class GraphicalCore {
         /**
          * @brief Construct a new GraphicalCore object
          */
-        GraphicalCore();
+        GraphicalCore(std::size_t win_width, std::size_t win_height);
 
         /**
          * @brief Destroy the GraphicalCore object
@@ -34,32 +36,62 @@ class GraphicalCore {
         ~GraphicalCore();
 
         /**
-         * this function start the iteration for music and background, it will call the BeginDrawing() raylib function
+         * @brief start the iteration, by playing music and drawing background, it will call the BeginDrawing() raylib function
          */
         void start_draw(void);
 
         /**
-         * this function stop the iteration for music and background, it will call the EndDrawing() raylib function
+         * @brief stop the iteration for music and background, it will call the EndDrawing() raylib function
          */
         void stop_draw(void);
 
         /**
-         * this function add a background to the list of background
-         * @param path the path to the background file
+         * @brief add a background to the list of background
+         * @param background the background as a rvalue that will be moved within the list with std::move
          * @param position the position of the background
          */
-        void insertBackground(std::string const &path, std::size_t position = 0);
+        void insertBackground(Background &&background, std::size_t position = 0);
 
+        /**
+         * @brief remove a background from the list of background
+         * @param position the position of the background
+         */
+        void removeBackground(std::size_t position = 0);
+
+        /**
+         * @brief clear the list of background
+         */
+        void clearBackgrounds(void);
+
+        /**
+         * @brief set the music of the game
+         * @param path the path to the music file
+         */
+        void setMusic(std::string const &path);
+
+        /**
+         * @brief get a background from the list of background
+         * @param position the position of the background
+         * @return the background
+         */
+        Background &getBackground(std::size_t position = 0);
+
+        /**
+         * @brief get the window
+         */
         raylib::Window &getWindow();
-        raylib::AudioDevice &getAudioDevice();
-        raylib::RayMusic &getMusic();
+
+        /**
+         * @brief get the music
+         */
+        std::unique_ptr<raylib::RayMusic> &getMusic();
 
     protected:
-        raylib::RayMusic _music;
+        std::unique_ptr<raylib::RayMusic> _music;
         raylib::Window _window;
         raylib::AudioDevice _audio_device;
 
-        std::list<raylib::Sprite> _background;
+        std::list<Background> _backgrounds;
 };
 
 #endif /* !GRAPHICALCORE_HPP_ */

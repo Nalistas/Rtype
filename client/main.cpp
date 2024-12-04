@@ -6,24 +6,16 @@
 #include "Raylib/Sprite.hpp"
 #include "Client.hpp"
 #include "Background.hpp"
+#include "GraphicalCore.hpp"
 
 int main()
 {
-    raylib::Window window(800, 600);
-    Background background;
+    GraphicalCore core(800, 600);
 
-    background.setTexture("./orange.png");
-    background.setWindowDimensions(800, 600);
-    background.resize_x(100, true);
-    background.setSpeedY(2);
-    background.loop_y(true);
 
-    while (window.is_running()) {
-        window.start_drawing();
-        window.clear();
-        background.draw();
-        window.end_drawing();
-        background.move(1);
+    while (core.getWindow().is_running()) {
+        core.start_draw();
+        core.stop_draw();
     }
 }
 
