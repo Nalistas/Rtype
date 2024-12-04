@@ -40,6 +40,7 @@ target_sources(Client
         src/Raylib/RaySound.cpp
         src/Raylib/RayMusic.cpp
         src/Raylib/AudioDevice.cpp
+        src/Background.cpp
         src/Client.cpp
 )
 

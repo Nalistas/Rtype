@@ -78,6 +78,18 @@ class Sprite {
          */
         float get_rotation() const;
 
+        /**
+         * @brief Resize the sprite on the x axis, but modify the y axis to keep the same ratio
+         * @param x the new x size
+         */
+        void resize_x(float x, bool keep_ratio = false);
+
+        /**
+         * @brief Resize the sprite on the y axis, but modify the x axis to keep the same ratio
+         * @param y the new y size
+         */
+        void resize_y(float y, bool keep_ratio = false);
+
     private:
         /// @name the basics attributes
         /// @{

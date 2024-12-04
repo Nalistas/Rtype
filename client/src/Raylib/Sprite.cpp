@@ -67,6 +67,13 @@ void raylib::Sprite::set_texture(std::string const &texture_path)
 {
     UnloadTexture(_texture);
     _texture = LoadTexture(texture_path.c_str());
+    if (_texture.id == 0) {
+        throw std::runtime_error("Failed to load texture: " + texture_path);
+    }
+    _source_rect = {0, 0, static_cast<float>(_texture.width), static_cast<float>(_texture.height)};
+    _source_rect_origin = _source_rect;
+    _destination_rect = {_destination_rect.x, _destination_rect.y, static_cast<float>(_texture.width), static_cast<float>(_texture.height)};
+    _center = {_destination_rect.width / 2, _destination_rect.height / 2};
 }
 
 void raylib::Sprite::set_source_rect(Rectangle texture_rect)
@@ -99,4 +106,26 @@ void raylib::Sprite::set_rotation(float rotation)
 float raylib::Sprite::get_rotation() const
 {
     return _rotation;
+}
+
+void raylib::Sprite::resize_x(float scale_x, bool preserve_aspect_ratio)
+{
+    if (preserve_aspect_ratio) {
+        float aspect_ratio = static_cast<float>(_texture.height) / static_cast<float>(_texture.width);
+        float scale_y = scale_x * aspect_ratio;
+        set_size(scale_x, scale_y);
+    } else {
+        set_size(scale_x, _texture.height);
+    }
+}
+
+void raylib::Sprite::resize_y(float scale_y, bool preserve_aspect_ratio)
+{
+    if (preserve_aspect_ratio) {
+        float aspect_ratio = static_cast<float>(_texture.width) / static_cast<float>(_texture.height);
+        float scale_x = scale_y * aspect_ratio;
+        set_size(scale_x, scale_y);
+    } else {
+        set_size(_texture.width, scale_y);
+    }
 }

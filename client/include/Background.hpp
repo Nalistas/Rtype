@@ -16,19 +16,116 @@
  */
 class Background {
     public:
-        Background();
-        Background(std::string const &path, std::size_t speed, std::size_t win_width, std::size_t win_height);
+        /**
+         * @brief Construct a new Background object
+         */
+        Background(void);
+
+        /**
+         * @brief Construct a new Background object
+         */
+        Background(std::string const &path, std::size_t win_width, std::size_t win_height);
+
+        /**
+         * @brief Construct a new Background object
+         */
+        Background(std::string const &path, std::size_t win_width, std::size_t win_height, double speedX, double speedY = 0);
+
+        /**
+         * @brief Destroy the Background object
+         */
         ~Background();
 
-        raylib::Sprite &getBackground();
-        void setSpeed(std::size_t speed);
-        void update(std::size_t timestamp);
+        /**
+         * @brief Set the window dimensions
+         */
+        void setWindowDimensions(std::size_t win_width, std::size_t win_height);
+
+        /**
+         * @brief Get the speed on the x axis of the background
+         */
+        double getSpeedX(void) const;
+
+        /**
+         * @brief Set the speed on the x axis of the background
+         */
+        void setSpeedX(double speed);
+
+        /**
+         * @brief Get the speed on the y axis of the background
+         */
+        double getSpeedY(void) const;
+
+        /**
+         * @brief Set the speed on the y axis of the background
+         */
+        void setSpeedY(double speed);
+
+        /**
+         * @brief Get the speed of the background
+         */
+        double getSpeedY(void);
+
+        /**
+         * @brief Update the position of the background based on the timestamp
+         * @param timestamp the timestamp
+         */
+        void move(std::size_t timestamp);
+
+        /**
+         * @brief Draw the background
+         */
+        void draw(void); 
+
+        /**
+         * @brief Set the background to a new position, similar to 
+         */
+        void setParallax(std::size_t x_ref, std::size_t y_ref);
+
+        /**
+         * @brief Set the texture of the background
+         */
+        void setTexture(std::string const &path);
+
+        /**
+         * @brief resize the background
+         */
+        void resize_x(float x, bool preserve_aspect_ratio = false);
+
+        /**
+         * @brief resize the background
+         */
+        void resize_y(float y, bool preserve_aspect_ratio = false);
+
+        /**
+         * @brief resize the background
+         */
+        void auto_resize_x(void);
+
+        /**
+         * @brief resize the background
+         */
+        void auto_resize_y(void);
+
+        /**
+         * @brief Define if the background should repeat on the x axis 
+         */
+        void loop_x(bool repeat);
+
+        /**
+         * @brief Define if the background should repeat on the y axis 
+         */
+        void loop_y(bool repeat);
 
     private:
         raylib::Sprite _background;
-        std::size_t _speed;
+        double _speed_x;
+        double _speed_y;
         std::size_t _win_width;
         std::size_t _win_height;
+
+        bool _repeat_x;
+        bool _repeat_y;
 };
 
 #endif /* !BACKGROUND_HPP_ */
