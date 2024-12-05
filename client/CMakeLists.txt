@@ -43,6 +43,9 @@ target_sources(Client
         src/Background.cpp
         src/GraphicalCore.cpp
         src/Client.cpp
+        src/Core.cpp
+        src/Systems/SystemBackground.cpp
+        src/Systems/SystemTime.cpp
 )
 
 target_link_libraries(Client PRIVATE raylib)

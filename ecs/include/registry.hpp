@@ -225,7 +225,7 @@ class registry : public iregistry {
          * @tparam Components the components used by the system
          */
         template <class ...Components>
-        void encapsulate_system_call(ecs::isystem<Components ...> const &system, sparse_array<Components> &... arrays);
+        void encapsulate_system_call(ecs::isystem<Components ...> &system, sparse_array<Components> &... arrays);
 
         std::unordered_map<std::type_index, std::any> _components_arrays;
 

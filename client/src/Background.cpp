@@ -138,7 +138,7 @@ void Background::move(std::size_t timestamp)
         return;
     }
 
-    if (_move_type == Background::MOVE_X || _move_type == Background::PARALLAX || _move_type == Background::PARALLAX_X) {
+    if (_move_type == Background::MOVE_X) {
         while (_background.get_position().x <= -_background.get_size().x) {
             _background.set_position(_background.get_position().x + size.x, pos.y);
         } 
@@ -147,7 +147,7 @@ void Background::move(std::size_t timestamp)
         }
     }
     pos = _background.get_position();
-    if (_move_type == Background::MOVE_Y || _move_type == Background::PARALLAX || _move_type == Background::PARALLAX_Y) {
+    if (_move_type == Background::MOVE_Y) {
         if (_background.get_position().y <= -_background.get_size().y) {
             _background.set_position(pos.x, _background.get_position().y + size.y);
         } else if (_background.get_position().y >= _win_height) {
@@ -159,7 +159,7 @@ void Background::move(std::size_t timestamp)
 void Background::setParallax(void)
 {
     Vector2 size = _background.get_size();
-    Vector2 pos = _background.get_position();
+    Vector2 pos = {0, 0};
 
     if (!this->_get_parallax_pos) {
         return;

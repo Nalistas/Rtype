@@ -93,7 +93,7 @@ class GraphicalCore {
         std::unique_ptr<raylib::RayMusic> &getMusic();
 
         /**
-         * @brief get the time elapsed since the last update
+         * @brief get the time elapsed since the last update, as milliseconds
          */
         float getElapsedTime(void) const;
 
@@ -104,7 +104,7 @@ class GraphicalCore {
 
         std::list<Background> _backgrounds;
         std::chrono::high_resolution_clock::time_point _last_update;
-        float _elapsed;
+        int64_t _elapsed;
 };
 
 #endif /* !GRAPHICALCORE_HPP_ */

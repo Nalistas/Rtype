@@ -80,7 +80,7 @@ void registry::remove_component(entity const &from)
 template <class... Components, typename Function>
 void registry::add_system(Function&& f)
 {
-    _systems.emplace_back([f = std::forward<Function>(f), this](registry& reg) {
+    _systems.emplace_back([f = std::forward<Function>(f), this](registry& reg) mutable {
         this->encapsulate_system_call(f, reg.get_components<Components>()...);
     });
 }
@@ -92,9 +92,9 @@ void registry::add_standalone_system(Function&& f)
 }
 
 template <class... Components>
-void registry::encapsulate_system_call(ecs::isystem<Components...> const &f, sparse_array<Components>&... arrays)
+void registry::encapsulate_system_call(ecs::isystem<Components...>& f, sparse_array<Components>&... arrays)
 {
-    unsigned int min_size = std::min({arrays.size()...});
+    unsigned int min_size = (sizeof...(arrays) > 0) ? std::min({arrays.size()...}) : 0;
 
     for (unsigned int i = 0; i < min_size; ++i) {
         if ((arrays[i].has_value() && ...)) {

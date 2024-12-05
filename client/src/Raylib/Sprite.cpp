@@ -55,9 +55,12 @@ raylib::Sprite::~Sprite()
     UnloadTexture(_texture);
 }
 
+#include <iostream>
+
 void raylib::Sprite::draw()
 {
     if (_texture.id == 0) {
+        std::cout << "Texture not loaded" << std::endl;
         return;
     }
     DrawTexturePro(_texture, _source_rect, _destination_rect, _center, _rotation, WHITE);

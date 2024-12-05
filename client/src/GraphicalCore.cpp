@@ -25,10 +25,10 @@ GraphicalCore::~GraphicalCore()
 void GraphicalCore::start_draw(void)
 {
     using Clock = std::chrono::high_resolution_clock;
-    auto now = Clock::now(); // Temps actuel avec haute résolution
+    auto now = Clock::now();
 
-    // Calculer le temps écoulé depuis la dernière mise à jour
     auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - this->_last_update).count();
+    this->_elapsed = elapsed;
     this->_last_update = now;
 
     if (this->_music != nullptr) {
@@ -42,8 +42,6 @@ void GraphicalCore::start_draw(void)
         background.update_position(elapsed); // elapsed est en millisecondes
         background.draw();
     }
-
-    std::cout << "time elapsed: " << elapsed << " ms" << std::endl;
 }
 
 void GraphicalCore::stop_draw(void)

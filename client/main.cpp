@@ -2,33 +2,12 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include "Raylib/Window.hpp"
-#include "Raylib/Sprite.hpp"
-#include "Client.hpp"
-#include "Background.hpp"
-#include "GraphicalCore.hpp"
-#include "raylib.h"
+#include "Core.hpp"
 
 int main()
 {
-    GraphicalCore core(800, 600);
-    Background background("./orange.png", 800, 600);
-
-    background.loop(true);
-    background.setSpeed(1);
-    background.resize_y(core.getWindow().get_size().second, true);
-    background.setMoveType(Background::MOVE_X);
-    background.setParallaxPos([&core](void) { return core.getConstWindow().get_mouse_position(); });
-
-    core.insertBackground(std::move(background));
-
-    while (core.getWindow().is_running()) {
-        core.start_draw();
-        core.stop_draw();
-        if (core.getWindow().is_key(raylib::Window::BUTTON_STATE::PRESSED, KEY_SPACE)) {
-            core.getWindow().set_fps(10);
-        }
-    }
+    Core core(800, 600);
+    return core.run();
 }
 
 // int main() {
