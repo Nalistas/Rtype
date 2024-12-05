@@ -17,6 +17,7 @@
 #include "Systems/SystemSprite.hpp"
 
 #include "isystem.hpp"
+#include "Client.hpp"
 
 #include <iostream>
 
@@ -51,21 +52,26 @@ int Core::run(void)
 {
     ecs::entity background = _registry.create_entity();
     _registry.emplace_component<Background>(background);
+    Client client;
+    client.connect("localhost");
 
-    std::optional<Background> &bg = _registry.get_components<Background>()[background];
-    if (bg.has_value()) {
-        bg->setTexture("./orange.png");
-        bg->setSpeed(10);
-        bg->resize_y(static_cast<float>(_window.get_size().second), true);
-        bg->setWindowDimensions(_window.get_size().first, _window.get_size().second);
-        bg->loop(true);
-        bg->setMoveType(Background::BACKGROUND_MOVE_TYPE::PARALLAX_X);
-        bg->setParallaxPos([this]() {
-            return _window.get_mouse_position();
-        });
-    }
+
+    // std::optional<Background> &bg = _registry.get_components<Background>()[background];
+    // if (bg.has_value()) {
+    //     bg->setTexture("./orange.png");
+    //     bg->setSpeed(10);
+    //     bg->resize_y(static_cast<float>(_window.get_size().second), true);
+    //     bg->setWindowDimensions(_window.get_size().first, _window.get_size().second);
+    //     bg->loop(true);
+    //     bg->setMoveType(Background::BACKGROUND_MOVE_TYPE::PARALLAX_X);
+    //     bg->setParallaxPos([this]() {
+    //         return _window.get_mouse_position();
+    //     });
+    // }
 
     while (_window.is_running()) {
+        std::string data = client.get_data();
+        client.process_message(data);
         _window.start_drawing();
         _registry.run_systems();
         _window.end_drawing();
