@@ -11,11 +11,20 @@
 int main()
 {
     GraphicalCore core(800, 600);
+    Background background("./orange.png", 800, 600);
 
+    background.loop_x(true);
+    background.setSpeedX(1);
+
+    background.resize_y(core.getWindow().get_size().second, true);
+
+    // core.insertBackground(std::move(background));
 
     while (core.getWindow().is_running()) {
         core.start_draw();
+        background.draw();
         core.stop_draw();
+        background.setParallax(core.getWindow().get_mouse_position().x, core.getWindow().get_mouse_position().y);
     }
 }
 

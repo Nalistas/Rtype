@@ -19,6 +19,7 @@ Background::~Background()
 Background::Background(std::string const &path, std::size_t win_width, std::size_t win_height) :
     _background(path), _speed_x(0), _speed_y(0), _win_width(win_width), _win_height(win_height), _repeat_x(false), _repeat_y(false)
 {
+    _background.set_position(static_cast<float>(_win_width) / 2, static_cast<float>(_win_height) / 2);
 }
 
 Background::Background(std::string const &path, std::size_t win_width, std::size_t win_height, double speedX, double speedY) :
@@ -129,41 +130,44 @@ void Background::draw() {
 void Background::move(std::size_t timestamp)
 {
     Vector2 pos = _background.get_position();
+    Vector2 size = _background.get_size();
 
     _background.set_position(pos.x - _speed_x * timestamp, pos.y - _speed_y * timestamp);
+    pos = _background.get_position();
     if (_repeat_x) {
-        if (_background.get_position().x <= -_background.get_size().x) {
-            _background.set_position(_background.get_position().x + _win_width, _background.get_position().y);
-        } else if (_background.get_position().x >= _win_width) {
-            _background.set_position(_background.get_position().x - _win_width, _background.get_position().y);
+        while (_background.get_position().x <= -_background.get_size().x) {
+            _background.set_position(_background.get_position().x + size.x, pos.y);
+        } 
+        while (_background.get_position().x >= _win_width) {
+            _background.set_position(_background.get_position().x - size.x, pos.y);
         }
     }
+    pos = _background.get_position();
     if (_repeat_y) {
         if (_background.get_position().y <= -_background.get_size().y) {
-            _background.set_position(_background.get_position().x, _background.get_position().y + _win_height);
+            _background.set_position(pos.x, _background.get_position().y + size.y);
         } else if (_background.get_position().y >= _win_height) {
-            _background.set_position(_background.get_position().x, _background.get_position().y - _win_height);
+            _background.set_position(pos.x, _background.get_position().y - size.y);
         }
     }
 }
 
 void Background::setParallax(std::size_t x_ref, std::size_t y_ref)
 {
-    _background.set_position(_background.get_position().x - (x_ref * _speed_x), _background.get_position().y - (y_ref * _speed_y));
-    if (_repeat_x) {
-        if (_background.get_position().x <= -_background.get_size().x) {
-            _background.set_position(_background.get_position().x + _win_width, _background.get_position().y);
-        } else if (_background.get_position().x >= _win_width) {
-            _background.set_position(_background.get_position().x - _win_width, _background.get_position().y);
-        }
+    Vector2 size = _background.get_size();
+    Vector2 pos = _background.get_position();
+
+    if (_speed_x == 0 && _speed_y == 0) {
+        return;
     }
-    if (_repeat_y) {
-        if (_background.get_position().y <= -_background.get_size().y) {
-            _background.set_position(_background.get_position().x, _background.get_position().y + _win_height);
-        } else if (_background.get_position().y >= _win_height) {
-            _background.set_position(_background.get_position().x, _background.get_position().y - _win_height);
-        }
+    if (_speed_x != 0) {
+        pos.x = (x_ref - size.x / 2) * _speed_x / 10;
     }
+    if (_speed_y != 0) {
+        pos.y = (y_ref - size.y / 2) * _speed_y / 10;
+    }
+
+    _background.set_position(pos.x, pos.y);
 }
 
 void Background::loop_x(bool value)

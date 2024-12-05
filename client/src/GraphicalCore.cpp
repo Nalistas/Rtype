@@ -25,6 +25,7 @@ void GraphicalCore::start_draw(void)
         this->_music->play();
     }
     this->_window.start_drawing();
+    this->_window.clear();
     for (auto &background : this->_backgrounds) {
         background.draw();
     }
