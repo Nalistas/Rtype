@@ -7,6 +7,8 @@
 
 #include "Raylib/Sprite.hpp"
 
+#include <functional>
+
 #ifndef BACKGROUND_HPP_
     #define BACKGROUND_HPP_
 
@@ -16,6 +18,15 @@
  */
 class Background {
     public:
+        enum BACKGROUND_MOVE_TYPE {
+            NONE = 0,
+            MOVE_X = 1,
+            MOVE_Y = 2,
+            PARALLAX = 3,
+            PARALLAX_X = 4,
+            PARALLAX_Y = 5
+        };
+
         /**
          * @brief Construct a new Background object
          */
@@ -29,7 +40,7 @@ class Background {
         /**
          * @brief Construct a new Background object
          */
-        Background(std::string const &path, std::size_t win_width, std::size_t win_height, double speedX, double speedY = 0);
+        Background(std::string const &path, std::size_t win_width, std::size_t win_height, double speed);
 
         /**
          * @brief Destroy the Background object
@@ -42,45 +53,24 @@ class Background {
         void setWindowDimensions(std::size_t win_width, std::size_t win_height);
 
         /**
-         * @brief Get the speed on the x axis of the background
-         */
-        double getSpeedX(void) const;
-
-        /**
-         * @brief Set the speed on the x axis of the background
-         */
-        void setSpeedX(double speed);
-
-        /**
          * @brief Get the speed on the y axis of the background
          */
-        double getSpeedY(void) const;
+        double getSpeed(void) const;
 
         /**
          * @brief Set the speed on the y axis of the background
          */
-        void setSpeedY(double speed);
+        void setSpeed(double speed);
 
         /**
-         * @brief Get the speed of the background
+         * @brief Update the position of the background based on his type and the timestamp and the mod of the background
          */
-        double getSpeedY(void);
-
-        /**
-         * @brief Update the position of the background based on the timestamp
-         * @param timestamp the timestamp
-         */
-        void move(std::size_t timestamp);
+        void update_position(std::time_t timestamp);
 
         /**
          * @brief Draw the background
          */
         void draw(void); 
-
-        /**
-         * @brief Set the background to a new position, similar to 
-         */
-        void setParallax(std::size_t x_ref, std::size_t y_ref);
 
         /**
          * @brief Set the texture of the background
@@ -108,24 +98,43 @@ class Background {
         void auto_resize_y(void);
 
         /**
-         * @brief Define if the background should repeat on the x axis 
+         * @brief Define if the background should repeat 
          */
-        void loop_x(bool repeat);
+        void loop(bool repeat);
 
         /**
-         * @brief Define if the background should repeat on the y axis 
+         * @brief Define the move type of the background
          */
-        void loop_y(bool repeat);
+        void setMoveType(BACKGROUND_MOVE_TYPE move_type);
+
+        /**
+         * @brief Define the function to get the point to follow in case of parralax mode
+         */
+        void setParallaxPos(std::function<Vector2(void)> const &get_parallax_pos);
 
     private:
+
+        /**
+         * @brief Update the position of the background based on the timestamp
+         * @param timestamp the timestamp
+         */
+        void move(std::size_t timestamp);
+
+        /**
+         * @brief Set the background to a new position, similar to 
+         */
+        void setParallax();
+
+
         raylib::Sprite _background;
-        double _speed_x;
-        double _speed_y;
+        double _speed;
         std::size_t _win_width;
         std::size_t _win_height;
 
-        bool _repeat_x;
-        bool _repeat_y;
+        bool _repeat;
+        std::function<Vector2(void)> _get_parallax_pos;
+        BACKGROUND_MOVE_TYPE _move_type;
+
 };
 
 #endif /* !BACKGROUND_HPP_ */

@@ -6,9 +6,11 @@
 */
 
 #include "Background.hpp"
+#include <ctime>
+
 
 Background::Background() :
-    _background(), _speed_x(0), _speed_y(0), _win_width(0), _win_height(0), _repeat_x(false), _repeat_y(false)
+    _background(), _speed(0), _win_width(0), _win_height(0), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
 {
 }
 
@@ -17,34 +19,24 @@ Background::~Background()
 }
 
 Background::Background(std::string const &path, std::size_t win_width, std::size_t win_height) :
-    _background(path), _speed_x(0), _speed_y(0), _win_width(win_width), _win_height(win_height), _repeat_x(false), _repeat_y(false)
+    _background(path), _speed(0), _win_width(win_width), _win_height(win_height), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
 {
     _background.set_position(static_cast<float>(_win_width) / 2, static_cast<float>(_win_height) / 2);
 }
 
-Background::Background(std::string const &path, std::size_t win_width, std::size_t win_height, double speedX, double speedY) :
-    _background(path), _speed_x(speedX), _speed_y(speedY), _win_width(win_width), _win_height(win_height), _repeat_x(false), _repeat_y(false)
+Background::Background(std::string const &path, std::size_t win_width, std::size_t win_height, double speed) :
+    _background(path), _speed(speed), _win_width(win_width), _win_height(win_height), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
 {
 }
 
-void Background::setSpeedX(double speedX)
+void Background::setSpeed(double speed)
 {
-    _speed_x = speedX;
+    _speed = speed;
 }
 
-void Background::setSpeedY(double speedY)
+double Background::getSpeed(void) const
 {
-    _speed_y = speedY;
-}
-
-double Background::getSpeedX(void) const
-{
-    return _speed_x;
-}
-
-double Background::getSpeedY(void) const
-{
-    return _speed_y;
+    return _speed;
 }
 
 void Background::setWindowDimensions(std::size_t win_width, std::size_t win_height)
@@ -93,7 +85,11 @@ void Background::draw() {
 
     _background.draw();
 
-    if (_repeat_x) { 
+    if (!_repeat) {
+        return;
+    }
+
+    if (this->_move_type == Background::PARALLAX || this->_move_type == Background::PARALLAX_X || this->_move_type == Background::MOVE_X) {
         float drawX = x;
         while (drawX < _win_width) {
             drawX += bgWidth;
@@ -108,7 +104,7 @@ void Background::draw() {
         }
     }
     
-    if (_repeat_y) {
+    if (this->_move_type == Background::PARALLAX || this->_move_type == Background::PARALLAX_Y || this->_move_type == Background::MOVE_Y) {
         float drawY = y;
         while (drawY < _win_height) {
             drawY += bgHeight;
@@ -131,10 +127,18 @@ void Background::move(std::size_t timestamp)
 {
     Vector2 pos = _background.get_position();
     Vector2 size = _background.get_size();
+    float speed_x = _speed * (_move_type == Background::BACKGROUND_MOVE_TYPE::MOVE_X ? 1 : 0);
+    float speed_y = _speed * (_move_type == Background::BACKGROUND_MOVE_TYPE::MOVE_Y ? 1 : 0);
 
-    _background.set_position(pos.x - _speed_x * timestamp, pos.y - _speed_y * timestamp);
+    _background.set_position(pos.x - speed_x * timestamp, pos.y - speed_y * timestamp);
+
     pos = _background.get_position();
-    if (_repeat_x) {
+
+    if (!_repeat) {
+        return;
+    }
+
+    if (_move_type == Background::MOVE_X || _move_type == Background::PARALLAX || _move_type == Background::PARALLAX_X) {
         while (_background.get_position().x <= -_background.get_size().x) {
             _background.set_position(_background.get_position().x + size.x, pos.y);
         } 
@@ -143,7 +147,7 @@ void Background::move(std::size_t timestamp)
         }
     }
     pos = _background.get_position();
-    if (_repeat_y) {
+    if (_move_type == Background::MOVE_Y || _move_type == Background::PARALLAX || _move_type == Background::PARALLAX_Y) {
         if (_background.get_position().y <= -_background.get_size().y) {
             _background.set_position(pos.x, _background.get_position().y + size.y);
         } else if (_background.get_position().y >= _win_height) {
@@ -152,30 +156,57 @@ void Background::move(std::size_t timestamp)
     }
 }
 
-void Background::setParallax(std::size_t x_ref, std::size_t y_ref)
+void Background::setParallax(void)
 {
     Vector2 size = _background.get_size();
     Vector2 pos = _background.get_position();
 
-    if (_speed_x == 0 && _speed_y == 0) {
+    if (!this->_get_parallax_pos) {
         return;
     }
-    if (_speed_x != 0) {
-        pos.x = (x_ref - size.x / 2) * _speed_x / 10;
+    Vector2 ref = this->_get_parallax_pos();
+    float x_ref = ref.x;
+    float y_ref = ref.y;
+
+    if (_speed == 0) {
+        return;
     }
-    if (_speed_y != 0) {
-        pos.y = (y_ref - size.y / 2) * _speed_y / 10;
+    if (this->_move_type == Background::PARALLAX || this->_move_type == Background::PARALLAX_X) {
+        pos.x = (x_ref - size.x / 2) * _speed / 10;
+    }
+    if (this->_move_type == Background::PARALLAX || this->_move_type == Background::PARALLAX_Y) {
+        pos.y = (y_ref - size.y / 2) * _speed / 10;
     }
 
     _background.set_position(pos.x, pos.y);
 }
 
-void Background::loop_x(bool value)
+void Background::loop(bool value)
 {
-    _repeat_x = value;
+    _repeat = value;
 }
 
-void Background::loop_y(bool value)
+void Background::setMoveType(Background::BACKGROUND_MOVE_TYPE type)
 {
-    _repeat_y = value;
+    _move_type = type;
+}
+
+void Background::update_position(std::time_t timestamp)
+{
+    if (this->_speed == 0 || this->_move_type == Background::BACKGROUND_MOVE_TYPE::NONE) {
+        return;
+    }
+
+    if (this->_move_type == Background::MOVE_X || this->_move_type == Background::MOVE_Y) {
+        this->move(timestamp);
+    }
+
+    if (this->_move_type == Background::PARALLAX || this->_move_type == Background::PARALLAX_X || this->_move_type == Background::PARALLAX_Y) {
+        this->setParallax();
+    }
+}
+
+void Background::setParallaxPos(std::function<Vector2(void)> const &get_parallax_pos)
+{
+    this->_get_parallax_pos = get_parallax_pos;
 }

@@ -13,8 +13,8 @@ int main()
     GraphicalCore core(800, 600);
     Background background("./orange.png", 800, 600);
 
-    background.loop_x(true);
-    background.setSpeedX(1);
+    background.loop(true);
+    background.setSpeed(1);
 
     background.resize_y(core.getWindow().get_size().second, true);
 

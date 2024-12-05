@@ -14,6 +14,7 @@
 
 #include <list>
 #include <memory>
+#include <ctime>
 
 
 #ifndef GRAPHICALCORE_HPP_
@@ -86,12 +87,19 @@ class GraphicalCore {
          */
         std::unique_ptr<raylib::RayMusic> &getMusic();
 
+        /**
+         * @brief get the time elapsed since the last update
+         */
+        std::time_t getElapsedTime(void) const;
+
     protected:
         std::unique_ptr<raylib::RayMusic> _music;
         raylib::Window _window;
         raylib::AudioDevice _audio_device;
 
         std::list<Background> _backgrounds;
+        std::time_t _last_update;
+        std::time_t _elapsed;
 };
 
 #endif /* !GRAPHICALCORE_HPP_ */

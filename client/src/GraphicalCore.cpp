@@ -7,11 +7,13 @@
 
 #include <memory>
 #include <iterator>
+#include <ctime>
+
 #include "Raylib/RayMusic.hpp"
 #include "GraphicalCore.hpp"
 
 GraphicalCore::GraphicalCore(std::size_t win_width, std::size_t win_height) :
-    _music(), _window(win_width, win_height), _audio_device()
+    _music(), _window(win_width, win_height), _audio_device(), _last_update(std::time(nullptr))
 {
 }
 
@@ -21,6 +23,10 @@ GraphicalCore::~GraphicalCore()
 
 void GraphicalCore::start_draw(void)
 {
+    auto now = std::time(nullptr);
+    auto elapsed = now - this->_last_update;
+    this->_last_update = now;
+
     if (this->_music != nullptr) {
         this->_music->play();
     }
@@ -85,3 +91,7 @@ std::unique_ptr<raylib::RayMusic> & GraphicalCore::getMusic(void)
     return this->_music;
 }
 
+std::time_t GraphicalCore::getElapsedTime(void) const
+{
+    return this->_elapsed;
+}
