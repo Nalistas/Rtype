@@ -29,10 +29,10 @@ int Server::loop()
 
         // add client if not exist
         // if (clients.find(sender_endpoint) == clients.end()) {
-            // clients[sender_endpoint] = {};
-            // std::cout << "Nouveau client ajouté : " 
-            //           << sender_endpoint.address().to_string()
-            //           << ":" << sender_endpoint.port() << std::endl;
+        //     clients[sender_endpoint] = {};
+        //     std::cout << "Nouveau client ajouté : " 
+        //               << sender_endpoint.address().to_string()
+        //               << ":" << sender_endpoint.port() << std::endl;
         // }
 
         // Préparer une réponse

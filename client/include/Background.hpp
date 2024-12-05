@@ -7,6 +7,7 @@
 
 #include "Raylib/Sprite.hpp"
 
+#include <ctime>
 #include <functional>
 
 #ifndef BACKGROUND_HPP_

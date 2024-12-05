@@ -165,20 +165,20 @@ void Background::setParallax(void)
         return;
     }
     Vector2 ref = this->_get_parallax_pos();
-    float x_ref = ref.x;
-    float y_ref = ref.y;
+    float x_ref = ref.x - size.x / 2;
+    float y_ref = ref.y - size.y / 2;
 
     if (_speed == 0) {
         return;
     }
     if (this->_move_type == Background::PARALLAX || this->_move_type == Background::PARALLAX_X) {
-        pos.x = (x_ref - size.x / 2) * _speed / 10;
+        pos.x = (x_ref) * _speed / 10;
     }
     if (this->_move_type == Background::PARALLAX || this->_move_type == Background::PARALLAX_Y) {
-        pos.y = (y_ref - size.y / 2) * _speed / 10;
+        pos.y = (y_ref) * _speed / 10;
     }
 
-    _background.set_position(pos.x, pos.y);
+    _background.set_position(pos.x + size.x / 2, pos.y + size.y / 2);
 }
 
 void Background::loop(bool value)

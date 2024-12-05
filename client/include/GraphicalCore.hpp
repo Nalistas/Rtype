@@ -83,6 +83,11 @@ class GraphicalCore {
         raylib::Window &getWindow();
 
         /**
+         * @brief get the window as a const
+         */
+        raylib::Window const &getConstWindow() const;
+
+        /**
          * @brief get the music
          */
         std::unique_ptr<raylib::RayMusic> &getMusic();
@@ -90,7 +95,7 @@ class GraphicalCore {
         /**
          * @brief get the time elapsed since the last update
          */
-        std::time_t getElapsedTime(void) const;
+        float getElapsedTime(void) const;
 
     protected:
         std::unique_ptr<raylib::RayMusic> _music;
@@ -98,8 +103,8 @@ class GraphicalCore {
         raylib::AudioDevice _audio_device;
 
         std::list<Background> _backgrounds;
-        std::time_t _last_update;
-        std::time_t _elapsed;
+        std::chrono::high_resolution_clock::time_point _last_update;
+        float _elapsed;
 };
 
 #endif /* !GRAPHICALCORE_HPP_ */

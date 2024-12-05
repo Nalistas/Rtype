@@ -7,6 +7,7 @@
 #include "Client.hpp"
 #include "Background.hpp"
 #include "GraphicalCore.hpp"
+#include "raylib.h"
 
 int main()
 {
@@ -15,16 +16,18 @@ int main()
 
     background.loop(true);
     background.setSpeed(1);
-
     background.resize_y(core.getWindow().get_size().second, true);
+    background.setMoveType(Background::MOVE_X);
+    background.setParallaxPos([&core](void) { return core.getConstWindow().get_mouse_position(); });
 
-    // core.insertBackground(std::move(background));
+    core.insertBackground(std::move(background));
 
     while (core.getWindow().is_running()) {
         core.start_draw();
-        background.draw();
         core.stop_draw();
-        background.setParallax(core.getWindow().get_mouse_position().x, core.getWindow().get_mouse_position().y);
+        if (core.getWindow().is_key(raylib::Window::BUTTON_STATE::PRESSED, KEY_SPACE)) {
+            core.getWindow().set_fps(10);
+        }
     }
 }
 
