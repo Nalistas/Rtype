@@ -20,7 +20,7 @@ class SystemTime : ecs::isystem<> {
 
     private:
         std::chrono::time_point<std::chrono::system_clock> _last_update;
-        std::size_t _elpased_time;
+        std::size_t &_elpased_time;
 };
 
 #endif /* !SYSTEMTIME_HPP_ */

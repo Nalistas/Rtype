@@ -7,6 +7,7 @@
 
 #include "Systems/SystemTime.hpp"
 #include <chrono>
+#include <iostream>
 
 SystemTime::SystemTime(std::size_t &time_to_update) :
     _last_update(std::chrono::system_clock::now()), _elpased_time(time_to_update)
@@ -21,4 +22,5 @@ void SystemTime::operator()(ecs::iregistry &r __attribute__((unused)))
 {
     auto now = std::chrono::system_clock::now();
     _elpased_time = std::chrono::duration_cast<std::chrono::milliseconds>(now - this->_last_update).count();
+    this->_last_update = now;
 }
