@@ -16,7 +16,7 @@ class SystemTime : ecs::isystem<> {
         SystemTime(std::size_t &time_to_update);
         ~SystemTime();
 
-        void operator()(ecs::iregistry &r __attribute__((unused))) override;
+        void operator()(ecs::iregistry &r __attribute__((unused)), ecs::entity const &e __attribute__((unused))) override;
 
     private:
         std::chrono::time_point<std::chrono::system_clock> _last_update;

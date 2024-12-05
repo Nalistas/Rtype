@@ -16,7 +16,7 @@ class SystemBackground : public ecs::isystem<Background> {
         SystemBackground(std::size_t const &elpased_time);
         ~SystemBackground();
 
-        void operator()(ecs::iregistry &r, Background &b) override;
+        void operator()(ecs::iregistry &r, ecs::entity const &e, Background &b) override;
 
     private:
         std::size_t const &_elpased_time;

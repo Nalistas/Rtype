@@ -212,6 +212,20 @@ class registry : public iregistry {
         */
         void run_systems () ;
 
+        /**
+         * @brief run a single system in the registry 
+         * @param system the system to run
+         */
+        template <class ...Components, typename Function>
+        void run_single_system(Function &&system);
+
+        /**
+         * @brief run a single system that does not depend on any components in the registry 
+         * @param system the system to run
+         */
+        template <typename Function>
+        void run_single_standalone_system(Function &&system);
+
         /// @}
 
     private :

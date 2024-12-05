@@ -14,6 +14,9 @@
 
 #include "Systems/SystemTime.hpp"
 #include "Systems/SystemBackground.hpp"
+#include "Systems/SystemSprite.hpp"
+
+#include "isystem.hpp"
 
 #include <iostream>
 
@@ -25,15 +28,24 @@ Core::Core(std::size_t win_width, std::size_t win_height):
     _registry.register_component<Background>();
     _registry.register_component<raylib::Sprite>();
 
-    // this->time = 1;
     _registry.add_standalone_system(SystemTime(this->time));
     _registry.add_system<Background>(SystemBackground(this->time));
+    _registry.add_system<raylib::Sprite>(SystemSprite());
 }
 
 Core::~Core()
 {
 }
 
+class SystemTest : public ecs::isystem<> {
+    public:
+        void operator()(ecs::iregistry &registry, ecs::entity const &e) override
+        {
+            (void)registry;
+            (void)e;
+            std::cout << "hello" << std::endl;
+        }
+};
 
 int Core::run(void)
 {
@@ -57,6 +69,9 @@ int Core::run(void)
         _window.start_drawing();
         _registry.run_systems();
         _window.end_drawing();
+        if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, KEY_ESCAPE)) {
+            _registry.run_single_standalone_system(SystemTest());
+        }
     }
     return 0;
 }

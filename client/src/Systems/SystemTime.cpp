@@ -18,7 +18,7 @@ SystemTime::~SystemTime()
 {
 }
 
-void SystemTime::operator()(ecs::iregistry &r __attribute__((unused)))
+void SystemTime::operator()(ecs::iregistry &r __attribute__((unused)), ecs::entity const &e __attribute__((unused)))
 {
     auto now = std::chrono::system_clock::now();
     _elpased_time = std::chrono::duration_cast<std::chrono::milliseconds>(now - this->_last_update).count();
