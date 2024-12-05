@@ -19,9 +19,8 @@ SystemBackground::~SystemBackground()
 #include <iostream>
 
 
-void SystemBackground::operator()(ecs::iregistry &r __attribute__((unused)), ecs::entity const &e __attribute__((unused)), Background &b)
+void SystemBackground::operator()(ecs::registry &r __attribute__((unused)), ecs::entity const &e __attribute__((unused)), Background &b)
 {
-    std::cout << "elapsed time: " << _elpased_time << std::endl;
     b.update_position(_elpased_time);
     b.draw();
 }

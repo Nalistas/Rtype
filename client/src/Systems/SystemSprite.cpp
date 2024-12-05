@@ -15,7 +15,7 @@ SystemSprite::~SystemSprite()
 {
 }
 
-void SystemSprite::operator()(ecs::iregistry &registry __attribute__((unused)), ecs::entity const &e __attribute__((unused)), raylib::Sprite &sprite)
+void SystemSprite::operator()(ecs::registry &registry __attribute__((unused)), ecs::entity const &e __attribute__((unused)), raylib::Sprite &sprite)
 {
     sprite.draw();
 }

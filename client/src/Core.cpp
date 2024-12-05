@@ -39,7 +39,7 @@ Core::~Core()
 
 class SystemTest : public ecs::isystem<> {
     public:
-        void operator()(ecs::iregistry &registry, ecs::entity const &e) override
+        void operator()(ecs::registry &registry, ecs::entity const &e) override
         {
             (void)registry;
             (void)e;
@@ -69,7 +69,7 @@ int Core::run(void)
         _window.start_drawing();
         _registry.run_systems();
         _window.end_drawing();
-        if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, KEY_ESCAPE)) {
+        if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, KEY_SPACE)) {
             _registry.run_single_standalone_system(SystemTest());
         }
     }

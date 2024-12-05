@@ -16,7 +16,7 @@ class SystemSprite : public ecs::isystem<raylib::Sprite> {
         SystemSprite();
         ~SystemSprite();
 
-        void operator()(ecs::iregistry &registry, ecs::entity const &e, raylib::Sprite &sprite) override;
+        void operator()(ecs::registry &registry, ecs::entity const &e, raylib::Sprite &sprite) override;
 
 };
 

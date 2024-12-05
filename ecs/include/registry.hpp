@@ -7,7 +7,6 @@
 
 #include "sparse_array.hpp"
 #include "entity.hpp"
-#include "iregistry.hpp"
 #include "isystem.hpp"
 #include <unordered_map>
 #include <any>
@@ -79,7 +78,7 @@ namespace ecs {
  * @class registry
  * @brief Management of the entities, components and systems
  */
-class registry : public iregistry {
+class registry {
     public :
 
         /////////////////////////////////////////////////////////////
@@ -129,21 +128,21 @@ class registry : public iregistry {
          * or take an entity from the unused entities set
          * @return the new entity
         */
-        entity create_entity() override;
+        entity create_entity();
 
         /**
          * @brief Retrieve an entity from its index
          * @param idx the index of the entity
          * @return the entity
         */
-        entity entity_from_index(std::size_t idx) override;
+        entity entity_from_index(std::size_t idx);
 
         /**
          * @brief Delete all the components of an entity
          * @param e the entity to delete and add the unused entity to
          * the unused entities set
         */
-        void delete_entity(entity const &e) override;
+        void delete_entity(entity const &e);
 
         /// @}
         /////////////////////////////////////////////////////////////
@@ -187,7 +186,7 @@ class registry : public iregistry {
          * This version is used for systems that process entities with specific components.
          * @tparam Components The components used by the system.
          * @tparam Function The type of the system (should inherit from ecs::isystem<Components...>).
-         *        The system must implement `void operator()(iregistry &, Components& ...) const`.
+         *        The system must implement `void operator()(registry &, Components& ...) const`.
          * @param f The system to add. It is a callable that takes a reference to the registry and
          *          the required components as parameters.
          * @note Requires the specified components to be present in the sparse arrays of the registry.
@@ -200,7 +199,7 @@ class registry : public iregistry {
          * @brief Add a system that does not depend on any components.
          * This version is used for systems that operate independently of specific components in the registry.
          * @tparam Function The type of the system (should inherit from ecs::isystem<> or be a compatible callable).
-         *        The system must implement `void operator()(iregistry &) const`.
+         *        The system must implement `void operator()(registry &) const`.
          * @param f The system to add. It is a callable that takes only a reference to the registry.
          * @note This function is intended for global systems or those that do not process entity components.
          */

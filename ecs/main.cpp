@@ -25,7 +25,7 @@ class Velocity {
 
 class MySystem : public ecs::isystem<Position, Velocity> {
     public:
-        void operator()(ecs::iregistry &r, Position &p, Velocity &v) const override {
+        void operator()(ecs::registry &r, Position &p, Velocity &v) const override {
             (void)r;
             std::cout << p.x << " " << p.y << " " << v.x << " " << v.y << std::endl;
         }
@@ -33,7 +33,7 @@ class MySystem : public ecs::isystem<Position, Velocity> {
 
 class MySystem2 : public ecs::isystem<> {
     public:
-        void operator()(ecs::iregistry &r) const override {
+        void operator()(ecs::registry &r) const override {
             (void)r;
             std::cout << "hello" << std::endl;
         }

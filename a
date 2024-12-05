@@ -1,0 +1,8 @@
+In file included from /home/solype/delivery/current_days/Rtype/ecs/src/registry.cpp:8:
+/home/solype/delivery/current_days/Rtype/ecs/include/registry.hpp:10:10: fatal error: registry.hpp: No such file or directory
+   10 | #include "registry.hpp"
+      |          ^~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [ecs/CMakeFiles/ecs.dir/build.make:90: ecs/CMakeFiles/ecs.dir/src/registry.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:199: ecs/CMakeFiles/ecs.dir/all] Error 2
+make: *** [Makefile:156: all] Error 2
