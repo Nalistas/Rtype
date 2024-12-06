@@ -21,10 +21,6 @@ class Client {
         bool connect(const std::string &port);
         std::string get_data();
         bool has_data();
-        void process_message(const std::string &message);
-        void create_entity(int entity_type_id, int entity_id, const std::string& entity_data);
-        void delete_entity(int entity_id);
-        void update_entity(int entity_id, const std::string& updated_data);
 
 
     private:

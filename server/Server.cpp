@@ -66,7 +66,7 @@ void Server::handle_receive(const std::string& message)
 
 void Server::send_background(const udp::endpoint& client_endpoint)
 {
-    std::string background_message = "10234./orange.png";
+    std::string background_message = "10434./orange.png";
     socket.send_to(asio::buffer(background_message), client_endpoint);
 }
 
