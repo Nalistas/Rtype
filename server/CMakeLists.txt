@@ -23,11 +23,19 @@ FetchContent_MakeAvailable(asio)
 include_directories(${asio_SOURCE_DIR}/asio/include)
 
 
+# Compose the project
 add_executable(Server)
+target_include_directories(Server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
 target_sources(Server
     PRIVATE
-    main.cpp
-    Server.cpp
+    src/main.cpp
+    src/Server.cpp
+    src/IDirectoryLister.cpp
+    src/SafeDirectoryLister.cpp
+    src/Thread/ScopeLock.cpp
+    src/Thread/Mutex.cpp
+    src/Thread/ConditionVariable.cpp
 )
 
 

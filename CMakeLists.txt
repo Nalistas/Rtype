@@ -3,12 +3,12 @@ project(MyProject LANGUAGES CXX)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
 
-# Définit la version de C++ à utiliser
+# Standard C++ Config
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Ajoute les sous-répertoires
+# ADD SUBDIRECTORY
 add_subdirectory(ecs)
 add_subdirectory(client)
 add_subdirectory(server)

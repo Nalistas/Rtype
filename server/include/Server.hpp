@@ -6,9 +6,10 @@
 */
 
 #ifndef SERVER_HPP_
-#define SERVER_HPP_
+    #define SERVER_HPP_
 
 #include <iostream>
+#include <unordered_set>
 #include <asio.hpp>
 #include <unordered_set>
 
@@ -38,6 +39,10 @@ enum class EntityType {
     SPRITE = 4
 };
 
+struct endpoint_hash_class {
+    std::size_t operator()(const udp::endpoint &ep) const;
+};
+
 class Server {
     public:
         Server();
@@ -56,7 +61,8 @@ class Server {
         udp::endpoint sender_endpoint_;
         std::array<char, 1024> recv_buffer;
         std::unordered_set<udp::endpoint> clients;
-};
 
+        std::unordered_set<udp::endpoint, endpoint_hash_class> clients;
+};
 
 #endif /* !SERVER_HPP_ */
