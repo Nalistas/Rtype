@@ -6,11 +6,6 @@
 */
 
 #include "Core.hpp"
-#include "Background.hpp"
-#include "Raylib/RayMusic.hpp"
-#include "Raylib/RaySound.hpp"
-#include "Raylib/Sprite.hpp"
-
 
 #include "Systems/SystemTime.hpp"
 #include "Systems/SystemBackground.hpp"
@@ -21,7 +16,6 @@
 #include "entity.hpp"
 #include "registry.hpp"
 
-#include <iostream>
 
 Core::Core(std::size_t win_width, std::size_t win_height):
     _window(win_width, win_height)
@@ -34,6 +28,7 @@ Core::Core(std::size_t win_width, std::size_t win_height):
     _registry.add_standalone_system(SystemTime(this->time));
     _registry.add_system<Background>(SystemBackground(this->time));
     _registry.add_system<raylib::Sprite>(SystemSprite());
+
 }
 
 Core::~Core()
@@ -46,7 +41,6 @@ class SystemTest : public ecs::isystem<> {
         {
             (void)registry;
             (void)e;
-            std::cout << "hello" << std::endl;
         }
 };
 
@@ -55,112 +49,77 @@ void Core::process_message(const std::string &message)
     if (message.empty()) return;
     std::cout << "Traitement du message : " << message << std::endl;
 
-    char op_code = message[0];
-    switch (op_code) {
-        case '1': {
-            int entity_type_id = std::stoi(message.substr(1, 2));
-            std::cout << "entity_type_id : " << entity_type_id << std::endl;
-            int entity_id = std::stoi(message.substr(3, 4));
-            std::cout << "entity_id : " << entity_id << std::endl;
-            std::string entity_data = message.substr(7);
-            create_entity(entity_type_id, entity_id, entity_data);
-            break;
-        }
-        case '2': {
-            int entity_id = std::stoi(message.substr(1));
-            delete_entity(entity_id);
-            break;
-        }
-        case '3': {
-            int entity_type_id = std::stoi(message.substr(1, 2));
-            std::cout << "entity_type_id : " << entity_type_id << std::endl;
-            int entity_id = std::stoi(message.substr(3, 4));
-            std::cout << "entity_id : " << entity_id << std::endl;
-            std::string entity_data = message.substr(7);
-            update_entity(entity_id, entity_type_id, entity_data);
-            break;
-        }
-        default:
-            std::cerr << "Op-code inconnu : " << op_code << std::endl;
-            break;
+    int op_code_int = message[0] - '0';
+    EntityOperation op_code = static_cast<EntityOperation>(op_code_int);
+
+    auto it = _operation_functions.find(op_code);
+    if (it != _operation_functions.end()) {
+        it->second(const_cast<std::string &>(message));
+    } else {
+        std::cerr << "Op-code inconnu ou invalide : " << op_code_int << std::endl;
     }
 }
 
-void Core::create_entity(int entity_type_id, int entity_id, const std::string& entity_data) 
+void Core::handle_create_entity(EntityType entity_type, int entity_id, const std::string &entity_data)
 {
-    std::cout << "Création de l'entité de type " << entity_type_id << " avec l'id " << entity_id 
-              << " et les données : " << entity_data << std::endl;
-    switch (entity_type_id) {
-        case 1: {
-            ecs::entity bg = _registry.create_entity();
-            _registry.emplace_component<Background>(bg);
-            _registry.get_components<Background>()[bg]->setTexture(entity_data);
-            break;
-        }
-        case 2: {
-            ecs::entity music = _registry.create_entity();
-            _registry.emplace_component<raylib::RayMusic>(music, entity_data);
-            break;
-        }
-        case 3: {
-            ecs::entity sound = _registry.create_entity();
-            _registry.emplace_component<raylib::RaySound>(sound, entity_data);
-            break;
-        }
-        case 4: {
-            ecs::entity sprite = _registry.create_entity();
-            _registry.emplace_component<raylib::Sprite>(sprite, entity_data);
-            break;
-        }
-        default:
-            std::cerr << "Type d'entité inconnu : " << entity_type_id << std::endl;
-            break;
+    ecs::entity entity = _registry.create_entity();
+    auto it = _create_entity_functions.find(entity_type);
+    if (it != _create_entity_functions.end()) {
+        it->second(entity, entity_data);
+    } else {
+        std::cerr << "Type d'entité inconnu : " << static_cast<int>(entity_type) << std::endl;
     }
-
 }
 
-void Core::delete_entity(int entity_id) 
+void Core::create_entity(std::string &message)
 {
+    int entity_type_id = std::stoi(message.substr(1, 2));
+    int entity_id = std::stoi(message.substr(3, 4));
+    std::string entity_data = message.substr(7);
+
+    handle_create_entity(static_cast<EntityType>(entity_type_id), entity_id, entity_data);
+}
+
+void Core::delete_entity(std::string &message) 
+{
+    int entity_id = std::stoi(message.substr(1));
+
     std::cout << "Suppression de l'entité avec l'id " << entity_id << std::endl;
     ecs::entity entity = _registry.entity_from_index(entity_id);
     _registry.delete_entity(entity);
 }
 
-void Core::update_entity(int entity_id, int entity_type_id, const std::string& updated_data)
+
+template <typename T>
+void Core::update_texture_component(ecs::entity entity, const std::string &texture_data)
 {
+    auto &component = _registry.get_components<T>()[entity];
+    if (component.has_value()) {
+        component->set_texture(texture_data);
+    }
+}
+
+template <typename T>
+void Core::update_source_component(ecs::entity entity, const std::string &source_data)
+{
+    auto &component = _registry.get_components<T>()[entity];
+    if (component.has_value()) {
+        component->set_source(source_data);
+    }
+}
+
+
+void Core::update_entity(std::string &message) {
+    int entity_type_id = std::stoi(message.substr(1, 2));
+    int entity_id = std::stoi(message.substr(3, 4));
+    std::string entity_data = message.substr(7);
+
     ecs::entity entity = _registry.entity_from_index(entity_id);
-    switch (entity_type_id) {
-        case 1: {
-            std::optional<Background> &bg = _registry.get_components<Background>()[entity];
-            if (bg.has_value()) {
-                bg->setTexture(updated_data);
-            }
-            break;
-        }
-        case 2: {
-            std::optional<raylib::RayMusic> &music = _registry.get_components<raylib::RayMusic>()[entity];
-            if (music.has_value()) {
-                music->set_source(updated_data);
-            }
-            break;
-        }
-        case 3: {
-            std::optional<raylib::RaySound> &sound = _registry.get_components<raylib::RaySound>()[entity];
-            if (sound.has_value()) {
-                sound->set_source(updated_data);
-            }
-            break;
-        }
-        case 4: {
-            std::optional<raylib::Sprite> &sprite = _registry.get_components<raylib::Sprite>()[entity];
-            if (sprite.has_value()) {
-                sprite->set_texture(updated_data);
-            }
-            break;
-        }
-        default:
-            std::cerr << "Type d'entité inconnu : " << entity_type_id << std::endl;
-            break;
+    auto it = _update_entity_functions.find(static_cast<EntityType>(entity_type_id));
+    if (it != _update_entity_functions.end()) {
+        it->second(entity, entity_data);
+    } else {
+        std::cerr << "Type d'entité inconnu : " << entity_type_id << std::endl;
     }
 }
 

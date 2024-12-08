@@ -17,21 +17,32 @@ Server::~Server()
 {
 }
 
-void Server::send_create_entity(udp::endpoint client_endpoint, int entity_type_id, int entity_id, const std::string& entity_data) 
+void Server::send_create_entity(udp::endpoint client_endpoint, EntityType entity_type, int entity_id, const std::string& entity_data) 
 {
-    std::string message = "1" + std::to_string(entity_type_id) + std::to_string(entity_id) + entity_data;
+    std::string message = std::to_string(static_cast<int>(EntityOperation::CREATE)) + 
+                          std::to_string(static_cast<int>(entity_type)) + 
+                          std::to_string(entity_id) + 
+                          entity_data;
+
     socket.send_to(asio::buffer(message), client_endpoint);
 }
 
 void Server::send_delete_entity(udp::endpoint client_endpoint, int entity_id) 
 {
-    std::string message = "2" + std::to_string(entity_id);
+    std::string message = std::to_string(static_cast<int>(EntityOperation::DELETE)) + 
+                          std::to_string(entity_id);
+
     socket.send_to(asio::buffer(message), client_endpoint);
 }
 
-void Server::send_update_entity(udp::endpoint client_endpoint, int entity_id, const std::string& updated_data) 
+
+void Server::send_update_entity(udp::endpoint client_endpoint, EntityType entity_type, int entity_id, const std::string& updated_data) 
 {
-    std::string message = "3" + std::to_string(entity_id) + updated_data;
+    std::string message = std::to_string(static_cast<int>(EntityOperation::UPDATE)) + 
+                          std::to_string(static_cast<int>(entity_type)) + 
+                          std::to_string(entity_id) + 
+                          updated_data;
+
     socket.send_to(asio::buffer(message), client_endpoint);
 }
 
@@ -55,19 +66,9 @@ void Server::handle_receive(const std::string& message)
               << ":" << sender_endpoint_.port() << " -> " << message << std::endl;
 
     if (clients.find(sender_endpoint_) == clients.end()) {
-        send_background(sender_endpoint_);
+        send_create_entity(sender_endpoint_, EntityType::BACKGROUND, 1, "./orange.png");
         clients.insert(sender_endpoint_);
     }
-
-    if (message == "create_entity") {
-        send_create_entity(sender_endpoint_, 1, 1, "Hello, World!");
-    }
-}
-
-void Server::send_background(const udp::endpoint& client_endpoint)
-{
-    std::string background_message = "10434./orange.png";
-    socket.send_to(asio::buffer(background_message), client_endpoint);
 }
 
 int Server::loop() 

@@ -25,16 +25,28 @@ namespace std {
     };
 }
 
+enum class EntityOperation {
+    CREATE = 1,
+    DELETE = 2,
+    UPDATE = 3
+};
+
+enum class EntityType {
+    BACKGROUND = 1,
+    MUSIC = 2,
+    SOUND = 3,
+    SPRITE = 4
+};
+
 class Server {
     public:
         Server();
         ~Server();
         int loop();
-        void send_create_entity(udp::endpoint client_endpoint, int entity_type_id, int entity_id, const std::string& entity_data);
+        void send_create_entity(udp::endpoint client_endpoint, EntityType entity_type, int entity_id, const std::string& entity_data);
         void send_delete_entity(udp::endpoint client_endpoint, int entity_id);
-        void send_update_entity(udp::endpoint client_endpoint, int entity_id, const std::string& updated_data);
+        void send_update_entity(udp::endpoint client_endpoint, EntityType entity_type, int entity_id, const std::string& updated_data);
         void handle_receive(const std::string& message);
-        void send_background(const udp::endpoint& client_endpoint);
 
     private:
         void start_receive();

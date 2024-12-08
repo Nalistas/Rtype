@@ -36,6 +36,11 @@ class Background {
         /**
          * @brief Construct a new Background object
          */
+        Background(std::string const &path);
+
+        /**
+         * @brief Construct a new Background object
+         */
         Background(std::string const &path, std::size_t win_width, std::size_t win_height);
 
         /**
@@ -76,7 +81,7 @@ class Background {
         /**
          * @brief Set the texture of the background
          */
-        void setTexture(std::string const &path);
+        void set_texture(std::string const &path);
 
         /**
          * @brief resize the background

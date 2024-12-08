@@ -18,6 +18,11 @@ Background::~Background()
 {
 }
 
+Background::Background(std::string const &path) :
+    _background(path), _speed(0), _win_width(0), _win_height(0), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
+{
+}
+
 Background::Background(std::string const &path, std::size_t win_width, std::size_t win_height) :
     _background(path), _speed(0), _win_width(win_width), _win_height(win_height), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
 {
@@ -46,7 +51,7 @@ void Background::setWindowDimensions(std::size_t win_width, std::size_t win_heig
     _background.set_position(static_cast<float>(_win_width) / 2, static_cast<float>(_win_height) / 2);
 }
 
-void Background::setTexture(std::string const &path)
+void Background::set_texture(std::string const &path)
 {
     _background.set_texture(path);
 }
