@@ -21,7 +21,7 @@ class Core {
         void process_message(const std::string &message);
         void create_entity(int entity_type_id, int entity_id, const std::string& entity_data);
         void delete_entity(int entity_id);
-        void update_entity(int entity_id, const std::string& updated_data);
+        void update_entity(int entity_id, int entity_type_id, const std::string& updated_data);
 
     private:
         raylib::Window _window;
