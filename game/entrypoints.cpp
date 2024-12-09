@@ -6,16 +6,9 @@
 */
 
 #include <memory>
-#include "IDisplay.hpp"
 #include "IGame.hpp"
 #include "Rtype.hpp"
 #include "isystem.hpp"
-
-
-extern "C" std::unique_ptr<rtype::IDisplay> displayElement(void)
-{
-    return std::unique_ptr<RtypeGraphics>();
-}
 
 extern "C" std::unique_ptr<rtype::IGame> gameElement(void)
 {

@@ -37,28 +37,3 @@ void Rtype::processClientAction(ecs::registry &reg, std::string const &action, s
 }
 
 
-std::string RtypeGraphics::getName()
-{
-    return "Rtype";
-}
-
-std::map<int, std::string> RtypeGraphics::getInputsDefaultMap()
-{
-    return std::map<int, std::string>();
-}
-
-std::list<std::string> RtypeGraphics::getActions()
-{
-    return std::list<std::string>();
-}
-
-std::map<int, rtype::GraphicalElementData> RtypeGraphics::getGraphicalElements()
-{
-    return std::map<int, rtype::GraphicalElementData>();
-}
-
-void RtypeGraphics::setSystems(ecs::registry &reg)
-{
-    (void)reg;
-}
-

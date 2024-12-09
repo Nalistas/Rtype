@@ -37,6 +37,8 @@ namespace rtype {
 
             /**
              * @brief process an action mabe by the client
+             * @param reg the registry
+             * @param 
              */
             virtual void processClientAction(ecs::registry &reg, std::string const &action, std::size_t client) = 0;
     };
