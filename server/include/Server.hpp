@@ -60,7 +60,6 @@ class Server {
         udp::socket socket;
         udp::endpoint sender_endpoint_;
         std::array<char, 1024> recv_buffer;
-        std::unordered_set<udp::endpoint> clients;
 
         std::unordered_set<udp::endpoint, endpoint_hash_class> clients;
 };

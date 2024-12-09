@@ -26,7 +26,7 @@ bool Client::connect(const std::string &hostname)
         socket.open(udp::v4());
         connected = true;
         std::cout << "Connexion réussie à " << hostname << " sur le port 5000." << std::endl;
-        send_message("Hello from client!");
+        send_message("Connect");
     } catch (const std::exception &e) {
         std::cerr << "Erreur de connexion : " << e.what() << std::endl;
         connected = false;

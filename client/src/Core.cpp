@@ -64,9 +64,12 @@ void Core::handle_create_entity(EntityType entity_type, std::size_t entity_id, c
 {
     ecs::entity entity = _registry.entity_from_index(entity_id);
 
+    std::cout << "Création de l'entité avec l'id " << entity_id << std::endl;
+
     auto it = _create_entity_functions.find(entity_type);
     if (it != _create_entity_functions.end()) {
         it->second(entity, entity_data);
+        std::cout << "Création de l'entité avec l'id " << entity_id << " fini !" << std::endl;
     } else {
         std::cerr << "Type d'entité inconnu : " << static_cast<int>(entity_type) << std::endl;
     }
@@ -74,9 +77,9 @@ void Core::handle_create_entity(EntityType entity_type, std::size_t entity_id, c
 
 void Core::create_entity(std::string &message)
 {
-    int entity_type_id = std::stoi(message.substr(1, 2));
-    int entity_id = std::stoi(message.substr(3, 4));
-    std::string entity_data = message.substr(7);
+    int entity_type_id = std::stoi(message.substr(1, 1));
+    std::size_t entity_id = std::stoul(message.substr(2, 1));
+    std::string entity_data = message.substr(3);
 
     handle_create_entity(static_cast<EntityType>(entity_type_id), entity_id, entity_data);
 }
@@ -146,14 +149,16 @@ int Core::run(void)
     // }
 
     while (_window.is_running()) {
-        std::string data = client.get_data();
-        process_message(data);
+        if (client.has_data()) {
+            std::string data = client.get_data();
+            process_message(data);
+        }
         _window.start_drawing();
         _registry.run_systems();
-        _window.end_drawing();
         if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, KEY_SPACE)) {
             _registry.run_single_standalone_system(SystemTest());
         }
+        _window.end_drawing();
     }
     return 0;
 }

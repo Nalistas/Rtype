@@ -96,11 +96,8 @@ int Server::loop()
             std::cout << "Nouveau client ajouté : " 
                       << sender_endpoint.address().to_string()
                       << ":" << sender_endpoint.port() << std::endl;
+            Server::send_create_entity(sender_endpoint, EntityType::BACKGROUND, 1, "./orange.png");
         }
-
-        // Préparer une réponse
-        std::string reply = "Echo: " + message;
-        socket.send_to(asio::buffer(reply), sender_endpoint);
     }
 
     return 0;

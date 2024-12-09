@@ -23,17 +23,17 @@
 #include "Thread/ThreadPool.hpp"
 
 int main() {
-    // Server server;
-    // server.loop();
+    Server server;
+    server.loop();
 
-    thread::ThreadPool<std::function<int()>, int> pool(4);
+    // thread::ThreadPool<std::function<int()>, int> pool(4);
 
-    pool.run();
+    // pool.run();
 
-    pool.addTask([]() {
-        std::cout << "Hello, world!" << std::endl;
-        return 0;
-    });
-    pool.waitUntilComplete();
+    // pool.addTask([]() {
+    //     std::cout << "Hello, world!" << std::endl;
+    //     return 0;
+    // });
+    // pool.waitUntilComplete();
     return 0;
 }
