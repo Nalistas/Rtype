@@ -17,11 +17,14 @@ target_include_directories(Rtype PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 target_include_directories(Rtype PRIVATE
     ${CMAKE_SOURCE_DIR}/common/interface
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 target_sources(Rtype
     PRIVATE
         entrypoints.cpp
+        src/Rtype.cpp
+        src/RtypePlayer.cpp
 )
 
 target_compile_options(Rtype
