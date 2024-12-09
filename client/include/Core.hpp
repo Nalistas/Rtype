@@ -41,7 +41,7 @@ class Core {
         void create_entity(std::string &message);
         void delete_entity(std::string &message);
         void update_entity(std::string &message);
-        void handle_create_entity(EntityType entity_type, int entity_id, const std::string &entity_data);
+        void handle_create_entity(EntityType entity_type, std::size_t entity_id, const std::string &entity_data);
         template <typename T>
         void update_texture_component(ecs::entity entity, const std::string &texture_data);
         template <typename T>

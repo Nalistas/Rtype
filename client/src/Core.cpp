@@ -60,9 +60,10 @@ void Core::process_message(const std::string &message)
     }
 }
 
-void Core::handle_create_entity(EntityType entity_type, int entity_id, const std::string &entity_data)
+void Core::handle_create_entity(EntityType entity_type, std::size_t entity_id, const std::string &entity_data)
 {
-    ecs::entity entity = _registry.create_entity();
+    ecs::entity entity = _registry.entity_from_index(entity_id);
+
     auto it = _create_entity_functions.find(entity_type);
     if (it != _create_entity_functions.end()) {
         it->second(entity, entity_data);
