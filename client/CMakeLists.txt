@@ -51,7 +51,7 @@ target_sources(Client
 
 target_link_libraries(Client PRIVATE raylib)
 target_link_libraries(Client PRIVATE ecs)
-target_include_directories(Client PRIVATE ${CMAKE_SOURCE_DIR}/ecs)
+target_include_directories(Client PRIVATE ${CMAKE_SOURCE_DIR}/common/ecs)
 
 target_compile_options(Client
     PRIVATE

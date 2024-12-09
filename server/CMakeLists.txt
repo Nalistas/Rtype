@@ -12,8 +12,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 include(FetchContent)
 
-
-# Download and build ASIO
+# Télécharger et inclure ASIO
 FetchContent_Declare(
     asio
     GIT_REPOSITORY https://github.com/chriskohlhoff/asio.git
@@ -22,27 +21,22 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(asio)
 include_directories(${asio_SOURCE_DIR}/asio/include)
 
-
-# Compose the project
-add_executable(Server)
-target_include_directories(Server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-
-target_sources(Server
-    PRIVATE
+# Ajouter les fichiers sources spécifiques à `server`
+add_executable(Server
     src/main.cpp
     src/Server.cpp
-    src/IDirectoryLister.cpp
-    src/SafeDirectoryLister.cpp
     src/Thread/ScopeLock.cpp
     src/Thread/Mutex.cpp
     src/Thread/ConditionVariable.cpp
 )
 
+# Inclure les fichiers headers
+target_include_directories(Server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-target_link_libraries(Server PRIVATE ecs)
-target_include_directories(Server PRIVATE ${CMAKE_SOURCE_DIR}/ecs)
+# Lier les bibliothèques de `common`
+target_link_libraries(Server PRIVATE ecs common_interface)
 
-
+# Options de compilation
 target_compile_options(Server
     PRIVATE
         -Wall

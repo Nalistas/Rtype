@@ -11,25 +11,19 @@
 #include <typeindex>
 #include <typeinfo>
 #include <memory>
-
-#include "Raylib/RayMusic.hpp"
-#include "Raylib/RaySound.hpp"
-#include "Raylib/Sprite.hpp"
-#include "Background.hpp"
-#include "ecs/isystem.hpp"
+#include <any>
 
 #ifndef IDISPLAY_HPP_
     #define IDISPLAY_HPP_
 
+namespace ecs {
+    class isystem;
+}
+
 namespace rtype {
 
     struct GraphicalElementData {
-        union GraphicalElement {
-            raylib::RayMusic music;
-            raylib::RaySound sound;
-            raylib::Sprite sprite;
-            Background background;
-        } element;
+        std::any element;
         std::type_index type;
     };
 
