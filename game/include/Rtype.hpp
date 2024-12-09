@@ -20,7 +20,7 @@ class Rtype : public rtype::IGame {
 
         void setRegistry(ecs::registry &reg) override;
 
-        void processClientAction(ecs::registry &reg, std::string const &action, int client) override;
+        void processClientAction(ecs::registry &reg, std::string const &action, std::size_t client) override;
 };
 
 class RtypeGraphics : public rtype::IDisplay {
@@ -54,7 +54,7 @@ class RtypeGraphics : public rtype::IDisplay {
          * @brief Get the systems
          * @return the systems
          */
-        std::list<std::unique_ptr<ecs::isystem>> getSystems() override;
+        void setSystems(ecs::registry &reg) override;
 };
 
 #endif /* !RTYPE_HPP_ */

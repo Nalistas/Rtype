@@ -13,12 +13,11 @@
 #include <memory>
 #include <any>
 
+#include "registry.hpp"
+
 #ifndef IDISPLAY_HPP_
     #define IDISPLAY_HPP_
 
-namespace ecs {
-    class isystem;
-}
 
 namespace rtype {
 
@@ -61,9 +60,9 @@ namespace rtype {
 
             /**
              * @brief Get the systems
-             * @return the systems
+             * @param reg the registry where the system can be added.
              */
-            virtual std::list<std::unique_ptr<ecs::isystem>> getSystems() = 0;
+            virtual void setSystems(ecs::registry &reg) = 0;
     };
 }
 

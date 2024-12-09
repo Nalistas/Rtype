@@ -1,7 +1,7 @@
 #include "RtypePlayer.hpp"
 
 RtypePlayer::RtypePlayer()
-    : _position(0, 0) // Initialisation de la position à (0, 0)
+    : _position(0, 0), _speed(0, 0)
 {
 }
 

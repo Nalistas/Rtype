@@ -38,7 +38,7 @@ namespace rtype {
             /**
              * @brief process an action mabe by the client
              */
-            virtual void processClientAction(ecs::registry &reg, std::string const &action, int client) = 0;
+            virtual void processClientAction(ecs::registry &reg, std::string const &action, std::size_t client) = 0;
     };
 }
 

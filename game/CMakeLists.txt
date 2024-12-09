@@ -17,6 +17,7 @@ target_include_directories(Rtype PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 target_include_directories(Rtype PRIVATE
     ${CMAKE_SOURCE_DIR}/common/interface
+    ${CMAKE_SOURCE_DIR}/common/ecs/include
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 

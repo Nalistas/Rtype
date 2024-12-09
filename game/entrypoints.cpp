@@ -9,6 +9,7 @@
 #include "IDisplay.hpp"
 #include "IGame.hpp"
 #include "Rtype.hpp"
+#include "isystem.hpp"
 
 
 extern "C" std::unique_ptr<rtype::IDisplay> displayElement(void)
