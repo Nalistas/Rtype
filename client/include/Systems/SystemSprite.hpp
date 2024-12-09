@@ -13,9 +13,19 @@
 
 class SystemSprite : public ecs::isystem<raylib::Sprite> {
     public:
+        /**
+         * @brief Construct a new System Sprite object
+         */
         SystemSprite();
+
+        /**
+         * @brief Destroy the System Sprite object
+         */
         ~SystemSprite();
 
+        /**
+         * @brief Call the system
+         */
         void operator()(ecs::registry &registry, ecs::entity const &e, raylib::Sprite &sprite) override;
 
 };

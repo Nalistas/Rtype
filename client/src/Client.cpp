@@ -18,14 +18,14 @@ Client::~Client()
     }
 }
 
-bool Client::connect(const std::string &hostname) 
+bool Client::connect(const std::string &hostname, const std::string &port) 
 {
     try {
-        udp::resolver::results_type endpoints = resolver.resolve(udp::v4(), hostname, "5000");
+        udp::resolver::results_type endpoints = resolver.resolve(udp::v4(), hostname, port);
         endpoint = *endpoints.begin();
         socket.open(udp::v4());
         connected = true;
-        std::cout << "Connexion réussie à " << hostname << " sur le port 5000." << std::endl;
+        std::cout << "Connexion réussie à " << hostname << " sur le port " << port << "." << std::endl;
         send_message("Connect");
     } catch (const std::exception &e) {
         std::cerr << "Erreur de connexion : " << e.what() << std::endl;

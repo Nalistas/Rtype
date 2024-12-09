@@ -15,11 +15,35 @@ using asio::ip::udp;
 
 class Client {
     public:
+
+        /**
+         * @brief Construct a new Client object
+         */
         Client();
+
+        /**
+         * @brief Destroy the Client object
+         */
         ~Client();
+
+        /**
+         * @brief Send a message to the server
+         */
         void send_message(const std::string &message);
-        bool connect(const std::string &port);
+
+        /**
+         * @brief Connect to the server
+         */
+        bool connect(const std::string &ip, const std::string &port = "5000");
+
+        /**
+         * @brief Get the data from the server
+         */
         std::string get_data();
+
+        /**
+         * @brief Check if the client has data to read
+         */
         bool has_data();
 
 

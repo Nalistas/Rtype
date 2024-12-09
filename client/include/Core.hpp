@@ -13,7 +13,7 @@
 #include "Raylib/RaySound.hpp"
 #include "Raylib/Sprite.hpp"
 
-#include <map>
+#include <unordered_map>
 
 #ifndef CORE_HPP_
     #define CORE_HPP_
@@ -33,36 +33,100 @@ enum class EntityType {
 
 class Core {
     public:
+        /**
+         * @brief Construct a new Core object
+         * @param win_width The width of the window
+         * @param win_height The height of the window
+         */
         Core(std::size_t win_width, std::size_t win_height);
+
+        /**
+         * @brief Destroy the Core object
+         */
         ~Core();
 
+        /**
+         * @brief Run the core
+         * @return the exit code
+         */
         int run(void);
+
+        /**
+         * @brief Process a message
+         */
         void process_message(const std::string &message);
-        void create_entity(std::string &message);
-        void delete_entity(std::string &message);
-        void update_entity(std::string &message);
-        void handle_create_entity(EntityType entity_type, std::size_t entity_id, const std::string &entity_data);
+
+        /**
+         * @brief Updates the texture component of the specified entity.
+         * 
+         * @tparam T The type of the component to update.
+         * @param entity The entity whose texture component is to be updated.
+         * @param texture_data The new texture data to set for the component.
+         */
         template <typename T>
         void update_texture_component(ecs::entity entity, const std::string &texture_data);
+
+        /**
+         * @brief Updates the source component of the specified entity.
+         * 
+         * @tparam T The type of the component to update.
+         * @param entity The entity whose source component is to be updated.
+         * @param source_data The new source data to set for the component.
+         */
         template <typename T>
         void update_source_component(ecs::entity entity, const std::string &source_data);
 
     private:
+
+        /**
+         * @brief Create an entity
+         * @param message The message
+         */
+        void create_entity(std::string &message);
+
+        /**
+         * @brief Delete an entity
+         * @param message The message
+         */
+        void delete_entity(std::string &message);
+
+        /**
+         * @brief Update an entity
+         * @param message The message
+         */
+        void update_entity(std::string &message);
+
+        /**
+         * @brief Handle the creation of an entity
+         * @param entity_type The type of the entity
+         * @param entity_id The id of the entity
+         * @param entity_data The data of the entity
+         */
+        void handle_create_entity(EntityType entity_type, std::size_t entity_id, const std::string &entity_data);
+
+
+
         raylib::Window _window;
         raylib::AudioDevice audioDevice;
         ecs::registry _registry;
-        std::map<EntityOperation, std::function<void(std::string &message)>> _operation_functions = {
+
+
+        std::unordered_map<EntityOperation, std::function<void(std::string &message)>> _operation_functions = {
             {EntityOperation::CREATE, [this](std::string &message){create_entity(message);}},
             {EntityOperation::DELETE, [this](std::string &message){delete_entity(message);}},
             {EntityOperation::UPDATE, [this](std::string &message){update_entity(message);}}
         };
-        std::map<EntityType, std::function<void(ecs::entity, const std::string&)>> _create_entity_functions = {
+
+
+        std::unordered_map<EntityType, std::function<void(ecs::entity, const std::string&)>> _create_entity_functions = {
             {EntityType::BACKGROUND, [this](ecs::entity e, const std::string &data) { _registry.emplace_component<Background>(e, data); }},
             {EntityType::MUSIC, [this](ecs::entity e, const std::string &data) { _registry.emplace_component<raylib::RayMusic>(e, data); }},
             {EntityType::SOUND, [this](ecs::entity e, const std::string &data) { _registry.emplace_component<raylib::RaySound>(e, data); }},
             {EntityType::SPRITE, [this](ecs::entity e, const std::string &data) { _registry.emplace_component<raylib::Sprite>(e, data); }}
         };
-        std::map<EntityType, std::function<void(ecs::entity, const std::string&)>> _update_entity_functions = {
+
+
+        std::unordered_map<EntityType, std::function<void(ecs::entity, const std::string&)>> _update_entity_functions = {
             {EntityType::BACKGROUND, [this](ecs::entity e, const std::string &data) {update_texture_component<Background>(e, data);}},
             {EntityType::SPRITE, [this](ecs::entity e, const std::string &data) {update_texture_component<raylib::Sprite>(e, data);}},
             {EntityType::MUSIC, [this](ecs::entity e, const std::string &data) {update_source_component<raylib::RayMusic>(e, data);}},

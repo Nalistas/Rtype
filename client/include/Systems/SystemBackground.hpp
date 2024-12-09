@@ -13,9 +13,20 @@
 
 class SystemBackground : public ecs::isystem<Background> {
     public:
+        /**
+         * @brief Construct a new System Background object
+         * @param elpased_time the reference to the elpased time
+         */
         SystemBackground(std::size_t const &elpased_time);
+
+        /**
+         * @brief Destroy the System Background object
+         */
         ~SystemBackground();
 
+        /**
+         * @brief Call the system
+         */
         void operator()(ecs::registry &r, ecs::entity const &e, Background &b) override;
 
     private:
