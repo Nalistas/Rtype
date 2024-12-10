@@ -42,7 +42,6 @@ target_sources(Client
         src/Raylib/AudioDevice.cpp
         src/Background.cpp
         src/GraphicalCore.cpp
-        src/Client.cpp
         src/Core.cpp
         src/Systems/SystemBackground.cpp
         src/Systems/SystemTime.cpp
@@ -51,6 +50,7 @@ target_sources(Client
 
 target_link_libraries(Client PRIVATE raylib)
 target_link_libraries(Client PRIVATE ecs)
+target_link_libraries(Client PRIVATE protocol)
 target_include_directories(Client PRIVATE ${CMAKE_SOURCE_DIR}/common/ecs)
 
 target_compile_options(Client

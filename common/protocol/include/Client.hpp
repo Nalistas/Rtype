@@ -5,16 +5,23 @@
 ** Client
 */
 
-#ifndef CLIENT_HPP_
-#define CLIENT_HPP_
-
 #include <iostream>
 #include <asio.hpp>
+#include <vector>
+
+#ifndef CLIENT_HPP_
+    #define CLIENT_HPP_
+
 
 using asio::ip::udp;
 
 class Client {
     public:
+
+        struct UDP_DATA {
+            std::vector<char> data;
+            udp::endpoint sender_endpoint;
+        };
 
         /**
          * @brief Construct a new Client object
@@ -39,7 +46,7 @@ class Client {
         /**
          * @brief Get the data from the server
          */
-        std::string get_data();
+        UDP_DATA get_data();
 
         /**
          * @brief Check if the client has data to read

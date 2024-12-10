@@ -5,12 +5,8 @@
 ** graphics
 */
 
-#include "rtype_protocol.hpp"
+#include "Encoder.hpp"
 #include <cstring>
-
-rtype_protocol::Encoder::Encoder() {}
-
-rtype_protocol::Encoder::~Encoder() {}
 
 std::vector<char> rtype_protocol::Encoder::encode(Background const &background)
 {
@@ -65,7 +61,7 @@ rtype_protocol::Background rtype_protocol::Encoder::decodeBackground(std::vector
     Background background;
     std::size_t short_size = sizeof(Background) - sizeof(std::string);
 
-    std::memcpy(&background, data.data(), short_size);
+    std::memcpy((void *)&background, data.data(), short_size);
     background.path.resize(data.size() - short_size);
     for (std::size_t i = 0; i < background.path.size(); i++) {
         background.path[i] = data[short_size + i];
@@ -78,7 +74,7 @@ rtype_protocol::Sprite rtype_protocol::Encoder::decodeSprite(std::vector<char> c
     Sprite sprite;
     std::size_t short_size = sizeof(Sprite) - sizeof(std::string);
 
-    std::memcpy(&sprite, data.data(), short_size);
+    std::memcpy((void *)&sprite, data.data(), short_size);
     sprite.path.resize(data.size() - short_size);
     for (std::size_t i = 0; i < sprite.path.size(); i++) {
         sprite.path[i] = data[short_size + i];

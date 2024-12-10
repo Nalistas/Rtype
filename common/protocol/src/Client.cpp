@@ -65,11 +65,11 @@ bool Client::has_data()
     }
 }
 
-std::string Client::get_data() 
+Client::UDP_DATA Client::get_data() 
 {
     if (!connected) {
         std::cerr << "Erreur : Client non connecté !" << std::endl;
-        return "";
+        return UDP_DATA();
     }
 
     char buffer[1024];
@@ -77,11 +77,17 @@ std::string Client::get_data()
 
     try {
         size_t reply_length = socket.receive_from(asio::buffer(buffer, 1024), sender_endpoint);
-        std::string reply(buffer, reply_length);
+
+        UDP_DATA received_data;
+        received_data.data = std::vector<char>(buffer, buffer + reply_length);
+        received_data.sender_endpoint = sender_endpoint;
+
+        std::string reply(received_data.data.begin(), received_data.data.end());
         std::cout << "Réponse reçue : " << reply << std::endl;
-        return reply;
+
+        return received_data;
     } catch (const std::exception &e) {
         std::cerr << "Erreur lors de la réception des données : " << e.what() << std::endl;
-        return "";
+        return UDP_DATA();
     }
 }

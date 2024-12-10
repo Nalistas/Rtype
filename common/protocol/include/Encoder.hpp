@@ -12,7 +12,7 @@
     #define PROTOCOL_HPP_
 
 namespace rtype_protocol {
-    
+
     enum BackgroundDirection {
         X = 1,
         Y = 2
@@ -71,6 +71,9 @@ namespace rtype_protocol {
 
     class Encoder {
         public: 
+            Encoder() noexcept = default;
+            ~Encoder() noexcept = default;
+
             std::vector<char> encode(Background const &background);
             std::vector<char> encode(Sprite const &sprite);
             std::vector<char> encode(Music const &music);

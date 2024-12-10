@@ -150,8 +150,12 @@ int Core::run(void)
 
     while (_window.is_running()) {
         if (client.has_data()) {
-            std::string data = client.get_data();
-            process_message(data);
+            Client::UDP_DATA data = client.get_data();
+            for (std::size_t i = 0; i < data.data.size(); i++) {
+                std::cout <<  static_cast<int>(data.data[i]) << " ";
+            }
+            std::cout << "from " << data.sender_endpoint.address() << ":" << data.sender_endpoint.port() << std::endl;
+            std::cout << std::endl;
         }
         _window.start_drawing();
         _registry.run_systems();
