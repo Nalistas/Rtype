@@ -15,9 +15,9 @@ std::size_t endpoint_hash_class::operator()(const udp::endpoint &ep) const {
 
 
 Server::Server() 
-    : api()
+    : _api()
 {
-    api.start_server("5000");
+    _api.start_server("5000");
 }
 
 Server::~Server() 
@@ -27,16 +27,15 @@ Server::~Server()
 int Server::loop() 
 {
     while (true) {
+        if (_api.has_data()) {
+            rtype_protocol::AsioApi::UDP_DATA data = _api.get_data();
 
-        if (api.has_data()) {
-            rtype_protocol::AsioApi::UDP_DATA data = api.get_data();
-
-            if (clients.find(data.sender_endpoint) == clients.end()) {
-                clients.insert(data.sender_endpoint);
+            if (_clients.find(data.sender_endpoint) == _clients.end()) {
+                _clients.insert(data.sender_endpoint);
                 std::cout << "Nouveau client ajouté : " 
                         << data.sender_endpoint.address().to_string()
                         << ":" << data.sender_endpoint.port() << std::endl;
-                api.reply_to(data);
+                _api.reply_to(data);
             }
         }
         // add client if not exist

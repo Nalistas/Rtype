@@ -12,6 +12,8 @@
 #include <unordered_set>
 #include <asio.hpp>
 #include <unordered_set>
+#include "common/ecs/include/registry.hpp"
+#include "Encoder.hpp"
 #include "AsioApi.hpp"
 
 using asio::ip::udp;
@@ -61,8 +63,10 @@ class Server {
 
     private:
 
-        rtype_protocol::AsioApi api;
-        std::unordered_set<udp::endpoint, endpoint_hash_class> clients;
+        ecs::registry _registry;
+        rtype_protocol::AsioApi _api;
+        rtype_protocol::Encoder _encoder;
+        std::unordered_set<udp::endpoint, endpoint_hash_class> _clients;
 };
 
 #endif /* !SERVER_HPP_ */
