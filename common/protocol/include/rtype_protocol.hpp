@@ -71,15 +71,15 @@ namespace rtype_protocol {
 
     class Encoder {
         public: 
-            static std::vector<char> encode(Background const &background);
-            static std::vector<char> encode(Sprite const &sprite);
-            static std::vector<char> encode(Music const &music);
-            static std::vector<char> encode(Sound const &sound);
+            std::vector<char> encode(Background const &background);
+            std::vector<char> encode(Sprite const &sprite);
+            std::vector<char> encode(Music const &music);
+            std::vector<char> encode(Sound const &sound);
 
-            static Background decodeBackground(std::vector<char> const &data);
-            static Sprite decodeSprite(std::vector<char> const &data);
-            static Music decodeMusic(std::vector<char> const &data);
-            static Sound decodeSound(std::vector<char> const &data);
+            Background decodeBackground(std::vector<char> const &data);
+            Sprite decodeSprite(std::vector<char> const &data);
+            Music decodeMusic(std::vector<char> const &data);
+            Sound decodeSound(std::vector<char> const &data);
 
     };
 }
