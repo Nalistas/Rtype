@@ -12,7 +12,7 @@
 #include "Systems/SystemSprite.hpp"
 
 #include "isystem.hpp"
-#include "Client.hpp"
+#include "AsioApi.hpp"
 #include "entity.hpp"
 #include "registry.hpp"
 
@@ -131,7 +131,7 @@ int Core::run(void)
 {
     ecs::entity background = _registry.create_entity();
     _registry.emplace_component<Background>(background);
-    Client client;
+    rtype_protocol::AsioApi client;
     client.connect("localhost");
 
 
@@ -150,7 +150,7 @@ int Core::run(void)
 
     while (_window.is_running()) {
         if (client.has_data()) {
-            Client::UDP_DATA data = client.get_data();
+            rtype_protocol::AsioApi::UDP_DATA data = client.get_data();
             for (std::size_t i = 0; i < data.data.size(); i++) {
                 std::cout <<  static_cast<int>(data.data[i]) << " ";
             }

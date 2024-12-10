@@ -12,10 +12,15 @@
 #include <unordered_set>
 #include <asio.hpp>
 #include <unordered_set>
+#include "AsioApi.hpp"
 
 using asio::ip::udp;
 
 namespace std {
+
+    /**
+     * @brief Hash function for udp::endpoint
+     */
     template <>
     struct hash<udp::endpoint>
     {
@@ -25,6 +30,15 @@ namespace std {
         }
     };
 }
+
+/**
+ * @brief Hash function for udp::endpoint
+ */
+struct endpoint_hash_class {
+    std::size_t operator()(const udp::endpoint &ep) const;
+};
+
+
 
 enum class EntityOperation {
     CREATE = 1,
@@ -39,28 +53,15 @@ enum class EntityType {
     SPRITE = 4
 };
 
-struct endpoint_hash_class {
-    std::size_t operator()(const udp::endpoint &ep) const;
-};
-
 class Server {
     public:
         Server();
         ~Server();
         int loop();
-        void send_create_entity(udp::endpoint client_endpoint, EntityType entity_type, int entity_id, const std::string& entity_data);
-        void send_delete_entity(udp::endpoint client_endpoint, int entity_id);
-        void send_update_entity(udp::endpoint client_endpoint, EntityType entity_type, int entity_id, const std::string& updated_data);
-        void handle_receive(const std::string& message);
 
     private:
-        void start_receive();
 
-        asio::io_context io_context;
-        udp::socket socket;
-        udp::endpoint sender_endpoint_;
-        std::array<char, 1024> recv_buffer;
-
+        rtype_protocol::AsioApi api;
         std::unordered_set<udp::endpoint, endpoint_hash_class> clients;
 };
 

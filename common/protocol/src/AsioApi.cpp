@@ -5,20 +5,20 @@
 ** Client
 */
 
-#include "Client.hpp"
+#include "AsioApi.hpp"
 
-Client::Client() : resolver(io_context), socket(io_context) {
+rtype_protocol::AsioApi::AsioApi() : resolver(io_context), socket(io_context) {
     connected = false;
 }
 
-Client::~Client() 
+rtype_protocol::AsioApi::~AsioApi() 
 {
     if (socket.is_open()) {
         socket.close();
     }
 }
 
-bool Client::connect(const std::string &hostname, const std::string &port) 
+bool rtype_protocol::AsioApi::connect(const std::string &hostname, const std::string &port) 
 {
     try {
         udp::resolver::results_type endpoints = resolver.resolve(udp::v4(), hostname, port);
@@ -34,7 +34,7 @@ bool Client::connect(const std::string &hostname, const std::string &port)
     return connected;
 }
 
-void Client::send_message(const std::string &message) 
+void rtype_protocol::AsioApi::send_message(const std::string &message) 
 {
     if (!connected) {
         std::cerr << "Erreur : Client non connecté !" << std::endl;
@@ -48,13 +48,8 @@ void Client::send_message(const std::string &message)
     }
 }
 
-bool Client::has_data() 
+bool rtype_protocol::AsioApi::has_data() 
 {
-    if (!connected) {
-        std::cerr << "Erreur : Client non connecté !" << std::endl;
-        return false;
-    }
-
     try {
         asio::socket_base::bytes_readable command(true);
         socket.io_control(command);
@@ -65,13 +60,8 @@ bool Client::has_data()
     }
 }
 
-Client::UDP_DATA Client::get_data() 
+rtype_protocol::AsioApi::UDP_DATA rtype_protocol::AsioApi::get_data() 
 {
-    if (!connected) {
-        std::cerr << "Erreur : Client non connecté !" << std::endl;
-        return UDP_DATA();
-    }
-
     char buffer[1024];
     udp::endpoint sender_endpoint;
 
@@ -91,3 +81,30 @@ Client::UDP_DATA Client::get_data()
         return UDP_DATA();
     }
 }
+
+bool rtype_protocol::AsioApi::start_server(const std::string &port) 
+{
+    try {
+        udp::endpoint local_endpoint(udp::v4(), std::stoi(port));
+        socket.open(udp::v4());
+        socket.bind(local_endpoint);
+        std::cout << "Serveur démarré sur le port " << port << "." << std::endl;
+        return true;
+    } catch (const std::exception &e) {
+        std::cerr << "Erreur lors du démarrage du serveur : " << e.what() << std::endl;
+        return false;
+    }
+}
+
+// Nouvelle méthode : Répondre à un client
+void rtype_protocol::AsioApi::reply_to(const UDP_DATA &client_data) 
+{
+    try {
+        socket.send_to(asio::buffer(client_data.data), client_data.sender_endpoint);
+        std::cout << "Réponse envoyée à " << client_data.sender_endpoint.address().to_string() 
+                  << ":" << client_data.sender_endpoint.port() << std::endl;
+    } catch (const std::exception &e) {
+        std::cerr << "Erreur lors de l'envoi de la réponse : " << e.what() << std::endl;
+    }
+}
+

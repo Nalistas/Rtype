@@ -28,7 +28,7 @@ include_directories(include)
 # Crée une bibliothèque statique (changer le nom de "myprotocol" en "protocol")
 add_library(protocol STATIC
     src/Encoder.cpp
-    src/Client.cpp
+    src/AsioApi.cpp
 )
 
 # Ajoute les répertoires include au projet

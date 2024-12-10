@@ -33,8 +33,11 @@ add_executable(Server
 # Inclure les fichiers headers
 target_include_directories(Server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# Lier les bibliothèques de `common`
-target_link_libraries(Server PRIVATE ecs common_interface)
+# Link  `common`
+target_link_libraries(Server PRIVATE ecs)
+target_link_libraries(Server PRIVATE file_selector)
+target_link_libraries(Server PRIVATE common_interface)
+target_link_libraries(Server PRIVATE protocol)
 
 # Options de compilation
 target_compile_options(Server
