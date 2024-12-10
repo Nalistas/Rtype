@@ -1,6 +1,7 @@
 # Ajout des sous-répertoires s'ils ont un fichier CMakeLists.txt
 add_subdirectory(ecs)
-# add_subdirectory(games_selector)
+add_subdirectory(games_selector)
+add_subdirectory(protocol)
 
 # Créer une interface pour inclure les fichiers headers
 add_library(common_interface INTERFACE)
