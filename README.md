@@ -19,22 +19,32 @@ R-Type is a **2D shoot'em up** game inspired by the classic *R-Type*, designed a
 
 ## Setup
 
+### Prerequisite
+
+#### For Windows, you need to have:
+- [Git](https://git-scm.com/) (version >= 2.30 recommended)
+- [CMake](https://cmake.org/download/) (version >= 3.15 recommended)
+- [MinGW-w64](https://mingw-w64.org/doku.php/download) (can be installed with [MSYS2](https://www.msys2.org/))
+
+---
+
+### For Linux users:
+- [Git](https://git-scm.com/) (version >= 2.30 recommended)
+- [CMake](https://cmake.org/download/) (version >= 3.15 recommended)
+- [g++](https://gcc.gnu.org/)
+
+---
+
+
 1. **Clone the repository**:
     ```bash
     git clone https://github.com/yourusername/Rtype.git
     cd Rtype
     ```
 
-2. **Install dependencies** (Raylib and other libraries):
-    - Follow the Raylib installation guide for your platform: [Raylib Downloads](https://www.raylib.com/)
-
 3. **Build the project**:
-    ```bash
-    mkdir build
-    cd build
-    cmake ..
-    make
-    ```
+    to build the project, you can simply launch `compile.sh`for linux or `test.bat` for windows
+    the cmakelists will handle the foreign package byt themselves
 
 4. **Running the game**:
     - **Server**: To start the server, specify TCP and UDP ports:
