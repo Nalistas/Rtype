@@ -21,6 +21,8 @@ target_include_directories(Rtype PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
+target_link_libraries(Rtype PRIVATE ecs)
+
 target_sources(Rtype
     PRIVATE
         entrypoints.cpp
