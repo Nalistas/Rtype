@@ -61,6 +61,7 @@ void Core::process_message(const std::vector<char> &message)
     }
 }
 
+
 void Core::handle_create_entity(EntityType entity_type, std::size_t entity_id, const std::vector<char> &entity_data)
 {
     ecs::entity entity = _registry.entity_from_index(entity_id);
@@ -69,7 +70,7 @@ void Core::handle_create_entity(EntityType entity_type, std::size_t entity_id, c
 
     auto it = _create_entity_functions.find(entity_type);
     if (it != _create_entity_functions.end()) {
-        it->second(entity, std::string(entity_data.begin(), entity_data.end()));
+        it->second(entity, entity_data);
         std::cout << "Création de l'entité avec l'id " << entity_id << " fini !" << std::endl;
     } else {
         std::cerr << "Type d'entité inconnu : " << static_cast<int>(entity_type) << std::endl;
@@ -94,21 +95,39 @@ void Core::delete_entity(std::vector<char> &message)
     _registry.delete_entity(entity);
 }
 
-template <typename T>
-void Core::update_texture_component(ecs::entity entity, const std::string &texture_data)
+void Core::update_sprite_component(ecs::entity entity, const std::vector<char> &entity_data)
 {
-    auto &component = _registry.get_components<T>()[entity];
+    auto &component = _registry.get_components<raylib::Sprite>()[entity];
     if (component.has_value()) {
-        component->set_texture(texture_data);
+        rtype_protocol::Sprite sprite = _encoder.decodeSprite(entity_data);
+        component->setComponent(sprite);
     }
 }
 
-template <typename T>
-void Core::update_source_component(ecs::entity entity, const std::string &source_data)
+void Core::update_background_component(ecs::entity entity, const std::vector<char> &entity_data)
 {
-    auto &component = _registry.get_components<T>()[entity];
+    auto &component = _registry.get_components<Background>()[entity];
     if (component.has_value()) {
-        component->set_source(source_data);
+        rtype_protocol::Background bg = _encoder.decodeBackground(entity_data);
+        component->setComponent(bg);
+    }
+}
+
+void Core::update_music_component(ecs::entity entity, const std::vector<char> &entity_data)
+{
+    auto &component = _registry.get_components<raylib::RayMusic>()[entity];
+    if (component.has_value()) {
+        rtype_protocol::Music music = _encoder.decodeMusic(entity_data);
+        component->set_source(music.path);
+    }
+}
+
+void Core::update_sound_component(ecs::entity entity, const std::vector<char> &entity_data)
+{
+    auto &component = _registry.get_components<raylib::RaySound>()[entity];
+    if (component.has_value()) {
+        rtype_protocol::Sound sound = _encoder.decodeSound(entity_data);
+        component->set_source(sound.path);
     }
 }
 
@@ -120,7 +139,7 @@ void Core::update_entity(std::vector<char> &message) {
     ecs::entity entity = _registry.entity_from_index(entity_id);
     auto it = _update_entity_functions.find(entity_type);
     if (it != _update_entity_functions.end()) {
-        it->second(entity, std::string(entity_data.begin(), entity_data.end()));
+        it->second(entity, entity_data);
     } else {
         std::cerr << "Type d'entité inconnu : " << static_cast<int>(entity_type) << std::endl;
     }

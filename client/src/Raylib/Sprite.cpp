@@ -79,6 +79,18 @@ void raylib::Sprite::set_texture(std::string const &texture_path)
     _center = {_destination_rect.width / 2, _destination_rect.height / 2};
 }
 
+void raylib::Sprite::setComponent(rtype_protocol::Sprite const &sprite)
+{
+    _texture = LoadTexture(sprite.path.c_str());
+    if (_texture.id == 0) {
+        throw std::runtime_error("Failed to load texture: " + sprite.path);
+    }
+    _source_rect = {0, 0, static_cast<float>(_texture.width), static_cast<float>(_texture.height)};
+    _source_rect_origin = _source_rect;
+    _destination_rect = {_destination_rect.x, _destination_rect.y, static_cast<float>(_texture.width), static_cast<float>(_texture.height)};
+    _center = {_destination_rect.width / 2, _destination_rect.height / 2};
+}
+
 void raylib::Sprite::set_source_rect(Rectangle texture_rect)
 {
     _source_rect = texture_rect;

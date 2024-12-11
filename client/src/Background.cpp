@@ -34,6 +34,16 @@ Background::Background(std::string const &path, std::size_t win_width, std::size
 {
 }
 
+void Background::setComponent(rtype_protocol::Background const &background)
+{
+    _background.set_texture(background.path);
+    _speed = background.speed;
+    _win_width = 0;
+    _win_height = 0;
+    _repeat = background.repeat;
+    _move_type = static_cast<BACKGROUND_MOVE_TYPE>(background.direction);
+}
+
 void Background::setSpeed(double speed)
 {
     _speed = speed;

@@ -27,6 +27,13 @@ Server::~Server()
 int Server::loop() 
 {
     std::string bgname = "./orange.png";
+    rtype_protocol::Background bg;
+    bg.direction = rtype_protocol::BackgroundDirection::X;
+    bg.repeat = true;
+    bg.resize = true;
+    bg.speed = 1;
+    bg.path = bgname;
+
     while (true) {
         if (_api.has_data()) {
             rtype_protocol::AsioApi::UDP_DATA data = _api.get_data();
@@ -37,7 +44,7 @@ int Server::loop()
                         << data.sender_endpoint.address().to_string()
                         << ":" << data.sender_endpoint.port() << std::endl;
 
-                data.data = std::vector<char>(bgname.begin(), bgname.end());
+                data.data = _encoder.encode(bg);
 
                 data.data.insert(data.data.begin(), static_cast<char>(2));
                 data.data.insert(data.data.begin(), static_cast<char>(EntityType::BACKGROUND));

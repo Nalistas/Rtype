@@ -6,6 +6,7 @@
 */
 
 #include "raylib.h"
+#include "Encoder.hpp"
 #include <string>
 
 #ifndef SPRITE_HPP_
@@ -21,6 +22,12 @@ class Sprite {
         ~Sprite();
 
         void draw();
+
+        /**
+         * @brief Set the component
+         * @param sprite the sprite component
+         */
+        void setComponent(rtype_protocol::Sprite const &sprite);
 
         /**
          * @brief Set the texture
