@@ -6,12 +6,12 @@
 */
 
 #include <string>
-#include "raylib.h"
 
 #ifndef RAYMUSIC_HPP_
     #define RAYMUSIC_HPP_
 
 namespace raylib {
+    #include "raylib.h"
 
 class RayMusic {
     public:

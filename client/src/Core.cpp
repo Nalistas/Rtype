@@ -5,6 +5,8 @@
 ** Core
 */
 
+#include <windows.h>
+
 #include "Core.hpp"
 
 #include "Systems/SystemTime.hpp"
@@ -159,7 +161,7 @@ int Core::run(void)
         }
         _window.start_drawing();
         _registry.run_systems();
-        if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, KEY_SPACE)) {
+        if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, raylib::KEY_SPACE)) {
             _registry.run_single_standalone_system(SystemTest());
         }
         _window.end_drawing();

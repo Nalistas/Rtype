@@ -39,6 +39,11 @@ target_link_libraries(Server PRIVATE file_selector)
 target_link_libraries(Server PRIVATE common_interface)
 target_link_libraries(Server PRIVATE protocol)
 
+if(WIN32)
+target_link_libraries(Server PRIVATE ws2_32)
+endif()
+
+
 # Options de compilation
 target_compile_options(Server
     PRIVATE

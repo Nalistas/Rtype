@@ -130,8 +130,8 @@ void Background::draw() {
 
 void Background::move(std::size_t timestamp)
 {
-    Vector2 pos = _background.get_position();
-    Vector2 size = _background.get_size();
+    raylib::Vector2 pos = _background.get_position();
+    raylib::Vector2 size = _background.get_size();
     float speed_x = _speed * (_move_type == Background::BACKGROUND_MOVE_TYPE::MOVE_X ? 1 : 0);
     float speed_y = _speed * (_move_type == Background::BACKGROUND_MOVE_TYPE::MOVE_Y ? 1 : 0);
 
@@ -163,13 +163,13 @@ void Background::move(std::size_t timestamp)
 
 void Background::setParallax(void)
 {
-    Vector2 size = _background.get_size();
-    Vector2 pos = {0, 0};
+    raylib::Vector2 size = _background.get_size();
+    raylib::Vector2 pos = {0, 0};
 
     if (!this->_get_parallax_pos) {
         return;
     }
-    Vector2 ref = this->_get_parallax_pos();
+    raylib::Vector2 ref = this->_get_parallax_pos();
     float x_ref = ref.x - size.x / 2;
     float y_ref = ref.y - size.y / 2;
 
@@ -211,7 +211,7 @@ void Background::update_position(std::time_t timestamp)
     }
 }
 
-void Background::setParallaxPos(std::function<Vector2(void)> const &get_parallax_pos)
+void Background::setParallaxPos(std::function<raylib::Vector2(void)> const &get_parallax_pos)
 {
     this->_get_parallax_pos = get_parallax_pos;
 }

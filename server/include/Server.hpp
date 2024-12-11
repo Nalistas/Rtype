@@ -12,7 +12,7 @@
 #include <unordered_set>
 #include <asio.hpp>
 #include <unordered_set>
-#include "common/ecs/include/registry.hpp"
+#include "registry.hpp"
 #include "Encoder.hpp"
 #include "AsioApi.hpp"
 
@@ -44,7 +44,7 @@ struct endpoint_hash_class {
 
 enum class EntityOperation {
     CREATE = 1,
-    DELETE = 2,
+    REMOVE = 2,
     UPDATE = 3
 };
 

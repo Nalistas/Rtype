@@ -116,7 +116,7 @@ class Background {
         /**
          * @brief Define the function to get the point to follow in case of parralax mode
          */
-        void setParallaxPos(std::function<Vector2(void)> const &get_parallax_pos);
+        void setParallaxPos(std::function<raylib::Vector2(void)> const &get_parallax_pos);
 
     private:
 
@@ -138,7 +138,7 @@ class Background {
         std::size_t _win_height;
 
         bool _repeat;
-        std::function<Vector2(void)> _get_parallax_pos;
+        std::function<raylib::Vector2(void)> _get_parallax_pos;
         BACKGROUND_MOVE_TYPE _move_type;
 
 };

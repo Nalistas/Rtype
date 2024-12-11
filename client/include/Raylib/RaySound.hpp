@@ -6,13 +6,13 @@
 */
 
 #include <string>
-#include "raylib.h"
 
 #ifndef RAYSOUND_HPP_
     #define RAYSOUND_HPP_
 
 namespace raylib
 {
+    #include "raylib.h"
 /**
  * @brief Sound class using raylib
  */

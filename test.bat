@@ -1,4 +1,5 @@
 @echo off
-echo Bonjour, utilisateur !
-echo test push
+mkdir build
+cmake -G "MinGW Makefiles" -S . -B build
+cmake --build build
 pause

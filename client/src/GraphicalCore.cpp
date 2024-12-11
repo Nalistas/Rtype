@@ -36,7 +36,7 @@ void GraphicalCore::start_draw(void)
     }
 
     this->_window.start_drawing();
-    this->_window.clear();
+    // this->_window.clear();
 
     for (auto &background : this->_backgrounds) {
         background.update_position(elapsed); // elapsed est en millisecondes
@@ -76,7 +76,7 @@ void GraphicalCore::setMusic(std::string const &path)
 
 void GraphicalCore::clearBackgrounds(void)
 {
-    this->_backgrounds.clear();
+    // this->_backgrounds.clear();
 }
 
 Background &GraphicalCore::getBackground(std::size_t position)

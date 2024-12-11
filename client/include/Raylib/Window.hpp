@@ -7,12 +7,12 @@
 
 #include <list>
 #include <string>
-#include "raylib.h"
 
 #ifndef WINDOW_HPP_
     #define WINDOW_HPP_
 
 namespace raylib {
+#include "raylib.h"
 
 class Window {
     public:

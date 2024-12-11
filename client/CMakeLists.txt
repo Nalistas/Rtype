@@ -9,7 +9,7 @@ project(Client
 # Configuration standard C++
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
+add_compile_definitions(WIN32_LEAN_AND_MEAN NOMINMAX)
 
 # Télécharger et intégrer Raylib via FetchContent
 include(FetchContent)
@@ -29,9 +29,11 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(asio)
 include_directories(${asio_SOURCE_DIR}/asio/include)
 
-
+# Définir l'exécutable
 add_executable(Client)
 target_include_directories(Client PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+# Ajouter les sources
 target_sources(Client
     PRIVATE
         main.cpp
@@ -48,11 +50,15 @@ target_sources(Client
         src/Systems/SystemSprite.cpp
 )
 
+# Lier les bibliothèques
 target_link_libraries(Client PRIVATE raylib)
 target_link_libraries(Client PRIVATE ecs)
 target_link_libraries(Client PRIVATE protocol)
+
+# Ajouter les répertoires d'inclusion pour ecs
 target_include_directories(Client PRIVATE ${CMAKE_SOURCE_DIR}/common/ecs)
 
+# Options de compilation
 target_compile_options(Client
     PRIVATE
         -Wall
@@ -60,8 +66,10 @@ target_compile_options(Client
         -Wpedantic
 )
 
+# Configuration spécifique aux plateformes
 if(WIN32)
     target_compile_definitions(Client PRIVATE _USE_MATH_DEFINES)
+    target_link_libraries(Client PRIVATE Ws2_32)  # Lier la bibliothèque Winsock
 elseif(APPLE)
     target_link_libraries(Client PRIVATE "-framework OpenGL")
 elseif(UNIX)

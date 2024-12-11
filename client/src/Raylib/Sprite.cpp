@@ -91,12 +91,12 @@ void raylib::Sprite::set_destination_rect(Rectangle on_window_rect)
     _center = {_destination_rect.width / 2, _destination_rect.height / 2};
 }
 
-Vector2 raylib::Sprite::get_position() const
+raylib::Vector2 raylib::Sprite::get_position() const
 {
     return {_destination_rect.x, _destination_rect.y};
 }
 
-Vector2 raylib::Sprite::get_size() const
+raylib::Vector2 raylib::Sprite::get_size() const
 {
     return {_destination_rect.width, _destination_rect.height};
 }

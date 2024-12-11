@@ -6,7 +6,7 @@
 */
 
 #ifndef AUDIODEVICE_HPP_
-#define AUDIODEVICE_HPP_
+    #define AUDIODEVICE_HPP_
 
 namespace raylib {
 

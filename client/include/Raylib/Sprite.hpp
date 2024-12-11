@@ -5,13 +5,13 @@
 ** Sprite
 */
 
-#include "raylib.h"
 #include <string>
 
 #ifndef SPRITE_HPP_
     #define SPRITE_HPP_
 
 namespace raylib {
+#include "raylib.h"
 
 class Sprite {
     public:
