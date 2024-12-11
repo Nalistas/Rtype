@@ -26,6 +26,7 @@ Server::~Server()
 
 int Server::loop() 
 {
+    std::string bgname = "./orange.png";
     while (true) {
         if (_api.has_data()) {
             rtype_protocol::AsioApi::UDP_DATA data = _api.get_data();
@@ -35,10 +36,16 @@ int Server::loop()
                 std::cout << "Nouveau client ajouté : " 
                         << data.sender_endpoint.address().to_string()
                         << ":" << data.sender_endpoint.port() << std::endl;
+
+                data.data = std::vector<char>(bgname.begin(), bgname.end());
+
+                data.data.insert(data.data.begin(), static_cast<char>(2));
+                data.data.insert(data.data.begin(), static_cast<char>(EntityType::BACKGROUND));
+                data.data.insert(data.data.begin(), static_cast<char>(EntityOperation::CREATE));
+
                 _api.reply_to(data);
             }
         }
-        // add client if not exist
     }
 
     return 0;

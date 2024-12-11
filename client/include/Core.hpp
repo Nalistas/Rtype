@@ -54,7 +54,7 @@ class Core {
         /**
          * @brief Process a message
          */
-        void process_message(const std::string &message);
+        void process_message(const std::vector<char> &message);
 
         /**
          * @brief Updates the texture component of the specified entity.
@@ -82,19 +82,19 @@ class Core {
          * @brief Create an entity
          * @param message The message
          */
-        void create_entity(std::string &message);
+        void create_entity(std::vector<char> &message);
 
         /**
          * @brief Delete an entity
          * @param message The message
          */
-        void delete_entity(std::string &message);
+        void delete_entity(std::vector<char> &message);
 
         /**
          * @brief Update an entity
          * @param message The message
          */
-        void update_entity(std::string &message);
+        void update_entity(std::vector<char> &message);
 
         /**
          * @brief Handle the creation of an entity
@@ -102,7 +102,7 @@ class Core {
          * @param entity_id The id of the entity
          * @param entity_data The data of the entity
          */
-        void handle_create_entity(EntityType entity_type, std::size_t entity_id, const std::string &entity_data);
+        void handle_create_entity(EntityType entity_type, std::size_t entity_id, const std::vector<char> &entity_data);
 
 
 
@@ -111,10 +111,10 @@ class Core {
         ecs::registry _registry;
 
 
-        std::unordered_map<EntityOperation, std::function<void(std::string &message)>> _operation_functions = {
-            {EntityOperation::CREATE, [this](std::string &message){create_entity(message);}},
-            {EntityOperation::DELETE, [this](std::string &message){delete_entity(message);}},
-            {EntityOperation::UPDATE, [this](std::string &message){update_entity(message);}}
+        std::unordered_map<EntityOperation, std::function<void(std::vector<char> &message)>> _operation_functions = {
+            {EntityOperation::CREATE, [this](std::vector<char> &message){create_entity(message);}},
+            {EntityOperation::DELETE, [this](std::vector<char> &message){delete_entity(message);}},
+            {EntityOperation::UPDATE, [this](std::vector<char> &message){update_entity(message);}}
         };
 
 
