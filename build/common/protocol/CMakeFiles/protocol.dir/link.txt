@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../libprotocol.a CMakeFiles/protocol.dir/src/Encoder.cpp.o CMakeFiles/protocol.dir/src/AsioApi.cpp.o
-/usr/bin/ranlib ../../libprotocol.a
