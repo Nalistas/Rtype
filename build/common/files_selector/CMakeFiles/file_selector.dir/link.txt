@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../libfile_selector.a CMakeFiles/file_selector.dir/src/IDirectoryLister.cpp.o CMakeFiles/file_selector.dir/src/SafeDirectoryLister.cpp.o
+/usr/bin/ranlib ../../libfile_selector.a
