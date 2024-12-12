@@ -43,7 +43,7 @@ R-Type is a **2D shoot'em up** game inspired by the classic *R-Type*, designed a
     ```
 
 3. **Build the project**:
-    to build the project, you can simply launch `compile.sh`for linux or `test.bat` for windows
+    to build the project, you can simply launch `compile.sh`for linux or `compile.bat` for windows
     the cmakelists will handle the foreign package byt themselves
 
 4. **Running the game**:
