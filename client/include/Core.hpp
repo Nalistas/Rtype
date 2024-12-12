@@ -133,8 +133,8 @@ class Core {
             {EntityType::BACKGROUND, [this](ecs::entity e, const std::vector<char>& data) {
                 rtype_protocol::Background background = _encoder.decodeBackground(data);
                 Background bg;
-                bg.setComponent(background);
                 _registry.emplace_component<Background>(e, bg);
+                _registry.get_components<Background>()[e]->setComponent(background);
             }},
             {EntityType::MUSIC, [this](ecs::entity e, const std::vector<char>& data) {
                 rtype_protocol::Music music = _encoder.decodeMusic(data);
