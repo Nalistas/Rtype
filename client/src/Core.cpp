@@ -171,6 +171,7 @@ int Core::run(void)
         if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, KEY_SPACE)) {
             _registry.run_single_standalone_system(SystemTest());
         }
+        
         _window.end_drawing();
     }
     return 0;

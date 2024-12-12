@@ -35,6 +35,8 @@ namespace rtype_protocol {
     struct Sprite {
         char speed_x;
         char speed_y;
+        int pos_x;
+        int pos_y;
         int size_x;
         int size_y;
         int text_rect_width;

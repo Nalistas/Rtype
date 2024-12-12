@@ -27,12 +27,21 @@ Server::~Server()
 int Server::loop() 
 {
     std::string bgname = "./orange.png";
-    rtype_protocol::Background bg;
-    bg.direction = rtype_protocol::BackgroundDirection::X;
-    bg.repeat = true;
-    bg.resize = true;
-    bg.speed = 1;
-    bg.path = bgname;
+    rtype_protocol::Sprite sp;
+    sp.pos_x = 0;
+    sp.pos_y = 0;
+    sp.size_x = 10;
+    sp.size_y = 10;
+    sp.path = bgname;
+    sp.offset_x = 0;
+    sp.offset_y = 0;
+    sp.speed_x = 0;
+    sp.speed_y = 0;
+    sp.text_rect_width = 0;
+    sp.text_rect_height = 0;
+    sp.nb_frames = 0;
+    sp.ms_per_frame = 0;
+    sp.auto_destroy = 0;
 
     while (true) {
         if (_api.has_data()) {
@@ -44,10 +53,10 @@ int Server::loop()
                         << data.sender_endpoint.address().to_string()
                         << ":" << data.sender_endpoint.port() << std::endl;
 
-                data.data = _encoder.encode(bg);
+                data.data = _encoder.encode(sp);
 
                 data.data.insert(data.data.begin(), static_cast<char>(2));
-                data.data.insert(data.data.begin(), static_cast<char>(EntityType::BACKGROUND));
+                data.data.insert(data.data.begin(), static_cast<char>(EntityType::SPRITE));
                 data.data.insert(data.data.begin(), static_cast<char>(EntityOperation::CREATE));
 
                 _api.reply_to(data);

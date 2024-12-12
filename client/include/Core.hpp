@@ -149,8 +149,8 @@ class Core {
             {EntityType::SPRITE, [this](ecs::entity e, const std::vector<char>& data) {
                 rtype_protocol::Sprite sprite = _encoder.decodeSprite(data);
                 raylib::Sprite raySprite;
-                raySprite.setComponent(sprite);
                 _registry.emplace_component<raylib::Sprite>(e, raySprite);
+                _registry.get_components<raylib::Sprite>()[e]->setComponent(sprite);
             }}
         };
 
