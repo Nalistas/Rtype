@@ -41,6 +41,9 @@ target_sources(Client
         src/Raylib/RayMusic.cpp
         src/Raylib/AudioDevice.cpp
         src/Background.cpp
+        src/Animation.cpp
+        src/AutoDestructTimer.cpp
+        src/Speed.cpp
         src/GraphicalCore.cpp
         src/Core.cpp
         src/Systems/SystemBackground.cpp
