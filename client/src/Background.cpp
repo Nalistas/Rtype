@@ -8,6 +8,7 @@
 #include "Background.hpp"
 #include <ctime>
 
+#include <iostream>
 
 Background::Background() :
     _background(), _speed(0), _win_width(0), _win_height(0), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
@@ -32,6 +33,19 @@ Background::Background(std::string const &path, std::size_t win_width, std::size
 Background::Background(std::string const &path, std::size_t win_width, std::size_t win_height, double speed) :
     _background(path), _speed(speed), _win_width(win_width), _win_height(win_height), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
 {
+}
+
+void Background::setComponent(rtype_protocol::Background const &background)
+{
+    _background.set_texture(background.path);
+    _speed = static_cast<int>(background.speed);
+    if (background.direction == rtype_protocol::BackgroundDirection::X) {
+        this->setMoveType(BACKGROUND_MOVE_TYPE::MOVE_X);
+    }
+    if (background.direction == rtype_protocol::BackgroundDirection::Y) {
+        this->setMoveType(BACKGROUND_MOVE_TYPE::MOVE_Y);
+    }
+    _repeat = background.repeat;
 }
 
 void Background::setSpeed(double speed)
@@ -78,7 +92,8 @@ void Background::auto_resize_y(void)
 
 #include <iostream>
 
-void Background::draw() {
+void Background::draw()
+{
     // Position actuelle du background
     float x = _background.get_position().x;
     float y = _background.get_position().y;

@@ -6,6 +6,7 @@
 */
 
 #include "Systems/SystemSprite.hpp"
+#include <iostream>
 
 SystemSprite::SystemSprite()
 {
