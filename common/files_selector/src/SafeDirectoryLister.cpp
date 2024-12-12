@@ -44,6 +44,9 @@ bool SafeDirectoryLister::open(const std::string& path, bool hidden)
         }
         file = readdir(m_dir);
     }
+    for (std::string elt: m_content) {
+        std::cout << elt << std::endl;
+    }
     return true;
 }
 
