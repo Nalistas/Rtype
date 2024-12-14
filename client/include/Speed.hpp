@@ -5,21 +5,24 @@
 ** Speed
 */
 
-#include "raylib.h"
 
 #ifndef SPEED_HPP_
-#define SPEED_HPP_
+    #define SPEED_HPP_
+
+namespace raylib {
+    #include "raylib.h"
+}
 
 class Speed {
     public:
         Speed();
         ~Speed();
-        Vector2 getSpeed();
-        void setSpeed(Vector2 speed);
+        raylib::Vector2 getSpeed();
+        void setSpeed(raylib::Vector2 speed);
 
     protected:
     private:
-        Vector2 _speed;
+        raylib::Vector2 _speed;
 };
 
 #endif /* !SPEED_HPP_ */

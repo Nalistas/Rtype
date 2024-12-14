@@ -5,8 +5,8 @@
 ** SpriteSystem
 */
 
-#include "common/ecs/include/isystem.hpp"
-#include "common/graphics_primitives/include/GraphicsPrimitives.hpp"
+#include "isystem.hpp"
+#include "GraphicsPrimitives.hpp"
 
 #ifndef SPRITESYSTEM_HPP_
     #define SPRITESYSTEM_HPP_

@@ -7,13 +7,13 @@
 
 #include "isystem.hpp"
 #include "Speed.hpp"
-#include "Sprite.hpp"
-
+#include "Raylib/Sprite.hpp"
+#include "isystem.hpp"
 
 #ifndef SYSTEMSPEED_HPP_
 #define SYSTEMSPEED_HPP_
 
-class SystemSpeed {
+class SystemSpeed : public ecs::isystem<Speed, raylib::Sprite> {
     public:
          /**
          * @brief Construct a new System Speed object
@@ -21,7 +21,7 @@ class SystemSpeed {
          */
         SystemSpeed(std::size_t const &elpased_time);
         ~SystemSpeed();
-        void operator()(ecs::registry &registry __attribute__((unused)), ecs::entity const &e __attribute__((unused)), Speed &speed, Sprite &sprite);
+        void operator()(ecs::registry &registry __attribute__((unused)), ecs::entity const &e __attribute__((unused)), Speed &speed, raylib::Sprite &sprite);
 
 
     protected:

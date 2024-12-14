@@ -25,6 +25,7 @@ include_directories(${asio_SOURCE_DIR}/asio/include)
 add_executable(Server
     src/main.cpp
     src/Server.cpp
+    src/Systems/SpriteSystem.cpp
     src/Thread/ScopeLock.cpp
     src/Thread/Mutex.cpp
     src/Thread/ConditionVariable.cpp

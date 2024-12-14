@@ -51,6 +51,9 @@ target_sources(Client
         src/Systems/SystemBackground.cpp
         src/Systems/SystemTime.cpp
         src/Systems/SystemSprite.cpp
+        src/Systems/SystemAnimation.cpp
+        src/Systems/SystemAutoDestructTimer.cpp
+        src/Systems/SystemSpeed.cpp
 )
 
 # Lier les bibliothèques

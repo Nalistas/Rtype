@@ -8,7 +8,7 @@
 #include "DLLoader.hpp"
 #include <functional>
 
-#ifdef WIN32
+#if defined(WIN32) || defined(_WIN32)
     #include <windows.h>
 #else 
     #include <dlfcn.h>
@@ -30,7 +30,7 @@ template<typename T>
 void DLLdr::DLLoader<T>::close(void)
 {
     if (m_lib != nullptr) {
-        #ifdef WIN32
+        #if defined(WIN32) || defined(_WIN32)
             FreeLibrary(static_cast<HMODULE>(m_lib));
         #else
             dlclose(m_lib);
@@ -44,7 +44,7 @@ void DLLdr::DLLoader<T>::open(const std::string &filename)
 {
     close();
 
-    #ifdef WIN32
+    #if defined(WIN32) || defined(_WIN32)
         m_lib = static_cast<void *>(LoadLibraryA(filename.c_str()));
         if (m_lib == nullptr) {
             std::cerr << "Error loading library: " << GetLastError() << std::endl;
@@ -64,7 +64,7 @@ std::unique_ptr<T> DLLdr::DLLoader<T>::getSym(std::string const &name)
 {
     void *sym = nullptr;
 
-    #ifdef WIN32
+    #if defined(WIN32) || defined(_WIN32)
         sym = reinterpret_cast<void *>(GetProcAddress(static_cast<HMODULE>(m_lib), name.c_str()));
         if (sym == nullptr) {
             std::cerr << "Error loading symbol: " << GetLastError() << std::endl;

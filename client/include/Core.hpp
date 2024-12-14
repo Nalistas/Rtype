@@ -12,6 +12,9 @@
 #include "Raylib/RayMusic.hpp"
 #include "Raylib/RaySound.hpp"
 #include "Raylib/Sprite.hpp"
+#include "Speed.hpp"
+#include "Animation.hpp"
+#include "AutoDestructTimer.hpp"
 
 #include <unordered_map>
 
@@ -153,6 +156,14 @@ class Core {
                 raylib::Sprite raySprite;
                 _registry.emplace_component<raylib::Sprite>(e, raySprite);
                 _registry.get_components<raylib::Sprite>()[e]->setComponent(sprite);
+
+                if (sprite.speed_x != 0 || sprite.speed_y != 0) {
+                    raylib::Vector2 spe;
+                    spe.x = sprite.speed_x;
+                    spe.y = sprite.speed_y;
+                    _registry.emplace_component<Speed>(e);
+                    _registry.get_components<Speed>()[e]->setSpeed(spe);
+                }
             }}
         };
 

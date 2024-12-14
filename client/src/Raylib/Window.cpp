@@ -23,6 +23,11 @@ raylib::Window::~Window()
     CloseWindow();
 }
 
+void raylib::Window::clear(Color color)
+{
+    ClearBackground(color);
+}
+
 void raylib::Window::close()
 {
     _running = false;
@@ -116,10 +121,6 @@ void raylib::Window::end_drawing()
     EndDrawing();
 }
 
-void raylib::Window::clear(Color color)
-{
-    ClearBackground(color);
-}
 
 void raylib::Window::set_title(std::string const &title)
 {

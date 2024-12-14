@@ -20,7 +20,6 @@ namespace raylib {
 class Animation {
     public:
         Animation();
-        Animation(raylib::Sprite const &sprite);
         ~Animation();
         void setFrame(int frame);
         void setMaxFrame(int max_frame);

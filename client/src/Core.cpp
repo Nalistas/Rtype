@@ -5,7 +5,7 @@
 ** Core
 */
 
-#ifdef WIN32
+#if defined(WIN32) || defined(_WIN32)
 #include <windows.h>
 #endif
 
@@ -14,11 +14,17 @@
 #include "Systems/SystemTime.hpp"
 #include "Systems/SystemBackground.hpp"
 #include "Systems/SystemSprite.hpp"
+#include "Systems/SystemAnimation.hpp"
+#include "Systems/SystemAutoDestructTimer.hpp"
+#include "Systems/SystemSpeed.hpp"
 
 #include "isystem.hpp"
 #include "AsioApi.hpp"
 #include "entity.hpp"
 #include "registry.hpp"
+#include "Speed.hpp"
+#include "AutoDestructTimer.hpp"
+#include "Animation.hpp"
 
 
 Core::Core(std::size_t win_width, std::size_t win_height):
@@ -28,11 +34,16 @@ Core::Core(std::size_t win_width, std::size_t win_height):
     _registry.register_component<raylib::RaySound>();
     _registry.register_component<Background>();
     _registry.register_component<raylib::Sprite>();
+    _registry.register_component<AutoDestructTimer>();
+    _registry.register_component<Speed>();
+    _registry.register_component<Animation>();
 
     _registry.add_standalone_system(SystemTime(this->time));
     _registry.add_system<Background>(SystemBackground(this->time));
     _registry.add_system<raylib::Sprite>(SystemSprite());
-
+    _registry.add_system<Speed, raylib::Sprite>(SystemSpeed(this->time));
+    _registry.add_system<Animation, raylib::Sprite>(SystemAnimation(this->time));
+    _registry.add_system<AutoDestructTimer>(SystemAutoDestructTimer());
 }
 
 Core::~Core()
@@ -173,6 +184,8 @@ int Core::run(void)
         }
 
         _window.start_drawing();
+        // _window.clear({255, 255, 255, 255});
+        raylib::ClearBackground({255, 255, 255, 255});
         _registry.run_systems();
         if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, raylib::KEY_SPACE)) {
             _registry.run_single_standalone_system(SystemTest());

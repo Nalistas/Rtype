@@ -6,6 +6,7 @@
 */
 
 #include "Server.hpp"
+#include "Systems/SpriteSystem.hpp"
 #include <string>
 
 #include "SafeDirectoryLister.hpp"
@@ -20,14 +21,14 @@ std::size_t endpoint_hash_class::operator()(const udp::endpoint &ep) const {
 Server::~Server() {}
 
 Server::Server() 
-    : _api()
+    : _api(), _time(0)
 {
 
 
     SafeDirectoryLister sd;
     sd.open(".", false);
 
-    #ifdef WIN32
+    #if defined(WIN32) || defined(_WIN32)
         _dll.open("./libRtype.dll");
     #else
         _dll.open("./libRtype.so");
@@ -38,6 +39,7 @@ Server::Server()
     _registry.register_component<graphics_interface::Background>();
     _registry.register_component<graphics_interface::Music>();
     _registry.register_component<graphics_interface::Sound>();
+    _registry.add_system<graphics_interface::Sprite>(SpriteSystem(this->_time));
 
     _game->setBroadcastCreate(std::bind(&Server::broadcastCreate, this, std::placeholders::_1));
     _game->setBroadcastDelete(std::bind(&Server::broadcastDelete, this, std::placeholders::_1));
@@ -61,7 +63,7 @@ int Server::loop()
 
     sprite.pos_x = 100;
     sprite.pos_y = 100;
-    sprite.speed_x = 0;
+    sprite.speed_x = 1;
     sprite.speed_y = 0;
     sprite.size_x = 100;
     sprite.size_y = 100;

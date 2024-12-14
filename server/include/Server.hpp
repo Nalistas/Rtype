@@ -78,6 +78,7 @@ class Server {
 
     private:
 
+        std::size_t _time;
 
         std::vector<std::unique_ptr<rtype::IClientActionHandler>> _handlers;
 

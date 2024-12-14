@@ -15,12 +15,12 @@ Speed::~Speed()
 {
 }
 
-Vector2 Speed::getSpeed()
+raylib::Vector2 Speed::getSpeed()
 {
     return _speed;
 }
 
-void Speed::setSpeed(Vector2 speed)
+void Speed::setSpeed(raylib::Vector2 speed)
 {
     _speed = speed;
 }
