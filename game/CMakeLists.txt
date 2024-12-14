@@ -22,6 +22,7 @@ target_include_directories(Rtype PRIVATE
 )
 
 target_link_libraries(Rtype PRIVATE ecs)
+target_link_libraries(Rtype PRIVATE graphics_primitives)
 
 target_sources(Rtype
     PRIVATE
