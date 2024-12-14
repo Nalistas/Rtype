@@ -74,6 +74,7 @@ class Server {
         void sendToClient(std::size_t id, std::vector<char> const &data);
 
         void set_actions(std::vector<rtype::ClientAction> &actions);
+        void updateScreen(std::size_t id_client);
 
     private:
 
@@ -90,6 +91,7 @@ class Server {
         ecs::registry _registry;
         rtype_protocol::AsioApi _api;
         std::unordered_map<udp::endpoint, std::size_t, endpoint_hash_class> _clients;
+        std::unordered_map<std::size_t, udp::endpoint> _reverse_clients;
 };
 
 #endif /* !SERVER_HPP_ */

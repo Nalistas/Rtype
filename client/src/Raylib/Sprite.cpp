@@ -101,6 +101,7 @@ void raylib::Sprite::setComponent(graphics_interface::Sprite const &sprite)
     std::cout << "destination_rect_x: " << destination_rect_x << std::endl;
     std::cout << "destination_rect_y: " << destination_rect_y << std::endl;
     std::cout << "size_x: " << size_x << std::endl;
+    std::cout << "size_y: " << size_y << std::endl;
 
     this->resize_x(size_x);
     this->resize_y(size_y);

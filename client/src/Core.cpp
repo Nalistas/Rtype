@@ -155,8 +155,6 @@ void Core::update_entity(std::vector<char> &message) {
 
 int Core::run(void)
 {
-    ecs::entity background = _registry.create_entity();
-    _registry.emplace_component<Background>(background);
     rtype_protocol::AsioApi client;
     client.connect("localhost");
 

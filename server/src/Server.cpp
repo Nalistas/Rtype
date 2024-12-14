@@ -39,10 +39,10 @@ Server::Server()
     _registry.register_component<graphics_interface::Music>();
     _registry.register_component<graphics_interface::Sound>();
 
-    _game->setRegistry(_registry);
     _game->setBroadcastCreate(std::bind(&Server::broadcastCreate, this, std::placeholders::_1));
     _game->setBroadcastDelete(std::bind(&Server::broadcastDelete, this, std::placeholders::_1));
     _game->setBroadcastUpdate(std::bind(&Server::broadcastUpdate, this, std::placeholders::_1));
+    _game->setRegistry(_registry);
 
     std::vector<rtype::ClientAction> actions = _game->getClientActionHandlers();
     this->set_actions(actions);
@@ -56,6 +56,26 @@ Server::Server()
 
 int Server::loop() 
 {
+    graphics_interface::Sprite sprite;
+    auto e = _registry.create_entity();
+
+    sprite.pos_x = 100;
+    sprite.pos_y = 100;
+    sprite.speed_x = 0;
+    sprite.speed_y = 0;
+    sprite.size_x = 100;
+    sprite.size_y = 100;
+    sprite.text_rect_width = 0;
+    sprite.text_rect_height = 0;
+    sprite.offset_x = 0;
+    sprite.offset_y = 0;
+    sprite.nb_frames = 1;
+    sprite.ms_per_frame = 0;
+    sprite.auto_destroy = 10000;
+    sprite.path = "./orange.png";
+
+    _registry.emplace_component<graphics_interface::Sprite>(e, sprite);
+
     while (true) {
         if (_api.has_data()) {
             rtype_protocol::AsioApi::UDP_DATA data = _api.get_data();
@@ -85,16 +105,20 @@ void Server::setNewClient(udp::endpoint const &endpoint)
 {
     int id_client = this->_game->createPlayer();
     this->_clients[endpoint] = id_client;
+    this->_reverse_clients[id_client] = endpoint;
 
-
+    this->updateScreen(id_client);
 }
 
 void Server::sendToClient(std::size_t id, std::vector<char> const &data)
 {
-    (void)id;
-    (void)data;
-}
+    udp::endpoint endpoint = this->_reverse_clients[id];
+    rtype_protocol::AsioApi::UDP_DATA client_data;
 
+    client_data.data = data;
+    client_data.sender_endpoint = endpoint;
+    _api.reply_to(client_data);
+}
 
 
 
@@ -176,3 +200,77 @@ void Server::broadcastUpdate(ecs::entity entity)
         this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*bg).encode());
     }
 }
+
+
+
+
+void Server::updateScreen(std::size_t id_client)
+{
+    udp::endpoint endpoint = this->_reverse_clients[id_client];
+
+    auto &musics = _registry.get_components<graphics_interface::Music>();
+    auto &sounds = _registry.get_components<graphics_interface::Sound>();
+    auto &sprites = _registry.get_components<graphics_interface::Sprite>();
+    auto &bgs = _registry.get_components<graphics_interface::Background>();
+
+    rtype_protocol::AsioApi::UDP_DATA data;
+
+    std::vector<char> base({0, static_cast<char>(EntityOperation::CREATE), static_cast<char>(EntityType::MUSIC), 0});
+
+    std::size_t i = 0;
+    for (auto it = musics.begin(); it != musics.end(); it++) {
+        if (it->has_value()) {
+            data.data = base;
+            data.data[3] = static_cast<char>(i);
+
+            std::vector<char> music_data = it->value().encode();
+            data.data.insert(data.data.end(), music_data.begin(), music_data.end());
+            data.sender_endpoint = endpoint;
+            _api.reply_to(data);
+        }
+        i++;
+    }
+
+    base[2] = static_cast<char>(EntityType::BACKGROUND);
+    i = 0;
+    for (auto it = bgs.begin(); it != bgs.end(); it++) {
+        if (it->has_value()) {
+            data.data = base;
+            data.data[3] = static_cast<char>(i);
+            std::vector<char> bg_data = it->value().encode();
+            data.data.insert(data.data.end(), bg_data.begin(), bg_data.end());
+            data.sender_endpoint = endpoint;
+            _api.reply_to(data);
+        }
+        i++;
+    }
+
+    base[2] = static_cast<char>(EntityType::SPRITE);
+    i = 0;
+    for (auto it = sprites.begin(); it != sprites.end(); it++) {
+        if (it->has_value()) {
+            data.data = base;
+            data.data[3] = static_cast<char>(i);
+            std::vector<char> sprite_data = it->value().encode();
+            data.data.insert(data.data.end(), sprite_data.begin(), sprite_data.end());
+            data.sender_endpoint = endpoint;
+            _api.reply_to(data);
+        }
+        i++;
+    }
+
+    base[2] = static_cast<char>(EntityType::SOUND);
+    i = 0;
+    for (auto it = sounds.begin(); it != sounds.end(); it++) {
+        if (it->has_value()) {
+            data.data = base;
+            data.data[3] = static_cast<char>(i);
+            std::vector<char> sound_data = it->value().encode();
+            data.data.insert(data.data.end(), sound_data.begin(), sound_data.end());
+            data.sender_endpoint = endpoint;
+            _api.reply_to(data);
+        }
+        i++;
+    }
+}
+
