@@ -55,7 +55,7 @@ void Core::process_message(const std::vector<char> &message)
     for (char c : message) std::cout << c;
     std::cout << std::endl;
 
-    EntityOperation op_code = static_cast<EntityOperation>(message[0]);
+    EntityOperation op_code = static_cast<EntityOperation>(message[1]);
 
     auto it = _operation_functions.find(op_code);
     if (it != _operation_functions.end()) {
@@ -83,16 +83,16 @@ void Core::handle_create_entity(EntityType entity_type, std::size_t entity_id, c
 
 void Core::create_entity(std::vector<char> &message)
 {
-    EntityType entity_type = static_cast<EntityType>(message[1]);
-    std::size_t entity_id = static_cast<std::size_t>(message[2]);
-    std::vector<char> entity_data(message.begin() + 3, message.end());
+    EntityType entity_type = static_cast<EntityType>(message[2]);
+    std::size_t entity_id = static_cast<std::size_t>(message[3]);
+    std::vector<char> entity_data(message.begin() + 4, message.end());
 
     handle_create_entity(entity_type, entity_id, entity_data);
 }
 
 void Core::delete_entity(std::vector<char> &message) 
 {
-    int entity_id = static_cast<int>(message[1]);
+    int entity_id = static_cast<int>(message[2]);
 
     std::cout << "Suppression de l'entité avec l'id " << entity_id << std::endl;
     ecs::entity entity = _registry.entity_from_index(entity_id);

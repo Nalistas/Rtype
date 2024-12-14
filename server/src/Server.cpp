@@ -43,6 +43,7 @@ int Server::loop()
     sp.ms_per_frame = 0;
     sp.auto_destroy = 0;
 
+    int total_size = 0;
     while (true) {
         if (_api.has_data()) {
             rtype_protocol::AsioApi::UDP_DATA data = _api.get_data();
@@ -58,7 +59,8 @@ int Server::loop()
                 data.data.insert(data.data.begin(), static_cast<char>(2));
                 data.data.insert(data.data.begin(), static_cast<char>(EntityType::SPRITE));
                 data.data.insert(data.data.begin(), static_cast<char>(EntityOperation::CREATE));
-
+                total_size = data.data.size();
+                data.data.insert(data.data.begin(), static_cast<char>(total_size));
                 _api.reply_to(data);
             }
         }
