@@ -18,6 +18,8 @@ Server::Server()
     : _api()
 {
     _api.start_server("5000");
+    _registry.register_component<rtype_protocol::Sprite>();
+    _registry.register_component<rtype_protocol::Background>();
 }
 
 Server::~Server() 
