@@ -20,6 +20,8 @@ std::size_t endpoint_hash_class::operator()(const udp::endpoint &ep) const {
 Server::Server() 
     : _api()
 {
+
+
     SafeDirectoryLister sd;
     sd.open(".", false);
 
@@ -30,11 +32,17 @@ Server::Server()
     #endif
     _game = _dll.getSym("gameElement");
 
-    _api.start_server("5000");
     _registry.register_component<rtype_protocol::Sprite>();
     _registry.register_component<rtype_protocol::Background>();
     _registry.register_component<rtype_protocol::Music>();
     _registry.register_component<rtype_protocol::Sound>();
+
+    _game->setRegistry(_registry);
+    _game->setBroadcastCreate(std::bind(&Server::broadcastCreate, this, std::placeholders::_1));
+    _game->setBroadcastDelete(std::bind(&Server::broadcastDelete, this, std::placeholders::_1));
+    _game->setBroadcastUpdate(std::bind(&Server::broadcastUpdate, this, std::placeholders::_1));
+
+    _api.start_server("5000");
 }
 
 Server::~Server() 
@@ -104,6 +112,20 @@ void Server::broadcastDelete(ecs::entity entity)
     }
 }
 
+void Server::broadcast(char op_code, char entity_type, std::vector<char> const &data)
+{
+    rtype_protocol::AsioApi::UDP_DATA client_data;
+    client_data.data = data;
+
+    client_data.data.insert(client_data.data.begin(), static_cast<char>(op_code));
+    client_data.data.insert(client_data.data.begin(), entity_type);
+
+    for (auto it = _clients.begin(); it != _clients.end(); it++) {
+        client_data.sender_endpoint = *it;
+        _api.reply_to(client_data);
+    }
+}
+
 void Server::broadcastCreate(ecs::entity entity)
 {
     rtype_protocol::AsioApi::UDP_DATA data;
@@ -113,22 +135,43 @@ void Server::broadcastCreate(ecs::entity entity)
 
     auto music = _registry.get_components<rtype_protocol::Music>()[entity];
     if (music.has_value()) {
-        data.data = _encoder.encode(*music);
-        entity_type = static_cast<char>(EntityType::MUSIC);
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*music));
     }
     auto sound = _registry.get_components<rtype_protocol::Sound>()[entity];
     if (sound.has_value()) {
-        data.data = _encoder.encode(*sound);
-        entity_type = static_cast<char>(EntityType::SOUND);
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*sound));
     }
     auto sprite = _registry.get_components<rtype_protocol::Sprite>()[entity];
     if (sprite.has_value()) {
-        data.data = _encoder.encode(*sprite);
-        entity_type = static_cast<char>(EntityType::SPRITE);
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*sprite));
     }
     auto bg = _registry.get_components<rtype_protocol::Background>()[entity];
     if (bg.has_value()) {
-        data.data = _encoder.encode(*bg);
-        entity_type = static_cast<char>(EntityType::BACKGROUND);
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*bg));
+    }
+}
+
+void Server::broadcastUpdate(ecs::entity entity)
+{
+    rtype_protocol::AsioApi::UDP_DATA data;
+    char op_code = static_cast<char>(EntityOperation::CREATE);
+    char entity_type;
+    char id = static_cast<char>(entity);
+
+    auto music = _registry.get_components<rtype_protocol::Music>()[entity];
+    if (music.has_value()) {
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*music));
+    }
+    auto sound = _registry.get_components<rtype_protocol::Sound>()[entity];
+    if (sound.has_value()) {
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*sound));
+    }
+    auto sprite = _registry.get_components<rtype_protocol::Sprite>()[entity];
+    if (sprite.has_value()) {
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*sprite));
+    }
+    auto bg = _registry.get_components<rtype_protocol::Background>()[entity];
+    if (bg.has_value()) {
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*bg));
     }
 }
