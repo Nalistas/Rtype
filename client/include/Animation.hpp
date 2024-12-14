@@ -22,6 +22,15 @@ class Animation {
         Animation();
         Animation(raylib::Sprite const &sprite);
         ~Animation();
+        void setFrame(int frame);
+        void setMaxFrame(int max_frame);
+        void setMsPerFrame(int ms_per_frame);
+        void setSourceRect(raylib::Rectangle const &source_rect);
+        void update();
+        raylib::Rectangle getSourceRect() const;
+        int getFrame() const;
+        int getMaxFrame() const;
+        int getMsPerFrame() const;
 
     private:
 

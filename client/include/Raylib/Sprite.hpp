@@ -97,6 +97,13 @@ class Sprite {
          */
         void resize_y(float y, bool keep_ratio = false);
 
+        /**
+         * @brief Set the offset of the source rect to get the next frame of the animation
+         * @param x the x offset
+         * @param y the y offset
+         */
+        void set_offset(float x, float y);
+
     private:
         /// @name the basics attributes
         /// @{

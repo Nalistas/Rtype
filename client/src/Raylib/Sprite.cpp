@@ -161,3 +161,8 @@ void raylib::Sprite::resize_y(float scale_y, bool preserve_aspect_ratio)
         set_size(this->_destination_rect.width, scale_y);
     }
 }
+
+void raylib::Sprite::set_offset(float x, float y)
+{
+    _offset = {x, y};
+}
