@@ -18,6 +18,10 @@ Server::Server()
     : _api()
 {
     _api.start_server("5000");
+    _registry.register_component<rtype_protocol::Sprite>();
+    _registry.register_component<rtype_protocol::Background>();
+    _registry.register_component<rtype_protocol::Music>();
+    _registry.register_component<rtype_protocol::Sound>();
 }
 
 Server::~Server() 
@@ -67,4 +71,44 @@ int Server::loop()
     }
 
     return 0;
+}
+
+
+void Server::broadcastDelete(ecs::entity entity)
+{
+    rtype_protocol::AsioApi::UDP_DATA data;
+
+    data.data = std::vector<char>();
+    data.data.resize(2 + sizeof(entity));
+    data.data[0] = static_cast<char>(3);
+    data.data[1] = static_cast<char>(EntityOperation::REMOVE);
+
+    memcpy(&data.data[2], &entity, sizeof(entity));
+
+    for (auto it = _clients.begin(); it != _clients.end(); it++) {
+        data.sender_endpoint = *it;
+        _api.reply_to(data);
+    }
+}
+
+void Server::broadcastCreate(ecs::entity entity)
+{
+    rtype_protocol::AsioApi::UDP_DATA data;
+
+    auto music = _registry.get_components<rtype_protocol::Music>()[entity];
+    if (music.has_value()) {
+        data.data = _encoder.encode(*music);
+    }
+    auto sound = _registry.get_components<rtype_protocol::Sound>()[entity];
+    if (sound.has_value()) {
+        data.data = _encoder.encode(*sound);
+    }
+    auto sprite = _registry.get_components<rtype_protocol::Sprite>()[entity];
+    if (sprite.has_value()) {
+        data.data = _encoder.encode(*sprite);
+    }
+    auto bg = _registry.get_components<rtype_protocol::Background>()[entity];
+    if (bg.has_value()) {
+        data.data = _encoder.encode(*bg);
+    }
 }
