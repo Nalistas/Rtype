@@ -98,7 +98,7 @@ class Window {
         /**
          * @brief Clear the window
          */
-        void clear(Color color);
+        void clear(Color color) {ClearBackground(color);}
 
         /**
          * @brief Set the title of the window

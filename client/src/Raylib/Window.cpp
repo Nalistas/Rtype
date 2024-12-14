@@ -23,11 +23,6 @@ raylib::Window::~Window()
     CloseWindow();
 }
 
-void raylib::Window::clear(Color color)
-{
-    ClearBackground(color);
-}
-
 void raylib::Window::close()
 {
     _running = false;

@@ -184,8 +184,7 @@ int Core::run(void)
         }
 
         _window.start_drawing();
-        // _window.clear({255, 255, 255, 255});
-        raylib::ClearBackground({255, 255, 255, 255});
+        _window.clear({255, 255, 255, 255});
         _registry.run_systems();
         if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, raylib::KEY_SPACE)) {
             _registry.run_single_standalone_system(SystemTest());
