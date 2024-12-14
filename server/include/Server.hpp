@@ -62,6 +62,9 @@ class Server {
         int loop();
 
     private:
+        void broadcastDelete(ecs::entity entity);
+        void broadcastCreate(ecs::entity entity);
+        void broadcastUpdate(ecs::entity entity);
 
         ecs::registry _registry;
         rtype_protocol::AsioApi _api;

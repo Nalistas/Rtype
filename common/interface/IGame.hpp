@@ -8,6 +8,7 @@
 #include <string>
 #include <unordered_map>
 #include <functional>
+#include <memory>
 #include <array>
 
 #ifndef IGAME_HPP_
@@ -24,6 +25,12 @@ namespace rtype {
             virtual ~IClientActionHandler() = default;
 
             virtual void operator()(std::size_t client) = 0;
+    };
+
+    struct ClientAction {
+        std::size_t key;
+        bool pressed;
+        std::unique_ptr<IClientActionHandler> handler;
     };
 
 
@@ -75,13 +82,7 @@ namespace rtype {
              * @brief Set the client action handler
              * @return the map of the client action handlers with the action id
              */
-            virtual std::unordered_map<std::size_t, IClientActionHandler> &getClientActionHandlers() = 0;
-
-            /**
-             * @brief Set the predefined actions-keys association for the client
-             * @return the map of the actions id with the default keys
-             */
-            virtual std::unordered_map<std::size_t, std::array<std::size_t, 2>> &getActionsKeys() = 0;
+            virtual std::vector<ClientAction> &getClientActionHandlers() = 0;
     };
 }
 
