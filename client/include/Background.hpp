@@ -6,6 +6,7 @@
 */
 
 #include "Raylib/Sprite.hpp"
+#include "GraphicsPrimitives.hpp"
 
 #include <ctime>
 #include <functional>
@@ -58,7 +59,7 @@ class Background {
          * @brief Set the component
          * @param background the background component
          */
-        void setComponent(rtype_protocol::Background const &background);
+        void setComponent(graphics_interface::Background const &background);
 
         /**
          * @brief Set the window dimensions

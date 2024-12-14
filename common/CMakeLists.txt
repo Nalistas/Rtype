@@ -2,6 +2,7 @@
 add_subdirectory(ecs)
 add_subdirectory(files_selector)
 add_subdirectory(protocol)
+add_subdirectory(graphics_primitives)
 
 # Créer une interface pour inclure les fichiers headers
 add_library(common_interface INTERFACE)

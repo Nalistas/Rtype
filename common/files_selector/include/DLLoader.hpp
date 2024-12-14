@@ -9,6 +9,9 @@
 #include <memory>
 #include <exception>
 
+#pragma once
+
+
 #ifndef DLLOADER_HPP_
     #define DLLOADER_HPP_
 

@@ -5,7 +5,7 @@
 ** Sprite
 */
 
-#include "Encoder.hpp"
+#include "GraphicsPrimitives.hpp"
 #include <string>
 
 #ifndef SPRITE_HPP_
@@ -27,7 +27,7 @@ class Sprite {
          * @brief Set the component
          * @param sprite the sprite component
          */
-        void setComponent(rtype_protocol::Sprite const &sprite);
+        void setComponent(graphics_interface::Sprite const &sprite);
 
         /**
          * @brief Set the texture

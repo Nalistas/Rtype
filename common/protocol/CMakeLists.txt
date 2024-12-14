@@ -24,10 +24,10 @@ include_directories(${asio_SOURCE_DIR}/asio/include)
 
 # Ajoute les répertoires include
 include_directories(include)
+include_directories(${SOURCE_DIR}/common/interface)
 
 # Crée une bibliothèque statique (changer le nom de "myprotocol" en "protocol")
 add_library(protocol STATIC
-    src/Encoder.cpp
     src/AsioApi.cpp
 )
 

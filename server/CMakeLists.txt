@@ -38,6 +38,7 @@ target_link_libraries(Server PRIVATE ecs)
 target_link_libraries(Server PRIVATE file_selector)
 target_link_libraries(Server PRIVATE common_interface)
 target_link_libraries(Server PRIVATE protocol)
+target_link_libraries(Server PRIVATE graphics_primitives)
 
 if(WIN32)
 target_link_libraries(Server PRIVATE ws2_32)

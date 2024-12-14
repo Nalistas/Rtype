@@ -57,6 +57,7 @@ target_sources(Client
 target_link_libraries(Client PRIVATE raylib)
 target_link_libraries(Client PRIVATE ecs)
 target_link_libraries(Client PRIVATE protocol)
+target_link_libraries(Client PRIVATE graphics_primitives)
 
 # Ajouter les répertoires d'inclusion pour ecs
 target_include_directories(Client PRIVATE ${CMAKE_SOURCE_DIR}/common/ecs)

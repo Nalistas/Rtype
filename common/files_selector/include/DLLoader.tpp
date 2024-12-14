@@ -14,32 +14,17 @@
     #include <dlfcn.h>
 #endif
 
-DLLdr::DLLoaderException::DLLoaderException(DLLdr::DLLoaderExcepId id) :
-m_id(id)
-{}
-
-const char *DLLdr::DLLoaderException::what(void) const noexcept
-{
-    if (m_id == LibNotOpened)
-        return "Library not opened";
-
-    if (m_id == SymNotFound)
-        return "Symbol not found";
-
-    if (m_id == SymTypeMismatch)
-        return "Symbol type mismatch";
-    return "Unknown error";
-}
-
 template<typename T>
 DLLdr::DLLoader<T>::DLLoader() : m_lib(nullptr)
 {}
 
-template<typename T>
-DLLdr::DLLoader<T>::~DLLoader()
-{
-    close();
+namespace DLLdr {
+    template <typename T>
+    DLLoader<T>::~DLLoader() {
+        close();
+    }
 }
+
 
 template<typename T>
 void DLLdr::DLLoader<T>::close(void)

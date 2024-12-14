@@ -35,14 +35,14 @@ Background::Background(std::string const &path, std::size_t win_width, std::size
 {
 }
 
-void Background::setComponent(rtype_protocol::Background const &background)
+void Background::setComponent(graphics_interface::Background const &background)
 {
     _background.set_texture(background.path);
     _speed = static_cast<int>(background.speed);
-    if (background.direction == rtype_protocol::BackgroundDirection::X) {
+    if (background.direction == graphics_interface::BackgroundDirection::X) {
         this->setMoveType(BACKGROUND_MOVE_TYPE::MOVE_X);
     }
-    if (background.direction == rtype_protocol::BackgroundDirection::Y) {
+    if (background.direction == graphics_interface::BackgroundDirection::Y) {
         this->setMoveType(BACKGROUND_MOVE_TYPE::MOVE_Y);
     }
     _repeat = background.repeat;

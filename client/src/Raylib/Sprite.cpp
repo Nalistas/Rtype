@@ -79,7 +79,7 @@ void raylib::Sprite::set_texture(std::string const &texture_path)
     _center = {_destination_rect.width / 2, _destination_rect.height / 2};
 }
 
-void raylib::Sprite::setComponent(rtype_protocol::Sprite const &sprite)
+void raylib::Sprite::setComponent(graphics_interface::Sprite const &sprite)
 {
     _texture = LoadTexture(sprite.path.c_str());
     if (_texture.id == 0) {

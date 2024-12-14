@@ -12,7 +12,6 @@
 #include "Raylib/RayMusic.hpp"
 #include "Raylib/RaySound.hpp"
 #include "Raylib/Sprite.hpp"
-#include "Encoder.hpp"
 
 #include <unordered_map>
 
@@ -119,7 +118,6 @@ class Core {
         raylib::Window _window;
         raylib::AudioDevice audioDevice;
         ecs::registry _registry;
-        rtype_protocol::Encoder _encoder;
 
 
         std::unordered_map<EntityOperation, std::function<void(std::vector<char> &message)>> _operation_functions = {
@@ -131,23 +129,27 @@ class Core {
 
        std::unordered_map<EntityType, std::function<void(ecs::entity, const std::vector<char>&)>> _create_entity_functions = {
             {EntityType::BACKGROUND, [this](ecs::entity e, const std::vector<char>& data) {
-                rtype_protocol::Background background = _encoder.decodeBackground(data);
+                graphics_interface::Background background;
+                background.decode(data);
                 Background bg;
                 _registry.emplace_component<Background>(e, bg);
                 _registry.get_components<Background>()[e]->setComponent(background);
             }},
             {EntityType::MUSIC, [this](ecs::entity e, const std::vector<char>& data) {
-                rtype_protocol::Music music = _encoder.decodeMusic(data);
+                graphics_interface::Music music;
+                music.decode(data);
                 raylib::RayMusic rayMusic(music.path);
                 _registry.emplace_component<raylib::RayMusic>(e, rayMusic);
             }},
             {EntityType::SOUND, [this](ecs::entity e, const std::vector<char>& data) {
-                rtype_protocol::Sound sound = _encoder.decodeSound(data);
+                graphics_interface::Sound sound;
+                sound.decode(data);
                 raylib::RaySound raySound(sound.path);
                 _registry.emplace_component<raylib::RaySound>(e, raySound);
             }},
             {EntityType::SPRITE, [this](ecs::entity e, const std::vector<char>& data) {
-                rtype_protocol::Sprite sprite = _encoder.decodeSprite(data);
+                graphics_interface::Sprite sprite;
+                sprite.decode(data);
                 raylib::Sprite raySprite;
                 _registry.emplace_component<raylib::Sprite>(e, raySprite);
                 _registry.get_components<raylib::Sprite>()[e]->setComponent(sprite);

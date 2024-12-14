@@ -13,7 +13,6 @@
 #include <asio.hpp>
 #include <unordered_set>
 #include "registry.hpp"
-#include "Encoder.hpp"
 #include "AsioApi.hpp"
 #include "DLLoader.hpp"
 #include "IGame.hpp"
@@ -80,7 +79,6 @@ class Server {
 
         ecs::registry _registry;
         rtype_protocol::AsioApi _api;
-        rtype_protocol::Encoder _encoder;
         std::unordered_map<udp::endpoint, std::size_t, endpoint_hash_class> _clients;
 };
 

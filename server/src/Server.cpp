@@ -11,6 +11,7 @@
 #include "SafeDirectoryLister.hpp"
 #include "DLLoader.hpp"
 #include "IGame.hpp"
+#include "GraphicsPrimitives.hpp"
 
 std::size_t endpoint_hash_class::operator()(const udp::endpoint &ep) const {
     return std::hash<std::string>()(ep.address().to_string() + ":" + std::to_string(ep.port()));
@@ -32,10 +33,10 @@ Server::Server()
     #endif
     _game = _dll.getSym("gameElement");
 
-    _registry.register_component<rtype_protocol::Sprite>();
-    _registry.register_component<rtype_protocol::Background>();
-    _registry.register_component<rtype_protocol::Music>();
-    _registry.register_component<rtype_protocol::Sound>();
+    _registry.register_component<graphics_interface::Sprite>();
+    _registry.register_component<graphics_interface::Background>();
+    _registry.register_component<graphics_interface::Music>();
+    _registry.register_component<graphics_interface::Sound>();
 
     _game->setRegistry(_registry);
     _game->setBroadcastCreate(std::bind(&Server::broadcastCreate, this, std::placeholders::_1));
@@ -52,7 +53,7 @@ Server::~Server()
 int Server::loop() 
 {
     std::string bgname = "./orange.png";
-    rtype_protocol::Sprite sp;
+    graphics_interface::Sprite sp;
     sp.pos_x = 100;
     sp.pos_y = 100;
     sp.size_x = 100;
@@ -79,7 +80,7 @@ int Server::loop()
                         << data.sender_endpoint.address().to_string()
                         << ":" << data.sender_endpoint.port() << std::endl;
 
-                data.data = _encoder.encode(sp);
+                data.data = sp.encode();
 
                 data.data.insert(data.data.begin(), static_cast<char>(2));
                 data.data.insert(data.data.begin(), static_cast<char>(EntityType::SPRITE));
@@ -114,11 +115,13 @@ void Server::broadcastDelete(ecs::entity entity)
 
 void Server::setNewClient(std::size_t id)
 {
+    (void)id;
 }
 
 void Server::sendToClient(std::size_t id, std::vector<char> const &data)
 {
-    
+    (void)id;
+    (void)data;
 }
 
 void Server::broadcast(char op_code, char entity_type, std::vector<char> const &data)
@@ -140,21 +143,21 @@ void Server::broadcastCreate(ecs::entity entity)
     rtype_protocol::AsioApi::UDP_DATA data;
     char op_code = static_cast<char>(EntityOperation::CREATE);
 
-    auto music = _registry.get_components<rtype_protocol::Music>()[entity];
+    auto music = _registry.get_components<graphics_interface::Music>()[entity];
     if (music.has_value()) {
-        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*music));
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*music).encode());
     }
-    auto sound = _registry.get_components<rtype_protocol::Sound>()[entity];
+    auto sound = _registry.get_components<graphics_interface::Sound>()[entity];
     if (sound.has_value()) {
-        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*sound));
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*sound).encode());
     }
-    auto sprite = _registry.get_components<rtype_protocol::Sprite>()[entity];
+    auto sprite = _registry.get_components<graphics_interface::Sprite>()[entity];
     if (sprite.has_value()) {
-        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*sprite));
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*sprite).encode());
     }
-    auto bg = _registry.get_components<rtype_protocol::Background>()[entity];
+    auto bg = _registry.get_components<graphics_interface::Background>()[entity];
     if (bg.has_value()) {
-        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*bg));
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*bg).encode());
     }
 }
 
@@ -163,20 +166,20 @@ void Server::broadcastUpdate(ecs::entity entity)
     rtype_protocol::AsioApi::UDP_DATA data;
     char op_code = static_cast<char>(EntityOperation::CREATE);
 
-    auto music = _registry.get_components<rtype_protocol::Music>()[entity];
+    auto music = _registry.get_components<graphics_interface::Music>()[entity];
     if (music.has_value()) {
-        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*music));
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*music).encode());
     }
-    auto sound = _registry.get_components<rtype_protocol::Sound>()[entity];
+    auto sound = _registry.get_components<graphics_interface::Sound>()[entity];
     if (sound.has_value()) {
-        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*sound));
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*sound).encode());
     }
-    auto sprite = _registry.get_components<rtype_protocol::Sprite>()[entity];
+    auto sprite = _registry.get_components<graphics_interface::Sprite>()[entity];
     if (sprite.has_value()) {
-        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*sprite));
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*sprite).encode());
     }
-    auto bg = _registry.get_components<rtype_protocol::Background>()[entity];
+    auto bg = _registry.get_components<graphics_interface::Background>()[entity];
     if (bg.has_value()) {
-        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), _encoder.encode(*bg));
+        this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*bg).encode());
     }
 }

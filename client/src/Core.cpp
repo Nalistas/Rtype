@@ -103,7 +103,8 @@ void Core::update_sprite_component(ecs::entity entity, const std::vector<char> &
 {
     auto &component = _registry.get_components<raylib::Sprite>()[entity];
     if (component.has_value()) {
-        rtype_protocol::Sprite sprite = _encoder.decodeSprite(entity_data);
+        graphics_interface::Sprite sprite;
+        sprite.decode(entity_data);
         component->setComponent(sprite);
     }
 }
@@ -112,7 +113,8 @@ void Core::update_background_component(ecs::entity entity, const std::vector<cha
 {
     auto &component = _registry.get_components<Background>()[entity];
     if (component.has_value()) {
-        rtype_protocol::Background bg = _encoder.decodeBackground(entity_data);
+        graphics_interface::Background bg;
+        bg.decode(entity_data);
         component->setComponent(bg);
     }
 }
@@ -121,7 +123,8 @@ void Core::update_music_component(ecs::entity entity, const std::vector<char> &e
 {
     auto &component = _registry.get_components<raylib::RayMusic>()[entity];
     if (component.has_value()) {
-        rtype_protocol::Music music = _encoder.decodeMusic(entity_data);
+        graphics_interface::Music music;
+        music.decode(entity_data);
         component->set_source(music.path);
     }
 }
@@ -130,7 +133,8 @@ void Core::update_sound_component(ecs::entity entity, const std::vector<char> &e
 {
     auto &component = _registry.get_components<raylib::RaySound>()[entity];
     if (component.has_value()) {
-        rtype_protocol::Sound sound = _encoder.decodeSound(entity_data);
+        graphics_interface::Sound sound;
+        sound.decode(entity_data);
         component->set_source(sound.path);
     }
 }
