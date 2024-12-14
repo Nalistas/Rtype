@@ -7,7 +7,8 @@
 
 #include "SymtemSpeed.hpp"
 
-SymtemSpeed::SymtemSpeed()
+SymtemSpeed::SymtemSpeed(std::size_t const &elpased_time) :
+    _elpased_time(elpased_time)
 {
 }
 

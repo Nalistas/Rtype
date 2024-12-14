@@ -14,8 +14,8 @@ class Speed {
     public:
         Speed();
         ~Speed();
-        Vector2 getSpeed() const { return _speed; }
-        void setSpeed(Vector2 speed) { _speed = speed; }
+        Vector2 getSpeed();
+        void setSpeed(Vector2 speed);
 
     protected:
     private:

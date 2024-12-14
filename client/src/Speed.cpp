@@ -14,3 +14,13 @@ Speed::Speed()
 Speed::~Speed()
 {
 }
+
+Vector2 Speed::getSpeed()
+{
+    return _speed;
+}
+
+void Speed::setSpeed(Vector2 speed)
+{
+    _speed = speed;
+}
