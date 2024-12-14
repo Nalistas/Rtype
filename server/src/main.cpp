@@ -31,7 +31,7 @@ int main() {
     sd.open(".", false);
     DLLdr::DLLoader<rtype::IGame> dll;
 
-    dll.open("./libRtype.dll");
+    dll.open("./libRtype.so");
 
     std::unique_ptr<rtype::IGame> game = dll.getSym("gameElement");
 

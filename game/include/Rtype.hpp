@@ -6,6 +6,7 @@
 */
 
 #include "IGame.hpp"
+#include <vector>
 
 #ifndef RTYPE_HPP_
     #define RTYPE_HPP_
@@ -19,7 +20,12 @@ class Rtype : public rtype::IGame {
 
         void setRegistry(ecs::registry &reg) override;
 
-        void processClientAction(ecs::registry &reg, std::string const &action, std::size_t client) override;
+        void setBroadcastCreate(std::function<void(ecs::entity const &e)>) override;
+        void setBroadcastDelete(std::function<void(ecs::entity const &e)>) override;
+        void setBroadcastUpdate(std::function<void(ecs::entity const &e)>) override;
+
+        std::vector<rtype::ClientAction> getClientActionHandlers(void) override;
+
 };
 
 #endif /* !RTYPE_HPP_ */

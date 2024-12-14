@@ -94,21 +94,28 @@ void Server::broadcastDelete(ecs::entity entity)
 void Server::broadcastCreate(ecs::entity entity)
 {
     rtype_protocol::AsioApi::UDP_DATA data;
+    char op_code = static_cast<char>(EntityOperation::CREATE);
+    char entity_type;
+    char id = static_cast<char>(entity);
 
     auto music = _registry.get_components<rtype_protocol::Music>()[entity];
     if (music.has_value()) {
         data.data = _encoder.encode(*music);
+        entity_type = static_cast<char>(EntityType::MUSIC);
     }
     auto sound = _registry.get_components<rtype_protocol::Sound>()[entity];
     if (sound.has_value()) {
         data.data = _encoder.encode(*sound);
+        entity_type = static_cast<char>(EntityType::SOUND);
     }
     auto sprite = _registry.get_components<rtype_protocol::Sprite>()[entity];
     if (sprite.has_value()) {
         data.data = _encoder.encode(*sprite);
+        entity_type = static_cast<char>(EntityType::SPRITE);
     }
     auto bg = _registry.get_components<rtype_protocol::Background>()[entity];
     if (bg.has_value()) {
         data.data = _encoder.encode(*bg);
+        entity_type = static_cast<char>(EntityType::BACKGROUND);
     }
 }

@@ -16,6 +16,7 @@
 
 namespace ecs {
     class registry;
+    class entity;
 }
 
 namespace rtype {
@@ -82,7 +83,7 @@ namespace rtype {
              * @brief Set the client action handler
              * @return the map of the client action handlers with the action id
              */
-            virtual std::vector<ClientAction> &getClientActionHandlers() = 0;
+            virtual std::vector<ClientAction> getClientActionHandlers(void) = 0;
     };
 }
 

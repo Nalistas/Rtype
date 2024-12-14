@@ -25,15 +25,12 @@ void Rtype::setRegistry(ecs::registry &reg)
     reg.register_component<RtypePlayer>();
 }
 
-void Rtype::processClientAction(ecs::registry &reg, std::string const &action, std::size_t client)
+void Rtype::setBroadcastCreate(std::function<void(ecs::entity const &e)>) {}
+void Rtype::setBroadcastDelete(std::function<void(ecs::entity const &e)>) {}
+void Rtype::setBroadcastUpdate(std::function<void(ecs::entity const &e)>) {}
+
+std::vector<rtype::ClientAction> Rtype::getClientActionHandlers(void)
 {
-    std::optional<RtypePlayer> &p = reg.get_components<RtypePlayer>()[client];
-    ecs::entity e = reg.entity_from_index(client);
-
-    if (!p.has_value()) {
-        reg.emplace_component<RtypePlayer>(e);
-    }
-    (void)action;
+    return std::vector<rtype::ClientAction>();
 }
-
 
