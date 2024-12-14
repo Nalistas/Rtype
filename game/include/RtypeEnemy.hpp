@@ -1,21 +1,20 @@
 /*
 ** EPITECH PROJECT, 2024
-** Rtype
+** mirror-rtype
 ** File description:
-** RtypePlayer
+** RtypeEnemie
 */
 
 #include <utility>
 #include <cstddef>
-#include "GraphicsPrimitives.hpp"
 
-#ifndef RTYPEPLAYER_HPP_
-    #define RTYPEPLAYER_HPP_
+#ifndef RTYPEENEMY_HPP_
+    #define RTYPEENEMY_HPP_
 
-class RtypePlayer {
+class RtypeEnemy {
     public:
-        RtypePlayer();
-        ~RtypePlayer();
+        RtypeEnemy();
+        ~RtypeEnemy();
 
         const std::pair<std::size_t, std::size_t> &getPosition(void) const;
 
@@ -30,15 +29,10 @@ class RtypePlayer {
 
         size_t getHealth(void) const;
 
-        graphics_interface::Sprite &getSprite();
-        void setSpritePath(std::string path);
-
     private:
         std::pair<std::size_t, std::size_t> _position;
         std::pair<std::size_t, std::size_t> _speed;
         size_t _health;
-        graphics_interface::Sprite _sprite;
-
 };
 
-#endif /* !RTYPEPLAYER_HPP_ */
+#endif /* !RTYPEENEMY_HPP_ */

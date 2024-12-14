@@ -89,13 +89,13 @@ namespace rtype {
              * @brief Create a player
              * @return the id of the player
              */
-            virtual int createPlayer(void) = 0;
+            virtual size_t createPlayer(void) = 0;
 
             /**
              * @brief Delete a player
              * @param id the id of the player
              */
-            virtual void deletePlayer(int id) = 0;
+            virtual void deletePlayer(size_t id) = 0;
     };
 }
 

@@ -22,7 +22,9 @@ target_include_directories(graphics_primitives
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 # Option pour activer les warnings
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    target_compile_options(graphics_primitives PRIVATE -Wall -Wextra -pedantic)
+    target_compile_options(graphics_primitives PRIVATE -Wall -Wextra -pedantic -fPIC)
 endif()
