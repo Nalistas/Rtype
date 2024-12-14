@@ -69,6 +69,10 @@ class Server {
         void broadcastCreate(ecs::entity entity);
         void broadcastUpdate(ecs::entity entity);
 
+        void setNewClient(std::size_t id);
+
+        void sendToClient(std::size_t id, std::vector<char> const &data);
+
     private:
 
         DLLdr::DLLoader<rtype::IGame> _dll;
@@ -77,7 +81,7 @@ class Server {
         ecs::registry _registry;
         rtype_protocol::AsioApi _api;
         rtype_protocol::Encoder _encoder;
-        std::unordered_set<udp::endpoint, endpoint_hash_class> _clients;
+        std::unordered_map<udp::endpoint, std::size_t, endpoint_hash_class> _clients;
 };
 
 #endif /* !SERVER_HPP_ */

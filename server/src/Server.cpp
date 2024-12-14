@@ -74,7 +74,7 @@ int Server::loop()
             rtype_protocol::AsioApi::UDP_DATA data = _api.get_data();
 
             if (_clients.find(data.sender_endpoint) == _clients.end()) {
-                _clients.insert(data.sender_endpoint);
+                _clients[data.sender_endpoint] = 0;
                 std::cout << "Nouveau client ajouté : " 
                         << data.sender_endpoint.address().to_string()
                         << ":" << data.sender_endpoint.port() << std::endl;
@@ -107,9 +107,18 @@ void Server::broadcastDelete(ecs::entity entity)
     memcpy(&data.data[2], &entity, sizeof(entity));
 
     for (auto it = _clients.begin(); it != _clients.end(); it++) {
-        data.sender_endpoint = *it;
+        data.sender_endpoint = it->first;
         _api.reply_to(data);
     }
+}
+
+void Server::setNewClient(std::size_t id)
+{
+}
+
+void Server::sendToClient(std::size_t id, std::vector<char> const &data)
+{
+    
 }
 
 void Server::broadcast(char op_code, char entity_type, std::vector<char> const &data)
@@ -121,7 +130,7 @@ void Server::broadcast(char op_code, char entity_type, std::vector<char> const &
     client_data.data.insert(client_data.data.begin(), entity_type);
 
     for (auto it = _clients.begin(); it != _clients.end(); it++) {
-        client_data.sender_endpoint = *it;
+        client_data.sender_endpoint = it->first;
         _api.reply_to(client_data);
     }
 }
@@ -130,8 +139,6 @@ void Server::broadcastCreate(ecs::entity entity)
 {
     rtype_protocol::AsioApi::UDP_DATA data;
     char op_code = static_cast<char>(EntityOperation::CREATE);
-    char entity_type;
-    char id = static_cast<char>(entity);
 
     auto music = _registry.get_components<rtype_protocol::Music>()[entity];
     if (music.has_value()) {
@@ -155,8 +162,6 @@ void Server::broadcastUpdate(ecs::entity entity)
 {
     rtype_protocol::AsioApi::UDP_DATA data;
     char op_code = static_cast<char>(EntityOperation::CREATE);
-    char entity_type;
-    char id = static_cast<char>(entity);
 
     auto music = _registry.get_components<rtype_protocol::Music>()[entity];
     if (music.has_value()) {
