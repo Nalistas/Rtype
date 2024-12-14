@@ -12,6 +12,7 @@
 #include <unordered_set>
 #include <asio.hpp>
 #include <unordered_set>
+#include <memory>
 #include "registry.hpp"
 #include "AsioApi.hpp"
 #include "DLLoader.hpp"
@@ -68,11 +69,20 @@ class Server {
         void broadcastCreate(ecs::entity entity);
         void broadcastUpdate(ecs::entity entity);
 
-        void setNewClient(std::size_t id);
+        void setNewClient(udp::endpoint const &endpoint);
 
         void sendToClient(std::size_t id, std::vector<char> const &data);
 
+        void set_actions(std::vector<rtype::ClientAction> &actions);
+
     private:
+
+
+        std::vector<std::unique_ptr<rtype::IClientActionHandler>> _handlers;
+
+        ///                                key, pressed -> id action
+        std::unordered_map<std::size_t, std::pair<std::size_t, bool>> _keys; 
+
 
         DLLdr::DLLoader<rtype::IGame> _dll;
         std::unique_ptr<rtype::IGame> _game;

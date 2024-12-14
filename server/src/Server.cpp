@@ -17,6 +17,7 @@ std::size_t endpoint_hash_class::operator()(const udp::endpoint &ep) const {
     return std::hash<std::string>()(ep.address().to_string() + ":" + std::to_string(ep.port()));
 }
 
+Server::~Server() {}
 
 Server::Server() 
     : _api()
@@ -43,57 +44,60 @@ Server::Server()
     _game->setBroadcastDelete(std::bind(&Server::broadcastDelete, this, std::placeholders::_1));
     _game->setBroadcastUpdate(std::bind(&Server::broadcastUpdate, this, std::placeholders::_1));
 
+    std::vector<rtype::ClientAction> actions = _game->getClientActionHandlers();
+    this->set_actions(actions);
+
     _api.start_server("5000");
 }
 
-Server::~Server() 
-{
-}
+
+
+
 
 int Server::loop() 
 {
-    std::string bgname = "./orange.png";
-    graphics_interface::Sprite sp;
-    sp.pos_x = 100;
-    sp.pos_y = 100;
-    sp.size_x = 100;
-    sp.size_y = 100;
-    sp.path = bgname;
-    sp.offset_x = 0;
-    sp.offset_y = 0;
-    sp.speed_x = 0;
-    sp.speed_y = 0;
-    sp.text_rect_width = 0;
-    sp.text_rect_height = 0;
-    sp.nb_frames = 0;
-    sp.ms_per_frame = 0;
-    sp.auto_destroy = 0;
-
-    int total_size = 0;
     while (true) {
         if (_api.has_data()) {
             rtype_protocol::AsioApi::UDP_DATA data = _api.get_data();
 
             if (_clients.find(data.sender_endpoint) == _clients.end()) {
-                _clients[data.sender_endpoint] = 0;
-                std::cout << "Nouveau client ajouté : " 
-                        << data.sender_endpoint.address().to_string()
-                        << ":" << data.sender_endpoint.port() << std::endl;
-
-                data.data = sp.encode();
-
-                data.data.insert(data.data.begin(), static_cast<char>(2));
-                data.data.insert(data.data.begin(), static_cast<char>(EntityType::SPRITE));
-                data.data.insert(data.data.begin(), static_cast<char>(EntityOperation::CREATE));
-                total_size = data.data.size();
-                data.data.insert(data.data.begin(), static_cast<char>(total_size));
-                _api.reply_to(data);
+                this->setNewClient(data.sender_endpoint);
             }
         }
     }
 
     return 0;
 }
+
+
+void Server::set_actions(std::vector<rtype::ClientAction> &actions)
+{
+    for (std::size_t i = 0; i < actions.size(); i++) {
+        _keys[actions[i].key] = std::make_pair(_handlers.size(), actions[i].pressed);
+        if (actions[i].handler) {
+            _handlers.push_back(std::move(actions[i].handler));
+        }
+    }
+}
+
+
+void Server::setNewClient(udp::endpoint const &endpoint)
+{
+    int id_client = this->_game->createPlayer();
+    this->_clients[endpoint] = id_client;
+
+
+}
+
+void Server::sendToClient(std::size_t id, std::vector<char> const &data)
+{
+    (void)id;
+    (void)data;
+}
+
+
+
+
 
 
 void Server::broadcastDelete(ecs::entity entity)
@@ -111,17 +115,6 @@ void Server::broadcastDelete(ecs::entity entity)
         data.sender_endpoint = it->first;
         _api.reply_to(data);
     }
-}
-
-void Server::setNewClient(std::size_t id)
-{
-    (void)id;
-}
-
-void Server::sendToClient(std::size_t id, std::vector<char> const &data)
-{
-    (void)id;
-    (void)data;
 }
 
 void Server::broadcast(char op_code, char entity_type, std::vector<char> const &data)
