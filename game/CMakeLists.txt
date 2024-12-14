@@ -29,6 +29,8 @@ target_sources(Rtype
         entrypoints.cpp
         src/Rtype.cpp
         src/RtypePlayer.cpp
+        src/RtypeEnemy.cpp
+        src/RtypeBullet.cpp
 )
 
 target_compile_options(Rtype

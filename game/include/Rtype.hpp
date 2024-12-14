@@ -8,7 +8,11 @@
 #include "IGame.hpp"
 #include "registry.hpp"
 #include "RtypePlayer.hpp"
+#include "RtypeEnemy.hpp"
 #include <vector>
+#include <map>
+#include <functional>
+
 
 #ifndef RTYPE_HPP_
     #define RTYPE_HPP_
@@ -25,22 +29,25 @@ class Rtype : public rtype::IGame {
         void setBroadcastCreate(std::function<void(ecs::entity const &e)>) override;
         void setBroadcastDelete(std::function<void(ecs::entity const &e)>) override;
         void setBroadcastUpdate(std::function<void(ecs::entity const &e)>) override;
+
         std::vector<rtype::ClientAction> getClientActionHandlers(void) override;
-        int createPlayer(void) override;
-        void deletePlayer(int id) override;
+        size_t createPlayer(void) override;
+        void deletePlayer(size_t id) override;
 
     protected:
-        void createEnemy();
+        size_t createEnemy();
         void createBullet();
         void createBackground();
-        void createExplosion();
-        void createPowerUp();
-        void iterateEntities();
+        void updatePlayer(size_t id, std::size_t x, std::size_t y);
 
     private:
         ecs::registry _reg;
-        RtypePlayer _player;
+        std::map<size_t, RtypePlayer> _players;
+        std::map<size_t, RtypeEnemy> _enemies;
 
+        std::function<void(ecs::entity const &)> _broadcastCreate;
+        std::function<void(ecs::entity const &)> _broadcastDelete;
+        std::function<void(ecs::entity const &)> _broadcastUpdate;
 };
 
 #endif /* !RTYPE_HPP_ */
