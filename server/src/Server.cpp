@@ -8,6 +8,9 @@
 #include "Server.hpp"
 #include <string>
 
+#include "SafeDirectoryLister.hpp"
+#include "DLLoader.hpp"
+#include "IGame.hpp"
 
 std::size_t endpoint_hash_class::operator()(const udp::endpoint &ep) const {
     return std::hash<std::string>()(ep.address().to_string() + ":" + std::to_string(ep.port()));
@@ -17,6 +20,16 @@ std::size_t endpoint_hash_class::operator()(const udp::endpoint &ep) const {
 Server::Server() 
     : _api()
 {
+    SafeDirectoryLister sd;
+    sd.open(".", false);
+
+    #ifdef WIN32
+        _dll.open("./libRtype.dll");
+    #else
+        _dll.open("./libRtype.so");
+    #endif
+    _game = _dll.getSym("gameElement");
+
     _api.start_server("5000");
     _registry.register_component<rtype_protocol::Sprite>();
     _registry.register_component<rtype_protocol::Background>();

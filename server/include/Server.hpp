@@ -15,6 +15,8 @@
 #include "registry.hpp"
 #include "Encoder.hpp"
 #include "AsioApi.hpp"
+#include "DLLoader.hpp"
+#include "IGame.hpp"
 
 using asio::ip::udp;
 
@@ -65,6 +67,11 @@ class Server {
         void broadcastDelete(ecs::entity entity);
         void broadcastCreate(ecs::entity entity);
         void broadcastUpdate(ecs::entity entity);
+
+    private:
+
+        DLLdr::DLLoader<rtype::IGame> _dll;
+        std::unique_ptr<rtype::IGame> _game;
 
         ecs::registry _registry;
         rtype_protocol::AsioApi _api;

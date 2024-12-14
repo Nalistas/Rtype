@@ -20,21 +20,9 @@
 // }
 
 #include "Server.hpp"
-#include "Thread/ThreadPool.hpp"
-#include "SafeDirectoryLister.hpp"
-#include "DLLoader.hpp"
-#include "IGame.hpp"
 #include <memory>
 
 int main() {
-    SafeDirectoryLister sd;
-    sd.open(".", false);
-    DLLdr::DLLoader<rtype::IGame> dll;
-
-    dll.open("./libRtype.so");
-
-    std::unique_ptr<rtype::IGame> game = dll.getSym("gameElement");
-
     Server server;
     server.loop();
     return 0;
