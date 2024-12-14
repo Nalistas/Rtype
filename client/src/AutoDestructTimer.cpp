@@ -10,6 +10,8 @@
 
 AutoDestructTimer::AutoDestructTimer()
 {
+    _created_time = std::time(0);
+    _time_to_destruct = 0;
 }
 
 AutoDestructTimer::~AutoDestructTimer()

@@ -34,17 +34,6 @@ void Animation::setSourceRect(raylib::Rectangle const &source_rect)
     _source_rect = source_rect;
 }
 
-void Animation::update()
-{
-    if (GetTime() > _ms_per_frame) {
-        _current_frame++;
-        if (_current_frame >= _max_frame)
-            _current_frame = 0;
-        _source_rect.x = _source_rect.width * _current_frame;
-        SetTime(0);
-    }
-}
-
 raylib::Rectangle Animation::getSourceRect() const
 {
     return _source_rect;

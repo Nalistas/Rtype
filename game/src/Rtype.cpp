@@ -10,7 +10,10 @@
 #include "Rtype.hpp"
 
 Rtype::Rtype()
-{}
+{
+    _player = RtypePlayer();
+    _reg.register_component<RtypePlayer>();
+}
 
 Rtype::~Rtype()
 {}
@@ -34,3 +37,36 @@ std::vector<rtype::ClientAction> Rtype::getClientActionHandlers(void)
     return std::vector<rtype::ClientAction>();
 }
 
+int Rtype::createPlayer(void)
+{
+    return 0;
+}
+
+void Rtype::deletePlayer(int id)
+{
+
+}
+
+void Rtype::createEnemy()
+{
+}
+
+void Rtype::createBullet()
+{
+}
+
+void Rtype::createBackground()
+{
+}
+
+void Rtype::createExplosion()
+{
+}
+
+void Rtype::createPowerUp()
+{
+}
+
+void Rtype::iterateEntities()
+{
+}

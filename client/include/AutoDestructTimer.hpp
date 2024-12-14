@@ -21,8 +21,8 @@ class AutoDestructTimer {
 
     protected:
     private:
-        std::size_t &_created_time;
-        std::size_t &_time_to_destruct;
+        std::size_t _created_time;
+        std::size_t _time_to_destruct;
 };
 
 #endif /* !AUTODESTRUCTTIMER_HPP_ */

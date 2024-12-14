@@ -26,7 +26,6 @@ class Animation {
         void setMaxFrame(int max_frame);
         void setMsPerFrame(int ms_per_frame);
         void setSourceRect(raylib::Rectangle const &source_rect);
-        void update();
         raylib::Rectangle getSourceRect() const;
         int getFrame() const;
         int getMaxFrame() const;

@@ -84,6 +84,18 @@ namespace rtype {
              * @return the map of the client action handlers with the action id
              */
             virtual std::vector<ClientAction> getClientActionHandlers(void) = 0;
+
+            /**
+             * @brief Create a player
+             * @return the id of the player
+             */
+            virtual int createPlayer(void) = 0;
+
+            /**
+             * @brief Delete a player
+             * @param id the id of the player
+             */
+            virtual void deletePlayer(int id) = 0;
     };
 }
 
