@@ -7,7 +7,9 @@
 
 #include "registry.hpp"
 #include "GraphicsPrimitives.hpp"
+#include "SystemCreateEnemy.hpp"
 #include "Rtype.hpp"
+#include <iostream>
 
 Rtype::Rtype() : _reg(nullptr), _broadcastCreate(nullptr), _broadcastDelete(nullptr), _broadcastUpdate(nullptr)
 {
@@ -23,6 +25,9 @@ std::string Rtype::getName(void)
 void Rtype::setRegistry(std::shared_ptr<ecs::registry> reg)
 {
     _reg = reg;
+    createBackground();
+    _reg->add_standalone_system(SystemCreateEnemy(_broadcastCreate));
+    std::cout << "setRegistry" << std::endl;
     // ici aadd_system + register_component + toutes les fonction pour paramétrer le registry **DU SERVER**
 }
 
@@ -51,7 +56,7 @@ size_t Rtype::createPlayer(void)
 {
     ecs::entity newPlayer = _reg->create_entity();
     graphics_interface::Sprite sprite;
-    sprite.speed_x = 1;
+    sprite.speed_x = 0;
     sprite.speed_y = 0;
 
     srand(time(NULL));
@@ -65,7 +70,7 @@ size_t Rtype::createPlayer(void)
     sprite.size_y = 100;
     sprite.text_rect_width = 0;
     sprite.text_rect_height = 0;
-    sprite.path = "./orange.png";
+    sprite.path = "./sheep.png";
 
     _reg->emplace_component<graphics_interface::Sprite>(newPlayer, sprite);
 
@@ -103,42 +108,28 @@ size_t Rtype::createPlayer(void)
 
 void Rtype::deletePlayer(size_t id)
 {
-    // if (_players.find(id) != _players.end()) {
-    //     ecs::entity playerEntity = _reg.entity_from_index(id);
-    //     // _players.erase(id);
-    //     _reg.delete_entity(playerEntity);
-    //     _broadcastDelete(playerEntity);
-    // }
+    ecs::entity playerEntity = _reg->entity_from_index(id);
+    _reg->delete_entity(playerEntity);
+    _broadcastDelete(playerEntity);
 }
 
-// void Rtype::updatePlayer(size_t id, std::size_t x, std::size_t y)
+// size_t Rtype::createEnemy()
 // {
-//     if (_players.find(id) != _players.end()) {
-//         auto &player = _players[id];
-//         player.setPosition(x, y);
-//         ecs::entity playerEntity = _reg.entity_from_index(id);
-//         _broadcastUpdate(playerEntity);
-//     }
+//     ecs::entity newEnemy = _reg->create_entity();
+//     // RtypeEnemy enemy;
+
+//     // enemy.setPosition(0, 0);
+//     // enemy.setSpeed(0, 0);
+//     // enemy.setHealth(10);
+
+//     // _enemies[newEnemy] = enemy;
+//     _broadcastCreate(newEnemy);
+
+//     return newEnemy;
 // }
-
-size_t Rtype::createEnemy()
-{
-    ecs::entity newEnemy = _reg->create_entity();
-    // RtypeEnemy enemy;
-
-    // enemy.setPosition(0, 0);
-    // enemy.setSpeed(0, 0);
-    // enemy.setHealth(10);
-
-    // _enemies[newEnemy] = enemy;
-    _broadcastCreate(newEnemy);
-
-    return newEnemy;
-}
 
 void Rtype::createBullet()
 {
-    // Crée une balle tirée par un joueur ou un ennemi
     ecs::entity newBullet = _reg->create_entity();
     // RtypeBullet bullet;
 
@@ -148,10 +139,18 @@ void Rtype::createBullet()
     // _bullets[newBullet] = bullet;
     _broadcastCreate(newBullet);
 
-    // Implémenter le tir ici
+    // Implémenter le tir
 }
 
 void Rtype::createBackground()
 {
-    // Crée un fond d'écran ou défilement de l'arrière-plan
+    ecs::entity newBackground = _reg->create_entity();
+    graphics_interface::Background bg;
+    bg.path = "./bg.png";
+    bg.speed = 1;
+    bg.direction = graphics_interface::BackgroundDirection::X;
+    bg.repeat = true;
+
+    _reg->emplace_component<graphics_interface::Background>(newBackground, bg);
+    _broadcastCreate(newBackground);
 }

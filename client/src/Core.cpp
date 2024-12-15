@@ -19,6 +19,7 @@
 #include "Systems/SystemSpeed.hpp"
 
 #include "isystem.hpp"
+#include "AsioApi.hpp"
 #include "entity.hpp"
 #include "registry.hpp"
 #include "Speed.hpp"
@@ -49,18 +50,20 @@ Core::~Core()
 {
 }
 
-//////////////////////////////////////////////////////////
-//
-// Functions related to message processing
-//
-//////////////////////////////////////////////////////////
-
+class SystemTest : public ecs::isystem<> {
+    public:
+        void operator()(ecs::registry &registry, ecs::entity const &e) override
+        {
+            (void)registry;
+            (void)e;
+        }
+};
 
 void Core::process_message(const std::vector<char> &message) 
 {
     if (message.empty()) return;
     std::cout << "Traitement du message : ";
-    for (char c : message) std::cout << static_cast<int>(c) << " ";
+    for (char c : message) std::cout << c;
     std::cout << std::endl;
 
     EntityOperation op_code = static_cast<EntityOperation>(message[1]);
@@ -68,23 +71,12 @@ void Core::process_message(const std::vector<char> &message)
 
     auto it = _operation_functions.find(op_code);
     if (it != _operation_functions.end()) {
-        std::cout << "Traitement de l'op-code : " << static_cast<int>(op_code) << std::endl;
         it->second(const_cast<std::vector<char> &>(message));
     } else {
         std::cerr << "Op-code inconnu ou invalide : " << static_cast<int>(op_code) << std::endl;
     }
 }
 
-//////////////////////////////////////////////////////////
-//
-// Functions related to message processing
-//
-//////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////
-// Create entity
-////////////////////////////////////////
 
 void Core::handle_create_entity(EntityType entity_type, std::size_t entity_id, const std::vector<char> &entity_data)
 {
@@ -101,8 +93,6 @@ void Core::handle_create_entity(EntityType entity_type, std::size_t entity_id, c
     }
 }
 
-
-
 void Core::create_entity(std::vector<char> &message)
 {
     EntityType entity_type = static_cast<EntityType>(message[2]);
@@ -112,12 +102,6 @@ void Core::create_entity(std::vector<char> &message)
     handle_create_entity(entity_type, entity_id, entity_data);
 }
 
-
-
-////////////////////////////////////////
-// Delete entity
-////////////////////////////////////////
-
 void Core::delete_entity(std::vector<char> &message) 
 {
     int entity_id = static_cast<int>(message[2]);
@@ -126,11 +110,6 @@ void Core::delete_entity(std::vector<char> &message)
     ecs::entity entity = _registry.entity_from_index(entity_id);
     _registry.delete_entity(entity);
 }
-
-
-////////////////////////////////////////
-// Update entity
-////////////////////////////////////////
 
 void Core::update_sprite_component(ecs::entity entity, const std::vector<char> &entity_data)
 {
@@ -186,84 +165,33 @@ void Core::update_entity(std::vector<char> &message) {
     }
 }
 
-////////////////////////////////////////
-// Related to the actions
-////////////////////////////////////////
-
-void Core::set_actions(std::vector<char> const &actions)
-{
-    // [SIZE][ACTION][ID1][ID2][ID3][ID4][KEY1][KEY2][KEY3][KEY4][PRESSED]
-    unsigned int id_action = 0;
-    unsigned int key_code = 0;
-    bool pressed = false;
-
-    std::memcpy(&id_action, &actions[2], sizeof(id_action));
-    std::memcpy(&key_code, &actions[6], sizeof(key_code));
-    pressed = static_cast<bool>(actions[10]);
-
-    std::cout << "key " << key_code << " pressed: " << pressed << std::endl;
-
-    if (pressed) {
-        _on_key_pressed[key_code] = id_action;
-    } else {
-        _on_key_released[key_code] = id_action;
-    }
-}
-
-
-void Core::send_action(unsigned int id_action)
-{
-    // [SIZE][ID_ACTION1][ID_ACTION2][ID_ACTION3][ID_ACTION4][X_POS1][X_POS2][X_POS3][X_POS4][Y_POS1][Y_POS2][Y_POS3][Y_POS4]
-    std::vector<char> data;
-    raylib::Vector2 mouse_pos = _window.get_mouse_position();
-    unsigned int mouse_x = static_cast<unsigned int>(mouse_pos.x);
-    unsigned int mouse_y = static_cast<unsigned int>(mouse_pos.y);
-
-    data.resize(13);
-    data[0] = 13;
-
-    std::memcpy(&data[1], &id_action, sizeof(id_action));
-    std::memcpy(&data[5], &mouse_x, sizeof(mouse_x));
-    std::memcpy(&data[9], &mouse_y, sizeof(mouse_y));
-
-    this->_api.send_message(data);
-}
-
-//////////////////////////////////////////////////////////
-//
-// Functions related to the window
-//
-//////////////////////////////////////////////////////////
-
-
-
 int Core::run(void)
 {
-    _api.connect("localhost");
+    rtype_protocol::AsioApi client;
+    client.connect("localhost");
 
     while (_window.is_running()) {
-        if (_api.has_data()) {
-            rtype_protocol::AsioApi::UDP_DATA data = _api.get_data();
+        if (client.has_data()) {
+            rtype_protocol::AsioApi::UDP_DATA data = client.get_data();
             std::cout << "Réception de données : ";
-            for (auto c: data.data)  std::cout <<  static_cast<int>(c) << " ";
-            std::cout << "from " << data.sender_endpoint.address() << ":" << data.sender_endpoint.port() << std::endl;
+            for (std::size_t i = 0; i < data.data.size(); i++) {
+                std::cout <<  static_cast<int>(data.data[i]) << " ";
+            }
+            std::cout << "from " << data.sender_endpoint.address() 
+                      << ":" << data.sender_endpoint.port() << std::endl;
+            std::cout << std::endl;
+
             process_message(data.data);
         }
 
         _window.start_drawing();
+        _window.clear({255, 255, 255, 255});
         _registry.run_systems();
+        if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, raylib::KEY_SPACE)) {
+            _registry.run_single_standalone_system(SystemTest());
+        }
+        
         _window.end_drawing();
-        for (auto &pair : _on_key_pressed) {
-            std::cout << "check key " << pair.first << " pressed for " << pair.second << std::endl;
-            if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, pair.second)) {
-                this->send_action(pair.first);
-            }
-        }
-        for (auto &pair : _on_key_released) {
-            if (_window.is_key(raylib::Window::BUTTON_STATE::RELEASED, pair.second)) {
-                this->send_action(pair.first);
-            }
-        }
     }
     return 0;
 }

@@ -43,7 +43,7 @@ class Rtype : public rtype::IGame {
         void updatePlayer(size_t id, std::size_t x, std::size_t y);
 
     private:
-        std::shared_ptr<ecs::registry> _reg; // Changez la référence en pointeur
+        std::shared_ptr<ecs::registry> _reg;
         std::function<void(ecs::entity const &)> _broadcastCreate;
         std::function<void(ecs::entity const &)> _broadcastDelete;
         std::function<void(ecs::entity const &)> _broadcastUpdate;

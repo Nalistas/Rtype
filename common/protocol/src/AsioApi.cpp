@@ -26,7 +26,7 @@ bool rtype_protocol::AsioApi::connect(const std::string &hostname, const std::st
         socket.open(udp::v4());
         connected = true;
         std::cout << "Connexion réussie à " << hostname << " sur le port " << port << "." << std::endl;
-        send_message({1, 0});
+        send_message("Connect");
     } catch (const std::exception &e) {
         std::cerr << "Erreur de connexion : " << e.what() << std::endl;
         connected = false;
@@ -34,7 +34,7 @@ bool rtype_protocol::AsioApi::connect(const std::string &hostname, const std::st
     return connected;
 }
 
-void rtype_protocol::AsioApi::send_message(const std::vector<char> &message) 
+void rtype_protocol::AsioApi::send_message(const std::string &message) 
 {
     if (!connected) {
         std::cerr << "Erreur : Client non connecté !" << std::endl;
@@ -42,9 +42,7 @@ void rtype_protocol::AsioApi::send_message(const std::vector<char> &message)
     }
     try {
         socket.send_to(asio::buffer(message), endpoint);
-        std::cout << "Message envoyé." << std::endl;
-        for (char c : message) std::cout << static_cast<int>(c) << " ";
-        std::cout << std::endl;
+        std::cout << "Message envoyé : " << message << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "Erreur lors de l'envoi du message : " << e.what() << std::endl;
     }
@@ -98,7 +96,6 @@ bool rtype_protocol::AsioApi::start_server(const std::string &port)
     }
 }
 
-// Nouvelle méthode : Répondre à un client
 void rtype_protocol::AsioApi::reply_to(const UDP_DATA &client_data) 
 {
     try {

@@ -28,6 +28,7 @@ target_sources(Rtype
     PRIVATE
         entrypoints.cpp
         src/Rtype.cpp
+        src/SystemCreateEnemy.cpp
         # src/RtypeBullet.cpp
         # src/RtypePlayer.cpp
         # src/RtypeEnemy.cpp
