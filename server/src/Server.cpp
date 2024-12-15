@@ -20,6 +20,24 @@ std::size_t endpoint_hash_class::operator()(const udp::endpoint &ep) const {
 
 Server::~Server() {}
 
+
+
+class testHandler : public rtype::IClientActionHandler {
+public:
+    testHandler() {}
+    ~testHandler() {}
+
+    void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override {
+        std::cout << "testHandler called" << std::endl;
+        std::cout << "client: " << client << std::endl;
+        std::cout << "mouse_x: " << mouse_x << std::endl;
+        std::cout << "mouse_y: " << mouse_y << std::endl;
+    }
+};
+
+
+
+
 Server::Server() 
     : _time(0), _api()
 {
@@ -56,35 +74,16 @@ Server::Server()
 
 int Server::loop() 
 {
-    // graphics_interface::Sprite sprite;
-    // auto e = _registry.create_entity();
-
-    // sprite.pos_x = 100;
-    // sprite.pos_y = 100;
-    // sprite.speed_x = 1;
-    // sprite.speed_y = 0;
-    // sprite.size_x = 100;
-    // sprite.size_y = 100;
-    // sprite.text_rect_width = 0;
-    // sprite.text_rect_height = 0;
-    // sprite.offset_x = 0;
-    // sprite.offset_y = 0;
-    // sprite.nb_frames = 1;
-    // sprite.ms_per_frame = 0;
-    // sprite.auto_destroy = 10000;
-    // sprite.path = "./orange.png";
-
-    // _registry.emplace_component<graphics_interface::Sprite>(e, sprite);
-
     while (true) {
         if (_api.has_data()) {
             rtype_protocol::AsioApi::UDP_DATA data = _api.get_data();
 
             if (_clients.find(data.sender_endpoint) == _clients.end()) {
                 this->setNewClient(data.sender_endpoint);
+            } else {
+                this->processMessage(data);
             }
         }
-        _registry->run_systems();
     }
 
     return 0;
@@ -101,14 +100,16 @@ void Server::set_actions(std::vector<rtype::ClientAction> &actions)
     }
 }
 
-
 void Server::setNewClient(udp::endpoint const &endpoint)
 {
     int id_client = this->_game->createPlayer();
     this->_clients[endpoint] = id_client;
     this->_reverse_clients[id_client] = endpoint;
 
+    std::cout << "New client: " << id_client << std::endl;
+
     this->updateScreen(id_client);
+    this->setClientAction(id_client);
 }
 
 void Server::sendToClient(std::size_t id, std::vector<char> const &data)
@@ -118,8 +119,79 @@ void Server::sendToClient(std::size_t id, std::vector<char> const &data)
 
     client_data.data = data;
     client_data.sender_endpoint = endpoint;
-    _api.reply_to(client_data);
+    for (int i = 0; i < 3; i++) {
+        _api.reply_to(client_data);
+    }
 }
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//      HANDLE MESSAGE FROM CLIENT
+//
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+
+void Server::setClientAction(std::size_t id_client)
+{
+    // [key] [state (1 = pressed, 2 = released)] [id action that will be sent to the serv]
+    // [SIZE][ACTION][ID1][ID2][ID3][ID4][KEY1][KEY2][KEY3][KEY4][pressed]
+    // 
+    std::vector<char> data;
+
+    std::cout << "setClientAction" << std::endl;
+
+    data.resize(11);
+    data[0] = 11;
+    data[1] = static_cast<char>(EntityOperation::ACTION);
+
+    for (auto key_binding: _keys) {
+        unsigned int id_action = key_binding.first;
+        unsigned int key_code = key_binding.second.first;
+        bool pressed = key_binding.second.second;
+        std::cout << "key " << key_code << " pressed: " << pressed << std::endl;
+
+        std::memcpy(&data[2], &id_action, sizeof(id_action));
+        std::memcpy(&data[6], &key_code, sizeof(key_code));
+        data[10] = static_cast<char>(pressed);
+        std::cout << "send action " << id_action << " to client " << id_client << std::endl;
+        this->sendToClient(id_client, data);
+    }
+}
+
+
+
+void Server::processMessage(rtype_protocol::AsioApi::UDP_DATA const &data)
+{
+    // [SIZE][ID_ACTION1][ID_ACTION2][ID_ACTION3][ID_ACTION4][X_POS1][X_POS2][X_POS3][X_POS4][Y_POS1][Y_POS2][Y_POS3][Y_POS4]
+    std::size_t id_client = this->_clients[data.sender_endpoint];
+    unsigned int id_action = 0;
+    unsigned int mouse_x = 0;
+    unsigned int mouse_y = 0;
+    unsigned char size = data.data[0];
+
+    std::memcpy(&id_action, &data.data[1], sizeof(id_action));
+    std::memcpy(&mouse_x, &data.data[5], sizeof(mouse_x));
+    std::memcpy(&mouse_y, &data.data[9], sizeof(mouse_y));
+
+    (*(this->_handlers[id_action]))(id_client, mouse_x, mouse_y);
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//      BROADCAST
+//
+/////////////////////////////////////////////////////////////////////////////
+
+
+
 
 void Server::broadcastDelete(ecs::entity entity)
 {
@@ -228,6 +300,22 @@ void Server::broadcastUpdate(ecs::entity entity)
         }
     }
 }
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+//      UPDATE
+//
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
 void Server::updateScreen(std::size_t id_client)
 {
