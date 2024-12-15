@@ -51,7 +51,7 @@ size_t Rtype::createPlayer(void)
 {
     ecs::entity newPlayer = _reg->create_entity();
     graphics_interface::Sprite sprite;
-    sprite.speed_x = 0;
+    sprite.speed_x = 1;
     sprite.speed_y = 0;
 
     srand(time(NULL));

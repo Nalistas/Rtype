@@ -16,7 +16,7 @@
 #include "Systems/SystemSprite.hpp"
 #include "Systems/SystemAnimation.hpp"
 #include "Systems/SystemAutoDestructTimer.hpp"
-// #include "Systems/SystemSpeed.hpp"
+#include "Systems/SystemSpeed.hpp"
 
 #include "isystem.hpp"
 #include "AsioApi.hpp"
@@ -41,7 +41,7 @@ Core::Core(std::size_t win_width, std::size_t win_height):
     _registry.add_standalone_system(SystemTime(this->time));
     _registry.add_system<Background>(SystemBackground(this->time));
     _registry.add_system<raylib::Sprite>(SystemSprite());
-    // _registry.add_system<Speed, raylib::Sprite>(SystemSpeed(this->time));
+    _registry.add_system<Speed, raylib::Sprite>(SystemSpeed(this->time));
     _registry.add_system<Animation, raylib::Sprite>(SystemAnimation(this->time));
     _registry.add_system<AutoDestructTimer>(SystemAutoDestructTimer());
 }
