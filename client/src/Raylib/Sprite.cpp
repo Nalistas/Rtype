@@ -8,19 +8,20 @@
 #include "Raylib/Sprite.hpp"
 #include <stdexcept>
 
-raylib::Sprite::Sprite() : _rotation(0), _frame_count(0), _current_frame(0), _offset({0, 0}) {}
+raylib::Sprite::Sprite() : _rotation(0), _frame_count(0), _current_frame(0), _offset({0, 0})
+{}
 
 raylib::Sprite::Sprite(std::string const &texture_path) :
     _rotation(0), _frame_count(0), _current_frame(0), _offset({0, 0})
 {
-    _texture = LoadTexture(texture_path.c_str());
-    if (_texture.id == 0) {
+    _texture = std::make_unique<TextureCpp>(texture_path);
+    if (!_texture) {
         throw std::runtime_error("Failed to load texture: " + texture_path);
     }
 
-    _source_rect = {0, 0, static_cast<float>(_texture.width), static_cast<float>(_texture.height)};
+    _source_rect = {0, 0, static_cast<float>(_texture->get_texture().width), static_cast<float>(_texture->get_texture().height)};
     _source_rect_origin = _source_rect;
-    _destination_rect = {0, 0, static_cast<float>(_texture.width), static_cast<float>(_texture.height)};
+    _destination_rect = {0, 0, static_cast<float>(_texture->get_texture().width), static_cast<float>(_texture->get_texture().height)};
     _center = {_destination_rect.width / 2, _destination_rect.height / 2};
 }
 
@@ -28,8 +29,8 @@ raylib::Sprite::Sprite(std::string const &texture_path, Rectangle texture_rect, 
     : _destination_rect(on_window_rect), _rotation(0), _source_rect(texture_rect), _source_rect_origin(texture_rect),
       _frame_count(0), _current_frame(0), _offset({0, 0})
 {
-    _texture = LoadTexture(texture_path.c_str());
-    if (_texture.id == 0) {
+    _texture = std::make_unique<TextureCpp>(texture_path);
+    if (!_texture) {
         throw std::runtime_error("Failed to load texture: " + texture_path);
     }
     _center = {_destination_rect.width / 2, _destination_rect.height / 2};
@@ -51,62 +52,54 @@ void raylib::Sprite::set_size(float x, float y)
 }
 
 raylib::Sprite::~Sprite()
-{
-    UnloadTexture(_texture);
-}
+{}
 
 #include <iostream>
 
 void raylib::Sprite::draw()
 {
-    if (_texture.id == 0) {
-        // std::cout << "Texture not loaded" << std::endl;
+    if (_texture->get_texture().id == 0) {
         return;
     }
-    DrawTexturePro(_texture, _source_rect, _destination_rect, _center, _rotation, WHITE);
+    DrawTexturePro(_texture->get_texture(), _source_rect, _destination_rect, _center, _rotation, WHITE);
 }
 
 void raylib::Sprite::set_texture(std::string const &texture_path)
 {
-    UnloadTexture(_texture);
-    _texture = LoadTexture(texture_path.c_str());
-    if (_texture.id == 0) {
+    _texture.reset();
+    _texture = std::make_unique<TextureCpp>(texture_path);
+    if (_texture->get_texture().id == 0) {
         throw std::runtime_error("Failed to load texture: " + texture_path);
     }
-    _source_rect = {0, 0, static_cast<float>(_texture.width), static_cast<float>(_texture.height)};
+    _source_rect = {0, 0, static_cast<float>(_texture->get_texture().width), static_cast<float>(_texture->get_texture().height)};
     _source_rect_origin = _source_rect;
-    _destination_rect = {_destination_rect.x, _destination_rect.y, static_cast<float>(_texture.width), static_cast<float>(_texture.height)};
+    _destination_rect = {_destination_rect.x, _destination_rect.y, static_cast<float>(_texture->get_texture().width), static_cast<float>(_texture->get_texture().height)};
     _center = {_destination_rect.width / 2, _destination_rect.height / 2};
 }
 
 void raylib::Sprite::setComponent(graphics_interface::Sprite const &sprite)
 {
-    _texture = LoadTexture(sprite.path.c_str());
-    if (_texture.id == 0) {
+
+    std::cout << "-----------------------------------------" << std::endl;
+    _texture.reset();
+    _texture = std::make_unique<TextureCpp>(sprite.path);
+    if (_texture->get_texture().id == 0) {
         throw std::runtime_error("Failed to load texture: " + sprite.path);
     }
     float offset_x = static_cast<float>(sprite.offset_x);
     float offset_y = static_cast<float>(sprite.offset_y);
-    float src_rect_width = sprite.text_rect_width == 0 ? static_cast<float>(_texture.width) : static_cast<float>(sprite.text_rect_width);
-    float src_rect_height = sprite.text_rect_height == 0 ? static_cast<float>(_texture.height) : static_cast<float>(sprite.text_rect_height);
+    float src_rect_width = sprite.text_rect_width == 0 ? static_cast<float>(_texture->get_texture().width) : static_cast<float>(sprite.text_rect_width);
+    float src_rect_height = sprite.text_rect_height == 0 ? static_cast<float>(_texture->get_texture().height) : static_cast<float>(sprite.text_rect_height);
     float destination_rect_x = static_cast<float>(sprite.pos_x);
     float destination_rect_y = static_cast<float>(sprite.pos_y);
     float size_x = static_cast<float>(sprite.size_x);
     float size_y = static_cast<float>(sprite.size_y);
 
-    std::cout << "offset_x: " << offset_x << std::endl;
-    std::cout << "offset_y: " << offset_y << std::endl;
-    std::cout << "src_rect_width: " << src_rect_width << std::endl;
-    std::cout << "src_rect_height: " << src_rect_height << std::endl;
-    std::cout << "destination_rect_x: " << destination_rect_x << std::endl;
-    std::cout << "destination_rect_y: " << destination_rect_y << std::endl;
-    std::cout << "size_x: " << size_x << std::endl;
-    std::cout << "size_y: " << size_y << std::endl;
-
     this->resize_x(size_x);
     this->resize_y(size_y);
     this->set_position(destination_rect_x, destination_rect_y);
     this->set_source_rect({offset_x, offset_y, src_rect_width, src_rect_height});
+    std::cout << "-----------------------------------------" << std::endl;
 }
 
 void raylib::Sprite::set_source_rect(Rectangle texture_rect)
@@ -144,7 +137,7 @@ float raylib::Sprite::get_rotation() const
 void raylib::Sprite::resize_x(float scale_x, bool preserve_aspect_ratio)
 {
     if (preserve_aspect_ratio) {
-        float aspect_ratio = static_cast<float>(_texture.height) / static_cast<float>(_texture.width);
+        float aspect_ratio = static_cast<float>(_texture->get_texture().height) / static_cast<float>(_texture->get_texture().width);
         float scale_y = scale_x * aspect_ratio;
         set_size(scale_x, scale_y);
     } else {
@@ -155,7 +148,7 @@ void raylib::Sprite::resize_x(float scale_x, bool preserve_aspect_ratio)
 void raylib::Sprite::resize_y(float scale_y, bool preserve_aspect_ratio)
 {
     if (preserve_aspect_ratio) {
-        float aspect_ratio = static_cast<float>(_texture.width) / static_cast<float>(_texture.height);
+        float aspect_ratio = static_cast<float>(_texture->get_texture().width) / static_cast<float>(_texture->get_texture().height);
         float scale_x = scale_y * aspect_ratio;
         set_size(scale_x, scale_y);
     } else {

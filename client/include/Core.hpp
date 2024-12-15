@@ -170,8 +170,7 @@ class Core {
             {EntityType::BACKGROUND, [this](ecs::entity e, const std::vector<char>& data) {
                 graphics_interface::Background background;
                 background.decode(data);
-                Background bg;
-                _registry.emplace_component<Background>(e, bg);
+                _registry.emplace_component<Background>(e);
                 _registry.get_components<Background>()[e]->setComponent(background);
             }},
             {EntityType::MUSIC, [this](ecs::entity e, const std::vector<char>& data) {
@@ -189,8 +188,7 @@ class Core {
             {EntityType::SPRITE, [this](ecs::entity e, const std::vector<char>& data) {
                 graphics_interface::Sprite sprite;
                 sprite.decode(data);
-                raylib::Sprite raySprite;
-                _registry.emplace_component<raylib::Sprite>(e, raySprite);
+                _registry.emplace_component<raylib::Sprite>(e);
                 _registry.get_components<raylib::Sprite>()[e]->setComponent(sprite);
 
                 if (sprite.speed_x != 0 || sprite.speed_y != 0) {

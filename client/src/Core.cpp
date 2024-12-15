@@ -241,6 +241,7 @@ int Core::run(void)
 {
     _api.connect("localhost");
 
+
     while (_window.is_running()) {
         if (_api.has_data()) {
             rtype_protocol::AsioApi::UDP_DATA data = _api.get_data();

@@ -6,7 +6,9 @@
 */
 
 #include "GraphicsPrimitives.hpp"
+#include "Raylib/Texture.hpp"
 #include <string>
+#include <memory>
 
 #ifndef SPRITE_HPP_
     #define SPRITE_HPP_
@@ -115,7 +117,7 @@ class Sprite {
         Vector2 _center;
 
         /// @brief The texture
-        Texture2D _texture;
+        std::shared_ptr<TextureCpp> _texture;
 
         /// @brief The rotation
         float _rotation;
