@@ -84,6 +84,7 @@ int Server::loop()
                 this->processMessage(data);
             }
         }
+        _registry->run_systems();
     }
 
     return 0;
