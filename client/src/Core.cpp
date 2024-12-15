@@ -165,6 +165,49 @@ void Core::update_entity(std::vector<char> &message) {
     }
 }
 
+////////////////////////////////////////
+// Related to the actions
+////////////////////////////////////////
+
+void Core::set_actions(std::vector<char> const &actions)
+{
+    // [SIZE][ACTION][ID1][ID2][ID3][ID4][KEY1][KEY2][KEY3][KEY4][PRESSED]
+    unsigned int id_action = 0;
+    unsigned int key_code = 0;
+    bool pressed = false;
+
+    std::memcpy(&id_action, &actions[2], sizeof(id_action));
+    std::memcpy(&key_code, &actions[6], sizeof(key_code));
+    pressed = static_cast<bool>(actions[10]);
+
+    std::cout << "key " << key_code << " pressed: " << pressed << std::endl;
+
+    if (pressed) {
+        _on_key_pressed[key_code] = id_action;
+    } else {
+        _on_key_released[key_code] = id_action;
+    }
+}
+
+
+void Core::send_action(unsigned int id_action)
+{
+    // [SIZE][ID_ACTION1][ID_ACTION2][ID_ACTION3][ID_ACTION4][X_POS1][X_POS2][X_POS3][X_POS4][Y_POS1][Y_POS2][Y_POS3][Y_POS4]
+    std::vector<char> data;
+    raylib::Vector2 mouse_pos = _window.get_mouse_position();
+    unsigned int mouse_x = static_cast<unsigned int>(mouse_pos.x);
+    unsigned int mouse_y = static_cast<unsigned int>(mouse_pos.y);
+
+    data.resize(13);
+    data[0] = 13;
+
+    std::memcpy(&data[1], &id_action, sizeof(id_action));
+    std::memcpy(&data[5], &mouse_x, sizeof(mouse_x));
+    std::memcpy(&data[9], &mouse_y, sizeof(mouse_y));
+
+    this->_api.send_message(data);
+}
+
 int Core::run(void)
 {
     rtype_protocol::AsioApi client;

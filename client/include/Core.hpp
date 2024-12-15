@@ -118,7 +118,6 @@ class Core {
          */
         void handle_create_entity(EntityType entity_type, std::size_t entity_id, const std::vector<char> &entity_data);
 
-
         /**
          * @brief Set the actions
          * @param actions The actions
@@ -131,6 +130,7 @@ class Core {
          * @param pressed The pressed state of the action
          */
         void send_action(unsigned int id_action);
+
 
 
         //////////////////////////////////////////
