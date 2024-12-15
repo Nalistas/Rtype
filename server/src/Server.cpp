@@ -72,8 +72,21 @@ Server::Server()
     _api.start_server("5000");
 }
 
+class testSystem : public ecs::isystem <> {
+public:
+    testSystem() {}
+    ~testSystem() {}
+
+
+    void operator()(ecs::registry &registry __attribute__((unused)), ecs::entity const &e __attribute__((unused))) {
+        std::cout << "testSystem called" << std::endl;
+    }
+};
+
+
 int Server::loop() 
 {
+    _registry->add_standalone_system(testSystem());
     while (true) {
         if (_api.has_data()) {
             rtype_protocol::AsioApi::UDP_DATA data = _api.get_data();
