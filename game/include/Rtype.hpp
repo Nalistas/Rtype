@@ -7,8 +7,9 @@
 
 #include "IGame.hpp"
 #include "registry.hpp"
-#include "RtypePlayer.hpp"
-#include "RtypeEnemy.hpp"
+// #include "RtypePlayer.hpp"
+// #include "RtypeEnemy.hpp"
+// #include "RtypeBullet.hpp"
 #include <vector>
 #include <map>
 #include <functional>
@@ -24,7 +25,7 @@ class Rtype : public rtype::IGame {
 
         std::string getName(void) override;
 
-        void setRegistry(ecs::registry &reg) override;
+        void setRegistry(ecs::registry *reg) override;
 
         void setBroadcastCreate(std::function<void(ecs::entity const &e)>) override;
         void setBroadcastDelete(std::function<void(ecs::entity const &e)>) override;
@@ -41,10 +42,7 @@ class Rtype : public rtype::IGame {
         void updatePlayer(size_t id, std::size_t x, std::size_t y);
 
     private:
-        ecs::registry _reg;
-        std::map<size_t, RtypePlayer> _players;
-        std::map<size_t, RtypeEnemy> _enemies;
-
+        ecs::registry *_reg; // Changez la référence en pointeur
         std::function<void(ecs::entity const &)> _broadcastCreate;
         std::function<void(ecs::entity const &)> _broadcastDelete;
         std::function<void(ecs::entity const &)> _broadcastUpdate;

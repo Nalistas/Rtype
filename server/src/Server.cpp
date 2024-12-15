@@ -35,16 +35,16 @@ Server::Server()
     #endif
     _game = _dll.getSym("gameElement");
 
-    _registry.register_component<graphics_interface::Sprite>();
-    _registry.register_component<graphics_interface::Background>();
-    _registry.register_component<graphics_interface::Music>();
-    _registry.register_component<graphics_interface::Sound>();
-    _registry.add_system<graphics_interface::Sprite>(SpriteSystem(this->_time));
+    _registry->register_component<graphics_interface::Sprite>();
+    _registry->register_component<graphics_interface::Background>();
+    _registry->register_component<graphics_interface::Music>();
+    _registry->register_component<graphics_interface::Sound>();
+    _registry->add_system<graphics_interface::Sprite>(SpriteSystem(this->_time));
 
     _game->setBroadcastCreate(std::bind(&Server::broadcastCreate, this, std::placeholders::_1));
     _game->setBroadcastDelete(std::bind(&Server::broadcastDelete, this, std::placeholders::_1));
     _game->setBroadcastUpdate(std::bind(&Server::broadcastUpdate, this, std::placeholders::_1));
-    _game->setRegistry(_registry);
+    _game->setRegistry(_registry.get());
 
     std::vector<rtype::ClientAction> actions = _game->getClientActionHandlers();
     this->set_actions(actions);
@@ -52,31 +52,27 @@ Server::Server()
     _api.start_server("5000");
 }
 
-
-
-
-
 int Server::loop() 
 {
-    graphics_interface::Sprite sprite;
-    auto e = _registry.create_entity();
+    // graphics_interface::Sprite sprite;
+    // auto e = _registry.create_entity();
 
-    sprite.pos_x = 100;
-    sprite.pos_y = 100;
-    sprite.speed_x = 1;
-    sprite.speed_y = 0;
-    sprite.size_x = 100;
-    sprite.size_y = 100;
-    sprite.text_rect_width = 0;
-    sprite.text_rect_height = 0;
-    sprite.offset_x = 0;
-    sprite.offset_y = 0;
-    sprite.nb_frames = 1;
-    sprite.ms_per_frame = 0;
-    sprite.auto_destroy = 10000;
-    sprite.path = "./orange.png";
+    // sprite.pos_x = 100;
+    // sprite.pos_y = 100;
+    // sprite.speed_x = 1;
+    // sprite.speed_y = 0;
+    // sprite.size_x = 100;
+    // sprite.size_y = 100;
+    // sprite.text_rect_width = 0;
+    // sprite.text_rect_height = 0;
+    // sprite.offset_x = 0;
+    // sprite.offset_y = 0;
+    // sprite.nb_frames = 1;
+    // sprite.ms_per_frame = 0;
+    // sprite.auto_destroy = 10000;
+    // sprite.path = "./orange.png";
 
-    _registry.emplace_component<graphics_interface::Sprite>(e, sprite);
+    // _registry.emplace_component<graphics_interface::Sprite>(e, sprite);
 
     while (true) {
         if (_api.has_data()) {
@@ -162,19 +158,19 @@ void Server::broadcastCreate(ecs::entity entity)
     rtype_protocol::AsioApi::UDP_DATA data;
     char op_code = static_cast<char>(EntityOperation::CREATE);
 
-    auto music = _registry.get_components<graphics_interface::Music>()[entity];
+    auto music = _registry->get_components<graphics_interface::Music>()[entity];
     if (music.has_value()) {
         this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*music).encode());
     }
-    auto sound = _registry.get_components<graphics_interface::Sound>()[entity];
+    auto sound = _registry->get_components<graphics_interface::Sound>()[entity];
     if (sound.has_value()) {
         this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*sound).encode());
     }
-    auto sprite = _registry.get_components<graphics_interface::Sprite>()[entity];
+    auto sprite = _registry->get_components<graphics_interface::Sprite>()[entity];
     if (sprite.has_value()) {
         this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*sprite).encode());
     }
-    auto bg = _registry.get_components<graphics_interface::Background>()[entity];
+    auto bg = _registry->get_components<graphics_interface::Background>()[entity];
     if (bg.has_value()) {
         this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*bg).encode());
     }
@@ -185,19 +181,19 @@ void Server::broadcastUpdate(ecs::entity entity)
     rtype_protocol::AsioApi::UDP_DATA data;
     char op_code = static_cast<char>(EntityOperation::CREATE);
 
-    auto music = _registry.get_components<graphics_interface::Music>()[entity];
+    auto music = _registry->get_components<graphics_interface::Music>()[entity];
     if (music.has_value()) {
         this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*music).encode());
     }
-    auto sound = _registry.get_components<graphics_interface::Sound>()[entity];
+    auto sound = _registry->get_components<graphics_interface::Sound>()[entity];
     if (sound.has_value()) {
         this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*sound).encode());
     }
-    auto sprite = _registry.get_components<graphics_interface::Sprite>()[entity];
+    auto sprite = _registry->get_components<graphics_interface::Sprite>()[entity];
     if (sprite.has_value()) {
         this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*sprite).encode());
     }
-    auto bg = _registry.get_components<graphics_interface::Background>()[entity];
+    auto bg = _registry->get_components<graphics_interface::Background>()[entity];
     if (bg.has_value()) {
         this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*bg).encode());
     }
@@ -210,10 +206,10 @@ void Server::updateScreen(std::size_t id_client)
 {
     udp::endpoint endpoint = this->_reverse_clients[id_client];
 
-    auto &musics = _registry.get_components<graphics_interface::Music>();
-    auto &sounds = _registry.get_components<graphics_interface::Sound>();
-    auto &sprites = _registry.get_components<graphics_interface::Sprite>();
-    auto &bgs = _registry.get_components<graphics_interface::Background>();
+    auto &musics = _registry->get_components<graphics_interface::Music>();
+    auto &sounds = _registry->get_components<graphics_interface::Sound>();
+    auto &sprites = _registry->get_components<graphics_interface::Sprite>();
+    auto &bgs = _registry->get_components<graphics_interface::Background>();
 
     rtype_protocol::AsioApi::UDP_DATA data;
 

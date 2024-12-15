@@ -23,6 +23,7 @@ namespace rtype {
 
     class IClientActionHandler {
         public:
+        // mettre des references dans le constructeur
             virtual ~IClientActionHandler() = default;
 
             virtual void operator()(std::size_t client) = 0;
@@ -77,7 +78,7 @@ namespace rtype {
              * @brief set everything needed in the registry, the systems and the components
              * @param registry the registry to set the component and the systems
              */
-            virtual void setRegistry(ecs::registry &reg) = 0;
+            virtual void setRegistry(ecs::registry *reg) = 0;
 
             /**
              * @brief Set the client action handler
@@ -98,5 +99,23 @@ namespace rtype {
             virtual void deletePlayer(size_t id) = 0;
     };
 }
+
+/*
+    S                   J
+        -------------> OK -> exec action (broadcast)
+        <------------- voila, pour moi c'est lui (size_t)
+
+-> action client
+    |
+    V
+    get size_t lie
+    a l'endpoint
+    |
+    V
+    recupere l'handler
+    |
+    V
+    handler(client) -> J -> client
+*/
 
 #endif
