@@ -141,13 +141,14 @@ void Server::broadcastDelete(ecs::entity entity)
     }
 }
 
-void Server::broadcast(char op_code, char entity_type, std::vector<char> const &data)
+void Server::broadcast(char op_code, char entity_type, ecs::entity const &entity, std::vector<char> const &data)
 {
     rtype_protocol::AsioApi::UDP_DATA client_data;
     client_data.data = data;
-    // client.data.insert(client_data.data.begin(), data.size());
-    client_data.data.insert(client_data.data.begin(), static_cast<char>(op_code));
+    client_data.data.insert(client_data.data.begin(), static_cast<char>(entity));
     client_data.data.insert(client_data.data.begin(), entity_type);
+    client_data.data.insert(client_data.data.begin(), static_cast<char>(op_code));
+    client_data.data.insert(client_data.data.begin(), data.size());
 
     for (auto it = _clients.begin(); it != _clients.end(); it++) {
         client_data.sender_endpoint = it->first;
@@ -194,7 +195,7 @@ void Server::broadcastCreate(ecs::entity entity)
     if (entity < music_components.size()) {
         auto music = music_components[entity];
         if (music.has_value()) {
-            this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*music).encode());
+            this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), entity, (*music).encode());
         }
     }
 
@@ -202,7 +203,7 @@ void Server::broadcastCreate(ecs::entity entity)
     if (entity < sound_components.size()) {
         auto sound = sound_components[entity];
         if (sound.has_value()) {
-            this->broadcast(op_code, static_cast<char>(EntityType::SOUND), (*sound).encode());
+            this->broadcast(op_code, static_cast<char>(EntityType::SOUND), entity, (*sound).encode());
         }
     }
 
@@ -210,7 +211,7 @@ void Server::broadcastCreate(ecs::entity entity)
     if (entity < sprite_components.size()) {
         auto sprite = sprite_components[entity];
         if (sprite.has_value()) {
-            this->broadcast(op_code, static_cast<char>(EntityType::SPRITE), (*sprite).encode());
+            this->broadcast(op_code, static_cast<char>(EntityType::SPRITE), entity, (*sprite).encode());
         }
     }
 
@@ -218,7 +219,7 @@ void Server::broadcastCreate(ecs::entity entity)
     if (entity < bg_components.size()) {
         auto bg = bg_components[entity];
         if (bg.has_value()) {
-            this->broadcast(op_code, static_cast<char>(EntityType::BACKGROUND), (*bg).encode());
+            this->broadcast(op_code, static_cast<char>(EntityType::BACKGROUND), entity, (*bg).encode());
         }
     }
 }
@@ -232,7 +233,7 @@ void Server::broadcastUpdate(ecs::entity entity)
     if (entity < music_components.size()) {
         auto music = music_components[entity];
         if (music.has_value()) {
-            this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), (*music).encode());
+            this->broadcast(op_code, static_cast<char>(EntityType::MUSIC), entity, (*music).encode());
         }
     }
 
@@ -240,7 +241,7 @@ void Server::broadcastUpdate(ecs::entity entity)
     if (entity < sound_components.size()) {
         auto sound = sound_components[entity];
         if (sound.has_value()) {
-            this->broadcast(op_code, static_cast<char>(EntityType::SOUND), (*sound).encode());
+            this->broadcast(op_code, static_cast<char>(EntityType::SOUND), entity, (*sound).encode());
         }
     }
 
@@ -248,7 +249,7 @@ void Server::broadcastUpdate(ecs::entity entity)
     if (entity < sprite_components.size()) {
         auto sprite = sprite_components[entity];
         if (sprite.has_value()) {
-            this->broadcast(op_code, static_cast<char>(EntityType::SPRITE), (*sprite).encode());
+            this->broadcast(op_code, static_cast<char>(EntityType::SPRITE), entity, (*sprite).encode());
         }
     }
 
@@ -256,7 +257,7 @@ void Server::broadcastUpdate(ecs::entity entity)
     if (entity < bg_components.size()) {
         auto bg = bg_components[entity];
         if (bg.has_value()) {
-            this->broadcast(op_code, static_cast<char>(EntityType::BACKGROUND), (*bg).encode());
+            this->broadcast(op_code, static_cast<char>(EntityType::BACKGROUND), entity, (*bg).encode());
         }
     }
 }

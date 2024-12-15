@@ -65,7 +65,7 @@ class Server {
 
     private:
         void broadcastDelete(ecs::entity entity);
-        void broadcast(char op_code, char entity_type, std::vector<char> const &data);
+        void broadcast(char op_code, char entity_type, ecs::entity const &entity_id, std::vector<char> const &data);
         void broadcastCreate(ecs::entity entity);
         void broadcastUpdate(ecs::entity entity);
 
