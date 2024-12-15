@@ -67,6 +67,7 @@ void Core::process_message(const std::vector<char> &message)
     std::cout << std::endl;
 
     EntityOperation op_code = static_cast<EntityOperation>(message[1]);
+    std::cout << "Op-code : " << static_cast<int>(op_code) << std::endl;
 
     auto it = _operation_functions.find(op_code);
     if (it != _operation_functions.end()) {
@@ -91,6 +92,28 @@ void Core::handle_create_entity(EntityType entity_type, std::size_t entity_id, c
         std::cerr << "Type d'entité inconnu : " << static_cast<int>(entity_type) << std::endl;
     }
 }
+
+// void Core::create_entity(std::vector<char> &message)
+// {
+//     if (message.size() < 4) {
+//         std::cerr << "Message trop court pour être valide." << std::endl;
+//         return;
+//     }
+
+//     // Extraire le type d'entité (message[2])
+//     EntityType entity_type = static_cast<EntityType>(message[2]);
+
+//     // Extraire l'ID de l'entité (message[3] devrait correspondre à l'entité ID)
+//     // Notez que nous devons probablement extraire plus de données pour un ID plus grand que 1 octet
+//     std::size_t entity_id = static_cast<std::size_t>(message[3]);
+
+//     // Extraire les données de l'entité à partir du 4ème octet jusqu'à la fin
+//     std::vector<char> entity_data(message.begin() + 4, message.end());
+
+//     // Traiter l'entité avec les informations extraites
+//     handle_create_entity(entity_type, entity_id, entity_data);
+// }
+
 
 void Core::create_entity(std::vector<char> &message)
 {

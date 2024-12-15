@@ -13,6 +13,7 @@
 #include <vector>
 #include <map>
 #include <functional>
+#include <memory>
 
 
 #ifndef RTYPE_HPP_
@@ -25,7 +26,7 @@ class Rtype : public rtype::IGame {
 
         std::string getName(void) override;
 
-        void setRegistry(ecs::registry *reg) override;
+        void setRegistry(std::shared_ptr<ecs::registry> reg) override;
 
         void setBroadcastCreate(std::function<void(ecs::entity const &e)>) override;
         void setBroadcastDelete(std::function<void(ecs::entity const &e)>) override;
@@ -42,7 +43,7 @@ class Rtype : public rtype::IGame {
         void updatePlayer(size_t id, std::size_t x, std::size_t y);
 
     private:
-        ecs::registry *_reg; // Changez la référence en pointeur
+        std::shared_ptr<ecs::registry> _reg; // Changez la référence en pointeur
         std::function<void(ecs::entity const &)> _broadcastCreate;
         std::function<void(ecs::entity const &)> _broadcastDelete;
         std::function<void(ecs::entity const &)> _broadcastUpdate;

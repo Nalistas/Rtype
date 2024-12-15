@@ -89,7 +89,7 @@ class Server {
         DLLdr::DLLoader<rtype::IGame> _dll;
         std::unique_ptr<rtype::IGame> _game;
 
-        std::unique_ptr<ecs::registry> _registry;
+        std::shared_ptr<ecs::registry> _registry;
         // ecs::registry _registry;
         rtype_protocol::AsioApi _api;
         std::unordered_map<udp::endpoint, std::size_t, endpoint_hash_class> _clients;

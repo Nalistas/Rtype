@@ -9,7 +9,10 @@
 #include "GraphicsPrimitives.hpp"
 #include "Rtype.hpp"
 
-Rtype::Rtype() : _reg(nullptr), _broadcastCreate(nullptr), _broadcastDelete(nullptr), _broadcastUpdate(nullptr) {}
+Rtype::Rtype() : _reg(nullptr), _broadcastCreate(nullptr), _broadcastDelete(nullptr), _broadcastUpdate(nullptr)
+{
+    _reg = std::make_shared<ecs::registry>();
+}
 
 
 std::string Rtype::getName(void)
@@ -17,7 +20,7 @@ std::string Rtype::getName(void)
     return "R-Type Game";
 }
 
-void Rtype::setRegistry(ecs::registry *reg)
+void Rtype::setRegistry(std::shared_ptr<ecs::registry> reg)
 {
     _reg = reg;
     // ici aadd_system + register_component + toutes les fonction pour paramétrer le registry **DU SERVER**
@@ -50,8 +53,18 @@ size_t Rtype::createPlayer(void)
     graphics_interface::Sprite sprite;
     sprite.speed_x = 0;
     sprite.speed_y = 0;
-    sprite.pos_x = 0;
-    sprite.pos_y = 0;
+
+    srand(time(NULL));
+    sprite.pos_x = rand() % (800- 500);
+    sprite.pos_y = rand() % (600 - 500);
+    sprite.offset_x = 0;
+    sprite.offset_y = 0;
+    sprite.nb_frames = 1;
+    sprite.ms_per_frame = 0;
+    sprite.size_x = 100;
+    sprite.size_y = 100;
+    sprite.text_rect_width = 0;
+    sprite.text_rect_height = 0;
     sprite.path = "./orange.png";
 
     _reg->emplace_component<graphics_interface::Sprite>(newPlayer, sprite);

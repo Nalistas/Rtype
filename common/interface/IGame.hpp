@@ -78,7 +78,7 @@ namespace rtype {
              * @brief set everything needed in the registry, the systems and the components
              * @param registry the registry to set the component and the systems
              */
-            virtual void setRegistry(ecs::registry *reg) = 0;
+            virtual void setRegistry(std::shared_ptr<ecs::registry> reg) = 0;
 
             /**
              * @brief Set the client action handler
