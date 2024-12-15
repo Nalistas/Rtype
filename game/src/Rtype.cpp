@@ -27,7 +27,7 @@ void Rtype::setRegistry(std::shared_ptr<ecs::registry> reg)
     _reg = reg;
     createBackground();
     _reg->add_standalone_system(SystemCreateEnemy(_broadcastCreate));
-    std::cout << "setRegistry" << std::endl;
+    // std::cout << "setRegistry" << std::endl;
     // ici aadd_system + register_component + toutes les fonction pour paramétrer le registry **DU SERVER**
 }
 
@@ -112,21 +112,6 @@ void Rtype::deletePlayer(size_t id)
     _reg->delete_entity(playerEntity);
     _broadcastDelete(playerEntity);
 }
-
-// size_t Rtype::createEnemy()
-// {
-//     ecs::entity newEnemy = _reg->create_entity();
-//     // RtypeEnemy enemy;
-
-//     // enemy.setPosition(0, 0);
-//     // enemy.setSpeed(0, 0);
-//     // enemy.setHealth(10);
-
-//     // _enemies[newEnemy] = enemy;
-//     _broadcastCreate(newEnemy);
-
-//     return newEnemy;
-// }
 
 void Rtype::createBullet()
 {

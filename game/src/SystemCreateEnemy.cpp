@@ -21,11 +21,8 @@ SystemCreateEnemy::~SystemCreateEnemy()
 
 void SystemCreateEnemy::operator()(ecs::registry &registry, ecs::entity const &e __attribute__((unused)))
 {
-    // std::cout << "SystemCreateEnemy" << std::endl;
     auto now = std::chrono::system_clock::now();
     _elapsed_time = std::chrono::duration_cast<std::chrono::milliseconds>(now - this->_last_update).count();
-    this->_last_update = now;
-
 
     if (_elapsed_time >= TIME_INTERVAL) {
         ecs::entity newEnemy = registry.create_entity();
@@ -52,5 +49,6 @@ void SystemCreateEnemy::operator()(ecs::registry &registry, ecs::entity const &e
         _broadcastCreate(newEnemy);
 
         _elapsed_time = 0;
+        this->_last_update = now;
     }
 }

@@ -6,6 +6,7 @@
 */
 
 #include <stdexcept>
+#include <iostream>
 
 #ifndef REGISTRY_TPP_
     #define REGISTRY_TPP_
@@ -88,6 +89,7 @@ void registry::add_system(Function&& f)
 template <typename Function>
 void registry::add_standalone_system(Function&& f)
 {
+    std::cout << "System well added !" << std::endl;
     _systems.emplace_back([f = std::forward<Function>(f)](registry& reg) mutable {
         f(reg, entity(0));
     });

@@ -79,7 +79,7 @@ public:
 
 
     void operator()(ecs::registry &registry __attribute__((unused)), ecs::entity const &e __attribute__((unused))) {
-        std::cout << "testSystem called" << std::endl;
+        // std::cout << "testSystem called" << std::endl;
     }
 };
 
