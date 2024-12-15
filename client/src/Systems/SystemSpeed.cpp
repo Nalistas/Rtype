@@ -18,10 +18,12 @@ SystemSpeed::~SystemSpeed()
 
 #include <iostream>
 
-void SystemSpeed::operator()(ecs::registry &registry __attribute__((unused)), ecs::entity const &e __attribute__((unused)), Speed &speed, raylib::Sprite &sprite)
+void SystemSpeed::operator()(ecs::registry &registry, ecs::entity const &e, Speed &speed, raylib::Sprite &sprite)
 {
     raylib::Vector2 pos = sprite.get_position();
 
+    (void)registry;
+    (void)e;
     pos.x += speed.getSpeed().x * (static_cast<float>(this->_elpased_time) / 10.0f);
     pos.y += speed.getSpeed().y * (static_cast<float>(this->_elpased_time) / 10.0f);
     sprite.set_position(pos.x, pos.y);

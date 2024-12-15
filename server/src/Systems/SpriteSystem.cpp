@@ -14,7 +14,7 @@ SpriteSystem::SpriteSystem(std::size_t const &elpased_time) :
 SpriteSystem::~SpriteSystem()
 {}
 
-void SpriteSystem::operator()(ecs::registry &registry, ecs::entity const &e, graphics_interface::Sprite &sprite)
+void SpriteSystem::operator()(ecs::registry &registry __attribute__((unused)), ecs::entity const &e __attribute__((unused)), graphics_interface::Sprite &sprite)
 {
     sprite.pos_x += static_cast<int>(sprite.speed_x) * _elpased_time;
     sprite.pos_y += static_cast<int>(sprite.speed_y) * _elpased_time;

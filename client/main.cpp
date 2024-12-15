@@ -1,4 +1,10 @@
-#include <stdio.h>
+/*
+** EPITECH PROJECT, 2024
+** rtype
+** File description:
+** main
+*/
+
 #include <iostream>
 #include <string>
 #include <memory>

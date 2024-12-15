@@ -21,7 +21,7 @@ std::size_t endpoint_hash_class::operator()(const udp::endpoint &ep) const {
 Server::~Server() {}
 
 Server::Server() 
-    : _api(), _time(0)
+    : _time(0), _api()
 {
 
 

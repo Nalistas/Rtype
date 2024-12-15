@@ -26,8 +26,8 @@ void graphics_interface::Background::decode(std::vector<char> const &data)
 {
     std::size_t short_size = sizeof(Background) - sizeof(std::string);
 
-    std::memcpy((void *)this, data.data(), short_size);
     this->path.resize(data.size() - short_size);
+    std::memcpy((void *)this, data.data(), short_size);
     for (std::size_t i = 0; i < this->path.size(); i++) {
         this->path[i] = data[short_size + i];
     }
@@ -51,8 +51,8 @@ void graphics_interface::Sprite::decode(std::vector<char> const &data)
     Sprite sprite;
     std::size_t short_size = sizeof(Sprite) - sizeof(std::string);
 
-    std::memcpy((void *)&sprite, data.data(), short_size);
     sprite.path.resize(data.size() - short_size);
+    std::memcpy((void *)&sprite, data.data(), short_size);
     for (std::size_t i = 0; i < sprite.path.size(); i++) {
         sprite.path[i] = data[short_size + i];
     }
