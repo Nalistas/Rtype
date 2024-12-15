@@ -50,14 +50,12 @@ Core::~Core()
 {
 }
 
-class SystemTest : public ecs::isystem<> {
-    public:
-        void operator()(ecs::registry &registry, ecs::entity const &e) override
-        {
-            (void)registry;
-            (void)e;
-        }
-};
+//////////////////////////////////////////////////////////
+//
+// Functions related to message processing
+//
+//////////////////////////////////////////////////////////
+
 
 void Core::process_message(const std::vector<char> &message) 
 {
@@ -77,6 +75,16 @@ void Core::process_message(const std::vector<char> &message)
     }
 }
 
+//////////////////////////////////////////////////////////
+//
+// Functions related to message processing
+//
+//////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////
+// Create entity
+////////////////////////////////////////
 
 void Core::handle_create_entity(EntityType entity_type, std::size_t entity_id, const std::vector<char> &entity_data)
 {
@@ -93,26 +101,6 @@ void Core::handle_create_entity(EntityType entity_type, std::size_t entity_id, c
     }
 }
 
-// void Core::create_entity(std::vector<char> &message)
-// {
-//     if (message.size() < 4) {
-//         std::cerr << "Message trop court pour être valide." << std::endl;
-//         return;
-//     }
-
-//     // Extraire le type d'entité (message[2])
-//     EntityType entity_type = static_cast<EntityType>(message[2]);
-
-//     // Extraire l'ID de l'entité (message[3] devrait correspondre à l'entité ID)
-//     // Notez que nous devons probablement extraire plus de données pour un ID plus grand que 1 octet
-//     std::size_t entity_id = static_cast<std::size_t>(message[3]);
-
-//     // Extraire les données de l'entité à partir du 4ème octet jusqu'à la fin
-//     std::vector<char> entity_data(message.begin() + 4, message.end());
-
-//     // Traiter l'entité avec les informations extraites
-//     handle_create_entity(entity_type, entity_id, entity_data);
-// }
 
 
 void Core::create_entity(std::vector<char> &message)
@@ -124,6 +112,12 @@ void Core::create_entity(std::vector<char> &message)
     handle_create_entity(entity_type, entity_id, entity_data);
 }
 
+
+
+////////////////////////////////////////
+// Delete entity
+////////////////////////////////////////
+
 void Core::delete_entity(std::vector<char> &message) 
 {
     int entity_id = static_cast<int>(message[2]);
@@ -132,6 +126,11 @@ void Core::delete_entity(std::vector<char> &message)
     ecs::entity entity = _registry.entity_from_index(entity_id);
     _registry.delete_entity(entity);
 }
+
+
+////////////////////////////////////////
+// Update entity
+////////////////////////////////////////
 
 void Core::update_sprite_component(ecs::entity entity, const std::vector<char> &entity_data)
 {
@@ -187,14 +186,64 @@ void Core::update_entity(std::vector<char> &message) {
     }
 }
 
+////////////////////////////////////////
+// Related to the actions
+////////////////////////////////////////
+
+void Core::set_actions(std::vector<char> const &actions)
+{
+    // [SIZE][ACTION][ID1][ID2][ID3][ID4][KEY1][KEY2][KEY3][KEY4][PRESSED]
+    char size = static_cast<char>(actions[0]);
+
+    unsigned int id_action = 0;
+    unsigned int key_code = 0;
+    bool pressed = false;
+
+    std::memcpy(&id_action, &actions[2], sizeof(id_action));
+    std::memcpy(&key_code, &actions[6], sizeof(key_code));
+    pressed = static_cast<bool>(actions[10]);
+
+    if (pressed) {
+        _on_key_pressed[key_code] = id_action;
+    } else {
+        _on_key_released[key_code] = id_action;
+    }
+}
+
+
+void Core::send_action(unsigned int id_action)
+{
+    // [SIZE][ID_ACTION1][ID_ACTION2][ID_ACTION3][ID_ACTION4][X_POS1][X_POS2][X_POS3][X_POS4][Y_POS1][Y_POS2][Y_POS3][Y_POS4]
+    std::vector<char> data;
+    raylib::Vector2 mouse_pos = _window.get_mouse_position();
+    unsigned int mouse_x = static_cast<unsigned int>(mouse_pos.x);
+    unsigned int mouse_y = static_cast<unsigned int>(mouse_pos.y);
+
+    data.resize(13);
+    data[0] = 13;
+
+    std::memcpy(&data[1], &id_action, sizeof(id_action));
+    std::memcpy(&data[5], &mouse_x, sizeof(mouse_x));
+    std::memcpy(&data[9], &mouse_y, sizeof(mouse_y));
+
+    this->_api.send_message(data);
+}
+
+//////////////////////////////////////////////////////////
+//
+// Functions related to the window
+//
+//////////////////////////////////////////////////////////
+
+
+
 int Core::run(void)
 {
-    rtype_protocol::AsioApi client;
-    client.connect("localhost");
+    _api.connect("localhost");
 
     while (_window.is_running()) {
-        if (client.has_data()) {
-            rtype_protocol::AsioApi::UDP_DATA data = client.get_data();
+        if (_api.has_data()) {
+            rtype_protocol::AsioApi::UDP_DATA data = _api.get_data();
             std::cout << "Réception de données : ";
             for (std::size_t i = 0; i < data.data.size(); i++) {
                 std::cout <<  static_cast<int>(data.data[i]) << " ";
@@ -209,11 +258,15 @@ int Core::run(void)
         _window.start_drawing();
         _window.clear({255, 255, 255, 255});
         _registry.run_systems();
-        if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, raylib::KEY_SPACE)) {
-            _registry.run_single_standalone_system(SystemTest());
-        }
-        
         _window.end_drawing();
+        for (auto &pair : _on_key_pressed) {
+            if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, pair.first)) {
+            }
+        }
+        for (auto &pair : _on_key_released) {
+            if (_window.is_key(raylib::Window::BUTTON_STATE::RELEASED, pair.first)) {
+            }
+        }
     }
     return 0;
 }

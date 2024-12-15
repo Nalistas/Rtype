@@ -46,7 +46,6 @@ target_sources(Client
         src/Animation.cpp
         src/AutoDestructTimer.cpp
         src/Speed.cpp
-        src/GraphicalCore.cpp
         src/Core.cpp
         src/Systems/SystemBackground.cpp
         src/Systems/SystemTime.cpp

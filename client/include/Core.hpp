@@ -117,11 +117,44 @@ class Core {
         void handle_create_entity(EntityType entity_type, std::size_t entity_id, const std::vector<char> &entity_data);
 
 
+        /**
+         * @brief Set the actions
+         * @param actions The actions
+         */
+        void set_actions(std::vector<char> const &actions);
+
+        /**
+         * @brief send an action to the server
+         * @param id_action The id of the action
+         * @param pressed The pressed state of the action
+         */
+        void send_action(unsigned int id_action);
+
+
+        //////////////////////////////////////////
+        //
+        // ATTRIBUTES
+        //
+        //////////////////////////////////////////
 
         raylib::Window _window;
         raylib::AudioDevice audioDevice;
         ecs::registry _registry;
 
+
+                            // key code, id_action
+        std::unordered_map<unsigned int, unsigned int> _on_key_pressed;
+        std::unordered_map<unsigned int, unsigned int> _on_key_released;
+
+
+        rtype_protocol::AsioApi _api;
+
+
+        //////////////////////////////////////////
+        //
+        // MAP OF FUNCTIONS
+        //
+        //////////////////////////////////////////
 
         std::unordered_map<EntityOperation, std::function<void(std::vector<char> &message)>> _operation_functions = {
             {EntityOperation::CREATE, [this](std::vector<char> &message){create_entity(message);}},

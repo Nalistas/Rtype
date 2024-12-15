@@ -56,26 +56,6 @@ Server::Server()
 
 int Server::loop() 
 {
-    // graphics_interface::Sprite sprite;
-    // auto e = _registry.create_entity();
-
-    // sprite.pos_x = 100;
-    // sprite.pos_y = 100;
-    // sprite.speed_x = 1;
-    // sprite.speed_y = 0;
-    // sprite.size_x = 100;
-    // sprite.size_y = 100;
-    // sprite.text_rect_width = 0;
-    // sprite.text_rect_height = 0;
-    // sprite.offset_x = 0;
-    // sprite.offset_y = 0;
-    // sprite.nb_frames = 1;
-    // sprite.ms_per_frame = 0;
-    // sprite.auto_destroy = 10000;
-    // sprite.path = "./orange.png";
-
-    // _registry.emplace_component<graphics_interface::Sprite>(e, sprite);
-
     while (true) {
         if (_api.has_data()) {
             rtype_protocol::AsioApi::UDP_DATA data = _api.get_data();
@@ -100,7 +80,6 @@ void Server::set_actions(std::vector<rtype::ClientAction> &actions)
     }
 }
 
-
 void Server::setNewClient(udp::endpoint const &endpoint)
 {
     int id_client = this->_game->createPlayer();
@@ -108,6 +87,7 @@ void Server::setNewClient(udp::endpoint const &endpoint)
     this->_reverse_clients[id_client] = endpoint;
 
     this->updateScreen(id_client);
+    this->setClientAction(id_client);
 }
 
 void Server::sendToClient(std::size_t id, std::vector<char> const &data)
@@ -119,6 +99,38 @@ void Server::sendToClient(std::size_t id, std::vector<char> const &data)
     client_data.sender_endpoint = endpoint;
     _api.reply_to(client_data);
 }
+
+
+
+
+
+
+
+void Server::setClientAction(std::size_t id_client)
+{
+    udp::endpoint endpoint = this->_reverse_clients[id_client];
+    // [key] [state (1 = pressed, 2 = released)] [id action that will be sent to the serv]
+    // [SIZE][ACTION][ID1][ID2][ID3][ID4][KEY1][KEY2][KEY3][KEY4][pressed]
+    // 
+    std::vector<char> data;
+
+    data.resize(11);
+    data[0] = 11;
+    data[1] = static_cast<char>(EntityOperation::ACTION);
+
+    for (auto key_binding: _keys) {
+        unsigned int id_action = key_binding.first;
+        unsigned int key_code = key_binding.second.first;
+        bool pressed = key_binding.second.second;
+
+        std::memcpy(&data[2], &id_action, sizeof(id_action));
+        std::memcpy(&data[6], &key_code, sizeof(key_code));
+        data[10] = static_cast<char>(pressed);
+        this->sendToClient(id_client, data);
+    }
+}
+
+
 
 
 
@@ -155,36 +167,6 @@ void Server::broadcast(char op_code, char entity_type, ecs::entity const &entity
         _api.reply_to(client_data);
     }
 }
-
-// void Server::broadcast(char op_code, char entity_type, std::vector<char> const &data)
-// {
-//     rtype_protocol::AsioApi::UDP_DATA client_data;
-//     client_data.data = data;
-
-//     // Calculer la taille totale du message
-//     std::size_t total_size = 1 + 1 + 1 + sizeof(std::size_t) + data.size(); // op_code, entity_type, entity_id, et données
-
-//     // Insérer la taille totale
-//     client_data.data.insert(client_data.data.begin(), static_cast<char>(total_size));
-
-//     // Insérer op_code et entity_type
-//     client_data.data.insert(client_data.data.begin() + 1, op_code);
-//     client_data.data.insert(client_data.data.begin() + 2, entity_type);
-
-//     // Si l'ID de l'entité est plus grand qu'un seul octet, vous devrez probablement envoyer plusieurs octets
-//     // pour l'ID de l'entité. Assurez-vous d'utiliser un format correct (par exemple, un entier sur 4 octets).
-//     std::size_t entity_id = 1234;  // Exemple d'ID d'entité (à remplacer par l'ID réel)
-//     client_data.data.insert(client_data.data.begin() + 3, reinterpret_cast<char*>(&entity_id), reinterpret_cast<char*>(&entity_id) + sizeof(entity_id));
-
-//     // Envoyer les données aux clients
-//     for (auto it = _clients.begin(); it != _clients.end(); ++it) {
-//         client_data.sender_endpoint = it->first;
-//         _api.reply_to(client_data);
-//     }
-// }
-
-
-
 
 void Server::broadcastCreate(ecs::entity entity)
 {

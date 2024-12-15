@@ -56,7 +56,7 @@ namespace rtype_protocol {
             /**
              * @brief Send a message to the server
              */
-            void send_message(const std::string &message);
+            void send_message(const std::vector<char> &message);
 
             /**
              * @brief Connect to the server

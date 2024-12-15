@@ -47,7 +47,8 @@ struct endpoint_hash_class {
 enum class EntityOperation {
     CREATE = 1,
     REMOVE = 2,
-    UPDATE = 3
+    UPDATE = 3,
+    ACTION = 4
 };
 
 enum class EntityType {
@@ -70,11 +71,10 @@ class Server {
         void broadcastUpdate(ecs::entity entity);
 
         void setNewClient(udp::endpoint const &endpoint);
-
         void sendToClient(std::size_t id, std::vector<char> const &data);
-
         void set_actions(std::vector<rtype::ClientAction> &actions);
         void updateScreen(std::size_t id_client);
+        void setClientAction(std::size_t id_client);
 
     private:
 
@@ -82,8 +82,8 @@ class Server {
 
         std::vector<std::unique_ptr<rtype::IClientActionHandler>> _handlers;
 
-        ///                                key, pressed -> id action
-        std::unordered_map<std::size_t, std::pair<std::size_t, bool>> _keys; 
+        ///                 id action                  key code, pressed
+        std::unordered_map<unsigned int, std::pair<unsigned int, bool>> _keys; 
 
 
         DLLdr::DLLoader<rtype::IGame> _dll;
