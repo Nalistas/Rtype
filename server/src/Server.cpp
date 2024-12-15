@@ -62,6 +62,8 @@ int Server::loop()
 
             if (_clients.find(data.sender_endpoint) == _clients.end()) {
                 this->setNewClient(data.sender_endpoint);
+            } else {
+                this->processMessage(data);
             }
         }
     }
@@ -104,11 +106,17 @@ void Server::sendToClient(std::size_t id, std::vector<char> const &data)
 
 
 
+/////////////////////////////////////////////////////////////////////////////
+//
+//      HANDLE MESSAGE FROM CLIENT
+//
+/////////////////////////////////////////////////////////////////////////////
+
+
 
 
 void Server::setClientAction(std::size_t id_client)
 {
-    udp::endpoint endpoint = this->_reverse_clients[id_client];
     // [key] [state (1 = pressed, 2 = released)] [id action that will be sent to the serv]
     // [SIZE][ACTION][ID1][ID2][ID3][ID4][KEY1][KEY2][KEY3][KEY4][pressed]
     // 
@@ -132,6 +140,29 @@ void Server::setClientAction(std::size_t id_client)
 
 
 
+void Server::processMessage(rtype_protocol::AsioApi::UDP_DATA const &data)
+{
+    // [SIZE][ID_ACTION1][ID_ACTION2][ID_ACTION3][ID_ACTION4][X_POS1][X_POS2][X_POS3][X_POS4][Y_POS1][Y_POS2][Y_POS3][Y_POS4]
+    std::size_t id_client = this->_clients[data.sender_endpoint];
+    unsigned int id_action = 0;
+    unsigned int mouse_x = 0;
+    unsigned int mouse_y = 0;
+    unsigned char size = data.data[0];
+
+    std::memcpy(&id_action, &data.data[1], sizeof(id_action));
+    std::memcpy(&mouse_x, &data.data[5], sizeof(mouse_x));
+    std::memcpy(&mouse_y, &data.data[9], sizeof(mouse_y));
+
+    (*(this->_handlers[id_action]))(id_client, mouse_x, mouse_y);
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//      BROADCAST
+//
+/////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -243,6 +274,22 @@ void Server::broadcastUpdate(ecs::entity entity)
         }
     }
 }
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+//      UPDATE
+//
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
 void Server::updateScreen(std::size_t id_client)
 {

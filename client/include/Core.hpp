@@ -14,6 +14,7 @@
 #include "Raylib/Sprite.hpp"
 #include "Speed.hpp"
 #include "Animation.hpp"
+#include "AsioApi.hpp"
 #include "AutoDestructTimer.hpp"
 
 #include <unordered_map>

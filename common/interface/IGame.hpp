@@ -26,7 +26,7 @@ namespace rtype {
         // mettre des references dans le constructeur
             virtual ~IClientActionHandler() = default;
 
-            virtual void operator()(std::size_t client) = 0;
+            virtual void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) = 0;
     };
 
     struct ClientAction {

@@ -76,6 +76,8 @@ class Server {
         void updateScreen(std::size_t id_client);
         void setClientAction(std::size_t id_client);
 
+        void processMessage(rtype_protocol::AsioApi::UDP_DATA const &data);
+
     private:
 
         std::size_t _time;

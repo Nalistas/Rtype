@@ -109,6 +109,7 @@ std::list<int> raylib::Window::get_mouse_buttons(BUTTON_STATE state) const
 void raylib::Window::start_drawing()
 {
     BeginDrawing();
+    this->clear({255, 255, 255, 255});
 }
 
 void raylib::Window::end_drawing()

@@ -19,7 +19,6 @@
 #include "Systems/SystemSpeed.hpp"
 
 #include "isystem.hpp"
-#include "AsioApi.hpp"
 #include "entity.hpp"
 #include "registry.hpp"
 #include "Speed.hpp"
@@ -193,8 +192,6 @@ void Core::update_entity(std::vector<char> &message) {
 void Core::set_actions(std::vector<char> const &actions)
 {
     // [SIZE][ACTION][ID1][ID2][ID3][ID4][KEY1][KEY2][KEY3][KEY4][PRESSED]
-    char size = static_cast<char>(actions[0]);
-
     unsigned int id_action = 0;
     unsigned int key_code = 0;
     bool pressed = false;
@@ -245,18 +242,12 @@ int Core::run(void)
         if (_api.has_data()) {
             rtype_protocol::AsioApi::UDP_DATA data = _api.get_data();
             std::cout << "Réception de données : ";
-            for (std::size_t i = 0; i < data.data.size(); i++) {
-                std::cout <<  static_cast<int>(data.data[i]) << " ";
-            }
-            std::cout << "from " << data.sender_endpoint.address() 
-                      << ":" << data.sender_endpoint.port() << std::endl;
-            std::cout << std::endl;
-
+            for (auto c: data.data)  std::cout <<  static_cast<int>(c) << " ";
+            std::cout << "from " << data.sender_endpoint.address() << ":" << data.sender_endpoint.port() << std::endl;
             process_message(data.data);
         }
 
         _window.start_drawing();
-        _window.clear({255, 255, 255, 255});
         _registry.run_systems();
         _window.end_drawing();
         for (auto &pair : _on_key_pressed) {
