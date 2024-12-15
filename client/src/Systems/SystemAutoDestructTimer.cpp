@@ -23,7 +23,7 @@ void SystemAutoDestructTimer::operator()(ecs::registry &registry, ecs::entity co
         std::chrono::system_clock::now()
     ).time_since_epoch().count();
 
-    if (auto_destruct_timer.get_created_time() + auto_destruct_timer.get_time_to_destruct() < now) {
-        registry.delete_entity(e);
+    if (static_cast<long int>(auto_destruct_timer.get_created_time() + auto_destruct_timer.get_time_to_destruct()) < now) {
+            registry.delete_entity(e);
     }
 }

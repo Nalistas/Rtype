@@ -40,7 +40,7 @@ void DLLdr::DLLoader<T>::close(void)
 }
 
 template<typename T>
-void DLLdr::DLLoader<T>::open(const std::string &filename)
+void DLLdr::DLLoader<T>::open(std::string filename)
 {
     close();
 
