@@ -67,13 +67,6 @@ Server::Server()
     _game->setRegistry(_registry);
 
     std::vector<rtype::ClientAction> actions = _game->getClientActionHandlers();
-    rtype::ClientAction test;
-    test.handler = std::make_unique<testHandler>();
-    test.key = 88;
-    test.pressed = true;
-
-    // Utilisez std::move pour transférer l'objet dans actions
-    actions.emplace_back(std::move(test));
     this->set_actions(actions);
 
     _api.start_server("5000");
