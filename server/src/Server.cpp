@@ -20,6 +20,24 @@ std::size_t endpoint_hash_class::operator()(const udp::endpoint &ep) const {
 
 Server::~Server() {}
 
+
+
+class testHandler : public rtype::IClientActionHandler {
+public:
+    testHandler() {}
+    ~testHandler() {}
+
+    void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override {
+        std::cout << "testHandler called" << std::endl;
+        std::cout << "client: " << client << std::endl;
+        std::cout << "mouse_x: " << mouse_x << std::endl;
+        std::cout << "mouse_y: " << mouse_y << std::endl;
+    }
+};
+
+
+
+
 Server::Server() 
     : _time(0), _api()
 {
@@ -49,6 +67,13 @@ Server::Server()
     _game->setRegistry(_registry);
 
     std::vector<rtype::ClientAction> actions = _game->getClientActionHandlers();
+    rtype::ClientAction test;
+    test.handler = std::make_unique<testHandler>();
+    test.key = 88;
+    test.pressed = true;
+
+    // Utilisez std::move pour transférer l'objet dans actions
+    actions.emplace_back(std::move(test));
     this->set_actions(actions);
 
     _api.start_server("5000");
@@ -88,6 +113,8 @@ void Server::setNewClient(udp::endpoint const &endpoint)
     this->_clients[endpoint] = id_client;
     this->_reverse_clients[id_client] = endpoint;
 
+    std::cout << "New client: " << id_client << std::endl;
+
     this->updateScreen(id_client);
     this->setClientAction(id_client);
 }
@@ -99,7 +126,9 @@ void Server::sendToClient(std::size_t id, std::vector<char> const &data)
 
     client_data.data = data;
     client_data.sender_endpoint = endpoint;
-    _api.reply_to(client_data);
+    for (int i = 0; i < 3; i++) {
+        _api.reply_to(client_data);
+    }
 }
 
 
@@ -122,6 +151,8 @@ void Server::setClientAction(std::size_t id_client)
     // 
     std::vector<char> data;
 
+    std::cout << "setClientAction" << std::endl;
+
     data.resize(11);
     data[0] = 11;
     data[1] = static_cast<char>(EntityOperation::ACTION);
@@ -130,10 +161,12 @@ void Server::setClientAction(std::size_t id_client)
         unsigned int id_action = key_binding.first;
         unsigned int key_code = key_binding.second.first;
         bool pressed = key_binding.second.second;
+        std::cout << "key " << key_code << " pressed: " << pressed << std::endl;
 
         std::memcpy(&data[2], &id_action, sizeof(id_action));
         std::memcpy(&data[6], &key_code, sizeof(key_code));
         data[10] = static_cast<char>(pressed);
+        std::cout << "send action " << id_action << " to client " << id_client << std::endl;
         this->sendToClient(id_client, data);
     }
 }

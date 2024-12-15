@@ -25,7 +25,8 @@
 enum class EntityOperation {
     CREATE = 1,
     REMOVE = 2,
-    UPDATE = 3
+    UPDATE = 3,
+    ACTION = 4
 };
 
 enum class EntityType {
@@ -160,7 +161,8 @@ class Core {
         std::unordered_map<EntityOperation, std::function<void(std::vector<char> &message)>> _operation_functions = {
             {EntityOperation::CREATE, [this](std::vector<char> &message){create_entity(message);}},
             {EntityOperation::REMOVE, [this](std::vector<char> &message){delete_entity(message);}},
-            {EntityOperation::UPDATE, [this](std::vector<char> &message){update_entity(message);}}
+            {EntityOperation::UPDATE, [this](std::vector<char> &message){update_entity(message);}},
+            {EntityOperation::ACTION, [this](std::vector<char> &message){set_actions(message);}}
         };
 
 

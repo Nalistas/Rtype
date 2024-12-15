@@ -30,7 +30,7 @@ namespace rtype {
     };
 
     struct ClientAction {
-        std::size_t key;
+        unsigned int key;
         bool pressed;
         std::unique_ptr<IClientActionHandler> handler;
     };

@@ -60,7 +60,7 @@ void Core::process_message(const std::vector<char> &message)
 {
     if (message.empty()) return;
     std::cout << "Traitement du message : ";
-    for (char c : message) std::cout << c;
+    for (char c : message) std::cout << static_cast<int>(c) << " ";
     std::cout << std::endl;
 
     EntityOperation op_code = static_cast<EntityOperation>(message[1]);
@@ -68,6 +68,7 @@ void Core::process_message(const std::vector<char> &message)
 
     auto it = _operation_functions.find(op_code);
     if (it != _operation_functions.end()) {
+        std::cout << "Traitement de l'op-code : " << static_cast<int>(op_code) << std::endl;
         it->second(const_cast<std::vector<char> &>(message));
     } else {
         std::cerr << "Op-code inconnu ou invalide : " << static_cast<int>(op_code) << std::endl;
@@ -200,6 +201,8 @@ void Core::set_actions(std::vector<char> const &actions)
     std::memcpy(&key_code, &actions[6], sizeof(key_code));
     pressed = static_cast<bool>(actions[10]);
 
+    std::cout << "key " << key_code << " pressed: " << pressed << std::endl;
+
     if (pressed) {
         _on_key_pressed[key_code] = id_action;
     } else {
@@ -251,11 +254,14 @@ int Core::run(void)
         _registry.run_systems();
         _window.end_drawing();
         for (auto &pair : _on_key_pressed) {
-            if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, pair.first)) {
+            std::cout << "check key " << pair.first << " pressed for " << pair.second << std::endl;
+            if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, pair.second)) {
+                this->send_action(pair.first);
             }
         }
         for (auto &pair : _on_key_released) {
-            if (_window.is_key(raylib::Window::BUTTON_STATE::RELEASED, pair.first)) {
+            if (_window.is_key(raylib::Window::BUTTON_STATE::RELEASED, pair.second)) {
+                this->send_action(pair.first);
             }
         }
     }
