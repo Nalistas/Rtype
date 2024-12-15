@@ -53,7 +53,7 @@ void DLLdr::DLLoader<T>::open(std::string filename)
     #else
         m_lib = dlopen(filename.c_str(), RTLD_LAZY);
         if (m_lib == nullptr) {
-            std::cerr << dlerror() << std::endl;
+            std::cerr << "Error loading library: " << dlerror() << std::endl;
             throw DLLdr::DLLoaderException(DLLdr::LibNotOpened);
         }
     #endif

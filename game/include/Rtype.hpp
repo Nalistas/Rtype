@@ -21,7 +21,7 @@
 class Rtype : public rtype::IGame {
     public:
         Rtype();
-        ~Rtype();
+        ~Rtype() = default;
 
         std::string getName(void) override;
 

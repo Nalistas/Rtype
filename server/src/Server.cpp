@@ -33,6 +33,7 @@ Server::Server()
     #else
         _dll.open("./libRtype.so");
     #endif
+    
     _game = _dll.getSym("gameElement");
 
     _registry->register_component<graphics_interface::Sprite>();
