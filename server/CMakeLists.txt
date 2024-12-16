@@ -29,6 +29,8 @@ add_executable(Server
     src/Thread/ScopeLock.cpp
     src/Thread/Mutex.cpp
     src/Thread/ConditionVariable.cpp
+    src/Systems/SystemGraphicSpriteSpeed.cpp
+    src/Systems/SystemTime.cpp
 )
 
 # Inclure les fichiers headers

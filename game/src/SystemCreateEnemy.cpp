@@ -7,6 +7,7 @@
 
 #include "SystemCreateEnemy.hpp"
 #include "GraphicsPrimitives.hpp"
+#include "Health.hpp"
 #include <iostream>
 
 SystemCreateEnemy::SystemCreateEnemy(std::function<void(ecs::entity const &)> broadcastCreate)
@@ -30,7 +31,7 @@ void SystemCreateEnemy::operator()(ecs::registry &registry, ecs::entity const &e
         srand(time(NULL));
 
         graphics_interface::Sprite enemySprite;
-        enemySprite.pos_x = rand() % (800 - 192);
+        enemySprite.pos_x = 700 + rand() % (800 - 700);
         enemySprite.pos_y = rand() % (600 - 213);
         enemySprite.offset_x = 0;
         enemySprite.offset_y = 0;
@@ -40,11 +41,12 @@ void SystemCreateEnemy::operator()(ecs::registry &registry, ecs::entity const &e
         enemySprite.size_y = 213;
         enemySprite.text_rect_width = 0;
         enemySprite.text_rect_height = 0;
-        enemySprite.speed_x = 0;
+        enemySprite.speed_x = -1;
         enemySprite.speed_y = 0;
         enemySprite.path = "./enemy.png";
 
         registry.emplace_component<graphics_interface::Sprite>(newEnemy, enemySprite);
+        registry.emplace_component<Health>(newEnemy, 10);
 
         _broadcastCreate(newEnemy);
 

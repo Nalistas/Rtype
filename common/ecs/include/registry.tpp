@@ -25,8 +25,12 @@ sparse_array<Component> &registry::register_component()
     std::type_index type = typeid(Component);
     if (this->_components_arrays.find(type) == this->_components_arrays.end()) {
         this->_components_arrays[type] = sparse_array<Component>();
-        this->_destructors[type] = [&](registry &reg, entity const &e) { 
-            if (auto& optional_component = reg.get_components<Component>()[e]; optional_component.has_value()) {
+        this->_destructors[type] = [&](registry &reg, entity const &e) {
+            auto &array = reg.get_components<Component>();
+            if (array.size() <= e) {
+                return;
+            }
+            if (auto& optional_component = array[e]; optional_component.has_value()) {
                 optional_component.reset();
             }
         };

@@ -7,7 +7,9 @@
 
 #include "registry.hpp"
 #include "GraphicsPrimitives.hpp"
+#include "SystemDeleteEnemy.hpp"
 #include "SystemCreateEnemy.hpp"
+#include "Health.hpp"
 #include "Rtype.hpp"
 #include <iostream>
 
@@ -26,7 +28,10 @@ void Rtype::setRegistry(std::shared_ptr<ecs::registry> reg)
 {
     _reg = reg;
     createBackground();
+    _reg->register_component<Health>();
     _reg->add_standalone_system(SystemCreateEnemy(_broadcastCreate));
+    _reg->add_system<graphics_interface::Sprite>(SystemDeleteEnemy(_broadcastDelete));
+
     // std::cout << "setRegistry" << std::endl;
     // ici aadd_system + register_component + toutes les fonction pour paramétrer le registry **DU SERVER**
 }
@@ -73,6 +78,7 @@ size_t Rtype::createPlayer(void)
     sprite.path = "./sheep.png";
 
     _reg->emplace_component<graphics_interface::Sprite>(newPlayer, sprite);
+    _reg->emplace_component<Health>(newPlayer, 100);
 
     /*
     --dans le setRegistry (qui sera renommé)-- 

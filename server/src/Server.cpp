@@ -6,7 +6,9 @@
 */
 
 #include "Server.hpp"
-#include "Systems/SpriteSystem.hpp"
+// #include "Systems/SpriteSystem.hpp"
+#include "Systems/SystemGraphicSpriteSpeed.hpp"
+#include "Systems/SystemTime.hpp"
 #include <string>
 
 #include "SafeDirectoryLister.hpp"
@@ -59,7 +61,9 @@ Server::Server()
     _registry->register_component<graphics_interface::Background>();
     _registry->register_component<graphics_interface::Music>();
     _registry->register_component<graphics_interface::Sound>();
-    _registry->add_system<graphics_interface::Sprite>(SpriteSystem(this->_time));
+    // _registry->add_system<graphics_interface::Sprite>(SpriteSystem(this->_time));
+    _registry->add_standalone_system(SystemTime(this->_time));
+    _registry->add_system<graphics_interface::Sprite>(SystemGraphicSpriteSpeed(this->_time));
 
     _game->setBroadcastCreate(std::bind(&Server::broadcastCreate, this, std::placeholders::_1));
     _game->setBroadcastDelete(std::bind(&Server::broadcastDelete, this, std::placeholders::_1));

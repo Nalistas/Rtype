@@ -29,9 +29,8 @@ target_sources(Rtype
         entrypoints.cpp
         src/Rtype.cpp
         src/SystemCreateEnemy.cpp
-        # src/RtypeBullet.cpp
-        # src/RtypePlayer.cpp
-        # src/RtypeEnemy.cpp
+        src/SystemDeleteEnemy.cpp
+        src/Health.cpp
 )
 
 target_compile_options(Rtype

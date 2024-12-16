@@ -17,8 +17,6 @@ SystemSpeed::~SystemSpeed()
 {
 }
 
-// #include <iostream>
-
 void SystemSpeed::operator()(ecs::registry &registry, ecs::entity const &e, Speed &speed, raylib::Sprite &sprite)
 {
     raylib::Vector2 pos = sprite.get_position();
