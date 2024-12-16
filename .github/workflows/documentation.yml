@@ -30,16 +30,6 @@ jobs:
       - name: Build documentation
         run: doxygen
 
-      - name: Ensure gh-pages branch exists
-        run: |
-          git fetch origin
-          if ! git show-ref --verify --quiet refs/heads/gh-pages; then
-            git checkout -b gh-pages
-            git push origin gh-pages
-          else
-            git checkout gh-pages
-          fi
-
       - name: Deploy README to gh-pages
         run: |
           cp README.md docs/  # Copy README.md into docs folder, since the action expects files to be in a folder
