@@ -141,9 +141,7 @@ void Server::sendToClient(std::size_t id, std::vector<char> const &data)
 
     client_data.data = data;
     client_data.sender_endpoint = endpoint;
-    for (int i = 0; i < 3; i++) {
-        _api.reply_to(client_data);
-    }
+    _api.reply_to(client_data);
 }
 
 
@@ -173,7 +171,7 @@ void Server::setClientAction(std::size_t id_client)
     data[1] = static_cast<char>(EntityOperation::ACTION);
 
     for (auto key_binding: _keys) {
-        unsigned int id_action = key_binding.first;
+        unsigned int id_action = key_binding.first + static_cast<unsigned int>(PREDEFINED_ACTIONS::NB_ACTIONS);
         unsigned int key_code = key_binding.second.first;
         bool pressed = key_binding.second.second;
         std::cout << "key " << key_code << " pressed: " << pressed << std::endl;
@@ -197,7 +195,28 @@ void Server::processMessage(rtype_protocol::AsioApi::UDP_DATA const &data)
     unsigned int mouse_y = 0;
     unsigned char size = data.data[0];
 
+    if (size < sizeof(id_action) + 1) {
+        return;
+    }
     std::memcpy(&id_action, &data.data[1], sizeof(id_action));
+
+    if (id_action < static_cast<unsigned int>(PREDEFINED_ACTIONS::NB_ACTIONS)) {
+        PREDEFINED_ACTIONS action = static_cast<PREDEFINED_ACTIONS>(id_action);
+
+        if (action == PREDEFINED_ACTIONS::DISCONNECT) {
+            this->_game->deletePlayer(id_client);
+            this->_clients.erase(data.sender_endpoint);
+            this->_reverse_clients.erase(id_client);
+        }
+        if (action == PREDEFINED_ACTIONS::RESCREEN) {
+            this->updateScreen(id_client);
+        }
+        return;
+    }
+    if (size < sizeof(id_action) + sizeof(mouse_x) + sizeof(mouse_y) + 1) {
+        return;
+    }
+    id_action -= static_cast<unsigned int>(PREDEFINED_ACTIONS::NB_ACTIONS);
     std::memcpy(&mouse_x, &data.data[5], sizeof(mouse_x));
     std::memcpy(&mouse_y, &data.data[9], sizeof(mouse_y));
 

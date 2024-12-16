@@ -5,7 +5,7 @@
 ** ActionMoveUp
 */
 
-#include "ActionMoveDownReleased.hpp"
+#include "Actions/ActionMoveDownReleased.hpp"
 #include "GraphicsPrimitives.hpp"
 
 ActionMoveDownReleased::ActionMoveDownReleased(std::shared_ptr<ecs::registry> registry, std::function<void(ecs::entity const &)> broadcastUpdate)

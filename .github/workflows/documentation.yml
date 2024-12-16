@@ -18,7 +18,6 @@ jobs:
           sudo apt update
           sudo apt install graphviz -y
           sudo apt install doxygen -y
-
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -29,34 +28,6 @@ jobs:
 
       - name: Build documentation
         run: doxygen
-
-      - name: Ensure gh-pages branch exists
-        run: |
-          git fetch origin
-          if ! git show-ref --verify --quiet refs/heads/gh-pages; then
-            git checkout --orphan gh-pages
-            git rm -rf .
-            touch .gitignore
-            echo "# GitHub Pages" > .gitignore
-            git add .gitignore
-            git commit -m "Initialize gh-pages branch"
-            git push origin gh-pages
-          else
-            git checkout gh-pages
-            git pull origin gh-pages --rebase
-          fi
-
-
-
-      - name: Deploy README to gh-pages
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          cp README.md docs/  # Copy README.md into docs folder, since the action expects files to be in a folder
-          git add docs/README.md
-          git diff-index --quiet HEAD || git commit -m "Update README.md"
-          git push origin gh-pages
-
       - name: Deploy documentation
         uses: JamesIves/github-pages-deploy-action@v4
         with:

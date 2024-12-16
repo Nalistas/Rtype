@@ -5,19 +5,19 @@
 ** ActionMoveUp
 */
 
-#include "ActionMoveRightReleased.hpp"
+#include "Actions/ActionMoveLeftReleased.hpp"
 #include "GraphicsPrimitives.hpp"
 
-ActionMoveRightReleased::ActionMoveRightReleased(std::shared_ptr<ecs::registry> registry, std::function<void(ecs::entity const &)> broadcastUpdate)
+ActionMoveLeftReleased::ActionMoveLeftReleased(std::shared_ptr<ecs::registry> registry, std::function<void(ecs::entity const &)> broadcastUpdate)
     : _registry(registry), _broadcastUpdate(broadcastUpdate)
 {
 }
 
-ActionMoveRightReleased::~ActionMoveRightReleased()
+ActionMoveLeftReleased::~ActionMoveLeftReleased()
 {
 }
 
-void ActionMoveRightReleased::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
+void ActionMoveLeftReleased::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
 {
     if (_registry->get_components<graphics_interface::Sprite>()[client].has_value()) {
         _registry->get_components<graphics_interface::Sprite>()[client].value().speed_x = 0;

@@ -8,6 +8,15 @@
 #ifndef SERVER_HPP_
     #define SERVER_HPP_
 
+
+enum class PREDEFINED_ACTIONS {
+    CONNECT = 0,
+    DISCONNECT = 1,
+    RESCREEN = 2,
+    KEEPALIVE = 3,
+    NB_ACTIONS = 4
+};
+
 #include <iostream>
 #include <unordered_set>
 #include <asio.hpp>

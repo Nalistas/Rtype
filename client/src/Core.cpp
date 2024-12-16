@@ -277,5 +277,6 @@ int Core::run(void)
             }
         }
     }
+    this->send_action(1);
     return 0;
 }
