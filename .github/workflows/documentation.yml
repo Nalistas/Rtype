@@ -30,6 +30,24 @@ jobs:
       - name: Build documentation
         run: doxygen
 
+      - name: Ensure gh-pages branch exists
+        run: |
+          git fetch origin
+          if ! git show-ref --verify --quiet refs/heads/gh-pages; then
+            git checkout --orphan gh-pages
+            git rm -rf .
+            touch .gitignore
+            echo "# GitHub Pages" > .gitignore
+            git add .gitignore
+            git commit -m "Initialize gh-pages branch"
+            git push origin gh-pages
+          else
+            git checkout gh-pages
+            git pull origin gh-pages --rebase
+          fi
+
+
+
       - name: Deploy README to gh-pages
         run: |
           git config --global user.name "github-actions[bot]"
