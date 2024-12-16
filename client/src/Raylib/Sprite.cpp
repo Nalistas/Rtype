@@ -81,8 +81,14 @@ void raylib::Sprite::setComponent(graphics_interface::Sprite const &sprite)
 {
 
     std::cout << "-----------------------------------------" << std::endl;
-    _texture.reset();
-    _texture = std::make_unique<TextureCpp>(sprite.path);
+    if (!_texture) {
+        _texture = std::make_unique<TextureCpp>(sprite.path);
+    } else {
+        if (_texture->get_texture_path() != sprite.path) {
+            _texture.reset();
+            _texture = std::make_unique<TextureCpp>(sprite.path);
+        }
+    }
     if (_texture->get_texture().id == 0) {
         throw std::runtime_error("Failed to load texture: " + sprite.path);
     }
