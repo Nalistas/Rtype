@@ -1,0 +1,32 @@
+title This is a title
+
+participant Game
+participant Server
+
+activate Server
+Game<-Server:Open the game.so
+Game->Server:Gives a unique_ptr of an IGame\n<see common/interface/IGame.hpp>
+
+box over Server:register predefined Composant
+box over Server:Add predefined systems
+Game<-Server:Give the Broadcast API to the game
+Game<-Server:Give the register to the game so the game\ncan register everything he need to run\n<See method IGame::setRegister>
+activate Game
+box over Game:register Component
+box over Game:add systems
+box over Game:keep the ref of the register
+space 
+deactivate Game
+Game<-Server:Ask for the actions for the client\nto interact with the game
+activate Game
+Game-->Server:give the actions
+deactivate Game
+loop main server loop
+alt check for action from clients
+Server->Server:Search for associated action\nand execute it
+activate Server
+space 
+deactivate Server
+end
+Server->Server:run the systems registered\nin the registry
+end
