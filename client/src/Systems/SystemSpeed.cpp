@@ -26,4 +26,5 @@ void SystemSpeed::operator()(ecs::registry &registry, ecs::entity const &e, Spee
     pos.x += speed.getSpeed().x * (static_cast<float>(this->_elpased_time) / 10.0f);
     pos.y += speed.getSpeed().y * (static_cast<float>(this->_elpased_time) / 10.0f);
     sprite.set_position(pos.x, pos.y);
+    std::cout << "e: " << e << " : " << pos.x << " " << pos.y << std::endl;
 }

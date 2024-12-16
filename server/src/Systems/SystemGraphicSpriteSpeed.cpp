@@ -25,4 +25,5 @@ void SystemGraphicSpriteSpeed::operator()(ecs::registry &registry, ecs::entity c
     (void)e;
     sprite.pos_x += sprite.speed_x * (static_cast<float>(this->_elpased_time) / 10.0f);
     sprite.pos_y += sprite.speed_y * (static_cast<float>(this->_elpased_time) / 10.0f);
+    std::cout << "e: " << e << " : " << sprite.pos_x << " " << sprite.pos_y << std::endl;
 }
