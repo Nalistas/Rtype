@@ -139,15 +139,14 @@ void Core::update_sprite_component(ecs::entity entity, const std::vector<char> &
         graphics_interface::Sprite sprite;
         sprite.decode(entity_data);
         component->setComponent(sprite);
-        if (sprite.speed_x != 0 || sprite.speed_y != 0) {
-            raylib::Vector2 speed = {sprite.speed_x, sprite.speed_y};
-            auto &speed_comp = _registry.get_components<Speed>()[entity];
+
+        raylib::Vector2 speed = {sprite.speed_x, sprite.speed_y};
+        auto &speed_comp = _registry.get_components<Speed>()[entity];
             
-            if (!speed_comp.has_value()) {
-                _registry.emplace_component<Speed>(entity);
-            }
-            speed_comp->setSpeed(speed);
+        if (!speed_comp.has_value()) {
+            _registry.emplace_component<Speed>(entity);
         }
+        speed_comp->setSpeed(speed);
     }
 }
 
@@ -212,11 +211,15 @@ void Core::set_actions(std::vector<char> const &actions)
 
     std::cout << "key " << key_code << " pressed: " << pressed << std::endl;
 
+    std::cout << "---------------------------------" << std::endl;
     if (pressed) {
+        std::cout << "pressed" << std::endl;
         _on_key_pressed[key_code] = id_action;
     } else {
+        std::cout << "released" << std::endl;
         _on_key_released[key_code] = id_action;
     }
+    std::cout << "---------------------------------" << std::endl;
 }
 
 
@@ -263,14 +266,14 @@ int Core::run(void)
         _window.start_drawing();
         _registry.run_systems();
         _window.end_drawing();
-        for (auto &pair : _on_key_pressed) {
-            if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, pair.second)) {
-                this->send_action(pair.first);
+        for (auto &pair : _on_key_released) {
+            if (_window.is_key(raylib::Window::BUTTON_STATE::RELEASED, pair.first)) {
+                this->send_action(pair.second);
             }
         }
-        for (auto &pair : _on_key_released) {
-            if (_window.is_key(raylib::Window::BUTTON_STATE::RELEASED, pair.second)) {
-                this->send_action(pair.first);
+        for (auto &pair : _on_key_pressed) {
+            if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, pair.first)) {
+                this->send_action(pair.second);
             }
         }
     }

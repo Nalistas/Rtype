@@ -111,11 +111,15 @@ int Server::loop()
 void Server::set_actions(std::vector<rtype::ClientAction> &actions)
 {
     for (std::size_t i = 0; i < actions.size(); i++) {
-        _keys[actions[i].key] = std::make_pair(_handlers.size(), actions[i].pressed);
+        std::cout << "set_actions" << std::endl;
+        _keys[_handlers.size()] = std::make_pair(actions[i].key, actions[i].pressed);
         if (actions[i].handler) {
             _handlers.push_back(std::move(actions[i].handler));
         }
     }
+    std::cout << "set_actions end" << std::endl;
+    std::cout << "Handlers size: " << _handlers.size() << std::endl;
+    std::cout << "Keys size: " << _keys.size() << std::endl;
 }
 
 void Server::setNewClient(udp::endpoint const &endpoint)

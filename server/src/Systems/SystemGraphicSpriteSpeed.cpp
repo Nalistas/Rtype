@@ -8,7 +8,6 @@
 #include "Systems/SystemGraphicSpriteSpeed.hpp"
 #include <iostream>
 
-
 SystemGraphicSpriteSpeed::SystemGraphicSpriteSpeed(std::size_t const &elpased_time) :
     _elpased_time(elpased_time)
 {

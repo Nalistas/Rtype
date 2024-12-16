@@ -9,6 +9,8 @@
 #include <chrono>
 #include <iostream>
 
+static std::size_t nb_calls = 0;
+
 SystemTime::SystemTime(std::size_t &time_to_update) :
     _last_update(std::chrono::system_clock::now()), _elpased_time(time_to_update)
 {
@@ -29,4 +31,6 @@ void SystemTime::operator()(ecs::registry &r __attribute__((unused)), ecs::entit
     }
     _elpased_time = elapsed;
     this->_last_update = now;
+    // nb_calls++;
+    // std::cout << "nb_calls: " << nb_calls << std::endl;
 }
