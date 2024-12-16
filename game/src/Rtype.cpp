@@ -7,18 +7,22 @@
 
 #include "registry.hpp"
 #include "GraphicsPrimitives.hpp"
-#include "SystemDeleteEnemy.hpp"
-#include "SystemCreateEnemy.hpp"
-#include "ActionMoveUp.hpp"
-#include "ActionMoveUpReleased.hpp"
-#include "ActionMoveDown.hpp"
-#include "ActionMoveDownReleased.hpp"
-#include "ActionMoveLeft.hpp"
-#include "ActionMoveRight.hpp"
-#include "ActionMoveRightReleased.hpp"
-#include "ActionMoveLeftReleased.hpp"
+#include "Systems/SystemDeleteEnemy.hpp"
+#include "Systems/SystemCreateEnemy.hpp"
+#include "Actions/ActionMoveUp.hpp"
+#include "Actions/ActionMoveUpReleased.hpp"
+#include "Actions/ActionMoveDown.hpp"
+#include "Actions/ActionMoveDownReleased.hpp"
+#include "Actions/ActionMoveLeft.hpp"
+#include "Actions/ActionMoveRight.hpp"
+#include "Actions/ActionMoveRightReleased.hpp"
+#include "Actions/ActionMoveLeftReleased.hpp"
+#include "Actions/ActionCreateBullet.hpp"
+#include "Systems/SystemManageBullets.hpp"
+#include "Camp.hpp"
 #include "Health.hpp"
 #include "Rtype.hpp"
+#include "Damage.hpp"
 #include <iostream>
 
 Rtype::Rtype() : _reg(nullptr), _broadcastCreate(nullptr), _broadcastDelete(nullptr), _broadcastUpdate(nullptr)
@@ -37,8 +41,11 @@ void Rtype::setRegistry(std::shared_ptr<ecs::registry> reg)
     _reg = reg;
     createBackground();
     _reg->register_component<Health>();
+    _reg->register_component<Damage>();
+    _reg->register_component<Camp>();
     _reg->add_standalone_system(SystemCreateEnemy(_broadcastCreate));
-    _reg->add_system<graphics_interface::Sprite>(SystemDeleteEnemy(_broadcastDelete));
+    _reg->add_system<graphics_interface::Sprite, Camp>(SystemDeleteEnemy(_broadcastDelete));
+    _reg->add_system<graphics_interface::Sprite, Camp, Damage>(SystemManageBullets(_broadcastDelete));
 
     // std::cout << "setRegistry" << std::endl;
     // ici aadd_system + register_component + toutes les fonction pour paramétrer le registry **DU SERVER**
@@ -70,6 +77,7 @@ std::vector<rtype::ClientAction> Rtype::getClientActionHandlers(void)
     actions.push_back(rtype::ClientAction{263, 0, std::make_unique<ActionMoveLeftReleased>(_reg, _broadcastUpdate)});
     actions.push_back(rtype::ClientAction{262, 1, std::make_unique<ActionMoveRight>(_reg, _broadcastUpdate)});
     actions.push_back(rtype::ClientAction{262, 0, std::make_unique<ActionMoveRightReleased>(_reg, _broadcastUpdate)});
+    actions.push_back(rtype::ClientAction{32, 1, std::make_unique<ActionCreateBullet>(_reg, _broadcastCreate)});
     return actions;  // Implémenter les handlers ici
 }
 
@@ -94,6 +102,7 @@ size_t Rtype::createPlayer(void)
     sprite.path = "./sheep.png";
 
     _reg->emplace_component<graphics_interface::Sprite>(newPlayer, sprite);
+    _reg->emplace_component<Camp>(newPlayer, 0);
     _reg->emplace_component<Health>(newPlayer, 100);
 
     /*

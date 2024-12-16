@@ -28,17 +28,22 @@ target_sources(Rtype
     PRIVATE
         entrypoints.cpp
         src/Rtype.cpp
-        src/SystemCreateEnemy.cpp
-        src/SystemDeleteEnemy.cpp
+        src/Systems/SystemCreateEnemy.cpp
+        src/Systems/SystemDeleteEnemy.cpp
+        src/Systems/SystemManageBullets.cpp
+        src/Systems/SystemComputeSingleBullet.cpp
         src/Health.cpp
-        src/ActionMoveUp.cpp
-        src/ActionMoveUpReleased.cpp
-        src/ActionMoveDown.cpp 
-        src/ActionMoveDownReleased.cpp
-        src/ActionMoveLeft.cpp
-        src/ActionMoveLeftReleased.cpp
-        src/ActionMoveRight.cpp
-        src/ActionMoveRightReleased.cpp
+        src/Camp.cpp
+        src/Damage.cpp
+        src/Actions/ActionMoveUp.cpp
+        src/Actions/ActionMoveUpReleased.cpp
+        src/Actions/ActionMoveDown.cpp 
+        src/Actions/ActionMoveDownReleased.cpp
+        src/Actions/ActionMoveLeft.cpp
+        src/Actions/ActionMoveLeftReleased.cpp
+        src/Actions/ActionMoveRight.cpp
+        src/Actions/ActionMoveRightReleased.cpp
+        src/Actions/ActionCreateBullet.cpp
 )
 
 target_compile_options(Rtype

@@ -2,25 +2,25 @@
 ** EPITECH PROJECT, 2024
 ** mirror-rtype
 ** File description:
-** ActionMoveUp
+** ActionMoveRight
 */
 
-#include "ActionMoveLeftReleased.hpp"
+#include "Actions/ActionMoveRight.hpp"
 #include "GraphicsPrimitives.hpp"
 
-ActionMoveLeftReleased::ActionMoveLeftReleased(std::shared_ptr<ecs::registry> registry, std::function<void(ecs::entity const &)> broadcastUpdate)
+ActionMoveRight::ActionMoveRight(std::shared_ptr<ecs::registry> registry, std::function<void(ecs::entity const &)> broadcastUpdate)
     : _registry(registry), _broadcastUpdate(broadcastUpdate)
 {
 }
 
-ActionMoveLeftReleased::~ActionMoveLeftReleased()
+ActionMoveRight::~ActionMoveRight()
 {
 }
 
-void ActionMoveLeftReleased::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
+void ActionMoveRight::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
 {
     if (_registry->get_components<graphics_interface::Sprite>()[client].has_value()) {
-        _registry->get_components<graphics_interface::Sprite>()[client].value().speed_x = 0;
+        _registry->get_components<graphics_interface::Sprite>()[client].value().speed_x = 2;
         _broadcastUpdate(ecs::entity(client));
         std::cout << static_cast<int>(_registry->get_components<graphics_interface::Sprite>()[client].value().speed_x) << std::endl;
     }

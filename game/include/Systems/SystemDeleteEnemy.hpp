@@ -8,18 +8,19 @@
 #include "isystem.hpp"
 #include "registry.hpp"
 #include "GraphicsPrimitives.hpp"
+#include "Camp.hpp"
 
 #include <functional>
 
 #ifndef SYSTEMDELETEENEMY_HPP_
 #define SYSTEMDELETEENEMY_HPP_
 
-class SystemDeleteEnemy: public ecs::isystem<graphics_interface::Sprite>  {
+class SystemDeleteEnemy: public ecs::isystem<graphics_interface::Sprite, Camp> {
     public:
         SystemDeleteEnemy(std::function<void(ecs::entity const &)> broadcastDelete);
         ~SystemDeleteEnemy();
 
-        void operator()(ecs::registry &registry, ecs::entity const &e, graphics_interface::Sprite &sprite);
+        void operator()(ecs::registry &registry, ecs::entity const &e, graphics_interface::Sprite &sprite, Camp &camp);
 
     protected:
     private:

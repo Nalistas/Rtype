@@ -5,9 +5,11 @@
 ** SystemCreateEnemy
 */
 
-#include "SystemCreateEnemy.hpp"
+#include "Systems/SystemCreateEnemy.hpp"
 #include "GraphicsPrimitives.hpp"
 #include "Health.hpp"
+#include "Camp.hpp"
+#include "Damage.hpp"
 #include <iostream>
 
 SystemCreateEnemy::SystemCreateEnemy(std::function<void(ecs::entity const &)> broadcastCreate)
@@ -37,17 +39,19 @@ void SystemCreateEnemy::operator()(ecs::registry &registry, ecs::entity const &e
         enemySprite.offset_y = 0;
         enemySprite.nb_frames = 1;
         enemySprite.ms_per_frame = 0;
-        enemySprite.size_x = 192;
-        enemySprite.size_y = 213;
+        enemySprite.size_x = 80;
+        enemySprite.size_y = 100;
         enemySprite.text_rect_width = 0;
         enemySprite.text_rect_height = 0;
         enemySprite.speed_x = -1;
         enemySprite.speed_y = 0;
         enemySprite.path = "./enemy.png";
 
-        std::cout << "create enemy at " << enemySprite.pos_x << std::endl;
+        std::cout << "create enemy at " << newEnemy << std::endl;
 
         registry.emplace_component<graphics_interface::Sprite>(newEnemy, enemySprite);
+        registry.emplace_component<Camp>(newEnemy, 1);
+        registry.emplace_component<Damage>(newEnemy, 10);
         registry.emplace_component<Health>(newEnemy, 10);
 
         _broadcastCreate(newEnemy);
