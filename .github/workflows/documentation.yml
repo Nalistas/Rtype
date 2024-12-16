@@ -30,42 +30,6 @@ jobs:
       - name: Build documentation
         run: doxygen
 
-To fix the Deploy README step using the JamesIves/github-pages-deploy-action and properly push the README.md file to the gh-pages branch, you can adjust the syntax to use the correct input parameters for this action.
-
-Here's the corrected version of the workflow:
-
-name: Deploy static content to Pages
-
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-permissions:
-  contents: write
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install dependencies
-        run: |
-          sudo apt update
-          sudo apt install graphviz -y
-          sudo apt install doxygen -y
-
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          submodules: 'recursive'
-
-      - name: Prepare docs directory
-        run: mkdir -p docs
-
-      - name: Build documentation
-        run: doxygen
-
       - name: Ensure gh-pages branch exists
         run: |
           git fetch origin
