@@ -20,20 +20,10 @@
 // }
 
 #include "Server.hpp"
-#include "Thread/ThreadPool.hpp"
+#include <memory>
 
 int main() {
-    // Server server;
-    // server.loop();
-
-    thread::ThreadPool<std::function<int()>, int> pool(4);
-
-    pool.run();
-
-    pool.addTask([]() {
-        std::cout << "Hello, world!" << std::endl;
-        return 0;
-    });
-    pool.waitUntilComplete();
+    Server server;
+    server.loop();
     return 0;
 }
