@@ -173,7 +173,7 @@ void Server::setClientAction(std::size_t id_client)
     data[1] = static_cast<char>(EntityOperation::ACTION);
 
     for (auto key_binding: _keys) {
-        unsigned int id_action = key_binding.first;
+        unsigned int id_action = key_binding.first + static_cast<unsigned int>(PREDEFINED_ACTIONS::NB_ACTIONS);
         unsigned int key_code = key_binding.second.first;
         bool pressed = key_binding.second.second;
         std::cout << "key " << key_code << " pressed: " << pressed << std::endl;
@@ -198,6 +198,21 @@ void Server::processMessage(rtype_protocol::AsioApi::UDP_DATA const &data)
     unsigned char size = data.data[0];
 
     std::memcpy(&id_action, &data.data[1], sizeof(id_action));
+
+    if (id_action < static_cast<unsigned int>(PREDEFINED_ACTIONS::NB_ACTIONS)) {
+        PREDEFINED_ACTIONS action = static_cast<PREDEFINED_ACTIONS>(id_action);
+
+        if (action == PREDEFINED_ACTIONS::DISCONNECT) {
+            this->_game->deletePlayer(id_client);
+            this->_clients.erase(data.sender_endpoint);
+            this->_reverse_clients.erase(id_client);
+        }
+        if (action == PREDEFINED_ACTIONS::RESCREEN) {
+            this->updateScreen(id_client);
+        }
+        return;
+    }
+    id_action -= static_cast<unsigned int>(PREDEFINED_ACTIONS::NB_ACTIONS);
     std::memcpy(&mouse_x, &data.data[5], sizeof(mouse_x));
     std::memcpy(&mouse_y, &data.data[9], sizeof(mouse_y));
 
