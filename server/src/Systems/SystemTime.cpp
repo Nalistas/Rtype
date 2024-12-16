@@ -23,7 +23,7 @@ void SystemTime::operator()(ecs::registry &r __attribute__((unused)), ecs::entit
     auto now = std::chrono::system_clock::now();
     auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - this->_last_update).count();
 
-    if (elapsed < 5) {
+    if (elapsed < 16) {
         _elpased_time = 0;
         return;
     }
