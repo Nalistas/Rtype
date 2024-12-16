@@ -45,6 +45,8 @@ void SystemCreateEnemy::operator()(ecs::registry &registry, ecs::entity const &e
         enemySprite.speed_y = 0;
         enemySprite.path = "./enemy.png";
 
+        std::cout << "create enemy at " << enemySprite.pos_x << std::endl;
+
         registry.emplace_component<graphics_interface::Sprite>(newEnemy, enemySprite);
         registry.emplace_component<Health>(newEnemy, 10);
 

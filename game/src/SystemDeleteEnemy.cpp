@@ -18,8 +18,8 @@ SystemDeleteEnemy::~SystemDeleteEnemy()
 
 void SystemDeleteEnemy::operator()(ecs::registry &registry, ecs::entity const &e, graphics_interface::Sprite &sprite)
 {
-    // std::cout << sprite.pos_x << std::endl;
     if (sprite.pos_x < 10) {
+        std::cout << sprite.pos_x << std::endl;
         std::cout << "delete enemy" << std::endl;
         _broadcastDelete(e);
         registry.delete_entity(e);
