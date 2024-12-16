@@ -32,6 +32,7 @@ target_sources(Rtype
         src/SystemDeleteEnemy.cpp
         src/Health.cpp
         src/ActionMoveUp.cpp
+        src/ActionMoveUpReleased.cpp
 )
 
 target_compile_options(Rtype

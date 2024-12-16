@@ -10,6 +10,7 @@
 #include "SystemDeleteEnemy.hpp"
 #include "SystemCreateEnemy.hpp"
 #include "ActionMoveUp.hpp"
+#include "ActionMoveUpReleased.hpp"
 #include "Health.hpp"
 #include "Rtype.hpp"
 #include <iostream>
@@ -56,6 +57,7 @@ std::vector<rtype::ClientAction> Rtype::getClientActionHandlers(void)
 {
     std::vector<rtype::ClientAction> actions;
     actions.push_back(rtype::ClientAction{265, 1, std::make_unique<ActionMoveUp>(_reg, _broadcastUpdate)});
+    actions.push_back(rtype::ClientAction{265, 0, std::make_unique<ActionMoveUpReleased>(_reg, _broadcastUpdate)});
     return actions;  // Implémenter les handlers ici
 }
 
