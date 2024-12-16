@@ -139,6 +139,15 @@ void Core::update_sprite_component(ecs::entity entity, const std::vector<char> &
         graphics_interface::Sprite sprite;
         sprite.decode(entity_data);
         component->setComponent(sprite);
+        if (sprite.speed_x != 0 || sprite.speed_y != 0) {
+            raylib::Vector2 speed = {sprite.speed_x, sprite.speed_y};
+            auto &speed_comp = _registry.get_components<Speed>()[entity];
+            
+            if (!speed_comp.has_value()) {
+                _registry.emplace_component<Speed>(entity);
+            }
+            speed_comp->setSpeed(speed);
+        }
     }
 }
 

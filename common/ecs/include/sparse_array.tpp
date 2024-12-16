@@ -69,6 +69,7 @@ sparse_array<Component>& sparse_array<Component>::operator=(sparse_array&& other
 template <typename Component>
 typename sparse_array<Component>::reference_type sparse_array<Component>::operator[](size_t idx)
 {
+    ensure_size(idx);
     return _data.at(idx);
 }
 
