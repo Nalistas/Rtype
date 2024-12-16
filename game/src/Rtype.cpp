@@ -11,6 +11,12 @@
 #include "SystemCreateEnemy.hpp"
 #include "ActionMoveUp.hpp"
 #include "ActionMoveUpReleased.hpp"
+#include "ActionMoveDown.hpp"
+#include "ActionMoveDownReleased.hpp"
+#include "ActionMoveLeft.hpp"
+#include "ActionMoveRight.hpp"
+#include "ActionMoveRightReleased.hpp"
+#include "ActionMoveLeftReleased.hpp"
 #include "Health.hpp"
 #include "Rtype.hpp"
 #include <iostream>
@@ -58,6 +64,12 @@ std::vector<rtype::ClientAction> Rtype::getClientActionHandlers(void)
     std::vector<rtype::ClientAction> actions;
     actions.push_back(rtype::ClientAction{265, 1, std::make_unique<ActionMoveUp>(_reg, _broadcastUpdate)});
     actions.push_back(rtype::ClientAction{265, 0, std::make_unique<ActionMoveUpReleased>(_reg, _broadcastUpdate)});
+    actions.push_back(rtype::ClientAction{264, 1, std::make_unique<ActionMoveDown>(_reg, _broadcastUpdate)});
+    actions.push_back(rtype::ClientAction{264, 0, std::make_unique<ActionMoveDownReleased>(_reg, _broadcastUpdate)});
+    actions.push_back(rtype::ClientAction{263, 1, std::make_unique<ActionMoveLeft>(_reg, _broadcastUpdate)});
+    actions.push_back(rtype::ClientAction{263, 0, std::make_unique<ActionMoveLeftReleased>(_reg, _broadcastUpdate)});
+    actions.push_back(rtype::ClientAction{262, 1, std::make_unique<ActionMoveRight>(_reg, _broadcastUpdate)});
+    actions.push_back(rtype::ClientAction{262, 0, std::make_unique<ActionMoveRightReleased>(_reg, _broadcastUpdate)});
     return actions;  // Implémenter les handlers ici
 }
 

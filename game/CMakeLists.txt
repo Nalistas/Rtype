@@ -33,6 +33,12 @@ target_sources(Rtype
         src/Health.cpp
         src/ActionMoveUp.cpp
         src/ActionMoveUpReleased.cpp
+        src/ActionMoveDown.cpp 
+        src/ActionMoveDownReleased.cpp
+        src/ActionMoveLeft.cpp
+        src/ActionMoveLeftReleased.cpp
+        src/ActionMoveRight.cpp
+        src/ActionMoveRightReleased.cpp
 )
 
 target_compile_options(Rtype
