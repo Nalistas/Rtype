@@ -32,11 +32,13 @@ jobs:
 
       - name: Deploy README to gh-pages
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           cp README.md docs/  # Copy README.md into docs folder, since the action expects files to be in a folder
           git add docs/README.md
-          git commit -m "Update README.md"
+          git diff-index --quiet HEAD || git commit -m "Update README.md"
           git push origin gh-pages
-      
+
       - name: Deploy documentation
         uses: JamesIves/github-pages-deploy-action@v4
         with:
