@@ -21,11 +21,10 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(asio)
 include_directories(${asio_SOURCE_DIR}/asio/include)
 
-# Ajouter les fichiers sources spécifiques à `server`
+# Ajouter les fichiers sources specifiques a `server`
 add_executable(Server
     src/main.cpp
     src/Server.cpp
-    src/Systems/SpriteSystem.cpp
     src/Thread/ScopeLock.cpp
     src/Thread/Mutex.cpp
     src/Thread/ConditionVariable.cpp

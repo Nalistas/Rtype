@@ -255,7 +255,6 @@ int Core::run(void)
         _registry.run_systems();
         _window.end_drawing();
         for (auto &pair : _on_key_pressed) {
-            std::cout << "check key " << pair.first << " pressed for " << pair.second << std::endl;
             if (_window.is_key(raylib::Window::BUTTON_STATE::PRESSED, pair.second)) {
                 this->send_action(pair.first);
             }

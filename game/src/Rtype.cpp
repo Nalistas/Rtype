@@ -9,6 +9,7 @@
 #include "GraphicsPrimitives.hpp"
 #include "SystemDeleteEnemy.hpp"
 #include "SystemCreateEnemy.hpp"
+#include "ActionMoveUp.hpp"
 #include "Health.hpp"
 #include "Rtype.hpp"
 #include <iostream>
@@ -53,8 +54,9 @@ void Rtype::setBroadcastUpdate(std::function<void(ecs::entity const &e)> broadca
 
 std::vector<rtype::ClientAction> Rtype::getClientActionHandlers(void)
 {
-    // Renvoyer les actions que les clients peuvent envoyer (par exemple mouvement, tir)
-    return {};  // Implémenter les handlers ici
+    std::vector<rtype::ClientAction> actions;
+    actions.push_back(rtype::ClientAction{265, 1, std::make_unique<ActionMoveUp>(_reg, _broadcastUpdate)});
+    return actions;  // Implémenter les handlers ici
 }
 
 size_t Rtype::createPlayer(void)
@@ -81,9 +83,16 @@ size_t Rtype::createPlayer(void)
     _reg->emplace_component<Health>(newPlayer, 100);
 
     /*
+
+    Client -> entite
+
+    [Client] -> [entite]
+
+
     --dans le setRegistry (qui sera renommé)-- 
     register_component<Health>()
     register_component<Sprite>() -- déjà fait dans le server
+
 
     -- ICI --
     _reg.emplace_component<Health>(newPlayer, health) // class health int
@@ -108,7 +117,6 @@ size_t Rtype::createPlayer(void)
 
     // _players[newPlayer] = player;
     _broadcastCreate(newPlayer);
-
     return newPlayer;
 }
 
