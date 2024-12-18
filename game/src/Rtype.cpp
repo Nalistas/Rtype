@@ -43,8 +43,11 @@ void Rtype::setRegistry(std::shared_ptr<ecs::registry> reg)
     _reg->register_component<Health>();
     _reg->register_component<Damage>();
     _reg->register_component<Camp>();
+    std::cout << "adding system CreateEnemy" << std::endl;
     _reg->add_standalone_system(SystemCreateEnemy(_broadcastCreate));
+    std::cout << "adding system DeleteEnemy" << std::endl;
     _reg->add_system<graphics_interface::Sprite, Camp>(SystemDeleteEnemy(_broadcastDelete));
+    std::cout << "adding system ManageBullets" << std::endl;
     _reg->add_system<graphics_interface::Sprite, Camp, Damage>(SystemManageBullets(_broadcastDelete));
 
     // std::cout << "setRegistry" << std::endl;

@@ -18,7 +18,7 @@ SystemDeleteEnemy::~SystemDeleteEnemy()
 
 void SystemDeleteEnemy::operator()(ecs::registry &registry, ecs::entity const &e, graphics_interface::Sprite &sprite, Camp &camp)
 {
-    if (sprite.pos_x < 0 && camp.getCamp() == 1) {
+    if ((sprite.pos_x < 0 && camp.getCamp() == 1) || sprite.pos_x > 1920) {
         std::cout << sprite.pos_x << std::endl;
         std::cout << "delete enemy" << std::endl;
         _broadcastDelete(e);

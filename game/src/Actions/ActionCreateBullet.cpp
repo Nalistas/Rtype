@@ -21,6 +21,8 @@ ActionCreateBullet::~ActionCreateBullet()
 
 void ActionCreateBullet::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
 {
+    (void) mouse_x;
+    (void) mouse_y;
     ecs::entity bullet = _registry->create_entity();
     graphics_interface::Sprite sprite;
     if (_registry->get_components<graphics_interface::Sprite>()[client].has_value()) {

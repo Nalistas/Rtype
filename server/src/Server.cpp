@@ -62,7 +62,9 @@ Server::Server()
     _registry->register_component<graphics_interface::Music>();
     _registry->register_component<graphics_interface::Sound>();
     // _registry->add_system<graphics_interface::Sprite>(SpriteSystem(this->_time));
+    std::cout << "adding system Time" << std::endl;
     _registry->add_standalone_system(SystemTime(this->_time));
+    std::cout << "adding system Background" << std::endl;
     _registry->add_system<graphics_interface::Sprite>(SystemGraphicSpriteSpeed(this->_time));
 
     _game->setBroadcastCreate(std::bind(&Server::broadcastCreate, this, std::placeholders::_1));

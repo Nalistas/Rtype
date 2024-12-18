@@ -9,7 +9,7 @@
 #include <chrono>
 #include <iostream>
 
-static std::size_t nb_calls = 0;
+
 
 SystemTime::SystemTime(std::size_t &time_to_update) :
     _last_update(std::chrono::system_clock::now()), _elpased_time(time_to_update)

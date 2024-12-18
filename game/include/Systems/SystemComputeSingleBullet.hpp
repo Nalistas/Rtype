@@ -19,12 +19,13 @@
 
 class SystemComputeSingleBullet: public ecs::isystem<Health, graphics_interface::Sprite, Camp>  {
     public:
-        SystemComputeSingleBullet(Camp &bullet_camp, Damage damage, graphics_interface::Sprite &bullet_sprite, std::function<void(ecs::entity const &)> broadcastDelete);
+        SystemComputeSingleBullet(bool &has_hit, Camp &bullet_camp, Damage damage, graphics_interface::Sprite &bullet_sprite, std::function<void(ecs::entity const &)> broadcastDelete);
         ~SystemComputeSingleBullet();
         void operator()(ecs::registry &r, ecs::entity const &e, Health &health, graphics_interface::Sprite &sprite, Camp &camp) override;
 
     protected:
     private:
+        bool &has_hit;
         Camp _bullet_camp;
         Damage _damage;
         graphics_interface::Sprite _sprite;
