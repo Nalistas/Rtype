@@ -40,7 +40,6 @@ void Background::setComponent(graphics_interface::Background const &background)
 {
     auto texture = raylib::TextureManager::getTexture(background.path);
     _background.set_texture(texture);
-    // _background.set_texture(raylib::TextureManager::getTexture(background.path));
     _speed = static_cast<int>(background.speed);
     if (background.direction == graphics_interface::BackgroundDirection::X) {
         this->setMoveType(BACKGROUND_MOVE_TYPE::MOVE_X);
