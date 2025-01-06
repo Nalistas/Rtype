@@ -19,8 +19,8 @@ namespace raylib {
 class Sprite {
     public:
         Sprite();
-        Sprite(std::string const &texture_path);
-        Sprite(std::string const &texture_path, Rectangle texture_rect, Rectangle on_window_rect);
+        Sprite(std::shared_ptr<raylib::TextureCpp> &text);
+        Sprite(std::shared_ptr<raylib::TextureCpp> &text, Rectangle texture_rect, Rectangle on_window_rect);
         ~Sprite();
 
         void draw();
@@ -35,7 +35,7 @@ class Sprite {
          * @brief Set the texture
          * @param texture_path the path to the texture
          */
-        void set_texture(std::string const &texture_path);
+        void set_texture(std::shared_ptr<raylib::TextureCpp> &text);
 
         /**
          * @brief Set the texture rect

@@ -7,17 +7,15 @@
 
 #include "Raylib/Sprite.hpp"
 #include <stdexcept>
+#include "Raylib/TextureManager.hpp"
 
 raylib::Sprite::Sprite() : _rotation(0), _frame_count(0), _current_frame(0), _offset({0, 0})
 {}
 
-raylib::Sprite::Sprite(std::string const &texture_path) :
+raylib::Sprite::Sprite(std::shared_ptr<raylib::TextureCpp> &text) :
     _rotation(0), _frame_count(0), _current_frame(0), _offset({0, 0})
 {
-    _texture = std::make_unique<TextureCpp>(texture_path);
-    if (!_texture) {
-        throw std::runtime_error("Failed to load texture: " + texture_path);
-    }
+    _texture = text;
 
     _source_rect = {0, 0, static_cast<float>(_texture->get_texture().width), static_cast<float>(_texture->get_texture().height)};
     _source_rect_origin = _source_rect;
@@ -25,14 +23,11 @@ raylib::Sprite::Sprite(std::string const &texture_path) :
     _center = {_destination_rect.width / 2, _destination_rect.height / 2};
 }
 
-raylib::Sprite::Sprite(std::string const &texture_path, Rectangle texture_rect, Rectangle on_window_rect)
+raylib::Sprite::Sprite(std::shared_ptr<raylib::TextureCpp> &text, Rectangle texture_rect, Rectangle on_window_rect)
     : _destination_rect(on_window_rect), _rotation(0), _source_rect(texture_rect), _source_rect_origin(texture_rect),
       _frame_count(0), _current_frame(0), _offset({0, 0})
 {
-    _texture = std::make_unique<TextureCpp>(texture_path);
-    if (!_texture) {
-        throw std::runtime_error("Failed to load texture: " + texture_path);
-    }
+    _texture = text;
     _center = {_destination_rect.width / 2, _destination_rect.height / 2};
 }
 
@@ -64,13 +59,10 @@ void raylib::Sprite::draw()
     DrawTexturePro(_texture->get_texture(), _source_rect, _destination_rect, _center, _rotation, WHITE);
 }
 
-void raylib::Sprite::set_texture(std::string const &texture_path)
+void raylib::Sprite::set_texture(std::shared_ptr<raylib::TextureCpp> &text)
 {
     _texture.reset();
-    _texture = std::make_unique<TextureCpp>(texture_path);
-    if (_texture->get_texture().id == 0) {
-        throw std::runtime_error("Failed to load texture: " + texture_path);
-    }
+    _texture = text;
     _source_rect = {0, 0, static_cast<float>(_texture->get_texture().width), static_cast<float>(_texture->get_texture().height)};
     _source_rect_origin = _source_rect;
     _destination_rect = {_destination_rect.x, _destination_rect.y, static_cast<float>(_texture->get_texture().width), static_cast<float>(_texture->get_texture().height)};
@@ -79,14 +71,13 @@ void raylib::Sprite::set_texture(std::string const &texture_path)
 
 void raylib::Sprite::setComponent(graphics_interface::Sprite const &sprite)
 {
-
     std::cout << "-----------------------------------------" << std::endl;
     if (!_texture) {
-        _texture = std::make_unique<TextureCpp>(sprite.path);
+        _texture = raylib::TextureManager::getTexture(sprite.path);
     } else {
         if (_texture->get_texture_path() != sprite.path) {
             _texture.reset();
-            _texture = std::make_unique<TextureCpp>(sprite.path);
+            _texture = raylib::TextureManager::getTexture(sprite.path);
         }
     }
     if (_texture->get_texture().id == 0) {

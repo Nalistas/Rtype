@@ -42,6 +42,7 @@ target_sources(r-type_client
         src/Raylib/RaySound.cpp
         src/Raylib/RayMusic.cpp
         src/Raylib/AudioDevice.cpp
+        src/Raylib/TextureManager.cpp
         src/Background.cpp
         src/Animation.cpp
         src/AutoDestructTimer.cpp
