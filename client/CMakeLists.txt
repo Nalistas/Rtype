@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(Client
+project(r-type_client
     VERSION 1.0
-    DESCRIPTION "Client for Rtype"
+    DESCRIPTION "r-type_client for Rtype"
     LANGUAGES CXX
 )
 
@@ -30,11 +30,11 @@ FetchContent_MakeAvailable(asio)
 include_directories(${asio_SOURCE_DIR}/asio/include)
 
 # Définir l'exécutable
-add_executable(Client)
-target_include_directories(Client PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+add_executable(r-type_client)
+target_include_directories(r-type_client PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # Ajouter les sources
-target_sources(Client
+target_sources(r-type_client
     PRIVATE
         main.cpp
         src/Raylib/Window.cpp
@@ -56,16 +56,16 @@ target_sources(Client
 )
 
 # Lier les bibliothèques
-target_link_libraries(Client PRIVATE raylib)
-target_link_libraries(Client PRIVATE ecs)
-target_link_libraries(Client PRIVATE protocol)
-target_link_libraries(Client PRIVATE graphics_primitives)
+target_link_libraries(r-type_client PRIVATE raylib)
+target_link_libraries(r-type_client PRIVATE ecs)
+target_link_libraries(r-type_client PRIVATE protocol)
+target_link_libraries(r-type_client PRIVATE graphics_primitives)
 
 # Ajouter les répertoires d'inclusion pour ecs
-target_include_directories(Client PRIVATE ${CMAKE_SOURCE_DIR}/common/ecs)
+target_include_directories(r-type_client PRIVATE ${CMAKE_SOURCE_DIR}/common/ecs)
 
 # Options de compilation
-target_compile_options(Client
+target_compile_options(r-type_client
     PRIVATE
         -Wall
         -Wextra
@@ -74,10 +74,10 @@ target_compile_options(Client
 
 # Configuration spécifique aux plateformes
 if(WIN32)
-    target_compile_definitions(Client PRIVATE _USE_MATH_DEFINES)
-    target_link_libraries(Client PRIVATE Ws2_32)  # Lier la bibliothèque Winsock
+    target_compile_definitions(r-type_client PRIVATE _USE_MATH_DEFINES)
+    target_link_libraries(r-type_client PRIVATE Ws2_32)  # Lier la bibliothèque Winsock
 elseif(APPLE)
-    target_link_libraries(Client PRIVATE "-framework OpenGL")
+    target_link_libraries(r-type_client PRIVATE "-framework OpenGL")
 elseif(UNIX)
-    target_link_libraries(Client PRIVATE m pthread dl GL X11)
+    target_link_libraries(r-type_client PRIVATE m pthread dl GL X11)
 endif()

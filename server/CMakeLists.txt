@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(Server
+project(r-type_server
     VERSION 1.0
-    DESCRIPTION "Server for Rtype"
+    DESCRIPTION "r-type_server for Rtype"
     LANGUAGES CXX
 )
 
@@ -21,8 +21,8 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(asio)
 include_directories(${asio_SOURCE_DIR}/asio/include)
 
-# Ajouter les fichiers sources specifiques a `server`
-add_executable(Server
+# Ajouter les fichiers sources specifiques a `r-type_server`
+add_executable(r-type_server
     src/main.cpp
     src/Server.cpp
     src/Thread/ScopeLock.cpp
@@ -33,22 +33,22 @@ add_executable(Server
 )
 
 # Inclure les fichiers headers
-target_include_directories(Server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(r-type_server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # Link  `common`
-target_link_libraries(Server PRIVATE ecs)
-target_link_libraries(Server PRIVATE file_selector)
-target_link_libraries(Server PRIVATE common_interface)
-target_link_libraries(Server PRIVATE protocol)
-target_link_libraries(Server PRIVATE graphics_primitives)
+target_link_libraries(r-type_server PRIVATE ecs)
+target_link_libraries(r-type_server PRIVATE file_selector)
+target_link_libraries(r-type_server PRIVATE common_interface)
+target_link_libraries(r-type_server PRIVATE protocol)
+target_link_libraries(r-type_server PRIVATE graphics_primitives)
 
 if(WIN32)
-target_link_libraries(Server PRIVATE ws2_32)
+target_link_libraries(r-type_server PRIVATE ws2_32)
 endif()
 
 
 # Options de compilation
-target_compile_options(Server
+target_compile_options(r-type_server
     PRIVATE
         -Wall
         -Wextra
