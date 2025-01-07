@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** rtype
+** File description:
+** TcpServer
+*/
+
 #include "TcpServer.hpp"
 #include <iostream>
 

@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** rtype
+** File description:
+** TcpServer
+*/
+
 #ifndef TCPSERVER_HPP_
     #define TCPSERVER_HPP_
 
