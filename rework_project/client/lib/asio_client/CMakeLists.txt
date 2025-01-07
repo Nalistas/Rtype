@@ -15,15 +15,13 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(asio)
 
-# Utiliser target_include_directories pour exposer les chemins vers Asio
 add_library(asio_client STATIC
     src/TcpClient.cpp
     src/UdpClient.cpp
 )
 
-# Assure que le répertoire d'inclusion d'Asio est bien ajouté à ton projet
 target_include_directories(asio_client
     PUBLIC
-        ${asio_SOURCE_DIR}/asio/include  # Inclure Asio dans le module
+        ${asio_SOURCE_DIR}/asio/include
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
