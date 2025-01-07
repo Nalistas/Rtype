@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(asio_udp_server LANGUAGES CXX)
+project(asio_server LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -15,11 +15,12 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(asio)
 
-add_library(asio_udp_server STATIC
+add_library(asio_server STATIC
+    src/TcpServer.cpp
     src/UdpServer.cpp
 )
 
-target_include_directories(asio_udp_server
+target_include_directories(asio_server
     PUBLIC
         ${asio_SOURCE_DIR}/asio/include
         ${CMAKE_CURRENT_SOURCE_DIR}/include

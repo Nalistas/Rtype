@@ -19,8 +19,13 @@ target_sources(r-type_server
         src/main.cpp
 )
 
-add_subdirectory(lib/asio_tcp_server)
-target_link_libraries(r-type_server PRIVATE asio_tcp_server)
+add_subdirectory(lib/asio_server)
+add_subdirectory(lib/ecs)
+add_subdirectory(lib/files_selector)
+
+target_link_libraries(r-type_server PRIVATE asio_server)
+target_link_libraries(r-type_server PRIVATE ecs)
+target_link_libraries(r-type_server PRIVATE file_selector)
 
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
