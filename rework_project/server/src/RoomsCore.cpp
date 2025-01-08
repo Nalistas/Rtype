@@ -1,0 +1,57 @@
+/*
+** EPITECH PROJECT, 2025
+** rtype
+** File description:
+** RoomsCore
+*/
+
+#include "RoomsCore.hpp"
+#include <string>
+#include <iostream>
+
+RoomsCore::RoomsCore(std::string const &port) :
+    _tcpServer("0.0.0.0", port)
+{}
+
+RoomsCore::~RoomsCore()
+{}
+
+void RoomsCore::run(void)
+{
+    CLIENT_DATA_STATE state;
+
+    while (true) {
+        auto client = _tcpServer.accept();
+
+        if (!client) {
+            continue;
+        }
+
+        std::cout << "Client connected." << std::endl;
+
+        while (client) {
+            state = _tcpServer.hasDataToRead(client);
+            if (state == DATA) {
+                std::vector<char> data = _tcpServer.receive(client);
+                
+                if (data.empty()) {
+                    std::cout << "Client disconnected or read error." << std::endl;
+                    break;
+                }
+
+                std::cout << "Received data: " << std::string(data.begin(), data.end()) << std::endl;
+
+                _tcpServer.send(client, data);
+            }
+            if (state == DISCONNECTED) {
+                break;
+            }
+            if (state == ERROR) {
+                break;
+            }
+        }
+        client->close();
+        std::cout << "Connection closed." << std::endl;
+    }
+
+}

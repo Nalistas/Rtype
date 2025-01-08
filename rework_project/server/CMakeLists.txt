@@ -17,6 +17,7 @@ target_include_directories(r-type_server
 target_sources(r-type_server
     PRIVATE
         src/main.cpp
+        src/Core.cpp
 )
 
 add_subdirectory(lib/asio_server)
