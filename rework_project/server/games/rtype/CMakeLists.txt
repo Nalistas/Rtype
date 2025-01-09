@@ -1,0 +1,14 @@
+project(MyGameLibrary)
+
+add_library(${PROJECT_NAME} SHARED
+    src/aze.cpp
+)
+
+target_link_libraries(${PROJECT_NAME} PUBLIC
+    asio_server
+    ecs
+)
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE MY_GAME_DEFINITION=1)
+
+install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX}/games)

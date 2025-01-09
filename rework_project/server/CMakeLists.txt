@@ -17,12 +17,13 @@ target_include_directories(r-type_server
 target_sources(r-type_server
     PRIVATE
         src/main.cpp
-        src/Core.cpp
+        src/RoomsCore.cpp
 )
 
 add_subdirectory(lib/asio_server)
 add_subdirectory(lib/ecs)
 add_subdirectory(lib/files_selector)
+add_subdirectory(games/rtype)
 
 target_link_libraries(r-type_server PRIVATE asio_server)
 target_link_libraries(r-type_server PRIVATE ecs)
