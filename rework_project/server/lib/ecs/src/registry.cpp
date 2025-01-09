@@ -11,8 +11,9 @@
 ecs::entity ecs::registry::create_entity()
 {
     if (this->_unused_entities.empty()) {
+        auto e = entity(this->_total_entity_count);
         this->_total_entity_count++;
-        return entity(this->_total_entity_count);
+        return e;
     }
     return entity(this->_unused_entities.begin().operator*());
 }

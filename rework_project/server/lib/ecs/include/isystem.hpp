@@ -11,6 +11,7 @@
 #ifndef ECS_SYSTEM_HPP_
     #define ECS_SYSTEM_HPP_
 
+    #include "zipper.hpp"
 
 namespace ecs {
 
@@ -48,7 +49,7 @@ class isystem {
          * @tparam Components the components used by the system
          * @note This function is pure virtual and is mandatory to implement because it is the entry point of the system
          */
-        virtual void operator()(registry &, entity const &e, Components& ...) = 0;
+        virtual void operator()(registry &, sparse_array<Components> &...) = 0;
 };
 
 }

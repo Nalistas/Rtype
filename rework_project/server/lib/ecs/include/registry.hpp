@@ -196,17 +196,6 @@ class registry {
         void add_system(Function&& f);
 
         /**
-         * @brief Add a system that does not depend on any components.
-         * This version is used for systems that operate independently of specific components in the registry.
-         * @tparam Function The type of the system (should inherit from ecs::isystem<> or be a compatible callable).
-         *        The system must implement `void operator()(registry &) const`.
-         * @param f The system to add. It is a callable that takes only a reference to the registry.
-         * @note This function is intended for global systems or those that do not process entity components.
-         */
-        template<typename Function>
-        void add_standalone_system(Function&& f);
-
-        /**
          * @brief run all the systems in the registry
         */
         void run_systems () ;
@@ -217,13 +206,6 @@ class registry {
          */
         template <class ...Components, typename Function>
         void run_single_system(Function &&system);
-
-        /**
-         * @brief run a single system that does not depend on any components in the registry 
-         * @param system the system to run
-         */
-        template <typename Function>
-        void run_single_standalone_system(Function &&system);
 
         /// @}
 

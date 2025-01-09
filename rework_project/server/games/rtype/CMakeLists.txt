@@ -1,4 +1,4 @@
-project(MyGameLibrary)
+project(r-type)
 
 add_library(${PROJECT_NAME} SHARED
     src/aze.cpp

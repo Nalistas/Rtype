@@ -86,16 +86,7 @@ template <class... Components, typename Function>
 void registry::add_system(Function&& f)
 {
     _systems.emplace_back([f = std::forward<Function>(f), this](registry& reg) mutable {
-        this->encapsulate_system_call(f, reg.get_components<Components>()...);
-    });
-}
-
-template <typename Function>
-void registry::add_standalone_system(Function&& f)
-{
-    std::cout << "System well added !" << std::endl;
-    _systems.emplace_back([f = std::forward<Function>(f)](registry& reg) mutable {
-        f(reg, entity(0));
+        f(reg, this->get_components<Components>()...);
     });
 }
 
@@ -117,11 +108,6 @@ void registry::run_single_system(Function &&system)
     this->encapsulate_system_call(system, this->get_components<Components>()...);
 }
 
-template <typename Function>
-void registry::run_single_standalone_system(Function &&system)
-{
-    system(*this, entity(0));
-}
 
 }
 
