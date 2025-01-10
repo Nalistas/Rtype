@@ -46,7 +46,7 @@ void RoomsCore::run(void)
             if (state == DISCONNECTED) {
                 break;
             }
-            if (state == ERROR) {
+            if (state == CLIENT_ERROR) {
                 break;
             }
         }

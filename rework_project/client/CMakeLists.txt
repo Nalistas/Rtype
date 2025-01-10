@@ -28,3 +28,7 @@ target_sources(r-type_client
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     target_compile_options(r-type_client PRIVATE -Wall -Wextra -pedantic)
 endif()
+
+if (WIN32)
+    target_link_libraries(asio_server ws2_32)
+endif()
