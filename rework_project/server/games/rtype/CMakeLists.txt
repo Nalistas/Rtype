@@ -1,7 +1,7 @@
 project(r-type)
 
 add_library(${PROJECT_NAME} SHARED
-    src/aze.cpp
+    src/entry_point.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC

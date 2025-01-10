@@ -33,6 +33,17 @@ class MovementSystem : public ecs::isystem<speed, position> {
         }
 };
 
+class NoneSystem : public ecs::isystem<> {
+    public:
+        NoneSystem() = default;
+        ~NoneSystem() = default;
+    
+        void operator()(ecs::registry &registry) override
+        {
+            std::cout << "NoneSystem" << std::endl;
+        }
+};
+
 
 int main()
 {
@@ -48,7 +59,7 @@ int main()
     auto e2 = registry.create_entity();
     auto e3 = registry.create_entity();
 
-    std::cout << "e = " << e << ", e2 = " << e2 <<  std::endl;
+    std::cout << "e = " << e << ", e2 = " << e2 << ", e3 = " << e3 <<  std::endl;
 
     registry.emplace_component<position>(e);
     registry.emplace_component<speed>(e);
@@ -56,11 +67,16 @@ int main()
     registry.get_components<position>()[e] = { 1, 2 };
     registry.get_components<speed>()[e] = { 3, 4 };
 
+    registry.emplace_component<position>(e2);
+    registry.get_components<position>()[e2] = { 5, 6 };
+
     registry.emplace_component<speed>(e3);
     registry.get_components<speed>()[e3] = { 7, 8 };
 
     std::cout << registry.get_components<position>()[e].has_value() << std::endl;
     std::cout << registry.get_components<speed>()[e].has_value() << std::endl;
+
+    registry.add_system<>(NoneSystem());
 
     registry.run_systems();
     return 0;
