@@ -20,6 +20,7 @@ target_sources(r-type_server
         src/RoomsCore.cpp
         src/GameCore.cpp
         src/RessourcesManager.cpp
+        src/GameLauncher.cpp
 )
 
 add_subdirectory(lib/asio_server)

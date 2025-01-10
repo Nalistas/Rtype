@@ -5,16 +5,33 @@
 ** GameLauncher
 */
 
+#include <string>
+#include <list>
+#include <vector>
+
+#include "DLLoader.hpp"
+#include "IGame.hpp"
+
 #ifndef GAMELAUNCHER_HPP_
     #define GAMELAUNCHER_HPP_
 
 class GameLauncher {
     public:
-        GameLauncher();
+        GameLauncher(std::string const &game_path);
         ~GameLauncher();
 
-    protected:
+        std::list<std::vector<char>> getRessources();
+
+        std::string const &getIp();
+
+        std::string const &getPort();
+
+        void launch();
+
+
     private:
+        std::unique_ptr<rtype::IGame> _game;
+        DLLdr::DLLoader<rtype::IGame> _loader;
 };
 
 #endif /* !GAMELAUNCHER_HPP_ */

@@ -23,7 +23,7 @@ namespace DLLdr {
             DLLoader();
             ~DLLoader();
 
-            void open(std::string);
+            void open(std::string const &);
             void close(void);
             std::unique_ptr<T> getSym(std::string const &);
 
