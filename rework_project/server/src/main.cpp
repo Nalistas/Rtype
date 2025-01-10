@@ -47,8 +47,9 @@ class NoneSystem : public ecs::isystem<> {
 
 int main()
 {
-//     RoomsCore core("12345");
-//     core.run();
+     RoomsCore core("12345");
+     core.run();
+/*
     ecs::registry registry;
 
     registry.register_component<position>();
@@ -80,4 +81,5 @@ int main()
 
     registry.run_systems();
     return 0;
+    */
 }

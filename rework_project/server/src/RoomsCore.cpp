@@ -6,6 +6,7 @@
 */
 
 #include "RoomsCore.hpp"
+#include "TcpProtocol.hpp"
 #include <string>
 #include <iostream>
 
@@ -19,12 +20,17 @@ RoomsCore::~RoomsCore()
 void RoomsCore::run(void)
 {
     CLIENT_DATA_STATE state;
+    TcpProtocol tcp_protocol;
 
     while (true) {
         auto client = _tcpServer.accept();
 
         if (!client) {
             continue;
+        }
+
+        if (_tcpServer._clients.find(client) == _tcpServer._clients.end()) {
+            _tcpServer._clients[client] = "";
         }
 
         std::cout << "Client connected." << std::endl;
@@ -40,7 +46,7 @@ void RoomsCore::run(void)
                 }
 
                 std::cout << "Received data: " << std::string(data.begin(), data.end()) << std::endl;
-
+                tcp_protocol.interpreter(client, data);
                 _tcpServer.send(client, data);
             }
             if (state == DISCONNECTED) {
@@ -53,5 +59,4 @@ void RoomsCore::run(void)
         client->close();
         std::cout << "Connection closed." << std::endl;
     }
-
 }
