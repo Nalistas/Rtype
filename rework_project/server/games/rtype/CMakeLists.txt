@@ -7,6 +7,7 @@ add_library(${PROJECT_NAME} SHARED
 target_link_libraries(${PROJECT_NAME} PUBLIC
     asio_server
     ecs
+    game_interface
 )
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE MY_GAME_DEFINITION=1)
