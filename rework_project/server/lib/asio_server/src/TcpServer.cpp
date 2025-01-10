@@ -54,7 +54,7 @@ CLIENT_DATA_STATE TcpServer::hasDataToRead(std::shared_ptr<asio::ip::tcp::socket
         } else {
             std::cerr << "Error receiving: " << ec.message() << std::endl;
         }
-        return ERROR;
+        return CLIENT_ERROR;
     }
 
     return (bytes > 0) ? DATA : EMPTY;

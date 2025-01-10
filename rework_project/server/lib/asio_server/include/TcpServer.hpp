@@ -17,7 +17,7 @@ enum CLIENT_DATA_STATE {
     EMPTY = 0,
     DATA = 1,
     DISCONNECTED = 2,
-    ERROR = 3
+    CLIENT_ERROR = 3
 };
 
 class TcpServer {

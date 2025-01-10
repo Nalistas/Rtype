@@ -25,3 +25,8 @@ target_include_directories(asio_client
         ${asio_SOURCE_DIR}/asio/include
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
+
+if (WIN32)
+    target_link_libraries(asio_client ws2_32)
+endif()
+
