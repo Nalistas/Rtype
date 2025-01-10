@@ -9,6 +9,13 @@
 #include "TcpClient.hpp"
 #include <iostream>
 
+#ifdef _WIN32
+    #include <windows.h>
+    #define sleep(x) Sleep(1000 * x)
+#else
+    #include <unistd.h>
+#endif
+
 int main() {
     try {
         // Test du client UDP
