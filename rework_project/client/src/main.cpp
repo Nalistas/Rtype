@@ -7,6 +7,7 @@
 
 #include "UdpClient.hpp"
 #include "TcpClient.hpp"
+#include "Core.hpp"
 #include <iostream>
 
 #ifdef _WIN32
@@ -17,36 +18,38 @@
 #endif
 
 int main() {
-    try {
-        // Test du client UDP
-        std::cout << "Testing UDP Client..." << std::endl;
-        UdpClient udpClient("127.0.0.1", "12345");
-        std::string udpMessage = "Hello, UDP Server!";
-        udpClient.send(std::vector<char>(udpMessage.begin(), udpMessage.end()));
+    Core core;
+    core.run();
+    // try {
+    //     // Test du client UDP
+    //     std::cout << "Testing UDP Client..." << std::endl;
+    //     UdpClient udpClient("127.0.0.1", "12345");
+    //     std::string udpMessage = "Hello, UDP Server!";
+    //     udpClient.send(std::vector<char>(udpMessage.begin(), udpMessage.end()));
 
-        sleep(1);
+    //     sleep(1);
 
-        if (udpClient.hasData()) {
-            auto udpResponse = udpClient.receive();
-            std::cout << "UDP Response: " << std::string(udpResponse.begin(), udpResponse.end()) << std::endl;
-        }
+    //     if (udpClient.hasData()) {
+    //         auto udpResponse = udpClient.receive();
+    //         std::cout << "UDP Response: " << std::string(udpResponse.begin(), udpResponse.end()) << std::endl;
+    //     }
 
-        // Test du client TCP
-        std::cout << "\nTesting TCP Client..." << std::endl;
-        TcpClient tcpClient("127.0.0.1", "12345");
-        std::string tcpMessage = "Hello, TCP Server!";
-        tcpClient.send(std::vector<char>(tcpMessage.begin(), tcpMessage.end()));
+    //     // Test du client TCP
+    //     std::cout << "\nTesting TCP Client..." << std::endl;
+    //     TcpClient tcpClient("127.0.0.1", "12345");
+    //     std::string tcpMessage = "Hello, TCP Server!";
+    //     tcpClient.send(std::vector<char>(tcpMessage.begin(), tcpMessage.end()));
 
-        sleep(1);
+    //     sleep(1);
 
-        if (tcpClient.hasData()) {
-            auto tcpResponse = tcpClient.receive();
-            std::cout << "TCP Response: " << std::string(tcpResponse.begin(), tcpResponse.end()) << std::endl;
-        }
+    //     if (tcpClient.hasData()) {
+    //         auto tcpResponse = tcpClient.receive();
+    //         std::cout << "TCP Response: " << std::string(tcpResponse.begin(), tcpResponse.end()) << std::endl;
+    //     }
 
-    } catch (const std::exception &e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
+    // } catch (const std::exception &e) {
+    //     std::cerr << "Error: " << e.what() << std::endl;
+    // }
 
     return 0;
 }
