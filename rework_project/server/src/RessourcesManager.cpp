@@ -7,7 +7,7 @@
 
 #include "RessourcesManager.hpp"
 
-RessourcesManager::RessourcesManager(std::shared_ptr<rtype::IGame> &game)
+RessourcesManager::RessourcesManager(std::unique_ptr<rtype::IGame> &game)
 {
     uint32_t i = 0;
 
@@ -25,6 +25,11 @@ RessourcesManager::RessourcesManager(std::shared_ptr<rtype::IGame> &game)
         _ressources.push_back(transformMusic(music, i));
         i++;
     }
+    i = 0;
+    for (auto &action : game->getClientActionHandlers()) {
+        _ressources.push_back(transformAction(action, i));
+        i++;
+    }
 }
 
 RessourcesManager::~RessourcesManager()
@@ -37,10 +42,10 @@ std::list<std::vector<char>> &RessourcesManager::getRessourcess()
 
 void RessourcesManager::copyUint32(std::vector<char> &vec, std::size_t pos, uint32_t value)
 {
-    vec[pos] = value & 0xFF;
-    vec[pos + 1] = (value >> 8) & 0xFF;
-    vec[pos + 2] = (value >> 16) & 0xFF;
-    vec[pos + 3] = (value >> 24) & 0xFF;
+    vec[pos + 3] = value & 0xFF;
+    vec[pos + 2] = (value / 256) & 0xFF;
+    vec[pos + 1] = (value / 65536) & 0xFF;
+    vec[pos] = (value / 16777216) & 0xFF;
 }
 
 std::vector<char> RessourcesManager::transformBackground(rtype::Background const &background, uint32_t id)
@@ -83,5 +88,16 @@ std::vector<char> RessourcesManager::transformMusic(std::string const &music, ui
     buffer[0] = 5;
     this->copyUint32(buffer, 1, id);
     std::copy(music.begin(), music.end(), buffer.begin() + 5);
+    return buffer;
+}
+
+std::vector<char> RessourcesManager::transformAction(rtype::ClientAction const &action, uint32_t id)
+{
+    std::vector<char> buffer(5);
+
+    buffer[0] = 6;
+    this->copyUint32(buffer, 1, id);
+    this->copyUint32(buffer, 5, action.key);
+    buffer[9] = action.pressed ? 1 : 0;
     return buffer;
 }
