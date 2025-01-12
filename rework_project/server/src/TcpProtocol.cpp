@@ -9,12 +9,13 @@
 #include <sstream>
 
 
-TcpProtocol::TcpProtocol()
+TcpProtocol::TcpProtocol(TcpServer &server) : _tcpServer(server)
 {
-    _commandMap[1] = [this](std::istringstream& params) {
+    _commandMap[1] = [this](std::shared_ptr<asio::ip::tcp::socket> client, std::istringstream& params) {
         std::string name;
         params >> name;
-        setName(name);
+        _tcpServer._clients[client] = name;
+        std::cout << "Set " << _tcpServer._clients[client] << " name\n";
     };
 }
 
@@ -22,21 +23,15 @@ TcpProtocol::~TcpProtocol()
 {
 }
 
-int TcpProtocol::interpreter(std::string &client, std::vector<char> data)
+int TcpProtocol::interpreter(std::shared_ptr<asio::ip::tcp::socket> client, std::vector<char> data)
 {
     std::istringstream stream(std::string(data.begin(), data.end()));
     char commandId;
     stream >> commandId;
 
     if (_commandMap.find(commandId) != _commandMap.end()) {
-        _commandMap[commandId](stream);
+        _commandMap[commandId](client, stream);
     } else {
-        std::cout << "Commande inconnue\n";
+        std::cout << "Command not founded\n";
     }
-}
-
-char TcpProtocol::setName(std::string &client, std::string name)
-{
-
-    std::cout << "New connection from " << name << std::endl;
 }

@@ -65,8 +65,6 @@ std::vector<char> TcpServer::receive(std::shared_ptr<asio::ip::tcp::socket> clie
     std::vector<char> buffer(1024);
     asio::error_code ec;
 
-    std::cout << "Hello" << std::endl;
-
     size_t length = client->read_some(asio::buffer(buffer), ec);
 
     std::cout << "Received " << length << " bytes" << std::endl;
@@ -87,7 +85,7 @@ std::vector<char> TcpServer::receive(std::shared_ptr<asio::ip::tcp::socket> clie
 void TcpServer::send(std::shared_ptr<asio::ip::tcp::socket> client, const std::vector<char> &message)
 {
     asio::error_code ec;
-    
+
     // Bloque jusqu'à ce que le message soit envoyé
     asio::write(*client, asio::buffer(message), ec);
 

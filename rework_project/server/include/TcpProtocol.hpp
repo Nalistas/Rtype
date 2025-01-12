@@ -7,6 +7,7 @@
 
 #include "registry.hpp"
 #include "IGame.hpp"
+#include "TcpServer.hpp"
 #include <memory>
 #include <map>
 #include <functional>
@@ -16,16 +17,15 @@
 
 class TcpProtocol {
     public:
-        TcpProtocol(std::map<std::shared_ptr<asio::ip::tcp::socket>, std::string> &clients);
+        TcpProtocol(TcpServer &tcpServer);
         ~TcpProtocol();
 
-        char setName(std::shared_ptr<asio::ip::tcp::socket> client, std::vector<char> data);
         int interpreter(std::shared_ptr<asio::ip::tcp::socket> client, std::vector<char> data);
 
     private:
         ecs::registry _registry;
-        std::unordered_map<char, std::function<void(std::istringstream&)>> _commandMap;
-        std::map<std::shared_ptr<asio::ip::tcp::socket>, std::string> &_clients;
+        std::unordered_map<char, std::function<void(std::shared_ptr<asio::ip::tcp::socket>, std::istringstream&)>> _commandMap;
+        TcpServer &_tcpServer;
 
 };
 

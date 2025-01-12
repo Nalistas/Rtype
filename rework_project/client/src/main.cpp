@@ -48,7 +48,10 @@ int main() {
     // tcpMessage.push_back(id);
     // tcpMessage.insert(tcpMessage.end(), name.begin(), name.end()); 
 
-
+    std::string name2 = "hugo";
+    std::string tcpMessage2 = std::string(1, id) + name2;
+    
+    tcpClient.send(std::vector<char>(tcpMessage2.begin(), tcpMessage2.end()));
     sleep(1);
 
     if (tcpClient.hasData()) {

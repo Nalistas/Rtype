@@ -20,7 +20,7 @@ RoomsCore::~RoomsCore()
 void RoomsCore::run(void)
 {
     CLIENT_DATA_STATE state;
-    TcpProtocol tcp_protocol;
+    TcpProtocol tcp_protocol(_tcpServer);
 
     while (true) {
         auto client = _tcpServer.accept();
