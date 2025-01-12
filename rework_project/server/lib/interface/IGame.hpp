@@ -29,9 +29,13 @@ namespace rtype {
     };
 
     struct ClientAction {
+        ClientAction() = default;
+        ClientAction(const ClientAction&) = default;
+        ClientAction& operator=(const ClientAction&) = default;
+        ~ClientAction() = default;
         uint32_t key;
         bool pressed;
-        std::unique_ptr<IClientActionHandler> handler;
+        std::shared_ptr<IClientActionHandler> handler;
     };
 
 

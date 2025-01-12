@@ -4,6 +4,28 @@
 #include "IGame.hpp"
 #include <memory>
 
+class handler1 : public rtype::IClientActionHandler {
+    public:
+        handler1() = default;
+        ~handler1() = default;
+
+        void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override
+        {
+            std::cout << "handler1: " << client << " " << mouse_x << " " << mouse_y << std::endl;
+        }
+};
+
+class handler2 : public rtype::IClientActionHandler {
+    public:
+        handler2() = default;
+        ~handler2() = default;
+
+        void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override
+        {
+            std::cout << "handler2: " << client << " " << mouse_x << " " << mouse_y << std::endl;
+        }
+};
+
 class IGame : public rtype::IGame
 {
     public:
@@ -18,7 +40,10 @@ class IGame : public rtype::IGame
         void initGameRegistry(ecs::registry &reg) override {}
 
         std::vector<rtype::ClientAction> getClientActionHandlers(void) const override {
-            return std::vector<rtype::ClientAction>();
+            return std::vector<rtype::ClientAction>({
+                { .key = 1, .pressed = true, .handler = std::make_unique<handler1>() },
+                { .key = 2, .pressed = true, .handler = std::make_unique<handler2>() }
+            });
         }
 
         std::vector<rtype::Background> getBackgrounds(void) const override {

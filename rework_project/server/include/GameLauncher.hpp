@@ -13,6 +13,7 @@
 #include "IGame.hpp"
 #include "UdpServer.hpp"
 #include "GameCore.hpp"
+#include "ClientActionLog.hpp"
 
 #ifndef GAMELAUNCHER_HPP_
     #define GAMELAUNCHER_HPP_
@@ -43,6 +44,10 @@ class GameLauncher {
         DLLdr::DLLoader<rtype::IGame> _loader;
         std::list<std::vector<char>> _ressources;
         ecs::registry _registry;
+        std::unordered_map<std::string, std::size_t> _players;
+        std::unique_ptr<ClientActionLog> _client_action_log;
+
+        std::vector<std::shared_ptr<rtype::IClientActionHandler>> _handlers;
 
         UdpServer _server;
 };

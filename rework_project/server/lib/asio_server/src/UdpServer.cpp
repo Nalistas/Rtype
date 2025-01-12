@@ -4,17 +4,21 @@
 UdpServer::UdpServer(void) :
     _resolver(_io_context), _socket(_io_context)
 {
-    for (int i = 1024; i < 9999; i++) {
+    uint16_t start_port = 1024;
+    uint16_t end_port = 0xFFFF;
+
+    for (uint16_t port = start_port; port < end_port; ++port) {
         try {
-            _endpoint = asio::ip::udp::endpoint(asio::ip::udp::v4(), i);
+            _endpoint = asio::ip::udp::endpoint(asio::ip::udp::v4(), port);
             _socket.open(asio::ip::udp::v4());
             _socket.bind(_endpoint);
-            std::cout << "Server started on port " << i << "." << std::endl;
             break;
         } catch (const std::exception &e) {
-            std::cerr << "Error when starting server : " << e.what() << "at : " << __FILE__ << ":" << __LINE__ << std::endl;
+            std::cerr << "Failed to bind on port " << port << ": " << e.what() << std::endl;
+            _socket.close(); // Close socket on failure to avoid lingering state
         }
     }
+    std::cout << "Server started on port " << _endpoint.port() << "." << std::endl;
 }
 
 UdpServer::UdpServer(int port) :
