@@ -88,3 +88,13 @@ int Room::getNbClients()
 {
     return _clients.size();
 }
+
+void Room::setOwner(std::shared_ptr<asio::ip::tcp::socket> owner)
+{
+    _owner = owner;
+}
+
+std::shared_ptr<asio::ip::tcp::socket> Room::getOwner()
+{
+    return _owner;
+}

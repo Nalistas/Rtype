@@ -43,15 +43,29 @@ int main() {
     std::string tcpMessage = std::string(1, id) + name;
     
     tcpClient.send(std::vector<char>(tcpMessage.begin(), tcpMessage.end()));
-
+    sleep(1);
     //  std::vector<char> tcpMessage;
     // tcpMessage.push_back(id);
-    // tcpMessage.insert(tcpMessage.end(), name.begin(), name.end()); 
+    // tcpMessage.insert(tcpMessage.end(), name.begin(), name.end());
 
-    std::string name2 = "hugo";
-    std::string tcpMessage2 = std::string(1, id) + name2;
+    std::string tcpMessage3 = std::string(1, 7) + "testNewRoom\\testGame";
     
-    tcpClient.send(std::vector<char>(tcpMessage2.begin(), tcpMessage2.end()));
+    tcpClient.send(std::vector<char>(tcpMessage3.begin(), tcpMessage3.end()));
+    sleep(1);
+
+    std::string tcpMessage4 = std::string(1, 2) + "1";
+    
+    tcpClient.send(std::vector<char>(tcpMessage4.begin(), tcpMessage4.end()));
+    sleep(1);
+
+    std::string tcpMessage5 = std::string(1, 4) + "";
+    
+    tcpClient.send(std::vector<char>(tcpMessage5.begin(), tcpMessage5.end()));
+    sleep(1);
+
+    std::string tcpMessage6 = std::string(1, 5) + "1\\ggggggggggg";
+    
+    tcpClient.send(std::vector<char>(tcpMessage6.begin(), tcpMessage6.end()));
     sleep(1);
 
     if (tcpClient.hasData()) {

@@ -25,6 +25,7 @@ class TcpProtocol {
         void enterRoom(std::shared_ptr<asio::ip::tcp::socket> client, int roomId);
         void createRoom(std::shared_ptr<asio::ip::tcp::socket> client, std::string roomName, std::string gameName);
         void exitRoom(std::shared_ptr<asio::ip::tcp::socket> client);
+        void renameRoom(std::shared_ptr<asio::ip::tcp::socket> client, int roomId, std::string roomName);
 
     private:
         ecs::registry _registry;

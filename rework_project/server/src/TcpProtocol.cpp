@@ -32,11 +32,26 @@ TcpProtocol::TcpProtocol(TcpServer &server) : _tcpServer(server)
         exitRoom(client);
         std::cout << "Exit room\n";
     };
+    _commandMap[5] = [this](std::shared_ptr<asio::ip::tcp::socket> client, std::istringstream& params) {
+        // Rename room
+        int roomId;
+        std::string roomName;
+        char separator = '\\';
+
+        params >> roomId;
+        params.get();
+        std::getline(params, roomName);
+        renameRoom(client, roomId, roomName);
+        std::cout << "Rename room\n";
+    };
     _commandMap[7] = [this](std::shared_ptr<asio::ip::tcp::socket> client, std::istringstream& params) {
         // Create room
         std::string roomName;
         std::string gameName;
-        params >> roomName >> gameName;
+        char separator = '\\';
+
+        std::getline(params, roomName, separator);
+        std::getline(params, gameName); 
         createRoom(client, roomName, gameName);
         std::cout << "Create room\n";
     };
@@ -121,8 +136,25 @@ void TcpProtocol::exitRoom(std::shared_ptr<asio::ip::tcp::socket> client)
 void TcpProtocol::createRoom(std::shared_ptr<asio::ip::tcp::socket> client, std::string roomName, std::string gameName)
 {
     Room newRoom(roomName, gameName, _tcpServer._rooms.size());
-    newRoom.addClient(client);
+    newRoom.setOwner(client);
     _tcpServer._rooms.push_back(newRoom);
     std::vector<char> data = {static_cast<char>(200)};
     _tcpServer.send(client, data);
+}
+
+void TcpProtocol::renameRoom(std::shared_ptr<asio::ip::tcp::socket> client, int roomId, std::string roomName)
+{
+    for (auto &room : _tcpServer._rooms) {
+        if (room.getId() == roomId) {
+            if (room.getOwner() != client) {
+                std::vector<char> data = {static_cast<char>(201)};
+                _tcpServer.send(client, data);
+                return;
+            }
+            room.setName(roomName);
+            std::vector<char> data = {static_cast<char>(200)};
+            _tcpServer.send(client, data);
+            return;
+        }
+    }
 }

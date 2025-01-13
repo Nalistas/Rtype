@@ -36,7 +36,6 @@ void RoomsCore::run(void)
                     room.addClient(client);
                 }
             }
-            tcp_protocol.listRooms(client);
         }
 
         std::cout << "Client connected." << std::endl;
@@ -53,6 +52,14 @@ void RoomsCore::run(void)
 
                 std::cout << "Received data: " << std::string(data.begin(), data.end()) << std::endl;
                 tcp_protocol.interpreter(client, data);
+                for (auto &room : _tcpServer._rooms) {
+                    std::cout << "Room: " << room.getName() << "  "<< room.getGameName() << std::endl;
+                    for (auto &client : room.getClients()) {
+                        std::cout << "Client: " << client.first << std::endl;
+                    }
+                    std::cout << "---------------------------------------------------------" << std::endl;
+                }
+                std::cout << std::endl;
                 // _tcpServer.send(client, data);
             }
             if (state == DISCONNECTED) {

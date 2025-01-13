@@ -31,10 +31,13 @@ class Room {
         bool isEveryoneReady();
         int getNbClients();
         bool isClientInRoom(std::shared_ptr<asio::ip::tcp::socket> client);
+        void setOwner(std::shared_ptr<asio::ip::tcp::socket> owner);
+        std::shared_ptr<asio::ip::tcp::socket> getOwner();
 
 
     private:
         std::vector<std::pair<std::shared_ptr<asio::ip::tcp::socket>, bool>> _clients;
+        std::shared_ptr<asio::ip::tcp::socket> _owner;
         std::string _name;
         std::string _gameName;
         int _id;
