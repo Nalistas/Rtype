@@ -9,6 +9,7 @@ project(Rtype
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 
 # Compose the project
@@ -20,6 +21,7 @@ target_include_directories(Rtype PRIVATE
     ${CMAKE_SOURCE_DIR}/common/ecs/include
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
+
 
 target_link_libraries(Rtype PRIVATE ecs)
 target_link_libraries(Rtype PRIVATE graphics_primitives)

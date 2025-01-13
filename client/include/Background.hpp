@@ -10,6 +10,7 @@
 
 #include <ctime>
 #include <functional>
+#include <memory>
 
 #ifndef BACKGROUND_HPP_
     #define BACKGROUND_HPP_
@@ -37,17 +38,17 @@ class Background {
         /**
          * @brief Construct a new Background object
          */
-        Background(std::string const &path);
+        Background(std::shared_ptr<raylib::TextureCpp> &texture);
 
         /**
          * @brief Construct a new Background object
          */
-        Background(std::string const &path, std::size_t win_width, std::size_t win_height);
+        Background(std::shared_ptr<raylib::TextureCpp> &texture, std::size_t win_width, std::size_t win_height);
 
         /**
          * @brief Construct a new Background object
          */
-        Background(std::string const &path, std::size_t win_width, std::size_t win_height, double speed);
+        Background(std::shared_ptr<raylib::TextureCpp> &texture, std::size_t win_width, std::size_t win_height, double speed);
 
         /**
          * @brief Destroy the Background object
@@ -89,7 +90,7 @@ class Background {
         /**
          * @brief Set the texture of the background
          */
-        void set_texture(std::string const &path);
+        void set_texture(std::shared_ptr<raylib::TextureCpp> &texture);
 
         /**
          * @brief resize the background

@@ -9,6 +9,7 @@
 #include <ctime>
 
 #include <iostream>
+#include "Raylib/TextureManager.hpp"
 
 Background::Background() :
     _background(), _speed(0), _win_width(0), _win_height(0), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
@@ -19,25 +20,26 @@ Background::~Background()
 {
 }
 
-Background::Background(std::string const &path) :
+Background::Background(std::shared_ptr<raylib::TextureCpp> &path) :
     _background(path), _speed(0), _win_width(0), _win_height(0), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
 {
 }
 
-Background::Background(std::string const &path, std::size_t win_width, std::size_t win_height) :
+Background::Background(std::shared_ptr<raylib::TextureCpp> &path, std::size_t win_width, std::size_t win_height) :
     _background(path), _speed(0), _win_width(win_width), _win_height(win_height), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
 {
     _background.set_position(static_cast<float>(_win_width) / 2, static_cast<float>(_win_height) / 2);
 }
 
-Background::Background(std::string const &path, std::size_t win_width, std::size_t win_height, double speed) :
+Background::Background(std::shared_ptr<raylib::TextureCpp> &path, std::size_t win_width, std::size_t win_height, double speed) :
     _background(path), _speed(speed), _win_width(win_width), _win_height(win_height), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
 {
 }
 
 void Background::setComponent(graphics_interface::Background const &background)
 {
-    _background.set_texture(background.path);
+    auto texture = raylib::TextureManager::getTexture(background.path);
+    _background.set_texture(texture);
     _speed = static_cast<int>(background.speed);
     if (background.direction == graphics_interface::BackgroundDirection::X) {
         this->setMoveType(BACKGROUND_MOVE_TYPE::MOVE_X);
@@ -65,7 +67,7 @@ void Background::setWindowDimensions(std::size_t win_width, std::size_t win_heig
     _background.set_position(static_cast<float>(_win_width) / 2, static_cast<float>(_win_height) / 2);
 }
 
-void Background::set_texture(std::string const &path)
+void Background::set_texture(std::shared_ptr<raylib::TextureCpp> &path)
 {
     _background.set_texture(path);
 }
