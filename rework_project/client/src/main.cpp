@@ -29,10 +29,10 @@ int main() {
 
     //     //sleep(1);
 
-    //     if (udpClient.hasData()) {
-    //         auto udpResponse = udpClient.receive();
-    //         std::cout << "UDP Response: " << std::string(udpResponse.begin(), udpResponse.end()) << std::endl;
-    //     }
+        // if (udpClient.hasData()) {
+        //     auto udpResponse = udpClient.receive();
+        //     std::cout << "UDP Response: " << std::string(udpResponse.begin(), udpResponse.end()) << std::endl;
+        // }
 
     // Test du client TCP
     std::cout << "\nTesting TCP Client..." << std::endl;

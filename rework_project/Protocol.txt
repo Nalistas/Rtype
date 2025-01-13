@@ -4,7 +4,7 @@ Server -> Client (TCP)
 201 (sur 1 char) = KO
 
 chargement d'un sprite :
-2[id du type de sprite sur 1 octet][size x sur 4 octet] [size y sur 4 octet][ width à prendre sur l'image sur 4o] [height à prendre sur l'image sur 4o] [offset x 4 octets] [offset y 4 octets] [ nb frame sur 1 octet ] [ nb milisecond pour les frame / 4o][image data]
+2[id du type de sprite sur 1 octet][size x sur 4 octet] [size y sur 4 octet][ width à prendre sur l'image sur 4o] [height à prendre sur l'image sur 4o] [offset x 4 octets] [offset y 4 octets] [ nb frame sur 1 octet ] [ nb milisecond pour les frame / 4o]
 
 Chargement d'un background :
 3[Id background][voir precedemment]

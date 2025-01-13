@@ -8,6 +8,7 @@
 #include "Client.hpp"
 #include "IGame.hpp"
 #include "TcpServer.hpp"
+#include "Room.hpp"
 #include <memory>
 #include <map>
 #include <functional>

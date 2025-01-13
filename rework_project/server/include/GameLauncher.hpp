@@ -11,27 +11,45 @@
 
 #include "DLLoader.hpp"
 #include "IGame.hpp"
+#include "UdpServer.hpp"
+#include "GameCore.hpp"
+#include "ClientActionLog.hpp"
 
 #ifndef GAMELAUNCHER_HPP_
     #define GAMELAUNCHER_HPP_
 
+
 class GameLauncher {
     public:
+        struct Player {
+            std::string name;
+            std::string ip;
+        };
+
         GameLauncher(std::string const &game_path);
         ~GameLauncher();
 
-        std::list<std::vector<uint8_t>> getRessources();
+        std::list<std::vector<uint8_t>> const &getRessources();
 
-        std::string const &getIp();
+        std::string getIp();
 
-        std::string const &getPort();
+        uint16_t getPort();
 
-        void launch();
+        void launch(std::list<Player> const &players);
 
+        GameCore::ServerActions getServerActions();
 
     private:
         std::unique_ptr<rtype::IGame> _game;
         DLLdr::DLLoader<rtype::IGame> _loader;
+        std::list<std::vector<uint8_t>> _ressources;
+        ecs::registry _registry;
+        std::unordered_map<std::string, std::size_t> _players;
+        std::unique_ptr<ClientActionLog> _client_action_log;
+
+        std::vector<std::shared_ptr<rtype::IClientActionHandler>> _handlers;
+
+        UdpServer _server;
 };
 
 #endif /* !GAMELAUNCHER_HPP_ */
