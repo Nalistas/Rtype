@@ -7,6 +7,7 @@
 
 #include <list>
 #include <string>
+#include <cstdint>
 
 #ifndef WINDOW_HPP_
     #define WINDOW_HPP_
@@ -144,13 +145,13 @@ class Window {
         /**
          * @brief Get the character pressed, this function only works if the key is a letter
          */
-        char get_char_pressed() const;
+        uint8_t get_char_pressed() const;
 
         /**
          * @brief Get the ascii value of the key. This function follow the raylib documentation
          * @note it only goes from 32 to 126, the printable characters
          */
-        char get_char_from_enum(int key) const;
+        uint8_t get_char_from_enum(int key) const;
 
     private:
         bool _running;

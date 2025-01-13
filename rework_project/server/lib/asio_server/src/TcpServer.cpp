@@ -43,7 +43,7 @@ std::shared_ptr<asio::ip::tcp::socket> TcpServer::accept()
 CLIENT_DATA_STATE TcpServer::hasDataToRead(std::shared_ptr<asio::ip::tcp::socket> client)
 {
     asio::error_code ec;
-    char temp_buffer[1];
+    uint8_t temp_buffer[1];
 
     size_t bytes = client->receive(asio::buffer(temp_buffer, 1), asio::socket_base::message_peek, ec);
 
@@ -62,9 +62,9 @@ CLIENT_DATA_STATE TcpServer::hasDataToRead(std::shared_ptr<asio::ip::tcp::socket
     return (bytes > 0) ? DATA : EMPTY;
 }
 
-std::vector<char> TcpServer::receive(std::shared_ptr<asio::ip::tcp::socket> client)
+std::vector<uint8_t> TcpServer::receive(std::shared_ptr<asio::ip::tcp::socket> client)
 {
-    std::vector<char> buffer(1024);
+    std::vector<uint8_t> buffer(1024);
     asio::error_code ec;
 
     size_t length = client->read_some(asio::buffer(buffer), ec);
@@ -84,7 +84,7 @@ std::vector<char> TcpServer::receive(std::shared_ptr<asio::ip::tcp::socket> clie
     return buffer;
 }
 
-void TcpServer::send(std::shared_ptr<asio::ip::tcp::socket> client, const std::vector<char> &message)
+void TcpServer::send(std::shared_ptr<asio::ip::tcp::socket> client, const std::vector<uint8_t> &message)
 {
     asio::error_code ec;
 

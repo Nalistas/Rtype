@@ -43,7 +43,7 @@ void RoomsCore::run(void)
         while (client) {
             state = _tcpServer.hasDataToRead(client);
             if (state == DATA) {
-                std::vector<char> data = _tcpServer.receive(client);
+                std::vector<uint8_t> data = _tcpServer.receive(client);
                 
                 if (data.empty()) {
                     std::cout << "Client disconnected or read error." << std::endl;
@@ -51,12 +51,13 @@ void RoomsCore::run(void)
                 }
 
                 std::cout << "Received data (ASCII values): " << std::string(data.begin(), data.end()) << std::endl;
-                for (char c : data) {
+                for (uint8_t c : data) {
                     std::cout << static_cast<int>(c) << " ";
                 }
                 std::cout << std::endl;
                 // std::cout << "Received data: " << std::string(data.begin(), data.end()) << std::endl;
                 tcp_protocol.interpreter(client, data);
+                std::cout << "Rooms: " << std::endl;
                 for (auto &room : _tcpServer._rooms) {
                     std::cout << "Room: " << room.getName() << "  "<< room.getGameName() << std::endl;
                     for (auto &client : room.getClients()) {

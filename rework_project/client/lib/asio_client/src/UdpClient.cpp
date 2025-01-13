@@ -15,7 +15,7 @@ UdpClient::~UdpClient() {
     _socket.close();
 }
 
-void UdpClient::send(const std::vector<char> &message) {
+void UdpClient::send(const std::vector<uint8_t> &message) {
     try {
         _socket.send_to(asio::buffer(message), _endpoint);
         std::cout << "Message sent successfully" << std::endl;
@@ -24,9 +24,9 @@ void UdpClient::send(const std::vector<char> &message) {
     }
 }
 
-std::vector<char> UdpClient::receive()
+std::vector<uint8_t> UdpClient::receive()
 {
-    std::vector<char> buffer(1024);
+    std::vector<uint8_t> buffer(1024);
 
     try {
         asio::ip::udp::endpoint sender_endpoint;

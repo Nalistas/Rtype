@@ -17,8 +17,8 @@ class TcpClient {
         TcpClient(const std::string &ip, const std::string &port);
         ~TcpClient();
 
-        void send(const std::vector<char> &message);
-        std::vector<char> receive();
+        void send(const std::vector<uint8_t> &message);
+        std::vector<uint8_t> receive();
         bool hasData();
 
     private:

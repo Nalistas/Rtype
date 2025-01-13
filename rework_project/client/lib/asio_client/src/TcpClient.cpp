@@ -25,7 +25,7 @@ TcpClient::~TcpClient() {
     _socket.close();
 }
 
-void TcpClient::send(const std::vector<char> &message) {
+void TcpClient::send(const std::vector<uint8_t> &message) {
     try {
         asio::write(_socket, asio::buffer(message));
         std::cout << "Message sent successfully" << std::endl;
@@ -34,8 +34,8 @@ void TcpClient::send(const std::vector<char> &message) {
     }
 }
 
-std::vector<char> TcpClient::receive() {
-    std::vector<char> buffer(1024); // Taille maximale du tampon
+std::vector<uint8_t> TcpClient::receive() {
+    std::vector<uint8_t> buffer(1024); // Taille maximale du tampon
     try {
         size_t bytes_received = _socket.read_some(asio::buffer(buffer));
         buffer.resize(bytes_received); // Ajuster la taille des données reçues
