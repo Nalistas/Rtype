@@ -3,13 +3,8 @@ Server -> Client (TCP)
 200 (sur 1 char) = OK
 201 (sur 1 char) = KO
 
-lister les rooms(c'est pour lister les rooms déjà existantes) :
-1{
-    [ID room sur 1 char][Nom room][nombre de personne dans la room]
-}
-
 chargement d'un sprite :
-2[id du type de sprite][size x sur 4 octet] [size y sur 4 octet][ width à prendre sur l'image sur 4o] [height à prendre sur l'image sur 4o] [offset x 4 octets] [offset y 4 octets] [ nb frame sur 1 octet ] [ nb milisecond pour les frame / 4o]
+2[id du type de sprite sur 1 octet][size x sur 4 octet] [size y sur 4 octet][ width à prendre sur l'image sur 4o] [height à prendre sur l'image sur 4o] [offset x 4 octets] [offset y 4 octets] [ nb frame sur 1 octet ] [ nb milisecond pour les frame / 4o][image data]
 
 Chargement d'un background :
 3[Id background][voir precedemment]
@@ -27,121 +22,51 @@ avec :
 Ip : [nb1 /1o][nb2 /1o][nb3 /1o][nb4 /1o] => nb1.nb2.nb3.nb4
 Port : [nb1/1o][nb2/1o] translation en str puis concaténation, typiquement pour 9809, NB1 = 98 et NB2 = 09 
 
-
+VARIABLE PUBLIC DANS TCPSERVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 Protocole TCP Client -> Server
-Connecter : 1
-Entrer room : 2
+OK -> Connecter : 1
+OK -> Entrer room : 2
 Lancer la room : 3
-Quitter la room : 4
-Rename : 5
+OK -> Quitter la room : 4
+OK -> Rename : 5
 Missing image : 6
-New room : 7
+OK -> New room : 7
+OK -> List room: 8
+Delete room: 9
+Change Status client: 10
 
-set name :
+
+OK -> set name :
 1[Nom]
 
-Entrer dans la room :
+OK -> Entrer dans la room :
 2[Id room]
 
 Lancer :
 3[Rien derrière]
 
-Quitter :
+OK -> Quitter :
 4[Rien derrière]
 
-Rename :
-5[Nouveau nom]
+OK -> Rename :
+5[Id room]\[Nouveau nom]
 
 Missing image :
-6[nom de l'image]
+6[nom de l'image]\[data de l'image]
 
-new room :
-7[Nom de la room]
+OK -> new room :
+7[Nom de la room]\[Name game room]
 
-
-____________________________________________________________________________________________________________________
-
-#include <iostream>
-#include <unordered_map>
-#include <functional>
-#include <sstream>
-
-void fonctionA(int param1, std::string param2) {
-    std::cout << "Fonction A : param1 = " << param1 << ", param2 = " << param2 << "\n";
+OK -> lister les rooms(c'est pour lister les rooms déjà existantes) :
+8{
+    [ID room sur 1 char][Nom room]\[nombre de personne dans la room]#
 }
 
-void fonctionB(double param) {
-    std::cout << "Fonction B : param = " << param << "\n";
-}
+delete room:
+9[Id room]
 
-void fonctionC() {
-    std::cout << "Fonction C sans paramètres\n";
-}
-
-int main() {
-    // Dictionnaire de commandes
-    std::unordered_map<int, std::function<void(std::istringstream&)>> commandeMap;
-
-    commandeMap[1] = [](std::istringstream& params) {
-        int param1;
-        std::string param2;
-        params >> param1 >> param2;
-        fonctionA(param1, param2);
-    };
-
-    commandeMap[2] = [](std::istringstream& params) {
-        double param;
-        params >> param;
-        fonctionB(param);
-    };
-
-    commandeMap[3] = [](std::istringstream&) {
-        fonctionC();
-    };
-
-    // Exemple de message reçu
-    std::string messageRecu = "1 42 Hello";
-    std::istringstream stream(messageRecu);
-
-    int commandeId;
-    stream >> commandeId;
-
-    if (commandeMap.find(commandeId) != commandeMap.end()) {
-        commandeMap[commandeId](stream);
-    } else {
-        std::cout << "Commande inconnue\n";
-    }
-
-    return 0;
-}
-
-
-void Server::setClientAction(std::size_t id_client)
-{
-    // [key] [state (1 = pressed, 2 = released)] [id action that will be sent to the serv]
-    // [SIZE][ACTION][ID1][ID2][ID3][ID4][KEY1][KEY2][KEY3][KEY4][pressed]
-    // 
-    std::vector<char> data;
-
-    std::cout << "setClientAction" << std::endl;
-
-    data.resize(11);
-    data[0] = 11;
-    data[1] = static_cast<char>(EntityOperation::ACTION);
-
-    for (auto key_binding: _keys) {
-        unsigned int id_action = key_binding.first + static_cast<unsigned int>(PREDEFINED_ACTIONS::NB_ACTIONS);
-        unsigned int key_code = key_binding.second.first;
-        bool pressed = key_binding.second.second;
-        std::cout << "key " << key_code << " pressed: " << pressed << std::endl;
-
-        std::memcpy(&data[2], &id_action, sizeof(id_action));
-        std::memcpy(&data[6], &key_code, sizeof(key_code));
-        data[10] = static_cast<char>(pressed);
-        std::cout << "send action " << id_action << " to client " << id_client << std::endl;
-        this->sendToClient(id_client, data);
-    }
-}
+change Status client:
+10[Rien derrière]
