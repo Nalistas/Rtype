@@ -125,5 +125,13 @@ However, you can ask him the document and then will giv it to you
 
 7. New Room
 `...[7][Room Name / ?o]`
+Server response : OK | KO
+
+**NB** Be carefull, some instruction of the server can be sent before a response to a request.
+For exemple :
+Client --{Create a new Room}--> Server
+Client <-{Declare a new Room}-- Server
+Client <-{OK to the creation}-- Server
+as we can see here, the declaration of a new random room has been sent by the server before the confirmation of the room creation.
 
 ## UDP
