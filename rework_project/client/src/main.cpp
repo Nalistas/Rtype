@@ -27,7 +27,7 @@ int main() {
     //     std::string udpMessage = "Hello, UDP Server!";
     //     udpClient.send(std::vector<uint8_t>(udpMessage.begin(), udpMessage.end()));
 
-    //     sleep(1);
+    //     sleep(5);
 
     //     if (udpClient.hasData()) {
     //         auto udpResponse = udpClient.receive();
@@ -43,7 +43,7 @@ int main() {
     std::string tcpMessage = std::string(1, id) + name;
     
     tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
-    sleep(1);
+    sleep(5);
     //  std::vector<uint8_t> tcpMessage;
     // tcpMessage.push_back(id);
     // tcpMessage.insert(tcpMessage.end(), name.begin(), name.end());
@@ -51,24 +51,24 @@ int main() {
     std::string tcpMessage3 = std::string(1, 7) + "testNewRoom\\testGame";
     
     tcpClient.send(std::vector<uint8_t>(tcpMessage3.begin(), tcpMessage3.end()));
-    sleep(1);
+    sleep(5);
 
     // std::string tcpMessage4 = std::string(1, 2) + "1";
     
     // tcpClient.send(std::vector<uint8_t>(tcpMessage4.begin(), tcpMessage4.end()));
-    // sleep(1);
+    // sleep(5);
 
     // std::string tcpMessage5 = std::string(1, 4) + "";
     
     // tcpClient.send(std::vector<uint8_t>(tcpMessage5.begin(), tcpMessage5.end()));
-    // sleep(1);
+    // sleep(5);
 
 
     uint8_t id2 = 9;
     std::string tcpMessage7 = std::string(1, id2) + "\\1";
 
     tcpClient.send(std::vector<uint8_t>(tcpMessage7.begin(), tcpMessage7.end()));
-    sleep(1);
+    sleep(5);
 
     if (tcpClient.hasData()) {
         auto tcpResponse = tcpClient.receive();

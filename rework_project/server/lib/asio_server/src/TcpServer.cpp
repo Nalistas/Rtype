@@ -14,8 +14,6 @@ TcpServer::TcpServer(const std::string &ip, const std::string &port)
 {
     std::cout << "Server initialized on " << ip << ":" << port << std::endl;
     _acceptor.non_blocking(true);
-    Room lobby("lobby", "lobby", 0);
-    _rooms.push_back(lobby);
 }
 
 TcpServer::~TcpServer()

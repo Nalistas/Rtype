@@ -7,56 +7,27 @@
 
 #include "Room.hpp"
 
-Room::Room(std::string name, std::string gameName, int id) : _name(name), _gameName(gameName), _id(id)
+Room::Room(std::string const &name, std::string const &gameName, std::shared_ptr<asio::ip::tcp::socket> &owner) :
+    _name(name), _gameName(gameName), _owner(owner)
 {
 }
 
 Room::~Room()
 {}
 
-void Room::addClient(std::shared_ptr<asio::ip::tcp::socket> client)
+std::shared_ptr<asio::ip::tcp::socket> const &Room::getOwner() const
 {
-    _clients.push_back(std::make_pair(client, false));
+    return _owner;
 }
 
-void Room::removeClient(std::shared_ptr<asio::ip::tcp::socket> client)
-{
-    for (auto it = _clients.begin(); it != _clients.end(); it++) {
-        if (it->first == client) {
-            _clients.erase(it);
-            return;
-        }
-    }
-}
-
-bool Room::isClientInRoom(std::shared_ptr<asio::ip::tcp::socket> client)
-{
-    for (auto it = _clients.begin(); it != _clients.end(); it++) {
-        if (it->first == client) {
-            return true;
-        }
-    }
-    return false;
-}
-
-std::vector<std::pair<std::shared_ptr<asio::ip::tcp::socket>, bool>> Room::getClients()
-{
-    return _clients;
-}
-
-std::string Room::getName()
+std::string const &Room::getName() const
 {
     return _name;
 }
 
-std::string Room::getGameName()
+std::string const &Room::getGameName() const
 {
     return _gameName;
-}
-
-int Room::getId()
-{
-    return _id;
 }
 
 void Room::setName(std::string const &name)
@@ -64,37 +35,12 @@ void Room::setName(std::string const &name)
     _name = name;
 }
 
-bool Room::isEveryoneReady()
+void Room::setGameName(std::string const &gameName)
 {
-    for (auto it = _clients.begin(); it != _clients.end(); it++) {
-        if (!it->second) {
-            return false;
-        }
-    }
-    return true;
+    _gameName = gameName;
 }
 
-void Room::changeClientStatus(std::shared_ptr<asio::ip::tcp::socket> client)
-{
-    for (auto it = _clients.begin(); it != _clients.end(); it++) {
-        if (it->first == client) {
-            it->second = !it->second;
-            return;
-        }
-    }
-}
-
-int Room::getNbClients()
-{
-    return _clients.size();
-}
-
-void Room::setOwner(std::shared_ptr<asio::ip::tcp::socket> owner)
+void Room::setOwner(std::shared_ptr<asio::ip::tcp::socket> &owner)
 {
     _owner = owner;
-}
-
-std::shared_ptr<asio::ip::tcp::socket> Room::getOwner()
-{
-    return _owner;
 }

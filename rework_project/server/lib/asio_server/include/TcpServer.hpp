@@ -32,8 +32,6 @@ class TcpServer {
         std::shared_ptr<asio::ip::tcp::socket> accept();
         std::vector<uint8_t> receive(std::shared_ptr<asio::ip::tcp::socket> client);
         void send(std::shared_ptr<asio::ip::tcp::socket> client, const std::vector<uint8_t> &message);
-        std::map<std::shared_ptr<asio::ip::tcp::socket>, std::string> _clients;
-        std::vector<Room> _rooms;
 
     private:
         asio::io_service _io_service;

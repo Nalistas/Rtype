@@ -18,29 +18,21 @@
 
 class Room {
     public:
-        Room(std::string name, std::string gameName, int id);
+        Room(std::string const &name, std::string const &gameName, std::shared_ptr<asio::ip::tcp::socket> &owner);
         ~Room();
-        void addClient(std::shared_ptr<asio::ip::tcp::socket> client);
-        void removeClient(std::shared_ptr<asio::ip::tcp::socket> client);
-        void changeClientStatus(std::shared_ptr<asio::ip::tcp::socket> client);
-        std::vector<std::pair<std::shared_ptr<asio::ip::tcp::socket>, bool>> getClients();
-        std::string getName();
-        std::string getGameName();
-        int getId();
-        void setName(std::string const &name);
-        bool isEveryoneReady();
-        int getNbClients();
-        bool isClientInRoom(std::shared_ptr<asio::ip::tcp::socket> client);
-        void setOwner(std::shared_ptr<asio::ip::tcp::socket> owner);
-        std::shared_ptr<asio::ip::tcp::socket> getOwner();
 
+        std::shared_ptr<asio::ip::tcp::socket> const &getOwner() const;
+        std::string const &getName() const;
+        std::string const &getGameName() const;
+
+        void setName(std::string const &name);
+        void setGameName(std::string const &gameName);
+        void setOwner(std::shared_ptr<asio::ip::tcp::socket> &owner);
 
     private:
-        std::vector<std::pair<std::shared_ptr<asio::ip::tcp::socket>, bool>> _clients;
-        std::shared_ptr<asio::ip::tcp::socket> _owner;
         std::string _name;
         std::string _gameName;
-        int _id;
+        std::shared_ptr<asio::ip::tcp::socket> _owner;
 
 };
 

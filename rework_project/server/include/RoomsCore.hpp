@@ -8,6 +8,8 @@
 #include <string>
 #include <map>
 #include "TcpServer.hpp"
+#include "Room.hpp"
+#include "Client.hpp"
 
 #ifndef CORE_HPP_
     #define CORE_HPP_
@@ -22,7 +24,8 @@ class RoomsCore {
 
     private:
         TcpServer _tcpServer;
-        std::map<std::size_t, std::string> _rooms;
+        std::map<uint8_t, Room> _rooms;
+        std::map<std::shared_ptr<asio::ip::tcp::socket>, Client> _clients;
 };
 
 #endif /* !CORE_HPP_ */

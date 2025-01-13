@@ -20,7 +20,7 @@ RoomsCore::~RoomsCore()
 void RoomsCore::run(void)
 {
     CLIENT_DATA_STATE state;
-    TcpProtocol tcp_protocol(_tcpServer);
+    TcpProtocol tcp_protocol(_rooms, _clients, _tcpServer);
 
     while (true) {
         auto client = _tcpServer.accept();
@@ -29,13 +29,8 @@ void RoomsCore::run(void)
             continue;
         }
 
-        if (_tcpServer._clients.find(client) == _tcpServer._clients.end()) {
-            _tcpServer._clients[client] = "";
-            for (auto &room : _tcpServer._rooms) {
-                if (room.getName() == "lobby") {
-                    room.addClient(client);
-                }
-            }
+        if (_clients.find(client) == _clients.end()) {
+            _clients.insert({client, Client()});
         }
 
         std::cout << "Client connected." << std::endl;
@@ -58,13 +53,14 @@ void RoomsCore::run(void)
                 // std::cout << "Received data: " << std::string(data.begin(), data.end()) << std::endl;
                 tcp_protocol.interpreter(client, data);
                 std::cout << "Rooms: " << std::endl;
-                for (auto &room : _tcpServer._rooms) {
-                    std::cout << "Room: " << room.getName() << "  "<< room.getGameName() << std::endl;
-                    for (auto &client : room.getClients()) {
-                        std::cout << "Client: " << client.first << std::endl;
-                    }
-                    std::cout << "---------------------------------------------------------" << std::endl;
+                for (auto &room : _rooms) {
+                    std::cout << "Room: " << room.second.getName() << "  "<< room.second.getGameName() << std::endl;
                 }
+                std::cout << "---------------------------------------------------------" << std::endl << "Clients: " << std::endl;
+                for (auto &client : _clients) {
+                    std::cout << "Client: " << client.first << " " << client.second.getName() << " " << static_cast<int>(client.second.getRoomId()) << std::endl;
+                }
+                std::cout << "---------------------------------------------------------" << std::endl;
                 std::cout << std::endl;
                 // _tcpServer.send(client, data);
             }
