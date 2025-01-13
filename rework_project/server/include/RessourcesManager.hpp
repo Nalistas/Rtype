@@ -18,16 +18,16 @@ class RessourcesManager {
         RessourcesManager(std::shared_ptr<rtype::IGame> &game);
         ~RessourcesManager();
 
-        std::list<std::vector<char>> &getRessourcess();
+        std::list<std::vector<uint8_t>> &getRessourcess();
 
     private:
-        std::list<std::vector<char>> _ressources;
+        std::list<std::vector<uint8_t>> _ressources;
 
-        std::vector<char> transformBackground(rtype::Background const &background, uint32_t id);
-        std::vector<char> transformSprite(rtype::Sprite const &sprite, uint32_t id);
-        std::vector<char> transformMusic(std::string const &music, uint32_t id);
+        std::vector<uint8_t> transformBackground(rtype::Background const &background, uint32_t id);
+        std::vector<uint8_t> transformSprite(rtype::Sprite const &sprite, uint32_t id);
+        std::vector<uint8_t> transformMusic(std::string const &music, uint32_t id);
 
-        void copyUint32(std::vector<char> &vec, std::size_t pos, uint32_t value);
+        void copyUint32(std::vector<uint8_t> &vec, std::size_t pos, uint32_t value);
 };
 
 #endif /* !RESSOURCESMANAGER_HPP_ */

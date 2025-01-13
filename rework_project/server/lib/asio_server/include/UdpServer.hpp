@@ -13,8 +13,8 @@ class UdpServer {
 
         bool hasDataToRead(void);
 
-        void sendTo(asio::ip::udp::endpoint const &endpoint, std::vector<char> const &data);
-        void readFrom(asio::ip::udp::endpoint &endpoint, std::vector<char> &data);
+        void sendTo(asio::ip::udp::endpoint const &endpoint, std::vector<uint8_t> const &data);
+        void readFrom(asio::ip::udp::endpoint &endpoint, std::vector<uint8_t> &data);
 
     private:
         asio::io_context _io_context;

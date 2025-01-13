@@ -175,15 +175,15 @@ bool raylib::Window::is_mouse_button(BUTTON_STATE state, int button) const
     }
 }
 
-char raylib::Window::get_char_pressed() const
+uint8_t raylib::Window::get_char_pressed() const
 {
-    return GetCharPressed();
+    return static_cast<uint8_t>(GetCharPressed());
 }
 
-char raylib::Window::get_char_from_enum(int key) const
+uint8_t raylib::Window::get_char_from_enum(int key) const
 {
     if (key < 32 || key > 126)
         return 0;
-    return static_cast<char>(key);
+    return static_cast<uint8_t>(key);
 }
 
