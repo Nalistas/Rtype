@@ -11,22 +11,34 @@
 TcpClient::TcpClient(const std::string &ip, const std::string &port)
     : _socket(_io_service)
 {
-    // Résolution de l'adresse et du port
     asio::ip::tcp::resolver resolver(_io_service);
     _results = resolver.resolve(asio::ip::tcp::v4(), ip, port);
 
-    // Connexion au serveur
     asio::connect(_socket, _results);
     std::cout << "Connected to TCP server at " << ip << ":" << port << std::endl;
 }
 
-TcpClient::~TcpClient() {
-    // Fermer la socket proprement
+TcpClient::~TcpClient()
+{
     _socket.close();
 }
 
-void TcpClient::send(const std::vector<uint8_t> &message) {
+void TcpClient::send(const std::vector<uint8_t> &message)
+{
+    if (message.empty()) {
+        std::cerr << "Empty message" << std::endl;
+        return;
+    }
+    if (message.size() > 65535) {
+        std::cerr << "Message too long" << std::endl;
+        return;
+    }
+
+    uint16_t length = static_cast<uint16_t>(message.size());
+    std::vector<uint8_t> length_buffer = {static_cast<uint8_t>(length / 256), static_cast<uint8_t>(length & 0xFF)};
+
     try {
+        asio::write(_socket, asio::buffer(length_buffer));
         asio::write(_socket, asio::buffer(message));
         std::cout << "Message sent successfully" << std::endl;
     } catch (const std::exception &e) {
@@ -34,17 +46,38 @@ void TcpClient::send(const std::vector<uint8_t> &message) {
     }
 }
 
-std::vector<uint8_t> TcpClient::receive() {
-    std::vector<uint8_t> buffer(1024); // Taille maximale du tampon
+std::vector<uint8_t> TcpClient::receive()
+{
+    std::vector<uint8_t> length_buffer(2);
+    std::vector<uint8_t> buffer;
     try {
-        size_t bytes_received = _socket.read_some(asio::buffer(buffer));
-        buffer.resize(bytes_received); // Ajuster la taille des données reçues
+        size_t length_received = _socket.read_some(asio::buffer(length_buffer, 2));
+
+        if (length_received < 2) {
+            std::cerr << "Incomplete length header received" << std::endl;
+            return {};
+        }
+        uint16_t length = (static_cast<uint16_t>(length_buffer[0]) * 256) + static_cast<uint16_t>(length_buffer[1]);
+
+        buffer.resize(length);
+
+        size_t data_received = _socket.read_some(asio::buffer(buffer, length));
+
+        std::cout << "Received " << data_received << " bytes" << std::endl;
+
+        if (data_received < length) {
+            std::cerr << "Incomplete data received. Expected " << length << " bytes, but got " << data_received << " bytes." << std::endl;
+            return {};
+        }
     } catch (const std::exception &e) {
         std::cerr << "Receive error: " << e.what() << std::endl;
+        return {};
     }
+
     return buffer;
 }
 
-bool TcpClient::hasData() {
+bool TcpClient::hasData()
+{
     return _socket.available() > 0;
 }
