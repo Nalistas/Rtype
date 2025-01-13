@@ -23,16 +23,19 @@ namespace rtype {
 
     class IClientActionHandler {
         public:
-        // mettre des references dans le constructeur
             virtual ~IClientActionHandler() = default;
 
             virtual void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) = 0;
     };
 
     struct ClientAction {
-        unsigned int key;
+        ClientAction() = default;
+        ClientAction(const ClientAction&) = default;
+        ClientAction& operator=(const ClientAction&) = default;
+        ~ClientAction() = default;
+        uint32_t key;
         bool pressed;
-        std::unique_ptr<IClientActionHandler> handler;
+        std::shared_ptr<IClientActionHandler> handler;
     };
 
 
@@ -81,35 +84,43 @@ namespace rtype {
             /// @brief this section is used to broadcast change on the display to the clients ONLY
             /// @{
 
+            using SpeedUpdater = std::function<void(std::size_t player_id, std::size_t e_id, uint8_t speed_x, uint8_t speed_y)>;
+            using PositionUpdater = std::function<void(std::size_t player_id, std::size_t e_id, int x, int y)>;
+            using Creater = std::function<void(std::size_t player_id, std::size_t e_id, std::size_t e_g_id, int x, int y, uint8_t speed_x, uint8_t speed_y)>;
+            using Deleter = std::function<void(std::size_t player_id, std::size_t e_id)>;
+            using BackgroundChanger = std::function<void(std::size_t client_id, std::size_t background_id)>;
+            using MusicChanger = std::function<void(std::size_t client_id, std::size_t music_id)>;
+            using ScreenUpdater = std::function<void(std::size_t client_id)>;
+
             /**
              * @brief Set the broadcast create function
              */
-            virtual void setUpdateSpeed(std::size_t client_id, std::size_t entity_id, uint8_t speed_x, uint8_t speed_y) = 0;
+            virtual void setUpdateSpeed(SpeedUpdater const &func) = 0;
 
             /**
              * @brief Set the broadcast update function
              */
-            virtual void setUpdatePosition(std::size_t client_id, std::size_t entity_id, int x, int y) = 0;
+            virtual void setUpdatePosition(PositionUpdater const &func) = 0;
 
             /**
              * @brief Set the broadcast delete function
              */
-            virtual void setCreate(std::size_t client_id, std::size_t entity_id, std::size_t entity_graphics_id, int x, int y, uint8_t speed_x, uint8_t speed_y) = 0;
+            virtual void setCreate(Creater const &func) = 0;
 
             /**
              * @brief Set the broadcast delete function
              */
-            virtual void setDelete(std::size_t client_id, std::size_t entity_id) = 0;
+            virtual void setDelete(Deleter const &func) = 0;
 
             /**
              * @brief Set the broadcast delete function
              */
-            virtual void setUseBackground(std::size_t client_id, std::size_t background_id) = 0;
+            virtual void setUseBackground(BackgroundChanger const &func) = 0;
 
             /**
              * @brief Set the broadcast delete function
              */
-            virtual void setUseMusic(std::size_t client_id, std::size_t music_id) = 0;
+            virtual void setUseMusic(MusicChanger const &func) = 0;
 
             /// @}
 
@@ -124,25 +135,32 @@ namespace rtype {
              * @brief Get the backgrounds used in the game
              * @return the vector of the backgrounds, we suppose that the id of the background is the same as the index
              */
-            virtual std::vector<Background> const &getBackgrounds(void) const = 0;
+            virtual std::vector<Background> getBackgrounds(void) const = 0;
 
             /**
              * @brief Get the sprites used in the game
              * @return the vector of the sprites, we suppose that the id of the sprite is the same as the index
              */
-            virtual std::vector<Sprite> const &getSprites(void) const = 0;
+            virtual std::vector<Sprite> getSprites(void) const = 0;
 
             /**
              * @brief Get the music used in the game
              * @return the vector of the music, we suppose that the id of the music is the same as the index
              */
-            virtual std::vector<std::string> const &getMusics(void) const = 0;
+            virtual std::vector<std::string> getMusics(void) const = 0;
 
             /**
              * @brief Get the name of the display
              * @return the name of the display
              */
-            virtual std::string const &getName() const = 0;
+            virtual std::string getName() const = 0;
+
+            /**
+             * @brief Get the screen updater
+             * @return the screen updater, a function that will be called to update the screen of a specific client
+             */
+            virtual ScreenUpdater getScreenUpdater(void) = 0;
+
 
             /// @}
 
@@ -154,13 +172,13 @@ namespace rtype {
              * @brief set everything needed in the registry, the systems and the components
              * @param registry the registry to set the component and the systems
              */
-            virtual void setRegistry(ecs::registry &reg) = 0;
+            virtual void initGameRegistry(ecs::registry &reg) = 0;
 
             /**
              * @brief Set the client action handler
              * @return the map of the client action handlers with the action id
              */
-            virtual std::vector<ClientAction> getClientActionHandlers(void) = 0;
+            virtual std::vector<ClientAction> getClientActionHandlers(void) const = 0;
 
             /**
              * @brief Create a player

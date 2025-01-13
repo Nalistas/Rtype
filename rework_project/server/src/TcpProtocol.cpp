@@ -112,9 +112,10 @@ int TcpProtocol::interpreter(std::shared_ptr<asio::ip::tcp::socket> &client, std
 
 void TcpProtocol::listRooms(std::shared_ptr<asio::ip::tcp::socket> &client)
 {
-    std::vector<uint8_t> allData({1});
 
     for (auto &room : _rooms) {
+        std::vector<uint8_t> allData({1, 1}); // {1, 2} => la room vient d'être delete {1, 1} => 
+
         allData.push_back(room.first);
         const std::string& roomName = room.second.getName();
         allData.insert(allData.end(), roomName.begin(), roomName.end());
@@ -126,9 +127,9 @@ void TcpProtocol::listRooms(std::shared_ptr<asio::ip::tcp::socket> &client)
             }
         }
         allData.push_back(static_cast<uint8_t>(personCount));
-        allData.push_back('#');
+        // allData.push_back('#');
+        _tcpServer.send(client, allData);
     }
-    _tcpServer.send(client, allData);
 }
 
 void TcpProtocol::enterRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uint8_t roomId)
@@ -180,6 +181,9 @@ void TcpProtocol::deleteRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uin
 {
     auto it = this->_rooms.find(roomId);
     if (it != this->_rooms.end() && it->second.getOwner() == client) {
+        for (auto client : this->_clients) {
+            this->_tcpServer.send(client.first, {1, 2, it->first});
+        }
         this->_rooms.erase(it);
     }
 }

@@ -1,16 +1,36 @@
 #include "UdpServer.hpp"
 #include <iostream>
 
-UdpServer::UdpServer(const std::string &port) :
+UdpServer::UdpServer(void) :
+    _resolver(_io_context), _socket(_io_context)
+{
+    uint16_t start_port = 1024;
+    uint16_t end_port = 0xFFFF;
+
+    for (uint16_t port = start_port; port < end_port; ++port) {
+        try {
+            _endpoint = asio::ip::udp::endpoint(asio::ip::udp::v4(), port);
+            _socket.open(asio::ip::udp::v4());
+            _socket.bind(_endpoint);
+            break;
+        } catch (const std::exception &e) {
+            std::cerr << "Failed to bind on port " << port << ": " << e.what() << std::endl;
+            _socket.close(); // Close socket on failure to avoid lingering state
+        }
+    }
+    std::cout << "Server started on port " << _endpoint.port() << "." << std::endl;
+}
+
+UdpServer::UdpServer(int port) :
     _resolver(_io_context), _socket(_io_context)
 {
     try {
-        asio::ip::udp::endpoint local_endpoint(asio::ip::udp::v4(), std::stoi(port));
+        _endpoint = asio::ip::udp::endpoint(asio::ip::udp::v4(), port);
         _socket.open(asio::ip::udp::v4());
-        _socket.bind(local_endpoint);
-        std::cout << "Serveur démarré sur le port " << port << "." << std::endl;
+        _socket.bind(_endpoint);
+        std::cout << "Server started on port " << port << "." << std::endl;
     } catch (const std::exception &e) {
-        std::cerr << "Erreur lors du démarrage du serveur : " << e.what() << std::endl;
+        std::cerr << "Error when starting server : " << e.what() << "at : " << __FILE__ << ":" << __LINE__ << std::endl;
         throw std::runtime_error("Failed to start server");
     }
 }
@@ -52,4 +72,9 @@ void UdpServer::readFrom(asio::ip::udp::endpoint &endpoint, std::vector<uint8_t>
     } catch (const std::exception &e) {
         std::cerr << "Erreur lors de la réception des données : " << e.what() << std::endl;
     }
+}
+
+asio::ip::udp::endpoint UdpServer::getEndpoint(void) const
+{
+    return _endpoint;
 }
