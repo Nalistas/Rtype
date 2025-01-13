@@ -27,7 +27,7 @@ ClientActionLog::~ClientActionLog()
 {
 }
 
-std::optional<std::function<void()>> ClientActionLog::treatAction(std::string const &client_ip, std::vector<char> const &message)
+std::optional<std::function<void()>> ClientActionLog::treatAction(std::string const &client_ip, std::vector<uint8_t> const &message)
 {
     auto it = _players.find(client_ip);
     if (it == _players.end()) {
@@ -70,7 +70,7 @@ std::optional<std::function<void()>> ClientActionLog::treatAction(std::string co
     return std::nullopt;
 }
 
-uint32_t ClientActionLog::decodeUint32(std::vector<char> const &vec, std::size_t pos) const
+uint32_t ClientActionLog::decodeUint32(std::vector<uint8_t> const &vec, std::size_t pos) const
 {
     return (static_cast<uint32_t>(static_cast<unsigned char>(vec[pos])) * 16777216) +
            (static_cast<uint32_t>(static_cast<unsigned char>(vec[pos + 1])) * 65536) +

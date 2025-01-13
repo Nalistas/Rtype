@@ -33,7 +33,7 @@ GameLauncher::~GameLauncher()
     _loader.close();
 }
 
-std::list<std::vector<char>> const &GameLauncher::getRessources()
+std::list<std::vector<uint8_t>> const &GameLauncher::getRessources()
 {
     return _ressources;
 }
@@ -58,7 +58,7 @@ GameCore::ServerActions GameLauncher::getServerActions()
 
     while (_server.hasDataToRead()) {
         asio::ip::udp::endpoint endpoint;
-        std::vector<char> data;
+        std::vector<uint8_t> data;
         _server.readFrom(endpoint, data);
         for (auto it : data) {
             printf("%02hhd ", it);

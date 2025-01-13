@@ -1,6 +1,11 @@
 {
     "files.associations": {
+<<<<<<< HEAD
         "optional": "cpp",
+=======
+        "iostream": "cpp",
+        "ostream": "cpp",
+>>>>>>> tcp_protocol
         "cctype": "cpp",
         "clocale": "cpp",
         "cmath": "cpp",
@@ -46,6 +51,10 @@
         "memory": "cpp",
         "memory_resource": "cpp",
         "numeric": "cpp",
+<<<<<<< HEAD
+=======
+        "optional": "cpp",
+>>>>>>> tcp_protocol
         "random": "cpp",
         "ratio": "cpp",
         "source_location": "cpp",
@@ -60,13 +69,19 @@
         "initializer_list": "cpp",
         "iomanip": "cpp",
         "iosfwd": "cpp",
+<<<<<<< HEAD
         "iostream": "cpp",
+=======
+>>>>>>> tcp_protocol
         "istream": "cpp",
         "limits": "cpp",
         "mutex": "cpp",
         "new": "cpp",
         "numbers": "cpp",
+<<<<<<< HEAD
         "ostream": "cpp",
+=======
+>>>>>>> tcp_protocol
         "semaphore": "cpp",
         "shared_mutex": "cpp",
         "span": "cpp",

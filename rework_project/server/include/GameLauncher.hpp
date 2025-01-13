@@ -29,7 +29,7 @@ class GameLauncher {
         GameLauncher(std::string const &game_path);
         ~GameLauncher();
 
-        std::list<std::vector<char>> const &getRessources();
+        std::list<std::vector<uint8_t>> const &getRessources();
 
         std::string getIp();
 
@@ -42,7 +42,7 @@ class GameLauncher {
     private:
         std::unique_ptr<rtype::IGame> _game;
         DLLdr::DLLoader<rtype::IGame> _loader;
-        std::list<std::vector<char>> _ressources;
+        std::list<std::vector<uint8_t>> _ressources;
         ecs::registry _registry;
         std::unordered_map<std::string, std::size_t> _players;
         std::unique_ptr<ClientActionLog> _client_action_log;

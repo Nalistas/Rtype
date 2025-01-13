@@ -24,11 +24,11 @@ class ClientActionLog {
         );
         ~ClientActionLog();
 
-        std::optional<std::function<void()>> treatAction(std::string const &client_ip, std::vector<char> const &message);
+        std::optional<std::function<void()>> treatAction(std::string const &client_ip, std::vector<uint8_t> const &message);
 
     private:
 
-        uint32_t decodeUint32(std::vector<char> const &vec, std::size_t pos) const;
+        uint32_t decodeUint32(std::vector<uint8_t> const &vec, std::size_t pos) const;
 
         std::vector<std::shared_ptr<rtype::IClientActionHandler>> &_handlers;
         std::unordered_map<std::string, std::chrono::milliseconds> _players_time;

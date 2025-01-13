@@ -41,7 +41,7 @@ std::shared_ptr<asio::ip::tcp::socket> TcpServer::accept()
 CLIENT_DATA_STATE TcpServer::hasDataToRead(std::shared_ptr<asio::ip::tcp::socket> client)
 {
     asio::error_code ec;
-    char temp_buffer[1];
+    uint8_t temp_buffer[1];
 
     size_t bytes = client->receive(asio::buffer(temp_buffer, 1), asio::socket_base::message_peek, ec);
 
@@ -60,35 +60,54 @@ CLIENT_DATA_STATE TcpServer::hasDataToRead(std::shared_ptr<asio::ip::tcp::socket
     return (bytes > 0) ? DATA : EMPTY;
 }
 
-std::vector<char> TcpServer::receive(std::shared_ptr<asio::ip::tcp::socket> client)
+std::vector<uint8_t> TcpServer::receive(std::shared_ptr<asio::ip::tcp::socket> client)
 {
-    std::vector<char> buffer(1024);
+    std::vector<uint8_t> length_buffer(2);
     asio::error_code ec;
 
-    std::cout << "Hello" << std::endl;
-
-    size_t length = client->read_some(asio::buffer(buffer), ec);
-
-    std::cout << "Received " << length << " bytes" << std::endl;
-
+    size_t length_received = client->read_some(asio::buffer(length_buffer, 2),  ec);
     if (ec) {
-        if (ec == asio::error::eof) {
-            std::cout << "Client disconnected" << std::endl;
-        } else {
-            std::cerr << "Error receiving: " << ec.message() << std::endl;
-        }
+        std::cerr << "Error receiving length header: " << ec.message() << std::endl;
         return {};
     }
 
-    buffer.resize(length);
+    if (length_received < 2) {
+        std::cerr << "Incomplete length header received" << std::endl;
+        return {};
+    }
+
+    uint16_t length = (static_cast<uint16_t>(length_buffer[0]) * 256) + static_cast<uint16_t>(length_buffer[1]);
+
+    std::vector<uint8_t> buffer(length);
+
+    size_t data_received = client->read_some(asio::buffer(buffer, length), ec);
+    if (ec) {
+        std::cerr << "Error receiving data: " << ec.message() << std::endl;
+        return {};
+    }
+
+    std::cout << "Received " << data_received << " bytes" << std::endl;
+
+    if (data_received < length) {
+        std::cerr << "Incomplete data received. Expected " << length << " bytes, but got " << data_received << " bytes." << std::endl;
+        return {};
+    }
+
     return buffer;
 }
 
-void TcpServer::send(std::shared_ptr<asio::ip::tcp::socket> client, const std::vector<char> &message)
+void TcpServer::send(std::shared_ptr<asio::ip::tcp::socket> client, const std::vector<uint8_t> &message)
 {
     asio::error_code ec;
-    
-    // Bloque jusqu'à ce que le message soit envoyé
+
+    if (message.size() > 65535) {
+        std::cerr << "Message too long" << std::endl;
+        return;
+    }
+    uint16_t length = static_cast<uint16_t>(message.size());
+    std::vector<uint8_t> length_buffer = {static_cast<uint8_t>(length / 256), static_cast<uint8_t>(length & 0xFF)};
+
+    asio::write(*client, asio::buffer(length_buffer), ec);
     asio::write(*client, asio::buffer(message), ec);
 
     if (ec) {

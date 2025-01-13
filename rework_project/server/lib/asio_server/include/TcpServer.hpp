@@ -12,6 +12,8 @@
 #include <vector>
 #include <asio.hpp>
 #include <optional>
+#include <map>
+#include "../../../include/Room.hpp"
 
 enum CLIENT_DATA_STATE {
     EMPTY = 0,
@@ -28,8 +30,8 @@ class TcpServer {
         CLIENT_DATA_STATE hasDataToRead(std::shared_ptr<asio::ip::tcp::socket> client);
 
         std::shared_ptr<asio::ip::tcp::socket> accept();
-        std::vector<char> receive(std::shared_ptr<asio::ip::tcp::socket> client);
-        void send(std::shared_ptr<asio::ip::tcp::socket> client, const std::vector<char> &message);
+        std::vector<uint8_t> receive(std::shared_ptr<asio::ip::tcp::socket> client);
+        void send(std::shared_ptr<asio::ip::tcp::socket> client, const std::vector<uint8_t> &message);
 
     private:
         asio::io_service _io_service;

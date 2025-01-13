@@ -35,12 +35,12 @@ RessourcesManager::RessourcesManager(std::unique_ptr<rtype::IGame> &game)
 RessourcesManager::~RessourcesManager()
 {}
 
-std::list<std::vector<char>> &RessourcesManager::getRessourcess()
+std::list<std::vector<uint8_t>> &RessourcesManager::getRessourcess()
 {
     return _ressources;
 }
 
-void RessourcesManager::copyUint32(std::vector<char> &vec, std::size_t pos, uint32_t value)
+void RessourcesManager::copyUint32(std::vector<uint8_t> &vec, std::size_t pos, uint32_t value)
 {
     vec[pos + 3] = value & 0xFF;
     vec[pos + 2] = (value / 256) & 0xFF;
@@ -48,9 +48,9 @@ void RessourcesManager::copyUint32(std::vector<char> &vec, std::size_t pos, uint
     vec[pos] = (value / 16777216) & 0xFF;
 }
 
-std::vector<char> RessourcesManager::transformBackground(rtype::Background const &background, uint32_t id)
+std::vector<uint8_t> RessourcesManager::transformBackground(rtype::Background const &background, uint32_t id)
 {
-    std::vector<char> buffer(10 + background.path.length());
+    std::vector<uint8_t> buffer(10 + background.path.length());
 
     buffer[0] = 4;
     this->copyUint32(buffer, 1, id);
@@ -63,9 +63,9 @@ std::vector<char> RessourcesManager::transformBackground(rtype::Background const
     return buffer;
 }
 
-std::vector<char> RessourcesManager::transformSprite(rtype::Sprite const &sprite, uint32_t id)
+std::vector<uint8_t> RessourcesManager::transformSprite(rtype::Sprite const &sprite, uint32_t id)
 {
-    std::vector<char> buffer(34 + sprite.path.length());
+    std::vector<uint8_t> buffer(34 + sprite.path.length());
 
     buffer[0] = 3;
     this->copyUint32(buffer, 1, id);
@@ -81,9 +81,9 @@ std::vector<char> RessourcesManager::transformSprite(rtype::Sprite const &sprite
     return buffer;
 }
 
-std::vector<char> RessourcesManager::transformMusic(std::string const &music, uint32_t id)
+std::vector<uint8_t> RessourcesManager::transformMusic(std::string const &music, uint32_t id)
 {
-    std::vector<char> buffer(5 + music.length());
+    std::vector<uint8_t> buffer(5 + music.length());
 
     buffer[0] = 5;
     this->copyUint32(buffer, 1, id);
@@ -91,9 +91,9 @@ std::vector<char> RessourcesManager::transformMusic(std::string const &music, ui
     return buffer;
 }
 
-std::vector<char> RessourcesManager::transformAction(rtype::ClientAction const &action, uint32_t id)
+std::vector<uint8_t> RessourcesManager::transformAction(rtype::ClientAction const &action, uint32_t id)
 {
-    std::vector<char> buffer(5);
+    std::vector<uint8_t> buffer(5);
 
     buffer[0] = 6;
     this->copyUint32(buffer, 1, id);

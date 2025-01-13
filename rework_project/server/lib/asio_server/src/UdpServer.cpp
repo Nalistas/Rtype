@@ -51,7 +51,7 @@ bool UdpServer::hasDataToRead(void)
     }
 }
 
-void UdpServer::sendTo(asio::ip::udp::endpoint const &endpoint, std::vector<char> const &data)
+void UdpServer::sendTo(asio::ip::udp::endpoint const &endpoint, std::vector<uint8_t> const &data)
 {
     try {
         _socket.send_to(asio::buffer(data), endpoint);
@@ -62,7 +62,7 @@ void UdpServer::sendTo(asio::ip::udp::endpoint const &endpoint, std::vector<char
     }
 }
 
-void UdpServer::readFrom(asio::ip::udp::endpoint &endpoint, std::vector<char> &data)
+void UdpServer::readFrom(asio::ip::udp::endpoint &endpoint, std::vector<uint8_t> &data)
 {
     data.resize(1024);
 
