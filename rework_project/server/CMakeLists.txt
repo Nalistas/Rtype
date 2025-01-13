@@ -22,6 +22,7 @@ target_sources(r-type_server
         src/RessourcesManager.cpp
         src/GameLauncher.cpp
         src/TcpProtocol.cpp
+        src/Room.cpp
 )
 
 add_subdirectory(lib/asio_server)

@@ -56,7 +56,13 @@ int main() {
 
     if (tcpClient.hasData()) {
         auto tcpResponse = tcpClient.receive();
-        std::cout << "TCP Response: " << std::string(tcpResponse.begin(), tcpResponse.end()) << std::endl;
+        if (tcpResponse.size() >= 0 && tcpResponse[0] == 200) {
+            std::cout << "OK" << std::endl;
+        } else if (tcpResponse.size() >= 0 && tcpResponse[0] == 201) {
+            std::cout << "KO" << std::endl;
+        } else {
+            std::cout << "TCP Response: " << std::string(tcpResponse.begin(), tcpResponse.end()) << std::endl;
+        }
     }
 
     } catch (const std::exception &e) {
