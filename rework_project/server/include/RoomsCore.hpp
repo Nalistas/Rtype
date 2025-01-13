@@ -8,6 +8,7 @@
 #include <string>
 #include <map>
 #include "TcpServer.hpp"
+#include "TcpProtocol.hpp"
 #include "Room.hpp"
 #include "Client.hpp"
 
@@ -23,6 +24,10 @@ class RoomsCore {
         void run(void);
 
     private:
+        void checkNewClients(void);
+        void checkClients(TcpProtocol &tcpProtocol);
+        void treatClient(std::shared_ptr<asio::ip::tcp::socket> &client, TcpProtocol &tcpProtocol);
+
         TcpServer _tcpServer;
         std::map<uint8_t, Room> _rooms;
         std::map<std::shared_ptr<asio::ip::tcp::socket>, Client> _clients;
