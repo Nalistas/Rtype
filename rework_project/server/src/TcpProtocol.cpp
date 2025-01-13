@@ -59,16 +59,23 @@ TcpProtocol::TcpProtocol(TcpServer &server) : _tcpServer(server)
         // List rooms
         listRooms(client);
         std::cout << "List rooms\n";
-        std::vector<char> data = {static_cast<char>(200)};
-        _tcpServer.send(client, data);
     };
     _commandMap[9] = [this](std::shared_ptr<asio::ip::tcp::socket> client, std::istringstream& params) {
         // Del room
+        params.get();
         int roomId;
         params >> roomId;
         deleteRoom(client, roomId);
-        std::cout << "Del room\n";
-
+        std::cout << "Delete room\n";
+    };
+    _commandMap[10] = [this](std::shared_ptr<asio::ip::tcp::socket> client, std::istringstream& params) {
+        // Change Status client
+        for (auto &room : _tcpServer._rooms) {
+            if (room.isClientInRoom(client)) {
+                room.changeClientStatus(client);
+            }
+        }
+        std::cout << "Change Status client\n";
     };
 }
 

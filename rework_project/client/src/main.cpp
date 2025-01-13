@@ -53,19 +53,21 @@ int main() {
     tcpClient.send(std::vector<char>(tcpMessage3.begin(), tcpMessage3.end()));
     sleep(1);
 
-    std::string tcpMessage4 = std::string(1, 2) + "1";
+    // std::string tcpMessage4 = std::string(1, 2) + "1";
     
-    tcpClient.send(std::vector<char>(tcpMessage4.begin(), tcpMessage4.end()));
-    sleep(1);
+    // tcpClient.send(std::vector<char>(tcpMessage4.begin(), tcpMessage4.end()));
+    // sleep(1);
 
-    std::string tcpMessage5 = std::string(1, 4) + "";
+    // std::string tcpMessage5 = std::string(1, 4) + "";
     
-    tcpClient.send(std::vector<char>(tcpMessage5.begin(), tcpMessage5.end()));
-    sleep(1);
+    // tcpClient.send(std::vector<char>(tcpMessage5.begin(), tcpMessage5.end()));
+    // sleep(1);
 
-    std::string tcpMessage6 = std::string(1, 5) + "1\\ggggggggggg";
-    
-    tcpClient.send(std::vector<char>(tcpMessage6.begin(), tcpMessage6.end()));
+
+    char id2 = 9;
+    std::string tcpMessage7 = std::string(1, id2) + "\\1";
+
+    tcpClient.send(std::vector<char>(tcpMessage7.begin(), tcpMessage7.end()));
     sleep(1);
 
     if (tcpClient.hasData()) {

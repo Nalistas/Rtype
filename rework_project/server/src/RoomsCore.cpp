@@ -50,7 +50,12 @@ void RoomsCore::run(void)
                     break;
                 }
 
-                std::cout << "Received data: " << std::string(data.begin(), data.end()) << std::endl;
+                std::cout << "Received data (ASCII values): " << std::string(data.begin(), data.end()) << std::endl;
+                for (char c : data) {
+                    std::cout << static_cast<int>(c) << " ";
+                }
+                std::cout << std::endl;
+                // std::cout << "Received data: " << std::string(data.begin(), data.end()) << std::endl;
                 tcp_protocol.interpreter(client, data);
                 for (auto &room : _tcpServer._rooms) {
                     std::cout << "Room: " << room.getName() << "  "<< room.getGameName() << std::endl;
