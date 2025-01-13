@@ -7,6 +7,8 @@
 
 #include "TcpProtocol.hpp"
 #include <sstream>
+#include <iostream>
+#include <fstream>
 
 
 TcpProtocol::TcpProtocol(TcpServer &server) : _tcpServer(server)
@@ -36,7 +38,6 @@ TcpProtocol::TcpProtocol(TcpServer &server) : _tcpServer(server)
         // Rename room
         int roomId;
         std::string roomName;
-        char separator = '\\';
 
         params >> roomId;
         params.get();
@@ -48,9 +49,8 @@ TcpProtocol::TcpProtocol(TcpServer &server) : _tcpServer(server)
         // Create room
         std::string roomName;
         std::string gameName;
-        char separator = '\\';
 
-        std::getline(params, roomName, separator);
+        std::getline(params, roomName, '\\');
         std::getline(params, gameName); 
         createRoom(client, roomName, gameName);
         std::cout << "Create room\n";
@@ -61,6 +61,14 @@ TcpProtocol::TcpProtocol(TcpServer &server) : _tcpServer(server)
         std::cout << "List rooms\n";
         std::vector<char> data = {static_cast<char>(200)};
         _tcpServer.send(client, data);
+    };
+    _commandMap[9] = [this](std::shared_ptr<asio::ip::tcp::socket> client, std::istringstream& params) {
+        // Del room
+        int roomId;
+        params >> roomId;
+        deleteRoom(client, roomId);
+        std::cout << "Del room\n";
+
     };
 }
 
@@ -157,4 +165,62 @@ void TcpProtocol::renameRoom(std::shared_ptr<asio::ip::tcp::socket> client, int 
             return;
         }
     }
+}
+
+void TcpProtocol::deleteRoom(std::shared_ptr<asio::ip::tcp::socket> client, int roomId)
+{
+    for (auto &room : _tcpServer._rooms) {
+        if (room.getId() == roomId) {
+            if (room.getOwner() != client) {
+                std::vector<char> data = {static_cast<char>(201)};
+                _tcpServer.send(client, data);
+                return;
+            }
+            _tcpServer._rooms.erase(_tcpServer._rooms.begin() + roomId);
+            std::vector<char> data = {static_cast<char>(200)};
+            _tcpServer.send(client, data);
+            return;
+        }
+    }
+}
+
+std::vector<char> TcpProtocol::image_to_binary(const std::string &path)
+{
+    std::ifstream imageFile(path, std::ios::binary);
+    if (!imageFile) {
+        std::cerr << "Erreur lors de l'ouverture de l'image !" << std::endl;
+        return {};
+    }
+
+    imageFile.seekg(0, std::ios::end);
+    std::streamsize imageSize = imageFile.tellg();
+    imageFile.seekg(0, std::ios::beg);
+
+    std::vector<char> buffer(imageSize);
+    if (!imageFile.read(buffer.data(), imageSize)) {
+        std::cerr << "Erreur lors de la lecture de l'image !" << std::endl;
+        return {};
+    }
+    return buffer;
+}
+
+void TcpProtocol::sendImage(std::shared_ptr<asio::ip::tcp::socket> client, uint8_t spriteId, uint32_t sizeX, uint32_t sizeY, uint32_t width, uint32_t height,
+    uint32_t offsetX, uint32_t offsetY, uint8_t nbFrames, uint32_t frameDelay, const std::string &path)
+{
+    std::vector<char> data;
+
+    data.push_back(spriteId);
+    data.insert(data.end(), reinterpret_cast<char*>(&sizeX), reinterpret_cast<char*>(&sizeX) + sizeof(sizeX));
+    data.insert(data.end(), reinterpret_cast<char*>(&sizeY), reinterpret_cast<char*>(&sizeY) + sizeof(sizeY));
+    data.insert(data.end(), reinterpret_cast<char*>(&width), reinterpret_cast<char*>(&width) + sizeof(width));
+    data.insert(data.end(), reinterpret_cast<char*>(&height), reinterpret_cast<char*>(&height) + sizeof(height));
+    data.insert(data.end(), reinterpret_cast<char*>(&offsetX), reinterpret_cast<char*>(&offsetX) + sizeof(offsetX));
+    data.insert(data.end(), reinterpret_cast<char*>(&offsetY), reinterpret_cast<char*>(&offsetY) + sizeof(offsetY));
+    data.push_back(nbFrames);
+    data.insert(data.end(), reinterpret_cast<char*>(&frameDelay), reinterpret_cast<char*>(&frameDelay) + sizeof(frameDelay));
+
+    std::vector<char> imageData = image_to_binary(path);
+    data.insert(data.end(), imageData.begin(), imageData.end());
+
+    _tcpServer.send(client, data);
 }
