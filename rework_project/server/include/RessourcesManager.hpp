@@ -13,11 +13,31 @@
 #ifndef RESSOURCESMANAGER_HPP_
     #define RESSOURCESMANAGER_HPP_
 
+/**
+ * This class is used to get all the ressources of a game
+ * It takes a std::unique_ptr<rtype::IGame> as parameter
+ * It will get all the backgrounds, sprites, musics and client actions of the game
+ * It will then transform them into a vector of bytes that can be sent to the clients
+ * The vector of bytes will be stored in the _ressources member
+ * The getRessourcess method can then be used to get the vector of bytes
+ */
 class RessourcesManager {
     public:
+
+        /**
+         * @brief Construct a new Ressources Manager object
+         * @param game the game for which we want to get the ressources
+         */
         RessourcesManager(std::unique_ptr<rtype::IGame> &game);
+
+        /**
+         * @brief Destroy the Ressources Manager object
+         */
         ~RessourcesManager();
 
+        /**
+         * @brief Get the Ressourcess object
+         */
         std::list<std::vector<uint8_t>> &getRessourcess();
 
     private:

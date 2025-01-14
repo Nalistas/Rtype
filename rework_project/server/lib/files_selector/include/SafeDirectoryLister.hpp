@@ -14,12 +14,41 @@
 
 class SafeDirectoryLister : public IDirectoryLister {
     public:
+        /**
+         * @brief Constructor
+         * @param path the path of the directory
+         * @param hidden if true, show hidden files
+         */
         SafeDirectoryLister(const std::string& path, bool hidden);
+
+        /**
+         * @brief Constructor
+         */
         SafeDirectoryLister();
+
+        /**
+         * @brief Destructor
+         */
         ~SafeDirectoryLister();
 
+        /**
+         * @brief Open the directory lister
+         * @param path the path of the directory
+         * @param hidden if true, show hidden files
+         * @return true if the directory lister is good
+         */
         bool open(const std::string& path, bool hidden) override;
+
+        /**
+         * @brief Check if the directory lister is good, then it will go to the next file
+         * @return true if the directory lister is good
+         */
         bool isGood(void) const override;
+
+        /**
+         * @brief Get the next file
+         * @return std::string the name of a file
+         */
         std::string get() override;
 
     protected:

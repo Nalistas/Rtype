@@ -112,9 +112,10 @@ int TcpProtocol::interpreter(std::shared_ptr<asio::ip::tcp::socket> &client, std
 
 void TcpProtocol::listRooms(std::shared_ptr<asio::ip::tcp::socket> &client)
 {
-    std::vector<uint8_t> allData({1});
 
     for (auto &room : _rooms) {
+        std::vector<uint8_t> allData({1, 1}); // {1, 2} => la room vient d'être delete {1, 1} => 
+
         allData.push_back(room.first);
         const std::string& roomName = room.second.getName();
         allData.insert(allData.end(), roomName.begin(), roomName.end());
@@ -126,9 +127,9 @@ void TcpProtocol::listRooms(std::shared_ptr<asio::ip::tcp::socket> &client)
             }
         }
         allData.push_back(static_cast<uint8_t>(personCount));
-        allData.push_back('#');
+        // allData.push_back('#');
+        _tcpServer.send(client, allData);
     }
-    _tcpServer.send(client, allData);
 }
 
 void TcpProtocol::enterRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uint8_t roomId)
@@ -180,6 +181,9 @@ void TcpProtocol::deleteRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uin
 {
     auto it = this->_rooms.find(roomId);
     if (it != this->_rooms.end() && it->second.getOwner() == client) {
+        for (auto client : this->_clients) {
+            this->_tcpServer.send(client.first, {1, 2, it->first});
+        }
         this->_rooms.erase(it);
     }
 }
@@ -202,27 +206,6 @@ std::vector<uint8_t> TcpProtocol::image_to_binary(const std::string &path)
         return {};
     }
     return buffer;
-}
-
-void TcpProtocol::sendImage(std::shared_ptr<asio::ip::tcp::socket> &client, uint8_t spriteId, uint32_t sizeX, uint32_t sizeY, uint32_t width, uint32_t height,
-    uint32_t offsetX, uint32_t offsetY, uint8_t nbFrames, uint32_t frameDelay, const std::string &path)
-{
-    std::vector<uint8_t> data;
-
-    data.push_back(spriteId);
-    data.insert(data.end(), reinterpret_cast<uint8_t*>(&sizeX), reinterpret_cast<uint8_t*>(&sizeX) + sizeof(sizeX));
-    data.insert(data.end(), reinterpret_cast<uint8_t*>(&sizeY), reinterpret_cast<uint8_t*>(&sizeY) + sizeof(sizeY));
-    data.insert(data.end(), reinterpret_cast<uint8_t*>(&width), reinterpret_cast<uint8_t*>(&width) + sizeof(width));
-    data.insert(data.end(), reinterpret_cast<uint8_t*>(&height), reinterpret_cast<uint8_t*>(&height) + sizeof(height));
-    data.insert(data.end(), reinterpret_cast<uint8_t*>(&offsetX), reinterpret_cast<uint8_t*>(&offsetX) + sizeof(offsetX));
-    data.insert(data.end(), reinterpret_cast<uint8_t*>(&offsetY), reinterpret_cast<uint8_t*>(&offsetY) + sizeof(offsetY));
-    data.push_back(nbFrames);
-    data.insert(data.end(), reinterpret_cast<uint8_t*>(&frameDelay), reinterpret_cast<uint8_t*>(&frameDelay) + sizeof(frameDelay));
-
-    std::vector<uint8_t> imageData = image_to_binary(path);
-    data.insert(data.end(), imageData.begin(), imageData.end());
-
-    _tcpServer.send(client, data);
 }
 
 void TcpProtocol::copyUint32(std::vector<uint8_t> &vec, std::size_t pos, uint32_t value)

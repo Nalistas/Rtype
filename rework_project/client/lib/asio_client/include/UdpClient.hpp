@@ -14,11 +14,34 @@
 
 class UdpClient {
     public:
+        /**
+         * @brief Construct a new Udp Client object
+         * @param ip the ip of the server
+         * @param port the port of the server
+         */
         UdpClient(const std::string &ip, const std::string &port);
+
+        /**
+         * @brief Destroy the Udp Client object
+         */
         ~UdpClient();
 
+        /**
+         * @brief Send a message to the server
+         * @param message the message to send
+         */
         void send(const std::vector<uint8_t> &message);
+
+        /**
+         * @brief Receive a message from the server
+         * @return the message received
+         */
         std::vector<uint8_t> receive();
+
+        /**
+         * @brief Check if there is data available
+         * @return true if there is data available, false otherwise
+         */
         bool hasData();
 
     private:
