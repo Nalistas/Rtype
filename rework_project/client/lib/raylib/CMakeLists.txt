@@ -31,6 +31,7 @@ add_library(cppray STATIC
     src/Sprite.cpp
     src/TextureManager.cpp
     src/Window.cpp
+    src/RayText.cpp
 )
 
 # Cible les répertoires include
