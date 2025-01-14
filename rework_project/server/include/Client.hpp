@@ -16,11 +16,40 @@ class Client {
         Client();
         ~Client();
 
+        /**
+         * @brief Get the Room Id object
+         * @return uint8_t
+         */
         uint8_t getRoomId() const;
-        void setRoomId(uint8_t roomId);
+
+        /**
+         * @brief Get the Name object
+         * @return std::string
+         */
         std::string getName() const;
-        void setName(std::string name);
+
+        /**
+         * @brief Get the Ready object
+         * @return bool
+         */
         bool isReady() const;
+
+        /**
+         * @brief Set the Room Id object
+         * @param roomId
+         */
+        void setRoomId(uint8_t roomId);
+
+        /**
+         * @brief Set the Name object
+         * @param name
+         */
+        void setName(std::string name);
+
+        /**
+         * @brief Set the Ready object
+         * @param ready
+         */
         void setReady(bool ready);
     private:
         uint8_t _room_id;

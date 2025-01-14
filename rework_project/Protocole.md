@@ -97,6 +97,7 @@ Port : `[nb1/1o][nb2/1o]` translation to string then concatenation, for exemple:
 1. Define a name
 `...[1][Name /?o]`
 Server response : OK | KO
+this instruction is mandatory, it is a loggin
 
 2. Enter in a Room :
 `...[2][Id room /1o]`
@@ -119,12 +120,12 @@ Server response : OK | KO
 
 6. Missing file
 `...[6][File path /?o]`
-Server response : the file | KO
+Server response : OK[followed by the file (binary)] | KO
 when the server give you all the ressourses, it just gives the path. By default it assumes the client has everything.
 However, you can ask him the document and then will giv it to you
 
 7. New Room
-`...[7][Room Name / ?o]`
+`...[7][Room Name /?o][92][Name of the game /?o]`
 Server response : OK | KO
 
 **NB** Be carefull, some instruction of the server can be sent before a response to a request.
