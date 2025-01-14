@@ -208,27 +208,6 @@ std::vector<uint8_t> TcpProtocol::image_to_binary(const std::string &path)
     return buffer;
 }
 
-void TcpProtocol::sendImage(std::shared_ptr<asio::ip::tcp::socket> &client, uint8_t spriteId, uint32_t sizeX, uint32_t sizeY, uint32_t width, uint32_t height,
-    uint32_t offsetX, uint32_t offsetY, uint8_t nbFrames, uint32_t frameDelay, const std::string &path)
-{
-    std::vector<uint8_t> data;
-
-    data.push_back(spriteId);
-    data.insert(data.end(), reinterpret_cast<uint8_t*>(&sizeX), reinterpret_cast<uint8_t*>(&sizeX) + sizeof(sizeX));
-    data.insert(data.end(), reinterpret_cast<uint8_t*>(&sizeY), reinterpret_cast<uint8_t*>(&sizeY) + sizeof(sizeY));
-    data.insert(data.end(), reinterpret_cast<uint8_t*>(&width), reinterpret_cast<uint8_t*>(&width) + sizeof(width));
-    data.insert(data.end(), reinterpret_cast<uint8_t*>(&height), reinterpret_cast<uint8_t*>(&height) + sizeof(height));
-    data.insert(data.end(), reinterpret_cast<uint8_t*>(&offsetX), reinterpret_cast<uint8_t*>(&offsetX) + sizeof(offsetX));
-    data.insert(data.end(), reinterpret_cast<uint8_t*>(&offsetY), reinterpret_cast<uint8_t*>(&offsetY) + sizeof(offsetY));
-    data.push_back(nbFrames);
-    data.insert(data.end(), reinterpret_cast<uint8_t*>(&frameDelay), reinterpret_cast<uint8_t*>(&frameDelay) + sizeof(frameDelay));
-
-    std::vector<uint8_t> imageData = image_to_binary(path);
-    data.insert(data.end(), imageData.begin(), imageData.end());
-
-    _tcpServer.send(client, data);
-}
-
 void TcpProtocol::copyUint32(std::vector<uint8_t> &vec, std::size_t pos, uint32_t value)
 {
     vec[pos] = value & 0xFF;
