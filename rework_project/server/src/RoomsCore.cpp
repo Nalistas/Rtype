@@ -64,7 +64,7 @@ void RoomsCore::treatClient(std::shared_ptr<asio::ip::tcp::socket> &client, TcpP
     for (uint8_t c : data) {
         std::cout << static_cast<int>(c) << " ";
     }
-    std::cout << "-------------------------------------------------------------------------" << std::endl;
+    std::cout << std::endl << "-------------------------------------------------------------------------" << std::endl;
     std::cout << std::endl;
     tcpProtocol.interpreter(client, data);
 }
