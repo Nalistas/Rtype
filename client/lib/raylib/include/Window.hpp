@@ -119,7 +119,7 @@ class Window {
         /**
          * @brief Draw a string
          */
-        void draw_text(std::string const &text, int x, int y, int fontSize, Color color);
+        void draw_text(std::string const &text, int x, int y, int fontSize);
 
         /**
          * @brief Draw a rectangle

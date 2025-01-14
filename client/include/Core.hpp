@@ -6,6 +6,10 @@
 */
 
 #include "Window.hpp"
+#include "TcpClient.hpp"
+#include "ClientRoom.hpp"
+
+#include <vector>
 
 #ifndef CORE_HPP_
     #define CORE_HPP_
@@ -26,6 +30,8 @@ class Core {
          */
         ~Core();
 
+        void interpretor();
+
         /**
          * @brief Run the core
          */
@@ -33,6 +39,8 @@ class Core {
 
     private:
         raylib::Window _window;
+        TcpClient _tcpClient;
+        std::vector<ClientRoom> _rooms;
 
 };
 
