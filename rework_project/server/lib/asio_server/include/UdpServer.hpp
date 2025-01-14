@@ -1,6 +1,11 @@
 #ifndef UDPSERVER_HPP_
     #define UDPSERVER_HPP_
 
+#ifdef _WIN32
+#include <winsock2.h>
+#include <windows.h>
+#endif
+
 #include <string>
 #include <vector>
 #include <asio.hpp>
