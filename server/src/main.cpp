@@ -1,29 +1,65 @@
 /*
-** EPITECH PROJECT, 2024
+** EPITECH PROJECT, 2025
 ** rtype
 ** File description:
 ** main
 */
 
-// #include <iostream>
+#include <iostream>
+#include "RoomsCore.hpp"
+#include "registry.hpp"
+#include "isystem.hpp"
+#include "GameLauncher.hpp"
 
-// int main() {
-//     // Vérifier la plateforme
-//     #ifdef PLATFORM_WINDOWS
-//         std::cout << "Running on Windows platform." << std::endl;
-//     #elif defined(PLATFORM_LINUX)
-//         std::cout << "Running on Linux platform." << std::endl;
-//     #else
-//         std::cout << "Unknown platform." << std::endl;
-//     #endif
-//     return 0;
-// }
+struct speed {
+    int x;
+    int y;
+};
 
-#include "Server.hpp"
-#include <memory>
+struct position {
+    int x;
+    int y;
+};
 
-int main() {
-    Server server;
-    server.loop();
+class MovementSystem : public ecs::isystem<speed, position> {
+    public:
+        MovementSystem() = default;
+        ~MovementSystem() = default;
+
+        void operator()(ecs::registry &registry, sparse_array<speed> &speeds, sparse_array<position> &positions) override {
+            (void)registry;
+            for (auto [index, speed, position] : zipper(speeds, positions)) {
+                std::cout << "coucou " << index << std::endl;
+            }
+        }
+};
+
+class NoneSystem : public ecs::isystem<> {
+    public:
+        NoneSystem() = default;
+        ~NoneSystem() = default;
+    
+        void operator()(ecs::registry &registry) override
+        {
+            (void)registry;
+            std::cout << "NoneSystem" << std::endl;
+        }
+};
+
+
+int main()
+{
+    // GameLauncher launcher("./libr-type.so");
+    // std::list<GameLauncher::Player> players = {{"player1", "127.0.0.1"}, {"player2", "127.0.0.1"}, {"player3", "127.0.0.1"}};
+    // launcher.launch(players);
+
+    RoomsCore core("12345");
+    core.run();
+/*
+    ecs::registry registry;
+
+    // RoomsCore core("12345");
+    // core.run();
     return 0;
+    */
 }
