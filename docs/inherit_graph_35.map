@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classraylib_1_1RaySound.html" title="Sound class using raylib." alt="" coords="5,5,137,31"/>
+<area shape="rect" id="Node000000" href="$classrtype_1_1IGame.html" title=" " alt="" coords="5,31,112,56"/>
+<area shape="rect" id="Node000001" href="$classIGame.html" title=" " alt="" coords="160,5,225,31"/>
+<area shape="poly" id="edge19_Node000000_Node000001" title=" " alt="" coords="125,28,159,21,160,27,126,33"/>
+<area shape="rect" id="Node000002" href="$classRtype.html" title=" " alt="" coords="163,55,223,80"/>
+<area shape="poly" id="edge20_Node000000_Node000002" title=" " alt="" coords="126,53,163,59,162,65,125,58"/>
 </map>
