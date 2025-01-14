@@ -18,14 +18,36 @@
 
 class RoomsCore {
     public:
+        /**
+         * @brief Construct a new Rooms Core object
+         * @param port the port of the server
+         */
         RoomsCore(std::string const &port);
+
+        /**
+         * @brief Destroy the Rooms Core object
+         */
         ~RoomsCore();
 
+        /**
+         * @brief Run the rooms core
+         */
         void run(void);
 
     private:
+        /**
+         * @brief Check if there are new clients
+         */
         void checkNewClients(void);
+
+        /**
+         * @brief Check if there are new clients
+         */
         void checkClients(TcpProtocol &tcpProtocol);
+
+        /**
+         * @brief Treat a client command
+         */
         void treatClient(std::shared_ptr<asio::ip::tcp::socket> &client, TcpProtocol &tcpProtocol);
 
         TcpServer _tcpServer;

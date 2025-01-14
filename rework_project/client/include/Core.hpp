@@ -11,11 +11,24 @@
     #define CORE_HPP_
 
 
+/**
+ * @brief Core
+ */
 class Core {
     public:
+        /**
+         * @brief Construct a new Core object
+         */
         Core();
+
+        /**
+         * @brief Destroy the Core object
+         */
         ~Core();
 
+        /**
+         * @brief Run the core
+         */
         void run(void);
 
     private:
