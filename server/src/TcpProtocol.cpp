@@ -17,72 +17,41 @@ TcpProtocol::TcpProtocol(
     TcpServer &tcpServer
 ) : _rooms(rooms), _clients(clients), _tcpServer(tcpServer)
 {
-    _commandMap[1] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
-        // Set name
+    _commandMap[SET_NAME] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
         std::string name;
         params >> name;
-        _clients[client].setName(name);
-        std::cout << "Set " << _clients[client].getName() << " name to " << client << std::endl;
-        std::vector<uint8_t> data = {200};
-        _tcpServer.send(client, data);
+        this->setName(client, name);
     };
-    _commandMap[2] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
-        // Enter room
+    _commandMap[ENTER_ROOM] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
         uint8_t roomId;
         params >> roomId;
         enterRoom(client, roomId);
-        std::cout << "client " << client << " enter room " << roomId << std::endl;
-        std::vector<uint8_t> data = {200};
-        _tcpServer.send(client, data);
     };
-    _commandMap[4] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
-        // Exit room
+    _commandMap[LEAVE_ROOM] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
         (void)params;
         exitRoom(client);
-        std::cout << "Exit room\n";
     };
-    _commandMap[5] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
-        // Rename room
-        uint8_t roomId;
-        std::string roomName;
-
-        params >> roomId;
-        params.get();
-        std::getline(params, roomName);
-        renameRoom(client, roomId, roomName);
-        std::cout << "Rename room\n";
-    };
-    _commandMap[7] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
+    _commandMap[CREATE_ROOM] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
         // Create room
         std::string roomName;
         std::string gameName;
 
         std::getline(params, roomName, '\\');
         std::getline(params, gameName); 
-        _clients[client].setRoomId(createRoom(client, roomName, gameName););
-        for (auto &client : this->_clients) {
-            if (client.second.getRoomId() == 0) {
-                std::vector<uint8_t> data = {200};
-                _tcpServer.send(client.first, data);
-            }
-        }
-        std::cout << "Create room\n";
+        createRoom(client, roomName, gameName);
     };
-    _commandMap[8] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
-        // List rooms
+    _commandMap[LIST_ROOMS] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
         (void)params;
         listRooms(client);
         std::cout << "List rooms\n";
     };
-    _commandMap[9] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
-        // Del room
+    _commandMap[DELETE_ROOM] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
         params.get();
         uint8_t roomId;
         params >> roomId;
         deleteRoom(client, roomId);
-        std::cout << "Delete room\n";
     };
-    _commandMap[10] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
+    _commandMap[SET_READY] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
         // Change Status client
         (void)params;
         auto it = this->_clients.find(client);
@@ -118,6 +87,23 @@ int TcpProtocol::interpreter(std::shared_ptr<asio::ip::tcp::socket> &client, std
     return 0;
 }
 
+
+void TcpProtocol::setName(std::shared_ptr<asio::ip::tcp::socket> &client, std::string name)
+{
+    std::vector<uint8_t> data = {static_cast<uint8_t>(200)};
+    auto it = this->_clients.find(client);
+
+    if (it != this->_clients.end()) {
+        it->second.setName(name);
+        std::cout << "Set name of " << client << " to " << name << std::endl;
+        _tcpServer.send(client, data);
+    } else {
+        std::cout << "Client not found" << std::endl;
+        data[0] = static_cast<uint8_t>(201);
+        _tcpServer.send(client, data);
+    }
+}
+
 void TcpProtocol::listRooms(std::shared_ptr<asio::ip::tcp::socket> &client)
 {
 
@@ -142,13 +128,18 @@ void TcpProtocol::listRooms(std::shared_ptr<asio::ip::tcp::socket> &client)
 
 void TcpProtocol::enterRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uint8_t roomId)
 {
+    std::vector<uint8_t> data = {200};
     auto it = this->_rooms.find(roomId);
     auto it2 = this->_clients.find(client);
 
-    if (it != this->_rooms.end() && it2 != this->_clients.end()) {
+    if (it != this->_rooms.end() && it2 != this->_clients.end() && it2->second.getName() != "") {
         this->_clients[client].setRoomId(roomId);
-        std::vector<uint8_t> data = {static_cast<uint8_t>(200)};
         _tcpServer.send(client, data);
+        std::cout << "Client " << it2->second.getName() << " entered room " << roomId << std::endl; 
+    } else {
+        data[0] = {201};
+        _tcpServer.send(client, data);
+        std::cout << "Client " << client << " error when entering the room " << roomId << std::endl;
     }
 }
 
@@ -156,23 +147,44 @@ void TcpProtocol::exitRoom(std::shared_ptr<asio::ip::tcp::socket> &client)
 {
     auto it = this->_clients.find(client);
     uint8_t roomId = this->_clients[client].getRoomId();
+    auto roomIt = this->_rooms.find(roomId);
+    std::vector<uint8_t> data = {200};
+
+    if (roomIt == this->_rooms.end()) {
+        this->_clients[client].setRoomId(0);
+        _tcpServer.send(client, data);
+        return;
+    }
 
     if (it != this->_clients.end()) {
         this->_clients[client].setRoomId(0);
-        std::vector<uint8_t> data = {static_cast<uint8_t>(200)};
         _tcpServer.send(client, data);
     }
-    for (auto &client : this->_clients) {
-        if (client.second.getRoomId() == roomId) {
+
+    for (auto &clientIt : this->_clients) {
+        if (clientIt.second.getRoomId() == roomId) {
+            if (client == roomIt->second.getOwner()) {
+                auto tmp = clientIt.first;
+                roomIt->second.setOwner(tmp);
+            }
             return;
         }
     }
-    this->_rooms.erase(roomId);
+    roomIt->second.setOwner(client);
+    deleteRoom(client, roomId);
 }
 
-uint8_t TcpProtocol::createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, std::string roomName, std::string gameName)
+void TcpProtocol::createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, std::string roomName, std::string gameName)
 {
     uint8_t roomId;
+    std::vector<uint8_t> data = {static_cast<uint8_t>(200)};
+    auto client_it = this->_clients.find(client);
+
+    if (client_it == this->_clients.end() || client_it->second.getName() == "") {
+        data[0] = static_cast<uint8_t>(KO);
+        _tcpServer.send(client, data);
+        return;
+    }
 
     for (uint8_t i = 1; i < 255; i++) {
         if (this->_rooms.find(i) == this->_rooms.end()) {
@@ -182,26 +194,34 @@ uint8_t TcpProtocol::createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, 
     }
 
     this->_rooms.emplace(roomId, Room(roomName, gameName, client));
-    std::vector<uint8_t> data = {static_cast<uint8_t>(200)};
+    client_it->second.setRoomId(roomId);
+
     _tcpServer.send(client, data);
 
-    return roomId;
-}
+    data = {1, 1, roomId};
+    data.insert(data.end(), roomName.begin(), roomName.end());
+    data.push_back('\\');
+    data.push_back(static_cast<uint8_t>(1));
 
-void TcpProtocol::renameRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uint8_t roomId, std::string roomName)
-{
-    auto it = this->_rooms.find(roomId);
-    if (it != this->_rooms.end() && it->second.getOwner() == client) {
-        it->second.setName(roomName);
+    for (auto clientIt : this->_clients) {
+        if (clientIt.second.getRoomId() == 0) {
+            _tcpServer.send(clientIt.first, data);
+        }
     }
+
+    return;
 }
 
 void TcpProtocol::deleteRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uint8_t roomId)
 {
     auto it = this->_rooms.find(roomId);
+
     if (it != this->_rooms.end() && it->second.getOwner() == client) {
-        for (auto client : this->_clients) {
-            this->_tcpServer.send(client.first, {1, 2, it->first});
+        for (auto clientIt : this->_clients) {
+            this->_tcpServer.send(clientIt.first, {1, 2, it->first});
+            if (clientIt.second.getRoomId() == roomId) {
+                clientIt.second.setRoomId(0);
+            }
         }
         this->_rooms.erase(it);
     }

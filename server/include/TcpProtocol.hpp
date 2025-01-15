@@ -19,6 +19,29 @@
 class TcpProtocol {
     public:
 
+        enum INSTRUCTIONS_SERVER_TO_CLIENT {
+            OK = 200,
+            KO = 201,
+            ROOM_UPDATE = 1,
+            SET_READY = 2,
+            LOAD_SPRITE = 3,
+            LOAD_BACKGROUND = 4,
+            LOAD_MUSIC = 5,
+            LOAD_ACTION = 6,
+            START_GAME = 7
+        };
+
+        enum INSTRUCTIONS_CLIENT_TO_SERVER {
+            SET_NAME = 1,
+            ENTER_ROOM = 2,
+            LEAVE_ROOM = 4,
+            MISSING_FILE = 6,
+            CREATE_ROOM = 7,
+            LIST_ROOMS = 8,
+            DELETE_ROOM = 9,
+            SET_READY = 10
+        };
+
         /**
          * @brief Construct a new TcpProtocol object
          * 
@@ -69,9 +92,8 @@ class TcpProtocol {
          * @param client The client socket
          * @param roomName The room name
          * @param gameName The game name
-         * @return uint8_t The room ID
          */
-        uint8_t createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, std::string roomName, std::string gameName);
+        void createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, std::string roomName, std::string gameName);
 
         /**
          * @brief Exit a room for a client
@@ -79,15 +101,6 @@ class TcpProtocol {
          * @param client The client socket
          */
         void exitRoom(std::shared_ptr<asio::ip::tcp::socket> &client);
-
-        /**
-         * @brief Rename a room for a client
-         * 
-         * @param client The client socket
-         * @param roomId The room ID
-         * @param roomName The room name
-         */
-        void renameRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uint8_t roomId, std::string roomName);
 
         /**
          * @brief Delete a room for a client
@@ -104,6 +117,14 @@ class TcpProtocol {
          * @return std::vector<uint8_t> the binary image
          */
         std::vector<uint8_t> image_to_binary(const std::string &path);
+
+        /**
+         * @brief set the name of a client
+         * 
+         * @param client The client socket
+         * @param name The name
+         */
+        void setName(std::shared_ptr<asio::ip::tcp::socket> &client, std::string name);
 
         /**
          * @brief Broadcast a message to all clients
