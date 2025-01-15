@@ -22,18 +22,18 @@ TcpProtocol::TcpProtocol(
         std::string name;
         params >> name;
         _clients[client].setName(name);
-        std::cout << "Set " << _clients[client].getName() << " name\n";
+        std::cout << "Set " << _clients[client].getName() << " name to " << client << std::endl;
         std::vector<uint8_t> data = {200};
-        std::cout << "data ready\n";
         _tcpServer.send(client, data);
-        std::cout << "data sent\n";
     };
     _commandMap[2] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
         // Enter room
         uint8_t roomId;
         params >> roomId;
         enterRoom(client, roomId);
-        std::cout << "Enter room\n";
+        std::cout << "client " << client << " enter room " << roomId << std::endl;
+        std::vector<uint8_t> data = {200};
+        _tcpServer.send(client, data);
     };
     _commandMap[4] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
         // Exit room
@@ -59,7 +59,13 @@ TcpProtocol::TcpProtocol(
 
         std::getline(params, roomName, '\\');
         std::getline(params, gameName); 
-        createRoom(client, roomName, gameName);
+        _clients[client].setRoomId(createRoom(client, roomName, gameName););
+        for (auto &client : this->_clients) {
+            if (client.second.getRoomId() == 0) {
+                std::vector<uint8_t> data = {200};
+                _tcpServer.send(client.first, data);
+            }
+        }
         std::cout << "Create room\n";
     };
     _commandMap[8] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
@@ -83,7 +89,9 @@ TcpProtocol::TcpProtocol(
         if (it != this->_clients.end() && it->second.getRoomId() != 0) {
             this->_clients[client].setReady(!this->_clients[client].isReady());
         }
-        std::cout << "Change Status client\n";
+        std::cout << "Change Status client of " << client << std::endl;
+        std::vector<uint8_t> data = {200};
+        _tcpServer.send(client, data);
     };
 }
 
@@ -162,11 +170,22 @@ void TcpProtocol::exitRoom(std::shared_ptr<asio::ip::tcp::socket> &client)
     this->_rooms.erase(roomId);
 }
 
-void TcpProtocol::createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, std::string roomName, std::string gameName)
+uint8_t TcpProtocol::createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, std::string roomName, std::string gameName)
 {
-    this->_rooms.emplace(this->_rooms.size(), Room(roomName, gameName, client));
+    uint8_t roomId;
+
+    for (uint8_t i = 1; i < 255; i++) {
+        if (this->_rooms.find(i) == this->_rooms.end()) {
+            roomId = i;
+            break;
+        }
+    }
+
+    this->_rooms.emplace(roomId, Room(roomName, gameName, client));
     std::vector<uint8_t> data = {static_cast<uint8_t>(200)};
     _tcpServer.send(client, data);
+
+    return roomId;
 }
 
 void TcpProtocol::renameRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uint8_t roomId, std::string roomName)
@@ -214,4 +233,11 @@ void TcpProtocol::copyUint32(std::vector<uint8_t> &vec, std::size_t pos, uint32_
     vec[pos + 1] = (value >> 8) & 0xFF;
     vec[pos + 2] = (value >> 16) & 0xFF;
     vec[pos + 3] = (value >> 24) & 0xFF;
+}
+
+void TcpProtocol::broadcast(std::vector<uint8_t> data)
+{
+    for (auto &client : this->_clients) {
+        _tcpServer.send(client.first, data);
+    }
 }

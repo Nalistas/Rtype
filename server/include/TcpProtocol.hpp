@@ -69,8 +69,9 @@ class TcpProtocol {
          * @param client The client socket
          * @param roomName The room name
          * @param gameName The game name
+         * @return uint8_t The room ID
          */
-        void createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, std::string roomName, std::string gameName);
+        uint8_t createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, std::string roomName, std::string gameName);
 
         /**
          * @brief Exit a room for a client
@@ -103,6 +104,12 @@ class TcpProtocol {
          * @return std::vector<uint8_t> the binary image
          */
         std::vector<uint8_t> image_to_binary(const std::string &path);
+
+        /**
+         * @brief Broadcast a message to all clients
+         * @param data The message
+         */
+        void broadcast(std::vector<uint8_t> data);
 
     private:
         std::unordered_map<uint8_t, std::function<void(std::shared_ptr<asio::ip::tcp::socket> &, std::istringstream&)>> _commandMap;
