@@ -124,7 +124,7 @@ class Window {
         /**
          * @brief Draw a rectangle
          */
-        void draw_rectangle(int x, int y, int width, int height, Color color);
+        void draw_rectangle(int x, int y, int width, int height);
 
         /**
          * @brief Check if a key is in the state defined in the parameter

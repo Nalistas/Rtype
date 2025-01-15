@@ -37,6 +37,10 @@ class Core {
          */
         void run(void);
 
+        void drawPopup(bool &showPopup, std::string &roomName, std::string title);
+
+        bool isEltPressed(int x, int y, int width, int height);
+
     private:
         raylib::Window _window;
         TcpClient _tcpClient;
