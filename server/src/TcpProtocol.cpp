@@ -102,8 +102,7 @@ void TcpProtocol::changeStatus(std::shared_ptr<asio::ip::tcp::socket> &client)
             return;
         }
     }
-    std::cout << "Launch the game" << std::endl;
-
+    this->_launchGame(it->second.getRoomId());
 }
 
 void TcpProtocol::setName(std::shared_ptr<asio::ip::tcp::socket> &client, std::string name)
@@ -167,36 +166,43 @@ void TcpProtocol::exitRoom(std::shared_ptr<asio::ip::tcp::socket> &client)
     auto roomIt = this->_rooms.find(roomId);
     std::vector<uint8_t> data = {200};
 
-    if (it != this->_clients.end()) {
-        it->second.setReady(false);
-        this->_clients[client].setRoomId(0);
-        _tcpServer.send(client, data);
-        std::cout << "Client " << it->second.getName() << " exited room " << roomId << std::endl;
-    } else {
+    if (it == this->_clients.end()) {
         data[0] = {201};
         _tcpServer.send(client, data);
         std::cout << "Client " << client << " not found, room not exited" << std::endl;
         return;
     }
 
+    it->second.setReady(false);
+    it->second.setRoomId(0);
+    _tcpServer.send(client, data);
+    std::cout << "Client " << it->second.getName() << " exited room " << roomId << std::endl;
+
     if (roomIt == this->_rooms.end()) {
         std::cout << "Room " << roomId << " not found" << std::endl;
         return;
     }
 
+    auto next_client_in_room = isRoomEmpty(roomId);
+    if (next_client_in_room == nullptr) {
+        std::cout << "No clients in room " << roomId << ", room will be deleted" << std::endl;
+        roomIt->second.setOwner(client);
+        deleteRoom(client, roomId);
+        return;
+    }
+    if (roomIt->second.getOwner() == client) {
+        roomIt->second.setOwner(next_client_in_room);
+    }
+}
+
+std::shared_ptr<asio::ip::tcp::socket> TcpProtocol::isRoomEmpty(uint8_t roomId)
+{
     for (auto &clientIt : this->_clients) {
         if (clientIt.second.getRoomId() == roomId) {
-            if (client == roomIt->second.getOwner()) {
-                auto tmp = clientIt.first;
-                roomIt->second.setOwner(tmp);
-                std::cout << "Room " << roomId << " owner changed to " << tmp << std::endl;
-            }
-            return;
+            return clientIt.first;
         }
     }
-    std::cout << "No clients in room " << roomId << ", room will be deleted" << std::endl;
-    roomIt->second.setOwner(client);
-    deleteRoom(client, roomId);
+    return nullptr;
 }
 
 void TcpProtocol::createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, std::string roomName, std::string gameName)

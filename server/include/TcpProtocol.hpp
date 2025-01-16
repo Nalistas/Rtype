@@ -135,6 +135,15 @@ class TcpProtocol {
          */
         void changeStatus(std::shared_ptr<asio::ip::tcp::socket> &client);
 
+
+        /**
+         * @brief check if a room is empty
+         * @param roomId the id of the room
+         * @return the first client found that is still in the room, nullptr if the room is empty
+         */
+        std::shared_ptr<asio::ip::tcp::socket> isRoomEmpty(uint8_t roomId);
+
+
     private:
         std::unordered_map<uint8_t, std::function<void(std::shared_ptr<asio::ip::tcp::socket> &, std::istringstream&)>> _commandMap;
 
