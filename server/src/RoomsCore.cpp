@@ -60,12 +60,11 @@ void RoomsCore::treatClient(std::shared_ptr<asio::ip::tcp::socket> &client, TcpP
 
     std::cout << "-------------------------------------------------------------------------" << std::endl;
     std::cout << "Received data from client: " << client << " \"" << this->_clients[client].getName() << "\"" << std::endl;
-    std::cout << "Received data (ASCII values): " << std::string(data.begin(), data.end()) << std::endl;
+    std::cout << "Received data (Raw values): " << std::string(data.begin(), data.end()) << std::endl;
     for (uint8_t c : data) {
         std::cout << static_cast<int>(c) << " ";
     }
-    std::cout << std::endl << "-------------------------------------------------------------------------" << std::endl;
-    std::cout << std::endl;
+    std::cout << std::endl << std::endl << "Launching interpreter..." << std::endl;
     tcpProtocol.interpreter(client, data);
 }
 

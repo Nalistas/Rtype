@@ -23,7 +23,7 @@ class TcpProtocol {
             OK = 200,
             KO = 201,
             ROOM_UPDATE = 1,
-            SET_READY = 2,
+            // SET_READY = 2,
             LOAD_SPRITE = 3,
             LOAD_BACKGROUND = 4,
             LOAD_MUSIC = 5,
