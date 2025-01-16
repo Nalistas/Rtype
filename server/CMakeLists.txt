@@ -24,6 +24,8 @@ target_sources(r-type_server
         src/GameLauncher.cpp
         src/ClientActionLog.cpp
         src/TcpProtocol.cpp
+        src/TcpProtocolToClient.cpp
+        src/TcpProtocolUtils.cpp
         src/Room.cpp
 )
 

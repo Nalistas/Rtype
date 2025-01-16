@@ -133,14 +133,14 @@ std::pair<unsigned int, unsigned int> raylib::Window::get_size() const
     return std::make_pair(_width, _height);
 }
 
-void raylib::Window::draw_text(std::string const &text, int x, int y, int fontSize, Color color)
+void raylib::Window::draw_text(std::string const &text, int x, int y, int fontSize)
 {
-    DrawText(text.c_str(), x, y, fontSize, color);
+    DrawText(text.c_str(), x, y, fontSize, BLACK);
 }
 
-void raylib::Window::draw_rectangle(int x, int y, int width, int height, Color color)
+void raylib::Window::draw_rectangle(int x, int y, int width, int height)
 {
-    DrawRectangle(x, y, width, height, color);
+    DrawRectangle(x, y, width, height, RED);
 }
 
 bool raylib::Window::is_key(BUTTON_STATE state, int key) const

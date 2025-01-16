@@ -93,11 +93,11 @@ int main(int ac, char **av)
         uint16_t port;
         try {
             port = std::stoi(port_string);
+            launcher.LaunchTcpServer(port_string);
         } catch (const std::exception &e) {
             std::cerr << "Error :" << e.what() << std::endl;
             return 84;
         }
-        launcher.LaunchTcpServer(port_string);
     }
 
     // GameLauncher launcher("./libr-type.so");

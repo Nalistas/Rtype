@@ -30,6 +30,7 @@ RessourcesManager::RessourcesManager(std::unique_ptr<rtype::IGame> &game)
         _ressources.push_back(transformAction(action, i));
         i++;
     }
+    _game_name = game->getName();
 }
 
 RessourcesManager::~RessourcesManager()
@@ -100,4 +101,9 @@ std::vector<uint8_t> RessourcesManager::transformAction(rtype::ClientAction cons
     this->copyUint32(buffer, 5, action.key);
     buffer[9] = action.pressed ? 1 : 0;
     return buffer;
+}
+
+std::string const &RessourcesManager::getGameName() const
+{
+    return _game_name;
 }
