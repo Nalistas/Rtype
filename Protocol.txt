@@ -29,9 +29,9 @@ VARIABLE PUBLIC DANS TCPSERVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 Protocole TCP Client -> Server
 OK -> Connecter : 1
 OK -> Entrer room : 2
-Lancer la room : 3
+Definit un jeu existant : 3
 OK -> Quitter la room : 4
-OK -> Rename : 5
+ : 5
 Missing image : 6
 OK -> New room : 7
 OK -> List room: 8
@@ -45,14 +45,15 @@ OK -> set name :
 OK -> Entrer dans la room :
 2[Id room]
 
-Lancer :
-3[Rien derrière]
+Definir un jeu existant :
+3[nom jeu]
+
 
 OK -> Quitter :
 4[Rien derrière]
 
-OK -> Rename :
-5[Id room]\[Nouveau nom]
+ :
+5
 
 Missing image :
 6[nom de l'image]\[data de l'image]
@@ -61,12 +62,11 @@ OK -> new room :
 7[Nom de la room]\[Name game room]
 
 OK -> lister les rooms(c'est pour lister les rooms déjà existantes) :
-8{
-    [ID room sur 1 char][Nom room]\[nombre de personne dans la room]#
-}
+8[Rien derrière]
 
 delete room:
 9[Id room]
 
 change Status client:
 10[Rien derrière]
+

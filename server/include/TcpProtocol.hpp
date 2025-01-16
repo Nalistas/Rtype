@@ -127,10 +127,11 @@ class TcpProtocol {
         void setName(std::shared_ptr<asio::ip::tcp::socket> &client, std::string name);
 
         /**
-         * @brief Broadcast a message to all clients
-         * @param data The message
+         * @brief change the status of a client
+         * 
+         * @param client The client socket
          */
-        void broadcast(std::vector<uint8_t> data);
+        void changeStatus(std::shared_ptr<asio::ip::tcp::socket> &client);
 
     private:
         std::unordered_map<uint8_t, std::function<void(std::shared_ptr<asio::ip::tcp::socket> &, std::istringstream&)>> _commandMap;
