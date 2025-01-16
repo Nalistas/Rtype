@@ -68,9 +68,37 @@ void RoomsCore::treatClient(std::shared_ptr<asio::ip::tcp::socket> &client, TcpP
     tcpProtocol.interpreter(client, data);
 }
 
+void RoomsCore::setGameToLaunch(uint8_t roomId)
+{
+    auto it = _rooms.find(roomId);
+
+    if (it == _rooms.end()) {
+        return;
+    }
+    this->_roomsToLaunch.emplace(*it);
+    this->_rooms.erase(roomId);
+
+    auto clientIt = this->_clients.begin();
+    while (clientIt != this->_clients.end()) {
+        if (clientIt->second.getRoomId() == roomId) {
+            this->_clientsToLaunch.emplace(*clientIt);
+            clientIt = this->_clients.erase(clientIt);
+        } else {
+            ++clientIt;
+        }
+    }
+}
+
+void RoomsCore::launchGame()
+{
+    // launch the game to launch
+}
+
+
 void RoomsCore::run(void)
 {
-    TcpProtocol tcp_protocol(_rooms, _clients, _tcpServer);
+    std::function<void(uint8_t roomId)> launchGame = [this](uint8_t roomId) { this->setGameToLaunch(roomId); };
+    TcpProtocol tcp_protocol(_rooms, _clients, _tcpServer, launchGame);
 
     while (true) {
         checkNewClients();

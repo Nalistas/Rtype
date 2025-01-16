@@ -34,6 +34,12 @@ class RoomsCore {
          */
         void run(void);
 
+        /**
+         * @brief Launch a game
+         * @param roomId the id of the room
+         */
+        void setGameToLaunch(uint8_t roomId);
+
     private:
         /**
          * @brief Check if there are new clients
@@ -50,9 +56,18 @@ class RoomsCore {
          */
         void treatClient(std::shared_ptr<asio::ip::tcp::socket> &client, TcpProtocol &tcpProtocol);
 
+
+        /**
+         * @brief Launch a game
+         */
+        void launchGame();
+
         TcpServer _tcpServer;
         std::map<uint8_t, Room> _rooms;
         std::map<std::shared_ptr<asio::ip::tcp::socket>, Client> _clients;
+
+        std::map<uint8_t, Room> _roomsToLaunch;
+        std::map<std::shared_ptr<asio::ip::tcp::socket>, Client> _clientsToLaunch;
 };
 
 #endif /* !CORE_HPP_ */

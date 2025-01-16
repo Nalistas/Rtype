@@ -48,11 +48,13 @@ class TcpProtocol {
          * @param rooms Reference to a map of room IDs and Room objects
          * @param clients Reference to a map of client sockets and Client objects
          * @param tcpServer Reference to a TcpServer object
+         * @param launchGame Pointer to a function that launches a game
          */
         TcpProtocol(
             std::map<uint8_t, Room> &rooms,
             std::map<std::shared_ptr<asio::ip::tcp::socket>, Client> &clients,
-            TcpServer &tcpServer
+            TcpServer &tcpServer,
+            std::function<void(uint8_t roomId)> launchGame
         );
 
         /**
@@ -139,6 +141,7 @@ class TcpProtocol {
         std::map<uint8_t, Room> &_rooms;
         std::map<std::shared_ptr<asio::ip::tcp::socket>, Client> &_clients;
         TcpServer &_tcpServer;
+        std::function<void(uint8_t roomId)> _launchGame;
 
         void copyUint32(std::vector<uint8_t> &vec, std::size_t pos, uint32_t value);
 

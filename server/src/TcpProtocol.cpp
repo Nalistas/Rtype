@@ -14,8 +14,9 @@
 TcpProtocol::TcpProtocol(
     std::map<uint8_t, Room> &rooms,
     std::map<std::shared_ptr<asio::ip::tcp::socket>, Client> &clients, 
-    TcpServer &tcpServer
-) : _rooms(rooms), _clients(clients), _tcpServer(tcpServer)
+    TcpServer &tcpServer,
+    std::function<void(uint8_t roomId)> launchGame
+) : _rooms(rooms), _clients(clients), _tcpServer(tcpServer), _launchGame(launchGame)
 {
     _commandMap[SET_NAME] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
         std::string name;
@@ -85,8 +86,8 @@ void TcpProtocol::changeStatus(std::shared_ptr<asio::ip::tcp::socket> &client)
     std::vector<uint8_t> data = {static_cast<uint8_t>(200)};
     auto it = this->_clients.find(client);
 
-    if (it == this->_clients.end()) {
-        std::cout << "Client not found" << std::endl;
+    if (it == this->_clients.end() || it->second.getRoomId() == 0 || it->second.getName() == "") {
+        std::cout << "Client not found or not in a room or does not have a name" << std::endl;
         data[0] = static_cast<uint8_t>(201);
         _tcpServer.send(client, data);
         return;
@@ -102,7 +103,7 @@ void TcpProtocol::changeStatus(std::shared_ptr<asio::ip::tcp::socket> &client)
         }
     }
     std::cout << "Launch the game" << std::endl;
-    
+
 }
 
 void TcpProtocol::setName(std::shared_ptr<asio::ip::tcp::socket> &client, std::string name)

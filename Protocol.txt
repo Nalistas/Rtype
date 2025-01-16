@@ -3,24 +3,29 @@ Server -> Client (TCP)
 200 (sur 1 char) = OK
 201 (sur 1 char) = KO
 
+déclarer une room(c'est pour lister les rooms déjà existantes) :
+1[ID room sur 1 char][Nom room]
+
 chargement d'un sprite :
-2[id du type de sprite sur 1 octet][size x sur 4 octet] [size y sur 4 octet][ width à prendre sur l'image sur 4o] [height à prendre sur l'image sur 4o] [offset x 4 octets] [offset y 4 octets] [ nb frame sur 1 octet ] [ nb milisecond pour les frame / 4o]
+3[id du type de sprite][size x sur 4 octet] [size y sur 4 octet][ width à prendre sur l'image sur 4o] [height à prendre sur l'image sur 4o] [offset x 4 octets] [offset y 4 octets] [ nb frame sur 1 octet ] [ nb milisecond pour les frame / 4o]
 
 Chargement d'un background :
-3[Id background][voir precedemment]
+4[Id background][voir precedemment]
 
 Chargement d'une musique :
-4[id musique][path to musique]
+5[id musique][path to musique]
 
 chargement d'action :
-5[id action / 4o][key code / 4o][pressed 1 | released 0]
+6[id action / 4o][key code / 4o][pressed 1 | released 0]
 
 Transfert IpPort de la game où se passera le jeu :
-6[IP / 4o][Port/2o][Id Player / 1o]
-
+7[IP / 4o][Port/2o][Id Player / 1o]
 avec :
 Ip : [nb1 /1o][nb2 /1o][nb3 /1o][nb4 /1o] => nb1.nb2.nb3.nb4
-Port : [nb1/1o][nb2/1o] translation en str puis concaténation, typiquement pour 9809, NB1 = 98 et NB2 = 09 
+Port : [nb1/1o][nb2/1o] translation en str puis concaténation, typiquement pour 9809, NB1 = 98 et NB2 = 09
+
+Lancement d'une room :
+10[Rien derière]
 
 VARIABLE PUBLIC DANS TCPSERVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
