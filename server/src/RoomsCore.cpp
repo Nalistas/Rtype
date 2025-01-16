@@ -143,8 +143,9 @@ void RoomsCore::setGamesRessources(void)
             DLLdr::DLLoader<rtype::IGame> game_loader;
             game_loader.open(file);
             auto game_ptr = game_loader.getSym("entry_point");
-            this->_ressources.emplace(file, game_ptr);
-            this->_gameList.emplace_back(this->_ressources.find(file)->second.getGameName());
+            this->_ressources.emplace(game_ptr->getName(), game_ptr);
+            this->_gameList.emplace_back(game_ptr->getName());
+            this->_gameNameToPath.emplace(game_ptr->getName(), file);
         } catch (const std::exception &e) {
             std::cerr << "Error while loading game: " << file << std::endl;
             std::cerr << "Exception: " << e.what() << std::endl;

@@ -19,6 +19,10 @@ TcpProtocol::TcpProtocol(
     std::vector<std::string> &gameList
 ) : _rooms(rooms), _clients(clients), _tcpServer(tcpServer), _launchGame(launchGame), _gameList(gameList)
 {
+    for (auto ele: _gameList) {
+        std::cout << ele << std::endl;
+    }
+
     _commandMap[SET_NAME] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
         std::string name;
         params >> name;

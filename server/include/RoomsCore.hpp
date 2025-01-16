@@ -7,6 +7,7 @@
 
 #include <string>
 #include <map>
+#include <unordered_map>
 #include "TcpServer.hpp"
 #include "TcpProtocol.hpp"
 #include "Room.hpp"
@@ -78,7 +79,8 @@ class RoomsCore {
         std::map<std::shared_ptr<asio::ip::tcp::socket>, Client> _clientsToLaunch;
 
         std::vector<std::string> _gameList;
-        std::map<std::string, RessourcesManager> _ressources;
+        std::unordered_map<std::string, RessourcesManager> _ressources;
+        std::unordered_map<std::string, std::string> _gameNameToPath;
 };
 
 #endif /* !CORE_HPP_ */

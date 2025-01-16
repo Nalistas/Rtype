@@ -49,17 +49,12 @@ class NoneSystem : public ecs::isystem<> {
 
 int main()
 {
-    // GameLauncher launcher("./libr-type.so");
-    // std::list<GameLauncher::Player> players = {{"player1", "127.0.0.1"}, {"player2", "127.0.0.1"}, {"player3", "127.0.0.1"}};
-    // launcher.launch(players);
-
-    RoomsCore core("12345");
-    core.run();
-/*
-    ecs::registry registry;
-
-    // RoomsCore core("12345");
-    // core.run();
+    try {
+        RoomsCore core("12345");
+        core.run();
+    } catch (std::exception const &e) {
+        std::cerr << e.what() << std::endl;
+        return 84;
+    }
     return 0;
-    */
 }
