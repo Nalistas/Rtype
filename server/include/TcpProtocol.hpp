@@ -28,7 +28,9 @@ class TcpProtocol {
             LOAD_BACKGROUND = 4,
             LOAD_MUSIC = 5,
             LOAD_ACTION = 6,
-            START_GAME = 7
+            START_GAME = 7,
+            DECLARE_GAME = 8,
+            LEAVE_ENTER_ROOM = 9
         };
 
         enum INSTRUCTIONS_CLIENT_TO_SERVER {
@@ -49,12 +51,14 @@ class TcpProtocol {
          * @param clients Reference to a map of client sockets and Client objects
          * @param tcpServer Reference to a TcpServer object
          * @param launchGame Pointer to a function that launches a game
+         * @param gameList Reference to a vector with the name of the games
          */
         TcpProtocol(
             std::map<uint8_t, Room> &rooms,
             std::map<std::shared_ptr<asio::ip::tcp::socket>, Client> &clients,
             TcpServer &tcpServer,
-            std::function<void(uint8_t roomId)> launchGame
+            std::function<void(uint8_t roomId)> launchGame,
+            std::vector<std::string> &gameList
         );
 
         /**
@@ -135,7 +139,6 @@ class TcpProtocol {
          */
         void changeStatus(std::shared_ptr<asio::ip::tcp::socket> &client);
 
-
         /**
          * @brief check if a room is empty
          * @param roomId the id of the room
@@ -143,6 +146,50 @@ class TcpProtocol {
          */
         std::shared_ptr<asio::ip::tcp::socket> isRoomEmpty(uint8_t roomId);
 
+        /**
+         * @brief format the launch room command to all clients in the room
+         * 
+         * @param roomId the id of the room
+         */
+        std::vector<uint8_t> formatLaunchRoom(uint8_t roomId);
+
+        /**
+         * @brief format the room update command to all clients in the room
+         * 
+         * @param roomId the id of the room
+         * @param created true if the room was created, false if it was destroyed
+         */
+        std::vector<uint8_t> formatRoomCreatedDeleted(uint8_t roomId, bool created);
+
+        /**
+         * @brief format the game available command to a client
+         * 
+         * @param roomId the id of the room
+         */
+        std::vector<uint8_t> formatGameAvailable(uint8_t roomId);
+
+        /**
+         * @brief format the player room update command to all clients in the room
+         * 
+         * @param roomId the id of the room
+         * @param enter true if the player entered the room, false if he left it
+         * @param name the name of the player
+         */
+        std::vector<uint8_t> formatPlayerRoomUpdate(uint8_t roomId, bool enter, std::string const &name);
+
+        /**
+         * @brief format the ok command to a client
+         * 
+         * @return std::vector<uint8_t>
+         */
+        std::vector<uint8_t> formatOk();
+
+        /**
+         * @brief format the ko command to a client
+         * 
+         * @return std::vector<uint8_t>
+         */
+        std::vector<uint8_t> formatKo();
 
     private:
         std::unordered_map<uint8_t, std::function<void(std::shared_ptr<asio::ip::tcp::socket> &, std::istringstream&)>> _commandMap;
@@ -151,6 +198,7 @@ class TcpProtocol {
         std::map<std::shared_ptr<asio::ip::tcp::socket>, Client> &_clients;
         TcpServer &_tcpServer;
         std::function<void(uint8_t roomId)> _launchGame;
+        std::vector<std::string> &_gameList;
 
         void copyUint32(std::vector<uint8_t> &vec, std::size_t pos, uint32_t value);
 

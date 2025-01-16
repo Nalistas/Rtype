@@ -4,7 +4,7 @@ Server -> Client (TCP)
 201 (sur 1 char) = KO
 
 déclarer une room(c'est pour lister les rooms déjà existantes) :
-1[ID room sur 1 char][Nom room]
+1[Created = 0 | deleted = 1][ID room sur 1 char][Nom room]
 
 Lancement d'une room
 2
@@ -27,8 +27,11 @@ avec :
 Ip : [nb1 /1o][nb2 /1o][nb3 /1o][nb4 /1o] => nb1.nb2.nb3.nb4
 Port : [nb1/1o][nb2/1o] translation en str puis concaténation, typiquement pour 9809, NB1 = 98 et NB2 = 09
 
+Declare an existing game :
+8[game name]
 
-Declare an existing game
+Someone entered/exited a room
+9[exited = 0 | entered = 1][Room id][name]
 
 VARIABLE PUBLIC DANS TCPSERVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -60,8 +63,8 @@ Definir un jeu existant :
 OK -> Quitter :
 4[Rien derrière]
 
- :
-5
+List games :
+5[Rien derrière]
 
 Missing image :
 6[nom de l'image]\[data de l'image]
