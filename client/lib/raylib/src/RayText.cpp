@@ -1,13 +1,8 @@
-/*
-** EPITECH PROJECT, 2025
-** mirror-rtype
-** File description:
-** RayText
-*/
-
 #include "RayText.hpp"
+#include "raylib.h"
 
-raylib::RayText::RayText(std::string text) : _text(text)
+raylib::RayText::RayText(std::string text, int x, int y, int size, Color color)
+    : _text(text), _x(x), _y(y), _size(size), _color(color)
 {
 }
 
@@ -15,12 +10,39 @@ raylib::RayText::~RayText()
 {
 }
 
-void raylib::RayText::display()
-{
-    DrawText(_text.c_str(), 10, 10, 20, BLACK);
-}
-
 void raylib::RayText::setText(std::string text)
 {
     _text = text;
+}
+
+void raylib::RayText::setPosition(int x, int y)
+{
+    _x = x;
+    _y = y;
+}
+
+void raylib::RayText::setSize(int size)
+{
+    _size = size;
+}
+
+std::string const &raylib::RayText::getText() const
+{
+    return _text;
+}
+
+void raylib::RayText::getPosition(int &x, int &y) const
+{
+    x = _x;
+    y = _y;
+}
+
+int raylib::RayText::getSize(void) const
+{
+    return _size;
+}
+
+void raylib::RayText::draw() const
+{
+    DrawText(_text.c_str(), _x, _y, _size, _color);
 }

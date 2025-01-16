@@ -14,20 +14,37 @@ namespace raylib
 {
     #include "raylib.h"
 /**
- * @brief Sound class using raylib
+ * @brief Text class using raylib
  */
+
 class RayText {
     public:
-        RayText(std::string text);
-        ~RayText();
-        void setText(std::string text);
-        void display();
+        // Constructor
+        RayText(std::string text, int x, int y, int size, Color color);
 
-    protected:
+        // Destructor
+        ~RayText();
+
+        // Setters
+        void setText(std::string text);
+        void setPosition(int x, int y);
+        void setSize(int size);
+
+        // Getters
+        std::string const &getText() const;
+        void getPosition(int &x, int &y) const;
+        int getSize(void) const;
+
+        // Display method
+        void draw() const;
+
     private:
-        // Font _font;
         std::string _text;
+        int _x, _y;
+        int _size;
+        Color _color;
 };
+
 }
 
 #endif /* !RAYTEXT_HPP_ */

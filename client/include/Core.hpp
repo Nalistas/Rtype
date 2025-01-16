@@ -10,6 +10,8 @@
 #include "ClientRoom.hpp"
 
 #include <vector>
+#include <list>
+#include <map>
 
 #ifndef CORE_HPP_
     #define CORE_HPP_
@@ -41,11 +43,14 @@ class Core {
 
         bool isEltPressed(int x, int y, int width, int height);
 
+        void logging();
+
     private:
         raylib::Window _window;
-        TcpClient _tcpClient;
+        std::unique_ptr<TcpClient> _tcpClient;
         std::vector<ClientRoom> _rooms;
-
+        std::list<std::string> _games;
+        std::map<uint8_t, ClientRoom> _roomsMap;
 };
 
 #endif /* !CORE_HPP_ */
