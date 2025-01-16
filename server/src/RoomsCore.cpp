@@ -12,7 +12,13 @@
 
 RoomsCore::RoomsCore(std::string const &port) :
     _tcpServer("0.0.0.0", port)
-{}
+{
+    setGamesRessources();
+
+    for (auto it : this->_gameList) {
+        std::cout << it << std::endl;
+    }
+}
 
 RoomsCore::~RoomsCore()
 {}
@@ -100,10 +106,52 @@ void RoomsCore::launchGame()
 void RoomsCore::run(void)
 {
     std::function<void(uint8_t roomId)> launchGame = [this](uint8_t roomId) { this->setGameToLaunch(roomId); };
-    TcpProtocol tcp_protocol(_rooms, _clients, _tcpServer, launchGame);
+    TcpProtocol tcp_protocol(_rooms, _clients, _tcpServer, launchGame, _gameList);
 
     while (true) {
         checkNewClients();
         checkClients(tcp_protocol);
     }
 }
+
+
+void RoomsCore::setGamesRessources(void)
+{
+    SafeDirectoryLister lister(".", true);
+    std::list<std::string> files;
+
+    while (lister.isGood()) {
+        std::string file_name = lister.get();
+
+        #ifdef _WIN32
+        if (file_name.find(".dll") != std::string::npos)
+        #else
+        if (file_name.find(".so") != std::string::npos)
+        #endif
+        {
+            std::cout << "Found game: " << file_name << std::endl;
+            files.emplace_back("./" + file_name);
+        }
+    }
+
+    if (files.size() == 0) {
+        throw std::runtime_error("No game found");
+    }
+
+    for (const auto &file : files) {
+        try {
+            DLLdr::DLLoader<rtype::IGame> game_loader;
+            game_loader.open(file);
+            auto game_ptr = game_loader.getSym("entry_point");
+            this->_ressources.emplace(file, game_ptr);
+            this->_gameList.emplace_back(this->_ressources.find(file)->second.getGameName());
+        } catch (const std::exception &e) {
+            std::cerr << "Error while loading game: " << file << std::endl;
+            std::cerr << "Exception: " << e.what() << std::endl;
+        } catch (...) {
+            std::cerr << "Unknown error occurred while loading game: " << file << std::endl;
+        }
+    }
+
+}
+

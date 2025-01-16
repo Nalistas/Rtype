@@ -11,6 +11,9 @@
 #include "TcpProtocol.hpp"
 #include "Room.hpp"
 #include "Client.hpp"
+#include "RessourcesManager.hpp"
+#include "DLLoader.hpp"
+#include "SafeDirectoryLister.hpp"
 
 #ifndef CORE_HPP_
     #define CORE_HPP_
@@ -62,12 +65,20 @@ class RoomsCore {
          */
         void launchGame();
 
+        /**
+         * @brief extract all the ressources from the games
+         */
+        void setGamesRessources(void);
+
         TcpServer _tcpServer;
         std::map<uint8_t, Room> _rooms;
         std::map<std::shared_ptr<asio::ip::tcp::socket>, Client> _clients;
 
         std::map<uint8_t, Room> _roomsToLaunch;
         std::map<std::shared_ptr<asio::ip::tcp::socket>, Client> _clientsToLaunch;
+
+        std::vector<std::string> _gameList;
+        std::map<std::string, RessourcesManager> _ressources;
 };
 
 #endif /* !CORE_HPP_ */
