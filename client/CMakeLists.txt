@@ -25,6 +25,7 @@ target_sources(r-type_client
         src/main.cpp
         src/Core.cpp
         src/ClientRoom.cpp
+        src/Login.cpp
 )
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")

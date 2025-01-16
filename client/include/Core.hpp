@@ -43,8 +43,6 @@ class Core {
 
         bool isEltPressed(int x, int y, int width, int height);
 
-        void logging();
-
     private:
         raylib::Window _window;
         std::unique_ptr<TcpClient> _tcpClient;

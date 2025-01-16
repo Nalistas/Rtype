@@ -82,52 +82,12 @@ bool Core::isEltPressed(int x, int y, int width, int height)
     return false;
 }
 
-void Core::logging()
-{
-    bool logging = false;
-    raylib::RayText title_name("Name:", 10, 10, 50, raylib::BLUE);
-    raylib::RayText title_ip("Ip   :", 10, 60, 50, raylib::BLUE);
-    raylib::RayText title_port("Port:", 10, 110, 50, raylib::BLUE);
-    int focus = 0;
-
-
-    std::array<raylib::RayText, 3> inputs({
-        raylib::RayText("", 150, 10 + 50 * 0, 50, raylib::BLACK),
-        raylib::RayText("", 150, 10 + 50 * 1, 50, raylib::BLACK),
-        raylib::RayText("", 150, 10 + 50 * 2, 50, raylib::BLACK),
-    });
-
-    while (_window.is_running() && !logging) {
-        if (_window.is_key(raylib::Window::RELEASED, raylib::KEY_TAB)) {
-            focus = (focus + 1) % 3;
-        }
-        char c = _window.get_char_pressed();
-        std::cout << static_cast<int>(c) << std::endl;
-        if (c > 0) {
-            inputs[focus].setText(inputs[focus].getText() + static_cast<char>(c));
-        } else if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_BACKSPACE) && !inputs[focus].getText().empty()) {
-            inputs[focus].setText(inputs[focus].getText().substr(0, inputs[focus].getText().size() - 1));
-        }
-        
-        _window.start_drawing();
-        _window.draw_rectangle(150, 10 + 50 * focus, 300, 40, raylib::GRAY);
-        title_ip.draw();
-        title_name.draw();
-        title_port.draw();
-        for (int i = 0; i < 3; i++) {
-            inputs[i].draw();
-        }
-        _window.end_drawing();
-    }
-}
-
 void Core::run(void)
 {
     bool showPopup = false;
     std::string roomName = "";
     int roomId = -1;
 
-    this->logging();
     if (!_tcpClient) {
         return;
     }
