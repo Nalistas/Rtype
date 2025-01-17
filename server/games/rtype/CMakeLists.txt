@@ -3,6 +3,7 @@ project(r-type)
 add_library(${PROJECT_NAME} SHARED
     src/entry_point.cpp
     src/RType.cpp
+    src/Handlers/MoveHandlers.cpp
 )
 
 target_include_directories(${PROJECT_NAME}

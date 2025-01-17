@@ -6,6 +6,7 @@
 */
 
 #include "RType.hpp"
+#include "registry.hpp"
 
 RType::RType()
 {
@@ -75,9 +76,9 @@ std::size_t RType::createPlayer(void)
     if (!_registry) {
         return -1;
     }
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4  ; i++) {
         if (_players.find(i) == _players.end()) {
-            // _players[i] = this->_registry->create_entity();
+            _players[i] = this->_registry->create_entity();
             return i;
         }
     }
