@@ -6,7 +6,7 @@
 */
 
 #include "ServerLauncher.hpp"
-#include "RoomCore.hpp"
+#include "RoomsCore.hpp"
 
 ServerLauncher::ServerLauncher()
 {
@@ -16,12 +16,12 @@ ServerLauncher::~ServerLauncher()
 {
 }
 
-void ServerLauncher::LaunchUdpServer(std::string const &port)
+void ServerLauncher::LaunchUdpServer(std::string const &port, std::string const &gameName)
 {
 }
 
 void ServerLauncher::LaunchTcpServer(std::string const &port)
 {
-    RoomCore core(port);
+    RoomsCore core(port);
     core.run();
 }

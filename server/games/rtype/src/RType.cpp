@@ -77,7 +77,7 @@ std::size_t RType::createPlayer(void)
     }
     for (int i = 0; i < 4; i++) {
         if (_players.find(i) == _players.end()) {
-            _players[i] = this->_registry->create_entity();
+            // _players[i] = this->_registry->create_entity();
             return i;
         }
     }

@@ -52,19 +52,20 @@ class NoneSystem : public ecs::isystem<> {
 
 int main(int ac, char **av)
 {
-    if (ac != 1) {
-        std::cout << "OTHER PROCESS !!!" << std::endl;
-        while (1) {
-            std::cout << "COUCOU HUGO, JE VAIS MANGER !!! A DEMAIN" << std::endl;
-        }
-        return 0;
-    }
-    process::Process my_process;
-    std::vector<std::string> vec = {"./build/r-type_server.exe", "coucou"};
-    my_process.execProcess(vec);
-    Sleep(5000);
+    // if (ac != 1) {
+    //     std::cout << "OTHER PROCESS !!!" << std::endl;
+    //     while (1) {
+    //         std::cout << "COUCOU HUGO, JE VAIS MANGER !!! A DEMAIN" << std::endl;
+    //     }
+    //     return 0;
+    // }
+    // process::Process my_process;
+    // std::vector<std::string> vec = {"./build/r-type_server.exe", "coucou"};
+    // my_process.execProcess(vec);
+    // Sleep(5000);
 
-    return 0;
+    // return 0;
+
     std::vector<std::string> args(ac);
     ServerLauncher launcher;
 
@@ -76,8 +77,9 @@ int main(int ac, char **av)
         return 84;
     }
 
-    if (args.size() == 3) {
+    if (args.size() == 4) {
         std::string port_string = args[2];
+        std::string gameName = args[3];
         uint16_t port;
         try {
             port = std::stoi(port_string);
@@ -86,7 +88,7 @@ int main(int ac, char **av)
             return 84;
         }
         if (args[1] == "udp") {
-            launcher.LaunchUdpServer(port_string);
+            launcher.LaunchUdpServer(port_string, gameName);
         }
     } else if (args.size() <= 2) {
         std::string port_string = args.size() == 2 ? args[1] : "1024";

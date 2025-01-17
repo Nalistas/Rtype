@@ -27,6 +27,7 @@ target_sources(r-type_server
         src/TcpProtocolToClient.cpp
         src/TcpProtocolUtils.cpp
         src/Room.cpp
+        src/ServerLauncher.cpp
 )
 
 add_subdirectory(lib/asio_server)

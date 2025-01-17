@@ -24,7 +24,7 @@ class ServerLauncher {
          */
         ~ServerLauncher();
 
-        void LaunchUdpServer(std::string const &port);
+        void LaunchUdpServer(std::string const &port, std::string const &gameName);
         void LaunchTcpServer(std::string const &port);
 
     private:

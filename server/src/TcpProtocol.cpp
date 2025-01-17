@@ -149,10 +149,6 @@ void TcpProtocol::createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, std
     return;
 }
 
-
-
-
-
 void TcpProtocol::deleteRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uint8_t roomId)
 {
     auto it = this->_rooms.find(roomId);
