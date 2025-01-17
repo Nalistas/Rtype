@@ -172,7 +172,7 @@ namespace rtype {
              * @brief set everything needed in the registry, the systems and the components
              * @param registry the registry to set the component and the systems
              */
-            virtual void initGameRegistry(ecs::registry &reg) = 0;
+            virtual void initGameRegistry(std::shared_ptr<ecs::registry> &reg) = 0;
 
             /**
              * @brief Set the client action handler

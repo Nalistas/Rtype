@@ -6,6 +6,7 @@
 */
 
 #include "IGame.hpp"
+#include <unordered_map>
 
 #ifndef RTYPE_HPP_
     #define RTYPE_HPP_
@@ -13,9 +14,9 @@
 class RType : public rtype::IGame {
     public:
         RType();
-        ~RType();
+        ~RType() override;
 
-        void initGameRegistry(ecs::registry &reg) override;
+        void initGameRegistry(std::shared_ptr<ecs::registry> &reg) override;
 
         std::vector<rtype::ClientAction> getClientActionHandlers(void) const override;
 
@@ -44,8 +45,18 @@ class RType : public rtype::IGame {
         ScreenUpdater getScreenUpdater(void) override;
 
         std::string getName(void) const override;
-    protected:
+
     private:
+        SpeedUpdater _speedUpdater;
+        PositionUpdater _positionUpdater;
+        Creater _creater;
+        Deleter _deleter;
+        BackgroundChanger _backgroundChanger;
+        MusicChanger _musicChanger;
+        ScreenUpdater _screenUpdater;
+
+        std::unordered_map<std::size_t, ecs::entity> _players;
+        std::shared_ptr<ecs::registry> _registry;
 };
 
 #endif /* !RTYPE_HPP_ */
