@@ -30,7 +30,8 @@ class TcpProtocol {
             LOAD_ACTION = 6,
             START_GAME = 7,
             DECLARE_GAME = 8,
-            LEAVE_ENTER_ROOM = 9
+            LEAVE_ENTER_ROOM = 9,
+            FORCE_REGISTER_IN_ROOM = 10
         };
 
         enum INSTRUCTIONS_CLIENT_TO_SERVER {
@@ -190,6 +191,14 @@ class TcpProtocol {
          * @return std::vector<uint8_t>
          */
         std::vector<uint8_t> formatKo();
+
+        /**
+         * @brief format the force register in a room command to a client
+         * 
+         * @param roomId the id of the room
+         * @return std::vector<uint8_t>
+         */
+        std::vector<uint8_t> formatForceRegisterInRoom(uint8_t roomId);
 
     private:
         std::unordered_map<uint8_t, std::function<void(std::shared_ptr<asio::ip::tcp::socket> &, std::istringstream&)>> _commandMap;

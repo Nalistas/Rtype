@@ -33,6 +33,9 @@ Declare an existing game :
 Someone entered/exited a room
 9[exited = 0 | entered = 1][Room id][name]
 
+Force register in a room
+10[Room Id][Room Name]
+
 VARIABLE PUBLIC DANS TCPSERVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
