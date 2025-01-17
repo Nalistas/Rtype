@@ -12,6 +12,7 @@
 
 std::vector<uint8_t> TcpProtocol::formatLaunchRoom(uint8_t roomId)
 {
+    (void)roomId;
     return {static_cast<uint8_t>(INSTRUCTIONS_SERVER_TO_CLIENT::START_GAME)};
 }
 
@@ -39,6 +40,7 @@ std::vector<uint8_t> TcpProtocol::formatRoomCreatedDeleted(uint8_t roomId, bool 
 
 std::vector<uint8_t> TcpProtocol::formatGameAvailable(uint8_t roomId)
 {
+    (void)roomId;
     return {};
 }
 

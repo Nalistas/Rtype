@@ -8,6 +8,7 @@
 #include "RType.hpp"
 #include "registry.hpp"
 #include "Handlers/MoveHandlers.hpp"
+#include "Component/Position.hpp"
 
 RType::RType()
 {
@@ -20,6 +21,11 @@ RType::~RType()
 void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
 {
     _registry = reg;
+    _registry->register_component<Position>();
+    _registry->register_component<Life>();
+    _registry->register_component<Velocity>();
+    _registry->register_component<SIDE>();
+    _registry->register_component<Hitbox>();
 }
 
 std::vector<rtype::ClientAction> RType::getClientActionHandlers(void) const
