@@ -8,6 +8,7 @@
 #include "Window.hpp"
 #include "TcpClient.hpp"
 #include "ClientRoom.hpp"
+#include "RayText.hpp"
 
 #include <vector>
 #include <list>
@@ -82,6 +83,8 @@ class Core {
 
         void leaveEnterRoom(std::vector<uint8_t> tcpResponse);
 
+        void save_image(const std::string &path, const std::vector<char> &buffer);
+
     private:
         raylib::Window _window;
         TcpClient _tcpClient;
@@ -94,6 +97,7 @@ class Core {
         std::map<INSTRUCTIONS_SERVER_TO_CLIENT, std::function<void(std::vector<uint8_t>)>> _instructions;
         std::vector<std::string> _gameList;
         int _roomId;
+        bool _startGame;
 };
 
 #endif /* !CORE_HPP_ */

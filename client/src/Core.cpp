@@ -14,16 +14,21 @@
 #include <list>
 #include <functional>
 #include <string>
+#include <vector>
+#include <algorithm>
+#include <fstream>
 
 Core::Core(std::string ip, std::string port, std::string username) : 
     _window(800, 600),
     _tcpClient(ip, port),
-    _roomId(0)
+    _roomId(0),
+    _startGame(false)
 {
-    _buttons_room.insert({
+    _buttons_room.emplace(
         raylib::RayText("Exit room", 10, 10, 20, raylib::BLUE),
         [&]() { manageExitRoom(); }
-    });
+    );
+
     std::string tcpMessage = std::string(1, SET_NAME) + username;
     _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
     _instructions[OK] = [this](std::vector<uint8_t> tcpResponse) {
@@ -53,10 +58,33 @@ Core::Core(std::string ip, std::string port, std::string username) :
             _gameList.push_back(gameName);
         }
     };
+    _instructions[START_GAME] = [this](std::vector<uint8_t> tcpResponse) {
+        (void)tcpResponse;
+        _startGame = true;
+    };
+    // _instructions[LOAD_SPRITE] = [this](std::vector<uint8_t> tcpResponse) {
+    //     load_sprite(tcpResponse);
+    // };
+
 }
 
 Core::~Core()
 {
+}
+
+// void Core::load_sprite(std::vector<uint8_t> tcpResponse)
+// {
+//     std::string path(tcpResponse.begin() + 1, tcpResponse.end());
+//     std::vector<char> buffer(tcpResponse.begin() + 1, tcpResponse.end());
+//     save_image(path, buffer);
+// }
+
+void Core::save_image(const std::string &path, const std::vector<char> &buffer) {
+    std::ofstream outFile(path, std::ios::binary);
+    if (!outFile) {
+        return;
+    }
+    outFile.write(buffer.data(), buffer.size());
 }
 
 void Core::leaveEnterRoom(std::vector<uint8_t> tcpResponse)
@@ -122,7 +150,7 @@ void Core::drawPopup(bool &showPopup, std::string &input, std::string title)
 
 bool Core::isEltPressed(int x, int y, int width, int height)
 {
-    if (_commandQueue.size() > 0) {
+    if (_commandQueue.size() > 0 || _startGame) {
         return false;
     }
     if (_window.is_mouse_button(raylib::Window::PRESSED, 0) && 
@@ -166,7 +194,7 @@ void Core::run(void)
         _window.start_drawing();
         _window.clear(raylib::WHITE);
 
-        if (_roomId == 0) {
+        if (_roomId == 0) { // Main menu
             displayCreateRoomBtn(roomName, showPopup);
 
             if (showPopup) {
@@ -188,7 +216,7 @@ void Core::run(void)
                     _commandQueue.push_back(std::make_pair("enterRoom", [this, room]() { setRoom(room.getId()); }));
                 }
             }
-        } else {
+        } else { // Room
             _window.draw_rectangle(0, 0, _window.get_size().first, _window.get_size().second, raylib::RED);
             _window.draw_text("Room id: " + std::to_string(_roomId), 10, 50, 20);
             for (auto &button : _buttons_room) {

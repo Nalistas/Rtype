@@ -39,6 +39,12 @@ class RayText {
         // Display method
         void draw() const;
 
+        // Overload
+        bool operator==(const RayText &other) const;
+        bool operator!=(const RayText &other) const;
+        bool operator<(const RayText &other) const;
+        bool operator>(const RayText &other) const;
+
     private:
         std::string _text;
         int _x, _y;
