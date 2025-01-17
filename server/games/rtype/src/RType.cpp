@@ -103,7 +103,14 @@ void RType::deletePlayer(std::size_t player_id)
 
 rtype::IGame::ScreenUpdater RType::getScreenUpdater(void)
 {
-    return [](std::size_t client_id) {};
+    return [this](std::size_t client_id) {
+        auto position = _registry->get_components<Position>();
+        for (auto [index, pos] : zipper(position)) {
+            if (pos.has_value()) {
+                this->_positionUpdater(client_id, index, pos.value().x, pos.value().y);
+            }
+        }
+    };
 }
 
 std::string RType::getName(void) const
