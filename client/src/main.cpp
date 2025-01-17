@@ -19,13 +19,30 @@
 #endif
 
 int main() {
-    {
-        Login login;
-        login.run();
-    }
+    std::string ip = "";
+    std::string port = "";
+    std::string username = "";
+    bool asBeenConnected = false;
 
-    Core core;
-    core.run();
+    while (!asBeenConnected) {
+        {
+            Login login;
+            if (login.run() == true) {
+                return 0;
+            }
+            ip = login.get_ip();
+            port = login.get_port();
+            username = login.get_username();
+        }
+
+        try {
+            Core core(ip, port, username);
+            core.run();
+            asBeenConnected = true;
+        } catch (std::exception &e) {
+            std::cerr << e.what() << std::endl;
+        }
+    }
     // try {
     //     // Test du client UDP
     //     std::cout << "Testing UDP Client..." << std::endl;

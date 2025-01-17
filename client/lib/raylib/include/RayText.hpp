@@ -32,8 +32,9 @@ class RayText {
 
         // Getters
         std::string const &getText() const;
-        void getPosition(int &x, int &y) const;
         int getSize(void) const;
+        int getX() const;
+        int getY() const;
 
         // Display method
         void draw() const;

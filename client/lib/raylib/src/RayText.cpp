@@ -31,10 +31,14 @@ std::string const &raylib::RayText::getText() const
     return _text;
 }
 
-void raylib::RayText::getPosition(int &x, int &y) const
+int raylib::RayText::getX() const
 {
-    x = _x;
-    y = _y;
+    return _x;
+}
+
+int raylib::RayText::getY() const
+{
+    return _y;
 }
 
 int raylib::RayText::getSize(void) const
