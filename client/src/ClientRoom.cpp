@@ -29,3 +29,8 @@ int ClientRoom::getNbPlayers() const
 {
     return _nbPlayers;
 }
+
+void ClientRoom::setNbPlayers(int nbPlayers)
+{
+    _nbPlayers = nbPlayers;
+}

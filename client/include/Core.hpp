@@ -80,6 +80,7 @@ class Core {
 
         void roomUpdate(std::vector<uint8_t> tcpResponse);
 
+        void leaveEnterRoom(std::vector<uint8_t> tcpResponse);
 
     private:
         raylib::Window _window;
@@ -91,6 +92,7 @@ class Core {
         // std::array<raylib::RayText, 1> _buttons_home;
         std::map<raylib::RayText, std::function<void()>> _buttons_room;
         std::map<INSTRUCTIONS_SERVER_TO_CLIENT, std::function<void(std::vector<uint8_t>)>> _instructions;
+        std::vector<std::string> _gameList;
         int _roomId;
 };
 

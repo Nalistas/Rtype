@@ -54,6 +54,13 @@ class ClientRoom {
          */
         int getNbPlayers() const;
 
+        /**
+         * @brief Set the number of players in the ClientRoom
+         * 
+         * @param nbPlayers the number of players in the ClientRoom
+         */
+        void setNbPlayers(int nbPlayers);
+
 
     private:
         std::string _name;

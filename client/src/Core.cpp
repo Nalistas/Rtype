@@ -42,10 +42,30 @@ Core::Core(std::string ip, std::string port, std::string username) :
     _instructions[ROOM_UPDATE] = [this](std::vector<uint8_t> tcpResponse) {
         roomUpdate(tcpResponse);
     };
+    _instructions[LEAVE_ENTER_ROOM] = [this](std::vector<uint8_t> tcpResponse) {
+        leaveEnterRoom(tcpResponse);
+    };
+    _instructions[DECLARE_GAME] = [this](std::vector<uint8_t> tcpResponse) {
+        std::string gameName(tcpResponse.begin() + 1, tcpResponse.end());
+
+        auto it = std::find(_gameList.begin(), _gameList.end(), gameName);
+        if (it == _gameList.end()) {
+            _gameList.push_back(gameName);
+        }
+    };
 }
 
 Core::~Core()
 {
+}
+
+void Core::leaveEnterRoom(std::vector<uint8_t> tcpResponse)
+{
+    if (tcpResponse[1] == 0) {
+        _rooms[tcpResponse[2]].setNbPlayers(_rooms[tcpResponse[2]].getNbPlayers() + 1);
+    } else {
+        _rooms[tcpResponse[2]].setNbPlayers(_rooms[tcpResponse[2]].getNbPlayers() - 1);
+    }
 }
 
 void Core::roomUpdate(std::vector<uint8_t> tcpResponse)
@@ -69,33 +89,8 @@ void Core::interpretor()
 {
     while (_tcpClient.hasData()) {
         auto tcpResponse = _tcpClient.receive();
-        if (tcpResponse.size() > 0 && static_cast<uint8_t>(tcpResponse[0]) == 200) {
-            std::cout << "OK" << static_cast<int>(tcpResponse[0]) << std::endl;
-            if (_commandQueue.size() > 0) {
-                _commandQueue.front().second();
-                _commandQueue.erase(_commandQueue.begin());
-            }
-        } else if (tcpResponse.size() > 0 && static_cast<uint8_t>(tcpResponse[0]) == 201) {
-            std::cout << "KO" << static_cast<int>(tcpResponse[0]) << std::endl;
-            if (_commandQueue.size() > 0) {
-                _commandQueue.erase(_commandQueue.begin());
-            }
-        } else {
-            std::cout << "TCP Response: " << std::string(tcpResponse.begin(), tcpResponse.end()) << std::endl;
-            if (tcpResponse.size() > 0 && static_cast<uint8_t>(tcpResponse[0]) == 1) {
-                // separer par des \ pour avoir le nom de la room et le nombre de joueur
-                if (tcpResponse[1] == 0) {
-                    _rooms.push_back(ClientRoom(std::string(tcpResponse.begin() + 3, tcpResponse.end() - 2), tcpResponse[2], tcpResponse[tcpResponse.size() - 1]));
-                } else {
-                    auto it = std::find_if(_rooms.begin(), _rooms.end(), [&](const ClientRoom& room) {
-                        return room.getId() == tcpResponse[2];
-                    });
-
-                    if (it != _rooms.end()) {
-                        _rooms.erase(it);
-                    }
-                }
-            }
+        if (_instructions.find(static_cast<INSTRUCTIONS_SERVER_TO_CLIENT>(tcpResponse[0])) != _instructions.end()) {
+            _instructions[static_cast<INSTRUCTIONS_SERVER_TO_CLIENT>(tcpResponse[0])](tcpResponse);
         }
     }
 }
@@ -181,7 +176,6 @@ void Core::run(void)
                     std::string tcpMessage = std::string(1, CREATE_ROOM) + roomName + "\\testGame";
                     _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
                     roomName = "";
-                    // _commandQueue.push_back(std::make_pair("createRoom", [this]() { setRoom(0); }));
                 }
             }
 
