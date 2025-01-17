@@ -7,6 +7,7 @@
 
 #include "RType.hpp"
 #include "registry.hpp"
+#include "Handlers/MoveHandlers.hpp"
 
 RType::RType()
 {
@@ -23,7 +24,12 @@ void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
 
 std::vector<rtype::ClientAction> RType::getClientActionHandlers(void) const
 {
-    return std::vector<rtype::ClientAction>();
+    return std::vector<rtype::ClientAction>({
+        {90, 1, std::make_unique<UpHandlers>()},
+        {83, 1, std::make_unique<DownHandlers>()},
+        {81, 1, std::make_unique<LeftHandlers>()},
+        {68, 1, std::make_unique<RightHandlers>()}
+    });
 }
 
 std::vector<rtype::Background> RType::getBackgrounds(void) const
