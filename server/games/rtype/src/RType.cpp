@@ -23,7 +23,7 @@ void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
     _registry = reg;
     _registry->register_component<Position>();
     _registry->register_component<Life>();
-    _registry->register_component<Velocity>();
+    _registry->register_component<Speed>();
     _registry->register_component<SIDE>();
     _registry->register_component<Hitbox>();
 }
