@@ -138,11 +138,6 @@ void raylib::Window::draw_text(std::string const &text, int x, int y, int fontSi
     DrawText(text.c_str(), x, y, fontSize, BLACK);
 }
 
-void raylib::Window::draw_rectangle(int x, int y, int width, int height)
-{
-    DrawRectangle(x, y, width, height, RED);
-}
-
 bool raylib::Window::is_key(BUTTON_STATE state, int key) const
 {
     switch (state) {

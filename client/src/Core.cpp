@@ -8,14 +8,14 @@
 #include "Core.hpp"
 #include <iostream>
 
-#include "raylib.h"
 #include "Window.hpp"
+#include "RayText.hpp"
 
 #include <list>
 #include <functional>
 #include <string>
 
-Core::Core(): _tcpClient("127.0.0.1", "12345")
+Core::Core() : _window(800, 600)
 {
 }
 
@@ -25,8 +25,11 @@ Core::~Core()
 
 void Core::interpretor()
 {
-    while (_tcpClient.hasData()) {
-        auto tcpResponse = _tcpClient.receive();
+    if (!_tcpClient) {
+        return;
+    }
+    while (_tcpClient->hasData()) {
+        auto tcpResponse = _tcpClient->receive();
         if (tcpResponse.size() > 0 && static_cast<uint8_t>(tcpResponse[0]) == 200) {
             std::cout << "OK" << static_cast<int>(tcpResponse[0]) << std::endl;
         } else if (tcpResponse.size() > 0 && static_cast<uint8_t>(tcpResponse[0]) == 201) {
@@ -44,9 +47,9 @@ void Core::interpretor()
 
 void Core::drawPopup(bool &showPopup, std::string &input, std::string title)
 {
-    _window.draw_rectangle(100, 100, 300, 200);
+    _window.draw_rectangle(100, 100, 300, 200, raylib::RED);
     _window.draw_text(title, 120, 120, 20);
-    _window.draw_rectangle(120, 160, 260, 40);
+    _window.draw_rectangle(120, 160, 260, 40, raylib::RED);
 
     _window.draw_text(input, 130, 170, 20);
 
@@ -85,6 +88,9 @@ void Core::run(void)
     std::string roomName = "";
     int roomId = -1;
 
+    if (!_tcpClient) {
+        return;
+    }
     while (_window.is_running()) {
         interpretor();
         _window.start_drawing();
@@ -101,10 +107,10 @@ void Core::run(void)
             } else {
                 if (!roomName.empty()) {
                     std::string tcpMessage = std::string(1, 7) + roomName + "\\testGame";
-                    _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
+                    _tcpClient->send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
                     roomName = "";
                     std::string tcpMessage2 = std::string(1, 8) + "";
-                    _tcpClient.send(std::vector<uint8_t>(tcpMessage2.begin(), tcpMessage2.end()));
+                    _tcpClient->send(std::vector<uint8_t>(tcpMessage2.begin(), tcpMessage2.end()));
                 }
             }
 
@@ -116,16 +122,16 @@ void Core::run(void)
                     roomId = room.getId();
                     std::cout << "Enter room" << roomId << std::endl;
                     std::string tcpMessage = std::string(1, 2) + std::to_string(room.getId());
-                    _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
+                    _tcpClient->send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
                     // verifier d'abord si le serveur renvoie 200
                 }
             }
         } else {
-            _window.draw_rectangle(0, 0, _window.get_size().first, _window.get_size().second);
+            _window.draw_rectangle(0, 0, _window.get_size().first, _window.get_size().second, raylib::RED);
             _window.draw_text("Room id: " + std::to_string(roomId), 10, 50, 20);
             if (isEltPressed(10, 10, 100, 20)) {
                 std::string tcpMessage = std::string(1, 4) + "";
-                _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
+                _tcpClient->send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
                 roomId = -1;
             }
             _window.draw_text("Exit room", 10, 10, 20);

@@ -8,6 +8,7 @@
 #include "UdpClient.hpp"
 #include "TcpClient.hpp"
 #include "Core.hpp"
+#include "Login.hpp"
 #include <iostream>
 
 #ifdef _WIN32
@@ -18,6 +19,11 @@
 #endif
 
 int main() {
+    {
+        Login login;
+        login.run();
+    }
+
     Core core;
     core.run();
     // try {

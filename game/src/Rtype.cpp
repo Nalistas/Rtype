@@ -108,40 +108,6 @@ size_t Rtype::createPlayer(void)
     _reg->emplace_component<Camp>(newPlayer, 0);
     _reg->emplace_component<Health>(newPlayer, 100);
 
-    /*
-
-    Client -> entite
-
-    [Client] -> [entite]
-
-
-    --dans le setRegistry (qui sera renommé)-- 
-    register_component<Health>()
-    register_component<Sprite>() -- déjà fait dans le server
-
-
-    -- ICI --
-    _reg.emplace_component<Health>(newPlayer, health) // class health int
-    _reg.emplace_component<Sprite>(newPlayer, Sprite)
-    _reg.emplace_component<Speed>(newPlayer, Speed)
-    _reg.emplace_component<Position>(newPlayer, Pos)
-
-
-    //
-
-    1er system -> manageBullet
-    2eme system -> computeSingleBullet
-
-    manage_bullet {
-        reg.run_single_system<Health, Sprite, Camp>(SystemComputeSingleBullet(bullet actuelle))
-    }
-    */
-
-    // player.setPosition(0, 0);
-    // player.setSpeed(0, 0);
-    // player.setHealth(50);
-
-    // _players[newPlayer] = player;
     _broadcastCreate(newPlayer);
     return newPlayer;
 }
