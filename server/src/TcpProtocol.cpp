@@ -159,12 +159,9 @@ void TcpProtocol::createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, std
     std::cout << "Room " << roomId << " created, broadcasting" << std::endl;
 
     for (auto clientIt : this->_clients) {
-        if (clientIt.second.getRoomId() == 0) {
-            _tcpServer.send(clientIt.first, data);
-        }
+        _tcpServer.send(clientIt.first, data);
     }
     _tcpServer.send(client, this->formatForceRegisterInRoom(roomId));
-    _tcpServer.send(client, data);
     return;
 }
 
