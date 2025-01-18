@@ -84,9 +84,13 @@ class RoomsCore {
          * @param port the port of the client
          * @param game the game name
          */
-        void sendGameRessourcesToTheRoom(int port, std::string game, Room room);
+        void sendGameRessourcesToTheRoom(std::string game, const uint8_t room);
 
-        std::vector<Client> getClients();
+        std::list<std::pair<std::shared_ptr<asio::ip::tcp::socket>, Client>> getClients(const uint8_t room);
+
+        std::string get_local_ip();
+
+        int getClientId(const uint8_t room, const std::shared_ptr<asio::ip::tcp::socket> &clientt);
 
 
         TcpServer _tcpServer;

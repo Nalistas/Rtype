@@ -102,7 +102,7 @@ int RoomsCore::find_available_port(unsigned short start_port)
 {
     asio::io_context io_context;
 
-    for (unsigned short port = start_port; port <= 65535; ++port) {
+    for (unsigned short port = start_port; port != 0; ++port) {
         try {
             asio::ip::tcp::acceptor acceptor(io_context, 
                 asio::ip::tcp::endpoint(asio::ip::tcp::v4(), port));
@@ -127,34 +127,54 @@ void RoomsCore::launchGame()
 
         #ifdef _WIN32
             std::vector<std::string> vec = {"./build/r-type_server.exe", "-udp", std::to_string(port), game_path};
-            my_process.execProcess(vec);
-            sendGameRessourcesToTheRoom(port, game, room.second);
         #else
             std::vector<std::string> vec = {"./build/r-type_server", "-udp", std::to_string(port), game_path};
-            my_process.execProcess(vec);
-            sendGameRessourcesToTheRoom(port, game, room.second);
         #endif
+
+        my_process.execProcess(vec);
+        sendGameRessourcesToTheRoom(game, room.first);
+
+        std::string ip = get_local_ip();
+        std::string port_to_string = std::string(1, static_cast<char>(port / 100)) + std::string(1, static_cast<char>(port % 100));
+        for (auto &client : getClients(room.first)) {
+            int client_id = getClientId(room.first, client.first);
+            std::vector<uint8_t> data = {TcpProtocol::INSTRUCTIONS_SERVER_TO_CLIENT::START_GAME, static_cast<uint8_t>(ip[0]), static_cast<uint8_t>(ip[1]), static_cast<uint8_t>(ip[2]), static_cast<uint8_t>(ip[3]), static_cast<uint8_t>(port_to_string[0]), static_cast<uint8_t>(port_to_string[1]), static_cast<uint8_t>(client_id)};
+            _clientsToLaunch.erase(client.first);
+        }
+        _roomsToLaunch.erase(room.first);
     }
 }
 
-void RoomsCore::sendGameRessourcesToTheRoom(int port, std::string game, Room room)
+int RoomsCore::getClientId(const uint8_t room, const std::shared_ptr<asio::ip::tcp::socket> &clientt)
 {
-    // auto it = this->_ressources.find(game);
-    // auto ressources = it->second.getRessourcess();
-
-    // for (auto &client : this->_clientsToLaunch) {
-    //     for (auto &ressource : ressources) {
-    //         _tcpServer.send(client.first, ressource);
-    //     }
-    // }
+    int id = 0;
+    std::list<std::pair<std::shared_ptr<asio::ip::tcp::socket>, Client>> clients = this->getClients(room);
+    for (auto &client : clients) {
+        if (clientt == client.first)
+            return id;
+        id++;
+    }
+    return id;
 }
 
-std::vector<Client> RoomsCore::getClients()
+void RoomsCore::sendGameRessourcesToTheRoom(std::string game, const uint8_t  room)
 {
-    std::vector<Client> clients;
+    auto ressources = this->_ressources.find(game)->second.getRessourcess();
+    for (auto &client: getClients(room)) {
+        for (auto &ressource : ressources) {
+            _tcpServer.send(client.first, ressource);
+        }
+    }
+}
 
-    for (auto &client : this->_clientsToLaunch) {
-        clients.emplace_back(client.second);
+std::list<std::pair<std::shared_ptr<asio::ip::tcp::socket>, Client>> RoomsCore::getClients(const uint8_t room)
+{
+    std::list<std::pair<std::shared_ptr<asio::ip::tcp::socket>, Client>> clients;
+
+    for (auto &client : this->_clients) {
+        if (client.second.getRoomId() == room) {
+            clients.emplace_back(client.first, client.second);
+        }
     }
     return clients;
 }
@@ -167,6 +187,38 @@ void RoomsCore::run(void)
     while (true) {
         checkNewClients();
         checkClients(tcp_protocol);
+    }
+}
+
+std::string RoomsCore::get_local_ip() 
+{
+    try {
+        asio::io_context io_context;
+
+        asio::ip::tcp::resolver resolver(io_context);
+        asio::ip::tcp::resolver::query query(asio::ip::host_name(), "");
+        auto endpoints = resolver.resolve(query);
+
+        for (const auto& endpoint : endpoints) {
+            if (endpoint.endpoint().address().is_v4()) {
+                auto ip = endpoint.endpoint().address().to_string();
+                std::string transformed_ip;
+                size_t pos = 0;
+                size_t prev_pos = 0;
+                while ((pos = ip.find('.', prev_pos)) != std::string::npos) {
+                    int segment = std::stoi(ip.substr(prev_pos, pos - prev_pos));
+                    transformed_ip += static_cast<char>(segment);
+                    prev_pos = pos + 1;
+                }
+                transformed_ip += static_cast<char>(std::stoi(ip.substr(prev_pos)));       
+                return transformed_ip;
+            }
+        }
+        throw std::runtime_error("Aucune adresse IPv4 trouvée.");
+
+    } catch (const std::exception& e) {
+        std::cerr << "Erreur : " << e.what() << std::endl;
+        throw;
     }
 }
 

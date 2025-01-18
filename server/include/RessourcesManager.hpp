@@ -26,6 +26,11 @@ class RessourcesManager {
 
         /**
          * @brief Construct a new Ressources Manager object
+         */
+        // RessourcesManager() = default;
+
+        /**
+         * @brief Construct a new Ressources Manager object
          * @param game the game for which we want to get the ressources
          */
         RessourcesManager(std::unique_ptr<rtype::IGame> &game);
