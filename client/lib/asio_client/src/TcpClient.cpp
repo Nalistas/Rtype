@@ -35,11 +35,13 @@ void TcpClient::send(const std::vector<uint8_t> &message)
     }
 
     uint16_t length = static_cast<uint16_t>(message.size());
-    std::vector<uint8_t> length_buffer = {static_cast<uint8_t>(length / 256), static_cast<uint8_t>(length & 0xFF)};
+    std::vector<uint8_t> final_message(2 + message.size());
+    final_message[0] = static_cast<uint8_t>(length / 256);
+    final_message[1] = static_cast<uint8_t>(length & 0xFF);
+    std::copy(message.begin(), message.end(), final_message.begin() + 2);
 
     try {
-        asio::write(_socket, asio::buffer(length_buffer));
-        asio::write(_socket, asio::buffer(message));
+        asio::write(_socket, asio::buffer(final_message));
         std::cout << "Message sent successfully" << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "Send error: " << e.what() << std::endl;
