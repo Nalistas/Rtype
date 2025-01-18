@@ -71,7 +71,11 @@ class RayMusic {
          */
         void update();
 
-
+        // Overload
+        bool operator==(const RayMusic &other) const;
+        bool operator!=(const RayMusic &other) const;
+        bool operator<(const RayMusic &other) const;
+        bool operator>(const RayMusic &other) const; 
 
     private:
         Music _music;

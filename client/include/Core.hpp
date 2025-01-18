@@ -103,19 +103,17 @@ class Core {
         std::vector<ClientRoom> _rooms;
         std::list<std::string> _games;
         std::map<uint8_t, ClientRoom> _roomsMap;
-        std::vector<std::pair<std::string, std::function<void()>>> _commandQueue;
+        std::vector<std::pair<std::string, std::function<void(std::vector<uint8_t>)>>> _commandQueue;
         std::map<raylib::RayText, std::function<void()>> _buttons_room;
         std::map<INSTRUCTIONS_SERVER_TO_CLIENT, std::function<void(std::vector<uint8_t>)>> _instructions;
         std::vector<std::string> _gameList;
-        std::vector<raylib::Sprite> _sprites;
-        std::vector<Background> _backgrounds;
-        std::vector<raylib::RayMusic> _musics;
+        std::map<uint32_t, raylib::Sprite> _sprites;
+        std::map<uint32_t, Background> _backgrounds;
+        std::map<uint32_t, raylib::RayMusic> _musics;
+
         // [0][Key] = Key released
         // [1][Key] = Key pressed
-
-        // pk 2 ??? c'est pas mieux de faire un vecteur ?? Ambroise
-        // il n'y a pas de nécessité à faire un vecteur : on sait qu'il n'y a que 2 state de la touche
-        std::array<std::map<uint32_t, std::function<void(void)>>, 2> _actions;
+        std::array<std::map<uint32_t, uint32_t>, 2> _actions;
 
         int _roomId;
         bool _startGame;

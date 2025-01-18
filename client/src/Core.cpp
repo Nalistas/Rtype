@@ -37,7 +37,7 @@ Core::Core(std::string ip, std::string port, std::string username) :
     _instructions[OK] = [this](std::vector<uint8_t> tcpResponse) {
         std::cout << "OK" << static_cast<int>(tcpResponse[0]) << std::endl;
         if (_commandQueue.size() > 0) {
-            _commandQueue.front().second();
+            _commandQueue.front().second(tcpResponse);
             _commandQueue.erase(_commandQueue.begin());
         }
     };
@@ -85,16 +85,22 @@ Core::~Core()
 
 void Core::load_background(std::vector<uint8_t> tcpResponse)
 {
-    // 4[Speed] [Direction (x = 1, y = 2)] [s'il faut resize (0/1)] [si le background se répete (0/1)] [Type de mouvement (1 : None, 2 : Parallax, 3 : deplacement continue)] [Path to image]
-    float speed = *(float *)(tcpResponse.data() + 1);
-    int direction = tcpResponse[5];
-    bool resize = tcpResponse[6];
-    bool repeat = tcpResponse[7];
-    int moveType = tcpResponse[8];
-    std::string path(reinterpret_cast<char*>(tcpResponse.data() + 9));
-    // auto texture = raylib::TextureManager::getTexture(path);
+    // 4[id du bg][Speed] [Direction (x = 1, y = 2)] [s'il faut resize (0/1)] [si le background se répete (0/1)] [Type de mouvement (1 : None, 2 : Parallax, 3 : deplacement continue)] [Path to image]
+    int id = *(int *)(tcpResponse.data() + 1);
+    float speed = *(float *)(tcpResponse.data() + 5);
+    int direction = tcpResponse[6];
+    bool resize = tcpResponse[7];
+    bool repeat = tcpResponse[8];
+    int moveType = tcpResponse[9];
+    std::string path(reinterpret_cast<char*>(tcpResponse.data() + 10));
+
     Background background(path, _window.get_size().first, _window.get_size().second);
-    _backgrounds.push_back(background);
+    background.setSpeed(speed);
+    background.setMoveType(static_cast<Background::BACKGROUND_MOVE_TYPE>(moveType));
+    background.loop(repeat);
+    background.resize_x(1, resize);
+    background.resize_y(1, resize);
+    _backgrounds[id] = background;
 
     checkIfFileExist(path);
 }
@@ -102,9 +108,9 @@ void Core::load_background(std::vector<uint8_t> tcpResponse)
 void Core::load_music(std::vector<uint8_t> tcpResponse)
 {
     // 5[id musique][path to musique]
-    int id = tcpResponse[1];
-    std::string path(reinterpret_cast<char*>(tcpResponse.data() + 1));
-    raylib::RayMusic music(path);
+    int id = *(int *)(tcpResponse.data() + 1);
+    std::string path(reinterpret_cast<char*>(tcpResponse.data() + 5));
+    _musics.emplace(id, raylib::RayMusic(path));
 
     checkIfFileExist(path);
 }
@@ -115,15 +121,7 @@ void Core::load_action(std::vector<uint8_t> tcpResponse)
     uint32_t id = *(uint32_t *)(tcpResponse.data() + 1);
     uint32_t key = *(uint32_t *)(tcpResponse.data() + 5);
     uint8_t pressed = tcpResponse[9];
-    // _actions.push_back({pressed, key}); ??? j'ai oublié comment marchait l'ancien client Ambroise
-    // MDR, je regarde
-    // _actions[pressed].emplace(key, /* function that send the action */);
-    // le std::function<void(void)> est la fonctioin qui envoie au serveur udp : 
-    // {1, id (sur 4 octets), mouseX (sur 4 octets), mouseY (sur 4 octets)}
-    // ou tu remplace :
-    // std::array<std::map<uint32_t, std::function<void(void)>>, 2> _actions;
-    // par
-    // std::array<std::map<uint32_t, uint32_t>, 2> _actions;
+    _actions[pressed][key] = id;
 }
 
 void Core::checkIfFileExist(std::string path)
@@ -131,24 +129,28 @@ void Core::checkIfFileExist(std::string path)
     if (!std::filesystem::exists("client/" + path)) {
         std::string tcpMessage = std::string(1, MISSING_FILE) + path;
         _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
-        // je le recupere comment ???? Ambroise
-        // essaye de l'ouvrir !
+        _commandQueue.push_back(std::make_pair("missingFile", [this, path](std::vector<uint8_t> tcpResponse) {
+            if (tcpResponse[0] == KO) {
+                return;
+            }
+            save_image(path, std::vector<char>(tcpResponse.begin() + 1, tcpResponse.end()));
+        }));
     }
 }
 
 void Core::load_sprite(std::vector<uint8_t> tcpResponse)
 {
     // 3[id du type de sprite][size x sur 4 octet] [size y sur 4 octet][ width à prendre sur l'image sur 4o] [height à prendre sur l'image sur 4o] [offset x 4 octets] [offset y 4 octets] [ nb frame sur 1 octet ] [ nb milisecond pour les frame / 4o][path]
-    int id = tcpResponse[1];
-    int sizeX = *(int *)(tcpResponse.data() + 2);
-    int sizeY = *(int *)(tcpResponse.data() + 6);
-    float width = *(float *)(tcpResponse.data() + 10);
-    float height = *(float *)(tcpResponse.data() + 14);
-    int offsetX = *(int *)(tcpResponse.data() + 18);
-    int offsetY = *(int *)(tcpResponse.data() + 22);
-    uint8_t nbFrames = tcpResponse[26];
-    int msPerFrame = *(int *)(tcpResponse.data() + 27);
-    std::string path(reinterpret_cast<char*>(tcpResponse.data() + 31));
+    int id = *(int *)(tcpResponse.data() + 1);
+    int sizeX = *(int *)(tcpResponse.data() + 6);
+    int sizeY = *(int *)(tcpResponse.data() + 10);
+    float width = *(float *)(tcpResponse.data() + 14);
+    float height = *(float *)(tcpResponse.data() + 18);
+    int offsetX = *(int *)(tcpResponse.data() + 22);
+    int offsetY = *(int *)(tcpResponse.data() + 26);
+    uint8_t nbFrames = tcpResponse[27];
+    int msPerFrame = *(int *)(tcpResponse.data() + 28);
+    std::string path(reinterpret_cast<char*>(tcpResponse.data() + 32));
     auto texture = raylib::TextureManager::getTexture(path);
     raylib::Sprite sprite;
 
@@ -156,9 +158,9 @@ void Core::load_sprite(std::vector<uint8_t> tcpResponse)
     sprite.set_offset(offsetX, offsetY);
     sprite.set_source_rect({0, 0, width, height});
     sprite.set_destination_rect({0, 0, static_cast<float>(sizeX), static_cast<float>(sizeY)});
+    sprite.set_offset(offsetX, offsetY);
 
-    _sprites.push_back(sprite);
-    _sprites.back().set_offset(offsetX, offsetY);
+    _sprites[id] = sprite;
 
     checkIfFileExist(path);
 }
@@ -260,7 +262,7 @@ void Core::manageExitRoom()
 {
     std::string tcpMessage = std::string(1, LEAVE_ROOM) + "";
     _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
-    _commandQueue.push_back(std::make_pair("exitRoom", [this]() { setRoom(0); }));
+    _commandQueue.push_back(std::make_pair("exitRoom", [this](std::vector<uint8_t> tcpResponse) { (void) tcpResponse; setRoom(0); }));
 }
 
 void Core::setRoom(int roomId)
@@ -297,7 +299,7 @@ void Core::run(void)
                     std::cout << "Enter room" << _roomId << std::endl;
                     std::string tcpMessage = std::string(1, ENTER_ROOM) + std::to_string(room.getId());
                     _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
-                    _commandQueue.push_back(std::make_pair("enterRoom", [this, room]() { setRoom(room.getId()); }));
+                    _commandQueue.push_back(std::make_pair("enterRoom", [this, room](std::vector<uint8_t> tcpResponse) { (void) tcpResponse; setRoom(room.getId()); }));
                 }
             }
         } else { // Room
