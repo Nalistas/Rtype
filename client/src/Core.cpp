@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include "Window.hpp"
+#include "TextureManager.hpp"
 #include "RayText.hpp"
 
 #include <list>
@@ -17,6 +18,8 @@
 #include <vector>
 #include <algorithm>
 #include <fstream>
+#include <filesystem>
+
 
 Core::Core(std::string ip, std::string port, std::string username) : 
     _window(800, 600),
@@ -62,22 +65,94 @@ Core::Core(std::string ip, std::string port, std::string username) :
         (void)tcpResponse;
         _startGame = true;
     };
-    // _instructions[LOAD_SPRITE] = [this](std::vector<uint8_t> tcpResponse) {
-    //     load_sprite(tcpResponse);
-    // };
-
+    _instructions[LOAD_SPRITE] = [this](std::vector<uint8_t> tcpResponse) {
+        load_sprite(tcpResponse);
+    };
+    _instructions[LOAD_MUSIC] = [this](std::vector<uint8_t> tcpResponse) {
+        load_music(tcpResponse);
+    };
+    _instructions[LOAD_BACKGROUND] = [this](std::vector<uint8_t> tcpResponse) {
+        load_background(tcpResponse);
+    };
+    _instructions[LOAD_ACTION] = [this](std::vector<uint8_t> tcpResponse) {
+        load_action(tcpResponse);
+    };
 }
 
 Core::~Core()
 {
 }
 
-// void Core::load_sprite(std::vector<uint8_t> tcpResponse)
-// {
-//     std::string path(tcpResponse.begin() + 1, tcpResponse.end());
-//     std::vector<char> buffer(tcpResponse.begin() + 1, tcpResponse.end());
-//     save_image(path, buffer);
-// }
+void Core::load_background(std::vector<uint8_t> tcpResponse)
+{
+    // 4[Speed] [Direction (x = 1, y = 2)] [s'il faut resize (0/1)] [si le background se répete (0/1)] [Type de mouvement (1 : None, 2 : Parallax, 3 : deplacement continue)] [Path to image]
+    float speed = *(float *)(tcpResponse.data() + 1);
+    int direction = tcpResponse[5];
+    bool resize = tcpResponse[6];
+    bool repeat = tcpResponse[7];
+    int moveType = tcpResponse[8];
+    std::string path(reinterpret_cast<char*>(tcpResponse.data() + 9));
+    auto texture = raylib::TextureManager::getTexture(path);
+    Background background(texture, _window.get_size().first, _window.get_size().second);
+    _backgrounds.push_back(background);
+
+    checkIfFileExist(path);
+}
+
+void Core::load_music(std::vector<uint8_t> tcpResponse)
+{
+    // 5[id musique][path to musique]
+    int id = tcpResponse[1];
+    std::string path(reinterpret_cast<char*>(tcpResponse.data() + 1));
+    raylib::RayMusic music(path);
+
+    checkIfFileExist(path);
+}
+
+void Core::load_action(std::vector<uint8_t> tcpResponse)
+{
+    // 6[id action / 4o][key code / 4o][pressed 1 | released 0]
+    int id = *(int *)(tcpResponse.data() + 1);
+    int key = *(int *)(tcpResponse.data() + 5);
+    bool pressed = tcpResponse[9];
+    // _actions.push_back({pressed, key}); ??? j'ai oublié comment marchait l'ancien client Ambroise
+}
+
+void Core::checkIfFileExist(std::string path)
+{
+    if (!std::filesystem::exists("client/" + path)) {
+        std::string tcpMessage = std::string(1, MISSING_FILE) + path;
+        _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
+        // je le recupere comment ???? Ambroise
+    }
+}
+
+void Core::load_sprite(std::vector<uint8_t> tcpResponse)
+{
+    // 3[id du type de sprite][size x sur 4 octet] [size y sur 4 octet][ width à prendre sur l'image sur 4o] [height à prendre sur l'image sur 4o] [offset x 4 octets] [offset y 4 octets] [ nb frame sur 1 octet ] [ nb milisecond pour les frame / 4o][path]
+    int id = tcpResponse[1];
+    int sizeX = *(int *)(tcpResponse.data() + 2);
+    int sizeY = *(int *)(tcpResponse.data() + 6);
+    float width = *(float *)(tcpResponse.data() + 10);
+    float height = *(float *)(tcpResponse.data() + 14);
+    int offsetX = *(int *)(tcpResponse.data() + 18);
+    int offsetY = *(int *)(tcpResponse.data() + 22);
+    uint8_t nbFrames = tcpResponse[26];
+    int msPerFrame = *(int *)(tcpResponse.data() + 27);
+    std::string path(reinterpret_cast<char*>(tcpResponse.data() + 31));
+    auto texture = raylib::TextureManager::getTexture(path);
+    raylib::Sprite sprite;
+
+    sprite.set_texture(texture);
+    sprite.set_offset(offsetX, offsetY);
+    sprite.set_source_rect({0, 0, width, height});
+    sprite.set_destination_rect({0, 0, static_cast<float>(sizeX), static_cast<float>(sizeY)});
+
+    _sprites.push_back(sprite);
+    _sprites.back().set_offset(offsetX, offsetY);
+
+    checkIfFileExist(path);
+}
 
 void Core::save_image(const std::string &path, const std::vector<char> &buffer) {
     std::ofstream outFile(path, std::ios::binary);

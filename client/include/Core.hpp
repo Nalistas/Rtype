@@ -9,6 +9,9 @@
 #include "TcpClient.hpp"
 #include "ClientRoom.hpp"
 #include "RayText.hpp"
+#include "Sprite.hpp"
+#include "RayMusic.hpp"
+#include "Background.hpp"
 
 #include <vector>
 #include <list>
@@ -85,6 +88,15 @@ class Core {
 
         void save_image(const std::string &path, const std::vector<char> &buffer);
 
+        void load_sprite(std::vector<uint8_t> tcpResponse);
+
+        void load_background(std::vector<uint8_t> tcpResponse);
+
+        void load_music(std::vector<uint8_t> tcpResponse);
+
+        void load_action(std::vector<uint8_t> tcpResponse);
+
+        void checkIfFileExist(std::string path);
     private:
         raylib::Window _window;
         TcpClient _tcpClient;
@@ -92,10 +104,18 @@ class Core {
         std::list<std::string> _games;
         std::map<uint8_t, ClientRoom> _roomsMap;
         std::vector<std::pair<std::string, std::function<void()>>> _commandQueue;
-        // std::array<raylib::RayText, 1> _buttons_home;
         std::map<raylib::RayText, std::function<void()>> _buttons_room;
         std::map<INSTRUCTIONS_SERVER_TO_CLIENT, std::function<void(std::vector<uint8_t>)>> _instructions;
         std::vector<std::string> _gameList;
+        std::vector<raylib::Sprite> _sprites;
+        std::vector<Background> _backgrounds;
+        std::vector<raylib::RayMusic> _musics;
+        // [0][Key] = Key released
+        // [1][Key] = Key pressed
+
+        // pk 2 ??? c'est pas mieux de faire un vecteur ?? Ambroise
+        std::array<std::map<uint32_t, std::function<void(void)>>, 2> _actions;
+
         int _roomId;
         bool _startGame;
 };
