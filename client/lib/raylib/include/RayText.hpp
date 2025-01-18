@@ -32,11 +32,18 @@ class RayText {
 
         // Getters
         std::string const &getText() const;
-        void getPosition(int &x, int &y) const;
         int getSize(void) const;
+        int getX() const;
+        int getY() const;
 
         // Display method
         void draw() const;
+
+        // Overload
+        bool operator==(const RayText &other) const;
+        bool operator!=(const RayText &other) const;
+        bool operator<(const RayText &other) const;
+        bool operator>(const RayText &other) const;
 
     private:
         std::string _text;

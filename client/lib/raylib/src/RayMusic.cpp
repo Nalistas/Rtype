@@ -64,3 +64,23 @@ void raylib::RayMusic::update()
 {
     UpdateMusicStream(_music);
 }
+
+bool raylib::RayMusic::operator!=(const RayMusic &other) const
+{
+    return _music.stream.buffer != other._music.stream.buffer;
+}
+
+bool raylib::RayMusic::operator==(const RayMusic &other) const
+{
+    return _music.stream.buffer == other._music.stream.buffer;
+}
+
+bool raylib::RayMusic::operator<(const RayMusic &other) const
+{
+    return _music.stream.buffer < other._music.stream.buffer;
+}
+
+bool raylib::RayMusic::operator>(const RayMusic &other) const
+{
+    return _music.stream.buffer > other._music.stream.buffer;
+}

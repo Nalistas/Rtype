@@ -4,7 +4,7 @@ Server -> Client (TCP)
 201 (sur 1 char) = KO
 
 déclarer une room(c'est pour lister les rooms déjà existantes) :
-1[Created = 0 | deleted = 1][ID room sur 1 char][Nom room]
+1[Created = 1 | deleted = 0][ID room sur 1 char][Nom room] ya tj le nombre de jouers dans la room a la fin de cette requete ?
 
 Lancement d'une room
 2
@@ -33,6 +33,9 @@ Declare an existing game :
 Someone entered/exited a room
 9[exited = 0 | entered = 1][Room id][name]
 
+Force register in a room
+10[Room Id][Room Name]
+
 VARIABLE PUBLIC DANS TCPSERVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -42,7 +45,7 @@ OK -> Connecter : 1
 OK -> Entrer room : 2
 Definit un jeu existant : 3
 OK -> Quitter la room : 4
- : 5
+List games : 5
 Missing image : 6
 OK -> New room : 7
 OK -> List room: 8

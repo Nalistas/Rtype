@@ -146,6 +146,8 @@ void TcpProtocol::createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, std
             _tcpServer.send(clientIt.first, data);
         }
     }
+    _tcpServer.send(client, this->formatForceRegisterInRoom(roomId));
+    _tcpServer.send(client, data);
     return;
 }
 
@@ -168,5 +170,9 @@ void TcpProtocol::deleteRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uin
         } else {
             std::cout << "Room " << roomId << " not deleted : not owner" << std::endl;
         }
+    }
+    auto data = this->formatRoomCreatedDeleted(roomId, false);
+    for (auto cli : this->_clients) {
+        _tcpServer.send(cli.first, data);
     }
 }

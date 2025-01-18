@@ -18,7 +18,7 @@ class Login {
         Login();
         ~Login();
 
-        void run();
+        bool run();
 
         std::string get_ip() const;
         std::string get_port() const;
@@ -37,7 +37,7 @@ class Login {
         int focus;
         raylib::Window _window;
         bool _is_running;
-        std::array<raylib::RayText, 3> _titles;
+        std::array<raylib::RayText, 4> _titles;
         std::array<raylib::RayText, 3> _inputs;
 };
 

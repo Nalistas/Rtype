@@ -26,7 +26,7 @@ class ClientRoom {
          * @param gameName the name of the game
          * @param owner the owner of the ClientRoom (the socket of the client)
          */
-        ClientRoom(std::string const &name, int id, int nbPlayers);
+        ClientRoom(std::string const &name, uint8_t id, int nbPlayers);
 
         /**
          * @brief Destroy the ClientRoom object
@@ -45,7 +45,7 @@ class ClientRoom {
          * 
          * @return int the id of the ClientRoom
          */
-        int getId() const;
+        uint8_t getId() const;
 
         /**
          * @brief Get the number of players in the ClientRoom
@@ -54,10 +54,22 @@ class ClientRoom {
          */
         int getNbPlayers() const;
 
+        /**
+         * @brief Set the number of players in the ClientRoom
+         * 
+         * @param nbPlayers the number of players in the ClientRoom
+         */
+        void setNbPlayers(int nbPlayers);
+
+        void setGameName(std::string gameName);
+
+        std::string getGameName() const;
+
 
     private:
         std::string _name;
-        int _id;
+        std::string _gameName;
+        uint8_t _id;
         int _nbPlayers;
 
 };

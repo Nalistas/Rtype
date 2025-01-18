@@ -66,7 +66,7 @@ If the previous instruction previously made did not succeed
 
 3. Room declaration
 This request is here to add a new room waiting for new player
-`...[1][new = 1 | deleted = 2][room id /1o][room name /?o]`
+`...[1][new = 1 | deleted = 0][room id /1o][room name /?o]`
 
 4. Set ready
 It will declare you ready to play. You need to be in a room to set you ready.
@@ -122,7 +122,7 @@ Server response : OK | KO
 `...[6][File path /?o]`
 Server response : OK[followed by the file (binary)] | KO
 when the server give you all the ressourses, it just gives the path. By default it assumes the client has everything.
-However, you can ask him the document and then will giv it to you
+However, you can ask him the document and then it will give it to you
 
 7. New Room
 `...[7][Room Name /?o][92][Name of the game /?o]`
