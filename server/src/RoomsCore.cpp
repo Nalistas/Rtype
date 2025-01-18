@@ -33,7 +33,6 @@ void RoomsCore::run(void)
 
     while (true) {
         checkNewClients();
-        std::cout << "Checking for clients..." << std::endl;
         checkClients(tcp_protocol);
         std::this_thread::sleep_for(std::chrono::milliseconds(30));
     }
@@ -41,7 +40,6 @@ void RoomsCore::run(void)
 
 void RoomsCore::checkNewClients(void)
 {
-    std::cout << "Checking for new clients..." << std::endl;
     auto client = _tcpServer.accept();
 
     if (!client) {
@@ -60,7 +58,6 @@ void RoomsCore::checkClients(TcpProtocol &tcpProtocol)
     auto it = _clients.begin();
     
     while (it != _clients.end()) {
-        std::cout << "Checking client " << it->first << std::endl;
         state = _tcpServer.hasDataToRead(it->first);
         if (state == DATA) {
             auto client = it->first;
@@ -82,7 +79,7 @@ void RoomsCore::treatClient(std::shared_ptr<asio::ip::tcp::socket> &client, TcpP
 
     std::cout << "-------------------------------------------------------------------------" << std::endl;
     std::cout << "Received data from client: " << client << " \"" << this->_clients[client].getName() << "\"" << std::endl;
-    std::cout << "Received data (Raw values): " << std::string(data.begin(), data.end()) << std::endl;
+    // std::cout << "Received data (Raw values): " << std::string(data.begin(), data.end()) << std::endl;
     for (uint8_t c : data) {
         std::cout << static_cast<int>(c) << " ";
     }
