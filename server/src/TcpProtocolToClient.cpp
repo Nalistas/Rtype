@@ -70,6 +70,7 @@ std::vector<uint8_t> TcpProtocol::formatForceRegisterInRoom(uint8_t roomId)
 {
     auto room_it = _rooms.find(roomId);
 
+    std::cout << "Force register in room" << std::endl;
     if (room_it == _rooms.end()) {
         return {FORCE_REGISTER_IN_ROOM, roomId, 0};
     }

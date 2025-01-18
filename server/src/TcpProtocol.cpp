@@ -147,6 +147,7 @@ void TcpProtocol::createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, std
         }
     }
     _tcpServer.send(client, this->formatForceRegisterInRoom(roomId));
+    _tcpServer.send(client, data);
     return;
 }
 
