@@ -33,18 +33,19 @@
         LOAD_ACTION = 6,
         START_GAME = 7,
         DECLARE_GAME = 8,
-        LEAVE_ENTER_ROOM = 9
+        LEAVE_ENTER_ROOM = 9,
+        FORCE_IN_ROOM = 10
     };
 
     enum INSTRUCTIONS_CLIENT_TO_SERVER {
         SET_NAME = 1,
         ENTER_ROOM = 2,
+        SET_READY = 3,
         LEAVE_ROOM = 4,
         MISSING_FILE = 6,
         CREATE_ROOM = 7,
         LIST_ROOMS = 8,
         DELETE_ROOM = 9,
-        SET_READY = 10
     };
 
 /**
@@ -72,15 +73,15 @@ class Core {
          */
         void run(void);
 
-        void drawPopup(bool &showPopup, std::string &roomName, std::string title);
+        void drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int &focus);
 
         bool isEltPressed(int x, int y, int width, int height);
 
-        void displayCreateRoomBtn(std::string &roomName, bool &showPopup);
+        // void displayCreateRoomBtn(std::string &roomName, bool &showPopup);
 
         void manageExitRoom();
 
-        void setRoom(int roomId);
+        void setRoom(uint8_t roomId);
 
         void roomUpdate(std::vector<uint8_t> tcpResponse);
 
@@ -97,14 +98,19 @@ class Core {
         void load_action(std::vector<uint8_t> tcpResponse);
 
         void checkIfFileExist(std::string path);
+
+        void forceInRoom(std::vector<uint8_t> tcpResponse);
+
+        void manageGetReady();
     private:
         raylib::Window _window;
         TcpClient _tcpClient;
         std::vector<ClientRoom> _rooms;
         std::list<std::string> _games;
-        std::map<uint8_t, ClientRoom> _roomsMap;
+        // std::map<uint8_t, ClientRoom> _roomsMap;
         std::vector<std::pair<std::string, std::function<void(std::vector<uint8_t>)>>> _commandQueue;
         std::map<raylib::RayText, std::function<void()>> _buttons_room;
+        std::vector<raylib::RayText> _texts_room;
         std::map<INSTRUCTIONS_SERVER_TO_CLIENT, std::function<void(std::vector<uint8_t>)>> _instructions;
         std::vector<std::string> _gameList;
         std::map<uint32_t, raylib::Sprite> _sprites;
@@ -115,7 +121,7 @@ class Core {
         // [1][Key] = Key pressed
         std::array<std::map<uint32_t, uint32_t>, 2> _actions;
 
-        int _roomId;
+        uint8_t _roomId;
         bool _startGame;
 };
 

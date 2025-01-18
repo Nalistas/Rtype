@@ -28,8 +28,12 @@ Core::Core(std::string ip, std::string port, std::string username) :
     _startGame(false)
 {
     _buttons_room.emplace(
-        raylib::RayText("Exit room", 10, 10, 20, raylib::BLUE),
+        raylib::RayText("Exit room", 10, 200, 20, raylib::BLUE),
         [&]() { manageExitRoom(); }
+    );
+    _buttons_room.emplace(
+        raylib::RayText("Get ready", 200, 200, 20, raylib::BLUE),
+        [&]() { manageGetReady(); }
     );
 
     std::string tcpMessage = std::string(1, SET_NAME) + username;
@@ -78,10 +82,42 @@ Core::Core(std::string ip, std::string port, std::string username) :
     _instructions[LOAD_ACTION] = [this](std::vector<uint8_t> tcpResponse) {
         load_action(tcpResponse);
     };
+    _instructions[FORCE_IN_ROOM] = [this](std::vector<uint8_t> tcpResponse) {
+        forceInRoom(tcpResponse);
+    };
 }
 
 Core::~Core()
 {
+}
+
+void Core::manageGetReady()
+{
+    std::string tcpMessage = std::string(1, SET_READY) + "";
+    _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
+    _commandQueue.push_back(std::make_pair("getReady", [this](std::vector<uint8_t> tcpResponse) {
+        (void) tcpResponse;
+        _texts_room.push_back(raylib::RayText("Ready, waiting for other players to get ready", 10, 40, 20, raylib::BLACK));
+    }));
+}
+
+void Core::forceInRoom(std::vector<uint8_t> tcpResponse)
+{
+    uint8_t roomId = tcpResponse[1];
+    std::cout << "Force in room " << static_cast<int>(roomId) << std::endl;
+    std::string roomName(reinterpret_cast<char*>(tcpResponse.data() + 2));
+    auto it = std::find_if(_rooms.begin(), _rooms.end(), [roomId](const ClientRoom& room) {
+        return room.getId() == roomId;
+    });
+
+    if (it == _rooms.end()) {
+        _rooms.push_back(ClientRoom(roomName, roomId, 1));
+        _rooms.back().setGameName("R-Type");
+    } else {
+        std::cout << "Enter in room" << std::endl;
+        it->setNbPlayers(it->getNbPlayers() + 1);
+    }
+    setRoom(roomId);
 }
 
 void Core::load_background(std::vector<uint8_t> tcpResponse)
@@ -189,6 +225,7 @@ void Core::roomUpdate(std::vector<uint8_t> tcpResponse)
         std::cout << "Room update" << static_cast<int>(tcpResponse[1]) << std::endl;
         if (tcpResponse[1] == 1) {
             _rooms.push_back(ClientRoom(std::string(tcpResponse.begin() + 3, tcpResponse.end() - 2), tcpResponse[2], tcpResponse[tcpResponse.size() - 1]));
+            _rooms.back().setGameName("R-Type");
             std::cout << "New room" << std::string(tcpResponse.begin() + 3, tcpResponse.end() - 2) << std::endl;
         } else {
             auto it = std::find_if(_rooms.begin(), _rooms.end(), [&](const ClientRoom& room) {
@@ -216,28 +253,33 @@ void Core::interpretor()
     }
 }
 
-void Core::drawPopup(bool &showPopup, std::string &input, std::string title)
+void Core::drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int &focus)
 {
-    _window.draw_rectangle(100, 100, 300, 200, raylib::RED);
-    _window.draw_text(title, 120, 120, 20);
-    _window.draw_rectangle(120, 160, 260, 40, raylib::RED);
+    _window.draw_rectangle(100, 100, 1000, 400, raylib::RED);
+    _window.draw_text("Enter room name: ", 120, 120, 20);
+    _window.draw_text("Enter game name: ", 120, 200, 20);
+    _window.draw_text("Press enter to validate", 120, 300, 20);
+    _window.draw_rectangle(400, 120 + focus * 80, 300, 40, raylib::GRAY);
 
-    _window.draw_text(input, 130, 170, 20);
+    _window.draw_text(inputs[0].getText(), 400, 120, 20);
+    _window.draw_text(inputs[1].getText(), 400, 200, 20);
 
-    int key = _window.get_char_pressed();
-    if (key >= 32 && key <= 125 && input.size() < 20) {
-        input += static_cast<char>(key);
+    char key = _window.get_char_pressed();
+    if (key >= 32 && key <= 125 && inputs[focus].getText().size() < 20) {
+        inputs[focus].setText(inputs[focus].getText() + static_cast<char>(key));
     }
-
-    if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_BACKSPACE) && !input.empty()) {
-        std::cout << "backspace" << std::endl;
-        input.pop_back();
+    if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_BACKSPACE) && !inputs[focus].getText().empty()) {
+        inputs[focus].setText(inputs[focus].getText().substr(0, inputs[focus].getText().size() - 1));
     }
-
-    if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_ENTER)) {
+    if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_ENTER) && focus == inputs.size() - 1 && !inputs[0].getText().empty() && !inputs[1].getText().empty()) {
         showPopup = false;
     }
+    if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_TAB) ||
+        _window.is_key(raylib::Window::PRESSED, raylib::KEY_ENTER)) {
+        focus = (focus + 1) % inputs.size();
+    }
 }
+
 
 bool Core::isEltPressed(int x, int y, int width, int height)
 {
@@ -254,15 +296,6 @@ bool Core::isEltPressed(int x, int y, int width, int height)
     return false;
 }
 
-void Core::displayCreateRoomBtn(std::string &roomName, bool &showPopup)
-{
-    _window.draw_text("Create room", 10, 10, 20);
-    if (isEltPressed(10, 10, 100, 20) && !showPopup) {
-        showPopup = true;
-        roomName = "";
-    }
-}
-
 void Core::manageExitRoom()
 {
     std::string tcpMessage = std::string(1, LEAVE_ROOM) + "";
@@ -270,15 +303,27 @@ void Core::manageExitRoom()
     _commandQueue.push_back(std::make_pair("exitRoom", [this](std::vector<uint8_t> tcpResponse) { (void) tcpResponse; setRoom(0); }));
 }
 
-void Core::setRoom(int roomId)
+void Core::setRoom(uint8_t roomId)
 {
     _roomId = roomId;
+    _texts_room.clear();
+    auto it = std::find_if(_rooms.begin(), _rooms.end(), [roomId](const ClientRoom& room) {
+        return room.getId() == roomId;
+    });
+    _texts_room.push_back(raylib::RayText("Room id: " + std::to_string(_roomId), 10, 10, 20, raylib::BLACK));
+    _texts_room.push_back(raylib::RayText("Room name: " + it->getName(), 10, 40, 20, raylib::BLACK));
+    _texts_room.push_back(raylib::RayText("Game name: " + it->getGameName(), 10, 70, 20, raylib::BLACK));
+    _texts_room.push_back(raylib::RayText("Number of players: " + std::to_string(it->getNbPlayers()), 10, 100, 20, raylib::BLACK));
 }
 
 void Core::run(void)
 {
+    std::vector<raylib::RayText> inputs({
+        raylib::RayText("", 150, 10 + 50 * 0, 30, raylib::BLACK),
+        raylib::RayText("", 150, 10 + 50 * 1, 30, raylib::BLACK)
+    });
     bool showPopup = false;
-    std::string roomName = "";
+    int focus = 0; 
 
     while (_window.is_running()) {
         interpretor();
@@ -286,15 +331,20 @@ void Core::run(void)
         _window.clear(raylib::WHITE);
 
         if (_roomId == 0) { // Main menu
-            displayCreateRoomBtn(roomName, showPopup);
+            _window.draw_text("Create room", 10, 10, 20);
+            if (isEltPressed(10, 10, 100, 20) && !showPopup) {
+                showPopup = true;
+                inputs[0].setText("");
+            }
 
             if (showPopup) {
-                drawPopup(showPopup, roomName, "Enter room name: ");
+                drawPopup(showPopup, inputs, focus);
             } else {
-                if (!roomName.empty()) {
-                    std::string tcpMessage = std::string(1, CREATE_ROOM) + roomName + "\\testGame";
+                if (!inputs[0].getText().empty() && !inputs[1].getText().empty()) {
+                    std::string tcpMessage = std::string(1, CREATE_ROOM) + inputs[0].getText() + "\\" + inputs[1].getText();
                     _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
-                    roomName = "";
+                    inputs[0].setText("");
+                    inputs[1].setText("");
                 }
             }
 
@@ -309,7 +359,9 @@ void Core::run(void)
             }
         } else { // Room
             _window.draw_rectangle(0, 0, _window.get_size().first, _window.get_size().second, raylib::RED);
-            _window.draw_text("Room id: " + std::to_string(_roomId), 10, 50, 20);
+            for (auto &text : _texts_room) {
+                text.draw();
+            }
             for (auto &button : _buttons_room) {
                 button.first.draw();
                 if (isEltPressed(button.first.getX(), button.first.getY(), button.first.getSize() * button.first.getText().size(), button.first.getSize())) {
