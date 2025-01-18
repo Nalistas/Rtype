@@ -78,7 +78,7 @@ class GameLauncher {
         std::unique_ptr<rtype::IGame> _game;
         DLLdr::DLLoader<rtype::IGame> _loader;
         std::list<std::vector<uint8_t>> _ressources;
-        ecs::registry _registry;
+        std::shared_ptr<ecs::registry> _registry;
         std::unordered_map<std::string, std::size_t> _players;
         std::unique_ptr<ClientActionLog> _client_action_log;
 

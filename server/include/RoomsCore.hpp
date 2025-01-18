@@ -15,6 +15,7 @@
 #include "RessourcesManager.hpp"
 #include "DLLoader.hpp"
 #include "SafeDirectoryLister.hpp"
+#include "Process.hpp"
 
 #ifndef CORE_HPP_
     #define CORE_HPP_
@@ -70,6 +71,23 @@ class RoomsCore {
          * @brief extract all the ressources from the games
          */
         void setGamesRessources(void);
+
+        /**
+         * @brief find an available port
+         * @param start_port the port to start the search
+         * @return the available port
+         */
+        int find_available_port(unsigned short start_port);
+
+        /**
+         * @brief send the game ressources to the clients
+         * @param port the port of the client
+         * @param game the game name
+         */
+        void sendGameRessourcesToTheRoom(int port, std::string game, Room room);
+
+        std::vector<Client> getClients();
+
 
         TcpServer _tcpServer;
         std::map<uint8_t, Room> _rooms;

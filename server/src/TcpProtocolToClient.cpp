@@ -12,6 +12,7 @@
 
 std::vector<uint8_t> TcpProtocol::formatLaunchRoom(uint8_t roomId)
 {
+    (void)roomId;
     return {static_cast<uint8_t>(INSTRUCTIONS_SERVER_TO_CLIENT::START_GAME)};
 }
 
@@ -39,6 +40,7 @@ std::vector<uint8_t> TcpProtocol::formatRoomCreatedDeleted(uint8_t roomId, bool 
 
 std::vector<uint8_t> TcpProtocol::formatGameAvailable(uint8_t roomId)
 {
+    (void)roomId;
     return {};
 }
 
@@ -62,4 +64,18 @@ std::vector<uint8_t> TcpProtocol::formatKo(void)
 std::vector<uint8_t> TcpProtocol::formatOk(void)
 {
     return {static_cast<uint8_t>(200)};
+}
+
+std::vector<uint8_t> TcpProtocol::formatForceRegisterInRoom(uint8_t roomId)
+{
+    auto room_it = _rooms.find(roomId);
+
+    if (room_it == _rooms.end()) {
+        return {FORCE_REGISTER_IN_ROOM, roomId, 0};
+    }
+    std::vector<uint8_t> data(2 + room_it->second.getName().size());
+    data[0] = FORCE_REGISTER_IN_ROOM;
+    data[1] = roomId;
+    std::copy(room_it->second.getName().begin(), room_it->second.getName().end(), data.begin() + 2);
+    return data;
 }

@@ -21,7 +21,8 @@ RoomsCore::RoomsCore(std::string const &port) :
 }
 
 RoomsCore::~RoomsCore()
-{}
+{
+}
 
 void RoomsCore::checkNewClients(void)
 {
@@ -97,11 +98,66 @@ void RoomsCore::setGameToLaunch(uint8_t roomId)
     }
 }
 
-void RoomsCore::launchGame()
+int RoomsCore::find_available_port(unsigned short start_port)
 {
-    // launch the game to launch
+    asio::io_context io_context;
+
+    for (unsigned short port = start_port; port <= 65535; ++port) {
+        try {
+            asio::ip::tcp::acceptor acceptor(io_context, 
+                asio::ip::tcp::endpoint(asio::ip::tcp::v4(), port));
+            return port;
+        } catch (const std::exception &e) {
+            continue;
+        }
+    }
 }
 
+void RoomsCore::launchGame()
+{
+    process::Process my_process;
+    for (auto &room : this->_roomsToLaunch) {
+        auto game = room.second.getGameName();
+        if (std::find(this->_gameList.begin(), this->_gameList.end(), game) == this->_gameList.end()) {
+            std::cerr << "Game not found" << std::endl;
+            continue;
+        }
+        int port = find_available_port(1024);
+        std::string game_path = this->_gameNameToPath[game];
+
+        #ifdef _WIN32
+            std::vector<std::string> vec = {"./build/r-type_server.exe", "-udp", std::to_string(port), game_path};
+            my_process.execProcess(vec);
+            sendGameRessourcesToTheRoom(port, game, room.second);
+        #else
+            std::vector<std::string> vec = {"./build/r-type_server", "-udp", std::to_string(port), game_path};
+            my_process.execProcess(vec);
+            sendGameRessourcesToTheRoom(port, game, room.second);
+        #endif
+    }
+}
+
+void RoomsCore::sendGameRessourcesToTheRoom(int port, std::string game, Room room)
+{
+    // auto it = this->_ressources.find(game);
+    // auto ressources = it->second.getRessourcess();
+
+    // for (auto &client : this->_clientsToLaunch) {
+    //     for (auto &ressource : ressources) {
+    //         _tcpServer.send(client.first, ressource);
+    //     }
+    // }
+}
+
+std::vector<Client> RoomsCore::getClients()
+{
+    std::vector<Client> clients;
+
+    for (auto &client : this->_clientsToLaunch) {
+        clients.emplace_back(client.second);
+    }
+    return clients;
+}
 
 void RoomsCore::run(void)
 {
@@ -113,7 +169,6 @@ void RoomsCore::run(void)
         checkClients(tcp_protocol);
     }
 }
-
 
 void RoomsCore::setGamesRessources(void)
 {
@@ -155,4 +210,3 @@ void RoomsCore::setGamesRessources(void)
     }
 
 }
-

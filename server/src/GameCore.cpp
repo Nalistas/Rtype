@@ -8,7 +8,7 @@
 #include "GameCore.hpp"
 
 GameCore::GameCore(
-                ecs::registry &reg,
+                std::shared_ptr<ecs::registry> &reg,
                 ServerActionsGetter const &get_actions
             ) :
     _registry(reg), _get_actions(get_actions)
@@ -27,6 +27,6 @@ void GameCore::run(void)
         for (auto &action : actions) {
             action();
         }
-        _registry.run_systems();
+        _registry->run_systems();
     }
 }

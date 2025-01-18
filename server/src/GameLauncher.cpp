@@ -11,6 +11,7 @@
 
 GameLauncher::GameLauncher(std::string const &game_path)
 {
+    _registry = std::make_shared<ecs::registry>();
     _loader.open(game_path);
     _game = _loader.getSym("entry_point");
     RessourcesManager rm(_game);
