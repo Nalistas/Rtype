@@ -320,6 +320,9 @@ void Core::setRoom(uint8_t roomId)
     auto it = std::find_if(_rooms.begin(), _rooms.end(), [roomId](const ClientRoom& room) {
         return room.getId() == roomId;
     });
+    if (it == _rooms.end()) {
+        return;
+    }
     _texts_room.push_back(raylib::RayText("Room id: " + std::to_string(_roomId), 10, 10, 20, raylib::BLACK));
     _texts_room.push_back(raylib::RayText("Room name: " + it->getName(), 10, 40, 20, raylib::BLACK));
     _texts_room.push_back(raylib::RayText("Game name: " + it->getGameName(), 10, 70, 20, raylib::BLACK));

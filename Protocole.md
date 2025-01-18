@@ -86,11 +86,23 @@ When the game is starting, the server will send to the client everything they ne
 8. Load an action
 `...[6][id action / 4o][key code / 4o][pressed = 1 | released = 0]`
 
-9. Transfert IpPort de la game où se passera le jeu :
+9. Transfert IpPort where the game will take place :
 `...[7][IP /4o][Port/2o][Player Id]`
 with :
 Ip : `[nb1 /1o][nb2 /1o][nb3 /1o][nb4 /1o]` => nb1.nb2.nb3.nb4
 Port : `[nb1/1o][nb2/1o]` translation to string then concatenation, for exemple: 9809, NB1 = 98 et NB2 = 09. Translation to STR : NB1 = "98" NB2 = "09" then concatenation => "9809"
+
+10. Declare an existing game:
+It sends you an existing game that you can select where you create a room
+`...[8][game name]`
+
+11. Someone entered/exited a room:
+`...[9][exited = 0 | entered = 1][Room id][name]`
+
+12. Force register in a room:
+It force register you in the room you have clicked on to enter
+`...[10][Room Id][Room Name]`
+
 
 ### Client -> Server
 
@@ -103,30 +115,37 @@ this instruction is mandatory, it is a loggin
 `...[2][Id room /1o]`
 Server response : OK | KO
 
-3. Set ready or unready :
-`...[3]`
-Server response : OK | KO
-the game is launched if All player are set ready
-this command will set you ready is you are not and will set you not ready if you are
-
-4. Leave the current room
+3. Leave the current room
 `...[4]`
 Server response : OK | KO
 this will make you leave the room if you are in one and set you not ready
 
-5. Rename
-`...[5][New name /?o]`
-Server response : OK | KO
+4. List Games
+`...[5]`
+Server response : `...[8][game name]`
 
-6. Missing file
+5. Missing file
 `...[6][File path /?o]`
 Server response : OK[followed by the file (binary)] | KO
 when the server give you all the ressourses, it just gives the path. By default it assumes the client has everything.
 However, you can ask him the document and then it will give it to you
 
-7. New Room
+6. New Room
 `...[7][Room Name /?o][92][Name of the game /?o]`
 Server response : OK | KO
+
+7. List rooms
+`...[8]`
+Server response : `...[1][1][room id /1o][room name /?o]`
+
+8. Delete rooms
+`...[9][Id room]`
+
+9. Set ready or unready :
+`...[10]`
+Server response : OK | KO
+the game is launched if All player are set ready
+this command will set you ready is you are not and will set you not ready if you are
 
 **NB** Be carefull, some instruction of the server can be sent before a response to a request.
 For exemple :
