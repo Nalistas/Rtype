@@ -176,3 +176,13 @@ void TcpProtocol::deleteRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uin
         _tcpServer.send(cli.first, data);
     }
 }
+
+void TcpProtocol::listGames(std::shared_ptr<asio::ip::tcp::socket> &client)
+{
+    for (auto &game : this->_gameList) {
+        std::vector<uint8_t> data(1 + game.size());
+        data[0] = static_cast<uint8_t>(INSTRUCTIONS_SERVER_TO_CLIENT::DECLARE_GAME);
+        std::copy(game.begin(), game.end(), data.begin() + 1);
+        _tcpServer.send(client, data);
+    }
+}

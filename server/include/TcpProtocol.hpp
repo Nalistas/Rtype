@@ -23,7 +23,6 @@ class TcpProtocol {
             OK = 200,
             KO = 201,
             ROOM_UPDATE = 1,
-            // SET_READY = 2,
             LOAD_SPRITE = 3,
             LOAD_BACKGROUND = 4,
             LOAD_MUSIC = 5,
@@ -38,6 +37,7 @@ class TcpProtocol {
             SET_NAME = 1,
             ENTER_ROOM = 2,
             LEAVE_ROOM = 4,
+            LIST_GAMES = 5,
             MISSING_FILE = 6,
             CREATE_ROOM = 7,
             LIST_ROOMS = 8,
@@ -139,6 +139,11 @@ class TcpProtocol {
          * @param client The client socket
          */
         void changeStatus(std::shared_ptr<asio::ip::tcp::socket> &client);
+
+        /**
+         * @brief send all the available games to a client
+         */
+        void listGames(std::shared_ptr<asio::ip::tcp::socket> &client);
 
         /**
          * @brief check if a room is empty

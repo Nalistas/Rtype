@@ -57,9 +57,12 @@ TcpProtocol::TcpProtocol(
         deleteRoom(client, roomId);
     };
     _commandMap[SET_READY] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
-        // Change Status client
         (void)params;
         changeStatus(client);
+    };
+    _commandMap[LIST_GAMES] = [this](std::shared_ptr<asio::ip::tcp::socket> &client, std::istringstream& params) {
+        (void)params;
+        listGames(client);
     };
 }
 
