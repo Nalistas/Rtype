@@ -30,11 +30,12 @@ std::shared_ptr<asio::ip::tcp::socket> TcpServer::accept()
     _acceptor.accept(*client, ec);
 
     if (ec) {
+        std::cerr << "Error accepting connection: " << ec.message() << std::endl;
         return nullptr;
     } else {
         std::cout << "Client connected: " << client->remote_endpoint() << std::endl;
     }
-
+    client->non_blocking(true);
     return client;
 }
 

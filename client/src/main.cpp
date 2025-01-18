@@ -19,20 +19,20 @@
 #endif
 
 int main() {
-    std::string ip = "";
-    std::string port = "";
-    std::string username = "";
+    std::string ip = "0.0.0.0";
+    std::string port = "1024";
+    std::string username = "Player";
     bool asBeenConnected = false;
 
     while (!asBeenConnected) {
         {
-            Login login;
-            if (login.run() == true) {
-                return 0;
-            }
-            ip = login.get_ip();
-            port = login.get_port();
-            username = login.get_username();
+            // Login login;
+            // if (login.run() == true) {
+            //     return 0;
+            // }
+            // ip = login.get_ip();
+            // port = login.get_port();
+            // username = login.get_username();
         }
         if (std::count(ip.begin(), ip.end(), '.') != 3) {
             std::cerr << "Invalid IP address" << std::endl;

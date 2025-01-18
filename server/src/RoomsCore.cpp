@@ -9,6 +9,8 @@
 #include "TcpProtocol.hpp"
 #include <string>
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 RoomsCore::RoomsCore(std::string const &port) :
     _tcpServer("0.0.0.0", port)
@@ -24,13 +26,28 @@ RoomsCore::~RoomsCore()
 {
 }
 
+void RoomsCore::run(void)
+{
+    std::function<void(uint8_t roomId)> launchGame = [this](uint8_t roomId) { this->setGameToLaunch(roomId); };
+    TcpProtocol tcp_protocol(_rooms, _clients, _tcpServer, launchGame, _gameList);
+
+    while (true) {
+        checkNewClients();
+        std::cout << "Checking for clients..." << std::endl;
+        checkClients(tcp_protocol);
+        std::this_thread::sleep_for(std::chrono::milliseconds(30));
+    }
+}
+
 void RoomsCore::checkNewClients(void)
 {
+    std::cout << "Checking for new clients..." << std::endl;
     auto client = _tcpServer.accept();
 
     if (!client) {
         return;
     }
+    std::cout << "New client connected." << std::endl;
 
     if (_clients.find(client) == _clients.end()) {
         _clients.insert({client, Client()});
@@ -43,6 +60,7 @@ void RoomsCore::checkClients(TcpProtocol &tcpProtocol)
     auto it = _clients.begin();
     
     while (it != _clients.end()) {
+        std::cout << "Checking client " << it->first << std::endl;
         state = _tcpServer.hasDataToRead(it->first);
         if (state == DATA) {
             auto client = it->first;
@@ -52,9 +70,6 @@ void RoomsCore::checkClients(TcpProtocol &tcpProtocol)
             it->first->close();
             it = _clients.erase(it);
             std::cout << "Client disconnected." << std::endl;
-            continue;
-        }
-        if (state == EMPTY) {
             continue;
         }
         ++it;
@@ -126,9 +141,9 @@ void RoomsCore::launchGame()
         std::string game_path = this->_gameNameToPath[game];
 
         #ifdef _WIN32
-            std::vector<std::string> vec = {"./build/r-type_server.exe", "-udp", std::to_string(port), game_path};
+            std::vector<std::string> vec = {"./r-type_server.exe", "-udp", std::to_string(port), game_path};
         #else
-            std::vector<std::string> vec = {"./build/r-type_server", "-udp", std::to_string(port), game_path};
+            std::vector<std::string> vec = {"./r-type_server", "-udp", std::to_string(port), game_path};
         #endif
 
         my_process.execProcess(vec);
@@ -177,17 +192,6 @@ std::list<std::pair<std::shared_ptr<asio::ip::tcp::socket>, Client>> RoomsCore::
         }
     }
     return clients;
-}
-
-void RoomsCore::run(void)
-{
-    std::function<void(uint8_t roomId)> launchGame = [this](uint8_t roomId) { this->setGameToLaunch(roomId); };
-    TcpProtocol tcp_protocol(_rooms, _clients, _tcpServer, launchGame, _gameList);
-
-    while (true) {
-        checkNewClients();
-        checkClients(tcp_protocol);
-    }
 }
 
 std::string RoomsCore::get_local_ip() 
