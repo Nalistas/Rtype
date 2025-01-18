@@ -6,6 +6,7 @@
 */
 
 #include "Login.hpp"
+#include "Background.hpp"
 #include <array>
 
 Login::Login() :
@@ -70,11 +71,17 @@ void Login::handleInput(void)
 
 bool Login::run()
 {
+    Background background("../background.png", _window.get_size().first, _window.get_size().second);
+    background.setSpeed(0.5);
+    background.setMoveType(Background::BACKGROUND_MOVE_TYPE::PARALLAX);
+    background.loop(true);
+
     while (_is_running) {
         if (!_window.is_running()) {
             return true;
         }
         this->handleInput();
+        background.draw();
         _window.start_drawing();
         _window.draw_rectangle(150, 10 + focus * 50, 300, 40, raylib::GRAY);
         _window.draw_rectangle(8, 190, 350, 70, raylib::RED);
