@@ -351,6 +351,7 @@ void Core::run(void)
                 inputs[1].setText("");
                 std::string tcpMessage = std::string(1, LIST_GAMES);
                 _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
+                _gameList.clear();
             }
 
             if (showPopup) {
