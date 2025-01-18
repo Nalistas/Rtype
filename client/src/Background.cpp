@@ -6,6 +6,7 @@
 */
 
 #include "Background.hpp"
+#include "TextureManager.hpp"
 #include <ctime>
 
 #include <iostream>
@@ -20,32 +21,25 @@ Background::~Background()
 }
 
 Background::Background(std::string const &path) :
-    _background(path), _speed(0), _win_width(0), _win_height(0), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
+    _speed(0), _win_width(0), _win_height(0), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
 {
+    auto texture = raylib::TextureManager::getTexture(path);
+    _background.set_texture(texture);
 }
 
 Background::Background(std::string const &path, std::size_t win_width, std::size_t win_height) :
-    _background(path), _speed(0), _win_width(win_width), _win_height(win_height), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
+    _speed(0), _win_width(win_width), _win_height(win_height), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
 {
+    auto texture = raylib::TextureManager::getTexture(path);
+    _background.set_texture(texture);
     _background.set_position(static_cast<float>(_win_width) / 2, static_cast<float>(_win_height) / 2);
 }
 
 Background::Background(std::string const &path, std::size_t win_width, std::size_t win_height, double speed) :
-    _background(path), _speed(speed), _win_width(win_width), _win_height(win_height), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
+    _speed(speed), _win_width(win_width), _win_height(win_height), _repeat(false), _move_type(BACKGROUND_MOVE_TYPE::NONE)
 {
-}
-
-void Background::setComponent(rtype_protocol::Background const &background)
-{
-    _background.set_texture(background.path);
-    _speed = static_cast<int>(background.speed);
-    if (background.direction == rtype_protocol::BackgroundDirection::X) {
-        this->setMoveType(BACKGROUND_MOVE_TYPE::MOVE_X);
-    }
-    if (background.direction == rtype_protocol::BackgroundDirection::Y) {
-        this->setMoveType(BACKGROUND_MOVE_TYPE::MOVE_Y);
-    }
-    _repeat = background.repeat;
+    auto texture = raylib::TextureManager::getTexture(path);
+    _background.set_texture(texture);
 }
 
 void Background::setSpeed(double speed)
@@ -67,7 +61,8 @@ void Background::setWindowDimensions(std::size_t win_width, std::size_t win_heig
 
 void Background::set_texture(std::string const &path)
 {
-    _background.set_texture(path);
+    auto texture = raylib::TextureManager::getTexture(path);
+    _background.set_texture(texture);
 }
 
 void Background::resize_x(float scale_x, bool preserve_aspect_ratio)

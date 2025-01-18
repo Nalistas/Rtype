@@ -114,6 +114,7 @@ class Core {
         // [1][Key] = Key pressed
 
         // pk 2 ??? c'est pas mieux de faire un vecteur ?? Ambroise
+        // il n'y a pas de nécessité à faire un vecteur : on sait qu'il n'y a que 2 state de la touche
         std::array<std::map<uint32_t, std::function<void(void)>>, 2> _actions;
 
         int _roomId;

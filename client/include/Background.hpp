@@ -53,13 +53,6 @@ class Background {
          */
         ~Background();
 
-
-        /**
-         * @brief Set the component
-         * @param background the background component
-         */
-        void setComponent(rtype_protocol::Background const &background);
-
         /**
          * @brief Set the window dimensions
          */

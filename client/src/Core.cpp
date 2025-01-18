@@ -92,8 +92,8 @@ void Core::load_background(std::vector<uint8_t> tcpResponse)
     bool repeat = tcpResponse[7];
     int moveType = tcpResponse[8];
     std::string path(reinterpret_cast<char*>(tcpResponse.data() + 9));
-    auto texture = raylib::TextureManager::getTexture(path);
-    Background background(texture, _window.get_size().first, _window.get_size().second);
+    // auto texture = raylib::TextureManager::getTexture(path);
+    Background background(path, _window.get_size().first, _window.get_size().second);
     _backgrounds.push_back(background);
 
     checkIfFileExist(path);
@@ -112,10 +112,18 @@ void Core::load_music(std::vector<uint8_t> tcpResponse)
 void Core::load_action(std::vector<uint8_t> tcpResponse)
 {
     // 6[id action / 4o][key code / 4o][pressed 1 | released 0]
-    int id = *(int *)(tcpResponse.data() + 1);
-    int key = *(int *)(tcpResponse.data() + 5);
-    bool pressed = tcpResponse[9];
+    uint32_t id = *(uint32_t *)(tcpResponse.data() + 1);
+    uint32_t key = *(uint32_t *)(tcpResponse.data() + 5);
+    uint8_t pressed = tcpResponse[9];
     // _actions.push_back({pressed, key}); ??? j'ai oublié comment marchait l'ancien client Ambroise
+    // MDR, je regarde
+    // _actions[pressed].emplace(key, /* function that send the action */);
+    // le std::function<void(void)> est la fonctioin qui envoie au serveur udp : 
+    // {1, id (sur 4 octets), mouseX (sur 4 octets), mouseY (sur 4 octets)}
+    // ou tu remplace :
+    // std::array<std::map<uint32_t, std::function<void(void)>>, 2> _actions;
+    // par
+    // std::array<std::map<uint32_t, uint32_t>, 2> _actions;
 }
 
 void Core::checkIfFileExist(std::string path)
@@ -124,6 +132,7 @@ void Core::checkIfFileExist(std::string path)
         std::string tcpMessage = std::string(1, MISSING_FILE) + path;
         _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
         // je le recupere comment ???? Ambroise
+        // essaye de l'ouvrir !
     }
 }
 
