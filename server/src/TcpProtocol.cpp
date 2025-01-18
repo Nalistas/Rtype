@@ -171,4 +171,8 @@ void TcpProtocol::deleteRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uin
             std::cout << "Room " << roomId << " not deleted : not owner" << std::endl;
         }
     }
+    auto data = this->formatRoomCreatedDeleted(roomId, false);
+    for (auto cli : this->_clients) {
+        _tcpServer.send(cli.first, data);
+    }
 }
