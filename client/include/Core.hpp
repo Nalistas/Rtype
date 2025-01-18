@@ -26,7 +26,6 @@
         OK = 200,
         KO = 201,
         ROOM_UPDATE = 1,
-        // SET_READY = 2,
         LOAD_SPRITE = 3,
         LOAD_BACKGROUND = 4,
         LOAD_MUSIC = 5,
@@ -34,19 +33,21 @@
         START_GAME = 7,
         DECLARE_GAME = 8,
         LEAVE_ENTER_ROOM = 9,
-        FORCE_IN_ROOM = 10
+        FORCE_REGISTER_IN_ROOM = 10
     };
 
     enum INSTRUCTIONS_CLIENT_TO_SERVER {
         SET_NAME = 1,
         ENTER_ROOM = 2,
-        SET_READY = 3,
         LEAVE_ROOM = 4,
+        LIST_GAMES = 5,
         MISSING_FILE = 6,
         CREATE_ROOM = 7,
         LIST_ROOMS = 8,
         DELETE_ROOM = 9,
+        SET_READY = 10
     };
+
 
 /**
  * @brief Core

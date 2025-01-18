@@ -1,3 +1,5 @@
+
+
 /*
 ** EPITECH PROJECT, 2025
 ** rework_project
@@ -82,8 +84,13 @@ Core::Core(std::string ip, std::string port, std::string username) :
     _instructions[LOAD_ACTION] = [this](std::vector<uint8_t> tcpResponse) {
         load_action(tcpResponse);
     };
-    _instructions[FORCE_IN_ROOM] = [this](std::vector<uint8_t> tcpResponse) {
+    _instructions[FORCE_REGISTER_IN_ROOM] = [this](std::vector<uint8_t> tcpResponse) {
         forceInRoom(tcpResponse);
+    };
+    _instructions[DECLARE_GAME] = [this](std::vector<uint8_t> tcpResponse) {
+        std::string gameName(reinterpret_cast<char*>(tcpResponse.data() + 1));
+        std::cout << "Declare game " << gameName << std::endl;
+        _gameList.push_back(gameName);
     };
 }
 
@@ -256,13 +263,17 @@ void Core::interpretor()
 void Core::drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int &focus)
 {
     _window.draw_rectangle(100, 100, 1000, 400, raylib::RED);
-    _window.draw_text("Enter room name: ", 120, 120, 20);
-    _window.draw_text("Enter game name: ", 120, 200, 20);
-    _window.draw_text("Press enter to validate", 120, 300, 20);
+    _window.draw_text("Enter room name: ", 120, 120, 20, raylib::BLACK);
+    _window.draw_text("Enter game name: ", 120, 200, 20, raylib::BLACK);
+    _window.draw_text("Press enter to validate", 120, 300, 20, raylib::BLACK);
     _window.draw_rectangle(400, 120 + focus * 80, 300, 40, raylib::GRAY);
 
-    _window.draw_text(inputs[0].getText(), 400, 120, 20);
-    _window.draw_text(inputs[1].getText(), 400, 200, 20);
+    _window.draw_text(inputs[0].getText(), 400, 120, 20, raylib::BLACK);
+    _window.draw_text(inputs[1].getText(), 400, 200, 20, raylib::BLACK);
+
+    for (size_t i = 0; i < _gameList.size(); ++i) {
+        _window.draw_text(_gameList[i], 120, 330 + 20 * i, 20, raylib::BLUE);
+    }
 
     char key = _window.get_char_pressed();
     if (key >= 32 && key <= 125 && inputs[focus].getText().size() < 20) {
@@ -271,7 +282,7 @@ void Core::drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int 
     if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_BACKSPACE) && !inputs[focus].getText().empty()) {
         inputs[focus].setText(inputs[focus].getText().substr(0, inputs[focus].getText().size() - 1));
     }
-    if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_ENTER) && focus == inputs.size() - 1 && !inputs[0].getText().empty() && !inputs[1].getText().empty()) {
+    if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_ENTER) && focus == static_cast<int>(inputs.size() - 1) && !inputs[0].getText().empty() && !inputs[1].getText().empty()) {
         showPopup = false;
     }
     if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_TAB) ||
@@ -279,7 +290,6 @@ void Core::drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int 
         focus = (focus + 1) % inputs.size();
     }
 }
-
 
 bool Core::isEltPressed(int x, int y, int width, int height)
 {
@@ -331,10 +341,13 @@ void Core::run(void)
         _window.clear(raylib::WHITE);
 
         if (_roomId == 0) { // Main menu
-            _window.draw_text("Create room", 10, 10, 20);
+            _window.draw_text("Create room", 10, 10, 20, raylib::BLACK);
             if (isEltPressed(10, 10, 100, 20) && !showPopup) {
                 showPopup = true;
                 inputs[0].setText("");
+                inputs[1].setText("");
+                std::string tcpMessage = std::string(1, LIST_GAMES);
+                _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
             }
 
             if (showPopup) {
@@ -349,7 +362,7 @@ void Core::run(void)
             }
 
             for (auto &room : _rooms) {
-                _window.draw_text(room.getName(), 10, 50 + room.getId() * 20, 20);
+                _window.draw_text(room.getName(), 10, 50 + room.getId() * 20, 20, raylib::BLACK);
                 if (isEltPressed(10, 50 + room.getId() * 20, 200, 20)) {
                     std::cout << "Enter room" << _roomId << std::endl;
                     std::string tcpMessage = std::string(1, ENTER_ROOM) + std::to_string(room.getId());
