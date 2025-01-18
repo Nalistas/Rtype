@@ -34,7 +34,10 @@ int main() {
             port = login.get_port();
             username = login.get_username();
         }
-
+        if (std::count(ip.begin(), ip.end(), '.') != 3) {
+            std::cerr << "Invalid IP address" << std::endl;
+            continue;
+        }
         try {
             Core core(ip, port, username);
             core.run();
