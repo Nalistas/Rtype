@@ -203,7 +203,10 @@ void Core::interpretor()
 {
     while (_tcpClient.hasData()) {
         auto tcpResponse = _tcpClient.receive();
-        std::cout << "Received: " << static_cast<int>(tcpResponse[0]) << std::endl;
+        for (auto c : tcpResponse) {
+            std::cout << static_cast<int>(c) << " ";
+        }
+        std::cout << std::endl;
         if (_instructions.find(static_cast<INSTRUCTIONS_SERVER_TO_CLIENT>(tcpResponse[0])) != _instructions.end()) {
             _instructions[static_cast<INSTRUCTIONS_SERVER_TO_CLIENT>(tcpResponse[0])](tcpResponse);
         }
