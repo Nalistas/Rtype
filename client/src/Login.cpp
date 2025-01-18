@@ -53,7 +53,8 @@ void Login::handleInput(void)
         _window.get_mouse_position().x > 10 &&
         _window.get_mouse_position().x < 10 + 300 &&
         _window.get_mouse_position().y > 200 &&
-        _window.get_mouse_position().y < 200 + 50) {
+        _window.get_mouse_position().y < 200 + 50
+        && !_inputs[InputType::USERNAME].getText().empty()) {
         _is_running = false;
     }
     if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_TAB) ||

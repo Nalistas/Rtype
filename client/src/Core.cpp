@@ -48,6 +48,7 @@ Core::Core(std::string ip, std::string port, std::string username) :
         }
     };
     _instructions[ROOM_UPDATE] = [this](std::vector<uint8_t> tcpResponse) {
+        std::cout << "ROOM_UPDATE" << static_cast<int>(tcpResponse[0]) << std::endl;
         roomUpdate(tcpResponse);
     };
     _instructions[LEAVE_ENTER_ROOM] = [this](std::vector<uint8_t> tcpResponse) {
@@ -184,9 +185,11 @@ void Core::leaveEnterRoom(std::vector<uint8_t> tcpResponse)
 
 void Core::roomUpdate(std::vector<uint8_t> tcpResponse)
 {
-    if (tcpResponse.size() > 0 && static_cast<uint8_t>(tcpResponse[0]) == 1) {
-        if (tcpResponse[1] == 0) {
+    if (tcpResponse.size() > 1) {
+        std::cout << "Room update" << static_cast<int>(tcpResponse[1]) << std::endl;
+        if (tcpResponse[1] == 1) {
             _rooms.push_back(ClientRoom(std::string(tcpResponse.begin() + 3, tcpResponse.end() - 2), tcpResponse[2], tcpResponse[tcpResponse.size() - 1]));
+            std::cout << "New room" << std::string(tcpResponse.begin() + 3, tcpResponse.end() - 2) << std::endl;
         } else {
             auto it = std::find_if(_rooms.begin(), _rooms.end(), [&](const ClientRoom& room) {
                 return room.getId() == tcpResponse[2];
@@ -222,15 +225,13 @@ void Core::drawPopup(bool &showPopup, std::string &input, std::string title)
     _window.draw_text(input, 130, 170, 20);
 
     int key = _window.get_char_pressed();
-    while (key > 0) {
-        if (key >= 32 && key <= 125 && input.size() < 20) {
-            input += static_cast<char>(key);
-        }
+    if (key >= 32 && key <= 125 && input.size() < 20) {
+        input += static_cast<char>(key);
+    }
 
-        if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_BACKSPACE) && !input.empty()) { // ca marche po
-            input.pop_back();
-        }
-        key = _window.get_char_pressed();
+    if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_BACKSPACE) && !input.empty()) {
+        std::cout << "backspace" << std::endl;
+        input.pop_back();
     }
 
     if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_ENTER)) {
