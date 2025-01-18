@@ -72,9 +72,9 @@ TcpProtocol::~TcpProtocol()
 
 int TcpProtocol::interpreter(std::shared_ptr<asio::ip::tcp::socket> &client, std::vector<uint8_t> data)
 {
-    std::istringstream stream(std::string(data.begin(), data.end()));
-    uint8_t commandId;
-    stream >> commandId;
+    uint8_t commandId = data[0];
+    std::istringstream stream(std::string(data.begin() + 1, data.end()));
+    // stream >> commandId;
 
     if (_commandMap.find(commandId) != _commandMap.end()) {
         std::cout << "Command founded\n";
@@ -82,7 +82,7 @@ int TcpProtocol::interpreter(std::shared_ptr<asio::ip::tcp::socket> &client, std
         std::cout << "Command executed\n";
         return 0;
     }
-    std::cout << "Command not found\n";
+    std::cout << "Command not found : " << static_cast<int>(commandId) << std::endl;
     std::vector<uint8_t> response = {static_cast<uint8_t>(201)};
     _tcpServer.send(client, response);
     std::cout << "--------------------------\n";

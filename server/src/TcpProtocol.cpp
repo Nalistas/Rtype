@@ -60,10 +60,27 @@ void TcpProtocol::listRooms(std::shared_ptr<asio::ip::tcp::socket> &client)
 
 void TcpProtocol::enterRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uint8_t roomId)
 {
-    auto roomIt = this->_rooms.find(roomId);
+    bool room_exists = false;
     auto clientIt = this->_clients.find(client);
 
-    if (roomIt == this->_rooms.end() || clientIt == this->_clients.end() || clientIt->second.getName() == "") {
+    std::cout << std::endl << std::endl;
+    for (auto &room : this->_rooms) {
+        std::cout << static_cast<int>(room.first) << " " << static_cast<int>(roomId) << std::endl;
+        std::cout << (room.first == roomId) << std::endl;
+        if (room.first == roomId) {
+            room_exists = true;
+            break;
+        }
+    }
+    std::cout << std::endl << std::endl;
+
+    if (!room_exists || clientIt == this->_clients.end() || clientIt->second.getName() == "") {
+        std::cout << "1st " << (!room_exists) << " 2nd " << (clientIt == this->_clients.end()) << " 3rd " << (clientIt->second.getName() == "") << std::endl;
+        std::cout << "Room " << roomId << " not found or client not found or does not have a name" << std::endl;
+        std::cout << "list des rooms : " << std::endl;
+        for (auto room : this->_rooms) {
+            std::cout << static_cast<int>(room.first) << std::endl;
+        }
         _tcpServer.send(client, this->formatKo());
         std::cout << "Client " << client << " error when entering the room " << roomId << std::endl;
         return;

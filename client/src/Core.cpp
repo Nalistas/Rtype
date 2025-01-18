@@ -367,9 +367,8 @@ void Core::run(void)
             for (auto &room : _rooms) {
                 _window.draw_text(room.getName(), 10, 50 + room.getId() * 20, 20, raylib::BLACK);
                 if (isEltPressed(10, 50 + room.getId() * 20, 200, 20)) {
-                    std::cout << "Enter room" << _roomId << std::endl;
-                    std::string tcpMessage = std::string(1, ENTER_ROOM) + std::to_string(room.getId());
-                    _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
+                    std::cout << "Enter room" << static_cast<int>(_roomId) << std::endl;
+                    _tcpClient.send(std::vector<uint8_t>({ENTER_ROOM, room.getId()}));
                     _commandQueue.push_back(std::make_pair("enterRoom", [this, room](std::vector<uint8_t> tcpResponse) { (void) tcpResponse; setRoom(room.getId()); }));
                 }
             }
