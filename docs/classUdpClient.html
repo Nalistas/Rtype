@@ -82,6 +82,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4cd2d7481ec57b4b75219e3a8ee24f91" id="r_a4cd2d7481ec57b4b75219e3a8ee24f91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUdpClient.html#a4cd2d7481ec57b4b75219e3a8ee24f91">UdpClient</a> (const std::string &amp;ip, const std::string &amp;port)</td></tr>
 <tr class="memdesc:a4cd2d7481ec57b4b75219e3a8ee24f91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Udp <a class="el" href="classClient.html">Client</a> object.  <br /></td></tr>
 <tr class="separator:a4cd2d7481ec57b4b75219e3a8ee24f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0096f28a251deea9f008e7f469075e6c" id="r_a0096f28a251deea9f008e7f469075e6c"><td class="memItemLeft" align="right" valign="top"><a id="a0096f28a251deea9f008e7f469075e6c" name="a0096f28a251deea9f008e7f469075e6c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UdpClient</b> ()</td></tr>
+<tr class="memdesc:a0096f28a251deea9f008e7f469075e6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Udp <a class="el" href="classClient.html">Client</a> object. <br /></td></tr>
+<tr class="separator:a0096f28a251deea9f008e7f469075e6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e69046802da8ea9e0bf3da874c49e47" id="r_a9e69046802da8ea9e0bf3da874c49e47"><td class="memItemLeft" align="right" valign="top"><a id="a9e69046802da8ea9e0bf3da874c49e47" name="a9e69046802da8ea9e0bf3da874c49e47"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>~UdpClient</b> ()</td></tr>
 <tr class="memdesc:a9e69046802da8ea9e0bf3da874c49e47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the Udp <a class="el" href="classClient.html">Client</a> object. <br /></td></tr>
@@ -95,6 +99,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad5e69157113e0e5b4e2302273484ce31" id="r_ad5e69157113e0e5b4e2302273484ce31"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUdpClient.html#ad5e69157113e0e5b4e2302273484ce31">hasData</a> ()</td></tr>
 <tr class="memdesc:ad5e69157113e0e5b4e2302273484ce31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there is data available.  <br /></td></tr>
 <tr class="separator:ad5e69157113e0e5b4e2302273484ce31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5adc698d6acaad447ad717e3230d14b1" id="r_a5adc698d6acaad447ad717e3230d14b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUdpClient.html#a5adc698d6acaad447ad717e3230d14b1">setServer</a> (const std::string &amp;ip, const std::string &amp;port)</td></tr>
+<tr class="memdesc:a5adc698d6acaad447ad717e3230d14b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Server object.  <br /></td></tr>
+<tr class="separator:a5adc698d6acaad447ad717e3230d14b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4cd2d7481ec57b4b75219e3a8ee24f91" name="a4cd2d7481ec57b4b75219e3a8ee24f91"></a>
@@ -195,6 +202,43 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">message</td><td>the message to send </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5adc698d6acaad447ad717e3230d14b1" name="a5adc698d6acaad447ad717e3230d14b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5adc698d6acaad447ad717e3230d14b1">&#9670;&#160;</a></span>setServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UdpClient::setServer </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>port</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the Server object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ip</td><td>the ip of the server </td></tr>
+    <tr><td class="paramname">port</td><td>the port of the server </td></tr>
   </table>
   </dd>
 </dl>

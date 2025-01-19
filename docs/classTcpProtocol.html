@@ -71,17 +71,53 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classTcpProtocol-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">TcpProtocol Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a83c8c8a8446f11a4e1daccf845fbcbef" id="r_a83c8c8a8446f11a4e1daccf845fbcbef"><td class="memItemLeft" align="right" valign="top"><a id="a83c8c8a8446f11a4e1daccf845fbcbef" name="a83c8c8a8446f11a4e1daccf845fbcbef"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>INSTRUCTIONS_SERVER_TO_CLIENT</b> { <br />
+&#160;&#160;<b>OK</b> = 200
+, <b>KO</b> = 201
+, <b>ROOM_UPDATE</b> = 1
+, <b>LOAD_SPRITE</b> = 3
+, <br />
+&#160;&#160;<b>LOAD_BACKGROUND</b> = 4
+, <b>LOAD_MUSIC</b> = 5
+, <b>LOAD_ACTION</b> = 6
+, <b>START_GAME</b> = 7
+, <br />
+&#160;&#160;<b>DECLARE_GAME</b> = 8
+, <b>LEAVE_ENTER_ROOM</b> = 9
+, <b>FORCE_REGISTER_IN_ROOM</b> = 10
+<br />
+ }</td></tr>
+<tr class="separator:a83c8c8a8446f11a4e1daccf845fbcbef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a112f9cbbf527ccb0032f33562d7fffe9" id="r_a112f9cbbf527ccb0032f33562d7fffe9"><td class="memItemLeft" align="right" valign="top"><a id="a112f9cbbf527ccb0032f33562d7fffe9" name="a112f9cbbf527ccb0032f33562d7fffe9"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>INSTRUCTIONS_CLIENT_TO_SERVER</b> { <br />
+&#160;&#160;<b>SET_NAME</b> = 1
+, <b>ENTER_ROOM</b> = 2
+, <b>LEAVE_ROOM</b> = 4
+, <b>LIST_GAMES</b> = 5
+, <br />
+&#160;&#160;<b>MISSING_FILE</b> = 6
+, <b>CREATE_ROOM</b> = 7
+, <b>LIST_ROOMS</b> = 8
+, <b>DELETE_ROOM</b> = 9
+, <br />
+&#160;&#160;<b>SET_READY</b> = 10
+<br />
+ }</td></tr>
+<tr class="separator:a112f9cbbf527ccb0032f33562d7fffe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa8c057c66fbd8bee3e9ce929706f42d3" id="r_aa8c057c66fbd8bee3e9ce929706f42d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#aa8c057c66fbd8bee3e9ce929706f42d3">TcpProtocol</a> (std::map&lt; uint8_t, <a class="el" href="classRoom.html">Room</a> &gt; &amp;rooms, std::map&lt; std::shared_ptr&lt; asio::ip::tcp::socket &gt;, <a class="el" href="classClient.html">Client</a> &gt; &amp;clients, <a class="el" href="classTcpServer.html">TcpServer</a> &amp;tcpServer)</td></tr>
-<tr class="memdesc:aa8c057c66fbd8bee3e9ce929706f42d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classTcpProtocol.html">TcpProtocol</a> object.  <br /></td></tr>
-<tr class="separator:aa8c057c66fbd8bee3e9ce929706f42d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52330c26cfec3aef68eb96a349d3568f" id="r_a52330c26cfec3aef68eb96a349d3568f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#a52330c26cfec3aef68eb96a349d3568f">TcpProtocol</a> (std::map&lt; uint8_t, <a class="el" href="classRoom.html">Room</a> &gt; &amp;rooms, std::map&lt; std::shared_ptr&lt; asio::ip::tcp::socket &gt;, <a class="el" href="classClient.html">Client</a> &gt; &amp;clients, <a class="el" href="classTcpServer.html">TcpServer</a> &amp;tcpServer, std::function&lt; void(uint8_t roomId)&gt; launchGame, std::vector&lt; std::string &gt; &amp;gameList)</td></tr>
+<tr class="memdesc:a52330c26cfec3aef68eb96a349d3568f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classTcpProtocol.html">TcpProtocol</a> object.  <br /></td></tr>
+<tr class="separator:a52330c26cfec3aef68eb96a349d3568f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae812325112d6f39cb12fabcd2b9d5514" id="r_ae812325112d6f39cb12fabcd2b9d5514"><td class="memItemLeft" align="right" valign="top"><a id="ae812325112d6f39cb12fabcd2b9d5514" name="ae812325112d6f39cb12fabcd2b9d5514"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>~TcpProtocol</b> ()</td></tr>
 <tr class="memdesc:ae812325112d6f39cb12fabcd2b9d5514"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classTcpProtocol.html">TcpProtocol</a> object. <br /></td></tr>
@@ -101,19 +137,50 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4e3133be7c36dd75910b264576092292" id="r_a4e3133be7c36dd75910b264576092292"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#a4e3133be7c36dd75910b264576092292">exitRoom</a> (std::shared_ptr&lt; asio::ip::tcp::socket &gt; &amp;client)</td></tr>
 <tr class="memdesc:a4e3133be7c36dd75910b264576092292"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit a room for a client.  <br /></td></tr>
 <tr class="separator:a4e3133be7c36dd75910b264576092292"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad313326d7ec959dca28c3ccfd68d52fd" id="r_ad313326d7ec959dca28c3ccfd68d52fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#ad313326d7ec959dca28c3ccfd68d52fd">renameRoom</a> (std::shared_ptr&lt; asio::ip::tcp::socket &gt; &amp;client, uint8_t roomId, std::string roomName)</td></tr>
-<tr class="memdesc:ad313326d7ec959dca28c3ccfd68d52fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rename a room for a client.  <br /></td></tr>
-<tr class="separator:ad313326d7ec959dca28c3ccfd68d52fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa18486f801d9ba3f0095468b7f9cc604" id="r_aa18486f801d9ba3f0095468b7f9cc604"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#aa18486f801d9ba3f0095468b7f9cc604">deleteRoom</a> (std::shared_ptr&lt; asio::ip::tcp::socket &gt; &amp;client, uint8_t roomId)</td></tr>
 <tr class="memdesc:aa18486f801d9ba3f0095468b7f9cc604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a room for a client.  <br /></td></tr>
 <tr class="separator:aa18486f801d9ba3f0095468b7f9cc604"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac74738184247bb2d74ac0de66e9e1b78" id="r_ac74738184247bb2d74ac0de66e9e1b78"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#ac74738184247bb2d74ac0de66e9e1b78">image_to_binary</a> (const std::string &amp;path)</td></tr>
 <tr class="memdesc:ac74738184247bb2d74ac0de66e9e1b78"><td class="mdescLeft">&#160;</td><td class="mdescRight">transform an image to binary  <br /></td></tr>
 <tr class="separator:ac74738184247bb2d74ac0de66e9e1b78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade7eab4eb39ed2c4ffaf1044b125e90c" id="r_ade7eab4eb39ed2c4ffaf1044b125e90c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#ade7eab4eb39ed2c4ffaf1044b125e90c">setName</a> (std::shared_ptr&lt; asio::ip::tcp::socket &gt; &amp;client, std::string name)</td></tr>
+<tr class="memdesc:ade7eab4eb39ed2c4ffaf1044b125e90c"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the name of a client  <br /></td></tr>
+<tr class="separator:ade7eab4eb39ed2c4ffaf1044b125e90c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9d3fc9c2c37ee916030199d3bb0a9f3" id="r_ab9d3fc9c2c37ee916030199d3bb0a9f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#ab9d3fc9c2c37ee916030199d3bb0a9f3">changeStatus</a> (std::shared_ptr&lt; asio::ip::tcp::socket &gt; &amp;client)</td></tr>
+<tr class="memdesc:ab9d3fc9c2c37ee916030199d3bb0a9f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">change the status of a client  <br /></td></tr>
+<tr class="separator:ab9d3fc9c2c37ee916030199d3bb0a9f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1afc3adbd42e7b943f6c4645c37f5fa0" id="r_a1afc3adbd42e7b943f6c4645c37f5fa0"><td class="memItemLeft" align="right" valign="top"><a id="a1afc3adbd42e7b943f6c4645c37f5fa0" name="a1afc3adbd42e7b943f6c4645c37f5fa0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>listGames</b> (std::shared_ptr&lt; asio::ip::tcp::socket &gt; &amp;client)</td></tr>
+<tr class="memdesc:a1afc3adbd42e7b943f6c4645c37f5fa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">send all the available games to a client <br /></td></tr>
+<tr class="separator:a1afc3adbd42e7b943f6c4645c37f5fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6091fe4e1b601ebd3f82c5b0bec1ceaa" id="r_a6091fe4e1b601ebd3f82c5b0bec1ceaa"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; asio::ip::tcp::socket &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#a6091fe4e1b601ebd3f82c5b0bec1ceaa">isRoomEmpty</a> (uint8_t roomId)</td></tr>
+<tr class="memdesc:a6091fe4e1b601ebd3f82c5b0bec1ceaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if a room is empty  <br /></td></tr>
+<tr class="separator:a6091fe4e1b601ebd3f82c5b0bec1ceaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0960445699328e3fc986b0e45ec18b2a" id="r_a0960445699328e3fc986b0e45ec18b2a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#a0960445699328e3fc986b0e45ec18b2a">formatLaunchRoom</a> (uint8_t roomId)</td></tr>
+<tr class="memdesc:a0960445699328e3fc986b0e45ec18b2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">format the launch room command to all clients in the room  <br /></td></tr>
+<tr class="separator:a0960445699328e3fc986b0e45ec18b2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e2336bb7b036085e43d71fb8b2d021e" id="r_a1e2336bb7b036085e43d71fb8b2d021e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#a1e2336bb7b036085e43d71fb8b2d021e">formatRoomCreatedDeleted</a> (uint8_t roomId, bool created)</td></tr>
+<tr class="memdesc:a1e2336bb7b036085e43d71fb8b2d021e"><td class="mdescLeft">&#160;</td><td class="mdescRight">format the room update command to all clients in the room  <br /></td></tr>
+<tr class="separator:a1e2336bb7b036085e43d71fb8b2d021e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9966863e9a6409de65432a8dad5ed4e" id="r_ad9966863e9a6409de65432a8dad5ed4e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#ad9966863e9a6409de65432a8dad5ed4e">formatGameAvailable</a> (uint8_t roomId)</td></tr>
+<tr class="memdesc:ad9966863e9a6409de65432a8dad5ed4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">format the game available command to a client  <br /></td></tr>
+<tr class="separator:ad9966863e9a6409de65432a8dad5ed4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6aac3e57e5e00e298bdcde2435639fae" id="r_a6aac3e57e5e00e298bdcde2435639fae"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#a6aac3e57e5e00e298bdcde2435639fae">formatPlayerRoomUpdate</a> (uint8_t roomId, bool enter, std::string const &amp;name)</td></tr>
+<tr class="memdesc:a6aac3e57e5e00e298bdcde2435639fae"><td class="mdescLeft">&#160;</td><td class="mdescRight">format the player room update command to all clients in the room  <br /></td></tr>
+<tr class="separator:a6aac3e57e5e00e298bdcde2435639fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af614707d08ef8acd3770f511f66c7408" id="r_af614707d08ef8acd3770f511f66c7408"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#af614707d08ef8acd3770f511f66c7408">formatOk</a> ()</td></tr>
+<tr class="memdesc:af614707d08ef8acd3770f511f66c7408"><td class="mdescLeft">&#160;</td><td class="mdescRight">format the ok command to a client  <br /></td></tr>
+<tr class="separator:af614707d08ef8acd3770f511f66c7408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ed22951210721c37090b1fb4975be7e" id="r_a8ed22951210721c37090b1fb4975be7e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#a8ed22951210721c37090b1fb4975be7e">formatKo</a> ()</td></tr>
+<tr class="memdesc:a8ed22951210721c37090b1fb4975be7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">format the ko command to a client  <br /></td></tr>
+<tr class="separator:a8ed22951210721c37090b1fb4975be7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab01c8286584e5a67ff1b45a68de6d42d" id="r_ab01c8286584e5a67ff1b45a68de6d42d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#ab01c8286584e5a67ff1b45a68de6d42d">formatForceRegisterInRoom</a> (uint8_t roomId)</td></tr>
+<tr class="memdesc:ab01c8286584e5a67ff1b45a68de6d42d"><td class="mdescLeft">&#160;</td><td class="mdescRight">format the force register in a room command to a client  <br /></td></tr>
+<tr class="separator:ab01c8286584e5a67ff1b45a68de6d42d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa8c057c66fbd8bee3e9ce929706f42d3" name="aa8c057c66fbd8bee3e9ce929706f42d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8c057c66fbd8bee3e9ce929706f42d3">&#9670;&#160;</a></span>TcpProtocol()</h2>
+<a id="a52330c26cfec3aef68eb96a349d3568f" name="a52330c26cfec3aef68eb96a349d3568f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52330c26cfec3aef68eb96a349d3568f">&#9670;&#160;</a></span>TcpProtocol()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -134,7 +201,19 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classTcpServer.html">TcpServer</a> &amp;&#160;</td>
-          <td class="paramname"><em>tcpServer</em>&#160;</td>
+          <td class="paramname"><em>tcpServer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; void(uint8_t roomId)&gt;&#160;</td>
+          <td class="paramname"><em>launchGame</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>gameList</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -150,6 +229,8 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">rooms</td><td>Reference to a map of room IDs and <a class="el" href="classRoom.html">Room</a> objects </td></tr>
     <tr><td class="paramname">clients</td><td>Reference to a map of client sockets and <a class="el" href="classClient.html">Client</a> objects </td></tr>
     <tr><td class="paramname">tcpServer</td><td>Reference to a <a class="el" href="classTcpServer.html">TcpServer</a> object </td></tr>
+    <tr><td class="paramname">launchGame</td><td>Pointer to a function that launches a game </td></tr>
+    <tr><td class="paramname">gameList</td><td>Reference to a vector with the name of the games </td></tr>
   </table>
   </dd>
 </dl>
@@ -157,6 +238,32 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab9d3fc9c2c37ee916030199d3bb0a9f3" name="ab9d3fc9c2c37ee916030199d3bb0a9f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9d3fc9c2c37ee916030199d3bb0a9f3">&#9670;&#160;</a></span>changeStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TcpProtocol::changeStatus </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; asio::ip::tcp::socket &gt; &amp;&#160;</td>
+          <td class="paramname"><em>client</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>change the status of a client </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>The client socket </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a0e348023142f975cc6f23b94a7aef29b" name="a0e348023142f975cc6f23b94a7aef29b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0e348023142f975cc6f23b94a7aef29b">&#9670;&#160;</a></span>createRoom()</h2>
 
@@ -301,6 +408,208 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ab01c8286584e5a67ff1b45a68de6d42d" name="ab01c8286584e5a67ff1b45a68de6d42d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab01c8286584e5a67ff1b45a68de6d42d">&#9670;&#160;</a></span>formatForceRegisterInRoom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; uint8_t &gt; TcpProtocol::formatForceRegisterInRoom </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>roomId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>format the force register in a room command to a client </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roomId</td><td>the id of the room </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;uint8_t&gt; </dd></dl>
+
+</div>
+</div>
+<a id="ad9966863e9a6409de65432a8dad5ed4e" name="ad9966863e9a6409de65432a8dad5ed4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9966863e9a6409de65432a8dad5ed4e">&#9670;&#160;</a></span>formatGameAvailable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; uint8_t &gt; TcpProtocol::formatGameAvailable </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>roomId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>format the game available command to a client </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roomId</td><td>the id of the room </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8ed22951210721c37090b1fb4975be7e" name="a8ed22951210721c37090b1fb4975be7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ed22951210721c37090b1fb4975be7e">&#9670;&#160;</a></span>formatKo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; uint8_t &gt; TcpProtocol::formatKo </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>format the ko command to a client </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;uint8_t&gt; </dd></dl>
+
+</div>
+</div>
+<a id="a0960445699328e3fc986b0e45ec18b2a" name="a0960445699328e3fc986b0e45ec18b2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0960445699328e3fc986b0e45ec18b2a">&#9670;&#160;</a></span>formatLaunchRoom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; uint8_t &gt; TcpProtocol::formatLaunchRoom </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>roomId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>format the launch room command to all clients in the room </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roomId</td><td>the id of the room </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af614707d08ef8acd3770f511f66c7408" name="af614707d08ef8acd3770f511f66c7408"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af614707d08ef8acd3770f511f66c7408">&#9670;&#160;</a></span>formatOk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; uint8_t &gt; TcpProtocol::formatOk </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>format the ok command to a client </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;uint8_t&gt; </dd></dl>
+
+</div>
+</div>
+<a id="a6aac3e57e5e00e298bdcde2435639fae" name="a6aac3e57e5e00e298bdcde2435639fae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6aac3e57e5e00e298bdcde2435639fae">&#9670;&#160;</a></span>formatPlayerRoomUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; uint8_t &gt; TcpProtocol::formatPlayerRoomUpdate </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>roomId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>format the player room update command to all clients in the room </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roomId</td><td>the id of the room </td></tr>
+    <tr><td class="paramname">enter</td><td>true if the player entered the room, false if he left it </td></tr>
+    <tr><td class="paramname">name</td><td>the name of the player </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1e2336bb7b036085e43d71fb8b2d021e" name="a1e2336bb7b036085e43d71fb8b2d021e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e2336bb7b036085e43d71fb8b2d021e">&#9670;&#160;</a></span>formatRoomCreatedDeleted()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; uint8_t &gt; TcpProtocol::formatRoomCreatedDeleted </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>roomId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>created</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>format the room update command to all clients in the room </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roomId</td><td>the id of the room </td></tr>
+    <tr><td class="paramname">created</td><td>true if the room was created, false if it was destroyed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ac74738184247bb2d74ac0de66e9e1b78" name="ac74738184247bb2d74ac0de66e9e1b78"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac74738184247bb2d74ac0de66e9e1b78">&#9670;&#160;</a></span>image_to_binary()</h2>
 
@@ -366,6 +675,33 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a6091fe4e1b601ebd3f82c5b0bec1ceaa" name="a6091fe4e1b601ebd3f82c5b0bec1ceaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6091fe4e1b601ebd3f82c5b0bec1ceaa">&#9670;&#160;</a></span>isRoomEmpty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; asio::ip::tcp::socket &gt; TcpProtocol::isRoomEmpty </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>roomId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>check if a room is empty </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roomId</td><td>the id of the room </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the first client found that is still in the room, nullptr if the room is empty </dd></dl>
+
+</div>
+</div>
 <a id="a3e7cf7d70064d6b81cf4cba05989054a" name="a3e7cf7d70064d6b81cf4cba05989054a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3e7cf7d70064d6b81cf4cba05989054a">&#9670;&#160;</a></span>listRooms()</h2>
 
@@ -392,14 +728,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad313326d7ec959dca28c3ccfd68d52fd" name="ad313326d7ec959dca28c3ccfd68d52fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad313326d7ec959dca28c3ccfd68d52fd">&#9670;&#160;</a></span>renameRoom()</h2>
+<a id="ade7eab4eb39ed2c4ffaf1044b125e90c" name="ade7eab4eb39ed2c4ffaf1044b125e90c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade7eab4eb39ed2c4ffaf1044b125e90c">&#9670;&#160;</a></span>setName()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void TcpProtocol::renameRoom </td>
+          <td class="memname">void TcpProtocol::setName </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; asio::ip::tcp::socket &gt; &amp;&#160;</td>
           <td class="paramname"><em>client</em>, </td>
@@ -407,14 +743,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>roomId</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>roomName</em>&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -424,12 +754,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Rename a room for a client. </p>
+<p>set the name of a client </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">client</td><td>The client socket </td></tr>
-    <tr><td class="paramname">roomId</td><td>The room ID </td></tr>
-    <tr><td class="paramname">roomName</td><td>The room name </td></tr>
+    <tr><td class="paramname">name</td><td>The name </td></tr>
   </table>
   </dd>
 </dl>
@@ -439,6 +768,8 @@ Public Member Functions</h2></td></tr>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>server/include/<a class="el" href="TcpProtocol_8hpp_source.html">TcpProtocol.hpp</a></li>
 <li>server/src/<b>TcpProtocol.cpp</b></li>
+<li>server/src/<b>TcpProtocolToClient.cpp</b></li>
+<li>server/src/<b>TcpProtocolUtils.cpp</b></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

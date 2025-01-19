@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['window_0',['Window',['../classraylib_1_1Window.html',1,'raylib']]]
+  ['udpclient_0',['UdpClient',['../classUdpClient.html',1,'']]],
+  ['udpserver_1',['UdpServer',['../classUdpServer.html',1,'']]],
+  ['uphandlers_2',['UpHandlers',['../classUpHandlers.html',1,'']]]
 ];

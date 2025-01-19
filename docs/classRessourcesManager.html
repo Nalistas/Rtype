@@ -92,6 +92,10 @@ Public Member Functions</h2></td></tr>
 std::list&lt; std::vector&lt; uint8_t &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getRessourcess</b> ()</td></tr>
 <tr class="memdesc:a5d83e86772dc8a934be3fc456fe69a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Ressourcess object. <br /></td></tr>
 <tr class="separator:a5d83e86772dc8a934be3fc456fe69a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af30bb1de560048bf1f147554263d9f79" id="r_af30bb1de560048bf1f147554263d9f79"><td class="memItemLeft" align="right" valign="top"><a id="af30bb1de560048bf1f147554263d9f79" name="af30bb1de560048bf1f147554263d9f79"></a>
+std::string const &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getGameName</b> () const</td></tr>
+<tr class="memdesc:af30bb1de560048bf1f147554263d9f79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="classGame.html">Game</a> Name object. <br /></td></tr>
+<tr class="separator:af30bb1de560048bf1f147554263d9f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class is used to get all the ressources of a game It takes a std::unique_ptr&lt;rtype::IGame&gt; as parameter It will get all the backgrounds, sprites, musics and client actions of the game It will then transform them into a vector of bytes that can be sent to the clients The vector of bytes will be stored in the _ressources member The getRessourcess method can then be used to get the vector of bytes </p>
@@ -113,7 +117,7 @@ std::list&lt; std::vector&lt; uint8_t &gt; &gt; &amp;&#160;</td><td class="memIt
 </div><div class="memdoc">
 
 <p>Construct a new Ressources Manager object. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Construct a new Ressources Manager object </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">game</td><td>the game for which we want to get the ressources </td></tr>
   </table>

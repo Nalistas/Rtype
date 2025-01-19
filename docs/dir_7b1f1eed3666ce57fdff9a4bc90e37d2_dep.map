@@ -1,5 +1,6 @@
 <map id="server/games/rtype" name="server/games/rtype">
-<area shape="rect" id="node2" href="dir_5c52c004157d82782af31476845ab287.html" title="src" alt="" coords="38,63,79,88"/>
-<area shape="rect" id="clust2" href="dir_7b1f1eed3666ce57fdff9a4bc90e37d2.html" alt="" coords="27,52,171,99"/>
-<area shape="rect" id="clust1" href="dir_5936fb13331eee137c7a8cb305e1f0cb.html" title="games" alt="" coords="16,16,181,109"/>
+<area shape="rect" id="node2" href="dir_c95280d530f4020df45748c9bf3f92ce.html" title="include" alt="" coords="104,63,173,88"/>
+<area shape="rect" id="node3" href="dir_5c52c004157d82782af31476845ab287.html" title="src" alt="" coords="38,63,79,88"/>
+<area shape="rect" id="clust2" href="dir_7b1f1eed3666ce57fdff9a4bc90e37d2.html" alt="" coords="27,52,264,99"/>
+<area shape="rect" id="clust1" href="dir_5936fb13331eee137c7a8cb305e1f0cb.html" title="games" alt="" coords="16,16,275,109"/>
 </map>

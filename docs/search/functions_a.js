@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['play_0',['play',['../classraylib_1_1RayMusic.html#ad0721e3b591712cfde91d946ff47753e',1,'raylib::RayMusic::play()'],['../classraylib_1_1RaySound.html#a74d40cc3ba06516ded4511188287e2a0',1,'raylib::RaySound::play()']]]
+  ['launch_0',['launch',['../classGameLauncher.html#a7b6d009010b33015156599c28c58c01e',1,'GameLauncher']]],
+  ['listgames_1',['listGames',['../classTcpProtocol.html#a1afc3adbd42e7b943f6c4645c37f5fa0',1,'TcpProtocol']]],
+  ['listrooms_2',['listRooms',['../classTcpProtocol.html#a3e7cf7d70064d6b81cf4cba05989054a',1,'TcpProtocol']]],
+  ['loop_3',['loop',['../classBackground.html#abdf37da3904aef7a47608118e48009e0',1,'Background']]]
 ];

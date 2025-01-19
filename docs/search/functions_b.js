@@ -1,19 +1,10 @@
 var searchData=
 [
-  ['raymusic_0',['RayMusic',['../classraylib_1_1RayMusic.html#a2a2e13e2b0e9382e98ed907764c81240',1,'raylib::RayMusic']]],
-  ['raysound_1',['RaySound',['../classraylib_1_1RaySound.html#a61239f31e0c8f5c088df70f41110d684',1,'raylib::RaySound']]],
-  ['readfrom_2',['readFrom',['../classUdpServer.html#ae0d69734a91e044dbbf04dcf58ab93c4',1,'UdpServer']]],
-  ['receive_3',['receive',['../classTcpClient.html#ab1b6adbc06b1b7671e990cb318658304',1,'TcpClient::receive()'],['../classUdpClient.html#af8d700adf03acf9e34741a1dd61b193e',1,'UdpClient::receive()'],['../classTcpServer.html#a33b42503ec500d4debfb8ad871211f71',1,'TcpServer::receive()']]],
-  ['register_5fcomponent_4',['register_component',['../classecs_1_1registry.html#a7d177ae0500e0559a4c34abb43f5a26f',1,'ecs::registry']]],
-  ['remove_5fcomponent_5',['remove_component',['../classecs_1_1registry.html#aa40cf7e9c44e3aec51388c8a07bbf50a',1,'ecs::registry']]],
-  ['renameroom_6',['renameRoom',['../classTcpProtocol.html#ad313326d7ec959dca28c3ccfd68d52fd',1,'TcpProtocol']]],
-  ['resize_7',['resize',['../classraylib_1_1Window.html#a20dd6ac442b39156fec016cf57ee5ecc',1,'raylib::Window']]],
-  ['resize_5fx_8',['resize_x',['../classraylib_1_1Sprite.html#ac0138d3461045321c34ec4efb2e13ee8',1,'raylib::Sprite']]],
-  ['resize_5fy_9',['resize_y',['../classraylib_1_1Sprite.html#ac33c537c2171a4f15bf6d39dc8f77bad',1,'raylib::Sprite']]],
-  ['ressourcesmanager_10',['RessourcesManager',['../classRessourcesManager.html#a740f38a443a851b7c41208c71f9beb5d',1,'RessourcesManager']]],
-  ['room_11',['Room',['../classRoom.html#a70e1efa965960e3126ac4ea368da6947',1,'Room']]],
-  ['roomscore_12',['RoomsCore',['../classRoomsCore.html#aa0229ccb9b58a39872aaf5a22da8bd26',1,'RoomsCore']]],
-  ['run_13',['run',['../classCore.html#af968596fe136d8faebf8517de5411380',1,'Core::run()'],['../classGameCore.html#a569272d491d1d7540187d4975ba24161',1,'GameCore::run()'],['../classRoomsCore.html#aa9f10091a4d01d74d4d0399aa52dd88b',1,'RoomsCore::run()']]],
-  ['run_5fsingle_5fsystem_14',['run_single_system',['../classecs_1_1registry.html#a2e37bee5dde94844a0421f51265aedde',1,'ecs::registry']]],
-  ['run_5fsystems_15',['run_systems',['../classecs_1_1registry.html#a2a7c2252aa8be3c9adfc9b3e511789f2',1,'ecs::registry']]]
+  ['open_0',['open',['../classDLLdr_1_1DLLoader.html#aaa9da5d3394401b817fc782aacee59b9',1,'DLLdr::DLLoader::open()'],['../classIDirectoryLister.html#a6d15ac3f5add2f4442f2d0fb957e6139',1,'IDirectoryLister::open()'],['../classSafeDirectoryLister.html#a8d3ccaafeb7793748cda81505ec095c0',1,'SafeDirectoryLister::open()']]],
+  ['operator_20size_5ft_1',['operator size_t',['../classecs_1_1entity.html#a0050ebe498a07c5dbb0ca65c76ea8f50',1,'ecs::entity']]],
+  ['operator_21_3d_2',['operator!=',['../classecs_1_1entity.html#a645676e8fde5b988dc14955bacc9939d',1,'ecs::entity']]],
+  ['operator_28_29_3',['operator()',['../classecs_1_1isystem.html#a1e2e83292a7251da73d2785d896d8022',1,'ecs::isystem']]],
+  ['operator_3d_4',['operator=',['../classsparse__array.html#a7ef594b28d5a04d4cb9c5cb06edae7b2',1,'sparse_array::operator=(sparse_array const &amp;)'],['../classsparse__array.html#a5c899516f3e0e3400eacc7185fef499c',1,'sparse_array::operator=(sparse_array &amp;&amp;) noexcept']]],
+  ['operator_3d_3d_5',['operator==',['../classecs_1_1entity.html#a528b805325c990efab83772a150a6ca3',1,'ecs::entity']]],
+  ['operator_5b_5d_6',['operator[]',['../classsparse__array.html#a4aa1f2fae14ff1cecdc6e42ded260cad',1,'sparse_array::operator[](size_t idx)'],['../classsparse__array.html#a1d66e1a1e11a9bcef70425c3c09eb6b4',1,'sparse_array::operator[](size_t idx) const']]]
 ];

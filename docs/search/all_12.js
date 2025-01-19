@@ -1,9 +1,14 @@
 var searchData=
 [
-  ['udp_0',['UDP',['../md_Protocole.html#autotoc_md6',1,'']]],
-  ['udpclient_1',['udpclient',['../classUdpClient.html',1,'UdpClient'],['../classUdpClient.html#a4cd2d7481ec57b4b75219e3a8ee24f91',1,'UdpClient::UdpClient()']]],
-  ['udpserver_2',['udpserver',['../classUdpServer.html',1,'UdpServer'],['../classUdpServer.html#ae9728668854d876132028ab42d9abe69',1,'UdpServer::UdpServer(void)'],['../classUdpServer.html#a7ba1266a2b3f54e74464b4ff5442696b',1,'UdpServer::UdpServer(int port)']]],
-  ['update_3',['update',['../classraylib_1_1RayMusic.html#a99a8d945aba2cb8afc366558e51e4533',1,'raylib::RayMusic']]],
-  ['used_4',['Technologies Used',['../index.html#autotoc_md10',1,'']]],
-  ['users_3a_5',['For Linux users:',['../index.html#autotoc_md15',1,'']]]
+  ['tcp_0',['TCP',['../md_Protocole.html#autotoc_md3',1,'']]],
+  ['tcpclient_1',['tcpclient',['../classTcpClient.html',1,'TcpClient'],['../classTcpClient.html#ad0cfc79d6f050308433a80c5775d66f4',1,'TcpClient::TcpClient()']]],
+  ['tcpprotocol_2',['tcpprotocol',['../classTcpProtocol.html',1,'TcpProtocol'],['../classTcpProtocol.html#a52330c26cfec3aef68eb96a349d3568f',1,'TcpProtocol::TcpProtocol()']]],
+  ['tcpserver_3',['tcpserver',['../classTcpServer.html',1,'TcpServer'],['../classTcpServer.html#a8aee61a7b0edab7b35a1ea34cebb3357',1,'TcpServer::TcpServer()']]],
+  ['technologies_20used_4',['Technologies Used',['../index.html#autotoc_md10',1,'']]],
+  ['texturecpp_5',['TextureCpp',['../classraylib_1_1TextureCpp.html',1,'raylib']]],
+  ['texturemanager_6',['TextureManager',['../classraylib_1_1TextureManager.html',1,'raylib']]],
+  ['to_20have_3a_7',['For Windows, you need to have:',['../index.html#autotoc_md13',1,'']]],
+  ['to_20play_8',['How to Play',['../index.html#autotoc_md17',1,'']]],
+  ['treataction_9',['treatAction',['../classClientActionLog.html#a71efac463ffda7263c3249b685abd188',1,'ClientActionLog']]],
+  ['type_20epitech_203rd_20year_20project_10',['R-Type - EPITECH 3rd Year Project',['../index.html',1,'']]]
 ];

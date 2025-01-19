@@ -8,6 +8,8 @@ var searchData=
   ['dlloader_3c_20rtype_3a_3aigame_20_3e_5',['DLLoader&lt; rtype::IGame &gt;',['../classDLLdr_1_1DLLoader.html',1,'DLLdr']]],
   ['dlloaderexception_6',['dlloaderexception',['../classDLLdr_1_1DLLoaderException.html',1,'DLLdr::DLLoaderException'],['../classDLLdr_1_1DLLoaderException.html#adc7675bc735bddbbbb680d42c6bfa830',1,'DLLdr::DLLoaderException::DLLoaderException()']]],
   ['documentation_7',['Documentation',['../index.html#autotoc_md19',1,'']]],
-  ['draw_5frectangle_8',['draw_rectangle',['../classraylib_1_1Window.html#aaa1b0c351ea614ad701fab872eeb25d8',1,'raylib::Window']]],
-  ['draw_5ftext_9',['draw_text',['../classraylib_1_1Window.html#a16addf4dd065850a56bbc55287baac5d',1,'raylib::Window']]]
+  ['downhandlers_8',['DownHandlers',['../classDownHandlers.html',1,'']]],
+  ['draw_9',['draw',['../classBackground.html#a96e7cf94d75e3f104f79862c21f43850',1,'Background']]],
+  ['draw_5frectangle_10',['draw_rectangle',['../classraylib_1_1Window.html#aaa1b0c351ea614ad701fab872eeb25d8',1,'raylib::Window']]],
+  ['draw_5ftext_11',['draw_text',['../classraylib_1_1Window.html#a16addf4dd065850a56bbc55287baac5d',1,'raylib::Window']]]
 ];

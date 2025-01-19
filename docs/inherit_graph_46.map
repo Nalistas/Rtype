@@ -1,3 +1,35 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classzipper__iterator.html" title=" " alt="" coords="5,5,223,31"/>
+<area shape="rect" id="Node000000" href="$classrtype_1_1IClientActionHandler.html" title=" " alt="" coords="5,376,204,401"/>
+<area shape="rect" id="Node000001" href="$classActionCreateBullet.html" title=" " alt="" coords="278,5,422,31"/>
+<area shape="poly" id="edge11_Node000000_Node000001" title=" " alt="" coords="106,362,118,297,143,210,162,163,186,118,215,76,250,40,277,25,279,30,254,44,219,80,190,121,167,165,148,211,124,298,112,363"/>
+<area shape="rect" id="Node000002" href="$classActionMoveDown.html" title=" " alt="" coords="282,55,418,80"/>
+<area shape="poly" id="edge12_Node000000_Node000002" title=" " alt="" coords="109,362,123,305,150,231,169,192,192,154,219,119,250,89,280,73,283,78,254,93,223,123,196,157,174,195,155,233,128,306,114,363"/>
+<area shape="rect" id="Node000003" href="$classActionMoveDownReleased.html" title=" " alt="" coords="252,104,448,129"/>
+<area shape="poly" id="edge13_Node000000_Node000003" title=" " alt="" coords="111,362,129,314,157,253,198,191,222,163,250,138,271,127,273,132,254,143,226,167,202,194,162,256,134,316,116,364"/>
+<area shape="rect" id="Node000004" href="$classActionMoveLeft.html" title=" " alt="" coords="289,153,411,179"/>
+<area shape="poly" id="edge14_Node000000_Node000004" title=" " alt="" coords="115,362,135,323,165,276,204,228,251,188,287,172,289,177,253,192,208,232,170,279,140,326,120,365"/>
+<area shape="rect" id="Node000005" href="$classActionMoveLeftReleased.html" title=" " alt="" coords="259,203,441,228"/>
+<area shape="poly" id="edge15_Node000000_Node000005" title=" " alt="" coords="120,363,173,300,210,266,251,237,277,226,279,231,253,242,213,270,177,304,124,367"/>
+<area shape="rect" id="Node000006" href="$classActionMoveRight.html" title=" " alt="" coords="283,252,417,277"/>
+<area shape="poly" id="edge16_Node000000_Node000006" title=" " alt="" coords="129,365,183,325,251,286,283,275,285,280,253,291,186,329,133,369"/>
+<area shape="rect" id="Node000007" href="$classActionMoveRightReleased.html" title=" " alt="" coords="253,301,447,327"/>
+<area shape="poly" id="edge17_Node000000_Node000007" title=" " alt="" coords="152,369,251,335,293,324,294,329,253,341,154,374"/>
+<area shape="rect" id="Node000008" href="$classActionMoveUp.html" title=" " alt="" coords="291,351,409,376"/>
+<area shape="poly" id="edge18_Node000000_Node000008" title=" " alt="" coords="217,374,291,367,291,372,218,380"/>
+<area shape="rect" id="Node000009" href="$classActionMoveUpReleased.html" title=" " alt="" coords="261,400,439,425"/>
+<area shape="poly" id="edge19_Node000000_Node000009" title=" " alt="" coords="218,397,262,401,261,407,217,402"/>
+<area shape="rect" id="Node000010" href="$classDownHandlers.html" title=" " alt="" coords="291,449,409,475"/>
+<area shape="poly" id="edge20_Node000000_Node000010" title=" " alt="" coords="157,403,253,434,299,447,297,452,251,439,155,408"/>
+<area shape="rect" id="Node000011" href="$classLeftHandlers.html" title=" " alt="" coords="298,499,402,524"/>
+<area shape="poly" id="edge21_Node000000_Node000011" title=" " alt="" coords="134,408,187,446,253,484,299,499,297,504,251,488,184,451,131,412"/>
+<area shape="rect" id="Node000012" href="$classRightHandlers.html" title=" " alt="" coords="293,548,407,573"/>
+<area shape="poly" id="edge22_Node000000_Node000012" title=" " alt="" coords="125,411,178,472,214,505,253,533,293,549,292,554,251,538,210,509,174,476,121,414"/>
+<area shape="rect" id="Node000013" href="$classShootHandlers.html" title=" " alt="" coords="291,597,409,623"/>
+<area shape="poly" id="edge23_Node000000_Node000013" title=" " alt="" coords="120,412,140,450,170,497,208,543,253,582,292,599,290,604,251,587,204,547,166,500,136,453,115,415"/>
+<area shape="rect" id="Node000014" href="$classUpHandlers.html" title=" " alt="" coords="301,647,399,672"/>
+<area shape="poly" id="edge24_Node000000_Node000014" title=" " alt="" coords="117,414,134,461,163,520,203,581,227,608,254,632,276,644,301,652,300,657,274,649,250,636,223,612,198,584,158,523,130,463,112,416"/>
+<area shape="rect" id="Node000015" href="$classhandler1.html" title=" " alt="" coords="311,696,389,721"/>
+<area shape="poly" id="edge25_Node000000_Node000015" title=" " alt="" coords="114,414,129,470,156,543,174,581,197,618,223,652,254,681,281,696,311,704,310,709,279,701,250,685,219,655,192,621,170,583,151,545,124,472,109,415"/>
+<area shape="rect" id="Node000016" href="$classhandler2.html" title=" " alt="" coords="311,745,389,771"/>
+<area shape="poly" id="edge26_Node000000_Node000016" title=" " alt="" coords="112,415,124,479,149,565,168,610,191,654,220,695,254,731,281,746,311,753,310,758,279,751,250,735,215,699,187,657,163,612,144,567,119,480,107,416"/>
 </map>

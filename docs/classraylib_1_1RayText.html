@@ -81,25 +81,55 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Sound class using raylib.  
+<p>Text class using raylib.  
  <a href="classraylib_1_1RayText.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="RayText_8hpp_source.html">RayText.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab684fc2773bddb8a4e3e2f1454309e78" id="r_ab684fc2773bddb8a4e3e2f1454309e78"><td class="memItemLeft" align="right" valign="top"><a id="ab684fc2773bddb8a4e3e2f1454309e78" name="ab684fc2773bddb8a4e3e2f1454309e78"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>RayText</b> (std::string <a class="el" href="classsparse__array.html">text</a>)</td></tr>
-<tr class="separator:ab684fc2773bddb8a4e3e2f1454309e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d6eeda080b76d64d26eb2524abafbdb" id="r_a8d6eeda080b76d64d26eb2524abafbdb"><td class="memItemLeft" align="right" valign="top"><a id="a8d6eeda080b76d64d26eb2524abafbdb" name="a8d6eeda080b76d64d26eb2524abafbdb"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>RayText</b> (std::string <a class="el" href="classsparse__array.html">text</a>, <a class="el" href="classsparse__array.html">int</a> x, <a class="el" href="classsparse__array.html">int</a> y, <a class="el" href="classsparse__array.html">int</a> size, <a class="el" href="classsparse__array.html">Color</a> <a class="el" href="classsparse__array.html">color</a>)</td></tr>
+<tr class="separator:a8d6eeda080b76d64d26eb2524abafbdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a559baf357189bfbebb100c41fb4bc749" id="r_a559baf357189bfbebb100c41fb4bc749"><td class="memItemLeft" align="right" valign="top"><a id="a559baf357189bfbebb100c41fb4bc749" name="a559baf357189bfbebb100c41fb4bc749"></a>
 <a class="el" href="classsparse__array.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>setText</b> (std::string <a class="el" href="classsparse__array.html">text</a>)</td></tr>
 <tr class="separator:a559baf357189bfbebb100c41fb4bc749"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7bdd3787af6649ee3f526817dad87bc" id="r_af7bdd3787af6649ee3f526817dad87bc"><td class="memItemLeft" align="right" valign="top"><a id="af7bdd3787af6649ee3f526817dad87bc" name="af7bdd3787af6649ee3f526817dad87bc"></a>
-<a class="el" href="classsparse__array.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>display</b> ()</td></tr>
-<tr class="separator:af7bdd3787af6649ee3f526817dad87bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a383b90162ed6ce279e0a97a7c7826068" id="r_a383b90162ed6ce279e0a97a7c7826068"><td class="memItemLeft" align="right" valign="top"><a id="a383b90162ed6ce279e0a97a7c7826068" name="a383b90162ed6ce279e0a97a7c7826068"></a>
+<a class="el" href="classsparse__array.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (<a class="el" href="classsparse__array.html">int</a> x, <a class="el" href="classsparse__array.html">int</a> y)</td></tr>
+<tr class="separator:a383b90162ed6ce279e0a97a7c7826068"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a483e1e1a6bdbb67fb3414e899632b6b1" id="r_a483e1e1a6bdbb67fb3414e899632b6b1"><td class="memItemLeft" align="right" valign="top"><a id="a483e1e1a6bdbb67fb3414e899632b6b1" name="a483e1e1a6bdbb67fb3414e899632b6b1"></a>
+<a class="el" href="classsparse__array.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>setSize</b> (<a class="el" href="classsparse__array.html">int</a> size)</td></tr>
+<tr class="separator:a483e1e1a6bdbb67fb3414e899632b6b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a809780b5c90aaf04be7a298ac21b7300" id="r_a809780b5c90aaf04be7a298ac21b7300"><td class="memItemLeft" align="right" valign="top"><a id="a809780b5c90aaf04be7a298ac21b7300" name="a809780b5c90aaf04be7a298ac21b7300"></a>
+std::string <a class="el" href="classsparse__array.html">const</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getText</b> () <a class="el" href="classsparse__array.html">const</a></td></tr>
+<tr class="separator:a809780b5c90aaf04be7a298ac21b7300"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3512e7c6da98381e4228f51374e16893" id="r_a3512e7c6da98381e4228f51374e16893"><td class="memItemLeft" align="right" valign="top"><a id="a3512e7c6da98381e4228f51374e16893" name="a3512e7c6da98381e4228f51374e16893"></a>
+<a class="el" href="classsparse__array.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> (<a class="el" href="classsparse__array.html">void</a>) <a class="el" href="classsparse__array.html">const</a></td></tr>
+<tr class="separator:a3512e7c6da98381e4228f51374e16893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac976cbb35c77d7b5d25f4d22a830c4e4" id="r_ac976cbb35c77d7b5d25f4d22a830c4e4"><td class="memItemLeft" align="right" valign="top"><a id="ac976cbb35c77d7b5d25f4d22a830c4e4" name="ac976cbb35c77d7b5d25f4d22a830c4e4"></a>
+<a class="el" href="classsparse__array.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getX</b> () <a class="el" href="classsparse__array.html">const</a></td></tr>
+<tr class="separator:ac976cbb35c77d7b5d25f4d22a830c4e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cdb04495614c304776dc82fceb36c38" id="r_a5cdb04495614c304776dc82fceb36c38"><td class="memItemLeft" align="right" valign="top"><a id="a5cdb04495614c304776dc82fceb36c38" name="a5cdb04495614c304776dc82fceb36c38"></a>
+<a class="el" href="classsparse__array.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getY</b> () <a class="el" href="classsparse__array.html">const</a></td></tr>
+<tr class="separator:a5cdb04495614c304776dc82fceb36c38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc8f75a9894db0dded6426ed5d62b25b" id="r_adc8f75a9894db0dded6426ed5d62b25b"><td class="memItemLeft" align="right" valign="top"><a id="adc8f75a9894db0dded6426ed5d62b25b" name="adc8f75a9894db0dded6426ed5d62b25b"></a>
+<a class="el" href="classsparse__array.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> () <a class="el" href="classsparse__array.html">const</a></td></tr>
+<tr class="separator:adc8f75a9894db0dded6426ed5d62b25b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d99c7582c61fdc0839a600999c6622e" id="r_a7d99c7582c61fdc0839a600999c6622e"><td class="memItemLeft" align="right" valign="top"><a id="a7d99c7582c61fdc0839a600999c6622e" name="a7d99c7582c61fdc0839a600999c6622e"></a>
+<a class="el" href="classsparse__array.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (<a class="el" href="classsparse__array.html">const</a> <a class="el" href="classraylib_1_1RayText.html">RayText</a> &amp;<a class="el" href="classsparse__array.html">other</a>) <a class="el" href="classsparse__array.html">const</a></td></tr>
+<tr class="separator:a7d99c7582c61fdc0839a600999c6622e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad906de818144a44eceeabe09dd884f8e" id="r_ad906de818144a44eceeabe09dd884f8e"><td class="memItemLeft" align="right" valign="top"><a id="ad906de818144a44eceeabe09dd884f8e" name="ad906de818144a44eceeabe09dd884f8e"></a>
+<a class="el" href="classsparse__array.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (<a class="el" href="classsparse__array.html">const</a> <a class="el" href="classraylib_1_1RayText.html">RayText</a> &amp;<a class="el" href="classsparse__array.html">other</a>) <a class="el" href="classsparse__array.html">const</a></td></tr>
+<tr class="separator:ad906de818144a44eceeabe09dd884f8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9f61d4d50c23bb921afd9973897f68e" id="r_ab9f61d4d50c23bb921afd9973897f68e"><td class="memItemLeft" align="right" valign="top"><a id="ab9f61d4d50c23bb921afd9973897f68e" name="ab9f61d4d50c23bb921afd9973897f68e"></a>
+<a class="el" href="classsparse__array.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;</b> (<a class="el" href="classsparse__array.html">const</a> <a class="el" href="classraylib_1_1RayText.html">RayText</a> &amp;<a class="el" href="classsparse__array.html">other</a>) <a class="el" href="classsparse__array.html">const</a></td></tr>
+<tr class="separator:ab9f61d4d50c23bb921afd9973897f68e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75c9523b6e2c330471ffa561d58858e2" id="r_a75c9523b6e2c330471ffa561d58858e2"><td class="memItemLeft" align="right" valign="top"><a id="a75c9523b6e2c330471ffa561d58858e2" name="a75c9523b6e2c330471ffa561d58858e2"></a>
+<a class="el" href="classsparse__array.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;</b> (<a class="el" href="classsparse__array.html">const</a> <a class="el" href="classraylib_1_1RayText.html">RayText</a> &amp;<a class="el" href="classsparse__array.html">other</a>) <a class="el" href="classsparse__array.html">const</a></td></tr>
+<tr class="separator:a75c9523b6e2c330471ffa561d58858e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Sound class using raylib. </p>
+<div class="textblock"><p>Text class using raylib. </p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>client/lib/raylib/include/<a class="el" href="RayText_8hpp_source.html">RayText.hpp</a></li>
 <li>client/lib/raylib/src/<b>RayText.cpp</b></li>

@@ -79,9 +79,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa0229ccb9b58a39872aaf5a22da8bd26" id="r_aa0229ccb9b58a39872aaf5a22da8bd26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoomsCore.html#aa0229ccb9b58a39872aaf5a22da8bd26">RoomsCore</a> (std::string const &amp;port)</td></tr>
-<tr class="memdesc:aa0229ccb9b58a39872aaf5a22da8bd26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Rooms <a class="el" href="classCore.html" title="Core.">Core</a> object.  <br /></td></tr>
-<tr class="separator:aa0229ccb9b58a39872aaf5a22da8bd26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0eafdd5437fdcf13e9b6a0dcf30a82ea" id="r_a0eafdd5437fdcf13e9b6a0dcf30a82ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoomsCore.html#a0eafdd5437fdcf13e9b6a0dcf30a82ea">RoomsCore</a> (std::string const &amp;executable_name, std::string const &amp;port)</td></tr>
+<tr class="memdesc:a0eafdd5437fdcf13e9b6a0dcf30a82ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Rooms <a class="el" href="classCore.html" title="Core.">Core</a> object.  <br /></td></tr>
+<tr class="separator:a0eafdd5437fdcf13e9b6a0dcf30a82ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af56fe16e20ca0aade628c0a7acc2b4b7" id="r_af56fe16e20ca0aade628c0a7acc2b4b7"><td class="memItemLeft" align="right" valign="top"><a id="af56fe16e20ca0aade628c0a7acc2b4b7" name="af56fe16e20ca0aade628c0a7acc2b4b7"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>~RoomsCore</b> ()</td></tr>
 <tr class="memdesc:af56fe16e20ca0aade628c0a7acc2b4b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the Rooms <a class="el" href="classCore.html" title="Core.">Core</a> object. <br /></td></tr>
@@ -90,10 +90,13 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (void)</td></tr>
 <tr class="memdesc:aa9f10091a4d01d74d4d0399aa52dd88b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the rooms core. <br /></td></tr>
 <tr class="separator:aa9f10091a4d01d74d4d0399aa52dd88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a186b3342ea7666522ea2dc4a0c2fb6fc" id="r_a186b3342ea7666522ea2dc4a0c2fb6fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoomsCore.html#a186b3342ea7666522ea2dc4a0c2fb6fc">setGameToLaunch</a> (uint8_t roomId)</td></tr>
+<tr class="memdesc:a186b3342ea7666522ea2dc4a0c2fb6fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch a game.  <br /></td></tr>
+<tr class="separator:a186b3342ea7666522ea2dc4a0c2fb6fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa0229ccb9b58a39872aaf5a22da8bd26" name="aa0229ccb9b58a39872aaf5a22da8bd26"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0229ccb9b58a39872aaf5a22da8bd26">&#9670;&#160;</a></span>RoomsCore()</h2>
+<a id="a0eafdd5437fdcf13e9b6a0dcf30a82ea" name="a0eafdd5437fdcf13e9b6a0dcf30a82ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0eafdd5437fdcf13e9b6a0dcf30a82ea">&#9670;&#160;</a></span>RoomsCore()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -102,8 +105,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (void)</td></
           <td class="memname">RoomsCore::RoomsCore </td>
           <td>(</td>
           <td class="paramtype">std::string const &amp;&#160;</td>
-          <td class="paramname"><em>port</em></td><td>)</td>
+          <td class="paramname"><em>executable_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>port</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -112,6 +125,33 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (void)</td></
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">port</td><td>the port of the server </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a186b3342ea7666522ea2dc4a0c2fb6fc" name="a186b3342ea7666522ea2dc4a0c2fb6fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a186b3342ea7666522ea2dc4a0c2fb6fc">&#9670;&#160;</a></span>setGameToLaunch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoomsCore::setGameToLaunch </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>roomId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Launch a game. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roomId</td><td>the id of the room </td></tr>
   </table>
   </dd>
 </dl>

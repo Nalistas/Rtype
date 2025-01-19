@@ -6,5 +6,6 @@ var searchData=
   ['hasdatatoread_3',['hasdatatoread',['../classTcpServer.html#a352445711975fc138790e8b05ba62c9a',1,'TcpServer::hasDataToRead()'],['../classUdpServer.html#a84aa6a3f9b4726fbec61e3760b5292d4',1,'UdpServer::hasDataToRead()']]],
   ['have_3a_4',['For Windows, you need to have:',['../index.html#autotoc_md13',1,'']]],
   ['health_5',['Health',['../classHealth.html',1,'']]],
-  ['how_20to_20play_6',['How to Play',['../index.html#autotoc_md17',1,'']]]
+  ['hitbox_6',['Hitbox',['../structHitbox.html',1,'']]],
+  ['how_20to_20play_7',['How to Play',['../index.html#autotoc_md17',1,'']]]
 ];

@@ -89,12 +89,12 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ServerActionsGetter<
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aebbd8b3358a500161d3d7c8ff0bf954b" id="r_aebbd8b3358a500161d3d7c8ff0bf954b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameCore.html#aebbd8b3358a500161d3d7c8ff0bf954b">GameCore</a> (<a class="el" href="classecs_1_1registry.html">ecs::registry</a> &amp;reg, ServerActionsGetter const &amp;get_actions)</td></tr>
-<tr class="memdesc:aebbd8b3358a500161d3d7c8ff0bf954b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Game <a class="el" href="classCore.html" title="Core.">Core</a> object.  <br /></td></tr>
-<tr class="separator:aebbd8b3358a500161d3d7c8ff0bf954b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66d29822b25b13712d73d47273142bcf" id="r_a66d29822b25b13712d73d47273142bcf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameCore.html#a66d29822b25b13712d73d47273142bcf">GameCore</a> (std::shared_ptr&lt; <a class="el" href="classecs_1_1registry.html">ecs::registry</a> &gt; &amp;reg, ServerActionsGetter const &amp;get_actions, std::function&lt; void(std::size_t)&gt; updateScreen)</td></tr>
+<tr class="memdesc:a66d29822b25b13712d73d47273142bcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classGame.html">Game</a> <a class="el" href="classCore.html" title="Core.">Core</a> object.  <br /></td></tr>
+<tr class="separator:a66d29822b25b13712d73d47273142bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a065550c7481cd6ed1878b66dac3e583f" id="r_a065550c7481cd6ed1878b66dac3e583f"><td class="memItemLeft" align="right" valign="top"><a id="a065550c7481cd6ed1878b66dac3e583f" name="a065550c7481cd6ed1878b66dac3e583f"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>~GameCore</b> ()</td></tr>
-<tr class="memdesc:a065550c7481cd6ed1878b66dac3e583f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the Game <a class="el" href="classCore.html" title="Core.">Core</a> object. <br /></td></tr>
+<tr class="memdesc:a065550c7481cd6ed1878b66dac3e583f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classGame.html">Game</a> <a class="el" href="classCore.html" title="Core.">Core</a> object. <br /></td></tr>
 <tr class="separator:a065550c7481cd6ed1878b66dac3e583f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a569272d491d1d7540187d4975ba24161" id="r_a569272d491d1d7540187d4975ba24161"><td class="memItemLeft" align="right" valign="top"><a id="a569272d491d1d7540187d4975ba24161" name="a569272d491d1d7540187d4975ba24161"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (void)</td></tr>
@@ -102,8 +102,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (void)</td></
 <tr class="separator:a569272d491d1d7540187d4975ba24161"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aebbd8b3358a500161d3d7c8ff0bf954b" name="aebbd8b3358a500161d3d7c8ff0bf954b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebbd8b3358a500161d3d7c8ff0bf954b">&#9670;&#160;</a></span>GameCore()</h2>
+<a id="a66d29822b25b13712d73d47273142bcf" name="a66d29822b25b13712d73d47273142bcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66d29822b25b13712d73d47273142bcf">&#9670;&#160;</a></span>GameCore()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -111,14 +111,20 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (void)</td></
         <tr>
           <td class="memname">GameCore::GameCore </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classecs_1_1registry.html">ecs::registry</a> &amp;&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classecs_1_1registry.html">ecs::registry</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>reg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">ServerActionsGetter const &amp;&#160;</td>
-          <td class="paramname"><em>get_actions</em>&#160;</td>
+          <td class="paramname"><em>get_actions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; void(std::size_t)&gt;&#160;</td>
+          <td class="paramname"><em>updateScreen</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -128,10 +134,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (void)</td></
       </table>
 </div><div class="memdoc">
 
-<p>Construct a new Game <a class="el" href="classCore.html" title="Core.">Core</a> object. </p>
+<p>Construct a new <a class="el" href="classGame.html">Game</a> <a class="el" href="classCore.html" title="Core.">Core</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">reg</td><td>the registry of the game, initialized by the game launcher, see <a class="el" href="classGameLauncher.html#a96ab6b26d4783d24f7fffd455a65100f" title="Launch the game.">GameLauncher::launch</a> </td></tr>
+    <tr><td class="paramname">reg</td><td>the registry of the game, initialized by the game launcher, see <a class="el" href="classGameLauncher.html#a7b6d009010b33015156599c28c58c01e" title="Launch the game.">GameLauncher::launch</a> </td></tr>
     <tr><td class="paramname">get_actions</td><td>a function to get the server actions, which is a function that returns a list of functions to be executed </td></tr>
   </table>
   </dd>

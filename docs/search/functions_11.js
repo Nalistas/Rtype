@@ -1,25 +1,5 @@
 var searchData=
 [
-  ['_7eaudiodevice_0',['~AudioDevice',['../classraylib_1_1AudioDevice.html#aab60bade54ebe2fc41e567d0023047d9',1,'raylib::AudioDevice']]],
-  ['_7eclientactionlog_1',['~ClientActionLog',['../classClientActionLog.html#ae7b3a6b91b73a7dd70b70b63543758d9',1,'ClientActionLog']]],
-  ['_7ecore_2',['~Core',['../classCore.html#a776f8c46504b14183883c6273f93eaed',1,'Core']]],
-  ['_7edlloader_3',['~DLLoader',['../classDLLdr_1_1DLLoader.html#ad8d2743aa8afee8ce1d617f493c66c80',1,'DLLdr::DLLoader']]],
-  ['_7eentity_4',['~entity',['../classecs_1_1entity.html#a29a82b497b5bc3089240e70bfb00c83b',1,'ecs::entity']]],
-  ['_7egamecore_5',['~GameCore',['../classGameCore.html#a065550c7481cd6ed1878b66dac3e583f',1,'GameCore']]],
-  ['_7egamelauncher_6',['~GameLauncher',['../classGameLauncher.html#ac2e6149486e16598901d1340eb8a6466',1,'GameLauncher']]],
-  ['_7eigame_7',['~igame',['../classIGame.html#aa6e48a7d947c08aa69cdfaaf55c2e82e',1,'IGame::~IGame()'],['../classrtype_1_1IGame.html#a7cc16b313d3242249b4fd5044421b46a',1,'rtype::IGame::~IGame()']]],
-  ['_7eisystem_8',['~isystem',['../classecs_1_1isystem.html#ad82d73147d9922f6df227d431808e6d9',1,'ecs::isystem']]],
-  ['_7eraymusic_9',['~RayMusic',['../classraylib_1_1RayMusic.html#ac2c5d85bd3a190ea303df8786456f49b',1,'raylib::RayMusic']]],
-  ['_7eraysound_10',['~RaySound',['../classraylib_1_1RaySound.html#a02937ae7b8e7eb61093adb676a43e869',1,'raylib::RaySound']]],
-  ['_7eressourcesmanager_11',['~RessourcesManager',['../classRessourcesManager.html#a6242ad912e53127543e26e9bf15ea456',1,'RessourcesManager']]],
-  ['_7eroom_12',['~Room',['../classRoom.html#a67d5da09983cc53097807fd43ba5481a',1,'Room']]],
-  ['_7eroomscore_13',['~RoomsCore',['../classRoomsCore.html#af56fe16e20ca0aade628c0a7acc2b4b7',1,'RoomsCore']]],
-  ['_7esafedirectorylister_14',['~SafeDirectoryLister',['../classSafeDirectoryLister.html#afd3541d2c90ce215b0fe779abbf602ee',1,'SafeDirectoryLister']]],
-  ['_7esparse_5farray_15',['~sparse_array',['../classsparse__array.html#a4fcfd9065975ddcb90f2a84c91313867',1,'sparse_array']]],
-  ['_7etcpclient_16',['~TcpClient',['../classTcpClient.html#a125d2277f401cbdebadb9689a5933e18',1,'TcpClient']]],
-  ['_7etcpprotocol_17',['~TcpProtocol',['../classTcpProtocol.html#ae812325112d6f39cb12fabcd2b9d5514',1,'TcpProtocol']]],
-  ['_7etcpserver_18',['~TcpServer',['../classTcpServer.html#a728a9e31c53cf86887f1f6149b1c46dd',1,'TcpServer']]],
-  ['_7eudpclient_19',['~UdpClient',['../classUdpClient.html#a9e69046802da8ea9e0bf3da874c49e47',1,'UdpClient']]],
-  ['_7eudpserver_20',['~UdpServer',['../classUdpServer.html#aef1871384fbc46ef425242be4474af3a',1,'UdpServer']]],
-  ['_7ewindow_21',['~Window',['../classraylib_1_1Window.html#a6071f03b18e0f2d3817b0da3699f24af',1,'raylib::Window']]]
+  ['what_0',['what',['../classDLLdr_1_1DLLoaderException.html#a72bb204071296cbb4b9ca4dde307530f',1,'DLLdr::DLLoaderException::what()'],['../classIDirectoryLister_1_1OpenFailureException.html#ae6a05fcaaa38fd1ef9ede3f41db4c814',1,'IDirectoryLister::OpenFailureException::what()'],['../classIDirectoryLister_1_1NoMoreFileException.html#a788deef2c1d76166febde062cf396b44',1,'IDirectoryLister::NoMoreFileException::what()']]],
+  ['window_1',['Window',['../classraylib_1_1Window.html#abe04f4c1c07354187f7360aaad4d6da7',1,'raylib::Window']]]
 ];
