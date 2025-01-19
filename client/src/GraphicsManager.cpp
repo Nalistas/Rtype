@@ -63,27 +63,32 @@ void GraphicsManager::display()
             }
         }
     }
+    std::cout << "coucou 1" << std::endl;
     if (_is_keyboard_binded_to_text) {
         char c = _window.get_char_pressed();
         if (c > 0 && _texts.at(_keyboard_bound_id).getText().size() < 20) {
             _texts.at(_keyboard_bound_id).setText(_texts.at(_keyboard_bound_id).getText() + static_cast<char>(c));
         }
     }
+    std::cout << "coucou 2" << std::endl;
     for (auto keyboardCallback : _keyBindingsPressed) {
-        if (_window.is_key(raylib::Window::PRESSED, keyboardCallback.first)) {
+        if (_window.is_key(raylib::Window::PRESSED, static_cast<int>(keyboardCallback.first))) {
             keyboardCallback.second();
         }
     }
+    std::cout << "coucou 3" << std::endl;
     for (auto keyboardCallback : _keyBindingsReleased) {
         if (_window.is_key(raylib::Window::RELEASED, keyboardCallback.first)) {
             keyboardCallback.second();
         }
     }
     // std::cout << _mustClear << std::endl;
+    std::cout << "coucou 4" << std::endl;
     if (_mustClear == true) {
         _clearElements();
         _mustClear = false;
     }
+    std::cout << "coucou 6" << std::endl;
     _window.start_drawing();
     for (auto &background : _backgrounds)
         background.second.draw();
