@@ -29,30 +29,27 @@ Game::Game(
     _actions(actions), _sprites(sprites), _backgrounds(backgrounds), _musics(musics), _client(client), _win(win), _graphics(win)
 {
     std::cout << "Game constructor" << std::endl;
+
+    auto sendAction = [this](raylib::Vector2 pos, uint32_t id) {
+        std::vector<uint8_t> udpMessage(13);
+        udpMessage[0] = 1;
+        *(uint32_t *)(udpMessage.data() + 1) = id;
+        *(uint32_t *)(udpMessage.data() + 5) = invert(pos.x);
+        *(uint32_t *)(udpMessage.data() + 9) = invert(pos.y);
+        this->_client.send(udpMessage);
+        for (auto c : udpMessage) {
+            std::cout << static_cast<int>(c) << " ";
+        }
+    };
+
     for (auto &action : this->_actions[0]) {
-        _graphics.addKeyBinding(invert(action.first), false, [this, id = action.second]() {
-            std::vector<uint8_t> udpMessage(13);
-            udpMessage[0] = 1;
-            *(uint32_t *)(udpMessage.data() + 1) = id;
-            *(uint32_t *)(udpMessage.data() + 5) = static_cast<uint32_t>(this->_win.get_mouse_position().x);
-            *(uint32_t *)(udpMessage.data() + 9) = static_cast<uint32_t>(this->_win.get_mouse_position().y);
-            this->_client.send(udpMessage);
-            for (auto c : udpMessage) {
-                std::cout << static_cast<int>(c) << " ";
-            }
+        _graphics.addKeyBinding(invert(action.first), false, [this, id = action.second, sendAction]() {
+            sendAction(this->_win.get_mouse_position(), id);
         });
     }
     for (auto &action : this->_actions[1]) {
-        _graphics.addKeyBinding(invert(action.first), true, [this, id = action.second]() {
-            std::vector<uint8_t> udpMessage(13);
-            udpMessage[0] = 0;
-            *(uint32_t *)(udpMessage.data() + 1) = id;
-            *(uint32_t *)(udpMessage.data() + 5) = static_cast<uint32_t>(this->_win.get_mouse_position().x);
-            *(uint32_t *)(udpMessage.data() + 9) = static_cast<uint32_t>(this->_win.get_mouse_position().y);
-            this->_client.send(udpMessage);
-            for (auto c : udpMessage) {
-                std::cout << static_cast<int>(c) << " ";
-            }
+        _graphics.addKeyBinding(invert(action.first), true, [this, id = action.second, sendAction]() {
+            sendAction(this->_win.get_mouse_position(), id);
         });
     }
 }
