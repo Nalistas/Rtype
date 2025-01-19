@@ -100,7 +100,7 @@ std::size_t RType::createPlayer(void)
             _players[i] = this->_registry->create_entity();
             std::cout << "player " << i << " created" << std::endl;
             _registry->get_components<Position>().insert_at(_players[i], Position{0, 0});
-            _creater(i, _players[i], 1, 0, 0, 0, 0);
+            _creater(i, _players[i], 0, 0, 0, 0, 0);
             return i;
         }
     }
@@ -125,9 +125,12 @@ rtype::IGame::ScreenUpdater RType::getScreenUpdater(void)
                 }
             }
         }
-        if (this->_backgroundChanger) {
-            this->_backgroundChanger(player_id, 0);
+        if (this->_creater) {
+            _creater(0, _players[0], 0, 100, 100, 1, 0);
         }
+        // if (this->_backgroundChanger) {
+        //     this->_backgroundChanger(player_id, 0);
+        // }
     };
 }
 

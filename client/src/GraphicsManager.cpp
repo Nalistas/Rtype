@@ -98,8 +98,11 @@ void GraphicsManager::display()
     if (time_diff > 0) {
         _last_frame_time = time;
     }
-    for (auto &sprite : _sprites)
+    for (auto &sprite : _sprites) {
+        std::cout << "sprite " << sprite.first << " " << sprite.second.get_position().x << " " << sprite.second.get_position().y << std::endl;
+        std::cout << "sprite " << sprite.first << " " << sprite.second.get_size().x << " " << sprite.second.get_size().y << std::endl;
         sprite.second.draw();
+    }
     for (auto &music : _musics)
         music.second.play();
     for (auto &text : _texts)

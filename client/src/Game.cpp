@@ -74,6 +74,7 @@ Game::Game(
         auto entity = this->_entitiesSprites[entityId];
 
         sprite.set_position(posX, posY);
+        std::cout << "Entity id: " << entityId << std::endl;
         if (entity == 0) { // à quoi sert le if ici ? ????
             this->_entitiesSprites[entityId] = this->_graphics.addSprite(sprite);
         }
