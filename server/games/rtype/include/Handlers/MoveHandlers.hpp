@@ -51,5 +51,16 @@ class RightHandlers : public rtype::IClientActionHandler {
         std::shared_ptr<ecs::registry> _registry;
 };
 
+class ShootHandlers : public rtype::IClientActionHandler {
+    public:
+        ShootHandlers(const std::shared_ptr<ecs::registry> &reg);
+        ~ShootHandlers();
+
+        void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override;
+
+    private:
+        std::shared_ptr<ecs::registry> _registry;
+};
+
 
 #endif /* !MOVEHANDLERS_HPP_ */

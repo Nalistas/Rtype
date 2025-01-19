@@ -16,11 +16,9 @@ UpHandlers::~UpHandlers() {}
 
 void UpHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
 {
-    auto position = _registry->get_components<Position>();
-    for (auto [index, pos] : zipper(position)) {
-        if (pos.has_value()) {
-            pos.value().y -= 1;
-        }
+    auto player = _registry->get_components<Position>()[client];
+    if (player.has_value()) {
+        player.value().y -= 1;
     }
     std::cout << "handler Up: " << client << " " << mouse_x << " " << mouse_y << std::endl;
 }
@@ -32,6 +30,10 @@ DownHandlers::~DownHandlers() {}
 void DownHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
 {
     std::cout << "handler Down: " << client << " " << mouse_x << " " << mouse_y << std::endl;
+    auto player = _registry->get_components<Position>()[client];
+    if (player.has_value()) {
+        player.value().y += 1;
+    }
 }
 
 LeftHandlers::LeftHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
@@ -41,6 +43,10 @@ LeftHandlers::~LeftHandlers() {}
 void LeftHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
 {
     std::cout << "handler Left: " << client << " " << mouse_x << " " << mouse_y << std::endl;
+    auto player = _registry->get_components<Position>()[client];
+    if (player.has_value()) {
+        player.value().x -= 1;
+    }
 }
 
 RightHandlers::RightHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
@@ -50,4 +56,26 @@ RightHandlers::~RightHandlers() {}
 void RightHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
 {
     std::cout << "handler Right: " << client << " " << mouse_x << " " << mouse_y << std::endl;
+    auto player = _registry->get_components<Position>()[client];
+    if (player.has_value()) {
+        player.value().x += 1;
+    }
+}
+
+ShootHandlers::ShootHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
+
+ShootHandlers::~ShootHandlers() {}
+
+void ShootHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
+{
+    std::cout << "handler Shoot: " << client << " " << mouse_x << " " << mouse_y << std::endl;
+    auto bullet = _registry->create_entity();
+    auto player = _registry->get_components<Position>()[client];
+    _registry->get_components<Position>().insert_at(bullet, Position{player.value().x + 35, player.value().y});
+    _registry->get_components<Speed>().insert_at(bullet, Speed{1, 0});
+    _registry->get_components<Hitbox>().insert_at(bullet, Hitbox{1, 1});
+    _registry->get_components<Damage>().insert_at(bullet, Damage{1});
+    _registry->get_components<SIDE>().insert_at(bullet, SIDE::PLAYER);
+
+    // broadcast to all players
 }

@@ -31,6 +31,11 @@ struct Life {
     int life;
 };
 
+struct Damage {
+    Damage(int damage) : damage(damage) {}
+    int damage;
+};
+
 enum SIDE {
     PLAYER,
     ENEMY

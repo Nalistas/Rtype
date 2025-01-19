@@ -9,6 +9,10 @@
 #include "registry.hpp"
 #include "Handlers/MoveHandlers.hpp"
 #include "Component/Position.hpp"
+#include "Systems/SystemMovement.hpp"
+// #include "Systems/SystemCollision.hpp"
+#include "Systems/SystemCreateEnemy.hpp"
+
 
 RType::RType()
 {
@@ -26,6 +30,12 @@ void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
     _registry->register_component<Speed>();
     _registry->register_component<SIDE>();
     _registry->register_component<Hitbox>();
+    _registry->register_component<Damage>();
+    _registry->add_system<Position, Speed>(SystemMovement());
+    _registry->add_system<Position, Hitbox, Damage>(SystemCollision());
+    _registry->add_system<>(SystemCreateEnemy(_creater));
+
+
 }
 
 std::vector<rtype::ClientAction> RType::getClientActionHandlers(void) const
@@ -100,7 +110,15 @@ std::size_t RType::createPlayer(void)
             _players[i] = this->_registry->create_entity();
             std::cout << "player " << i << " created" << std::endl;
             _registry->get_components<Position>().insert_at(_players[i], Position{0, 0});
-            _creater(i, _players[i], 1, 0, 0, 0, 0);
+            _registry->get_components<Hitbox>().insert_at(_players[i], Hitbox{20, 20});
+            // _registry->get_components<Speed>().insert_at(_players[i], Speed{0, 0});
+            _registry->get_components<Life>().insert_at(_players[i], Life{5});
+            _registry->get_components<SIDE>().insert_at(_players[i], SIDE::PLAYER);
+            for (int j = 0; j < 4; j++) {
+                if (j != i && _players.find(j) != _players.end()) {
+                    _creater(_players[j], i, 1, 0, 0, 0, 0);
+                }
+            }
             return i;
         }
     }
