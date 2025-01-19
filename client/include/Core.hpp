@@ -13,6 +13,7 @@
 #include "RayMusic.hpp"
 #include "Background.hpp"
 #include "UdpClient.hpp"
+#include "GraphicsManager.hpp"
 
 #include <vector>
 #include <list>
@@ -104,6 +105,11 @@ class Core {
         void forceInRoom(std::vector<uint8_t> tcpResponse);
 
         void manageGetReady();
+
+        void composeHome(void);
+
+        void composeRoomCreation(void);
+
     private:
         raylib::Window _window;
         TcpClient _tcpClient;
@@ -126,6 +132,7 @@ class Core {
 
         uint8_t _roomId;
         bool _startGame;
+        GraphicsManager _graphicsManager;
 };
 
 #endif /* !CORE_HPP_ */

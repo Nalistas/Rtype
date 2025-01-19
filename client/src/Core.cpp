@@ -28,7 +28,8 @@ Core::Core(std::string ip, std::string port, std::string username) :
     _tcpClient(ip, port),
     _roomId(0),
     _startGame(false),
-    _udpClient() // pas sur
+    _udpClient(),
+    _graphicsManager(_window) // pas sur
 {
     _buttons_room.emplace(
         raylib::RayText("Exit room", 10, 200, 20, raylib::BLUE),
