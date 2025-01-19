@@ -27,7 +27,7 @@ class RoomsCore {
          * @brief Construct a new Rooms Core object
          * @param port the port of the server
          */
-        RoomsCore(std::string const &port);
+        RoomsCore(std::string const &executable_name, std::string const &port);
 
         /**
          * @brief Destroy the Rooms Core object
@@ -103,6 +103,8 @@ class RoomsCore {
         std::vector<std::string> _gameList;
         std::unordered_map<std::string, RessourcesManager> _ressources;
         std::unordered_map<std::string, std::string> _gameNameToPath;
+        process::Process _my_process;
+        std::string _executable_name;
 };
 
 #endif /* !CORE_HPP_ */

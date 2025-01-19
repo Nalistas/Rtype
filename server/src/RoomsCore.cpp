@@ -12,8 +12,8 @@
 #include <chrono>
 #include <thread>
 
-RoomsCore::RoomsCore(std::string const &port) :
-    _tcpServer("0.0.0.0", port)
+RoomsCore::RoomsCore(std::string const &executable_name, std::string const &port) :
+    _tcpServer("0.0.0.0", port), _rooms(), _clients(), _gameList(), _executable_name(executable_name)
 {
     setGamesRessources();
 
@@ -132,8 +132,8 @@ void RoomsCore::launchGame()
     for (auto &room : this->_roomsToLaunch) {
         this->_rooms.erase(room.first);
     }
+    std::string ip = get_local_ip();
 
-    process::Process my_process;
     for (auto &room : this->_roomsToLaunch) {
         auto game = room.second.getGameName();
         if (std::find(this->_gameList.begin(), this->_gameList.end(), game) == this->_gameList.end()) {
@@ -142,19 +142,11 @@ void RoomsCore::launchGame()
         }
         int port = find_available_port(1024);
         std::string game_path = this->_gameNameToPath[game];
+        std::vector<std::string> vec = {_executable_name, "-udp", std::to_string(port), game_path};
+        _my_process.execProcess(vec);
 
-        #ifdef _WIN32
-            std::vector<std::string> vec = {"./r-type_server.exe", "-udp", std::to_string(port), game_path};
-        #else
-            std::vector<std::string> vec = {"./r-type_server", "-udp", std::to_string(port), game_path};
-        #endif
 
-        std::cout << "Launching game: " << game << std::endl;
         sendGameRessourcesToTheRoom(game, room.first);
-        // my_process.execProcess(vec);
-
-        continue;
-        std::string ip = get_local_ip();
         std::string port_to_string = std::string(1, static_cast<char>(port / 100)) + std::string(1, static_cast<char>(port % 100));
         for (auto &client : getClients(room.first)) {
             int client_id = getClientId(room.first, client.first);

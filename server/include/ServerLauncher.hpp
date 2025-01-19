@@ -17,7 +17,7 @@ class ServerLauncher {
         /**
          * @brief Construct a new Server Launcher object
          */
-        ServerLauncher();
+        ServerLauncher(std::string const &executable_name);
 
         /**
          * @brief Destroy the Server Launcher object
@@ -28,6 +28,7 @@ class ServerLauncher {
         void LaunchTcpServer(std::string const &port);
 
     private:
+        std::string _executable_name;
 };
 
 #endif /* !SERVER_LAUNCHER_HPP_ */

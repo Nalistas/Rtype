@@ -102,11 +102,12 @@ void process::Process::execProcess(std::vector<std::string> &command)
 void process::Process::execProcess(std::vector<std::string> &command)
 {
     pid_t pid = ::fork();
-    std::vector<char *> params(command.size());
+    std::vector<char *> params(command.size() + 1);
 
     for (std::size_t i = 0; i < command.size(); ++i) {
         params[i] = command[i].data();
     }
+    params[command.size()] = nullptr;
 
     if (pid == 0) {
         _childpids.clear();

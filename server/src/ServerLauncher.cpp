@@ -9,7 +9,8 @@
 #include "GameLauncher.hpp"
 #include "RoomsCore.hpp"
 
-ServerLauncher::ServerLauncher()
+ServerLauncher::ServerLauncher(std::string const &executable_name) :
+    _executable_name(executable_name)
 {
 }
 
@@ -26,6 +27,6 @@ void ServerLauncher::LaunchUdpServer(std::string const &port, std::string const 
 
 void ServerLauncher::LaunchTcpServer(std::string const &port)
 {
-    RoomsCore core(port);
+    RoomsCore core(_executable_name, port);
     core.run();
 }

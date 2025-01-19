@@ -53,7 +53,7 @@ class NoneSystem : public ecs::isystem<> {
 int main(int ac, char **av)
 {
     std::vector<std::string> args(ac);
-    ServerLauncher launcher;
+    ServerLauncher launcher(av[0]);
 
     for (int i = 0; i < ac; ++i) {
         args[i] = std::string(av[i]);
