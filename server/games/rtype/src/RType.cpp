@@ -123,16 +123,19 @@ void RType::deletePlayer(std::size_t player_id)
 
 rtype::IGame::ScreenUpdater RType::getScreenUpdater(void)
 {
-    return [this]() {
-        for (auto player : _players) {
-            auto position = _registry->get_components<Position>();
+    return [this](std::size_t player_id) {
+        auto position = _registry->get_components<Position>();
+        if (this->_positionUpdater) {
             for (auto [index, pos] : zipper(position)) {
                 if (pos.has_value()) {
-                    this->_positionUpdater(player.first, index, pos.value().x, pos.value().y);
+                    this->_positionUpdater(player_id, index, pos.value().x, pos.value().y);
                 }
             }
-            this->_backgroundChanger(player.first, 0);
         }
+        if (this->_backgroundChanger) {
+            this->_backgroundChanger(player_id, 0);
+        }
+        
     };
 }
 

@@ -28,7 +28,8 @@ class ClientActionLog {
          */
         ClientActionLog(
             std::vector<std::shared_ptr<rtype::IClientActionHandler>> &handlers,
-            std::unordered_map<std::string, size_t> const &players
+            std::unordered_map<std::string, size_t> const &players,
+            std::function<void(std::size_t)> const &update_screen
         );
 
         /**
@@ -60,6 +61,7 @@ class ClientActionLog {
         std::vector<std::shared_ptr<rtype::IClientActionHandler>> &_handlers;
         std::unordered_map<std::string, std::chrono::milliseconds> _players_time;
         std::unordered_map<std::string, std::size_t> const &_players;
+        std::function<void(std::size_t)> const &_update_screen;
 };
 
 #endif /* !CLIENTACTIONLOG_HPP_ */

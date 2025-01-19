@@ -98,7 +98,7 @@ namespace rtype {
             using Deleter = std::function<void(std::size_t player_id, std::size_t e_id)>;
             using BackgroundChanger = std::function<void(std::size_t client_id, std::size_t background_id)>;
             using MusicChanger = std::function<void(std::size_t client_id, std::size_t music_id)>;
-            using ScreenUpdater = std::function<void()>;
+            using ScreenUpdater = std::function<void(std::size_t client_id)>;
 
             /**
              * @brief Set the broadcast create function

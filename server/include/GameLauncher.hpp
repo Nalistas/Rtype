@@ -72,7 +72,7 @@ class GameLauncher {
          * @brief Get the Server Actions object
          * @return GameCore::ServerActions, the list of functions to be executed
          */
-        GameCore::ServerActions getServerActions();
+        GameCore::ServerActions getServerActions(void);
 
     private:
         std::unique_ptr<rtype::IGame> _game;

@@ -67,7 +67,7 @@ void Game::interpretor(void)
 
 void Game::run(void)
 {
-    std::cout << "RUNNING !!!" << std::endl;
+    this->_client.send({2});
     while (this->_win.is_running()) {
         this->interpretor();
         this->_graphics.display();

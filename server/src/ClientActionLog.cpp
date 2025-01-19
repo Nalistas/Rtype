@@ -10,9 +10,10 @@
 
 ClientActionLog::ClientActionLog(
     std::vector<std::shared_ptr<rtype::IClientActionHandler>> &handlers,
-    std::unordered_map<std::string, std::size_t> const &players
+    std::unordered_map<std::string, std::size_t> const &players,
+    std::function<void(std::size_t)> const &update_screen
 ) :
-    _handlers(handlers), _players(players)
+    _handlers(handlers), _players(players), _update_screen(update_screen)
 {
     for (auto const &player : players) {
         auto now = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -60,6 +61,12 @@ std::optional<std::function<void()>> ClientActionLog::treatAction(std::string co
 
         return std::optional<std::function<void()>>([this, player_id, action_id, mouse_x, mouse_y](){
             (*_handlers[action_id])(player_id, mouse_x, mouse_y);
+        });
+    }
+    if (message[0] == 2) {
+        return std::optional<std::function<void()>>([this, player_id](){
+            std::cout << "player need to be updated: " << player_id << std::endl;
+            this->_update_screen(player_id);
         });
     }
     return std::nullopt;

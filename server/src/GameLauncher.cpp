@@ -52,10 +52,9 @@ uint16_t GameLauncher::getPort()
 
 GameCore::ServerActions GameLauncher::getServerActions()
 {
-    if (!_server.hasDataToRead() || this->_client_action_log == nullptr) {
+    if (this->_client_action_log == nullptr) {
         return {};
     }
-
     std::list<std::function<void()>> actions;
 
     while (_server.hasDataToRead()) {
@@ -86,14 +85,14 @@ GameCore::ServerActions GameLauncher::getServerActions()
 void GameLauncher::launch()
 {
     this->_game->initGameRegistry(this->_registry);
-    auto get_action = [this]() { return this->getServerActions(); };
     auto screen_updater = this->_game->getScreenUpdater();
+    auto get_action = [this]() { return this->getServerActions(); };
 
     // for (auto const &player : players) {
     //     std::size_t player_id = this->_game->createPlayer();
     //     this->_players[player.ip] = player_id;
     // }
-    this->_client_action_log = std::make_unique<ClientActionLog>(this->_handlers, this->_players);
+    this->_client_action_log = std::make_unique<ClientActionLog>(this->_handlers, this->_players, screen_updater);
     GameCore core(this->_registry, get_action, screen_updater);
     core.run();
 }
