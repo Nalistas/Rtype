@@ -34,14 +34,14 @@ void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
     _registry->register_component<Damage>();
     _registry->add_system<Position, Speed>(SystemMovement());
     _registry->add_system<Position, Hitbox, Damage, Life, SIDE>(SystemCollision(_deleter));
-    _registry->add_system<>(SystemCreateEnemy(_creater));
+    // _registry->add_system<>(SystemCreateEnemy(_creater));
     _registry->add_system<Speed, Position>(SystemBroadcast(_speedUpdater, _positionUpdater, _players));
 }
 
 std::vector<rtype::ClientAction> RType::getClientActionHandlers(void) const
 {
     return std::vector<rtype::ClientAction>({
-        {90, 1, std::make_unique<UpHandlers>(_registry)},
+        {90, 1, std::make_unique<UpHandlers>(_registry, _players)},
         {83, 1, std::make_unique<DownHandlers>(_registry)},
         {81, 1, std::make_unique<LeftHandlers>(_registry)},
         {68, 1, std::make_unique<RightHandlers>(_registry)}
@@ -109,14 +109,13 @@ std::size_t RType::createPlayer(void)
         if (_players.find(i) == _players.end()) {
             _players[i] = this->_registry->create_entity();
             std::cout << "player " << i << " created" << std::endl;
-            _registry->get_components<Position>().insert_at(_players[i], Position{0, 0});
-            _registry->get_components<Hitbox>().insert_at(_players[i], Hitbox{20, 20});
-            // _registry->get_components<Speed>().insert_at(_players[i], Speed{0, 0});
-            _registry->get_components<Life>().insert_at(_players[i], Life{5});
-            _registry->get_components<SIDE>().insert_at(_players[i], SIDE::PLAYER);
+            _registry->get_components<Position>().emplace_at(_players[i], Position{100, 0});
+            _registry->get_components<Hitbox>().emplace_at(_players[i], Hitbox{20, 20});
+            _registry->get_components<Life>().emplace_at(_players[i], Life{5});
+            _registry->get_components<SIDE>().emplace_at(_players[i], SIDE::PLAYER);
             for (int j = 0; j < 4; j++) {
                 if (j != i && _players.find(j) != _players.end()) {
-                    _creater(_players[j], i, 1, 0, 0, 0, 0);
+                    _creater(_players[j], i, 0, 0, 0, 0, 0);
                 }
             }
             return i;
@@ -143,8 +142,11 @@ rtype::IGame::ScreenUpdater RType::getScreenUpdater(void)
                 }
             }
         }
-        if (this->_creater) {
-            _creater(0, _players[player_id], 0, 100, 100, 1, 0);
+        for (auto [index, pos] : zipper(position)) {
+            if (pos.has_value()) {
+                std::cout << "player: " << player_id << " index: " << index << " position: " << pos.value().x << " " << pos.value().y << std::endl;
+                this->_creater(player_id, index, 0, pos.value().x, pos.value().y, 0, 0);
+            }
         }
         // if (this->_backgroundChanger) {
         //     this->_backgroundChanger(player_id, 0);

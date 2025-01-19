@@ -13,12 +13,13 @@
 
 class UpHandlers : public rtype::IClientActionHandler {
     public:
-        UpHandlers(const std::shared_ptr<ecs::registry> &reg);
+        UpHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_map<std::size_t, std::size_t> const &players);
         ~UpHandlers();
 
         void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override;
     private:
         std::shared_ptr<ecs::registry> _registry;
+        std::unordered_map<std::size_t, std::size_t> const &_players;
 };
 
 class DownHandlers : public rtype::IClientActionHandler {

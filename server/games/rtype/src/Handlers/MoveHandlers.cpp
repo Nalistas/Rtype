@@ -10,7 +10,8 @@
 
 #include <iostream>
 
-UpHandlers::UpHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
+UpHandlers::UpHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_map<std::size_t, std::size_t> const &players)
+    : _registry(reg), _players(players) {}
 
 UpHandlers::~UpHandlers() {}
 
@@ -20,10 +21,16 @@ void UpHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned i
         std::cout << "registry is null" << std::endl;
         return;
     }
-    auto player = _registry->get_components<Position>()[client];
-    if (player.has_value()) {
-        player.value().y -= 100;
+    auto &positions = _registry->get_components<Position>();
+    std::cout << "player: " << client << std::endl;
+    if (positions[client].has_value()) {
+        std::cout << "player has value" << std::endl;
+        std::cout << "old pos of " << client << ": " << _registry->get_components<Position>()[client].value().x << " " << _registry->get_components<Position>()[client].value().y << std::endl;
+        _registry->get_components<Position>().emplace_at(client, Position{positions[client].value().x, positions[client].value().y - 100});
+        std::cout << "new pos of " << client << ": " << _registry->get_components<Position>()[client].value().x << " " << _registry->get_components<Position>()[client].value().y << std::endl;
     }
+    std::cout << client << std::endl;
+    std::cout << _registry << std::endl;
     // std::cout << "handler Up: " << client << " " << mouse_x << " " << mouse_y << std::endl;
     // auto position = _registry->get_components<Position>();
     // std::cout << "coucou" << std::endl;
@@ -34,7 +41,6 @@ void UpHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned i
     //         pos.value().y -= 1;
     //     }
     // }
-    std::cout << "handler Up: " << client << " " << mouse_x << " " << mouse_y << std::endl;
 }
 
 DownHandlers::DownHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}

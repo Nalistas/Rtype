@@ -12,6 +12,7 @@
 GameLauncher::GameLauncher(std::string const &game_path, int port) : _server(port)
 {
     _registry = std::make_shared<ecs::registry>();
+    std::cout << _registry << std::endl;
     _loader.open(game_path);
     _game = _loader.getSym("entry_point");
     std::cout << "///////////////////////////" << std::endl;
@@ -64,8 +65,8 @@ void GameLauncher::speedUpdater(std::size_t player_id, std::size_t e_id, uint8_t
     std::vector<uint8_t> data(5);
 
     data[0] = 4;
-    data[1] = (e_id / 256) && 0xFF;
-    data[2] = e_id && 0xFF;
+    data[1] = (e_id / 256) & 0xFF;
+    data[2] = e_id & 0xFF;
     data[3] = speed_x;
     data[4] = speed_y;
     this->_server.sendTo(_players_endpoints.at(player_id), data);
@@ -80,16 +81,16 @@ void GameLauncher::positionUpdater(std::size_t player_id, std::size_t e_id, int 
     std::vector<uint8_t> data(11);
 
     data[0] = 5;
-    data[1] = (e_id16 / 256) && 0xFF;
-    data[2] = e_id16 && 0xFF;
-    data[3] = (x / 16777216) && 0xFF;
-    data[4] = (x / 65536) && 0xFF;
-    data[5] = (x / 256) && 0xFF;
-    data[6] = x && 0xFF;
-    data[7] = (y / 16777216) && 0xFF;
-    data[8] = (y / 65536) && 0xFF;
-    data[9] = (y / 256) && 0xFF;
-    data[10] = y && 0xFF;
+    data[1] = (e_id16 / 256) & 0xFF;
+    data[2] = e_id16 & 0xFF;
+    data[3] = (x / 16777216) & 0xFF;
+    data[4] = (x / 65536) & 0xFF;
+    data[5] = (x / 256) & 0xFF;
+    data[6] = x & 0xFF;
+    data[7] = (y / 16777216) & 0xFF;
+    data[8] = (y / 65536) & 0xFF;
+    data[9] = (y / 256) & 0xFF;
+    data[10] = y & 0xFF;
     this->_server.sendTo(_players_endpoints.at(player_id), data);
 }
 
@@ -102,17 +103,17 @@ void GameLauncher::creater(std::size_t player_id, std::size_t e_id, std::size_t 
     std::cout << "player found" << std::endl;
     std::vector<uint8_t> data(14);
     data[0] = 2;
-    data[1] = e_g_id && 0xFF;
-    data[2] = (e_id / 256) && 0xFF;
-    data[3] = e_id && 0xFF;
-    data[4] = (x / 16777216) && 0xFF;
-    data[5] = (x / 65536) && 0xFF;
-    data[6] = (x / 256) && 0xFF;
-    data[7] = x && 0xFF;
-    data[8] = (y / 16777216) && 0xFF;
-    data[9] = (y / 65536) && 0xFF;
-    data[10] = (y / 256) && 0xFF;
-    data[11] = y && 0xFF;
+    data[1] = e_g_id & 0xFF;
+    data[2] = (e_id / 256) & 0xFF;
+    data[3] = e_id & 0xFF;
+    data[4] = (x / 16777216) & 0xFF;
+    data[5] = (x / 65536) & 0xFF;
+    data[6] = (x / 256) & 0xFF;
+    data[7] = x & 0xFF;
+    data[8] = (y / 16777216) & 0xFF;
+    data[9] = (y / 65536) & 0xFF;
+    data[10] = (y / 256) & 0xFF;
+    data[11] = y & 0xFF;
     data[12] = speed_x;
     data[13] = speed_y;
     for (auto c : data) {
@@ -129,8 +130,8 @@ void GameLauncher::Deleter(std::size_t player_id, std::size_t e_id)
     }
     std::vector<uint8_t> data(3);
     data[0] = 3;
-    data[1] = (e_id / 256) && 0xFF;
-    data[2] = e_id && 0xFF;
+    data[1] = (e_id / 256) & 0xFF;
+    data[2] = e_id & 0xFF;
     this->_server.sendTo(_players_endpoints.at(player_id), data);
 }
 
@@ -141,8 +142,8 @@ void GameLauncher::BackgroundChanger(std::size_t player_id, std::size_t backgrou
     }
     std::vector<uint8_t> data(3);
     data[0] = 1;
-    data[1] = (background_id / 256) && 0xFF;
-    data[2] = background_id && 0xFF;
+    data[1] = (background_id / 256) & 0xFF;
+    data[2] = background_id & 0xFF;
     this->_server.sendTo(_players_endpoints.at(player_id), data);
 }
 
@@ -153,8 +154,8 @@ void GameLauncher::MusicChanger(std::size_t player_id, std::size_t music_id)
     }
     std::vector<uint8_t> data(3);
     data[0] = 6;
-    data[1] = (music_id / 256) && 0xFF;
-    data[2] = music_id && 0xFF;
+    data[1] = (music_id / 256) & 0xFF;
+    data[2] = music_id & 0xFF;
     this->_server.sendTo(_players_endpoints.at(player_id), data);
 }
 
