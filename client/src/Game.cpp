@@ -130,7 +130,16 @@ void Game::run(void)
     this->_client.send({2});
     while (this->_win.is_running()) {
         this->interpretor();
+        this->moveSprites();
         this->_graphics.display();
+    }
+}
+
+void Game::moveSprites(void)
+{
+    for (auto &entity : _entitiesSprites) {
+        auto sprite = _graphics.getSprite(entity.second);
+        sprite.set_position(sprite.get_position().x + 1, sprite.get_position().y);
     }
 }
 

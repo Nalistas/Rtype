@@ -35,6 +35,9 @@ class Game {
 
         void interpretor(void);
 
+        void moveSprites(void);
+
+
     private:
         std::array<std::map<uint32_t, uint32_t>, 2> _actions;
         std::map<uint32_t, raylib::Sprite> &_sprites;
