@@ -87,16 +87,16 @@ Game::Game(
     };
     this->_commandMap[4] = [this](std::vector<uint8_t> &data) {
         //update speed
-        uint16_t entityId = data[1] * 256 + data[0];
-        uint8_t speedX = data[4];
-        uint8_t speedY = data[5];
+        uint16_t entityId = data[1] * 256 + data[2];
+        uint8_t speedX = data[3];
+        uint8_t speedY = data[4];
 
+        std::cout << "Update speed of " << entityId << " to " << static_cast<int>(speedX) << " " << static_cast<int>(speedY) << std::endl;
         auto entity = this->_entitiesSprites.find(entityId);
         if (entity == this->_entitiesSprites.end()) {
             std::cerr << "Entity not found" << std::endl;
             return;
         }
-        auto sprite = this->_graphics.getSprite(entity->second);
         this->_spritesSpeed[entityId] = {speedX, speedY};
     };
     this->_commandMap[5] = [this](std::vector<uint8_t> &data) {
@@ -107,7 +107,7 @@ Game::Game(
 
         auto entity = this->_entitiesSprites.find(entityId);
         if (entity != this->_entitiesSprites.end()) {
-            auto sprite = this->_graphics.getSprite(entity->second);
+            auto &sprite = this->_graphics.getSprite(entity->second);
             sprite.set_position(posX, posY);
         }
     };

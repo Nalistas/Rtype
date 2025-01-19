@@ -56,8 +56,8 @@ void UdpServer::sendTo(asio::ip::udp::endpoint const &endpoint, std::vector<uint
 {
     try {
         _socket.send_to(asio::buffer(data), endpoint);
-        std::cout << "Réponse envoyée à " << endpoint.address().to_string() 
-                  << ":" << endpoint.port() << std::endl;
+        // std::cout << "Réponse envoyée à " << endpoint.address().to_string() 
+        //           << ":" << endpoint.port() << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "Erreur lors de l'envoi de la réponse : " << e.what() << std::endl;
     }
