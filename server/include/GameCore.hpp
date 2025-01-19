@@ -25,7 +25,7 @@ class GameCore {
          * @param get_actions a function to get the server actions, which is a function that returns
          *                    a list of functions to be executed
          */
-        GameCore(ecs::registry &reg, ServerActionsGetter const &get_actions);
+        GameCore(std::shared_ptr<ecs::registry> &reg, ServerActionsGetter const &get_actions, std::function<void(std::size_t)> updateScreen);
 
         /**
          * @brief Destroy the Game Core object
@@ -38,8 +38,9 @@ class GameCore {
         void run(void);
 
     private:
-        ecs::registry &_registry;
+        std::shared_ptr<ecs::registry> _registry;
         ServerActionsGetter const &_get_actions;
+        std::function<void(std::size_t)> _updateScreen;
 };
 
 #endif /* !GAMECORE_HPP_ */

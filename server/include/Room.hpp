@@ -29,6 +29,13 @@ class Room {
         Room(std::string const &name, std::string const &gameName, std::shared_ptr<asio::ip::tcp::socket> &owner);
 
         /**
+         * @brief Construct a new Room object
+         * 
+         * @param room the room to copy
+         */
+        Room(Room const &room) = default;
+
+        /**
          * @brief Destroy the Room object
          */
         ~Room();

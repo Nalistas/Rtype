@@ -53,7 +53,8 @@ raylib::Sprite::~Sprite()
 
 void raylib::Sprite::draw()
 {
-    if (_texture->get_texture().id == 0) {
+    if (!_texture || _texture->get_texture().id == 0) {
+        DrawRectangle(_destination_rect.x - _center.x, _destination_rect.y - _center.y, _destination_rect.width, _destination_rect.height, raylib::GRAY);
         return;
     }
     DrawTexturePro(_texture->get_texture(), _source_rect, _destination_rect, _center, _rotation, WHITE);

@@ -34,7 +34,7 @@ std::shared_ptr<asio::ip::tcp::socket> TcpServer::accept()
     } else {
         std::cout << "Client connected: " << client->remote_endpoint() << std::endl;
     }
-
+    client->non_blocking(true);
     return client;
 }
 

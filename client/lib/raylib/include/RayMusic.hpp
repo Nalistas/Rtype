@@ -22,6 +22,8 @@ class RayMusic {
          */
         RayMusic(std::string const &path);
 
+        RayMusic(RayMusic const &other) = default;
+
         /**
          * @brief Destroy the RayMusic object
          */
@@ -71,7 +73,11 @@ class RayMusic {
          */
         void update();
 
-
+        // Overload
+        bool operator==(const RayMusic &other) const;
+        bool operator!=(const RayMusic &other) const;
+        bool operator<(const RayMusic &other) const;
+        bool operator>(const RayMusic &other) const; 
 
     private:
         Music _music;

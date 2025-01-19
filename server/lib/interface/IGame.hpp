@@ -40,6 +40,10 @@ namespace rtype {
 
 
     struct Sprite {
+        Sprite() = default;
+        Sprite(const Sprite&) = default;
+        Sprite& operator=(const Sprite&) = default;
+        ~Sprite() = default;
         std::string path;
         uint32_t size_x;
         uint32_t size_y;
@@ -52,6 +56,10 @@ namespace rtype {
     };
 
     struct Background {
+        Background() = default;
+        Background(const Background&) = default;
+        Background& operator=(const Background&) = default;
+        ~Background() = default;
         std::string path;
         uint8_t speed;
         enum Direction {
@@ -172,7 +180,7 @@ namespace rtype {
              * @brief set everything needed in the registry, the systems and the components
              * @param registry the registry to set the component and the systems
              */
-            virtual void initGameRegistry(ecs::registry &reg) = 0;
+            virtual void initGameRegistry(std::shared_ptr<ecs::registry> &reg) = 0;
 
             /**
              * @brief Set the client action handler

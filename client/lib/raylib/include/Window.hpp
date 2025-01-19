@@ -119,12 +119,12 @@ class Window {
         /**
          * @brief Draw a string
          */
-        void draw_text(std::string const &text, int x, int y, int fontSize, Color color);
+        void draw_text(std::string const &text, int x, int y, int fontSize, Color color) { DrawText(text.c_str(), x, y, fontSize, color); }
 
         /**
          * @brief Draw a rectangle
          */
-        void draw_rectangle(int x, int y, int width, int height, Color color);
+        void draw_rectangle(int x, int y, int width, int height, Color color) { DrawRectangle(x, y, width, height, color); }
 
         /**
          * @brief Check if a key is in the state defined in the parameter

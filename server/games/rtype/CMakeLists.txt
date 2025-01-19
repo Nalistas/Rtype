@@ -2,6 +2,17 @@ project(r-type)
 
 add_library(${PROJECT_NAME} SHARED
     src/entry_point.cpp
+    src/RType.cpp
+    src/Handlers/MoveHandlers.cpp
+    src/Systems/SystemMovement.cpp
+    src/Systems/SystemCreateEnemy.cpp
+    src/Systems/SystemCollision.cpp
+    src/Systems/SystemBroadcast.cpp
+)
+
+target_include_directories(${PROJECT_NAME}
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC

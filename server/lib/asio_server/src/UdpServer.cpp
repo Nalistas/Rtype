@@ -28,6 +28,7 @@ UdpServer::UdpServer(int port) :
         _endpoint = asio::ip::udp::endpoint(asio::ip::udp::v4(), port);
         _socket.open(asio::ip::udp::v4());
         _socket.bind(_endpoint);
+        _socket.non_blocking(true);
         std::cout << "Server started on port " << port << "." << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "Error when starting server : " << e.what() << "at : " << __FILE__ << ":" << __LINE__ << std::endl;
@@ -55,8 +56,8 @@ void UdpServer::sendTo(asio::ip::udp::endpoint const &endpoint, std::vector<uint
 {
     try {
         _socket.send_to(asio::buffer(data), endpoint);
-        std::cout << "Réponse envoyée à " << endpoint.address().to_string() 
-                  << ":" << endpoint.port() << std::endl;
+        // std::cout << "Réponse envoyée à " << endpoint.address().to_string() 
+        //           << ":" << endpoint.port() << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "Erreur lors de l'envoi de la réponse : " << e.what() << std::endl;
     }

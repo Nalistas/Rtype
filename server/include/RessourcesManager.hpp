@@ -26,6 +26,11 @@ class RessourcesManager {
 
         /**
          * @brief Construct a new Ressources Manager object
+         */
+        // RessourcesManager() = default;
+
+        /**
+         * @brief Construct a new Ressources Manager object
          * @param game the game for which we want to get the ressources
          */
         RessourcesManager(std::unique_ptr<rtype::IGame> &game);
@@ -40,8 +45,14 @@ class RessourcesManager {
          */
         std::list<std::vector<uint8_t>> &getRessourcess();
 
+        /**
+         * @brief Get the Game Name object
+         */
+        std::string const &getGameName() const;
+
     private:
         std::list<std::vector<uint8_t>> _ressources;
+        std::string _game_name;
 
         std::vector<uint8_t> transformBackground(rtype::Background const &background, uint32_t id);
         std::vector<uint8_t> transformSprite(rtype::Sprite const &sprite, uint32_t id);

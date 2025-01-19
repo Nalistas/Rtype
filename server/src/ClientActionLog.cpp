@@ -11,9 +11,9 @@
 ClientActionLog::ClientActionLog(
     std::vector<std::shared_ptr<rtype::IClientActionHandler>> &handlers,
     std::unordered_map<std::string, std::size_t> const &players,
-    std::function<void(std::size_t client_id)> const &update_screen
+    std::function<void(std::size_t)> const &update_screen
 ) :
-    _handlers(handlers), _update_screen(update_screen), _players(players)
+    _handlers(handlers), _players(players), _update_screen(update_screen)
 {
     for (auto const &player : players) {
         auto now = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -47,6 +47,8 @@ std::optional<std::function<void()>> ClientActionLog::treatAction(std::string co
         }
         uint32_t action_id = decodeUint32(message, 1);
 
+        std::cout << "action id: " << action_id << std::endl;
+
         if (action_id >= _handlers.size()) {
             std::cout << "invalid action id: " << action_id << std::endl;
             return std::nullopt;
@@ -63,8 +65,8 @@ std::optional<std::function<void()>> ClientActionLog::treatAction(std::string co
     }
     if (message[0] == 2) {
         return std::optional<std::function<void()>>([this, player_id](){
-            std::cout << "update screen to " << player_id << std::endl;
-            _update_screen(player_id);
+            std::cout << "player need to be updated: " << player_id << std::endl;
+            this->_update_screen(player_id);
         });
     }
     return std::nullopt;

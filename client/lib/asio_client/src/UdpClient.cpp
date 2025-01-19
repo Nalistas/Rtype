@@ -10,9 +10,22 @@ UdpClient::UdpClient(const std::string &ip, const std::string &port)
     _socket.open(asio::ip::udp::v4());
 }
 
+UdpClient::UdpClient()
+    : _socket(_io_service)
+{
+}
+
 UdpClient::~UdpClient() {
     // Fermer la socket proprement
     _socket.close();
+}
+
+void UdpClient::setServer(const std::string &ip, const std::string &port)
+{
+    asio::ip::udp::resolver resolver(_io_service);
+    _results = resolver.resolve(asio::ip::udp::v4(), ip, port);
+    _endpoint = *_results.begin();
+    _socket.open(asio::ip::udp::v4());
 }
 
 void UdpClient::send(const std::vector<uint8_t> &message) {
