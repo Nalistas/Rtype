@@ -21,7 +21,6 @@ RType::~RType()
 void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
 {
     _registry = reg;
-    // createBackground();
     _registry->register_component<Position>();
     _registry->register_component<Life>();
     _registry->register_component<Speed>();
@@ -29,35 +28,19 @@ void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
     _registry->register_component<Hitbox>();
 }
 
-// void RType::createBackground(void)
-// {
-//     ecs::entity newBackground = _registry->create_entity();
-//     rtype::Background bg;
-//     bg.path = "../bg.png";
-//     bg.speed = 1;
-//     bg.direction = rtype::Background::Direction::LEFT;
-//     bg.loop = true;
-
-//     // _registry->emplace_component<Background>(newBackground, bg);
-//     _backgroundChanger(
-// }
-
-
 std::vector<rtype::ClientAction> RType::getClientActionHandlers(void) const
 {
     return std::vector<rtype::ClientAction>({
-        {90, 1, std::make_unique<UpHandlers>()},
-        {83, 1, std::make_unique<DownHandlers>()},
-        {81, 1, std::make_unique<LeftHandlers>()},
-        {68, 1, std::make_unique<RightHandlers>()}
+        {90, 1, std::make_unique<UpHandlers>(_registry)},
+        {83, 1, std::make_unique<DownHandlers>(_registry)},
+        {81, 1, std::make_unique<LeftHandlers>(_registry)},
+        {68, 1, std::make_unique<RightHandlers>(_registry)}
+        // {32, 1, std::make_unique<ShootHandlers>()}
     });
 }
 
 std::vector<rtype::Background> RType::getBackgrounds(void) const
 {
-    // return std::vector<rtype::Background>({
-    //     {.path("../bg.png"), .speed = 1, .direction = 0, .loop = true, .resize = true, .type = 1}
-    // });
     return std::vector<rtype::Background>({
         rtype::Background{std::string("../bg.png"), 1, rtype::Background::LEFT, true, true, rtype::Background::MOVING}
     });
@@ -65,7 +48,11 @@ std::vector<rtype::Background> RType::getBackgrounds(void) const
 
 std::vector<rtype::Sprite> RType::getSprites(void) const
 {
-    return std::vector<rtype::Sprite>();
+    return std::vector<rtype::Sprite>({
+        rtype::Sprite{std::string("../ship.png"), 200, 200, 0, 0, 1, 0, 20, 20},
+        rtype::Sprite{std::string("../enemy.png"), 200, 200, 0, 0, 1, 0, 20, 20},
+        rtype::Sprite{std::string("../bullet.png"), 200, 200, 0, 0, 1, 0, 20, 20}
+    });
 }
 
 std::vector<std::string> RType::getMusics(void) const
@@ -111,6 +98,9 @@ std::size_t RType::createPlayer(void)
     for (int i = 0; i < 4  ; i++) {
         if (_players.find(i) == _players.end()) {
             _players[i] = this->_registry->create_entity();
+            _registry->get_components<Position>()[_players[i]] = Position{0, 0};
+            // _registry->emplace_component<Position>(_players[i], Position{0, 0});
+            _creater(i, _players[i], 1, 0, 0, 0, 0);
             return i;
         }
     }
@@ -119,6 +109,9 @@ std::size_t RType::createPlayer(void)
 
 void RType::deletePlayer(std::size_t player_id)
 {
+    ecs::entity playerEntity = _registry->entity_from_index(player_id);
+    _registry->delete_entity(playerEntity);
+    _deleter(player_id, player_id);
 }
 
 rtype::IGame::ScreenUpdater RType::getScreenUpdater(void)
@@ -135,12 +128,11 @@ rtype::IGame::ScreenUpdater RType::getScreenUpdater(void)
         if (this->_backgroundChanger) {
             this->_backgroundChanger(player_id, 0);
         }
-        
     };
 }
 
 std::string RType::getName(void) const
 {
-    return "R";
+    return "R-Type";
 }
 
