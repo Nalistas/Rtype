@@ -57,7 +57,7 @@ class RType : public rtype::IGame {
         MusicChanger _musicChanger;
         ScreenUpdater _screenUpdater;
 
-        std::unordered_map<std::size_t, ecs::entity> _players;
+        std::unordered_map<std::size_t, std::size_t> _players;
         std::shared_ptr<ecs::registry> _registry;
 };
 

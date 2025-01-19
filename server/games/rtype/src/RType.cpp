@@ -98,8 +98,8 @@ std::size_t RType::createPlayer(void)
     for (int i = 0; i < 4  ; i++) {
         if (_players.find(i) == _players.end()) {
             _players[i] = this->_registry->create_entity();
-            _registry->get_components<Position>()[_players[i]] = Position{0, 0};
-            // _registry->emplace_component<Position>(_players[i], Position{0, 0});
+            std::cout << "player " << i << " created" << std::endl;
+            _registry->get_components<Position>().insert_at(_players[i], Position{0, 0});
             _creater(i, _players[i], 1, 0, 0, 0, 0);
             return i;
         }
