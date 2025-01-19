@@ -28,6 +28,7 @@ target_sources(r-type_client
         src/Login.cpp
         src/Background.cpp
         src/GraphicsManager.cpp
+        src/Game.cpp
 )
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")

@@ -88,7 +88,7 @@ class RoomsCore {
 
         std::list<std::pair<std::shared_ptr<asio::ip::tcp::socket>, Client>> getClients(const uint8_t room);
 
-        std::string get_local_ip();
+        std::vector<uint8_t> get_local_ip();
 
         int getClientId(const uint8_t room, const std::shared_ptr<asio::ip::tcp::socket> &clientt);
 

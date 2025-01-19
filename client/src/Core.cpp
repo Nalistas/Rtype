@@ -13,6 +13,7 @@
 #include "Window.hpp"
 #include "TextureManager.hpp"
 #include "RayText.hpp"
+#include "Game.hpp"
 
 #include <list>
 #include <functional>
@@ -72,9 +73,10 @@ Core::Core(std::string ip, std::string port, std::string username) :
     };
     _instructions[START_GAME] = [this](std::vector<uint8_t> tcpResponse) {
         _startGame = true;
-        std::string ip(reinterpret_cast<char*>(tcpResponse.data() + 1));
-        int port = *(int *)(tcpResponse.data() + 5);
-        _udpClient.setServer(ip, std::to_string(port));
+        std::cout << "Start game" << std::endl;
+        
+        Game game(this->_actions, this->_sprites, this->_backgrounds, this->_musics, this->_udpClient, this->_window); // ICI
+        game.run();
     };
     _instructions[LOAD_SPRITE] = [this](std::vector<uint8_t> tcpResponse) {
         load_sprite(tcpResponse);

@@ -106,10 +106,6 @@ class Core {
 
         void manageGetReady();
 
-        void composeHome(void);
-
-        void composeRoomCreation(void);
-
     private:
         raylib::Window _window;
         TcpClient _tcpClient;

@@ -126,13 +126,16 @@ int RoomsCore::find_available_port(unsigned short start_port)
 
 void RoomsCore::launchGame()
 {
+    if (this->_clientsToLaunch.empty() && this->_roomsToLaunch.empty())
+        return;
     for (auto &client : this->_clientsToLaunch) {
         this->_clients.erase(client.first);
     }
     for (auto &room : this->_roomsToLaunch) {
         this->_rooms.erase(room.first);
     }
-    std::string ip = get_local_ip();
+    std::vector<uint8_t> ip = get_local_ip();
+
 
     for (auto &room : this->_roomsToLaunch) {
         auto game = room.second.getGameName();
@@ -144,13 +147,25 @@ void RoomsCore::launchGame()
         std::string game_path = this->_gameNameToPath[game];
         std::vector<std::string> vec = {_executable_name, "-udp", std::to_string(port), game_path};
         _my_process.execProcess(vec);
+        std::cout << "Game launched" << std::endl;
 
 
         sendGameRessourcesToTheRoom(game, room.first);
-        std::string port_to_string = std::string(1, static_cast<char>(port / 100)) + std::string(1, static_cast<char>(port % 100));
-        for (auto &client : getClients(room.first)) {
+        std::vector<uint8_t> data(8);
+
+        data[0] = static_cast<uint8_t>(TcpProtocol::INSTRUCTIONS_SERVER_TO_CLIENT::START_GAME);
+        data[1] = static_cast<uint8_t>(ip[0]);
+        data[2] = static_cast<uint8_t>(ip[1]);
+        data[3] = static_cast<uint8_t>(ip[2]);
+        data[4] = static_cast<uint8_t>(ip[3]);
+        data[5] = static_cast<uint8_t>(port / 100);
+        data[6] = static_cast<uint8_t>(port % 100);
+        data[7] = static_cast<uint8_t>(room.first);
+
+        for (auto &client : this->_clientsToLaunch) {
+            if (client.second.getRoomId() != room.first)
+                continue;
             int client_id = getClientId(room.first, client.first);
-            std::vector<uint8_t> data = {TcpProtocol::INSTRUCTIONS_SERVER_TO_CLIENT::START_GAME, static_cast<uint8_t>(ip[0]), static_cast<uint8_t>(ip[1]), static_cast<uint8_t>(ip[2]), static_cast<uint8_t>(ip[3]), static_cast<uint8_t>(port_to_string[0]), static_cast<uint8_t>(port_to_string[1]), static_cast<uint8_t>(client_id)};
             _tcpServer.send(client.first, data);
         }
     }
@@ -200,7 +215,7 @@ std::list<std::pair<std::shared_ptr<asio::ip::tcp::socket>, Client>> RoomsCore::
     return clients;
 }
 
-std::string RoomsCore::get_local_ip() 
+std::vector<uint8_t> RoomsCore::get_local_ip() 
 {
     try {
         asio::io_context io_context;
@@ -212,15 +227,17 @@ std::string RoomsCore::get_local_ip()
         for (const auto& endpoint : endpoints) {
             if (endpoint.endpoint().address().is_v4()) {
                 auto ip = endpoint.endpoint().address().to_string();
-                std::string transformed_ip;
+                std::vector<uint8_t> transformed_ip(4);
                 size_t pos = 0;
                 size_t prev_pos = 0;
+                std::size_t count = 0;
                 while ((pos = ip.find('.', prev_pos)) != std::string::npos) {
                     int segment = std::stoi(ip.substr(prev_pos, pos - prev_pos));
-                    transformed_ip += static_cast<char>(segment);
+                    transformed_ip[count]= static_cast<uint8_t>(segment);
                     prev_pos = pos + 1;
+                    count++;
                 }
-                transformed_ip += static_cast<char>(std::stoi(ip.substr(prev_pos)));       
+                transformed_ip[count]= static_cast<uint8_t>(std::stoi(ip.substr(prev_pos)));       
                 return transformed_ip;
             }
         }

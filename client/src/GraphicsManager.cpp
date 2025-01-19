@@ -84,7 +84,7 @@ void GraphicsManager::display()
         _clearElements();
         _mustClear = false;
     }
-    // _window.start_drawing();
+    _window.start_drawing();
     for (auto &background : _backgrounds)
         background.second.draw();
     for (auto &sprite : _sprites)
@@ -93,7 +93,7 @@ void GraphicsManager::display()
         music.second.play();
     for (auto &text : _texts)
         text.second.draw();
-    // _window.end_drawing();
+    _window.end_drawing();
 }
 
 uint64_t GraphicsManager::addSprite(raylib::Sprite const &sprite)
