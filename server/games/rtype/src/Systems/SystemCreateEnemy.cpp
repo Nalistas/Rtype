@@ -37,6 +37,6 @@ void SystemCreateEnemy::operator()(ecs::registry &registry)
     registry.get_components<Life>().insert_at(enemy, Life{5});
     registry.get_components<SIDE>().insert_at(enemy, SIDE::ENEMY);
     registry.get_components<Damage>().insert_at(enemy, Damage{1});
-    
+
     // broadcast to all players
 }

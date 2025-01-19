@@ -52,6 +52,7 @@ void DownHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned
     if (player.has_value()) {
         player.value().y += 1;
     }
+    
 }
 
 LeftHandlers::LeftHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}

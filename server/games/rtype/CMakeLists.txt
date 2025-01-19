@@ -7,6 +7,7 @@ add_library(${PROJECT_NAME} SHARED
     src/Systems/SystemMovement.cpp
     src/Systems/SystemCreateEnemy.cpp
     src/Systems/SystemCollision.cpp
+    src/Systems/SystemBroadcast.cpp
 )
 
 target_include_directories(${PROJECT_NAME}

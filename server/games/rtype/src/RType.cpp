@@ -12,6 +12,7 @@
 #include "Systems/SystemMovement.hpp"
 #include "Systems/SystemCollision.hpp"
 #include "Systems/SystemCreateEnemy.hpp"
+#include "Systems/SystemBroadcast.hpp"
 
 
 RType::RType()
@@ -34,8 +35,7 @@ void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
     _registry->add_system<Position, Speed>(SystemMovement());
     _registry->add_system<Position, Hitbox, Damage, Life, SIDE>(SystemCollision(_deleter));
     _registry->add_system<>(SystemCreateEnemy(_creater));
-
-
+    _registry->add_system<Speed, Position>(SystemBroadcast(_speedUpdater, _positionUpdater, _players));
 }
 
 std::vector<rtype::ClientAction> RType::getClientActionHandlers(void) const
@@ -144,7 +144,7 @@ rtype::IGame::ScreenUpdater RType::getScreenUpdater(void)
             }
         }
         if (this->_creater) {
-            _creater(0, _players[0], 0, 100, 100, 1, 0);
+            _creater(0, _players[player_id], 0, 100, 100, 1, 0);
         }
         // if (this->_backgroundChanger) {
         //     this->_backgroundChanger(player_id, 0);
