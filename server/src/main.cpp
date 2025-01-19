@@ -52,31 +52,20 @@ class NoneSystem : public ecs::isystem<> {
 
 int main(int ac, char **av)
 {
-    // if (ac != 1) {
-    //     std::cout << "OTHER PROCESS !!!" << std::endl;
-    //     while (1) {
-    //         std::cout << "COUCOU HUGO, JE VAIS MANGER !!! A DEMAIN" << std::endl;
-    //     }
-    //     return 0;
-    // }
-    // process::Process my_process;
-    // std::vector<std::string> vec = {"./build/r-type_server.exe", "coucou"};
-    // my_process.execProcess(vec);
-    // Sleep(5000);
-
-    // return 0;
-
     std::vector<std::string> args(ac);
     ServerLauncher launcher;
 
     for (int i = 0; i < ac; ++i) {
         args[i] = std::string(av[i]);
     }
-    if (args.size() > 3) {
+    std::cout << "args size : " << args.size() << std::endl;
+    for (auto &arg : args) {
+        std::cout << arg << std::endl;
+    }
+    if (args.size() > 4) {
         std::cerr << "Error : invalid number of argument" << std::endl;
         return 84;
     }
-
     if (args.size() == 4) {
         std::string port_string = args[2];
         std::string gameName = args[3];
@@ -87,7 +76,9 @@ int main(int ac, char **av)
             std::cerr << "Error :" << e.what() << std::endl;
             return 84;
         }
-        if (args[1] == "udp") {
+        if (args[1] == "-udp") {
+            std::cout << "++++++++++++++++++++++++++++++" << std::endl;
+            std::cout << "UDP" << std::endl;
             launcher.LaunchUdpServer(port_string, gameName);
         }
     } else if (args.size() <= 2) {
@@ -102,18 +93,5 @@ int main(int ac, char **av)
         }
     }
 
-    // GameLauncher launcher("./libr-type.so");
-    // std::list<GameLauncher::Player> players = {{"player1", "127.0.0.1"}, {"player2", "127.0.0.1"}, {"player3", "127.0.0.1"}};
-    // launcher.launch(players);
-
-    // RoomsCore core("12345");
-    // core.run();
-
-/*
-    ecs::registry registry;
-
-    // RoomsCore core("12345");
-    // core.run();
-    */
     return 0;
 }

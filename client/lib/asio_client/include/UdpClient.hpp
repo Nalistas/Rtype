@@ -21,6 +21,12 @@ class UdpClient {
          */
         UdpClient(const std::string &ip, const std::string &port);
 
+
+        /**
+         * @brief Construct a new Udp Client object
+         */
+        UdpClient();
+
         /**
          * @brief Destroy the Udp Client object
          */
@@ -43,6 +49,14 @@ class UdpClient {
          * @return true if there is data available, false otherwise
          */
         bool hasData();
+
+        /**
+         * @brief Set the Server object
+         * @param ip the ip of the server
+         * @param port the port of the server
+         */
+        void setServer(const std::string &ip, const std::string &port);
+
 
     private:
         asio::io_service _io_service;

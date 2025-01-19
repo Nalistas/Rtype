@@ -6,6 +6,7 @@
 */
 
 #include "ServerLauncher.hpp"
+#include "GameLauncher.hpp"
 #include "RoomsCore.hpp"
 
 ServerLauncher::ServerLauncher()
@@ -18,8 +19,9 @@ ServerLauncher::~ServerLauncher()
 
 void ServerLauncher::LaunchUdpServer(std::string const &port, std::string const &gameName)
 {
-    (void)port;
-    (void)gameName;
+    GameLauncher core(gameName, std::stoi(port));
+    // GameLauncher core(gameName, gameport);
+    core.launch();
 }
 
 void ServerLauncher::LaunchTcpServer(std::string const &port)

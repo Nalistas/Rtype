@@ -37,7 +37,7 @@ class GameLauncher {
          * @brief Construct a new Game Launcher object
          * @param game_path the path to the game executable, which is a shared library
          */
-        GameLauncher(std::string const &game_path);
+        GameLauncher(std::string const &game_path, int port);
 
         /**
          * @brief Destroy the Game Launcher object
@@ -66,7 +66,7 @@ class GameLauncher {
          * @brief Launch the game
          * @param players the list of players
          */
-        void launch(std::list<Player> const &players);
+        void launch();
 
         /**
          * @brief Get the Server Actions object

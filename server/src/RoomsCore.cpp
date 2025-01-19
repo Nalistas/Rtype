@@ -133,34 +133,35 @@ void RoomsCore::launchGame()
         this->_rooms.erase(room.first);
     }
 
-    // process::Process my_process;
-    // for (auto &room : this->_roomsToLaunch) {
-    //     auto game = room.second.getGameName();
-    //     if (std::find(this->_gameList.begin(), this->_gameList.end(), game) == this->_gameList.end()) {
-    //         std::cerr << "Game not found" << std::endl;
-    //         continue;
-    //     }
-    //     int port = find_available_port(1024);
-    //     std::string game_path = this->_gameNameToPath[game];
+    process::Process my_process;
+    for (auto &room : this->_roomsToLaunch) {
+        auto game = room.second.getGameName();
+        if (std::find(this->_gameList.begin(), this->_gameList.end(), game) == this->_gameList.end()) {
+            std::cerr << "Game not found" << std::endl;
+            continue;
+        }
+        int port = find_available_port(1024);
+        std::string game_path = this->_gameNameToPath[game];
 
-    //     #ifdef _WIN32
-    //         std::vector<std::string> vec = {"./r-type_server.exe", "-udp", std::to_string(port), game_path};
-    //     #else
-    //         std::vector<std::string> vec = {"./r-type_server", "-udp", std::to_string(port), game_path};
-    //     #endif
+        #ifdef _WIN32
+            std::vector<std::string> vec = {"./r-type_server.exe", "-udp", std::to_string(port), game_path};
+        #else
+            std::vector<std::string> vec = {"./r-type_server", "-udp", std::to_string(port), game_path};
+        #endif
 
-    //     my_process.execProcess(vec);
-    //     sendGameRessourcesToTheRoom(game, room.first);
+        my_process.execProcess(vec);
+        sendGameRessourcesToTheRoom(game, room.first);
 
-    //     std::string ip = get_local_ip();
-    //     std::string port_to_string = std::string(1, static_cast<char>(port / 100)) + std::string(1, static_cast<char>(port % 100));
-    //     for (auto &client : getClients(room.first)) {
-    //         int client_id = getClientId(room.first, client.first);
-    //         std::vector<uint8_t> data = {TcpProtocol::INSTRUCTIONS_SERVER_TO_CLIENT::START_GAME, static_cast<uint8_t>(ip[0]), static_cast<uint8_t>(ip[1]), static_cast<uint8_t>(ip[2]), static_cast<uint8_t>(ip[3]), static_cast<uint8_t>(port_to_string[0]), static_cast<uint8_t>(port_to_string[1]), static_cast<uint8_t>(client_id)};
-    //         _clientsToLaunch.erase(client.first);
-    //     }
-    //     _roomsToLaunch.erase(room.first);
-    // }
+        std::string ip = get_local_ip();
+        std::string port_to_string = std::string(1, static_cast<char>(port / 100)) + std::string(1, static_cast<char>(port % 100));
+        for (auto &client : getClients(room.first)) {
+            int client_id = getClientId(room.first, client.first);
+            std::vector<uint8_t> data = {TcpProtocol::INSTRUCTIONS_SERVER_TO_CLIENT::START_GAME, static_cast<uint8_t>(ip[0]), static_cast<uint8_t>(ip[1]), static_cast<uint8_t>(ip[2]), static_cast<uint8_t>(ip[3]), static_cast<uint8_t>(port_to_string[0]), static_cast<uint8_t>(port_to_string[1]), static_cast<uint8_t>(client_id)};
+            _tcpServer.send(client.first, data);
+            _clientsToLaunch.erase(client.first);
+        }
+        _roomsToLaunch.erase(room.first);
+    }
 }
 
 int RoomsCore::getClientId(const uint8_t room, const std::shared_ptr<asio::ip::tcp::socket> &clientt)
@@ -179,7 +180,9 @@ void RoomsCore::sendGameRessourcesToTheRoom(std::string game, const uint8_t  roo
 {
     auto ressources = this->_ressources.find(game)->second.getRessourcess();
     for (auto &client: getClients(room)) {
+        std::cout << "Sending game ressources" << std::endl;
         for (auto &ressource : ressources) {
+            std::cout << "Sending ressource to client" << std::endl;
             _tcpServer.send(client.first, ressource);
         }
     }

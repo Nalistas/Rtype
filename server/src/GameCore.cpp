@@ -22,11 +22,18 @@ GameCore::~GameCore()
 void GameCore::run(void)
 {
     while (true) {
+        // std::cout << "running game" << std::endl;
         auto actions = _get_actions();
+
+        // std::cout << "actions size: " << actions.size() << std::endl;
 
         for (auto &action : actions) {
             action();
         }
+
+        // std::cout << "running systems" << std::endl;
         _registry->run_systems();
+
+        std::cout << "running systems done" << std::endl;
     }
 }

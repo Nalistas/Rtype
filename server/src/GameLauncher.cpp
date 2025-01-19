@@ -9,7 +9,7 @@
 #include "RessourcesManager.hpp"
 #include "GameCore.hpp"
 
-GameLauncher::GameLauncher(std::string const &game_path)
+GameLauncher::GameLauncher(std::string const &game_path, int port) : _server(port)
 {
     _registry = std::make_shared<ecs::registry>();
     _loader.open(game_path);
@@ -26,6 +26,7 @@ GameLauncher::GameLauncher(std::string const &game_path)
         std::cout << "handler nb: " << i << std::endl;
         i++;
     }
+    std::cout << "///////////////////////////" << std::endl;
 }
 
 GameLauncher::~GameLauncher()
@@ -65,6 +66,10 @@ GameCore::ServerActions GameLauncher::getServerActions()
             printf("%02hhd ", it);
         }
         printf("\n");
+        std::string endpoint_to_string = endpoint.address().to_string() + std::to_string(endpoint.port());
+        if (_players.find(endpoint_to_string) == _players.end()) {
+            this->_players[endpoint_to_string] = this->_game->createPlayer();
+        }
         auto action = this->_client_action_log->treatAction(endpoint.address().to_string(), data);
         if (action.has_value()) {
             std::cout << "action found !" << std::endl;
@@ -76,18 +81,17 @@ GameCore::ServerActions GameLauncher::getServerActions()
     return actions;
 }
 
-void GameLauncher::launch(std::list<Player> const &players)
+void GameLauncher::launch()
 {
     this->_game->initGameRegistry(this->_registry);
     auto get_action = [this]() { return this->getServerActions(); };
     auto screen_updater = this->_game->getScreenUpdater();
 
-    for (auto const &player : players) {
-        std::size_t player_id = this->_game->createPlayer();
-        this->_players[player.ip] = player_id;
-    }
+    // for (auto const &player : players) {
+    //     std::size_t player_id = this->_game->createPlayer();
+    //     this->_players[player.ip] = player_id;
+    // }
     this->_client_action_log = std::make_unique<ClientActionLog>(this->_handlers, this->_players, screen_updater);
-
     GameCore core(this->_registry, get_action);
     core.run();
 }

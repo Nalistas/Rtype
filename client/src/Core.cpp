@@ -27,7 +27,8 @@ Core::Core(std::string ip, std::string port, std::string username) :
     _window(800, 600),
     _tcpClient(ip, port),
     _roomId(0),
-    _startGame(false)
+    _startGame(false),
+    _udpClient() // pas sur
 {
     _buttons_room.emplace(
         raylib::RayText("Exit room", 10, 200, 20, raylib::BLUE),
@@ -69,8 +70,10 @@ Core::Core(std::string ip, std::string port, std::string username) :
         }
     };
     _instructions[START_GAME] = [this](std::vector<uint8_t> tcpResponse) {
-        (void)tcpResponse;
         _startGame = true;
+        std::string ip(reinterpret_cast<char*>(tcpResponse.data() + 1));
+        int port = *(int *)(tcpResponse.data() + 5);
+        _udpClient.setServer(ip, std::to_string(port));
     };
     _instructions[LOAD_SPRITE] = [this](std::vector<uint8_t> tcpResponse) {
         load_sprite(tcpResponse);

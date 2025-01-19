@@ -12,6 +12,7 @@
 #include "Sprite.hpp"
 #include "RayMusic.hpp"
 #include "Background.hpp"
+#include "UdpClient.hpp"
 
 #include <vector>
 #include <list>
@@ -106,6 +107,7 @@ class Core {
     private:
         raylib::Window _window;
         TcpClient _tcpClient;
+        UdpClient _udpClient;
         std::vector<ClientRoom> _rooms;
         std::list<std::string> _games;
         // std::map<uint8_t, ClientRoom> _roomsMap;
