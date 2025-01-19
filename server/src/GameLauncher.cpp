@@ -69,7 +69,9 @@ GameCore::ServerActions GameLauncher::getServerActions()
         std::cout << "endpoint_to_string: " << endpoint_to_string << std::endl;
         if (_players.find(endpoint_to_string) == _players.end()) {
             std::cout << "new player added" << std::endl;
-            this->_players[endpoint_to_string] = this->_game->createPlayer();
+            auto playerId = this->_game->createPlayer();
+            this->_players[endpoint_to_string] = playerId;
+            this->_players_endpoints.emplace(playerId, endpoint);
         }
         auto action = this->_client_action_log->treatAction(endpoint_to_string, data);
         if (action.has_value()) {
@@ -82,16 +84,98 @@ GameCore::ServerActions GameLauncher::getServerActions()
     return actions;
 }
 
+void GameLauncher::speedUpdater(std::size_t player_id, std::size_t e_id, uint8_t speed_x, uint8_t speed_y)
+{
+    std::vector<uint8_t> data(5);
+
+    data[0] = 4;
+    data[1] = (e_id / 256) && 0xFF;
+    data[2] = e_id && 0xFF;
+    data[3] = speed_x;
+    data[4] = speed_y;
+    this->_server.sendTo(_players_endpoints.at(player_id), data);
+}
+
+void GameLauncher::positionUpdater(std::size_t player_id, std::size_t e_id, int x, int y)
+{
+    uint16_t e_id16 = static_cast<uint16_t>(e_id);
+    std::vector<uint8_t> data(11);
+
+    data[0] = 5;
+    data[1] = (e_id16 / 256) && 0xFF;
+    data[2] = e_id16 && 0xFF;
+    data[3] = (x / 16777216) && 0xFF;
+    data[4] = (x / 65536) && 0xFF;
+    data[5] = (x / 256) && 0xFF;
+    data[6] = x && 0xFF;
+    data[7] = (y / 16777216) && 0xFF;
+    data[8] = (y / 65536) && 0xFF;
+    data[9] = (y / 256) && 0xFF;
+    data[10] = y && 0xFF;
+    this->_server.sendTo(_players_endpoints.at(player_id), data);
+}
+
+void GameLauncher::creater(std::size_t player_id, std::size_t e_id, std::size_t e_g_id, int x, int y, uint8_t speed_x, uint8_t speed_y)
+{
+    std::vector<uint8_t> data(14);
+    data[0] = 2;
+    data[1] = e_g_id && 0xFF;
+    data[2] = (e_id / 256) && 0xFF;
+    data[3] = e_id && 0xFF;
+    data[4] = (x / 16777216) && 0xFF;
+    data[5] = (x / 65536) && 0xFF;
+    data[6] = (x / 256) && 0xFF;
+    data[7] = x && 0xFF;
+    data[8] = (y / 16777216) && 0xFF;
+    data[9] = (y / 65536) && 0xFF;
+    data[10] = (y / 256) && 0xFF;
+    data[11] = y && 0xFF;
+    data[12] = speed_x;
+    data[13] = speed_y;
+    this->_server.sendTo(_players_endpoints.at(player_id), data);
+}
+
+void GameLauncher::Deleter(std::size_t player_id, std::size_t e_id)
+{
+    std::vector<uint8_t> data(3);
+    data[0] = 3;
+    data[1] = (e_id / 256) && 0xFF;
+    data[2] = e_id && 0xFF;
+    this->_server.sendTo(_players_endpoints.at(player_id), data);
+}
+
+void GameLauncher::BackgroundChanger(std::size_t client_id, std::size_t background_id)
+{
+    std::vector<uint8_t> data(3);
+    data[0] = 1;
+    data[1] = (background_id / 256) && 0xFF;
+    data[2] = background_id && 0xFF;
+    this->_server.sendTo(_players_endpoints.at(client_id), data);
+}
+
+void GameLauncher::MusicChanger(std::size_t client_id, std::size_t music_id)
+{
+    std::vector<uint8_t> data(3);
+    data[0] = 6;
+    data[1] = (music_id / 256) && 0xFF;
+    data[2] = music_id && 0xFF;
+    this->_server.sendTo(_players_endpoints.at(client_id), data);
+}
+
 void GameLauncher::launch()
 {
+    this->_game->setCreate([this](std::size_t player_id, std::size_t e_id, std::size_t e_g_id, int x, int y, uint8_t speed_x, uint8_t speed_y) {
+        this->creater(player_id, e_id, e_g_id, x, y, speed_x, speed_y);
+    });
+    this->_game->setDelete([this](std::size_t player_id, std::size_t e_id) { this->Deleter(player_id, e_id); });
+    this->_game->setUpdatePosition([this](std::size_t player_id, std::size_t e_id, int x, int y) { this->positionUpdater(player_id, e_id, x, y); });
+    this->_game->setUpdateSpeed([this](std::size_t player_id, std::size_t e_id, uint8_t speed_x, uint8_t speed_y) { this->speedUpdater(player_id, e_id, speed_x, speed_y); });
+    this->_game->setUseBackground([this](std::size_t client_id, std::size_t background_id) { this->BackgroundChanger(client_id, background_id); });
+    this->_game->setUseMusic([this](std::size_t client_id, std::size_t music_id) { this->MusicChanger(client_id, music_id); });
     this->_game->initGameRegistry(this->_registry);
     auto screen_updater = this->_game->getScreenUpdater();
     auto get_action = [this]() { return this->getServerActions(); };
 
-    // for (auto const &player : players) {
-    //     std::size_t player_id = this->_game->createPlayer();
-    //     this->_players[player.ip] = player_id;
-    // }
     this->_client_action_log = std::make_unique<ClientActionLog>(this->_handlers, this->_players, screen_updater);
     GameCore core(this->_registry, get_action, screen_updater);
     core.run();
