@@ -11,6 +11,7 @@
 #include "RayText.hpp"
 #include "Background.hpp"
 #include <unordered_map>
+#include <chrono>
 
 #ifndef GRAPHICSMANAGER_HPP_
     #define GRAPHICSMANAGER_HPP_
@@ -59,6 +60,8 @@ class GraphicsManager {
 
         bool _is_keyboard_binded_to_text = false;
         uint64_t _keyboard_bound_id = 0;
+
+        std::chrono::time_point<std::chrono::high_resolution_clock> _last_frame_time;
 
         std::unordered_map<uint64_t, raylib::Sprite> _sprites;
         std::unordered_map<uint64_t, raylib::RayMusic> _musics;

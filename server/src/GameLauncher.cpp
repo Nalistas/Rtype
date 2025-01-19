@@ -86,6 +86,9 @@ GameCore::ServerActions GameLauncher::getServerActions()
 
 void GameLauncher::speedUpdater(std::size_t player_id, std::size_t e_id, uint8_t speed_x, uint8_t speed_y)
 {
+    if (_players_endpoints.find(player_id) == _players_endpoints.end()) {
+        return;
+    }
     std::vector<uint8_t> data(5);
 
     data[0] = 4;
@@ -98,6 +101,9 @@ void GameLauncher::speedUpdater(std::size_t player_id, std::size_t e_id, uint8_t
 
 void GameLauncher::positionUpdater(std::size_t player_id, std::size_t e_id, int x, int y)
 {
+    if (_players_endpoints.find(player_id) == _players_endpoints.end()) {
+        return;
+    }
     uint16_t e_id16 = static_cast<uint16_t>(e_id);
     std::vector<uint8_t> data(11);
 
@@ -117,6 +123,9 @@ void GameLauncher::positionUpdater(std::size_t player_id, std::size_t e_id, int 
 
 void GameLauncher::creater(std::size_t player_id, std::size_t e_id, std::size_t e_g_id, int x, int y, uint8_t speed_x, uint8_t speed_y)
 {
+    if (_players_endpoints.find(player_id) == _players_endpoints.end()) {
+        return;
+    }
     std::vector<uint8_t> data(14);
     data[0] = 2;
     data[1] = e_g_id && 0xFF;
@@ -137,6 +146,9 @@ void GameLauncher::creater(std::size_t player_id, std::size_t e_id, std::size_t 
 
 void GameLauncher::Deleter(std::size_t player_id, std::size_t e_id)
 {
+    if (_players_endpoints.find(player_id) == _players_endpoints.end()) {
+        return;
+    }
     std::vector<uint8_t> data(3);
     data[0] = 3;
     data[1] = (e_id / 256) && 0xFF;
@@ -144,22 +156,28 @@ void GameLauncher::Deleter(std::size_t player_id, std::size_t e_id)
     this->_server.sendTo(_players_endpoints.at(player_id), data);
 }
 
-void GameLauncher::BackgroundChanger(std::size_t client_id, std::size_t background_id)
+void GameLauncher::BackgroundChanger(std::size_t player_id, std::size_t background_id)
 {
+    if (_players_endpoints.find(player_id) == _players_endpoints.end()) {
+        return;
+    }
     std::vector<uint8_t> data(3);
     data[0] = 1;
     data[1] = (background_id / 256) && 0xFF;
     data[2] = background_id && 0xFF;
-    this->_server.sendTo(_players_endpoints.at(client_id), data);
+    this->_server.sendTo(_players_endpoints.at(player_id), data);
 }
 
-void GameLauncher::MusicChanger(std::size_t client_id, std::size_t music_id)
+void GameLauncher::MusicChanger(std::size_t player_id, std::size_t music_id)
 {
+    if (_players_endpoints.find(player_id) == _players_endpoints.end()) {
+        return;
+    }
     std::vector<uint8_t> data(3);
     data[0] = 6;
     data[1] = (music_id / 256) && 0xFF;
     data[2] = music_id && 0xFF;
-    this->_server.sendTo(_players_endpoints.at(client_id), data);
+    this->_server.sendTo(_players_endpoints.at(player_id), data);
 }
 
 void GameLauncher::launch()

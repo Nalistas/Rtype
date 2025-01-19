@@ -140,20 +140,39 @@ void Core::load_background(std::vector<uint8_t> tcpResponse)
 {
     // 4[id du bg][Speed] [Direction (x = 1, y = 2)] [s'il faut resize (0/1)] [si le background se répete (0/1)] [Type de mouvement (1 : None, 2 : Parallax, 3 : deplacement continue)] [Path to image]
     int id = *(int *)(tcpResponse.data() + 1);
-    float speed = *(float *)(tcpResponse.data() + 5);
+    std::cout << "Loading background " << id << std::endl;
+    uint8_t speed = tcpResponse[5];
     int direction = tcpResponse[6];
     bool resize = tcpResponse[7];
     bool repeat = tcpResponse[8];
     int moveType = tcpResponse[9];
     std::string path(reinterpret_cast<char*>(tcpResponse.data() + 10));
 
+    std::cout << static_cast<int>(speed) << std::endl;
     Background background(path, _window.get_size().first, _window.get_size().second);
     background.setSpeed(speed);
-    background.setMoveType(static_cast<Background::BACKGROUND_MOVE_TYPE>(moveType));
+    std::cout << "background speed" << background.getSpeed() << std::endl;
+    if (moveType == 2) {
+        std::cout << "Parallax" << std::endl;
+        background.setMoveType(Background::BACKGROUND_MOVE_TYPE::PARALLAX);
+    } else if (moveType == 1) {
+        std::cout << "Move" << std::endl;
+        if (direction == 0 || direction == 2) {
+            std::cout << "Move X" << std::endl;
+            background.setMoveType(Background::BACKGROUND_MOVE_TYPE::MOVE_X);
+        } else {
+            std::cout << "Move Y" << std::endl;
+            background.setMoveType(Background::BACKGROUND_MOVE_TYPE::MOVE_Y);
+        }
+    } else {
+        std::cout << "None: " << static_cast<int>(moveType) << std::endl;
+        background.setMoveType(Background::BACKGROUND_MOVE_TYPE::NONE);
+    }
     background.loop(repeat);
-    background.resize_x(1, resize);
-    background.resize_y(1, resize);
+    if (resize)
+        background.auto_resize_x();
     _backgrounds[id] = background;
+
 
     checkIfFileExist(path);
 }

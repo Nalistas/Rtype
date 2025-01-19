@@ -145,7 +145,7 @@ void Background::move(std::size_t timestamp)
     float speed_x = _speed * (_move_type == Background::BACKGROUND_MOVE_TYPE::MOVE_X ? 1 : 0);
     float speed_y = _speed * (_move_type == Background::BACKGROUND_MOVE_TYPE::MOVE_Y ? 1 : 0);
 
-    _background.set_position(pos.x - speed_x * timestamp, pos.y - speed_y * timestamp);
+    _background.set_position(pos.x - ((speed_x * timestamp) / 20), pos.y - ((speed_y * timestamp) / 20));
 
     pos = _background.get_position();
 
@@ -209,6 +209,7 @@ void Background::setMoveType(Background::BACKGROUND_MOVE_TYPE type)
 void Background::update_position(std::time_t timestamp)
 {
     if (this->_speed == 0 || this->_move_type == Background::BACKGROUND_MOVE_TYPE::NONE) {
+        std::cout << "Speed is 0 : " << this->_speed << std::endl;
         return;
     }
 

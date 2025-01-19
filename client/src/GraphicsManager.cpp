@@ -13,6 +13,7 @@ GraphicsManager::GraphicsManager(raylib::Window &window) :
     _mustClear(false), _window(window)
 {
     std::cout << "must clear ? " << _mustClear << std::endl;
+    _last_frame_time = std::chrono::high_resolution_clock::now();
 }
 
 GraphicsManager::~GraphicsManager()
@@ -85,8 +86,18 @@ void GraphicsManager::display()
         _mustClear = false;
     }
     _window.start_drawing();
-    for (auto &background : _backgrounds)
+    auto time = std::chrono::high_resolution_clock::now();
+    auto time_diff = std::chrono::duration_cast<std::chrono::milliseconds>(time - _last_frame_time).count();
+
+    for (auto &background : _backgrounds) {
+        if (time_diff > 0) {
+            background.second.update_position(time_diff);
+        }
         background.second.draw();
+    }
+    if (time_diff > 0) {
+        _last_frame_time = time;
+    }
     for (auto &sprite : _sprites)
         sprite.second.draw();
     for (auto &music : _musics)
