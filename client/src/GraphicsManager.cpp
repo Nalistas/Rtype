@@ -85,8 +85,10 @@ void GraphicsManager::display()
         _mustClear = false;
     }
     _window.start_drawing();
-    for (auto &background : _backgrounds)
+    for (auto &background : _backgrounds) {
+        std::cout << "drawing background" << std::endl;
         background.second.draw();
+    }
     for (auto &sprite : _sprites)
         sprite.second.draw();
     for (auto &music : _musics)

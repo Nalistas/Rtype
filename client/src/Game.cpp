@@ -54,7 +54,9 @@ Game::Game(
     }
     this->_commandMap[1] = [this](std::vector<uint8_t> &data) {
         //define a background
-        uint16_t backgroundId = data[1] * 256 + data[0]; 
+        std::cout << "COUCOU HERE" << std::endl;
+        uint16_t backgroundId = data[1] * 256 + data[2]; 
+        std::cout << "Background id: " << backgroundId << std::endl;
         auto background = this->_backgrounds[backgroundId];
         this->_graphics.addBackground(background);
     };
@@ -120,6 +122,10 @@ void Game::interpretor(void)
         auto udpResponse = this->_client.receive();
         for (auto c : udpResponse) {
             std::cout << static_cast<int>(c) << " ";
+        }
+        if (_commandMap.find(udpResponse[0]) != _commandMap.end()) {
+            std::cout << "Command found\n";
+            _commandMap[udpResponse[0]](udpResponse);
         }
         std::cout << std::endl;
     }
