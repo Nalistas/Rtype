@@ -21,12 +21,27 @@ RType::~RType()
 void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
 {
     _registry = reg;
+    // createBackground();
     _registry->register_component<Position>();
     _registry->register_component<Life>();
     _registry->register_component<Speed>();
     _registry->register_component<SIDE>();
     _registry->register_component<Hitbox>();
 }
+
+// void RType::createBackground(void)
+// {
+//     ecs::entity newBackground = _registry->create_entity();
+//     rtype::Background bg;
+//     bg.path = "../bg.png";
+//     bg.speed = 1;
+//     bg.direction = rtype::Background::Direction::LEFT;
+//     bg.loop = true;
+
+//     // _registry->emplace_component<Background>(newBackground, bg);
+//     _backgroundChanger(
+// }
+
 
 std::vector<rtype::ClientAction> RType::getClientActionHandlers(void) const
 {
@@ -40,7 +55,12 @@ std::vector<rtype::ClientAction> RType::getClientActionHandlers(void) const
 
 std::vector<rtype::Background> RType::getBackgrounds(void) const
 {
-    return std::vector<rtype::Background>();
+    // return std::vector<rtype::Background>({
+    //     {.path("../bg.png"), .speed = 1, .direction = 0, .loop = true, .resize = true, .type = 1}
+    // });
+    return std::vector<rtype::Background>({
+        rtype::Background{std::string("../bg.png"), 1, rtype::Background::LEFT, true, true, rtype::Background::MOVING}
+    });
 }
 
 std::vector<rtype::Sprite> RType::getSprites(void) const
@@ -103,12 +123,15 @@ void RType::deletePlayer(std::size_t player_id)
 
 rtype::IGame::ScreenUpdater RType::getScreenUpdater(void)
 {
-    return [this](std::size_t client_id) {
-        auto position = _registry->get_components<Position>();
-        for (auto [index, pos] : zipper(position)) {
-            if (pos.has_value()) {
-                this->_positionUpdater(client_id, index, pos.value().x, pos.value().y);
+    return [this]() {
+        for (auto player : _players) {
+            auto position = _registry->get_components<Position>();
+            for (auto [index, pos] : zipper(position)) {
+                if (pos.has_value()) {
+                    this->_positionUpdater(player.first, index, pos.value().x, pos.value().y);
+                }
             }
+            this->_backgroundChanger(player.first, 0);
         }
     };
 }

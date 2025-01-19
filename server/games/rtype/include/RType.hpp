@@ -46,6 +46,8 @@ class RType : public rtype::IGame {
 
         std::string getName(void) const override;
 
+        void createBackground(void);
+
     private:
         SpeedUpdater _speedUpdater;
         PositionUpdater _positionUpdater;

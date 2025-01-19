@@ -40,6 +40,10 @@ namespace rtype {
 
 
     struct Sprite {
+        Sprite() = default;
+        Sprite(const Sprite&) = default;
+        Sprite& operator=(const Sprite&) = default;
+        ~Sprite() = default;
         std::string path;
         uint32_t size_x;
         uint32_t size_y;
@@ -52,6 +56,10 @@ namespace rtype {
     };
 
     struct Background {
+        Background() = default;
+        Background(const Background&) = default;
+        Background& operator=(const Background&) = default;
+        ~Background() = default;
         std::string path;
         uint8_t speed;
         enum Direction {
@@ -90,7 +98,7 @@ namespace rtype {
             using Deleter = std::function<void(std::size_t player_id, std::size_t e_id)>;
             using BackgroundChanger = std::function<void(std::size_t client_id, std::size_t background_id)>;
             using MusicChanger = std::function<void(std::size_t client_id, std::size_t music_id)>;
-            using ScreenUpdater = std::function<void(std::size_t client_id)>;
+            using ScreenUpdater = std::function<void()>;
 
             /**
              * @brief Set the broadcast create function

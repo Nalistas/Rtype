@@ -93,7 +93,7 @@ void GameLauncher::launch()
     //     std::size_t player_id = this->_game->createPlayer();
     //     this->_players[player.ip] = player_id;
     // }
-    this->_client_action_log = std::make_unique<ClientActionLog>(this->_handlers, this->_players, screen_updater);
-    GameCore core(this->_registry, get_action);
+    this->_client_action_log = std::make_unique<ClientActionLog>(this->_handlers, this->_players);
+    GameCore core(this->_registry, get_action, screen_updater);
     core.run();
 }

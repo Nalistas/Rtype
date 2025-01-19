@@ -9,9 +9,10 @@
 
 GameCore::GameCore(
                 std::shared_ptr<ecs::registry> &reg,
-                ServerActionsGetter const &get_actions
+                ServerActionsGetter const &get_actions,
+                std::function<void()> updateScreen
             ) :
-    _registry(reg), _get_actions(get_actions)
+    _registry(reg), _get_actions(get_actions), _updateScreen(updateScreen)
 {
 }
 
@@ -33,7 +34,7 @@ void GameCore::run(void)
 
         // std::cout << "running systems" << std::endl;
         _registry->run_systems();
-
+        _updateScreen();
         // std::cout << "running systems done" << std::endl;
     }
 }
