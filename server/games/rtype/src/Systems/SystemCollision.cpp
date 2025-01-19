@@ -6,6 +6,8 @@
 */
 
 #include "Systems/SystemCollision.hpp"
+#include "registry.hpp"
+
 
 SystemCollision::SystemCollision(rtype::IGame::Deleter deleter)
     : _deleter(deleter)
@@ -37,11 +39,11 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
                     if (damage[i].has_value() && health[j].has_value()) {
                         health[j].value().life -= damage[i].value().damage;
 
-                        // if (health[j].value().life <= 0) {
-                        //     auto entity = registry.entity_from_index(j);
-                        //     registry.delete_entity(entity);
-                        //     // broadcast to all players
-                        // }
+                        if (health[j].value().life <= 0) {
+                            auto entity = registry.entity_from_index(j);
+                            registry.delete_entity(entity);
+                            // broadcast to all players
+                        }
                     }
                 }
             }
