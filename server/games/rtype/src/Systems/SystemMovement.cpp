@@ -29,10 +29,10 @@ void SystemMovement::operator()(ecs::registry &registry, sparse_array<Position> 
         return;
     }
     for (auto [index, position, speed] : zipper(positions, speeds)) {
-        // if (position.has_value() && speed.has_value()) {
-        //     position.value().x += speed.value().x * (time_elapsed / 10);
-        //     position.value().y += speed.value().y * (time_elapsed / 10);
-        // }
+        if (position.has_value() && speed.has_value()) {
+            position.value().x += speed.value().x * (time_elapsed / 10);
+            position.value().y += speed.value().y * (time_elapsed / 10);
+        }
     }
     _ms_last_update = millisec_since_epoch;
 }

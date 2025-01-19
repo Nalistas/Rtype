@@ -41,9 +41,9 @@ void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
 std::vector<rtype::ClientAction> RType::getClientActionHandlers(void) const
 {
     return std::vector<rtype::ClientAction>({
-        {90, 1, std::make_unique<UpHandlers>(_registry, _players)},
+        {87, 1, std::make_unique<UpHandlers>(_registry, _players)},
         {83, 1, std::make_unique<DownHandlers>(_registry)},
-        {81, 1, std::make_unique<LeftHandlers>(_registry)},
+        {65, 1, std::make_unique<LeftHandlers>(_registry)},
         {68, 1, std::make_unique<RightHandlers>(_registry)}
         // {32, 1, std::make_unique<ShootHandlers>()}
     });
@@ -59,9 +59,9 @@ std::vector<rtype::Background> RType::getBackgrounds(void) const
 std::vector<rtype::Sprite> RType::getSprites(void) const
 {
     return std::vector<rtype::Sprite>({
-        rtype::Sprite{std::string("../ship.png"), 200, 200, 0, 0, 1, 0, 20, 20},
-        rtype::Sprite{std::string("../enemy.png"), 200, 200, 0, 0, 1, 0, 20, 20},
-        rtype::Sprite{std::string("../bullet.png"), 200, 200, 0, 0, 1, 0, 20, 20}
+        rtype::Sprite{std::string("../ship.png"), 50, 50, 0, 0, 1, 0, 20, 20},
+        rtype::Sprite{std::string("../enemy.png"), 25, 25, 0, 0, 1, 0, 20, 20},
+        rtype::Sprite{std::string("../bullet.png"), 10, 10, 0, 0, 1, 0, 20, 20}
     });
 }
 
@@ -148,9 +148,9 @@ rtype::IGame::ScreenUpdater RType::getScreenUpdater(void)
                 this->_creater(player_id, index, 0, pos.value().x, pos.value().y, 0, 0);
             }
         }
-        // if (this->_backgroundChanger) {
-        //     this->_backgroundChanger(player_id, 0);
-        // }
+        if (this->_backgroundChanger) {
+            this->_backgroundChanger(player_id, 0);
+        }
     };
 }
 

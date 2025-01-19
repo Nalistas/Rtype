@@ -21,13 +21,13 @@ void UpHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned i
         std::cout << "registry is null" << std::endl;
         return;
     }
-    auto &positions = _registry->get_components<Position>();
+    auto &position = _registry->get_components<Position>()[client];
     std::cout << "player: " << client << std::endl;
-    if (positions[client].has_value()) {
-        std::cout << "player has value" << std::endl;
-        std::cout << "old pos of " << client << ": " << _registry->get_components<Position>()[client].value().x << " " << _registry->get_components<Position>()[client].value().y << std::endl;
-        _registry->get_components<Position>().emplace_at(client, Position{positions[client].value().x, positions[client].value().y - 100});
-        std::cout << "new pos of " << client << ": " << _registry->get_components<Position>()[client].value().x << " " << _registry->get_components<Position>()[client].value().y << std::endl;
+    if (position.has_value()) {
+        // _registry->get_components<Position>().emplace_at(client, Position{position.value().x, position.value().y - 10});
+        std::cout << "player: " << client << " x: " << position.value().x << " y: " << position.value().y << std::endl;
+        position.value().y -= 10;
+        std::cout << "player: " << client << " x: " << position.value().x << " y: " << position.value().y << std::endl;
     }
     std::cout << client << std::endl;
     std::cout << _registry << std::endl;
@@ -54,9 +54,11 @@ void DownHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned
         return;
     }
     std::cout << "handler Down: " << client << " " << mouse_x << " " << mouse_y << std::endl;
-    auto player = _registry->get_components<Position>()[client];
+    auto &player = _registry->get_components<Position>()[client];
     if (player.has_value()) {
-        player.value().y += 100;
+        std::cout << "player: " << client << " x: " << player.value().x << " y: " << player.value().y << std::endl;
+        player.value().y += 10;
+        std::cout << "player: " << client << " x: " << player.value().x << " y: " << player.value().y << std::endl;
     }
     
 }
@@ -72,9 +74,11 @@ void LeftHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned
         return;
     }
     std::cout << "handler Left: " << client << " " << mouse_x << " " << mouse_y << std::endl;
-    auto player = _registry->get_components<Position>()[client];
+    auto &player = _registry->get_components<Position>()[client];
     if (player.has_value()) {
-        player.value().x -= 100;
+        std::cout << "player: " << client << " x: " << player.value().x << " y: " << player.value().y << std::endl;
+        player.value().x -= 10;
+        std::cout << "player: " << client << " x: " << player.value().x << " y: " << player.value().y << std::endl;
     }
 }
 
@@ -89,9 +93,9 @@ void RightHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigne
         return;
     }
     std::cout << "handler Right: " << client << " " << mouse_x << " " << mouse_y << std::endl;
-    auto player = _registry->get_components<Position>()[client];
+    auto &player = _registry->get_components<Position>()[client];
     if (player.has_value()) {
-        player.value().x += 100;
+        player.value().x += 10;
     }
 }
 
