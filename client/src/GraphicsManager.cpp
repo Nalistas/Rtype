@@ -98,8 +98,9 @@ void GraphicsManager::display()
     if (time_diff > 0) {
         _last_frame_time = time;
     }
-    for (auto &sprite : _sprites)
+    for (auto &sprite : _sprites) {
         sprite.second.draw();
+    }
     for (auto &music : _musics)
         music.second.play();
     for (auto &text : _texts)

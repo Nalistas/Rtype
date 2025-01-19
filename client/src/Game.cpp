@@ -74,6 +74,7 @@ Game::Game(
         auto entity = this->_entitiesSprites[entityId];
 
         sprite.set_position(posX, posY);
+        std::cout << "Entity id: " << entityId << std::endl;
         if (entity == 0) { // à quoi sert le if ici ? ????
             this->_entitiesSprites[entityId] = this->_graphics.addSprite(sprite);
         }
@@ -89,10 +90,10 @@ Game::Game(
         uint8_t speedX = data[4];
         uint8_t speedY = data[5];
 
-        // faut faire quelque part la logique de vitesse
         auto entity = this->_entitiesSprites[entityId];
         if (entity != 0) {
             auto sprite = this->_graphics.getSprite(entity);
+            this->_spritesSpeed[entityId] = {speedX, speedY};
         }
     };
     this->_commandMap[5] = [this](std::vector<uint8_t> &data) {
@@ -136,7 +137,16 @@ void Game::run(void)
     this->_client.send({2});
     while (this->_win.is_running()) {
         this->interpretor();
+        this->moveSprites();
         this->_graphics.display();
+    }
+}
+
+void Game::moveSprites(void)
+{
+    for (auto &entity : _entitiesSprites) {
+        auto &sprite = _graphics.getSprite(entity.second);
+        sprite.set_position(sprite.get_position().x + this->_spritesSpeed[entity.first].first, sprite.get_position().y + this->_spritesSpeed[entity.first].second);
     }
 }
 

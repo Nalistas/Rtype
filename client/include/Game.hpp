@@ -35,9 +35,13 @@ class Game {
 
         void interpretor(void);
 
+        void moveSprites(void);
+
+
     private:
         std::array<std::map<uint32_t, uint32_t>, 2> _actions;
         std::map<uint32_t, raylib::Sprite> &_sprites;
+        std::map<uint32_t, std::pair<int, int>> _spritesSpeed;
         std::map<uint32_t, Background> &_backgrounds;
         std::map<uint32_t, raylib::RayMusic> &_musics;
         UdpClient &_client;

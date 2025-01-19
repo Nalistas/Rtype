@@ -210,25 +210,31 @@ void Core::checkIfFileExist(std::string path)
     }
 }
 
+uint32_t getUint32(std::vector<uint8_t> tcpResponse, int offset) {
+    return tcpResponse[offset] * 256 * 256 * 256 + tcpResponse[offset + 1] * 256 * 256 + tcpResponse[offset + 2] * 256 + tcpResponse[offset + 3];
+}
+
 void Core::load_sprite(std::vector<uint8_t> tcpResponse)
 {
     // 3[id du type de sprite][size x sur 4 octet] [size y sur 4 octet][ width à prendre sur l'image sur 4o] [height à prendre sur l'image sur 4o] [offset x 4 octets] [offset y 4 octets] [ nb frame sur 1 octet ] [ nb milisecond pour les frame / 4o][path]
-    int id = *(int *)(tcpResponse.data() + 1);
-    int sizeX = *(int *)(tcpResponse.data() + 6);
-    int sizeY = *(int *)(tcpResponse.data() + 10);
-    float width = *(float *)(tcpResponse.data() + 14);
-    float height = *(float *)(tcpResponse.data() + 18);
-    int offsetX = *(int *)(tcpResponse.data() + 22);
-    int offsetY = *(int *)(tcpResponse.data() + 26);
-    uint8_t nbFrames = tcpResponse[27];
-    int msPerFrame = *(int *)(tcpResponse.data() + 28);
-    std::string path(reinterpret_cast<char*>(tcpResponse.data() + 32));
+    int id = getUint32(tcpResponse, 1);
+    int sizeX = getUint32(tcpResponse, 5);
+    int sizeY = getUint32(tcpResponse, 9);
+    float width = getUint32(tcpResponse, 13);
+    float height = getUint32(tcpResponse, 17);;
+    int offsetX = getUint32(tcpResponse, 21);
+    int offsetY = getUint32(tcpResponse, 25);
+    uint8_t nbFrames = tcpResponse[29];
+    int msPerFrame = getUint32(tcpResponse, 30);
+    std::string path(reinterpret_cast<char*>(tcpResponse.data() + 34));
     auto texture = raylib::TextureManager::getTexture(path);
     raylib::Sprite sprite;
 
     sprite.set_texture(texture);
     sprite.set_offset(offsetX, offsetY);
-    sprite.set_source_rect({0, 0, width, height});
+    if (width != 0 && height != 0) {
+        sprite.set_source_rect({0, 0, width, height});
+    }
     sprite.set_destination_rect({0, 0, static_cast<float>(sizeX), static_cast<float>(sizeY)});
     sprite.set_offset(offsetX, offsetY);
 
