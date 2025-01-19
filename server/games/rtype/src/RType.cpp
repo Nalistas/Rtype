@@ -115,6 +115,6 @@ rtype::IGame::ScreenUpdater RType::getScreenUpdater(void)
 
 std::string RType::getName(void) const
 {
-    return "R-Type Game";
+    return "R";
 }
 

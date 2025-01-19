@@ -94,7 +94,7 @@ std::vector<uint8_t> RessourcesManager::transformMusic(std::string const &music,
 
 std::vector<uint8_t> RessourcesManager::transformAction(rtype::ClientAction const &action, uint32_t id)
 {
-    std::vector<uint8_t> buffer(5);
+    std::vector<uint8_t> buffer(10);
 
     buffer[0] = 6;
     this->copyUint32(buffer, 1, id);
