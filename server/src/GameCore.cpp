@@ -34,6 +34,6 @@ void GameCore::run(void)
         // std::cout << "running systems" << std::endl;
         _registry->run_systems();
 
-        std::cout << "running systems done" << std::endl;
+        // std::cout << "running systems done" << std::endl;
     }
 }
