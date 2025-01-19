@@ -168,6 +168,7 @@ void TcpProtocol::createRoom(std::shared_ptr<asio::ip::tcp::socket> &client, std
 void TcpProtocol::deleteRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uint8_t roomId)
 {
     auto it = this->_rooms.find(roomId);
+    bool is_good = false;
 
     if (it != this->_rooms.end() && it->second.getOwner() == client) {
         for (auto clientIt : this->_clients) {
@@ -176,8 +177,8 @@ void TcpProtocol::deleteRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uin
                 clientIt.second.setRoomId(0);
             }
         }
-        this->_rooms.erase(it);
         std::cout << "Room " << roomId << " deleted" << std::endl;
+        is_good = true;
     } else {
         if (it == this->_rooms.end()) {
             std::cout << "Room " << roomId << " not found" << std::endl;
@@ -185,9 +186,14 @@ void TcpProtocol::deleteRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uin
             std::cout << "Room " << roomId << " not deleted : not owner" << std::endl;
         }
     }
+    std::cout << "Broadcasting room deleted" << std::endl;
     auto data = this->formatRoomCreatedDeleted(roomId, false);
+    std::cout << "Room " << roomId << " deleted, broadcasting" << std::endl;
     for (auto cli : this->_clients) {
         _tcpServer.send(cli.first, data);
+    }
+    if (is_good) {
+        this->_rooms.erase(it);
     }
 }
 

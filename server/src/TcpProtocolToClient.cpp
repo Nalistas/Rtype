@@ -20,6 +20,7 @@ std::vector<uint8_t> TcpProtocol::formatRoomCreatedDeleted(uint8_t roomId, bool 
 {
     auto room = _rooms.find(roomId);
     std::size_t size = 5 + room->second.getName().size();
+    std::cout << "Room name size : " << size << std::endl;
     std::vector<uint8_t> data(size);
     uint8_t nbPlayers = 0;
 
