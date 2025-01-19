@@ -5,9 +5,9 @@
 ** Game
 */
 
+#include "Window.hpp"
 #include "Game.hpp"
 #include "UdpClient.hpp"
-#include "Window.hpp"
 #include <iostream>
 
 uint32_t invert(uint32_t value)
@@ -52,74 +52,64 @@ Game::Game(
             sendAction(this->_win.get_mouse_position(), id);
         });
     }
-    this->_commandMap[1] = [this](std::istringstream &iss) {
+    this->_commandMap[1] = [this](std::vector<uint8_t> &data) {
         //define a background
-        uint8_t backgroundId;
-        int tempBackgroundId;
-        iss >> tempBackgroundId;
-        backgroundId = static_cast<uint8_t>(tempBackgroundId);
+        uint16_t backgroundId = data[1] * 256 + data[0]; 
         auto background = this->_backgrounds[backgroundId];
         this->_graphics.addBackground(background);
     };
 
-    this->_commandMap[2] = [this](std::istringstream &iss) {
+    this->_commandMap[2] = [this](std::vector<uint8_t> &data) {
         //create entity
-        uint8_t entityType; // 1 octet
-        uint16_t entityId;  // 2 octets
-        uint32_t posX;      // 4 octets
-        uint32_t posY;      // 4 octets
-        uint8_t speedX;     // 1 octet
-        uint8_t speedY;     // 1 octet
-
-        int tempEntityType, tempSpeedX, tempSpeedY;
-        iss >> tempEntityType >> entityId >> posX >> posY >> tempSpeedX >> tempSpeedY;
-
-        entityType = static_cast<uint8_t>(tempEntityType);
-        speedX = static_cast<uint8_t>(tempSpeedX);
-        speedY = static_cast<uint8_t>(tempSpeedY);
+        uint8_t entityType = data[1]; // 1 octet
+        uint16_t entityId = data[2] * 256 + data[3];  // 2 octets
+        uint32_t posX = data[4] * 16777216 + data[5] * 65536 + data[6] * 256 + data[7];      // 4 octets
+        uint32_t posY = data[8] * 16777216 + data[9] * 65536 + data[10] * 256 + data[11];      // 4 octets
+        uint8_t speedX = data[12];     // 1 octet
+        uint8_t speedY = data[13];     // 1 octet
 
         auto sprite = this->_sprites[entityType];
         auto entity = this->_entitiesSprites[entityId];
-        if (entity == 0) {
-            this->_entitiesSprites[entityId] = this->_graphics.addSprite(sprite);
 
+        sprite.set_position(posX, posY);
+        if (entity == 0) { // à quoi sert le if ici ? ????
+            this->_entitiesSprites[entityId] = this->_graphics.addSprite(sprite);
         }
     };
-    this->_commandMap[3] = [this](std::istringstream &iss) {
-        //delete entity
-        uint16_t entityId;
-        iss >> entityId;
+    this->_commandMap[3] = [this](std::vector<uint8_t> &data) {
+        uint16_t entityId = data[1] * 256 + data[2];
+        this->_graphics.removeSprite(_entitiesSprites.at(entityId));
         _entitiesSprites.erase(entityId);
     };
-    this->_commandMap[4] = [this](std::istringstream &iss) {
+    this->_commandMap[4] = [this](std::vector<uint8_t> &data) {
         //update speed
-        uint16_t entityId;
-        uint8_t speedX;
-        uint8_t speedY;
-        iss >> entityId >> speedX >> speedY;
+        uint16_t entityId = data[1] * 256 + data[0];
+        uint8_t speedX = data[4];
+        uint8_t speedY = data[5];
+
+        // faut faire quelque part la logique de vitesse
         auto entity = this->_entitiesSprites[entityId];
         if (entity != 0) {
             auto sprite = this->_graphics.getSprite(entity);
         }
     };
-    this->_commandMap[5] = [this](std::istringstream &iss) {
+    this->_commandMap[5] = [this](std::vector<uint8_t> &data) {
         //update position
-        uint16_t entityId;
-        uint32_t posX;
-        uint32_t posY;
-        iss >> entityId >> posX >> posY;
-        auto entity = this->_entitiesSprites[entityId];
-        if (entity != 0) {
-            auto sprite = this->_graphics.getSprite(entity);
+        uint16_t entityId = data[1] * 256 + data[2];
+        uint32_t posX = data[3] * 16777216 + data[6] * 65536 + data[7] * 256 + data[8];
+        uint32_t posY = data[7] * 16777216 + data[8] * 65536 + data[9] * 256 + data[10];
+
+        auto entity = this->_entitiesSprites.find(entityId);
+        if (entity != this->_entitiesSprites.end()) {
+            auto sprite = this->_graphics.getSprite(entity->second);
             sprite.set_position(posX, posY);
         }
     };
-    this->_commandMap[6] = [this](std::istringstream &iss) {
+    this->_commandMap[6] = [this](std::vector<uint8_t> &data) {
         //play music
-        uint8_t musicId;
-        iss >> musicId;
-        auto music = this->_musics[musicId];
-        music.play();
+        uint16_t musicId = data[1] * 256 + data[2];
+        auto music = this->_musics.find(musicId);
+        // this->_graphics.addMusic(music->second);
     };
 }
 

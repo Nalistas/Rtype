@@ -46,7 +46,7 @@ class Game {
         GraphicsManager _graphics;
 
         std::unordered_map<uint32_t, uint64_t> _entitiesSprites;
-        std::unordered_map<uint8_t, std::function<void(std::istringstream&)>> _commandMap;
+        std::unordered_map<uint8_t, std::function<void(std::vector<uint8_t>&)>> _commandMap;
 };
 
 #endif /* !GAME_HPP_ */

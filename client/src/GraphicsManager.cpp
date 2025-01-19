@@ -146,6 +146,9 @@ uint64_t GraphicsManager::addText(raylib::RayText const &text)
 
 void GraphicsManager::removeSprite(uint64_t id)
 {
+    if (_sprites.find(id) == _sprites.end()) {
+        return;
+    }
     _sprites.erase(id);
     if (_spriteClickCallbacks.find(id) != _spriteClickCallbacks.end()) {
         _spriteClickCallbacks.erase(id);
@@ -154,11 +157,17 @@ void GraphicsManager::removeSprite(uint64_t id)
 
 void GraphicsManager::removeMusic(uint64_t id)
 {
+    if (_musics.find(id) == _musics.end()) {
+        return;
+    }
     _musics.erase(id);
 }
 
 void GraphicsManager::removeText(uint64_t id)
 {
+    if (_texts.find(id) == _texts.end()) {
+        return;
+    }
     _texts.erase(id);
     if (_textClickCallbacks.find(id) != _textClickCallbacks.end()) {
         _textClickCallbacks.erase(id);
@@ -170,6 +179,9 @@ void GraphicsManager::removeText(uint64_t id)
 
 void GraphicsManager::removeBackground(uint64_t id)
 {
+    if (_backgrounds.find(id) == _backgrounds.end()) {
+        return;
+    }
     _backgrounds.erase(id);
 }
 

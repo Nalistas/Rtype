@@ -22,6 +22,8 @@ class RayMusic {
          */
         RayMusic(std::string const &path);
 
+        RayMusic(RayMusic const &other) = default;
+
         /**
          * @brief Destroy the RayMusic object
          */
