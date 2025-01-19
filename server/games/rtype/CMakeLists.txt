@@ -6,6 +6,7 @@ add_library(${PROJECT_NAME} SHARED
     src/Handlers/MoveHandlers.cpp
     src/Systems/SystemMovement.cpp
     src/Systems/SystemCreateEnemy.cpp
+    src/Systems/SystemCollision.cpp
 )
 
 target_include_directories(${PROJECT_NAME}

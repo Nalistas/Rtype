@@ -10,7 +10,7 @@
 #include "Handlers/MoveHandlers.hpp"
 #include "Component/Position.hpp"
 #include "Systems/SystemMovement.hpp"
-// #include "Systems/SystemCollision.hpp"
+#include "Systems/SystemCollision.hpp"
 #include "Systems/SystemCreateEnemy.hpp"
 
 
@@ -32,7 +32,7 @@ void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
     _registry->register_component<Hitbox>();
     _registry->register_component<Damage>();
     _registry->add_system<Position, Speed>(SystemMovement());
-    _registry->add_system<Position, Hitbox, Damage>(SystemCollision());
+    _registry->add_system<Position, Hitbox, Damage, Life, SIDE>(SystemCollision(_deleter));
     _registry->add_system<>(SystemCreateEnemy(_creater));
 
 

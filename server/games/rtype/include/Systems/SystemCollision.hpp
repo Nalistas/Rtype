@@ -12,16 +12,16 @@
 #ifndef SYSTEMCOLLISION_HPP_
 #define SYSTEMCOLLISION_HPP_
 
-class SystemCollision : public ecs::isystem<Position, Hitbox, Damage> {
+class SystemCollision : public ecs::isystem<Position, Hitbox, Damage, Life, SIDE> {
     public:
-        SystemCollision(rtype::IGame::Deleter creater);
+        SystemCollision(rtype::IGame::Deleter deleter);
         ~SystemCollision();
 
-        void operator()(ecs::registry &registry, Position &position, Hitbox &hitbox, Damage &damage);
+        void operator()(ecs::registry &registry, sparse_array<Position> &position, sparse_array<Hitbox> &hitbox, sparse_array<Damage> &damage, sparse_array<Life> &health, sparse_array<SIDE> &side);
+        bool checkCollision(const Position &posA, const Hitbox &hitboxA, const Position &posB, const Hitbox &hitboxB);
 
     protected:
     private:
-        int64_t _ms_last_update;
         rtype::IGame::Deleter _deleter;
 };
 
