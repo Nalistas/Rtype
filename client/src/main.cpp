@@ -19,7 +19,7 @@
 #endif
 
 int main() {
-    std::string ip = "0.0.0.0";
+    std::string ip = "127.0.0.1";
     std::string port = "1024";
     std::string username = "Player";
     bool asBeenConnected = false;

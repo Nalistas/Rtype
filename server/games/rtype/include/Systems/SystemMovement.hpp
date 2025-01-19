@@ -8,6 +8,7 @@
 #include "isystem.hpp"
 #include "sparse_array.hpp"
 #include "Component/Position.hpp"
+#include <cstdint>
 
 #ifndef SYSTEMMOVEMENT_HPP_
     #define SYSTEMMOVEMENT_HPP_
