@@ -14,18 +14,6 @@ GameLauncher::GameLauncher(std::string const &game_path, int port) : _server(por
     _registry = std::make_shared<ecs::registry>();
     _loader.open(game_path);
     _game = _loader.getSym("entry_point");
-    RessourcesManager rm(_game);
-    _ressources = rm.getRessourcess();
-    auto game_player_input_handler = _game->getClientActionHandlers();
-    _handlers.resize(game_player_input_handler.size());
-    int i = 0;
-
-    std::cout << "size : " << game_player_input_handler.size() << std::endl;
-    for (auto &handler : game_player_input_handler) {
-        _handlers[i] = handler.handler;
-        std::cout << "handler nb: " << i << std::endl;
-        i++;
-    }
     std::cout << "///////////////////////////" << std::endl;
 }
 
@@ -33,21 +21,6 @@ GameLauncher::~GameLauncher()
 {
     _game.reset();
     _loader.close();
-}
-
-std::list<std::vector<uint8_t>> const &GameLauncher::getRessources()
-{
-    return _ressources;
-}
-
-std::string GameLauncher::getIp()
-{
-    return _server.getEndpoint().address().to_string();
-}
-
-uint16_t GameLauncher::getPort()
-{
-    return _server.getEndpoint().port();
 }
 
 GameCore::ServerActions GameLauncher::getServerActions()
@@ -75,7 +48,6 @@ GameCore::ServerActions GameLauncher::getServerActions()
         }
         auto action = this->_client_action_log->treatAction(endpoint_to_string, data);
         if (action.has_value()) {
-            std::cout << "action found !" << std::endl;
             actions.push_back(action.value());
         } else {
             std::cout << "action not found !" << std::endl;
@@ -191,6 +163,16 @@ void GameLauncher::launch()
     this->_game->setUseBackground([this](std::size_t client_id, std::size_t background_id) { this->BackgroundChanger(client_id, background_id); });
     this->_game->setUseMusic([this](std::size_t client_id, std::size_t music_id) { this->MusicChanger(client_id, music_id); });
     this->_game->initGameRegistry(this->_registry);
+    auto game_player_input_handler = _game->getClientActionHandlers();
+    _handlers.resize(game_player_input_handler.size());
+    int i = 0;
+
+    std::cout << "size : " << game_player_input_handler.size() << std::endl;
+    for (auto &handler : game_player_input_handler) {
+        _handlers[i] = handler.handler;
+        std::cout << "handler nb: " << i << std::endl;
+        i++;
+    }
     auto screen_updater = this->_game->getScreenUpdater();
     auto get_action = [this]() { return this->getServerActions(); };
 

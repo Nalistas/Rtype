@@ -45,24 +45,6 @@ class GameLauncher {
         ~GameLauncher();
 
         /**
-         * @brief Get the Ressources object
-         * @return std::list<std::vector<uint8_t>> const&, the list of ressources already ready to be sent to the clients
-         */
-        std::list<std::vector<uint8_t>> const &getRessources();
-
-        /**
-         * @brief Get the Ip object
-         * @return std::string, the ip of the server
-         */
-        std::string getIp();
-
-        /**
-         * @brief Get the Port object
-         * @return uint16_t, the port of the server
-         */
-        uint16_t getPort();
-
-        /**
          * @brief Launch the game
          * @param players the list of players
          */
@@ -90,7 +72,6 @@ class GameLauncher {
     private:
         std::unique_ptr<rtype::IGame> _game;
         DLLdr::DLLoader<rtype::IGame> _loader;
-        std::list<std::vector<uint8_t>> _ressources;
         std::shared_ptr<ecs::registry> _registry;
         std::unordered_map<std::string, std::size_t> _players;
         std::unordered_map<std::size_t, asio::ip::udp::endpoint> _players_endpoints;

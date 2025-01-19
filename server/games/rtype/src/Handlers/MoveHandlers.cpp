@@ -16,9 +16,17 @@ UpHandlers::~UpHandlers() {}
 
 void UpHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
 {
+    std::cout << "handler Up: " << client << " " << mouse_x << " " << mouse_y << std::endl;
+    if (!_registry) {
+        std::cout << "registry is null" << std::endl;
+        return;
+    }
     auto position = _registry->get_components<Position>();
+    std::cout << "coucou" << std::endl;
     for (auto [index, pos] : zipper(position)) {
+        std::cout << "coucou index " << index << std::endl;
         if (pos.has_value()) {
+            std::cout << "index " << index << " has pos !" << std::endl;
             pos.value().y -= 1;
         }
     }
