@@ -145,7 +145,7 @@ void Game::run(void)
 void Game::moveSprites(void)
 {
     for (auto &entity : _entitiesSprites) {
-        auto sprite = _graphics.getSprite(entity.second);
+        auto &sprite = _graphics.getSprite(entity.second);
         sprite.set_position(sprite.get_position().x + this->_spritesSpeed[entity.first].first, sprite.get_position().y + this->_spritesSpeed[entity.first].second);
     }
 }

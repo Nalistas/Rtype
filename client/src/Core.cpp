@@ -230,10 +230,11 @@ void Core::load_sprite(std::vector<uint8_t> tcpResponse)
     auto texture = raylib::TextureManager::getTexture(path);
     raylib::Sprite sprite;
 
-    std::cout << "load sprite " << id << " size " << sizeX << " " << sizeY << " size2 " << width << " " << height << " offset " << offsetX << " " << offsetY << " frames " << nbFrames << " " << msPerFrame << " path " << path << std::endl;
     sprite.set_texture(texture);
     sprite.set_offset(offsetX, offsetY);
-    sprite.set_source_rect({0, 0, width, height});
+    if (width != 0 && height != 0) {
+        sprite.set_source_rect({0, 0, width, height});
+    }
     sprite.set_destination_rect({0, 0, static_cast<float>(sizeX), static_cast<float>(sizeY)});
     sprite.set_offset(offsetX, offsetY);
 
