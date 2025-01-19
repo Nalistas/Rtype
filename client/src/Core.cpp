@@ -151,19 +151,28 @@ void Core::load_background(std::vector<uint8_t> tcpResponse)
     std::cout << static_cast<int>(speed) << std::endl;
     Background background(path, _window.get_size().first, _window.get_size().second);
     background.setSpeed(speed);
+    std::cout << "background speed" << background.getSpeed() << std::endl;
     if (moveType == 2) {
+        std::cout << "Parallax" << std::endl;
         background.setMoveType(Background::BACKGROUND_MOVE_TYPE::PARALLAX);
-    } if (moveType == 3) {
+    } else if (moveType == 1) {
+        std::cout << "Move" << std::endl;
         if (direction == 0 || direction == 2) {
+            std::cout << "Move X" << std::endl;
             background.setMoveType(Background::BACKGROUND_MOVE_TYPE::MOVE_X);
         } else {
+            std::cout << "Move Y" << std::endl;
             background.setMoveType(Background::BACKGROUND_MOVE_TYPE::MOVE_Y);
         }
+    } else {
+        std::cout << "None: " << static_cast<int>(moveType) << std::endl;
+        background.setMoveType(Background::BACKGROUND_MOVE_TYPE::NONE);
     }
     background.loop(repeat);
     if (resize)
         background.auto_resize_x();
     _backgrounds[id] = background;
+
 
     checkIfFileExist(path);
 }
