@@ -89,10 +89,10 @@ Game::Game(
         uint8_t speedX = data[4];
         uint8_t speedY = data[5];
 
-        // faut faire quelque part la logique de vitesse
         auto entity = this->_entitiesSprites[entityId];
         if (entity != 0) {
             auto sprite = this->_graphics.getSprite(entity);
+            this->_spritesSpeed[entityId] = {speedX, speedY};
         }
     };
     this->_commandMap[5] = [this](std::vector<uint8_t> &data) {
@@ -145,7 +145,7 @@ void Game::moveSprites(void)
 {
     for (auto &entity : _entitiesSprites) {
         auto sprite = _graphics.getSprite(entity.second);
-        sprite.set_position(sprite.get_position().x + 1, sprite.get_position().y);
+        sprite.set_position(sprite.get_position().x + this->_spritesSpeed[entity.first].first, sprite.get_position().y + this->_spritesSpeed[entity.first].second);
     }
 }
 
