@@ -70,14 +70,15 @@ Game::Game(
         uint8_t speedX = data[12];     // 1 octet
         uint8_t speedY = data[13];     // 1 octet
 
-        auto sprite = this->_sprites[entityType];
-        auto entity = this->_entitiesSprites[entityId];
-
-        sprite.set_position(posX, posY);
-        std::cout << "Entity id: " << entityId << std::endl;
-        if (entity == 0) { // à quoi sert le if ici ? ????
-            this->_entitiesSprites[entityId] = this->_graphics.addSprite(sprite);
+        auto sprite = this->_sprites.find(entityType);
+        if (sprite == this->_sprites.end()) {
+            std::cerr << "Sprite not found" << std::endl;
+            return;
         }
+
+        sprite->second.set_position(posX, posY);
+        this->_entitiesSprites[entityId] = this->_graphics.addSprite(sprite->second);
+        this->_spritesSpeed[entityId] = {speedX, speedY};
     };
     this->_commandMap[3] = [this](std::vector<uint8_t> &data) {
         uint16_t entityId = data[1] * 256 + data[2];
@@ -90,11 +91,13 @@ Game::Game(
         uint8_t speedX = data[4];
         uint8_t speedY = data[5];
 
-        auto entity = this->_entitiesSprites[entityId];
-        if (entity != 0) {
-            auto sprite = this->_graphics.getSprite(entity);
-            this->_spritesSpeed[entityId] = {speedX, speedY};
+        auto entity = this->_entitiesSprites.find(entityId);
+        if (entity == this->_entitiesSprites.end()) {
+            std::cerr << "Entity not found" << std::endl;
+            return;
         }
+        auto sprite = this->_graphics.getSprite(entity->second);
+        this->_spritesSpeed[entityId] = {speedX, speedY};
     };
     this->_commandMap[5] = [this](std::vector<uint8_t> &data) {
         //update position
