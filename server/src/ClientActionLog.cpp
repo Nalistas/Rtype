@@ -47,6 +47,8 @@ std::optional<std::function<void()>> ClientActionLog::treatAction(std::string co
         }
         uint32_t action_id = decodeUint32(message, 1);
 
+        std::cout << "action id: " << action_id << std::endl;
+
         if (action_id >= _handlers.size()) {
             std::cout << "invalid action id: " << action_id << std::endl;
             return std::nullopt;

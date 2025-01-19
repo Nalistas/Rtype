@@ -67,10 +67,12 @@ GameCore::ServerActions GameLauncher::getServerActions()
         }
         printf("\n");
         std::string endpoint_to_string = endpoint.address().to_string() + std::to_string(endpoint.port());
+        std::cout << "endpoint_to_string: " << endpoint_to_string << std::endl;
         if (_players.find(endpoint_to_string) == _players.end()) {
+            std::cout << "new player added" << std::endl;
             this->_players[endpoint_to_string] = this->_game->createPlayer();
         }
-        auto action = this->_client_action_log->treatAction(endpoint.address().to_string(), data);
+        auto action = this->_client_action_log->treatAction(endpoint_to_string, data);
         if (action.has_value()) {
             std::cout << "action found !" << std::endl;
             actions.push_back(action.value());
