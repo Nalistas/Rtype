@@ -48,8 +48,8 @@ std::vector<rtype::ClientAction> RType::getClientActionHandlers(void) const
         {87, 0, std::make_unique<UnUpDownHandlers>(_registry)},
         {83, 0, std::make_unique<UnUpDownHandlers>(_registry)},
         {65, 0, std::make_unique<UnRightLeftHandlers>(_registry)},
-        {68, 0, std::make_unique<UnRightLeftHandlers>(_registry)}
-        // {32, 1, std::make_unique<ShootHandlers>()}
+        {68, 0, std::make_unique<UnRightLeftHandlers>(_registry)},
+        {32, 1, std::make_unique<ShootHandlers>(_registry, _creater, _players)}
     });
 }
 
@@ -148,7 +148,6 @@ rtype::IGame::ScreenUpdater RType::getScreenUpdater(void)
         }
         for (auto [index, pos] : zipper(position)) {
             if (pos.has_value()) {
-                std::cout << "player: " << player_id << " index: " << index << " position: " << pos.value().x << " " << pos.value().y << std::endl;
                 this->_creater(player_id, index, 0, pos.value().x, pos.value().y, 0, 0);
             }
         }

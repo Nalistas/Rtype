@@ -73,13 +73,15 @@ class RightHandlers : public rtype::IClientActionHandler {
 
 class ShootHandlers : public rtype::IClientActionHandler {
     public:
-        ShootHandlers(const std::shared_ptr<ecs::registry> &reg);
+        ShootHandlers(const std::shared_ptr<ecs::registry> &reg, rtype::IGame::Creater const &creater, std::unordered_map<std::size_t, std::size_t> const &players);
         ~ShootHandlers();
 
         void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override;
 
     private:
         std::shared_ptr<ecs::registry> _registry;
+        rtype::IGame::Creater const &_creater;
+        std::unordered_map<std::size_t, std::size_t> const &_players;
 };
 
 

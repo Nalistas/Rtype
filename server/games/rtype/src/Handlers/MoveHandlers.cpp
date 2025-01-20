@@ -121,7 +121,7 @@ void UnUpDownHandlers::operator()(std::size_t client, unsigned int mouse_x, unsi
 }
 
 
-ShootHandlers::ShootHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
+ShootHandlers::ShootHandlers(const std::shared_ptr<ecs::registry> &reg, rtype::IGame::Creater const &creater, std::unordered_map<std::size_t, std::size_t> const &players) : _registry(reg), _creater(creater), _players(players) {}
 
 ShootHandlers::~ShootHandlers() {}
 
@@ -133,12 +133,23 @@ void ShootHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigne
     }
     std::cout << "handler Shoot: " << client << " " << mouse_x << " " << mouse_y << std::endl;
     auto bullet = _registry->create_entity();
+    std::cout << "bullet: " << bullet << std::endl;
     auto player = _registry->get_components<Position>()[client];
-    _registry->get_components<Position>().insert_at(bullet, Position{player.value().x + 35, player.value().y});
-    _registry->get_components<Speed>().insert_at(bullet, Speed{1, 0});
-    _registry->get_components<Hitbox>().insert_at(bullet, Hitbox{1, 1});
-    _registry->get_components<Damage>().insert_at(bullet, Damage{1});
-    _registry->get_components<SIDE>().insert_at(bullet, SIDE::PLAYER);
+    _registry->get_components<Position>().emplace_at(bullet, Position{player.value().x + 35, player.value().y});
+    _registry->get_components<Speed>().emplace_at(bullet, Speed{1, 0});
+    _registry->get_components<Hitbox>().emplace_at(bullet, Hitbox{1, 1});
+    _registry->get_components<Damage>().emplace_at(bullet, Damage{1});
+    _registry->get_components<SIDE>().emplace_at(bullet, SIDE::PLAYER);
+
+    for (int i = 0; i < 4; i++) {
+        if (_players.find(i) != _players.end()) {
+            _creater(bullet, i, 1,
+                _registry->get_components<Position>()[_players.at(i)].value().x,
+                _registry->get_components<Position>()[_players.at(i)].value().y,
+                _registry->get_components<Speed>()[_players.at(i)].value().x,
+                _registry->get_components<Speed>()[_players.at(i)].value().y);
+        }
+    }
 
     // broadcast to all players
 }

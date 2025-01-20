@@ -34,7 +34,6 @@ void SystemBroadcast::operator()(ecs::registry &registry, sparse_array<Speed> &s
     for (auto [index, speed] : zipper(speeds)) {
         if (speed.has_value()) {
             for (auto player : _players) {
-                std::cout << "player: " << player.first << " index: " << index << " speed: " << static_cast<int>(speed.value().x) << " " << static_cast<int>(speed.value().y) << std::endl;
                 _speedUpdater(player.first, index, speed.value().x, speed.value().y);
             }
         }
@@ -43,7 +42,6 @@ void SystemBroadcast::operator()(ecs::registry &registry, sparse_array<Speed> &s
     for (auto [index, position] : zipper(pos)) {
         if (position.has_value()) {
             for (auto player: _players) {
-                std::cout << "player: " << player.first << " index: " << index << " position: " << position.value().x << " " << position.value().y << std::endl;
                 _positionUpdater(player.second, index, position.value().x, position.value().y);
             }
         }

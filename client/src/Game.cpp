@@ -159,7 +159,6 @@ void Game::moveSprites(void)
     _ms_last_update = now;
     for (auto &entity : _entitiesSprites) {
         auto &sprite = _graphics.getSprite(entity.second);
-        std::cout << "player: " << entity.first << " x: " << sprite.get_position().x << " y: " << sprite.get_position().y << std::endl;
         sprite.set_position(
             (sprite.get_position().x + (this->_spritesSpeed[entity.first].first * elapsed_time / 10)),
             (sprite.get_position().y + (this->_spritesSpeed[entity.first].second * elapsed_time / 10))
