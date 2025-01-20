@@ -33,8 +33,8 @@ void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
     _registry->register_component<Hitbox>();
     _registry->register_component<Damage>();
     _registry->add_system<Position, Speed>(SystemMovement(_players, _deleter));
-    _registry->add_system<Position, Hitbox, Damage, Life, SIDE>(SystemCollision(_deleter));
-    // _registry->add_system<>(SystemCreateEnemy(_creater));
+    _registry->add_system<Position, Hitbox, Damage, Life, SIDE>(SystemCollision(_deleter, _players));
+    _registry->add_system<>(SystemCreateEnemy(_creater, _players));
     _registry->add_system<Speed, Position>(SystemBroadcast(_speedUpdater, _positionUpdater, _players));
 }
 
@@ -114,7 +114,7 @@ std::size_t RType::createPlayer(void)
             _players[i] = this->_registry->create_entity();
             std::cout << "player " << i << " created" << std::endl;
             _registry->get_components<Position>().emplace_at(_players[i], Position{100, 0});
-            _registry->get_components<Hitbox>().emplace_at(_players[i], Hitbox{20, 20});
+            _registry->get_components<Hitbox>().emplace_at(_players[i], Hitbox{50, 50});
             _registry->get_components<Life>().emplace_at(_players[i], Life{5});
             _registry->get_components<SIDE>().emplace_at(_players[i], SIDE::PLAYER);
             for (int j = 0; j < 4; j++) {

@@ -9,13 +9,32 @@
 #include "registry.hpp"
 
 
-SystemCollision::SystemCollision(rtype::IGame::Deleter deleter)
-    : _deleter(deleter)
+SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players)
+    : _deleter(deleter), _players(players)
 {
 }
 
 SystemCollision::~SystemCollision()
 {
+}
+
+void SystemCollision::broadcast(std::size_t entity_deleted, ecs::registry &registry)
+{
+    std::size_t player_dead = 0;
+    bool is_player_dead = false;
+
+    for (auto it = _players.begin(); it != _players.end(); it++) {
+        _deleter(it->second, entity_deleted);
+        if (it->second == entity_deleted) {
+            is_player_dead = true;
+            player_dead = it->first;
+        }
+    }
+
+    if (is_player_dead) {
+        _players.erase(player_dead);
+        _players[player_dead] = registry.create_entity();
+    }
 }
 
 void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position> &position, sparse_array<Hitbox> &hitbox, sparse_array<Damage> &damage, sparse_array<Life> &health, sparse_array<SIDE> &side)
@@ -41,8 +60,7 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
 
                         if (health[j].value().life <= 0) {
                             auto entity = registry.entity_from_index(j);
-                            registry.delete_entity(entity);
-                            // broadcast to all players
+                            this->broadcast(entity, registry);
                         }
                     }
                 }
