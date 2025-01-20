@@ -75,7 +75,12 @@ Core::Core(std::string ip, std::string port, std::string username) :
         _startGame = true;
         std::cout << "Start game" << std::endl;
         std::string ip = std::to_string(static_cast<uint32_t>(tcpResponse[1])) + "." + std::to_string(static_cast<uint32_t>(tcpResponse[2])) + "." + std::to_string(static_cast<uint32_t>(tcpResponse[3])) + "." + std::to_string(static_cast<uint32_t>(tcpResponse[4]));
-        std::string port = std::to_string(static_cast<uint32_t>(tcpResponse[5])) + std::to_string(static_cast<uint32_t>(tcpResponse[6]));
+        std::string port1 = std::to_string(static_cast<uint32_t>(tcpResponse[5]));
+        std::string port2 = std::to_string(static_cast<uint32_t>(tcpResponse[6]));
+        if (port2.size() == 1) {
+            port2 = "0" + port2;
+        }
+        std::string port = port1 + port2;
         std::cout << "Start game " << ip << ":" << port << std::endl;
         _udpClient.setServer(ip, port);
         Game game(this->_actions, this->_sprites, this->_backgrounds, this->_musics, this->_udpClient, this->_window); // ICI

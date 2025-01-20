@@ -15,7 +15,7 @@ class UdpServer {
     public:
         /**
          * @brief Construct a new Udp Server object
-         * it will loop from the port 1024 to the port 9999 to find an available port
+         * it will loop from the port 2000 to the port 9999 to find an available port
          */
         UdpServer(void);
 

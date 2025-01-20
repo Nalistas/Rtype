@@ -4,7 +4,7 @@
 UdpServer::UdpServer(void) :
     _resolver(_io_context), _socket(_io_context)
 {
-    uint16_t start_port = 1024;
+    uint16_t start_port = 2000;
     uint16_t end_port = 0xFFFF;
 
     for (uint16_t port = start_port; port < end_port; ++port) {

@@ -20,7 +20,7 @@
 
 int main() {
     std::string ip = "127.0.0.1";
-    std::string port = "1024";
+    std::string port = "2000";
     std::string username = "Player1";
     bool asBeenConnected = false;
 

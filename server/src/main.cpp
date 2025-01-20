@@ -82,7 +82,7 @@ int main(int ac, char **av)
             launcher.LaunchUdpServer(port_string, gameName);
         }
     } else if (args.size() <= 2) {
-        std::string port_string = args.size() == 2 ? args[1] : "1024";
+        std::string port_string = args.size() == 2 ? args[1] : "2000";
         uint16_t port;
         try {
             port = std::stoi(port_string);

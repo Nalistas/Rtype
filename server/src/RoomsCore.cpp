@@ -143,7 +143,7 @@ void RoomsCore::launchGame()
             std::cerr << "Game not found" << std::endl;
             continue;
         }
-        int port = find_available_port(1024);
+        int port = find_available_port(2000);
         std::string game_path = this->_gameNameToPath[game];
         std::vector<std::string> vec = {_executable_name, "-udp", std::to_string(port), game_path};
         _my_process.execProcess(vec);
