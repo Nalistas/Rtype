@@ -107,11 +107,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8313f8a6cb9d6c6a59bcca3a1bca6c1d" id="r_a8313f8a6cb9d6c6a59bcca3a1bca6c1d"><td class="memItemLeft" align="right" valign="top"><a id="a8313f8a6cb9d6c6a59bcca3a1bca6c1d" name="a8313f8a6cb9d6c6a59bcca3a1bca6c1d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (<a class="el" href="classecs_1_1registry.html">ecs::registry</a> &amp;registry, <a class="el" href="classecs_1_1entity.html">ecs::entity</a> const &amp;e __attribute__((unused)))</td></tr>
 <tr class="separator:a8313f8a6cb9d6c6a59bcca3a1bca6c1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07e4f228f1ba0677edcadb5f22f62eba" id="r_a07e4f228f1ba0677edcadb5f22f62eba"><td class="memItemLeft" align="right" valign="top"><a id="a07e4f228f1ba0677edcadb5f22f62eba" name="a07e4f228f1ba0677edcadb5f22f62eba"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SystemCreateEnemy</b> (rtype::IGame::Creater const &amp;creater, std::unordered_map&lt; std::size_t, std::size_t &gt; const &amp;players)</td></tr>
+<tr class="memitem:a07e4f228f1ba0677edcadb5f22f62eba" id="r_a07e4f228f1ba0677edcadb5f22f62eba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemCreateEnemy.html#a07e4f228f1ba0677edcadb5f22f62eba">SystemCreateEnemy</a> (rtype::IGame::Creater const &amp;creater, std::unordered_map&lt; std::size_t, std::size_t &gt; const &amp;players)</td></tr>
+<tr class="memdesc:a07e4f228f1ba0677edcadb5f22f62eba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classSystemCreateEnemy.html">SystemCreateEnemy</a> object.  <br /></td></tr>
 <tr class="separator:a07e4f228f1ba0677edcadb5f22f62eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a113f0cb367974c09fe58ee37e6f351d1" id="r_a113f0cb367974c09fe58ee37e6f351d1"><td class="memItemLeft" align="right" valign="top"><a id="a113f0cb367974c09fe58ee37e6f351d1" name="a113f0cb367974c09fe58ee37e6f351d1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (<a class="el" href="classecs_1_1registry.html">ecs::registry</a> &amp;registry)</td></tr>
+<tr class="memitem:a113f0cb367974c09fe58ee37e6f351d1" id="r_a113f0cb367974c09fe58ee37e6f351d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemCreateEnemy.html#a113f0cb367974c09fe58ee37e6f351d1">operator()</a> (<a class="el" href="classecs_1_1registry.html">ecs::registry</a> &amp;registry)</td></tr>
+<tr class="memdesc:a113f0cb367974c09fe58ee37e6f351d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the speed and position of the player.  <br /></td></tr>
 <tr class="separator:a113f0cb367974c09fe58ee37e6f351d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classecs_1_1isystem"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classecs_1_1isystem')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classecs_1_1isystem.html">ecs::isystem&lt;&gt;</a></td></tr>
 <tr class="memitem:acf994aa668e56219129cb03d59936dcc inherit pub_methods_classecs_1_1isystem" id="r_acf994aa668e56219129cb03d59936dcc"><td class="memItemLeft" align="right" valign="top">
@@ -126,6 +126,71 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~isystem</b> ()=de
 <tr class="memdesc:a1e2e83292a7251da73d2785d896d8022 inherit pub_methods_classecs_1_1isystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call the system.  <br /></td></tr>
 <tr class="separator:a1e2e83292a7251da73d2785d896d8022 inherit pub_methods_classecs_1_1isystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a07e4f228f1ba0677edcadb5f22f62eba" name="a07e4f228f1ba0677edcadb5f22f62eba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07e4f228f1ba0677edcadb5f22f62eba">&#9670;&#160;</a></span>SystemCreateEnemy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SystemCreateEnemy::SystemCreateEnemy </td>
+          <td>(</td>
+          <td class="paramtype">rtype::IGame::Creater const &amp;&#160;</td>
+          <td class="paramname"><em>creater</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unordered_map&lt; std::size_t, std::size_t &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>players</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construct a new <a class="el" href="classSystemCreateEnemy.html">SystemCreateEnemy</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">creater</td><td></td></tr>
+    <tr><td class="paramname">players</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a113f0cb367974c09fe58ee37e6f351d1" name="a113f0cb367974c09fe58ee37e6f351d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a113f0cb367974c09fe58ee37e6f351d1">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SystemCreateEnemy::operator() </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classecs_1_1registry.html">ecs::registry</a> &amp;&#160;</td>
+          <td class="paramname"><em>registry</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update the speed and position of the player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">registry</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>game/include/Systems/<a class="el" href="game_2include_2Systems_2SystemCreateEnemy_8hpp_source.html">SystemCreateEnemy.hpp</a></li>
 <li>server/games/rtype/include/Systems/<a class="el" href="server_2games_2rtype_2include_2Systems_2SystemCreateEnemy_8hpp_source.html">SystemCreateEnemy.hpp</a></li>

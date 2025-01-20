@@ -100,53 +100,51 @@ Collaboration diagram for RType:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7938d8ef0cc7338fbf36e349a9ce28cb" id="r_a7938d8ef0cc7338fbf36e349a9ce28cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#a7938d8ef0cc7338fbf36e349a9ce28cb">initGameRegistry</a> (std::shared_ptr&lt; <a class="el" href="classecs_1_1registry.html">ecs::registry</a> &gt; &amp;reg) override</td></tr>
-<tr class="memdesc:a7938d8ef0cc7338fbf36e349a9ce28cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">set everything needed in the registry, the systems and the components  <br /></td></tr>
+<tr class="memdesc:a7938d8ef0cc7338fbf36e349a9ce28cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the game registry.  <br /></td></tr>
 <tr class="separator:a7938d8ef0cc7338fbf36e349a9ce28cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab734a8546b617e6c65dd36a86263dc3e" id="r_ab734a8546b617e6c65dd36a86263dc3e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structrtype_1_1ClientAction.html">rtype::ClientAction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#ab734a8546b617e6c65dd36a86263dc3e">getClientActionHandlers</a> (void) const override</td></tr>
-<tr class="memdesc:ab734a8546b617e6c65dd36a86263dc3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the client action handler.  <br /></td></tr>
+<tr class="memdesc:ab734a8546b617e6c65dd36a86263dc3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the list of client actions handlers.  <br /></td></tr>
 <tr class="separator:ab734a8546b617e6c65dd36a86263dc3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf281e650aee17f0d6bede9a66efd5e3" id="r_acf281e650aee17f0d6bede9a66efd5e3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structrtype_1_1Background.html">rtype::Background</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#acf281e650aee17f0d6bede9a66efd5e3">getBackgrounds</a> (void) const override</td></tr>
-<tr class="memdesc:acf281e650aee17f0d6bede9a66efd5e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the backgrounds used in the game.  <br /></td></tr>
+<tr class="memdesc:acf281e650aee17f0d6bede9a66efd5e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the list of backgrounds.  <br /></td></tr>
 <tr class="separator:acf281e650aee17f0d6bede9a66efd5e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81c4e61ab61827d672591078a489a317" id="r_a81c4e61ab61827d672591078a489a317"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structrtype_1_1Sprite.html">rtype::Sprite</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#a81c4e61ab61827d672591078a489a317">getSprites</a> (void) const override</td></tr>
-<tr class="memdesc:a81c4e61ab61827d672591078a489a317"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the sprites used in the game.  <br /></td></tr>
+<tr class="memdesc:a81c4e61ab61827d672591078a489a317"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the list of sprites.  <br /></td></tr>
 <tr class="separator:a81c4e61ab61827d672591078a489a317"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac64978db4b1a9f0019b816b3747d0b9b" id="r_ac64978db4b1a9f0019b816b3747d0b9b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#ac64978db4b1a9f0019b816b3747d0b9b">getMusics</a> (void) const override</td></tr>
-<tr class="memdesc:ac64978db4b1a9f0019b816b3747d0b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the music used in the game.  <br /></td></tr>
+<tr class="memdesc:ac64978db4b1a9f0019b816b3747d0b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the list of musics.  <br /></td></tr>
 <tr class="separator:ac64978db4b1a9f0019b816b3747d0b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a268f6afd26e634e7e237764563b7b49b" id="r_a268f6afd26e634e7e237764563b7b49b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#a268f6afd26e634e7e237764563b7b49b">setUpdateSpeed</a> (SpeedUpdater const &amp;func) override</td></tr>
-<tr class="memdesc:a268f6afd26e634e7e237764563b7b49b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the broadcast create function.  <br /></td></tr>
+<tr class="memdesc:a268f6afd26e634e7e237764563b7b49b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the update speed function.  <br /></td></tr>
 <tr class="separator:a268f6afd26e634e7e237764563b7b49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1900dddf944964bdb7a0cc4ba899176" id="r_aa1900dddf944964bdb7a0cc4ba899176"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#aa1900dddf944964bdb7a0cc4ba899176">setUpdatePosition</a> (PositionUpdater const &amp;func) override</td></tr>
-<tr class="memdesc:aa1900dddf944964bdb7a0cc4ba899176"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the broadcast update function.  <br /></td></tr>
+<tr class="memdesc:aa1900dddf944964bdb7a0cc4ba899176"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the update position function.  <br /></td></tr>
 <tr class="separator:aa1900dddf944964bdb7a0cc4ba899176"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5e0d81028ef2f780ac125527c8245b7" id="r_ae5e0d81028ef2f780ac125527c8245b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#ae5e0d81028ef2f780ac125527c8245b7">setCreate</a> (Creater const &amp;func) override</td></tr>
-<tr class="memdesc:ae5e0d81028ef2f780ac125527c8245b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the broadcast delete function.  <br /></td></tr>
+<tr class="memdesc:ae5e0d81028ef2f780ac125527c8245b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the create function.  <br /></td></tr>
 <tr class="separator:ae5e0d81028ef2f780ac125527c8245b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6cd8b6609317339def7b636264f16ec" id="r_aa6cd8b6609317339def7b636264f16ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#aa6cd8b6609317339def7b636264f16ec">setDelete</a> (Deleter const &amp;func) override</td></tr>
-<tr class="memdesc:aa6cd8b6609317339def7b636264f16ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the broadcast delete function.  <br /></td></tr>
+<tr class="memdesc:aa6cd8b6609317339def7b636264f16ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the delete function.  <br /></td></tr>
 <tr class="separator:aa6cd8b6609317339def7b636264f16ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15464b886a0dd72c40dea2c4773e295f" id="r_a15464b886a0dd72c40dea2c4773e295f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#a15464b886a0dd72c40dea2c4773e295f">setUseBackground</a> (BackgroundChanger const &amp;func) override</td></tr>
-<tr class="memdesc:a15464b886a0dd72c40dea2c4773e295f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the broadcast delete function.  <br /></td></tr>
+<tr class="memdesc:a15464b886a0dd72c40dea2c4773e295f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the use background function.  <br /></td></tr>
 <tr class="separator:a15464b886a0dd72c40dea2c4773e295f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af12e3c5f78d1a8f03311dc65d33c031b" id="r_af12e3c5f78d1a8f03311dc65d33c031b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#af12e3c5f78d1a8f03311dc65d33c031b">setUseMusic</a> (MusicChanger const &amp;func) override</td></tr>
-<tr class="memdesc:af12e3c5f78d1a8f03311dc65d33c031b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the broadcast delete function.  <br /></td></tr>
+<tr class="memdesc:af12e3c5f78d1a8f03311dc65d33c031b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the use music function.  <br /></td></tr>
 <tr class="separator:af12e3c5f78d1a8f03311dc65d33c031b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ff2753581ab28463edbd84a150c9ef6" id="r_a6ff2753581ab28463edbd84a150c9ef6"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#a6ff2753581ab28463edbd84a150c9ef6">createPlayer</a> (void) override</td></tr>
 <tr class="memdesc:a6ff2753581ab28463edbd84a150c9ef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a player.  <br /></td></tr>
 <tr class="separator:a6ff2753581ab28463edbd84a150c9ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a0f0c160c5687345283d61f6dcc5d64" id="r_a7a0f0c160c5687345283d61f6dcc5d64"><td class="memItemLeft" align="right" valign="top"><a id="a7a0f0c160c5687345283d61f6dcc5d64" name="a7a0f0c160c5687345283d61f6dcc5d64"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>deletePlayer</b> (std::size_t player_id) override</td></tr>
+<tr class="memdesc:a7a0f0c160c5687345283d61f6dcc5d64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a player. <br /></td></tr>
 <tr class="separator:a7a0f0c160c5687345283d61f6dcc5d64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8dbc59f5f247f0228a3d4e4913b4d583" id="r_a8dbc59f5f247f0228a3d4e4913b4d583"><td class="memItemLeft" align="right" valign="top">ScreenUpdater&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#a8dbc59f5f247f0228a3d4e4913b4d583">getScreenUpdater</a> (void) override</td></tr>
 <tr class="memdesc:a8dbc59f5f247f0228a3d4e4913b4d583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the screen updater.  <br /></td></tr>
 <tr class="separator:a8dbc59f5f247f0228a3d4e4913b4d583"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61b4d9e65d74ea5f823f500ff0301f62" id="r_a61b4d9e65d74ea5f823f500ff0301f62"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#a61b4d9e65d74ea5f823f500ff0301f62">getName</a> (void) const override</td></tr>
-<tr class="memdesc:a61b4d9e65d74ea5f823f500ff0301f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the display.  <br /></td></tr>
+<tr class="memdesc:a61b4d9e65d74ea5f823f500ff0301f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the game.  <br /></td></tr>
 <tr class="separator:a61b4d9e65d74ea5f823f500ff0301f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dabd61eae0062fa61d76cc1c4684715" id="r_a2dabd61eae0062fa61d76cc1c4684715"><td class="memItemLeft" align="right" valign="top"><a id="a2dabd61eae0062fa61d76cc1c4684715" name="a2dabd61eae0062fa61d76cc1c4684715"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>createBackground</b> (void)</td></tr>
-<tr class="separator:a2dabd61eae0062fa61d76cc1c4684715"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classrtype_1_1IGame"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classrtype_1_1IGame')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classrtype_1_1IGame.html">rtype::IGame</a></td></tr>
 <tr class="memitem:a7cc16b313d3242249b4fd5044421b46a inherit pub_methods_classrtype_1_1IGame" id="r_a7cc16b313d3242249b4fd5044421b46a"><td class="memItemLeft" align="right" valign="top">
 virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~IGame</b> ()=default</td></tr>
@@ -207,7 +205,7 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </div><div class="memdoc">
 
 <p>Create a player. </p>
-<dl class="section return"><dt>Returns</dt><dd>the id of the player </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>std::size_t </dd></dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#ae2d0395a6beb5f2980fb8f2c1be86261">rtype::IGame</a>.</p>
 
@@ -237,8 +235,8 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </table>
 </div><div class="memdoc">
 
-<p>Get the backgrounds used in the game. </p>
-<dl class="section return"><dt>Returns</dt><dd>the vector of the backgrounds, we suppose that the id of the background is the same as the index </dd></dl>
+<p>Get the list of backgrounds. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;rtype::Background&gt; </dd></dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#ae776878b695504073b7518ed221e7034">rtype::IGame</a>.</p>
 
@@ -268,8 +266,8 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </table>
 </div><div class="memdoc">
 
-<p>Set the client action handler. </p>
-<dl class="section return"><dt>Returns</dt><dd>the map of the client action handlers with the action id </dd></dl>
+<p>Get the list of client actions handlers. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;rtype::ClientAction&gt; </dd></dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#a4a46c441c9cf3f0b33ca003817814e01">rtype::IGame</a>.</p>
 
@@ -299,8 +297,8 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </table>
 </div><div class="memdoc">
 
-<p>Get the music used in the game. </p>
-<dl class="section return"><dt>Returns</dt><dd>the vector of the music, we suppose that the id of the music is the same as the index </dd></dl>
+<p>Get the list of musics. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::string&gt; </dd></dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#a01b6e5e871b2f14c0fe4845aa463bf58">rtype::IGame</a>.</p>
 
@@ -330,8 +328,8 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </table>
 </div><div class="memdoc">
 
-<p>Get the name of the display. </p>
-<dl class="section return"><dt>Returns</dt><dd>the name of the display </dd></dl>
+<p>Get the name of the game. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::string </dd></dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#a5218473f36f397f4bb59089ae02612a4">rtype::IGame</a>.</p>
 
@@ -362,7 +360,6 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </div><div class="memdoc">
 
 <p>Get the screen updater. </p>
-<dl class="section return"><dt>Returns</dt><dd>the screen updater, a function that will be called to update the screen of a specific client </dd></dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#a6dd50f08ee3aa28c25a76b5697f3f89b">rtype::IGame</a>.</p>
 
@@ -392,8 +389,8 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </table>
 </div><div class="memdoc">
 
-<p>Get the sprites used in the game. </p>
-<dl class="section return"><dt>Returns</dt><dd>the vector of the sprites, we suppose that the id of the sprite is the same as the index </dd></dl>
+<p>Get the list of sprites. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;rtype::Sprite&gt; </dd></dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#a21528efe7fb77920cebc3e0cb248beb5">rtype::IGame</a>.</p>
 
@@ -423,10 +420,10 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </table>
 </div><div class="memdoc">
 
-<p>set everything needed in the registry, the systems and the components </p>
+<p>Initialize the game registry. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">registry</td><td>the registry to set the component and the systems </td></tr>
+    <tr><td class="paramname">reg</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -459,7 +456,13 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </table>
 </div><div class="memdoc">
 
-<p>Set the broadcast delete function. </p>
+<p>Set the create function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#a0bedb1ef0313e14bd16cab28f9c8b71c">rtype::IGame</a>.</p>
 
@@ -489,7 +492,13 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </table>
 </div><div class="memdoc">
 
-<p>Set the broadcast delete function. </p>
+<p>Set the delete function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#ad807cdc139181b7585f5e75c8fbe842f">rtype::IGame</a>.</p>
 
@@ -519,7 +528,13 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </table>
 </div><div class="memdoc">
 
-<p>Set the broadcast update function. </p>
+<p>Set the update position function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#a62e0d9ae1384fcb91a89dfff05017818">rtype::IGame</a>.</p>
 
@@ -549,7 +564,13 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </table>
 </div><div class="memdoc">
 
-<p>Set the broadcast create function. </p>
+<p>Set the update speed function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#af414b3100384a4448d6f571c4c460ea9">rtype::IGame</a>.</p>
 
@@ -579,7 +600,13 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </table>
 </div><div class="memdoc">
 
-<p>Set the broadcast delete function. </p>
+<p>Set the use background function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#a7ccf66e4cccedbe7654ac892e0746f5d">rtype::IGame</a>.</p>
 
@@ -609,7 +636,13 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </table>
 </div><div class="memdoc">
 
-<p>Set the broadcast delete function. </p>
+<p>Set the use music function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#a6622e6f793b791dafd678049cd05ebd5">rtype::IGame</a>.</p>
 
