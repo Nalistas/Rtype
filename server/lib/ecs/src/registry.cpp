@@ -15,7 +15,11 @@ ecs::entity ecs::registry::create_entity()
         this->_total_entity_count++;
         return e;
     }
-    return entity(this->_unused_entities.begin().operator*());
+
+    // Retirer l'entité de _unused_entities et la retourner directement
+    std::size_t entity = *this->_unused_entities.begin();
+    this->_unused_entities.erase(this->_unused_entities.begin());
+    return this->entity_from_index(entity);
 }
 
 ecs::entity ecs::registry::entity_from_index(std::size_t idx)

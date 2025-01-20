@@ -9,6 +9,7 @@
 #include "IGame.hpp"
 #include <functional>
 #include <memory>
+#include <mutex>
 
 #ifndef GAMECORE_HPP_
     #define GAMECORE_HPP_
@@ -38,9 +39,13 @@ class GameCore {
         void run(void);
 
     private:
+        std::mutex _registry_mutex;
+
         std::shared_ptr<ecs::registry> _registry;
         ServerActionsGetter const &_get_actions;
         std::function<void(std::size_t)> _updateScreen;
+        bool isRunning = true;
+        std::chrono::_V2::system_clock::time_point _time_last_update;
 };
 
 #endif /* !GAMECORE_HPP_ */

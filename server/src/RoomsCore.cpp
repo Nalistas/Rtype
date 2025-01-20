@@ -169,6 +169,10 @@ void RoomsCore::launchGame()
             _tcpServer.send(client.first, data);
         }
     }
+    for (auto &client : this->_clientsToLaunch) {
+        client.second.setRoomId(0);
+        _clients.emplace(client.first, client.second);
+    }
     _clientsToLaunch.clear();
     _roomsToLaunch.clear();
 }
