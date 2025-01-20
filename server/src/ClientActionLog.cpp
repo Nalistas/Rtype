@@ -47,8 +47,6 @@ std::optional<std::function<void()>> ClientActionLog::treatAction(std::string co
         }
         uint32_t action_id = decodeUint32(message, 1);
 
-        std::cout << "action id: " << action_id << std::endl;
-
         if (action_id >= _handlers.size()) {
             std::cout << "invalid action id: " << action_id << std::endl;
             return std::nullopt;
@@ -56,8 +54,6 @@ std::optional<std::function<void()>> ClientActionLog::treatAction(std::string co
 
         uint32_t mouse_x = decodeUint32(message, 5);
         uint32_t mouse_y = decodeUint32(message, 9);
-
-        std::cout << "action: " << action_id << " mouse x: " << mouse_x << " mouse y: " << mouse_y << std::endl;
 
         return std::optional<std::function<void()>>([this, player_id, action_id, mouse_x, mouse_y](){
             (*_handlers[action_id])(player_id, mouse_x, mouse_y);

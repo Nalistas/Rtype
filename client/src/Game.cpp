@@ -80,6 +80,10 @@ Game::Game(
     };
     this->_commandMap[3] = [this](std::vector<uint8_t> &data) {
         uint16_t entityId = data[1] * 256 + data[2];
+        if (this->_entitiesSprites.find(entityId) == this->_entitiesSprites.end()) {
+            std::cerr << "Entity not found: " << entityId << std::endl;
+            return;
+        }
         this->_graphics.removeSprite(_entitiesSprites.at(entityId));
         _entitiesSprites.erase(entityId);
         std::cout << "Entity " << entityId << " removed" << std::endl;
@@ -127,7 +131,7 @@ void Game::interpretor(void)
         auto udpResponse = this->_client.receive();
         if (_commandMap.find(udpResponse[0]) != _commandMap.end()) {
             if (udpResponse[0] != 4 && udpResponse[0] != 5) {
-                std::cout << "Command found\n";
+                std::cout << "Command found " << static_cast<int>(udpResponse[0]) << std::endl;
             }
             _commandMap[udpResponse[0]](udpResponse);
         } else {
