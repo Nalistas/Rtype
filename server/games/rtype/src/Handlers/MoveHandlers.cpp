@@ -10,8 +10,8 @@
 
 #include <iostream>
 
-UpHandlers::UpHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_map<std::size_t, std::size_t> const &players)
-    : _registry(reg), _players(players) {}
+UpHandlers::UpHandlers(const std::shared_ptr<ecs::registry> &reg)
+    : _registry(reg) {}
 
 UpHandlers::~UpHandlers() {}
 
