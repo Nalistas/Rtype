@@ -8,6 +8,7 @@
 #include "isystem.hpp"
 #include "Component/Position.hpp"
 #include "IGame.hpp"
+#include <unordered_set>
 
 #ifndef SYSTEMCOLLISION_HPP_
 #define SYSTEMCOLLISION_HPP_
@@ -20,7 +21,7 @@ class SystemCollision : public ecs::isystem<Position, Hitbox, Damage, Life, SIDE
          * @param deleter
          * @param players
          */
-        SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players);
+        SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads);
         ~SystemCollision();
 
         /**
@@ -52,8 +53,10 @@ class SystemCollision : public ecs::isystem<Position, Hitbox, Damage, Life, SIDE
          */
         void broadcast(std::size_t entity_deleted, ecs::registry &registry);
 
+
         rtype::IGame::Deleter const &_deleter;
         std::unordered_map<std::size_t, std::size_t> &_players;
+        std::unordered_set<std::size_t> &_deads;
 };
 
 #endif /* !SYSTEMCOLLISION_HPP_ */

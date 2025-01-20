@@ -7,6 +7,7 @@
 
 #include "IGame.hpp"
 #include "registry.hpp"
+#include <unordered_set>
 
 #ifndef MOVEHANDLERS_HPP_
     #define MOVEHANDLERS_HPP_
@@ -18,7 +19,7 @@ class UnUpDownHandlers : public rtype::IClientActionHandler {
          * 
          * @param reg
          */
-        UnUpDownHandlers(const std::shared_ptr<ecs::registry> &reg);
+        UnUpDownHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_set<std::size_t> const &deads);
         ~UnUpDownHandlers();
 
         /** 
@@ -31,6 +32,7 @@ class UnUpDownHandlers : public rtype::IClientActionHandler {
         void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override;
     private:
         std::shared_ptr<ecs::registry> _registry;
+        std::unordered_set<std::size_t> const &_deads;
 };
 
 class UnRightLeftHandlers : public rtype::IClientActionHandler {
@@ -40,7 +42,7 @@ class UnRightLeftHandlers : public rtype::IClientActionHandler {
          * 
          * @param reg
          */
-        UnRightLeftHandlers(const std::shared_ptr<ecs::registry> &reg);
+        UnRightLeftHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_set<std::size_t> const &_deads);
         ~UnRightLeftHandlers();
 
         /** 
@@ -53,6 +55,7 @@ class UnRightLeftHandlers : public rtype::IClientActionHandler {
         void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override;
     private:
         std::shared_ptr<ecs::registry> _registry;
+        std::unordered_set<std::size_t> const &_deads;
 };
 
 class UpHandlers : public rtype::IClientActionHandler {
@@ -62,7 +65,7 @@ class UpHandlers : public rtype::IClientActionHandler {
          * 
          * @param reg
          */
-        UpHandlers(const std::shared_ptr<ecs::registry> &reg);
+        UpHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_set<std::size_t> const &_deads);
         ~UpHandlers();
 
         /**
@@ -75,6 +78,7 @@ class UpHandlers : public rtype::IClientActionHandler {
         void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override;
     private:
         std::shared_ptr<ecs::registry> _registry;
+        std::unordered_set<std::size_t> const &_deads;
 };
 
 class DownHandlers : public rtype::IClientActionHandler {
@@ -84,7 +88,7 @@ class DownHandlers : public rtype::IClientActionHandler {
          * 
          * @param reg
          */
-        DownHandlers(const std::shared_ptr<ecs::registry> &reg);
+        DownHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_set<std::size_t> const &_deads);
         ~DownHandlers();
 
         /**
@@ -97,6 +101,7 @@ class DownHandlers : public rtype::IClientActionHandler {
         void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override;
     private:
         std::shared_ptr<ecs::registry> _registry;
+        std::unordered_set<std::size_t> const &_deads;
 };
 
 class LeftHandlers : public rtype::IClientActionHandler {
@@ -106,7 +111,7 @@ class LeftHandlers : public rtype::IClientActionHandler {
          * 
          * @param reg
          */
-        LeftHandlers(const std::shared_ptr<ecs::registry> &reg);
+        LeftHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_set<std::size_t> const &_deads);
         ~LeftHandlers();
 
         /**
@@ -119,11 +124,12 @@ class LeftHandlers : public rtype::IClientActionHandler {
         void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override;
     private:
         std::shared_ptr<ecs::registry> _registry;
+        std::unordered_set<std::size_t> const &_deads;
 };
 
 class RightHandlers : public rtype::IClientActionHandler {
     public:
-        RightHandlers(const std::shared_ptr<ecs::registry> &reg);
+        RightHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_set<std::size_t> const &_deads);
         ~RightHandlers();
 
         /**
@@ -136,6 +142,7 @@ class RightHandlers : public rtype::IClientActionHandler {
         void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override;
     private:
         std::shared_ptr<ecs::registry> _registry;
+        std::unordered_set<std::size_t> const &_deads;
 };
 
 class ShootHandlers : public rtype::IClientActionHandler {
@@ -147,7 +154,7 @@ class ShootHandlers : public rtype::IClientActionHandler {
          * @param creater
          * @param players
          */
-        ShootHandlers(const std::shared_ptr<ecs::registry> &reg, rtype::IGame::Creater const &creater, std::unordered_map<std::size_t, std::size_t> const &players);
+        ShootHandlers(const std::shared_ptr<ecs::registry> &reg, rtype::IGame::Creater const &creater, std::unordered_map<std::size_t, std::size_t> const &players, std::unordered_set<std::size_t> const &_deads);
         ~ShootHandlers();
 
         /**
@@ -163,6 +170,7 @@ class ShootHandlers : public rtype::IClientActionHandler {
         std::shared_ptr<ecs::registry> _registry;
         rtype::IGame::Creater const &_creater;
         std::unordered_map<std::size_t, std::size_t> const &_players;
+        std::unordered_set<std::size_t> const &_deads;
 };
 
 

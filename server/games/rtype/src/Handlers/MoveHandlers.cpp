@@ -10,8 +10,7 @@
 
 #include <iostream>
 
-UpHandlers::UpHandlers(const std::shared_ptr<ecs::registry> &reg)
-    : _registry(reg) {}
+UpHandlers::UpHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_set<std::size_t> const &deads) : _registry(reg), _deads(deads) {}
 
 UpHandlers::~UpHandlers() {}
 
@@ -19,6 +18,9 @@ void UpHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned i
 {
     if (!_registry) {
         std::cout << "registry is null" << std::endl;
+        return;
+    }
+    if (_deads.find(client) != _deads.end()) {
         return;
     }
     std::cout << "handler Left: " << client << " " << mouse_x << " " << mouse_y << std::endl;
@@ -30,7 +32,7 @@ void UpHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned i
     }
 }
 
-DownHandlers::DownHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
+DownHandlers::DownHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_set<std::size_t> const &deads) : _registry(reg), _deads(deads) {}
 
 DownHandlers::~DownHandlers() {}
 
@@ -38,6 +40,9 @@ void DownHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned
 {
      if (!_registry) {
         std::cout << "registry is null" << std::endl;
+        return;
+    }
+    if (_deads.find(client) != _deads.end()) {
         return;
     }
     std::cout << "handler Left: " << client << " " << mouse_x << " " << mouse_y << std::endl;
@@ -49,7 +54,7 @@ void DownHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned
     }
 }
 
-LeftHandlers::LeftHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
+LeftHandlers::LeftHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_set<std::size_t> const &deads) : _registry(reg), _deads(deads) {}
 
 LeftHandlers::~LeftHandlers() {}
 
@@ -57,6 +62,9 @@ void LeftHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned
 {
      if (!_registry) {
         std::cout << "registry is null" << std::endl;
+        return;
+    }
+    if (_deads.find(client) != _deads.end()) {
         return;
     }
     std::cout << "handler Left: " << client << " " << mouse_x << " " << mouse_y << std::endl;
@@ -68,14 +76,17 @@ void LeftHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned
     }
 }
 
-RightHandlers::RightHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
+RightHandlers::RightHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_set<std::size_t> const &deads) : _registry(reg), _deads(deads) {}
 
 RightHandlers::~RightHandlers() {}
 
 void RightHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
 {
-     if (!_registry) {
+    if (!_registry) {
         std::cout << "registry is null" << std::endl;
+        return;
+    }
+    if (_deads.find(client) != _deads.end()) {
         return;
     }
     auto &speed = _registry->get_components<Speed>()[client];
@@ -88,14 +99,17 @@ void RightHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigne
 
 
 
-UnRightLeftHandlers::UnRightLeftHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
+UnRightLeftHandlers::UnRightLeftHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_set<std::size_t> const &deads) : _registry(reg), _deads(deads) {}
 
 UnRightLeftHandlers::~UnRightLeftHandlers() {}
 
 void UnRightLeftHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
 {
-     if (!_registry) {
+    if (!_registry) {
         std::cout << "registry is null" << std::endl;
+        return;
+    }
+    if (_deads.find(client) != _deads.end()) {
         return;
     }
     auto &speed = _registry->get_components<Speed>()[client];
@@ -104,14 +118,17 @@ void UnRightLeftHandlers::operator()(std::size_t client, unsigned int mouse_x, u
     }
 }
 
-UnUpDownHandlers::UnUpDownHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
+UnUpDownHandlers::UnUpDownHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_set<std::size_t> const &deads) : _registry(reg), _deads(deads) {}
 
 UnUpDownHandlers::~UnUpDownHandlers() {}
 
 void UnUpDownHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
 {
-     if (!_registry) {
+    if (!_registry) {
         std::cout << "registry is null" << std::endl;
+        return;
+    }
+    if (_deads.find(client) != _deads.end()) {
         return;
     }
     auto &speed = _registry->get_components<Speed>()[client];
@@ -121,7 +138,8 @@ void UnUpDownHandlers::operator()(std::size_t client, unsigned int mouse_x, unsi
 }
 
 
-ShootHandlers::ShootHandlers(const std::shared_ptr<ecs::registry> &reg, rtype::IGame::Creater const &creater, std::unordered_map<std::size_t, std::size_t> const &players) : _registry(reg), _creater(creater), _players(players) {}
+ShootHandlers::ShootHandlers(const std::shared_ptr<ecs::registry> &reg, rtype::IGame::Creater const &creater, std::unordered_map<std::size_t, std::size_t> const &players, std::unordered_set<std::size_t> const &deads) :
+    _registry(reg), _deads(deads), _creater(creater), _players(players) {}
 
 ShootHandlers::~ShootHandlers() {}
 
@@ -131,11 +149,11 @@ void ShootHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigne
         std::cout << "registry is null" << std::endl;
         return;
     }
-    std::cout << "handler Shoot: " << client << " " << mouse_x << " " << mouse_y << std::endl;
-    auto player = _registry->get_components<Position>()[client];
-    if (player.has_value() == false) {
+    if (_deads.find(client) != _deads.end()) {
         return;
     }
+    std::cout << "handler Shoot: " << client << " " << mouse_x << " " << mouse_y << std::endl;
+    auto player = _registry->get_components<Position>()[client];
     auto bullet = _registry->create_entity();
     std::cout << "bullet: " << bullet << std::endl;
     _registry->get_components<Position>().emplace_at(bullet, Position{player.value().x + 35, player.value().y});
