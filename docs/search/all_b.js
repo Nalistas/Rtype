@@ -1,7 +1,7 @@
 var searchData=
 [
   ['launch_0',['launch',['../classGameLauncher.html#a7b6d009010b33015156599c28c58c01e',1,'GameLauncher']]],
-  ['lefthandlers_1',['lefthandlers',['../classLeftHandlers.html',1,'LeftHandlers'],['../classLeftHandlers.html#aa75fab707f57b9e6c9a3c86467d0dd2b',1,'LeftHandlers::LeftHandlers()']]],
+  ['lefthandlers_1',['lefthandlers',['../classLeftHandlers.html',1,'LeftHandlers'],['../classLeftHandlers.html#a38d33797da6b622c44fede83dd4052dd',1,'LeftHandlers::LeftHandlers()']]],
   ['life_2',['Life',['../structLife.html',1,'']]],
   ['linux_20users_3a_3',['For Linux users:',['../index.html#autotoc_md15',1,'']]],
   ['listgames_4',['listGames',['../classTcpProtocol.html#a1afc3adbd42e7b943f6c4645c37f5fa0',1,'TcpProtocol']]],

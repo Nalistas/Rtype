@@ -5,7 +5,7 @@ var searchData=
   ['deleteroom_2',['deleteRoom',['../classTcpProtocol.html#aa18486f801d9ba3f0095468b7f9cc604',1,'TcpProtocol']]],
   ['dlloader_3',['DLLoader',['../classDLLdr_1_1DLLoader.html#a94bb99ab694440173c8ef130dcd8784c',1,'DLLdr::DLLoader']]],
   ['dlloaderexception_4',['DLLoaderException',['../classDLLdr_1_1DLLoaderException.html#adc7675bc735bddbbbb680d42c6bfa830',1,'DLLdr::DLLoaderException']]],
-  ['downhandlers_5',['DownHandlers',['../classDownHandlers.html#a565642cd139b55a091507ff0ea4c4f69',1,'DownHandlers']]],
+  ['downhandlers_5',['DownHandlers',['../classDownHandlers.html#a713a9dfd9d096b24333263bb56d28f10',1,'DownHandlers']]],
   ['draw_6',['draw',['../classBackground.html#a96e7cf94d75e3f104f79862c21f43850',1,'Background']]],
   ['draw_5frectangle_7',['draw_rectangle',['../classraylib_1_1Window.html#aaa1b0c351ea614ad701fab872eeb25d8',1,'raylib::Window']]],
   ['draw_5ftext_8',['draw_text',['../classraylib_1_1Window.html#a16addf4dd065850a56bbc55287baac5d',1,'raylib::Window']]]

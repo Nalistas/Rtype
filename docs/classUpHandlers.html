@@ -99,16 +99,16 @@ Collaboration diagram for UpHandlers:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a50cbfb1e2e99b7b4a52d5a003a80991d" id="r_a50cbfb1e2e99b7b4a52d5a003a80991d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUpHandlers.html#a50cbfb1e2e99b7b4a52d5a003a80991d">UpHandlers</a> (const std::shared_ptr&lt; <a class="el" href="classecs_1_1registry.html">ecs::registry</a> &gt; &amp;reg)</td></tr>
-<tr class="memdesc:a50cbfb1e2e99b7b4a52d5a003a80991d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classUpHandlers.html">UpHandlers</a> object.  <br /></td></tr>
-<tr class="separator:a50cbfb1e2e99b7b4a52d5a003a80991d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f660b35dee947049ff8732665e69dca" id="r_a4f660b35dee947049ff8732665e69dca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUpHandlers.html#a4f660b35dee947049ff8732665e69dca">UpHandlers</a> (const std::shared_ptr&lt; <a class="el" href="classecs_1_1registry.html">ecs::registry</a> &gt; &amp;reg, std::unordered_set&lt; std::size_t &gt; const &amp;_deads)</td></tr>
+<tr class="memdesc:a4f660b35dee947049ff8732665e69dca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classUpHandlers.html">UpHandlers</a> object.  <br /></td></tr>
+<tr class="separator:a4f660b35dee947049ff8732665e69dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f59908142c6c42a50871c0d1495aedb" id="r_a5f59908142c6c42a50871c0d1495aedb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUpHandlers.html#a5f59908142c6c42a50871c0d1495aedb">operator()</a> (std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override</td></tr>
 <tr class="memdesc:a5f59908142c6c42a50871c0d1495aedb"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classUpHandlers.html">UpHandlers</a>.  <br /></td></tr>
 <tr class="separator:a5f59908142c6c42a50871c0d1495aedb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a50cbfb1e2e99b7b4a52d5a003a80991d" name="a50cbfb1e2e99b7b4a52d5a003a80991d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50cbfb1e2e99b7b4a52d5a003a80991d">&#9670;&#160;</a></span>UpHandlers()</h2>
+<a id="a4f660b35dee947049ff8732665e69dca" name="a4f660b35dee947049ff8732665e69dca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f660b35dee947049ff8732665e69dca">&#9670;&#160;</a></span>UpHandlers()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -117,8 +117,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">UpHandlers::UpHandlers </td>
           <td>(</td>
           <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classecs_1_1registry.html">ecs::registry</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>reg</em></td><td>)</td>
+          <td class="paramname"><em>reg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::unordered_set&lt; std::size_t &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>_deads</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

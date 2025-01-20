@@ -33,13 +33,13 @@ var searchData=
   ['setusebackground_30',['setusebackground',['../classRType.html#a15464b886a0dd72c40dea2c4773e295f',1,'RType::setUseBackground()'],['../classrtype_1_1IGame.html#a7ccf66e4cccedbe7654ac892e0746f5d',1,'rtype::IGame::setUseBackground()']]],
   ['setusemusic_31',['setusemusic',['../classRType.html#af12e3c5f78d1a8f03311dc65d33c031b',1,'RType::setUseMusic()'],['../classrtype_1_1IGame.html#a6622e6f793b791dafd678049cd05ebd5',1,'rtype::IGame::setUseMusic()']]],
   ['setwindowdimensions_32',['setWindowDimensions',['../classBackground.html#a16e75c1d8d3f1093aa2b5a6552ffb2db',1,'Background']]],
-  ['shoothandlers_33',['ShootHandlers',['../classShootHandlers.html#a237e51b68c48ea636d4955769433b3be',1,'ShootHandlers']]],
+  ['shoothandlers_33',['ShootHandlers',['../classShootHandlers.html#a13752406dc19c852efe4f4f0fe441189',1,'ShootHandlers']]],
   ['size_34',['size',['../classsparse__array.html#a6679a2315be266da4c01ad97f00e51fd',1,'sparse_array']]],
   ['sparse_5farray_35',['sparse_array',['../classsparse__array.html#a34c792f0a28f90cffd87e58c52f20017',1,'sparse_array::sparse_array()'],['../classsparse__array.html#a2530f93c4d5c88e06ba6c69b4e04ca40',1,'sparse_array::sparse_array(sparse_array const &amp;other)'],['../classsparse__array.html#abce5f36fcd9fba0ef3ce5280cbe241db',1,'sparse_array::sparse_array(sparse_array &amp;&amp;other) noexcept']]],
   ['start_5fdrawing_36',['start_drawing',['../classraylib_1_1Window.html#aaa3caf140c64d380ab28463746e30191',1,'raylib::Window']]],
   ['stop_37',['stop',['../classraylib_1_1RayMusic.html#a3c6f79dfbee29272e7b5650efce54b45',1,'raylib::RayMusic::stop()'],['../classraylib_1_1RaySound.html#a50bbd21d6e6f24ed33463ed1fe960716',1,'raylib::RaySound::stop()']]],
   ['systembroadcast_38',['SystemBroadcast',['../classSystemBroadcast.html#a5546f66a5f8c9346363f7fce3ccf68be',1,'SystemBroadcast']]],
-  ['systemcollision_39',['SystemCollision',['../classSystemCollision.html#aebbcaedd0522275b3360ab1905b39777',1,'SystemCollision']]],
+  ['systemcollision_39',['SystemCollision',['../classSystemCollision.html#afce3fc06ef60eaac928783b16ab75809',1,'SystemCollision']]],
   ['systemcreateenemy_40',['SystemCreateEnemy',['../classSystemCreateEnemy.html#a07e4f228f1ba0677edcadb5f22f62eba',1,'SystemCreateEnemy']]],
   ['systemmovement_41',['SystemMovement',['../classSystemMovement.html#a94c4fc1faa7917b966a3e344756c20df',1,'SystemMovement']]]
 ];
