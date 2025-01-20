@@ -49,8 +49,9 @@ R-Type is a **2D shoot'em up** game inspired by the classic *R-Type*, designed a
 4. **Running the game**:
     - **Server**: To start the server, specify TCP and UDP ports:
     ```bash
-    ./r-type_server <TCP_PORT> <UDP_PORT>
+    ./r-type_server <TCP_PORT>
     ```
+    by default, the server starts on port 1024
     - **Client**: To run the client, simply launch:
     ```bash
     ./r-type_client

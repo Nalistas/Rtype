@@ -15,9 +15,20 @@
 
 class SystemCreateEnemy : public ecs::isystem<> {
     public:
+        /**
+         * @brief Construct a new SystemCreateEnemy object
+         * 
+         * @param creater
+         * @param players
+         */
         SystemCreateEnemy(rtype::IGame::Creater const &creater, std::unordered_map<std::size_t, std::size_t> const &players);
         ~SystemCreateEnemy();
 
+        /**
+         * @brief Update the speed and position of the player
+         * 
+         * @param registry
+         */
         void operator()(ecs::registry &registry);
 
     protected:

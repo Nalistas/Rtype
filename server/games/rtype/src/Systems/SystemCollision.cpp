@@ -35,6 +35,7 @@ void SystemCollision::broadcast(std::size_t entity_deleted, ecs::registry &regis
         _players.erase(player_dead);
         _players[player_dead] = registry.create_entity();
     }
+    registry.delete_entity(registry.entity_from_index(entity_deleted));
 }
 
 void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position> &positions, sparse_array<Hitbox> &hitboxs, sparse_array<Damage> &damages, sparse_array<Life> &healths, sparse_array<SIDE> &sides)

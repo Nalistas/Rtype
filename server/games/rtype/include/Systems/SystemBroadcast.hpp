@@ -15,9 +15,19 @@
 
 class SystemBroadcast : public ecs::isystem<Speed, Position> {
     public:
+        /**
+         * @brief Construct a new SystemBroadcast object
+         * 
+         * @param speedUpdater
+         * @param positionUpdater
+         * @param players
+         */
         SystemBroadcast(rtype::IGame::SpeedUpdater &speedUpdater, rtype::IGame::PositionUpdater &positionUpdater, std::unordered_map<std::size_t, std::size_t> &players);
         ~SystemBroadcast();
 
+        /**
+         * @brief Update the speed and position of the player for all players
+         */
         void operator()(ecs::registry &registry, sparse_array<Speed> &speed, sparse_array<Position> &pos) override;
 
     protected:
