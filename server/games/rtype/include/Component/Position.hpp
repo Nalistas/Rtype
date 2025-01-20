@@ -16,8 +16,8 @@ struct Position {
 
 struct Speed {
     Speed(int x, int y) : x(x), y(y) {}
-    int x;
-    int y;
+    char x;
+    char y;
 };
 
 struct Hitbox {

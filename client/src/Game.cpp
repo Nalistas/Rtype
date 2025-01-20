@@ -9,6 +9,9 @@
 #include "Game.hpp"
 #include "UdpClient.hpp"
 #include <iostream>
+#include <chrono>
+
+using namespace std::chrono;
 
 uint32_t invert(uint32_t value)
 {
@@ -136,6 +139,7 @@ void Game::interpretor(void)
 
 void Game::run(void)
 {
+    _ms_last_update = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
     this->_client.send({2});
     while (this->_win.is_running()) {
         this->interpretor();
@@ -146,9 +150,20 @@ void Game::run(void)
 
 void Game::moveSprites(void)
 {
+    auto now = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+    auto elapsed_time = now - _ms_last_update;
+    if (elapsed_time < 10) {
+        std::cout << "GameCore: " << elapsed_time << " stopping" << std::endl;
+        return;
+    }
+    _ms_last_update = now;
     for (auto &entity : _entitiesSprites) {
         auto &sprite = _graphics.getSprite(entity.second);
-        sprite.set_position(sprite.get_position().x + this->_spritesSpeed[entity.first].first, sprite.get_position().y + this->_spritesSpeed[entity.first].second);
+        std::cout << "player: " << entity.first << " x: " << sprite.get_position().x << " y: " << sprite.get_position().y << std::endl;
+        sprite.set_position(
+            (sprite.get_position().x + (this->_spritesSpeed[entity.first].first * elapsed_time / 10)),
+            (sprite.get_position().y + (this->_spritesSpeed[entity.first].second * elapsed_time / 10))
+        );
     }
 }
 

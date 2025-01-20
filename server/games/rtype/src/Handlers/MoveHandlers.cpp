@@ -21,26 +21,13 @@ void UpHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned i
         std::cout << "registry is null" << std::endl;
         return;
     }
-    auto &position = _registry->get_components<Position>()[client];
-    std::cout << "player: " << client << std::endl;
-    if (position.has_value()) {
-        // _registry->get_components<Position>().emplace_at(client, Position{position.value().x, position.value().y - 10});
-        std::cout << "player: " << client << " x: " << position.value().x << " y: " << position.value().y << std::endl;
-        position.value().y -= 10;
-        std::cout << "player: " << client << " x: " << position.value().x << " y: " << position.value().y << std::endl;
+    std::cout << "handler Left: " << client << " " << mouse_x << " " << mouse_y << std::endl;
+    auto &speed = _registry->get_components<Speed>()[client];
+    if (speed.has_value()) {
+        speed.value().y = -1;
+    } else {
+        _registry->get_components<Speed>().emplace_at(client, Speed{0, -1});
     }
-    std::cout << client << std::endl;
-    std::cout << _registry << std::endl;
-    // std::cout << "handler Up: " << client << " " << mouse_x << " " << mouse_y << std::endl;
-    // auto position = _registry->get_components<Position>();
-    // std::cout << "coucou" << std::endl;
-    // for (auto [index, pos] : zipper(position)) {
-    //     std::cout << "coucou index " << index << std::endl;
-    //     if (pos.has_value()) {
-    //         std::cout << "index " << index << " has pos !" << std::endl;
-    //         pos.value().y -= 1;
-    //     }
-    // }
 }
 
 DownHandlers::DownHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
@@ -53,14 +40,13 @@ void DownHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned
         std::cout << "registry is null" << std::endl;
         return;
     }
-    std::cout << "handler Down: " << client << " " << mouse_x << " " << mouse_y << std::endl;
-    auto &player = _registry->get_components<Position>()[client];
-    if (player.has_value()) {
-        std::cout << "player: " << client << " x: " << player.value().x << " y: " << player.value().y << std::endl;
-        player.value().y += 10;
-        std::cout << "player: " << client << " x: " << player.value().x << " y: " << player.value().y << std::endl;
+    std::cout << "handler Left: " << client << " " << mouse_x << " " << mouse_y << std::endl;
+    auto &speed = _registry->get_components<Speed>()[client];
+    if (speed.has_value()) {
+        speed.value().y = 1;
+    } else {
+        _registry->get_components<Speed>().emplace_at(client, Speed{0, 1});
     }
-    
 }
 
 LeftHandlers::LeftHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
@@ -74,11 +60,11 @@ void LeftHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned
         return;
     }
     std::cout << "handler Left: " << client << " " << mouse_x << " " << mouse_y << std::endl;
-    auto &player = _registry->get_components<Position>()[client];
-    if (player.has_value()) {
-        std::cout << "player: " << client << " x: " << player.value().x << " y: " << player.value().y << std::endl;
-        player.value().x -= 10;
-        std::cout << "player: " << client << " x: " << player.value().x << " y: " << player.value().y << std::endl;
+    auto &speed = _registry->get_components<Speed>()[client];
+    if (speed.has_value()) {
+        speed.value().x = -1;
+    } else {
+        _registry->get_components<Speed>().emplace_at(client, Speed{-1, 0});
     }
 }
 
@@ -92,10 +78,11 @@ void RightHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigne
         std::cout << "registry is null" << std::endl;
         return;
     }
-    std::cout << "handler Right: " << client << " " << mouse_x << " " << mouse_y << std::endl;
-    auto &player = _registry->get_components<Position>()[client];
-    if (player.has_value()) {
-        player.value().x += 10;
+    auto &speed = _registry->get_components<Speed>()[client];
+    if (speed.has_value()) {
+        speed.value().x = 1;
+    } else {
+        _registry->get_components<Speed>().emplace_at(client, Speed{1, 0});
     }
 }
 
