@@ -119,7 +119,7 @@ std::size_t RType::createPlayer(void)
             _registry->get_components<SIDE>().emplace_at(_players[i], SIDE::PLAYER);
             for (int j = 0; j < 4; j++) {
                 if (j != i && _players.find(j) != _players.end()) {
-                    _creater(_players[j], i, 0, 200, 200, 0, 0);
+                    _creater(_players[j], _players[i], 0, 200, 200, 0, 0);
                 }
             }
             return i;

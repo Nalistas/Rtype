@@ -96,6 +96,7 @@ void GameLauncher::positionUpdater(std::size_t player_id, std::size_t e_id, int 
 
 void GameLauncher::creater(std::size_t player_id, std::size_t e_id, std::size_t e_g_id, int x, int y, uint8_t speed_x, uint8_t speed_y)
 {
+    std::cout << "sending an entity " << e_id << " of type " << e_g_id  << " to player " << player_id << std::endl;
     if (_players_endpoints.find(player_id) == _players_endpoints.end()) {
         std::cout << "player not found" << std::endl;
         return;

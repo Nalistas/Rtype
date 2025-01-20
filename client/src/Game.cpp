@@ -38,9 +38,6 @@ Game::Game(
         *(uint32_t *)(udpMessage.data() + 5) = invert(pos.x);
         *(uint32_t *)(udpMessage.data() + 9) = invert(pos.y);
         this->_client.send(udpMessage);
-        for (auto c : udpMessage) {
-            std::cout << static_cast<int>(c) << " ";
-        }
     };
 
     for (auto &action : this->_actions[0]) {
@@ -58,6 +55,7 @@ Game::Game(
         uint16_t backgroundId = data[1] * 256 + data[2]; 
         auto background = this->_backgrounds[backgroundId];
         this->_graphics.addBackground(background);
+        std::cout << "Background " << backgroundId << " added" << std::endl;
     };
 
     this->_commandMap[2] = [this](std::vector<uint8_t> &data) {
@@ -84,6 +82,7 @@ Game::Game(
         uint16_t entityId = data[1] * 256 + data[2];
         this->_graphics.removeSprite(_entitiesSprites.at(entityId));
         _entitiesSprites.erase(entityId);
+        std::cout << "Entity " << entityId << " removed" << std::endl;
     };
     this->_commandMap[4] = [this](std::vector<uint8_t> &data) {
         //update speed
@@ -124,16 +123,20 @@ Game::Game(
 
 void Game::interpretor(void)
 {
-    if (this->_client.hasData()) {
+    while (this->_client.hasData()) {
         auto udpResponse = this->_client.receive();
-        for (auto c : udpResponse) {
-            std::cout << static_cast<int>(c) << " ";
-        }
         if (_commandMap.find(udpResponse[0]) != _commandMap.end()) {
-            std::cout << "Command found\n";
+            if (udpResponse[0] != 4 && udpResponse[0] != 5) {
+                std::cout << "Command found\n";
+            }
             _commandMap[udpResponse[0]](udpResponse);
+        } else {
+            std::cout << "Command not found : " ;
+            for (auto c : udpResponse) {
+                std::cout << static_cast<int>(c) << " ";
+            }
+            std::cout << std::endl;
         }
-        std::cout << std::endl;
     }
 }
 

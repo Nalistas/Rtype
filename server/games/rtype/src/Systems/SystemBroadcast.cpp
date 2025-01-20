@@ -16,16 +16,33 @@ SystemBroadcast::SystemBroadcast(rtype::IGame::SpeedUpdater &speedUpdater, rtype
     : _speedUpdater(speedUpdater), _positionUpdater(positionUpdater), _players(players)
 {
     _ms_last_update = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+    _ms_last_update_main = _ms_last_update;
 }
 
 SystemBroadcast::~SystemBroadcast()
 {
 }
 
-void SystemBroadcast::operator()(ecs::registry &registry, sparse_array<Speed> &speeds, sparse_array<Position> &pos)
+void SystemBroadcast::operator()(ecs::registry &registry, sparse_array<Speed> &speeds, sparse_array<Position> &positions)
 {
     auto time = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
     auto time_elapsed = time - _ms_last_update;
+    auto time_elapsed_main = time - _ms_last_update_main;
+
+    if ( time_elapsed_main > 75 ) {
+        for (auto player : _players) {
+            auto spe = speeds[player.second];
+            if (spe.has_value()) {
+                _speedUpdater(player.first, player.second, spe.value().x, spe.value().y);
+            }
+            auto pos = positions[player.second];
+            if (pos.has_value()) {
+                _positionUpdater(player.first, player.second, pos.value().x, pos.value().y);
+            }
+        }
+        _ms_last_update_main = time;
+    }
+
     if (time_elapsed < 500) {
         return;
     }
@@ -39,7 +56,7 @@ void SystemBroadcast::operator()(ecs::registry &registry, sparse_array<Speed> &s
         }
     }
 
-    for (auto [index, position] : zipper(pos)) {
+    for (auto [index, position] : zipper(positions)) {
         if (position.has_value()) {
             for (auto player: _players) {
                 _positionUpdater(player.second, index, position.value().x, position.value().y);
