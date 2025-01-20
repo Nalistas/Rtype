@@ -80,6 +80,7 @@ Core::Core(std::string ip, std::string port, std::string username) :
         _udpClient.setServer(ip, port);
         Game game(this->_actions, this->_sprites, this->_backgrounds, this->_musics, this->_udpClient, this->_window); // ICI
         game.run();
+        this->_window.close();
     };
     _instructions[LOAD_SPRITE] = [this](std::vector<uint8_t> tcpResponse) {
         load_sprite(tcpResponse);
