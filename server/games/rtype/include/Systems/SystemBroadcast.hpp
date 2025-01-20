@@ -25,6 +25,8 @@ class SystemBroadcast : public ecs::isystem<Speed, Position> {
         rtype::IGame::SpeedUpdater _speedUpdater;
         rtype::IGame::PositionUpdater _positionUpdater;
         std::unordered_map<std::size_t, std::size_t> &_players;
+        int64_t _ms_last_update;
+        int64_t _ms_last_update_main;
 };
 
 #endif /* !SYSTEMBROADCAST_HPP_ */

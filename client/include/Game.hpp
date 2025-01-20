@@ -41,13 +41,15 @@ class Game {
     private:
         std::array<std::map<uint32_t, uint32_t>, 2> _actions;
         std::map<uint32_t, raylib::Sprite> &_sprites;
-        std::map<uint32_t, std::pair<int, int>> _spritesSpeed;
+        std::map<uint32_t, std::pair<char, char>> _spritesSpeed;
         std::map<uint32_t, Background> &_backgrounds;
         std::map<uint32_t, raylib::RayMusic> &_musics;
         UdpClient &_client;
         raylib::Window &_win;
 
         GraphicsManager _graphics;
+
+        int64_t _ms_last_update;
 
         std::unordered_map<uint32_t, uint64_t> _entitiesSprites;
         std::unordered_map<uint8_t, std::function<void(std::vector<uint8_t>&)>> _commandMap;

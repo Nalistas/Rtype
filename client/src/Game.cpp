@@ -9,6 +9,9 @@
 #include "Game.hpp"
 #include "UdpClient.hpp"
 #include <iostream>
+#include <chrono>
+
+using namespace std::chrono;
 
 uint32_t invert(uint32_t value)
 {
@@ -28,8 +31,6 @@ Game::Game(
 ) :
     _actions(actions), _sprites(sprites), _backgrounds(backgrounds), _musics(musics), _client(client), _win(win), _graphics(win)
 {
-    std::cout << "Game constructor" << std::endl;
-
     auto sendAction = [this](raylib::Vector2 pos, uint32_t id) {
         std::vector<uint8_t> udpMessage(13);
         udpMessage[0] = 1;
@@ -37,9 +38,6 @@ Game::Game(
         *(uint32_t *)(udpMessage.data() + 5) = invert(pos.x);
         *(uint32_t *)(udpMessage.data() + 9) = invert(pos.y);
         this->_client.send(udpMessage);
-        for (auto c : udpMessage) {
-            std::cout << static_cast<int>(c) << " ";
-        }
     };
 
     for (auto &action : this->_actions[0]) {
@@ -54,11 +52,10 @@ Game::Game(
     }
     this->_commandMap[1] = [this](std::vector<uint8_t> &data) {
         //define a background
-        std::cout << "COUCOU HERE" << std::endl;
         uint16_t backgroundId = data[1] * 256 + data[2]; 
-        std::cout << "Background id: " << backgroundId << std::endl;
         auto background = this->_backgrounds[backgroundId];
         this->_graphics.addBackground(background);
+        std::cout << "Background " << backgroundId << " added" << std::endl;
     };
 
     this->_commandMap[2] = [this](std::vector<uint8_t> &data) {
@@ -75,7 +72,8 @@ Game::Game(
             std::cerr << "Sprite not found" << std::endl;
             return;
         }
-
+        std::cout << "Entity created with id " << entityId << " and type " << static_cast<int>(entityType) << " at position "
+            << static_cast<int>(posX) << ", " << static_cast<int>(posY) << " with speed " << speedX << ", " << speedY << "" << std::endl;
         sprite->second.set_position(posX, posY);
         this->_entitiesSprites[entityId] = this->_graphics.addSprite(sprite->second);
         this->_spritesSpeed[entityId] = {speedX, speedY};
@@ -84,6 +82,7 @@ Game::Game(
         uint16_t entityId = data[1] * 256 + data[2];
         this->_graphics.removeSprite(_entitiesSprites.at(entityId));
         _entitiesSprites.erase(entityId);
+        std::cout << "Entity " << entityId << " removed" << std::endl;
     };
     this->_commandMap[4] = [this](std::vector<uint8_t> &data) {
         //update speed
@@ -91,7 +90,6 @@ Game::Game(
         uint8_t speedX = data[3];
         uint8_t speedY = data[4];
 
-        std::cout << "Update speed of " << entityId << " to " << static_cast<int>(speedX) << " " << static_cast<int>(speedY) << std::endl;
         auto entity = this->_entitiesSprites.find(entityId);
         if (entity == this->_entitiesSprites.end()) {
             std::cerr << "Entity not found" << std::endl;
@@ -101,15 +99,18 @@ Game::Game(
     };
     this->_commandMap[5] = [this](std::vector<uint8_t> &data) {
         //update position
-        uint16_t entityId = data[1] * 256 + data[2];
-        uint32_t posX = data[3] * 16777216 + data[6] * 65536 + data[7] * 256 + data[8];
-        uint32_t posY = data[7] * 16777216 + data[8] * 65536 + data[9] * 256 + data[10];
+        uint16_t entityId = (data[1] << 8) + data[2]; // Combine les octets 1 et 2 pour obtenir un uint16_t
+
+        uint32_t posX = (data[3] << 24) + (data[4] << 16) + (data[5] << 8) + data[6]; // Combine les octets 3 à 6 pour obtenir posX
+        uint32_t posY = (data[7] << 24) + (data[8] << 16) + (data[9] << 8) + data[10]; // Combine les octets 7 à 10 pour obtenir posY
 
         auto entity = this->_entitiesSprites.find(entityId);
-        if (entity != this->_entitiesSprites.end()) {
-            auto &sprite = this->_graphics.getSprite(entity->second);
-            sprite.set_position(posX, posY);
+        if (entity == this->_entitiesSprites.end()) {
+            std::cerr << "Entity not found" << std::endl;
+            return;
         }
+        auto &sprite = this->_graphics.getSprite(entity->second);
+        sprite.set_position(posX, posY);
     };
     this->_commandMap[6] = [this](std::vector<uint8_t> &data) {
         //play music
@@ -122,21 +123,26 @@ Game::Game(
 
 void Game::interpretor(void)
 {
-    if (this->_client.hasData()) {
+    while (this->_client.hasData()) {
         auto udpResponse = this->_client.receive();
-        for (auto c : udpResponse) {
-            std::cout << static_cast<int>(c) << " ";
-        }
         if (_commandMap.find(udpResponse[0]) != _commandMap.end()) {
-            std::cout << "Command found\n";
+            if (udpResponse[0] != 4 && udpResponse[0] != 5) {
+                std::cout << "Command found\n";
+            }
             _commandMap[udpResponse[0]](udpResponse);
+        } else {
+            std::cout << "Command not found : " ;
+            for (auto c : udpResponse) {
+                std::cout << static_cast<int>(c) << " ";
+            }
+            std::cout << std::endl;
         }
-        std::cout << std::endl;
     }
 }
 
 void Game::run(void)
 {
+    _ms_last_update = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
     this->_client.send({2});
     while (this->_win.is_running()) {
         this->interpretor();
@@ -147,9 +153,19 @@ void Game::run(void)
 
 void Game::moveSprites(void)
 {
+    auto now = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+    auto elapsed_time = now - _ms_last_update;
+    if (elapsed_time < 10) {
+        std::cout << "GameCore: " << elapsed_time << " stopping" << std::endl;
+        return;
+    }
+    _ms_last_update = now;
     for (auto &entity : _entitiesSprites) {
         auto &sprite = _graphics.getSprite(entity.second);
-        sprite.set_position(sprite.get_position().x + this->_spritesSpeed[entity.first].first, sprite.get_position().y + this->_spritesSpeed[entity.first].second);
+        sprite.set_position(
+            (sprite.get_position().x + (this->_spritesSpeed[entity.first].first * elapsed_time / 10)),
+            (sprite.get_position().y + (this->_spritesSpeed[entity.first].second * elapsed_time / 10))
+        );
     }
 }
 

@@ -12,7 +12,6 @@
 GraphicsManager::GraphicsManager(raylib::Window &window) :
     _mustClear(false), _window(window)
 {
-    std::cout << "must clear ? " << _mustClear << std::endl;
     _last_frame_time = std::chrono::high_resolution_clock::now();
 }
 
