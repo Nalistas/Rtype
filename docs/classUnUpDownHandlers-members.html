@@ -70,19 +70,16 @@ $(function() {
 
 </div><!-- top -->
 <div class="header">
-  <div class="headertitle"><div class="title">SystemCollision Member List</div></div>
+  <div class="headertitle"><div class="title">UnUpDownHandlers Member List</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is the complete list of members for <a class="el" href="classSystemCollision.html">SystemCollision</a>, including all inherited members.</p>
+<p>This is the complete list of members for <a class="el" href="classUnUpDownHandlers.html">UnUpDownHandlers</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>checkCollision</b>(const Position &amp;posA, const Hitbox &amp;hitboxA, const Position &amp;posB, const Hitbox &amp;hitboxB) (defined in <a class="el" href="classSystemCollision.html">SystemCollision</a>)</td><td class="entry"><a class="el" href="classSystemCollision.html">SystemCollision</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classecs_1_1isystem.html#acf994aa668e56219129cb03d59936dcc">isystem</a>()=default</td><td class="entry"><a class="el" href="classecs_1_1isystem.html">ecs::isystem&lt; Position, Hitbox, Damage, Life, SIDE &gt;</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>operator()</b>(ecs::registry &amp;registry, sparse_array&lt; Position &gt; &amp;position, sparse_array&lt; Hitbox &gt; &amp;hitbox, sparse_array&lt; Damage &gt; &amp;damage, sparse_array&lt; Life &gt; &amp;health, sparse_array&lt; SIDE &gt; &amp;side) (defined in <a class="el" href="classSystemCollision.html">SystemCollision</a>)</td><td class="entry"><a class="el" href="classSystemCollision.html">SystemCollision</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classecs_1_1isystem.html#a1e2e83292a7251da73d2785d896d8022">isystem&lt; Position, Hitbox, Damage, Life, SIDE &gt;::operator()</a>(registry &amp;, sparse_array&lt; Components &gt; &amp;...)=0</td><td class="entry"><a class="el" href="classecs_1_1isystem.html">ecs::isystem&lt; Position, Hitbox, Damage, Life, SIDE &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>SystemCollision</b>(rtype::IGame::Deleter const &amp;deleter, std::unordered_map&lt; std::size_t, std::size_t &gt; &amp;players) (defined in <a class="el" href="classSystemCollision.html">SystemCollision</a>)</td><td class="entry"><a class="el" href="classSystemCollision.html">SystemCollision</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classecs_1_1isystem.html#ad82d73147d9922f6df227d431808e6d9">~isystem</a>()=default</td><td class="entry"><a class="el" href="classecs_1_1isystem.html">ecs::isystem&lt; Position, Hitbox, Damage, Life, SIDE &gt;</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~SystemCollision</b>() (defined in <a class="el" href="classSystemCollision.html">SystemCollision</a>)</td><td class="entry"><a class="el" href="classSystemCollision.html">SystemCollision</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>operator()</b>(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override (defined in <a class="el" href="classUnUpDownHandlers.html">UnUpDownHandlers</a>)</td><td class="entry"><a class="el" href="classUnUpDownHandlers.html">UnUpDownHandlers</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>UnUpDownHandlers</b>(const std::shared_ptr&lt; ecs::registry &gt; &amp;reg) (defined in <a class="el" href="classUnUpDownHandlers.html">UnUpDownHandlers</a>)</td><td class="entry"><a class="el" href="classUnUpDownHandlers.html">UnUpDownHandlers</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~IClientActionHandler</b>()=default (defined in <a class="el" href="classrtype_1_1IClientActionHandler.html">rtype::IClientActionHandler</a>)</td><td class="entry"><a class="el" href="classrtype_1_1IClientActionHandler.html">rtype::IClientActionHandler</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>~UnUpDownHandlers</b>() (defined in <a class="el" href="classUnUpDownHandlers.html">UnUpDownHandlers</a>)</td><td class="entry"><a class="el" href="classUnUpDownHandlers.html">UnUpDownHandlers</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

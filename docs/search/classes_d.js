@@ -8,5 +8,5 @@ var searchData=
   ['righthandlers_5',['RightHandlers',['../classRightHandlers.html',1,'']]],
   ['room_6',['Room',['../classRoom.html',1,'']]],
   ['roomscore_7',['RoomsCore',['../classRoomsCore.html',1,'']]],
-  ['rtype_8',['rtype',['../classRtype.html',1,'Rtype'],['../classRType.html',1,'RType']]]
+  ['rtype_8',['rtype',['../classRType.html',1,'RType'],['../classRtype.html',1,'Rtype']]]
 ];

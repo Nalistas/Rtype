@@ -110,10 +110,12 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        rtype::IGame::SpeedUpdater _speedUpdater;</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        rtype::IGame::PositionUpdater _positionUpdater;</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        std::unordered_map&lt;std::size_t, std::size_t&gt; &amp;_players;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        int64_t _ms_last_update;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        int64_t _ms_last_update_main;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
 </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#endif </span><span class="comment">/* !SYSTEMBROADCAST_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#endif </span><span class="comment">/* !SYSTEMBROADCAST_HPP_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aclassSystemBroadcast_html"><div class="ttname"><a href="classSystemBroadcast.html">SystemBroadcast</a></div><div class="ttdef"><b>Definition</b> SystemBroadcast.hpp:16</div></div>
 <div class="ttc" id="aclassecs_1_1isystem_html"><div class="ttname"><a href="classecs_1_1isystem.html">ecs::isystem</a></div><div class="ttdoc">Base class for all the systems. All systems must be classes that inherit from this class.</div><div class="ttdef"><b>Definition</b> isystem.hpp:35</div></div>
 <div class="ttc" id="aclassecs_1_1registry_html"><div class="ttname"><a href="classecs_1_1registry.html">ecs::registry</a></div><div class="ttdoc">Diagramme UML pour la classe registry.</div><div class="ttdef"><b>Definition</b> registry.hpp:81</div></div>
