@@ -86,6 +86,41 @@ void RightHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigne
     }
 }
 
+
+
+UnRightLeftHandlers::UnRightLeftHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
+
+UnRightLeftHandlers::~UnRightLeftHandlers() {}
+
+void UnRightLeftHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
+{
+     if (!_registry) {
+        std::cout << "registry is null" << std::endl;
+        return;
+    }
+    auto &speed = _registry->get_components<Speed>()[client];
+    if (speed.has_value()) {
+        speed.value().x = 0;
+    }
+}
+
+UnUpDownHandlers::UnUpDownHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
+
+UnUpDownHandlers::~UnUpDownHandlers() {}
+
+void UnUpDownHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y)
+{
+     if (!_registry) {
+        std::cout << "registry is null" << std::endl;
+        return;
+    }
+    auto &speed = _registry->get_components<Speed>()[client];
+    if (speed.has_value()) {
+        speed.value().y = 0;
+    }
+}
+
+
 ShootHandlers::ShootHandlers(const std::shared_ptr<ecs::registry> &reg) : _registry(reg) {}
 
 ShootHandlers::~ShootHandlers() {}

@@ -11,6 +11,26 @@
 #ifndef MOVEHANDLERS_HPP_
     #define MOVEHANDLERS_HPP_
 
+class UnUpDownHandlers : public rtype::IClientActionHandler {
+    public:
+        UnUpDownHandlers(const std::shared_ptr<ecs::registry> &reg);
+        ~UnUpDownHandlers();
+
+        void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override;
+    private:
+        std::shared_ptr<ecs::registry> _registry;
+};
+
+class UnRightLeftHandlers : public rtype::IClientActionHandler {
+    public:
+        UnRightLeftHandlers(const std::shared_ptr<ecs::registry> &reg);
+        ~UnRightLeftHandlers();
+
+        void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override;
+    private:
+        std::shared_ptr<ecs::registry> _registry;
+};
+
 class UpHandlers : public rtype::IClientActionHandler {
     public:
         UpHandlers(const std::shared_ptr<ecs::registry> &reg);

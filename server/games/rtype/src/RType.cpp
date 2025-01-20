@@ -41,10 +41,14 @@ void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
 std::vector<rtype::ClientAction> RType::getClientActionHandlers(void) const
 {
     return std::vector<rtype::ClientAction>({
-        {87, 1, std::make_unique<UpHandlers>(_registry, _players)},
+        {87, 1, std::make_unique<UpHandlers>(_registry)},
         {83, 1, std::make_unique<DownHandlers>(_registry)},
         {65, 1, std::make_unique<LeftHandlers>(_registry)},
-        {68, 1, std::make_unique<RightHandlers>(_registry)}
+        {68, 1, std::make_unique<RightHandlers>(_registry)},
+        {87, 0, std::make_unique<UnUpDownHandlers>(_registry)},
+        {83, 0, std::make_unique<UnUpDownHandlers>(_registry)},
+        {65, 0, std::make_unique<UnRightLeftHandlers>(_registry)},
+        {68, 0, std::make_unique<UnRightLeftHandlers>(_registry)}
         // {32, 1, std::make_unique<ShootHandlers>()}
     });
 }
