@@ -41,28 +41,28 @@ void GraphicsManager::_clearElements()
 
 void GraphicsManager::display()
 {
-    if (_window.is_mouse_button(raylib::Window::PRESSED, 0)) {
-        int x = _window.get_mouse_position().x;
-        int y = _window.get_mouse_position().y;
-        for (auto &sprite : _sprites) {
-            int top_left_x = sprite.second.get_position().x - sprite.second.get_size().x / 2;
-            int top_left_y = sprite.second.get_position().y - sprite.second.get_size().y / 2;
-            int bottom_right_x = sprite.second.get_position().x + sprite.second.get_size().x / 2;
-            int bottom_right_y = sprite.second.get_position().y + sprite.second.get_size().y / 2;
-            if (top_left_x < x && x < bottom_right_x && top_left_y < y && y < bottom_right_y && _spriteClickCallbacks.find(sprite.first) != _spriteClickCallbacks.end()) {
-                _spriteClickCallbacks.at(sprite.first)();
-            }
-        }
-        for (auto &text : _texts) {
-            int top_left_x = text.second.getX();
-            int top_left_y = text.second.getY();
-            int bottom_right_x = text.second.getX() + (text.second.getSize() * text.second.getText().size() * 0.7);
-            int bottom_right_y = text.second.getY() + text.second.getSize();
-            if (top_left_x < x && x < bottom_right_x && top_left_y < y && y < bottom_right_y && _textClickCallbacks.find(text.first) != _textClickCallbacks.end()) {
-                _textClickCallbacks.at(text.first)();
-            }
-        }
-    }
+    // if (_window.is_mouse_button(raylib::Window::PRESSED, 0)) {
+    //     int x = _window.get_mouse_position().x;
+    //     int y = _window.get_mouse_position().y;
+    //     for (auto &sprite : _sprites) {
+    //         int top_left_x = sprite.second.get_position().x - sprite.second.get_size().x / 2;
+    //         int top_left_y = sprite.second.get_position().y - sprite.second.get_size().y / 2;
+    //         int bottom_right_x = sprite.second.get_position().x + sprite.second.get_size().x / 2;
+    //         int bottom_right_y = sprite.second.get_position().y + sprite.second.get_size().y / 2;
+    //         if (top_left_x < x && x < bottom_right_x && top_left_y < y && y < bottom_right_y && _spriteClickCallbacks.find(sprite.first) != _spriteClickCallbacks.end()) {
+    //             _spriteClickCallbacks.at(sprite.first)();
+    //         }
+    //     }
+    //     for (auto &text : _texts) {
+    //         int top_left_x = text.second.getX();
+    //         int top_left_y = text.second.getY();
+    //         int bottom_right_x = text.second.getX() + (text.second.getSize() * text.second.getText().size() * 0.7);
+    //         int bottom_right_y = text.second.getY() + text.second.getSize();
+    //         if (top_left_x < x && x < bottom_right_x && top_left_y < y && y < bottom_right_y && _textClickCallbacks.find(text.first) != _textClickCallbacks.end()) {
+    //             _textClickCallbacks.at(text.first)();
+    //         }
+    //     }
+    // }
     if (_is_keyboard_binded_to_text) {
         char c = _window.get_char_pressed();
         if (c > 0 && _texts.at(_keyboard_bound_id).getText().size() < 20) {
@@ -198,21 +198,33 @@ void GraphicsManager::removeBackground(uint64_t id)
 
 raylib::Sprite &GraphicsManager::getSprite(uint64_t id)
 {
+    if (_sprites.find(id) == _sprites.end()) {
+        throw std::runtime_error("Sprite not found");
+    }
     return _sprites.at(id);
 }
 
 raylib::RayMusic &GraphicsManager::getMusic(uint64_t id)
 {
+    if (_musics.find(id) == _musics.end()) {
+        throw std::runtime_error("Music not found");
+    }
     return _musics.at(id);
 }
 
 raylib::RayText &GraphicsManager::getText(uint64_t id)
 {
+    if (_texts.find(id) == _texts.end()) {
+        throw std::runtime_error("Text not found");
+    }
     return _texts.at(id);
 }
 
 Background &GraphicsManager::getBackground(uint64_t id)
 {
+    if (_backgrounds.find(id) == _backgrounds.end()) {
+        throw std::runtime_error("Background not found");
+    }
     return _backgrounds.at(id);
 }
 
@@ -231,6 +243,8 @@ void GraphicsManager::bindTextToKeyboard(uint64_t id)
     _is_keyboard_binded_to_text = true;
     if (_texts.find(id) != _texts.end()) {
         _keyboard_bound_id = id;
+    } else {
+        _is_keyboard_binded_to_text = false;
     }
 }
 
