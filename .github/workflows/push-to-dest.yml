@@ -2,15 +2,11 @@ name: Push to mirror
 
 on:
   push:
-    branches-ignore:
-      -'ga-ignore-**'
-  pull_request:
-    branches-ignore:
-      -'ga-ignore-**'
+    branches:
+      - main # L'action se déclenche uniquement pour la branche "main"
 
 jobs:
   push_to_mirror:
-    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,7 +14,5 @@ jobs:
           fetch-depth: 0
       - uses: pixta-dev/repository-mirroring-action@v1
         with:
-          target_repo_url:
-            ${{ secrets.MIRROR_URL }}
-          ssh_private_key:
-            ${{ secrets.SSH_PRIVATE_KEY }}
+          target_repo_url: ${{ secrets.MIRROR_URL }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
