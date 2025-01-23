@@ -19,6 +19,9 @@
 #ifndef GAME_HPP_
     #define GAME_HPP_
 
+/**
+ * @brief Game class to handle the game
+ */
 class Game {
     public:
         Game(

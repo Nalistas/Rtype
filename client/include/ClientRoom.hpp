@@ -17,6 +17,9 @@
 // mettre un max de joueur dans la room ?
 
 
+/**
+ * @brief Room class to handle the rooms on the client side
+ */
 class ClientRoom {
     public:
         /**

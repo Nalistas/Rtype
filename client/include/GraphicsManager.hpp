@@ -16,6 +16,9 @@
 #ifndef GRAPHICSMANAGER_HPP_
     #define GRAPHICSMANAGER_HPP_
 
+/**
+ * @brief GraphicsManager class to handle the graphics part of the client
+ */
 class GraphicsManager {
     public:
         GraphicsManager(raylib::Window &window);

@@ -13,6 +13,9 @@
 #ifndef LOGIN_HPP_
     #define LOGIN_HPP_
 
+/**
+ * @brief Login class to handle the login window
+ */
 class Login {
     public:
         Login();

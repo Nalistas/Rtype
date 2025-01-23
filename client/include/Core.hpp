@@ -52,7 +52,7 @@
 
 
 /**
- * @brief Core
+ * @brief Client Core
  */
 class Core {
     public:
