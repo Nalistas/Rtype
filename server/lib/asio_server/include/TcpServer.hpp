@@ -14,6 +14,9 @@
 #include <optional>
 #include <map>
 
+/**
+ * @brief The state of the client with {EMPTY = 0, DATA = 1, DISCONNECTED = 2, CLIENT_ERROR = 3}
+ */
 enum CLIENT_DATA_STATE {
     EMPTY = 0,
     DATA = 1,
@@ -21,6 +24,10 @@ enum CLIENT_DATA_STATE {
     CLIENT_ERROR = 3
 };
 
+/**
+ * @brief The TcpServer class
+ * This class is used to create a TCP server
+ */
 class TcpServer {
     public:
 

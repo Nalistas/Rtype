@@ -11,6 +11,10 @@
 #include <asio.hpp>
 #include <optional>
 
+/**
+ * @brief The UdpServer class
+ * This class is used to create a UDP server
+ */
 class UdpServer {
     public:
         /**
