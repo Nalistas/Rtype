@@ -11,8 +11,13 @@
     #include <unistd.h>
     #include <string>
 
-namespace process
-{
+
+namespace process {
+
+    /**
+     * @brief The Process class
+     * This class is used to manage the processes
+     */
     class Process {
         public:
             /**
