@@ -21,10 +21,28 @@ class Login {
         Login();
         ~Login();
 
+        /**
+         * @brief Run the login window
+         * @return true if the login is successful, false otherwise
+         */
         bool run();
 
+        /**
+         * @brief Get the ip
+         * @return the ip
+         */
         std::string get_ip() const;
+
+        /**
+         * @brief Get the port
+         * @return the port
+         */
         std::string get_port() const;
+
+        /**
+         * @brief Get the username
+         * @return the username
+         */
         std::string get_username() const;
 
     private:
@@ -35,6 +53,9 @@ class Login {
             PORT = 2
         };
 
+        /**
+         * @brief Handle the input on the client
+         */
         void handleInput(void);
 
         int focus;

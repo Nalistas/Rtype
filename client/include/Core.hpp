@@ -76,34 +76,102 @@ class Core {
          */
         void run(void);
 
+        /**
+         * @brief Display the rooms
+         * 
+         * @param showPopup the popup state
+         * @param inputs the inputs
+         * @param focus the focus
+         */
         void drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int &focus);
 
+        /**
+         * @brief verify if an element is pressed
+         * 
+         * @param x the x position
+         * @param y the y position
+         * @param width the width
+         * @param height the height
+         * @return true if the element is pressed
+         */
         bool isEltPressed(int x, int y, int width, int height);
 
         // void displayCreateRoomBtn(std::string &roomName, bool &showPopup);
 
+        /**
+         * @brief manage the exit of the room
+         */
         void manageExitRoom();
 
+        /**
+         * @brief set the room
+         * 
+         * @param roomId the room id
+         */
         void setRoom(uint8_t roomId);
 
+        /**
+         * @brief manage the upadte of the room
+         * 
+         * @param tcpResponse the tcp response
+         */
         void roomUpdate(std::vector<uint8_t> tcpResponse);
 
+        /**
+         * @brief manage the entries and the exits of the room
+         */
         void leaveEnterRoom(std::vector<uint8_t> tcpResponse);
 
+        /**
+         * @brief save an image
+         * 
+         * @param path the path of the image
+         * @param buffer the buffer of the image
+         */
         void save_image(const std::string &path, const std::vector<char> &buffer);
 
+        /**
+         * @brief load a sprite
+         * 
+         * @param tcpResponse the tcp response
+         */
         void load_sprite(std::vector<uint8_t> tcpResponse);
 
+        /**
+         * @brief load a background
+         * 
+         * @param tcpResponse the tcp response
+         */
         void load_background(std::vector<uint8_t> tcpResponse);
 
+        /**
+         * @brief load a music
+         * 
+         * @param tcpResponse the tcp response
+         */
         void load_music(std::vector<uint8_t> tcpResponse);
 
+        /**
+         * @brief load an action
+         * 
+         * @param tcpResponse the tcp response
+         */
         void load_action(std::vector<uint8_t> tcpResponse);
 
+        /**
+         * @brief check if a file exist
+         * 
+         * @param path the path of the file to check
+         */
         void checkIfFileExist(std::string path);
 
+        /**
+         * @brief force the registration in a room
         void forceInRoom(std::vector<uint8_t> tcpResponse);
 
+        /**
+         * @brief manage the ready status of a player
+         */
         void manageGetReady();
 
     private:

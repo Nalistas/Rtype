@@ -64,8 +64,18 @@ class ClientRoom {
          */
         void setNbPlayers(int nbPlayers);
 
+        /**
+         * @brief Set the name of the ClientRoom
+         * 
+         * @param name the name of the ClientRoom
+         */
         void setGameName(std::string gameName);
 
+        /**
+         * @brief Get the name of the game
+         * 
+         * @return std::string the name of the game
+         */
         std::string getGameName() const;
 
 

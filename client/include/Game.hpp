@@ -34,10 +34,19 @@ class Game {
         );
         ~Game();
 
+        /**
+         * @brief Run the game
+         */
         void run(void);
 
+        /**
+         * @brief Interpret the actions
+         */
         void interpretor(void);
 
+        /**
+         * @brief Move the sprites
+         */
         void moveSprites(void);
 
 
