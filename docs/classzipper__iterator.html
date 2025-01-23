@@ -78,6 +78,11 @@ $(function() {
   <div class="headertitle"><div class="title">zipper_iterator&lt; Containers &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A zipper iterator This class is used to iterate over multiple containers at the same time.  
+ <a href="classzipper__iterator.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="zipper__iterator_8hpp_source.html">zipper_iterator.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -118,12 +123,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a63fe8150ebfc627b81a802fedd34ee45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b587babcdac3e04e7030ff806b5c38b" id="r_a4b587babcdac3e04e7030ff806b5c38b"><td class="memItemLeft" align="right" valign="top"><a id="a4b587babcdac3e04e7030ff806b5c38b" name="a4b587babcdac3e04e7030ff806b5c38b"></a>
 <a class="el" href="classzipper__iterator.html">zipper_iterator</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator++</b> ()</td></tr>
+<tr class="memdesc:a4b587babcdac3e04e7030ff806b5c38b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment the iterator. <br /></td></tr>
 <tr class="separator:a4b587babcdac3e04e7030ff806b5c38b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a198ac54b1690d5a76b9c89525f3b8328" id="r_a198ac54b1690d5a76b9c89525f3b8328"><td class="memItemLeft" align="right" valign="top"><a id="a198ac54b1690d5a76b9c89525f3b8328" name="a198ac54b1690d5a76b9c89525f3b8328"></a>
-<a class="el" href="classzipper__iterator.html">zipper_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator++</b> (int)</td></tr>
+<tr class="memitem:a198ac54b1690d5a76b9c89525f3b8328" id="r_a198ac54b1690d5a76b9c89525f3b8328"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classzipper__iterator.html">zipper_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzipper__iterator.html#a198ac54b1690d5a76b9c89525f3b8328">operator++</a> (int)</td></tr>
+<tr class="memdesc:a198ac54b1690d5a76b9c89525f3b8328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment the iterator.  <br /></td></tr>
 <tr class="separator:a198ac54b1690d5a76b9c89525f3b8328"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb9e6c14750f23b638940ac587d24c8a" id="r_aeb9e6c14750f23b638940ac587d24c8a"><td class="memItemLeft" align="right" valign="top"><a id="aeb9e6c14750f23b638940ac587d24c8a" name="aeb9e6c14750f23b638940ac587d24c8a"></a>
 value_type&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> ()</td></tr>
+<tr class="memdesc:aeb9e6c14750f23b638940ac587d24c8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">multiply the iterator <br /></td></tr>
 <tr class="separator:aeb9e6c14750f23b638940ac587d24c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
@@ -131,13 +138,152 @@ Friends</h2></td></tr>
 <tr class="memitem:a6871f9898f75c62c4053a845c5ae2cd4" id="r_a6871f9898f75c62c4053a845c5ae2cd4"><td class="memItemLeft" align="right" valign="top"><a id="a6871f9898f75c62c4053a845c5ae2cd4" name="a6871f9898f75c62c4053a845c5ae2cd4"></a>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>zipper&lt; Containers... &gt;</b></td></tr>
 <tr class="separator:a6871f9898f75c62c4053a845c5ae2cd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dd49941fda1e913f093febd6412a967" id="r_a9dd49941fda1e913f093febd6412a967"><td class="memItemLeft" align="right" valign="top"><a id="a9dd49941fda1e913f093febd6412a967" name="a9dd49941fda1e913f093febd6412a967"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (<a class="el" href="classzipper__iterator.html">zipper_iterator</a> const &amp;lhs, <a class="el" href="classzipper__iterator.html">zipper_iterator</a> const &amp;rhs)</td></tr>
+<tr class="memitem:a9dd49941fda1e913f093febd6412a967" id="r_a9dd49941fda1e913f093febd6412a967"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzipper__iterator.html#a9dd49941fda1e913f093febd6412a967">operator==</a> (<a class="el" href="classzipper__iterator.html">zipper_iterator</a> const &amp;lhs, <a class="el" href="classzipper__iterator.html">zipper_iterator</a> const &amp;rhs)</td></tr>
+<tr class="memdesc:a9dd49941fda1e913f093febd6412a967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare two iterators.  <br /></td></tr>
 <tr class="separator:a9dd49941fda1e913f093febd6412a967"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad41cff659848db0b594c686745102cdb" id="r_ad41cff659848db0b594c686745102cdb"><td class="memItemLeft" align="right" valign="top"><a id="ad41cff659848db0b594c686745102cdb" name="ad41cff659848db0b594c686745102cdb"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (<a class="el" href="classzipper__iterator.html">zipper_iterator</a> const &amp;lhs, <a class="el" href="classzipper__iterator.html">zipper_iterator</a> const &amp;rhs)</td></tr>
+<tr class="memitem:ad41cff659848db0b594c686745102cdb" id="r_ad41cff659848db0b594c686745102cdb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzipper__iterator.html#ad41cff659848db0b594c686745102cdb">operator!=</a> (<a class="el" href="classzipper__iterator.html">zipper_iterator</a> const &amp;lhs, <a class="el" href="classzipper__iterator.html">zipper_iterator</a> const &amp;rhs)</td></tr>
+<tr class="memdesc:ad41cff659848db0b594c686745102cdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare two iterators.  <br /></td></tr>
 <tr class="separator:ad41cff659848db0b594c686745102cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class... Containers&gt;<br />
+class zipper_iterator&lt; Containers &gt;</div><p>A zipper iterator This class is used to iterate over multiple containers at the same time. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Containers</td><td>the containers to iterate over </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a198ac54b1690d5a76b9c89525f3b8328" name="a198ac54b1690d5a76b9c89525f3b8328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a198ac54b1690d5a76b9c89525f3b8328">&#9670;&#160;</a></span>operator++()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Containers&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classzipper__iterator.html">zipper_iterator</a> <a class="el" href="classzipper__iterator.html">zipper_iterator</a>&lt; Containers &gt;::operator++ </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Increment the iterator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">int</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="ad41cff659848db0b594c686745102cdb" name="ad41cff659848db0b594c686745102cdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad41cff659848db0b594c686745102cdb">&#9670;&#160;</a></span>operator!=</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Containers&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator!= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classzipper__iterator.html">zipper_iterator</a>&lt; Containers &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classzipper__iterator.html">zipper_iterator</a>&lt; Containers &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compare two iterators. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>the left iterator </td></tr>
+    <tr><td class="paramname">rhs</td><td>the right iterator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the iterators are different </dd>
+<dd>
+false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a9dd49941fda1e913f093febd6412a967" name="a9dd49941fda1e913f093febd6412a967"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dd49941fda1e913f093febd6412a967">&#9670;&#160;</a></span>operator==</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Containers&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator== </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classzipper__iterator.html">zipper_iterator</a>&lt; Containers &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classzipper__iterator.html">zipper_iterator</a>&lt; Containers &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compare two iterators. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>the left iterator </td></tr>
+    <tr><td class="paramname">rhs</td><td>the right iterator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the iterators are equals </dd>
+<dd>
+false otherwise </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>server/lib/ecs/include/<a class="el" href="zipper__iterator_8hpp_source.html">zipper_iterator.hpp</a></li>
 </ul>
