@@ -136,8 +136,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>leaveEnterRoom</b> (s
 <tr class="memitem:ab87f00b67461690e50ede0b6a5548622" id="r_ab87f00b67461690e50ede0b6a5548622"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCore.html#ab87f00b67461690e50ede0b6a5548622">checkIfFileExist</a> (std::string path)</td></tr>
 <tr class="memdesc:ab87f00b67461690e50ede0b6a5548622"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if a file exist  <br /></td></tr>
 <tr class="separator:ab87f00b67461690e50ede0b6a5548622"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5adbbf624f959c911a3113f81d88abe9" id="r_a5adbbf624f959c911a3113f81d88abe9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCore.html#a5adbbf624f959c911a3113f81d88abe9">manageGetReady</a> ()</td></tr>
-<tr class="memdesc:a5adbbf624f959c911a3113f81d88abe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">force the registration in a room void forceInRoom(std::vector&lt;uint8_t&gt; tcpResponse);  <br /></td></tr>
+<tr class="memitem:a38f6f5c08428359810ff87af7c06cdf7" id="r_a38f6f5c08428359810ff87af7c06cdf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCore.html#a38f6f5c08428359810ff87af7c06cdf7">forceInRoom</a> (std::vector&lt; uint8_t &gt; tcpResponse)</td></tr>
+<tr class="memdesc:a38f6f5c08428359810ff87af7c06cdf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">force the registration in a room  <br /></td></tr>
+<tr class="separator:a38f6f5c08428359810ff87af7c06cdf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5adbbf624f959c911a3113f81d88abe9" id="r_a5adbbf624f959c911a3113f81d88abe9"><td class="memItemLeft" align="right" valign="top"><a id="a5adbbf624f959c911a3113f81d88abe9" name="a5adbbf624f959c911a3113f81d88abe9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>manageGetReady</b> ()</td></tr>
+<tr class="memdesc:a5adbbf624f959c911a3113f81d88abe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">manage the ready status of a player <br /></td></tr>
 <tr class="separator:a5adbbf624f959c911a3113f81d88abe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -252,6 +256,32 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>leaveEnterRoom</b> (s
     <tr><td class="paramname">showPopup</td><td>the popup state </td></tr>
     <tr><td class="paramname">inputs</td><td>the inputs </td></tr>
     <tr><td class="paramname">focus</td><td>the focus </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a38f6f5c08428359810ff87af7c06cdf7" name="a38f6f5c08428359810ff87af7c06cdf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38f6f5c08428359810ff87af7c06cdf7">&#9670;&#160;</a></span>forceInRoom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Core::forceInRoom </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; uint8_t &gt;&#160;</td>
+          <td class="paramname"><em>tcpResponse</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>force the registration in a room </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tcpResponse</td><td>the tcp response </td></tr>
   </table>
   </dd>
 </dl>
@@ -411,27 +441,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>leaveEnterRoom</b> (s
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a5adbbf624f959c911a3113f81d88abe9" name="a5adbbf624f959c911a3113f81d88abe9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5adbbf624f959c911a3113f81d88abe9">&#9670;&#160;</a></span>manageGetReady()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Core::manageGetReady </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>force the registration in a room void forceInRoom(std::vector&lt;uint8_t&gt; tcpResponse); </p>
-<p>/**</p>
-<p>manage the ready status of a player </p>
 
 </div>
 </div>
