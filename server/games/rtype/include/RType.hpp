@@ -12,6 +12,9 @@
 #ifndef RTYPE_HPP_
     #define RTYPE_HPP_
 
+/**
+ * @brief RType class to handle the game RType
+ */
 class RType : public rtype::IGame {
     public:
         RType();

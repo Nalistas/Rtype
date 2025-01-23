@@ -13,6 +13,9 @@
 #ifndef SYSTEMCREATEENEMY_HPP_
 #define SYSTEMCREATEENEMY_HPP_
 
+/**
+ * @brief SystemCreateEnemy class to handle the creation of the enemies
+ */
 class SystemCreateEnemy : public ecs::isystem<> {
     public:
         /**

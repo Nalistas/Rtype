@@ -15,6 +15,9 @@
 #ifndef SYSTEMMOVEMENT_HPP_
     #define SYSTEMMOVEMENT_HPP_
 
+/**
+ * @brief SystemMovement class to handle the movement of the player
+ */
 class SystemMovement : public ecs::isystem<Position, Speed> {
     public:
         /**

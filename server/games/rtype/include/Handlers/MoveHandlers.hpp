@@ -12,6 +12,9 @@
 #ifndef MOVEHANDLERS_HPP_
     #define MOVEHANDLERS_HPP_
 
+/**
+ * @brief UnUpDownHandlers class to handle the up and down actions
+ */
 class UnUpDownHandlers : public rtype::IClientActionHandler {
     public:
         /**
@@ -35,6 +38,9 @@ class UnUpDownHandlers : public rtype::IClientActionHandler {
         std::unordered_set<std::size_t> const &_deads;
 };
 
+/**
+ * @brief UnRightLeftHandlers class to handle the right and left actions
+ */
 class UnRightLeftHandlers : public rtype::IClientActionHandler {
     public:
         /**
@@ -58,6 +64,9 @@ class UnRightLeftHandlers : public rtype::IClientActionHandler {
         std::unordered_set<std::size_t> const &_deads;
 };
 
+/**
+ * @brief UpHandlers class to handle the up action
+ */
 class UpHandlers : public rtype::IClientActionHandler {
     public:
         /**
@@ -81,6 +90,9 @@ class UpHandlers : public rtype::IClientActionHandler {
         std::unordered_set<std::size_t> const &_deads;
 };
 
+/**
+ * @brief DownHandlers class to handle the down action
+ */
 class DownHandlers : public rtype::IClientActionHandler {
     public:
         /**
@@ -104,6 +116,9 @@ class DownHandlers : public rtype::IClientActionHandler {
         std::unordered_set<std::size_t> const &_deads;
 };
 
+/**
+ * @brief LeftHandlers class to handle the left action
+ */
 class LeftHandlers : public rtype::IClientActionHandler {
     public:
         /**
@@ -127,8 +142,17 @@ class LeftHandlers : public rtype::IClientActionHandler {
         std::unordered_set<std::size_t> const &_deads;
 };
 
+/**
+ * @brief RightHandlers class to handle the right action
+ */
 class RightHandlers : public rtype::IClientActionHandler {
     public:
+        /**
+         * @brief Construct a new RightHandlers object
+         * 
+         * @param reg
+         * @param deads
+         */
         RightHandlers(const std::shared_ptr<ecs::registry> &reg, std::unordered_set<std::size_t> const &_deads);
         ~RightHandlers();
 
@@ -145,6 +169,9 @@ class RightHandlers : public rtype::IClientActionHandler {
         std::unordered_set<std::size_t> const &_deads;
 };
 
+/**
+ * @brief ShootHandlers class to handle the shoot action
+ */
 class ShootHandlers : public rtype::IClientActionHandler {
     public:
         /**

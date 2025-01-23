@@ -13,6 +13,9 @@
 #ifndef SYSTEMBROADCAST_HPP_
 #define SYSTEMBROADCAST_HPP_
 
+/**
+ * @brief SystemBroadcast class to handle the broadcast of the speed and position of the player
+ */
 class SystemBroadcast : public ecs::isystem<Speed, Position> {
     public:
         /**

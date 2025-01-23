@@ -13,6 +13,9 @@
 #ifndef SYSTEMCOLLISION_HPP_
 #define SYSTEMCOLLISION_HPP_
 
+/**
+ * @brief SystemCollision class to handle the collision between entities
+ */
 class SystemCollision : public ecs::isystem<Position, Hitbox, Damage, Life, SIDE> {
     public:
         /**
