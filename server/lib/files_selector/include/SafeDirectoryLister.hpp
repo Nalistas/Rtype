@@ -12,6 +12,12 @@
 #ifndef SAFEDIRECTORYLISTER_HPP_
 #define SAFEDIRECTORYLISTER_HPP_
 
+
+/**
+ * @brief The SafeDirectoryLister class
+ * This class is used to list the files in a directory
+ * It is a safe version of the DirectoryLister
+ */
 class SafeDirectoryLister : public IDirectoryLister {
     public:
         /**

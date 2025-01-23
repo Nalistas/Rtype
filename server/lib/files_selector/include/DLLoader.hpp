@@ -17,6 +17,10 @@
 
 namespace DLLdr {
 
+    /**
+     * @brief A class to load a dynamic library
+     * @tparam T the type of the symbol to load
+     */
     template<typename T>
     class DLLoader {
         public:
@@ -52,12 +56,18 @@ namespace DLLdr {
             void *m_lib;
     };
 
+    /**
+     * @brief The different exceptions that can be thrown by the DLLoader
+     */
     enum DLLoaderExcepId {
         LibNotOpened,
         SymNotFound,
         SymTypeMismatch
     };
 
+    /**
+     * @brief A class to handle the exceptions of the DLLoader
+     */
     class DLLoaderException : public std::exception {
         public:
             /**

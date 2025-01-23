@@ -10,6 +10,10 @@
 #ifndef IDIRECTORYLISTER_HPP_
     #define IDIRECTORYLISTER_HPP_
 
+/**
+ * @brief The IDirectoryLister class
+ * This class is used to list the files in a directory
+ */
 class IDirectoryLister
 {
     public:
@@ -32,6 +36,10 @@ class IDirectoryLister
          */
         virtual bool isGood(void) const = 0;
 
+        /**
+         * @brief OpenFailureException class
+         * This class is used to throw an exception when the directory lister can't open the directory
+         */
         class OpenFailureException : public std::exception
         {
             public:
@@ -41,6 +49,11 @@ class IDirectoryLister
                  */
                 const char *what(void) const noexcept override;
         };
+
+        /**
+         * @brief NoMoreFileException class
+         * This class is used to throw an exception when there are no more files in the directory
+         */
         class NoMoreFileException : public std::exception
         {
             public :
