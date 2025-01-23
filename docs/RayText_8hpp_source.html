@@ -97,47 +97,68 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span>raylib</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">    #include &quot;raylib.h&quot;</span></div>
-<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classraylib_1_1RayText.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="classraylib_1_1RayText.html">RayText</a> {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="comment">// Constructor</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <a class="code hl_class" href="classraylib_1_1RayText.html">RayText</a>(std::string text, <span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> size, Color color);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="comment">// Destructor</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <a class="code hl_class" href="classraylib_1_1RayText.html">~RayText</a>();</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="comment">// Setters</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordtype">void</span> setText(std::string text);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordtype">void</span> setPosition(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordtype">void</span> setSize(<span class="keywordtype">int</span> size);</div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classraylib_1_1RayText.html">   19</a></span><span class="keyword">class </span><a class="code hl_class" href="classraylib_1_1RayText.html">RayText</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="comment">// Constructor</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <a class="code hl_class" href="classraylib_1_1RayText.html">RayText</a>(std::string text, <span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> size, Color color);</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="comment">// Getters</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        std::string <span class="keyword">const</span> &amp;getText() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">int</span> getSize(<span class="keywordtype">void</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">int</span> getX() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordtype">int</span> getY() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="comment">// Display method</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordtype">void</span> draw() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="comment">// Overload</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_class" href="classraylib_1_1RayText.html">RayText</a> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordtype">bool</span> operator!=(<span class="keyword">const</span> <a class="code hl_class" href="classraylib_1_1RayText.html">RayText</a> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordtype">bool</span> operator&lt;(<span class="keyword">const</span> <a class="code hl_class" href="classraylib_1_1RayText.html">RayText</a> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordtype">bool</span> operator&gt;(<span class="keyword">const</span> <a class="code hl_class" href="classraylib_1_1RayText.html">RayText</a> &amp;other) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        std::string _text;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordtype">int</span> _x, _y;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordtype">int</span> _size;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        Color _color;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="comment">// Destructor</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <a class="code hl_class" href="classraylib_1_1RayText.html">~RayText</a>();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="comment">// Setters</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classraylib_1_1RayText.html#a559baf357189bfbebb100c41fb4bc749">setText</a>(std::string text);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classraylib_1_1RayText.html#a383b90162ed6ce279e0a97a7c7826068">setPosition</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classraylib_1_1RayText.html#a483e1e1a6bdbb67fb3414e899632b6b1">setSize</a>(<span class="keywordtype">int</span> size);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="comment">// Getters</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        std::string <span class="keyword">const</span> &amp;<a class="code hl_function" href="classraylib_1_1RayText.html#a809780b5c90aaf04be7a298ac21b7300">getText</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classraylib_1_1RayText.html#a3512e7c6da98381e4228f51374e16893">getSize</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classraylib_1_1RayText.html#ac976cbb35c77d7b5d25f4d22a830c4e4">getX</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classraylib_1_1RayText.html#a5cdb04495614c304776dc82fceb36c38">getY</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="comment">// Display method</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classraylib_1_1RayText.html#adc8f75a9894db0dded6426ed5d62b25b">draw</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="comment">// Overload</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classraylib_1_1RayText.html#a7d99c7582c61fdc0839a600999c6622e">operator==</a>(<span class="keyword">const</span> <a class="code hl_class" href="classraylib_1_1RayText.html">RayText</a> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classraylib_1_1RayText.html#ad906de818144a44eceeabe09dd884f8e">operator!=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classraylib_1_1RayText.html">RayText</a> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classraylib_1_1RayText.html#ab9f61d4d50c23bb921afd9973897f68e">operator&lt;</a>(<span class="keyword">const</span> <a class="code hl_class" href="classraylib_1_1RayText.html">RayText</a> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classraylib_1_1RayText.html#a75c9523b6e2c330471ffa561d58858e2">operator&gt;</a>(<span class="keyword">const</span> <a class="code hl_class" href="classraylib_1_1RayText.html">RayText</a> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        std::string _text;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keywordtype">int</span> _x, _y;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordtype">int</span> _size;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        Color _color;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>};</div>
 </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#endif </span><span class="comment">/* !RAYTEXT_HPP_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="aclassraylib_1_1RayText_html"><div class="ttname"><a href="classraylib_1_1RayText.html">raylib::RayText</a></div><div class="ttdoc">Text class using raylib.</div><div class="ttdef"><b>Definition</b> RayText.hpp:20</div></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>}</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#endif </span><span class="comment">/* !RAYTEXT_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aclassraylib_1_1RayText_html"><div class="ttname"><a href="classraylib_1_1RayText.html">raylib::RayText</a></div><div class="ttdoc">Text class using raylib.</div><div class="ttdef"><b>Definition</b> RayText.hpp:19</div></div>
+<div class="ttc" id="aclassraylib_1_1RayText_html_a3512e7c6da98381e4228f51374e16893"><div class="ttname"><a href="classraylib_1_1RayText.html#a3512e7c6da98381e4228f51374e16893">raylib::RayText::getSize</a></div><div class="ttdeci">int getSize(void) const</div><div class="ttdoc">Get the size of the text.</div><div class="ttdef"><b>Definition</b> RayText.cpp:44</div></div>
+<div class="ttc" id="aclassraylib_1_1RayText_html_a383b90162ed6ce279e0a97a7c7826068"><div class="ttname"><a href="classraylib_1_1RayText.html#a383b90162ed6ce279e0a97a7c7826068">raylib::RayText::setPosition</a></div><div class="ttdeci">void setPosition(int x, int y)</div><div class="ttdoc">Set the position of the text.</div><div class="ttdef"><b>Definition</b> RayText.cpp:18</div></div>
+<div class="ttc" id="aclassraylib_1_1RayText_html_a483e1e1a6bdbb67fb3414e899632b6b1"><div class="ttname"><a href="classraylib_1_1RayText.html#a483e1e1a6bdbb67fb3414e899632b6b1">raylib::RayText::setSize</a></div><div class="ttdeci">void setSize(int size)</div><div class="ttdoc">Set the size of the text.</div><div class="ttdef"><b>Definition</b> RayText.cpp:24</div></div>
+<div class="ttc" id="aclassraylib_1_1RayText_html_a559baf357189bfbebb100c41fb4bc749"><div class="ttname"><a href="classraylib_1_1RayText.html#a559baf357189bfbebb100c41fb4bc749">raylib::RayText::setText</a></div><div class="ttdeci">void setText(std::string text)</div><div class="ttdoc">Set the text.</div><div class="ttdef"><b>Definition</b> RayText.cpp:13</div></div>
+<div class="ttc" id="aclassraylib_1_1RayText_html_a5cdb04495614c304776dc82fceb36c38"><div class="ttname"><a href="classraylib_1_1RayText.html#a5cdb04495614c304776dc82fceb36c38">raylib::RayText::getY</a></div><div class="ttdeci">int getY() const</div><div class="ttdoc">Get the y position of the text.</div><div class="ttdef"><b>Definition</b> RayText.cpp:39</div></div>
+<div class="ttc" id="aclassraylib_1_1RayText_html_a75c9523b6e2c330471ffa561d58858e2"><div class="ttname"><a href="classraylib_1_1RayText.html#a75c9523b6e2c330471ffa561d58858e2">raylib::RayText::operator&gt;</a></div><div class="ttdeci">bool operator&gt;(const RayText &amp;other) const</div><div class="ttdoc">Overload of the &gt; operator.</div><div class="ttdef"><b>Definition</b> RayText.cpp:83</div></div>
+<div class="ttc" id="aclassraylib_1_1RayText_html_a7d99c7582c61fdc0839a600999c6622e"><div class="ttname"><a href="classraylib_1_1RayText.html#a7d99c7582c61fdc0839a600999c6622e">raylib::RayText::operator==</a></div><div class="ttdeci">bool operator==(const RayText &amp;other) const</div><div class="ttdoc">Overload of the == operator.</div><div class="ttdef"><b>Definition</b> RayText.cpp:54</div></div>
+<div class="ttc" id="aclassraylib_1_1RayText_html_a809780b5c90aaf04be7a298ac21b7300"><div class="ttname"><a href="classraylib_1_1RayText.html#a809780b5c90aaf04be7a298ac21b7300">raylib::RayText::getText</a></div><div class="ttdeci">std::string const &amp; getText() const</div><div class="ttdoc">Get the text.</div><div class="ttdef"><b>Definition</b> RayText.cpp:29</div></div>
+<div class="ttc" id="aclassraylib_1_1RayText_html_ab9f61d4d50c23bb921afd9973897f68e"><div class="ttname"><a href="classraylib_1_1RayText.html#ab9f61d4d50c23bb921afd9973897f68e">raylib::RayText::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const RayText &amp;other) const</div><div class="ttdoc">Overload of the &lt; operator.</div><div class="ttdef"><b>Definition</b> RayText.cpp:64</div></div>
+<div class="ttc" id="aclassraylib_1_1RayText_html_ac976cbb35c77d7b5d25f4d22a830c4e4"><div class="ttname"><a href="classraylib_1_1RayText.html#ac976cbb35c77d7b5d25f4d22a830c4e4">raylib::RayText::getX</a></div><div class="ttdeci">int getX() const</div><div class="ttdoc">Get the x position of the text.</div><div class="ttdef"><b>Definition</b> RayText.cpp:34</div></div>
+<div class="ttc" id="aclassraylib_1_1RayText_html_ad906de818144a44eceeabe09dd884f8e"><div class="ttname"><a href="classraylib_1_1RayText.html#ad906de818144a44eceeabe09dd884f8e">raylib::RayText::operator!=</a></div><div class="ttdeci">bool operator!=(const RayText &amp;other) const</div><div class="ttdoc">Overload of the != operator.</div><div class="ttdef"><b>Definition</b> RayText.cpp:59</div></div>
+<div class="ttc" id="aclassraylib_1_1RayText_html_adc8f75a9894db0dded6426ed5d62b25b"><div class="ttname"><a href="classraylib_1_1RayText.html#adc8f75a9894db0dded6426ed5d62b25b">raylib::RayText::draw</a></div><div class="ttdeci">void draw() const</div><div class="ttdoc">Draw the text.</div><div class="ttdef"><b>Definition</b> RayText.cpp:49</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
