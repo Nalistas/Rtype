@@ -167,6 +167,9 @@ class Core {
 
         /**
          * @brief force the registration in a room
+         * 
+         * @param tcpResponse the tcp response
+         */
         void forceInRoom(std::vector<uint8_t> tcpResponse);
 
         /**
