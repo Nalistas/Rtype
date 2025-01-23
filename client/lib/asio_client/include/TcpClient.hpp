@@ -12,6 +12,10 @@
 #include <string>
 #include <vector>
 
+/**
+ * @brief TcpClient class to handle the tcp client
+ */
+
 class TcpClient {
     public:
         /**

@@ -12,6 +12,9 @@
 #include <string>
 #include <vector>
 
+/**
+ * @brief UdpClient class to handle the udp client
+ */
 class UdpClient {
     public:
         /**
