@@ -21,6 +21,10 @@ namespace ecs {
 
 namespace rtype {
 
+    /**
+     * @brief IClientActionHandler class
+     * This class is an interface to handle the client actions
+     */
     class IClientActionHandler {
         public:
             virtual ~IClientActionHandler() = default;
@@ -28,6 +32,10 @@ namespace rtype {
             virtual void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) = 0;
     };
 
+    /**
+     * @brief ClientAction struct
+     * This struct is used to store the client actions
+     */
     struct ClientAction {
         ClientAction() = default;
         ClientAction(const ClientAction&) = default;
@@ -39,6 +47,10 @@ namespace rtype {
     };
 
 
+    /**
+     * @brief The Sprite struct
+     * This struct is used to store the sprite
+     */
     struct Sprite {
         Sprite() = default;
         Sprite(const Sprite&) = default;
@@ -55,6 +67,10 @@ namespace rtype {
         uint32_t ms_per_frame;
     };
 
+    /**
+     * @brief The Background struct
+     * This struct is used to store the background
+     */
     struct Background {
         Background() = default;
         Background(const Background&) = default;
@@ -77,6 +93,10 @@ namespace rtype {
         } type;
     };
 
+    /**
+     * @brief The IGame class
+     * This class is an interface to create a game
+     */
     class IGame {
         public:
             /**
