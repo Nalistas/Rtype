@@ -77,10 +77,15 @@ $(function() {
   <div class="headertitle"><div class="title">TcpProtocol Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>The <a class="el" href="classTcpProtocol.html" title="The TcpProtocol class This class is used to interpret the commands sent by the clients It will then c...">TcpProtocol</a> class This class is used to interpret the commands sent by the clients It will then call the appropriate function to treat the command.  
+ <a href="classTcpProtocol.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="TcpProtocol_8hpp_source.html">TcpProtocol.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a83c8c8a8446f11a4e1daccf845fbcbef" id="r_a83c8c8a8446f11a4e1daccf845fbcbef"><td class="memItemLeft" align="right" valign="top"><a id="a83c8c8a8446f11a4e1daccf845fbcbef" name="a83c8c8a8446f11a4e1daccf845fbcbef"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>INSTRUCTIONS_SERVER_TO_CLIENT</b> { <br />
+<tr class="memitem:a83c8c8a8446f11a4e1daccf845fbcbef" id="r_a83c8c8a8446f11a4e1daccf845fbcbef"><td class="memItemLeft" align="right" valign="top"><a id="a83c8c8a8446f11a4e1daccf845fbcbef" name="a83c8c8a8446f11a4e1daccf845fbcbef"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#a83c8c8a8446f11a4e1daccf845fbcbef">INSTRUCTIONS_SERVER_TO_CLIENT</a> { <br />
 &#160;&#160;<b>OK</b> = 200
 , <b>KO</b> = 201
 , <b>ROOM_UPDATE</b> = 1
@@ -96,8 +101,9 @@ Public Types</h2></td></tr>
 , <b>FORCE_REGISTER_IN_ROOM</b> = 10
 <br />
  }</td></tr>
+<tr class="memdesc:a83c8c8a8446f11a4e1daccf845fbcbef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum of the instructions from the server to the client. <br /></td></tr>
 <tr class="separator:a83c8c8a8446f11a4e1daccf845fbcbef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a112f9cbbf527ccb0032f33562d7fffe9" id="r_a112f9cbbf527ccb0032f33562d7fffe9"><td class="memItemLeft" align="right" valign="top"><a id="a112f9cbbf527ccb0032f33562d7fffe9" name="a112f9cbbf527ccb0032f33562d7fffe9"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>INSTRUCTIONS_CLIENT_TO_SERVER</b> { <br />
+<tr class="memitem:a112f9cbbf527ccb0032f33562d7fffe9" id="r_a112f9cbbf527ccb0032f33562d7fffe9"><td class="memItemLeft" align="right" valign="top"><a id="a112f9cbbf527ccb0032f33562d7fffe9" name="a112f9cbbf527ccb0032f33562d7fffe9"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#a112f9cbbf527ccb0032f33562d7fffe9">INSTRUCTIONS_CLIENT_TO_SERVER</a> { <br />
 &#160;&#160;<b>SET_NAME</b> = 1
 , <b>ENTER_ROOM</b> = 2
 , <b>LEAVE_ROOM</b> = 4
@@ -111,16 +117,17 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>SET_READY</b> = 10
 <br />
  }</td></tr>
+<tr class="memdesc:a112f9cbbf527ccb0032f33562d7fffe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum of the instructions from the client to the server. <br /></td></tr>
 <tr class="separator:a112f9cbbf527ccb0032f33562d7fffe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a52330c26cfec3aef68eb96a349d3568f" id="r_a52330c26cfec3aef68eb96a349d3568f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#a52330c26cfec3aef68eb96a349d3568f">TcpProtocol</a> (std::map&lt; uint8_t, <a class="el" href="classRoom.html">Room</a> &gt; &amp;rooms, std::map&lt; std::shared_ptr&lt; asio::ip::tcp::socket &gt;, <a class="el" href="classClient.html">Client</a> &gt; &amp;clients, <a class="el" href="classTcpServer.html">TcpServer</a> &amp;tcpServer, std::function&lt; void(uint8_t roomId)&gt; launchGame, std::vector&lt; std::string &gt; &amp;gameList)</td></tr>
-<tr class="memdesc:a52330c26cfec3aef68eb96a349d3568f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classTcpProtocol.html">TcpProtocol</a> object.  <br /></td></tr>
+<tr class="memdesc:a52330c26cfec3aef68eb96a349d3568f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classTcpProtocol.html" title="The TcpProtocol class This class is used to interpret the commands sent by the clients It will then c...">TcpProtocol</a> object.  <br /></td></tr>
 <tr class="separator:a52330c26cfec3aef68eb96a349d3568f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae812325112d6f39cb12fabcd2b9d5514" id="r_ae812325112d6f39cb12fabcd2b9d5514"><td class="memItemLeft" align="right" valign="top"><a id="ae812325112d6f39cb12fabcd2b9d5514" name="ae812325112d6f39cb12fabcd2b9d5514"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>~TcpProtocol</b> ()</td></tr>
-<tr class="memdesc:ae812325112d6f39cb12fabcd2b9d5514"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classTcpProtocol.html">TcpProtocol</a> object. <br /></td></tr>
+<tr class="memdesc:ae812325112d6f39cb12fabcd2b9d5514"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classTcpProtocol.html" title="The TcpProtocol class This class is used to interpret the commands sent by the clients It will then c...">TcpProtocol</a> object. <br /></td></tr>
 <tr class="separator:ae812325112d6f39cb12fabcd2b9d5514"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a868946cf9ea7f28f2fa1cd6180bbdb56" id="r_a868946cf9ea7f28f2fa1cd6180bbdb56"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTcpProtocol.html#a868946cf9ea7f28f2fa1cd6180bbdb56">interpreter</a> (std::shared_ptr&lt; asio::ip::tcp::socket &gt; &amp;client, std::vector&lt; uint8_t &gt; data)</td></tr>
 <tr class="memdesc:a868946cf9ea7f28f2fa1cd6180bbdb56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Treat a client command.  <br /></td></tr>
@@ -178,7 +185,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>listGames</b> (std::s
 <tr class="memdesc:ab01c8286584e5a67ff1b45a68de6d42d"><td class="mdescLeft">&#160;</td><td class="mdescRight">format the force register in a room command to a client  <br /></td></tr>
 <tr class="separator:ab01c8286584e5a67ff1b45a68de6d42d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="classTcpProtocol.html" title="The TcpProtocol class This class is used to interpret the commands sent by the clients It will then c...">TcpProtocol</a> class This class is used to interpret the commands sent by the clients It will then call the appropriate function to treat the command. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a52330c26cfec3aef68eb96a349d3568f" name="a52330c26cfec3aef68eb96a349d3568f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a52330c26cfec3aef68eb96a349d3568f">&#9670;&#160;</a></span>TcpProtocol()</h2>
 
@@ -223,11 +232,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>listGames</b> (std::s
       </table>
 </div><div class="memdoc">
 
-<p>Construct a new <a class="el" href="classTcpProtocol.html">TcpProtocol</a> object. </p>
+<p>Construct a new <a class="el" href="classTcpProtocol.html" title="The TcpProtocol class This class is used to interpret the commands sent by the clients It will then c...">TcpProtocol</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">rooms</td><td>Reference to a map of room IDs and <a class="el" href="classRoom.html">Room</a> objects </td></tr>
-    <tr><td class="paramname">clients</td><td>Reference to a map of client sockets and <a class="el" href="classClient.html">Client</a> objects </td></tr>
+    <tr><td class="paramname">rooms</td><td>Reference to a map of room IDs and <a class="el" href="classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ...">Room</a> objects </td></tr>
+    <tr><td class="paramname">clients</td><td>Reference to a map of client sockets and <a class="el" href="classClient.html" title="Client class on server side This class is used to represent a client.">Client</a> objects </td></tr>
     <tr><td class="paramname">tcpServer</td><td>Reference to a <a class="el" href="classTcpServer.html">TcpServer</a> object </td></tr>
     <tr><td class="paramname">launchGame</td><td>Pointer to a function that launches a game </td></tr>
     <tr><td class="paramname">gameList</td><td>Reference to a vector with the name of the games </td></tr>

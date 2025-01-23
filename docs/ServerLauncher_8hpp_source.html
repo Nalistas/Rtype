@@ -95,25 +95,28 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">    #include &quot;RoomsCore.hpp&quot;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classServerLauncher.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="classServerLauncher.html">ServerLauncher</a> {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <a class="code hl_class" href="classServerLauncher.html">ServerLauncher</a>(std::string <span class="keyword">const</span> &amp;executable_name);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <a class="code hl_function" href="classServerLauncher.html#a69671f2965634515b6f112f378fb1931">~ServerLauncher</a>();</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keywordtype">void</span> LaunchUdpServer(std::string <span class="keyword">const</span> &amp;port, std::string <span class="keyword">const</span> &amp;gameName);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keywordtype">void</span> LaunchTcpServer(std::string <span class="keyword">const</span> &amp;port);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        std::string _executable_name;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classServerLauncher.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="classServerLauncher.html">ServerLauncher</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <a class="code hl_class" href="classServerLauncher.html">ServerLauncher</a>(std::string <span class="keyword">const</span> &amp;executable_name);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <a class="code hl_function" href="classServerLauncher.html#a69671f2965634515b6f112f378fb1931">~ServerLauncher</a>();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLauncher.html#af1bc7da395e36a96a7b9e3ac6df5f50b">LaunchUdpServer</a>(std::string <span class="keyword">const</span> &amp;port, std::string <span class="keyword">const</span> &amp;gameName);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLauncher.html#afb17480f19d6784d89866e5eefd43a0d">LaunchTcpServer</a>(std::string <span class="keyword">const</span> &amp;port);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        std::string _executable_name;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
 </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#endif </span><span class="comment">/* !SERVER_LAUNCHER_HPP_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="aclassServerLauncher_html"><div class="ttname"><a href="classServerLauncher.html">ServerLauncher</a></div><div class="ttdef"><b>Definition</b> ServerLauncher.hpp:14</div></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#endif </span><span class="comment">/* !SERVER_LAUNCHER_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aclassServerLauncher_html"><div class="ttname"><a href="classServerLauncher.html">ServerLauncher</a></div><div class="ttdoc">The ServerLauncher class This class allows to launch a server.</div><div class="ttdef"><b>Definition</b> ServerLauncher.hpp:18</div></div>
 <div class="ttc" id="aclassServerLauncher_html_a69671f2965634515b6f112f378fb1931"><div class="ttname"><a href="classServerLauncher.html#a69671f2965634515b6f112f378fb1931">ServerLauncher::~ServerLauncher</a></div><div class="ttdeci">~ServerLauncher()</div><div class="ttdoc">Destroy the Server Launcher object.</div><div class="ttdef"><b>Definition</b> ServerLauncher.cpp:17</div></div>
+<div class="ttc" id="aclassServerLauncher_html_af1bc7da395e36a96a7b9e3ac6df5f50b"><div class="ttname"><a href="classServerLauncher.html#af1bc7da395e36a96a7b9e3ac6df5f50b">ServerLauncher::LaunchUdpServer</a></div><div class="ttdeci">void LaunchUdpServer(std::string const &amp;port, std::string const &amp;gameName)</div><div class="ttdoc">Launch a UDP server.</div><div class="ttdef"><b>Definition</b> ServerLauncher.cpp:21</div></div>
+<div class="ttc" id="aclassServerLauncher_html_afb17480f19d6784d89866e5eefd43a0d"><div class="ttname"><a href="classServerLauncher.html#afb17480f19d6784d89866e5eefd43a0d">ServerLauncher::LaunchTcpServer</a></div><div class="ttdeci">void LaunchTcpServer(std::string const &amp;port)</div><div class="ttdoc">Launch a TCP server.</div><div class="ttdef"><b>Definition</b> ServerLauncher.cpp:28</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -11,5 +11,6 @@ var searchData=
   ['core_8',['Core',['../classCore.html#a0a12cb32035ca501a04660d33858f5c5',1,'Core']]],
   ['create_5fentity_9',['create_entity',['../classecs_1_1registry.html#a3dd0770aa04c88c98c260b64daee967c',1,'ecs::registry']]],
   ['createplayer_10',['createplayer',['../classRtype.html#a97cb139753d4da09be83c2958a76c3a1',1,'Rtype::createPlayer()'],['../classRType.html#a6ff2753581ab28463edbd84a150c9ef6',1,'RType::createPlayer()'],['../classrtype_1_1IGame.html#ae2d0395a6beb5f2980fb8f2c1be86261',1,'rtype::IGame::createPlayer()']]],
-  ['createroom_11',['createRoom',['../classTcpProtocol.html#a0e348023142f975cc6f23b94a7aef29b',1,'TcpProtocol']]]
+  ['creater_11',['creater',['../classGameLauncher.html#a9402402bb7f4c6b848749e7ae32eb6cd',1,'GameLauncher']]],
+  ['createroom_12',['createRoom',['../classTcpProtocol.html#a0e348023142f975cc6f23b94a7aef29b',1,'TcpProtocol']]]
 ];

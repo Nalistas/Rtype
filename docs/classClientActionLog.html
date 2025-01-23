@@ -76,21 +76,28 @@ $(function() {
   <div class="headertitle"><div class="title">ClientActionLog Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class to log client actions. This class is used to log client actions and call the appropriate handler.  
+ <a href="classClientActionLog.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ClientActionLog_8hpp_source.html">ClientActionLog.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab4edc4d103f21c39e57878da708522ac" id="r_ab4edc4d103f21c39e57878da708522ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClientActionLog.html#ab4edc4d103f21c39e57878da708522ac">ClientActionLog</a> (std::vector&lt; std::shared_ptr&lt; <a class="el" href="classrtype_1_1IClientActionHandler.html">rtype::IClientActionHandler</a> &gt; &gt; &amp;handlers, std::unordered_map&lt; std::string, size_t &gt; const &amp;players, std::function&lt; void(std::size_t)&gt; const &amp;update_screen)</td></tr>
-<tr class="memdesc:ab4edc4d103f21c39e57878da708522ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classClientActionLog.html">ClientActionLog</a>.  <br /></td></tr>
+<tr class="memdesc:ab4edc4d103f21c39e57878da708522ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classClientActionLog.html" title="Class to log client actions. This class is used to log client actions and call the appropriate handle...">ClientActionLog</a>.  <br /></td></tr>
 <tr class="separator:ab4edc4d103f21c39e57878da708522ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7b3a6b91b73a7dd70b70b63543758d9" id="r_ae7b3a6b91b73a7dd70b70b63543758d9"><td class="memItemLeft" align="right" valign="top"><a id="ae7b3a6b91b73a7dd70b70b63543758d9" name="ae7b3a6b91b73a7dd70b70b63543758d9"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>~ClientActionLog</b> ()</td></tr>
-<tr class="memdesc:ae7b3a6b91b73a7dd70b70b63543758d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for <a class="el" href="classClientActionLog.html">ClientActionLog</a>. <br /></td></tr>
+<tr class="memdesc:ae7b3a6b91b73a7dd70b70b63543758d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for <a class="el" href="classClientActionLog.html" title="Class to log client actions. This class is used to log client actions and call the appropriate handle...">ClientActionLog</a>. <br /></td></tr>
 <tr class="separator:ae7b3a6b91b73a7dd70b70b63543758d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71efac463ffda7263c3249b685abd188" id="r_a71efac463ffda7263c3249b685abd188"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::function&lt; void()&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClientActionLog.html#a71efac463ffda7263c3249b685abd188">treatAction</a> (std::string const &amp;client_ip, std::vector&lt; uint8_t &gt; const &amp;message)</td></tr>
 <tr class="memdesc:a71efac463ffda7263c3249b685abd188"><td class="mdescLeft">&#160;</td><td class="mdescRight">Treats an action from a client.  <br /></td></tr>
 <tr class="separator:a71efac463ffda7263c3249b685abd188"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class to log client actions. This class is used to log client actions and call the appropriate handler. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab4edc4d103f21c39e57878da708522ac" name="ab4edc4d103f21c39e57878da708522ac"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab4edc4d103f21c39e57878da708522ac">&#9670;&#160;</a></span>ClientActionLog()</h2>
 
@@ -123,7 +130,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor for <a class="el" href="classClientActionLog.html">ClientActionLog</a>. </p>
+<p>Constructor for <a class="el" href="classClientActionLog.html" title="Class to log client actions. This class is used to log client actions and call the appropriate handle...">ClientActionLog</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">handlers</td><td>A vector of ClientActionHandler to handle client actions. </td></tr>

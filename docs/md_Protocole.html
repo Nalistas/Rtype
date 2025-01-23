@@ -107,7 +107,7 @@ Server -&gt; Client</h2>
 <ol type="1">
 <li>OK If the previous instruction previously made succeed <code>...[200]</code></li>
 <li>KO If the previous instruction previously made did not succeed <code>...[201]</code></li>
-<li><a class="el" href="classRoom.html">Room</a> declaration This request is here to add a new room waiting for new player <code>...[1][new = 1 | deleted = 0][room id /1o][room name /?o]</code></li>
+<li><a class="el" href="classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ...">Room</a> declaration This request is here to add a new room waiting for new player <code>...[1][new = 1 | deleted = 0][room id /1o][room name /?o]</code></li>
 <li>Set ready It will declare you ready to play. You need to be in a room to set you ready. The game will start when all player are ready ! <code>...[2]</code></li>
 <li>Load a sprite When the game is starting, the server will send to the client everything they need to play. <code>...[3][Id of the sprite /4o][Width /4o][Height /4o][Width text rect /4o][Height text rect /4o][X offset /4o][Y offset /4o][Number of frames /4o][nb milisecond per frame /4o][path to the image /?o]</code></li>
 <li>Load a background <code>...[4][<a class="el" href="structSpeed.html" title="Speed component.">Speed</a>][move on X axis = 1 | move on Y axis = 2][resize = 1 | do not = 0][loop = 1 | do not loop][Do not move = 1 | Parallax = 2 | Perpetual movement = 3][Path to image /?o]</code></li>
@@ -115,23 +115,23 @@ Server -&gt; Client</h2>
 <li>Load an action <code>...[6][id action / 4o][key code / 4o][pressed = 1 | released = 0]</code></li>
 <li>Transfert IpPort where the game will take place : <code>...[7][IP /4o][Port/2o][Player Id]</code> with : Ip : <code>[nb1 /1o][nb2 /1o][nb3 /1o][nb4 /1o]</code> =&gt; nb1.nb2.nb3.nb4 Port : <code>[nb1/1o][nb2/1o]</code> translation to string then concatenation, for exemple: 9809, NB1 = 98 et NB2 = 09. Translation to STR : NB1 = "98" NB2 = "09" then concatenation =&gt; "9809"</li>
 <li>Declare an existing game: It sends you an existing game that you can select where you create a room <code>...[8][game name]</code></li>
-<li>Someone entered/exited a room: <code>...[9][exited = 0 | entered = 1][<a class="el" href="classRoom.html">Room</a> id][name]</code></li>
-<li>Force register in a room: It force register you in the room you have clicked on to enter <code>...[10][<a class="el" href="classRoom.html">Room</a> Id][<a class="el" href="classRoom.html">Room</a> Name]</code></li>
+<li>Someone entered/exited a room: <code>...[9][exited = 0 | entered = 1][<a class="el" href="classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ...">Room</a> id][name]</code></li>
+<li>Force register in a room: It force register you in the room you have clicked on to enter <code>...[10][<a class="el" href="classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ...">Room</a> Id][<a class="el" href="classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ...">Room</a> Name]</code></li>
 </ol>
 <h2><a class="anchor" id="autotoc_md5"></a>
 Client -&gt; Server</h2>
 <ol type="1">
 <li>Define a name <code>...[1][Name /?o]</code> Server response : OK | KO this instruction is mandatory, it is a loggin</li>
-<li>Enter in a <a class="el" href="classRoom.html">Room</a> : <code>...[2][Id room /1o]</code> Server response : OK | KO</li>
+<li>Enter in a <a class="el" href="classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ...">Room</a> : <code>...[2][Id room /1o]</code> Server response : OK | KO</li>
 <li>Leave the current room <code>...[4]</code> Server response : OK | KO this will make you leave the room if you are in one and set you not ready</li>
 <li>List Games <code>...[5]</code> Server response : <code>...[8][game name]</code></li>
 <li>Missing file <code>...[6][File path /?o]</code> Server response : OK[followed by the file (binary)] | KO when the server give you all the ressourses, it just gives the path. By default it assumes the client has everything. However, you can ask him the document and then it will give it to you</li>
-<li>New <a class="el" href="classRoom.html">Room</a> <code>...[7][<a class="el" href="classRoom.html">Room</a> Name /?o][92][Name of the game /?o]</code> Server response : OK | KO</li>
+<li>New <a class="el" href="classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ...">Room</a> <code>...[7][<a class="el" href="classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ...">Room</a> Name /?o][92][Name of the game /?o]</code> Server response : OK | KO</li>
 <li>List rooms <code>...[8]</code> Server response : <code>...[1][1][room id /1o][room name /?o]</code></li>
 <li>Delete rooms <code>...[9][Id room]</code></li>
 <li>Set ready or unready : <code>...[10]</code> Server response : OK | KO the game is launched if All player are set ready this command will set you ready is you are not and will set you not ready if you are</li>
 </ol>
-<p><b>NB</b> Be carefull, some instruction of the server can be sent before a response to a request. For exemple : <a class="el" href="classClient.html">Client</a> &ndash;{Create a new <a class="el" href="classRoom.html">Room</a>}--&gt; Server <a class="el" href="classClient.html">Client</a> &lt;-{Declare a new <a class="el" href="classRoom.html">Room</a>}&ndash; Server <a class="el" href="classClient.html">Client</a> &lt;-{OK to the creation}&ndash; Server as we can see here, the declaration of a new random room has been sent by the server before the confirmation of the room creation.</p>
+<p><b>NB</b> Be carefull, some instruction of the server can be sent before a response to a request. For exemple : <a class="el" href="classClient.html" title="Client class on server side This class is used to represent a client.">Client</a> &ndash;{Create a new <a class="el" href="classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ...">Room</a>}--&gt; Server <a class="el" href="classClient.html" title="Client class on server side This class is used to represent a client.">Client</a> &lt;-{Declare a new <a class="el" href="classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ...">Room</a>}&ndash; Server <a class="el" href="classClient.html" title="Client class on server side This class is used to represent a client.">Client</a> &lt;-{OK to the creation}&ndash; Server as we can see here, the declaration of a new random room has been sent by the server before the confirmation of the room creation.</p>
 <h1><a class="anchor" id="autotoc_md6"></a>
 UDP</h1>
 </div></div><!-- contents -->
