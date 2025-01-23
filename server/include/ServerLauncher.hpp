@@ -11,6 +11,10 @@
 
     #include "RoomsCore.hpp"
 
+/**
+ * @brief The ServerLauncher class
+ * This class allows to launch a server
+ */
 class ServerLauncher {
     public:
 
@@ -24,7 +28,17 @@ class ServerLauncher {
          */
         ~ServerLauncher();
 
+        /**
+         * @brief Launch a UDP server
+         * @param port the port of the server
+         * @param gameName the name of the game
+         */
         void LaunchUdpServer(std::string const &port, std::string const &gameName);
+
+        /**
+         * @brief Launch a TCP server
+         * @param port the port of the server
+         */
         void LaunchTcpServer(std::string const &port);
 
     private:

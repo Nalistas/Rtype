@@ -14,6 +14,9 @@
 #ifndef GAMECORE_HPP_
     #define GAMECORE_HPP_
 
+/**
+ * @brief The core of the game, it will run the game
+ */
 class GameCore {
 
     public:

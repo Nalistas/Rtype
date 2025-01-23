@@ -16,9 +16,17 @@
 #ifndef TCPPROTOCOL_HPP_
     #define TCPPROTOCOL_HPP_
 
+/**
+ * @brief The TcpProtocol class
+ * This class is used to interpret the commands sent by the clients
+ * It will then call the appropriate function to treat the command
+ */
 class TcpProtocol {
     public:
 
+        /**
+         * @brief Enum of the instructions from the server to the client
+         */
         enum INSTRUCTIONS_SERVER_TO_CLIENT {
             OK = 200,
             KO = 201,
@@ -33,6 +41,9 @@ class TcpProtocol {
             FORCE_REGISTER_IN_ROOM = 10
         };
 
+        /**
+         * @brief Enum of the instructions from the client to the server
+         */
         enum INSTRUCTIONS_CLIENT_TO_SERVER {
             SET_NAME = 1,
             ENTER_ROOM = 2,
@@ -214,6 +225,13 @@ class TcpProtocol {
         std::function<void(uint8_t roomId)> _launchGame;
         std::vector<std::string> &_gameList;
 
+        /**
+         * @brief copy a uint32_t to a vector of uint8_t
+         * 
+         * @param vec the vector
+         * @param pos the position
+         * @param value the value
+         */
         void copyUint32(std::vector<uint8_t> &vec, std::size_t pos, uint32_t value);
 
 };

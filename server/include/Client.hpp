@@ -11,6 +11,10 @@
 #ifndef CLIENT_HPP_
     #define CLIENT_HPP_
 
+/**
+ * @brief Client class on server side
+ * This class is used to represent a client
+ */
 class Client {
     public:
         Client();

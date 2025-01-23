@@ -20,7 +20,11 @@
 #ifndef CORE_HPP_
     #define CORE_HPP_
 
-
+/**
+ * @brief The core of the rooms server
+ * This class is used to manage the rooms server
+ * It will manage the rooms, the clients, the games and the ressources
+ */
 class RoomsCore {
     public:
         /**
@@ -86,10 +90,25 @@ class RoomsCore {
          */
         void sendGameRessourcesToTheRoom(std::string game, const uint8_t room);
 
+        /**
+         * @brief get the clients of a room
+         * @param room the room id
+         * @return the clients of the room
+         */
         std::list<std::pair<std::shared_ptr<asio::ip::tcp::socket>, Client>> getClients(const uint8_t room);
 
+        /**
+         * @brief get the local ip
+         * @return the local ip
+         */
         std::vector<uint8_t> get_local_ip();
 
+        /**
+         * @brief get the client id
+         * @param room the room id
+         * @param client the client socket
+         * @return the client id
+         */
         int getClientId(const uint8_t room, const std::shared_ptr<asio::ip::tcp::socket> &clientt);
 
 

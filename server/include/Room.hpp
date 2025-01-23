@@ -16,7 +16,11 @@
 // scanner le jeu pour savoir combien de joueurs peuvent y jouer en meme temps ?
 // mettre un max de joueur dans la room ?
 
-
+/**
+ * @brief Class to represent a room
+ * This class is used to represent a room
+ * A room is a place where clients can join to play a game
+ */
 class Room {
     public:
         /**

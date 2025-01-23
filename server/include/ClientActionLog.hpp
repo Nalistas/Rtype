@@ -14,6 +14,10 @@
 #ifndef CLIENTACTIONLOG_HPP_
     #define CLIENTACTIONLOG_HPP_
 
+/**
+ * @brief Class to log client actions.
+ * This class is used to log client actions and call the appropriate handler.
+ */
 class ClientActionLog {
 
     public:
