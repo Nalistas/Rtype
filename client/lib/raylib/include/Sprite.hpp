@@ -15,19 +15,32 @@
 namespace raylib {
     #include "raylib.h"
 
+/**
+ * @brief Sprite class to handle the sprites with raylib
+ */
 class Sprite {
     public:
         Sprite();
+
+        /**
+         * @brief Construct a new Sprite object
+         * @param text the texture
+         */
         Sprite(std::shared_ptr<raylib::TextureCpp> &text);
+
+        /**
+         * @brief Construct a new Sprite object
+         * @param text the texture
+         * @param texture_rect the texture rect {x, y, width, height}
+         * @param on_window_rect the on window rect {x, y, width, height}
+         */
         Sprite(std::shared_ptr<raylib::TextureCpp> &text, Rectangle texture_rect, Rectangle on_window_rect);
         ~Sprite();
 
-        void draw();
-
         /**
-         * @brief Set the component
-         * @param sprite the sprite component
+         * @brief Draw the sprite
          */
+        void draw();
 
         /**
          * @brief Set the texture

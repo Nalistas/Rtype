@@ -15,6 +15,9 @@
 namespace raylib {
 #include "raylib.h"
 
+/**
+ * @brief Window class to handle the window
+ */
 class Window {
     public:
 

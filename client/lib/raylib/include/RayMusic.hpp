@@ -13,6 +13,10 @@
 namespace raylib {
     #include "raylib.h"
 
+
+/**
+ * @brief RayMusic class to handle the music
+ */
 class RayMusic {
     public:
 
@@ -22,6 +26,10 @@ class RayMusic {
          */
         RayMusic(std::string const &path);
 
+        /**
+         * @brief Construct a new RayMusic object
+         * @param other the RayMusic to copy
+         */
         RayMusic(RayMusic const &other) = default;
 
         /**
@@ -74,9 +82,40 @@ class RayMusic {
         void update();
 
         // Overload
+        /**
+         * @brief Overload of the = operator
+         * 
+         * @param other the RayMusic to compare
+         * 
+         * @return true if the RayMusic are equals
+         */
         bool operator==(const RayMusic &other) const;
+
+        /**
+         * @brief Overload of the != operator
+         * 
+         * @param other the RayMusic to compare
+         * 
+         * @return true if the RayMusic are not equals
+         */
         bool operator!=(const RayMusic &other) const;
+
+        /**
+         * @brief Overload of the < operator
+         * 
+         * @param other the RayMusic to compare
+         * 
+         * @return true if the RayMusic is less than the other
+         */
         bool operator<(const RayMusic &other) const;
+
+        /**
+         * @brief Overload of the > operator
+         * 
+         * @param other the RayMusic to compare
+         * 
+         * @return true if the RayMusic is greater than the other
+         */
         bool operator>(const RayMusic &other) const; 
 
     private:
