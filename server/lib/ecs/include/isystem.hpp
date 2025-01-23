@@ -15,6 +15,10 @@
 
 namespace ecs {
 
+/**
+ * @brief registry class
+ * This class is used to store the components of the entities
+ */
 class registry;
 
 /**

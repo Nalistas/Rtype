@@ -17,6 +17,11 @@
 template <class... Containers>
 class zipper;
 
+/**
+ * @brief A zipper iterator
+ * This class is used to iterate over multiple containers at the same time
+ * @tparam Containers the containers to iterate over
+ */
 template <class... Containers>
 class zipper_iterator {
     public:
@@ -36,14 +41,40 @@ class zipper_iterator {
         zipper_iterator(iterator_tuple const& it_tuple, size_t max);
         zipper_iterator(zipper_iterator const& z) = default;
 
+        /**
+         * @brief Increment the iterator
+         */
         zipper_iterator& operator++();
+
+        /**
+         * @brief Increment the iterator
+         * @param int
+         */
         zipper_iterator operator++(int);
+
+        /**
+         * @brief multiply the iterator
+         */
         value_type operator*();
 
+        /**
+         * @brief Compare two iterators
+         * @param lhs the left iterator
+         * @param rhs the right iterator
+         * @return true if the iterators are equals
+         * @return false otherwise
+         */
         friend bool operator==(zipper_iterator const& lhs, zipper_iterator const& rhs) {
             return lhs._idx == rhs._idx;
         }
 
+        /**
+         * @brief Compare two iterators
+         * @param lhs the left iterator
+         * @param rhs the right iterator
+         * @return true if the iterators are different
+         * @return false otherwise
+         */
         friend bool operator!=(zipper_iterator const& lhs, zipper_iterator const& rhs) {
             return !(lhs == rhs);
         }
@@ -52,8 +83,17 @@ class zipper_iterator {
 
     private:
         template <size_t... Is>
+
+        /**
+         * @brief Increment all the iterators
+         * @tparam Is the index of the containers
+         */
         void incr_all(std::index_sequence<Is...>);
 
+        /**
+         * @brief Convert the iterators to a value
+         * @tparam Is the index of the containers
+         */
         template <size_t... Is>
         value_type to_value(std::index_sequence<Is...>);
 

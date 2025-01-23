@@ -4,6 +4,10 @@
 #include <vector>
 #include <optional>
 
+/**
+ * @brief A sparse array is a container that can store components at specific positions
+ * @tparam Component the type of the component
+ */
 template <typename Component>
 class sparse_array {
 public:

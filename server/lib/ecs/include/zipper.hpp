@@ -12,6 +12,12 @@
 #include <tuple>
 #include <cstddef>
 
+
+/**
+ * @brief A zipper class
+ * This class is used to iterate over multiple containers at the same time
+ * @tparam Containers the containers to iterate over
+ */
 template <class... Containers>
 class zipper {
     public:
