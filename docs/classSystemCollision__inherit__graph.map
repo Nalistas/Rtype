@@ -1,5 +1,5 @@
 <map id="SystemCollision" name="SystemCollision">
-<area shape="rect" id="Node000001" title=" " alt="" coords="29,108,156,133"/>
+<area shape="rect" id="Node000001" title="SystemCollision class to handle the collision between entities." alt="" coords="29,108,156,133"/>
 <area shape="rect" id="Node000002" href="$classecs_1_1isystem.html" title=" " alt="" coords="5,5,180,60"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,74,95,108,90,108,90,74"/>
 </map>

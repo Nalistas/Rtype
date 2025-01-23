@@ -17,10 +17,11 @@ var searchData=
   ['resize_5fx_14',['resize_x',['../classBackground.html#a4452ce64dd5e6ba759e362fa3173cd8d',1,'Background::resize_x()'],['../classraylib_1_1Sprite.html#ac0138d3461045321c34ec4efb2e13ee8',1,'raylib::Sprite::resize_x()']]],
   ['resize_5fy_15',['resize_y',['../classBackground.html#aa3610cbfa45f00347ad94484006d7962',1,'Background::resize_y()'],['../classraylib_1_1Sprite.html#ac33c537c2171a4f15bf6d39dc8f77bad',1,'raylib::Sprite::resize_y()']]],
   ['ressourcesmanager_16',['RessourcesManager',['../classRessourcesManager.html#a740f38a443a851b7c41208c71f9beb5d',1,'RessourcesManager']]],
-  ['room_17',['room',['../classRoom.html#a70e1efa965960e3126ac4ea368da6947',1,'Room::Room(std::string const &amp;name, std::string const &amp;gameName, std::shared_ptr&lt; asio::ip::tcp::socket &gt; &amp;owner)'],['../classRoom.html#a5bffa463a0e0f077f786ac1594775b95',1,'Room::Room(Room const &amp;room)=default']]],
-  ['roomscore_18',['RoomsCore',['../classRoomsCore.html#a0eafdd5437fdcf13e9b6a0dcf30a82ea',1,'RoomsCore']]],
-  ['roomupdate_19',['roomUpdate',['../classCore.html#afb641775ea9e26b9309991ba925ecead',1,'Core']]],
-  ['run_20',['run',['../classCore.html#af968596fe136d8faebf8517de5411380',1,'Core::run()'],['../classGame.html#a46165f87463fa8114fa44596ced90dbd',1,'Game::run()'],['../classLogin.html#a33963a870db789eaf888a00949668115',1,'Login::run()'],['../classGameCore.html#a569272d491d1d7540187d4975ba24161',1,'GameCore::run()'],['../classRoomsCore.html#aa9f10091a4d01d74d4d0399aa52dd88b',1,'RoomsCore::run()']]],
-  ['run_5fsingle_5fsystem_21',['run_single_system',['../classecs_1_1registry.html#a2e37bee5dde94844a0421f51265aedde',1,'ecs::registry']]],
-  ['run_5fsystems_22',['run_systems',['../classecs_1_1registry.html#a2a7c2252aa8be3c9adfc9b3e511789f2',1,'ecs::registry']]]
+  ['righthandlers_17',['RightHandlers',['../classRightHandlers.html#a0e84c55946dd0e3dbbb25d5d1ad7ea67',1,'RightHandlers']]],
+  ['room_18',['room',['../classRoom.html#a70e1efa965960e3126ac4ea368da6947',1,'Room::Room(std::string const &amp;name, std::string const &amp;gameName, std::shared_ptr&lt; asio::ip::tcp::socket &gt; &amp;owner)'],['../classRoom.html#a5bffa463a0e0f077f786ac1594775b95',1,'Room::Room(Room const &amp;room)=default']]],
+  ['roomscore_19',['RoomsCore',['../classRoomsCore.html#a0eafdd5437fdcf13e9b6a0dcf30a82ea',1,'RoomsCore']]],
+  ['roomupdate_20',['roomUpdate',['../classCore.html#afb641775ea9e26b9309991ba925ecead',1,'Core']]],
+  ['run_21',['run',['../classCore.html#af968596fe136d8faebf8517de5411380',1,'Core::run()'],['../classGame.html#a46165f87463fa8114fa44596ced90dbd',1,'Game::run()'],['../classLogin.html#a33963a870db789eaf888a00949668115',1,'Login::run()'],['../classGameCore.html#a569272d491d1d7540187d4975ba24161',1,'GameCore::run()'],['../classRoomsCore.html#aa9f10091a4d01d74d4d0399aa52dd88b',1,'RoomsCore::run()']]],
+  ['run_5fsingle_5fsystem_22',['run_single_system',['../classecs_1_1registry.html#a2e37bee5dde94844a0421f51265aedde',1,'ecs::registry']]],
+  ['run_5fsystems_23',['run_systems',['../classecs_1_1registry.html#a2a7c2252aa8be3c9adfc9b3e511789f2',1,'ecs::registry']]]
 ];

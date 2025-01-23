@@ -89,13 +89,13 @@ Introduction</h1>
 </ol>
 <p>It is also knows as little indian :3 <b>NB</b> sometimes, we can have <code>?</code> which means undifined number of octets, this notation is more for the strings.</p>
 <ol type="1">
-<li><code>...</code> is for "prefix", octet that has been declared as "global" Exemple : Global prefix :<code>[2][ID /4o]</code> the code : <code>...[<a class="el" href="structSpeed.html">Speed</a> /4o]</code></li>
+<li><code>...</code> is for "prefix", octet that has been declared as "global" Exemple : Global prefix :<code>[2][ID /4o]</code> the code : <code>...[<a class="el" href="structSpeed.html" title="Speed component.">Speed</a> /4o]</code></li>
 </ol>
 <p>means that the full package is 9 octets longs :</p><ul>
 <li>the single octet for <code>[2]</code> - that has the value 2</li>
 <li>the ID on 4 octets <code>[ID /4o]</code></li>
-<li>the speed on 4 octet <code>[<a class="el" href="structSpeed.html">Speed</a> /4o]</code></li>
-<li>the result is : <code>[2][ID /4o][<a class="el" href="structSpeed.html">Speed</a> /4o]</code> Because the code has <code>...</code> and that there is a global prefix, the complete code will be the concatenation of the prefixe and the rest. <b>NB</b> a prefix can have a prefix</li>
+<li>the speed on 4 octet <code>[<a class="el" href="structSpeed.html" title="Speed component.">Speed</a> /4o]</code></li>
+<li>the result is : <code>[2][ID /4o][<a class="el" href="structSpeed.html" title="Speed component.">Speed</a> /4o]</code> Because the code has <code>...</code> and that there is a global prefix, the complete code will be the concatenation of the prefixe and the rest. <b>NB</b> a prefix can have a prefix</li>
 </ul>
 <p>4 <code>[|]</code> is for choice it is to illustrate that there is a limited choice, often with a value and the signification Exemple : <code>[Key code][Pressed = 1 | Released = 2]</code> meanse that the package is made of 2 octets, the 1st is a key code, the seconde means "Pressed or Released" <code>[K][1]</code> means that the key "K" is pressed while <code>[A][2]</code> meanse that the key "A" is released</p>
 <hr  />
@@ -110,7 +110,7 @@ Server -&gt; Client</h2>
 <li><a class="el" href="classRoom.html">Room</a> declaration This request is here to add a new room waiting for new player <code>...[1][new = 1 | deleted = 0][room id /1o][room name /?o]</code></li>
 <li>Set ready It will declare you ready to play. You need to be in a room to set you ready. The game will start when all player are ready ! <code>...[2]</code></li>
 <li>Load a sprite When the game is starting, the server will send to the client everything they need to play. <code>...[3][Id of the sprite /4o][Width /4o][Height /4o][Width text rect /4o][Height text rect /4o][X offset /4o][Y offset /4o][Number of frames /4o][nb milisecond per frame /4o][path to the image /?o]</code></li>
-<li>Load a background <code>...[4][<a class="el" href="structSpeed.html">Speed</a>][move on X axis = 1 | move on Y axis = 2][resize = 1 | do not = 0][loop = 1 | do not loop][Do not move = 1 | Parallax = 2 | Perpetual movement = 3][Path to image /?o]</code></li>
+<li>Load a background <code>...[4][<a class="el" href="structSpeed.html" title="Speed component.">Speed</a>][move on X axis = 1 | move on Y axis = 2][resize = 1 | do not = 0][loop = 1 | do not loop][Do not move = 1 | Parallax = 2 | Perpetual movement = 3][Path to image /?o]</code></li>
 <li>Load a music <code>...[5][id musique][path to musique /?o]</code></li>
 <li>Load an action <code>...[6][id action / 4o][key code / 4o][pressed = 1 | released = 0]</code></li>
 <li>Transfert IpPort where the game will take place : <code>...[7][IP /4o][Port/2o][Player Id]</code> with : Ip : <code>[nb1 /1o][nb2 /1o][nb3 /1o][nb4 /1o]</code> =&gt; nb1.nb2.nb3.nb4 Port : <code>[nb1/1o][nb2/1o]</code> translation to string then concatenation, for exemple: 9809, NB1 = 98 et NB2 = 09. Translation to STR : NB1 = "98" NB2 = "09" then concatenation =&gt; "9809"</li>

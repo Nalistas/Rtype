@@ -20,7 +20,7 @@ var searchData=
   ['resize_5fx_17',['resize_x',['../classBackground.html#a4452ce64dd5e6ba759e362fa3173cd8d',1,'Background::resize_x()'],['../classraylib_1_1Sprite.html#ac0138d3461045321c34ec4efb2e13ee8',1,'raylib::Sprite::resize_x()']]],
   ['resize_5fy_18',['resize_y',['../classBackground.html#aa3610cbfa45f00347ad94484006d7962',1,'Background::resize_y()'],['../classraylib_1_1Sprite.html#ac33c537c2171a4f15bf6d39dc8f77bad',1,'raylib::Sprite::resize_y()']]],
   ['ressourcesmanager_19',['ressourcesmanager',['../classRessourcesManager.html',1,'RessourcesManager'],['../classRessourcesManager.html#a740f38a443a851b7c41208c71f9beb5d',1,'RessourcesManager::RessourcesManager()']]],
-  ['righthandlers_20',['RightHandlers',['../classRightHandlers.html',1,'']]],
+  ['righthandlers_20',['righthandlers',['../classRightHandlers.html',1,'RightHandlers'],['../classRightHandlers.html#a0e84c55946dd0e3dbbb25d5d1ad7ea67',1,'RightHandlers::RightHandlers()']]],
   ['room_21',['room',['../classRoom.html#a70e1efa965960e3126ac4ea368da6947',1,'Room::Room(std::string const &amp;name, std::string const &amp;gameName, std::shared_ptr&lt; asio::ip::tcp::socket &gt; &amp;owner)'],['../classRoom.html#a5bffa463a0e0f077f786ac1594775b95',1,'Room::Room(Room const &amp;room)=default'],['../classRoom.html',1,'Room']]],
   ['roomscore_22',['roomscore',['../classRoomsCore.html#a0eafdd5437fdcf13e9b6a0dcf30a82ea',1,'RoomsCore::RoomsCore()'],['../classRoomsCore.html',1,'RoomsCore']]],
   ['roomupdate_23',['roomUpdate',['../classCore.html#afb641775ea9e26b9309991ba925ecead',1,'Core']]],
