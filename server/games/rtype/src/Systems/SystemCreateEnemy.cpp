@@ -28,11 +28,11 @@ void SystemCreateEnemy::operator()(ecs::registry &registry)
 {
     if (std::chrono::duration_cast<std::chrono::milliseconds>(
         std::chrono::system_clock::now().time_since_epoch()
-    ).count() - _ms_last_update < 1000) {
+    ).count() - _ms_last_update < 5000) {
         return;
     }
     auto enemy = registry.create_entity();
-    registry.get_components<Position>().emplace_at(enemy, Position{500, 200});
+    registry.get_components<Position>().emplace_at(enemy, Position{950, random() % 500});
     registry.get_components<Hitbox>().emplace_at(enemy, Hitbox{25, 25});
     registry.get_components<Speed>().emplace_at(enemy, Speed{-1, 0});
     registry.get_components<Life>().emplace_at(enemy, Life{5});

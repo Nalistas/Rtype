@@ -155,7 +155,7 @@ void ShootHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigne
     auto player = _registry->get_components<Position>()[client];
     auto bullet = _registry->create_entity();
     _registry->get_components<Position>().emplace_at(bullet, Position{player.value().x + 35, player.value().y});
-    _registry->get_components<Speed>().emplace_at(bullet, Speed{1, 0});
+    _registry->get_components<Speed>().emplace_at(bullet, Speed{2, 0});
     _registry->get_components<Hitbox>().emplace_at(bullet, Hitbox{1, 1});
     _registry->get_components<Damage>().emplace_at(bullet, Damage{1});
     _registry->get_components<SIDE>().emplace_at(bullet, SIDE::PLAYER);

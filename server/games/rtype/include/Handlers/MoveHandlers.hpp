@@ -198,6 +198,7 @@ class ShootHandlers : public rtype::IClientActionHandler {
         rtype::IGame::Creater const &_creater;
         std::unordered_map<std::size_t, std::size_t> const &_players;
         std::unordered_set<std::size_t> const &_deads;
+        std::unordered_map<std::size_t, std::size_t> _players_shoot;
 };
 
 
