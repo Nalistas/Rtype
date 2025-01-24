@@ -73,6 +73,9 @@ Game::Game(
             return;
         }
         sprite->second.set_position(posX, posY);
+        if (this->_entitiesSprites.find(entityId) != this->_entitiesSprites.end()) {
+            this->_graphics.removeSprite(this->_entitiesSprites[entityId]);
+        }
         this->_entitiesSprites[entityId] = this->_graphics.addSprite(sprite->second);
         this->_spritesSpeed[entityId] = {speedX, speedY};
         this->_graphics.onSpriteClick(this->_entitiesSprites[entityId], [this, entityId]() {
