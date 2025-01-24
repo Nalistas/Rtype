@@ -56,16 +56,16 @@ std::vector<rtype::ClientAction> RType::getClientActionHandlers(void) const
 std::vector<rtype::Background> RType::getBackgrounds(void) const
 {
     return std::vector<rtype::Background>({
-        rtype::Background{std::string("../bg.png"), 1, rtype::Background::LEFT, true, true, rtype::Background::MOVING}
+        rtype::Background{std::string("../assets/bg.png"), 1, rtype::Background::LEFT, true, true, rtype::Background::MOVING}
     });
 }
 
 std::vector<rtype::Sprite> RType::getSprites(void) const
 {
     return std::vector<rtype::Sprite>({
-        rtype::Sprite{std::string("../ship.png"), 50, 50, 0, 0, 1, 0, 20, 20},
-        rtype::Sprite{std::string("../enemy.png"), 25, 25, 0, 0, 1, 0, 20, 20},
-        rtype::Sprite{std::string("../bullet.png"), 10, 10, 0, 0, 1, 0, 20, 20}
+        rtype::Sprite{std::string("../assets/ship.png"), 50, 50, 0, 0, 1, 0, 20, 20},
+        rtype::Sprite{std::string("../assets/enemy.png"), 25, 25, 0, 0, 1, 0, 20, 20},
+        rtype::Sprite{std::string("../assets/bullet.png"), 10, 10, 0, 0, 1, 0, 20, 20}
     });
 }
 

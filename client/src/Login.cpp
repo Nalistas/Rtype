@@ -11,7 +11,7 @@
 
 Login::Login() :
     focus(0),
-    _window(500, 500),
+    _window(620, 350),
     _is_running(true),
     _titles({
         raylib::RayText("Name:", 10, 10, 30, raylib::BLUE),
@@ -72,7 +72,7 @@ void Login::handleInput(void)
 
 bool Login::run()
 {
-    Background background("../background.png", _window.get_size().first, _window.get_size().second);
+    Background background("../assets/space.png", _window.get_size().first, _window.get_size().second);
     background.setSpeed(0.5);
     background.setMoveType(Background::BACKGROUND_MOVE_TYPE::PARALLAX);
     background.loop(true);

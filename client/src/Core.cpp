@@ -378,13 +378,19 @@ void Core::run(void)
     bool showPopup = false;
     int focus = 0; 
 
+    Background background("../assets/bg_room.png", _window.get_size().first, _window.get_size().second);
+    background.auto_resize_x();
+    background.auto_resize_y();
+
+
     while (_window.is_running()) {
         interpretor();
         _window.start_drawing();
         _window.clear(raylib::WHITE);
 
         if (_roomId == 0) { // Main menu
-            _window.draw_text("Create room", 10, 10, 20, raylib::BLACK);
+            background.draw();
+            _window.draw_text("Create room", 10, 10, 20, raylib::WHITE);
             if (isEltPressed(10, 10, 100, 20) && !showPopup) {
                 showPopup = true;
                 inputs[0].setText("");
