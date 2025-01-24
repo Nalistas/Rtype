@@ -187,11 +187,12 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        rtype::IGame::Creater <span class="keyword">const</span> &amp;_creater;</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        std::unordered_map&lt;std::size_t, std::size_t&gt; <span class="keyword">const</span> &amp;_players;</div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        std::unordered_set&lt;std::size_t&gt; <span class="keyword">const</span> &amp;_deads;</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>};</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        std::unordered_map&lt;std::size_t, std::size_t&gt; _players_shoot;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>};</div>
 </div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="preprocessor">#endif </span><span class="comment">/* !MOVEHANDLERS_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="preprocessor">#endif </span><span class="comment">/* !MOVEHANDLERS_HPP_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aclassDownHandlers_html"><div class="ttname"><a href="classDownHandlers.html">DownHandlers</a></div><div class="ttdoc">DownHandlers class to handle the down action.</div><div class="ttdef"><b>Definition</b> MoveHandlers.hpp:96</div></div>
 <div class="ttc" id="aclassDownHandlers_html_aa4d3ed4e48965ef2757a5aec8f04a3bc"><div class="ttname"><a href="classDownHandlers.html#aa4d3ed4e48965ef2757a5aec8f04a3bc">DownHandlers::operator()</a></div><div class="ttdeci">void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override</div><div class="ttdoc">DownHandlers.</div><div class="ttdef"><b>Definition</b> MoveHandlers.cpp:39</div></div>
 <div class="ttc" id="aclassLeftHandlers_html"><div class="ttname"><a href="classLeftHandlers.html">LeftHandlers</a></div><div class="ttdoc">LeftHandlers class to handle the left action.</div><div class="ttdef"><b>Definition</b> MoveHandlers.hpp:122</div></div>
