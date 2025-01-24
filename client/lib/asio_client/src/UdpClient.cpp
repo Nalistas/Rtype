@@ -31,7 +31,6 @@ void UdpClient::setServer(const std::string &ip, const std::string &port)
 void UdpClient::send(const std::vector<uint8_t> &message) {
     try {
         _socket.send_to(asio::buffer(message), _endpoint);
-        std::cout << "Message sent successfully" << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "Send error: " << e.what() << std::endl;
     }

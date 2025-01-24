@@ -42,7 +42,6 @@ void TcpClient::send(const std::vector<uint8_t> &message)
 
     try {
         asio::write(_socket, asio::buffer(final_message));
-        std::cout << "Message sent successfully" << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "Send error: " << e.what() << std::endl;
     }

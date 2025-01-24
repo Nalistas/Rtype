@@ -72,11 +72,12 @@ Game::Game(
             std::cerr << "Sprite not found" << std::endl;
             return;
         }
-        std::cout << "Entity created with id " << entityId << " and type " << static_cast<int>(entityType) << " at position "
-            << static_cast<int>(posX) << ", " << static_cast<int>(posY) << " with speed " << speedX << ", " << speedY << "" << std::endl;
         sprite->second.set_position(posX, posY);
         this->_entitiesSprites[entityId] = this->_graphics.addSprite(sprite->second);
         this->_spritesSpeed[entityId] = {speedX, speedY};
+        this->_graphics.onSpriteClick(this->_entitiesSprites[entityId], [this, entityId]() {
+            std::cout << "Entity " << entityId << " clicked" << std::endl;
+        });
     };
     this->_commandMap[3] = [this](std::vector<uint8_t> &data) {
         uint16_t entityId = data[1] * 256 + data[2];
@@ -86,7 +87,6 @@ Game::Game(
         }
         this->_graphics.removeSprite(_entitiesSprites.at(entityId));
         _entitiesSprites.erase(entityId);
-        std::cout << "Entity " << entityId << " removed" << std::endl;
     };
     this->_commandMap[4] = [this](std::vector<uint8_t> &data) {
         //update speed
@@ -130,9 +130,6 @@ void Game::interpretor(void)
     while (this->_client.hasData()) {
         auto udpResponse = this->_client.receive();
         if (_commandMap.find(udpResponse[0]) != _commandMap.end()) {
-            if (udpResponse[0] != 4 && udpResponse[0] != 5) {
-                std::cout << "Command found " << static_cast<int>(udpResponse[0]) << std::endl;
-            }
             _commandMap[udpResponse[0]](udpResponse);
         } else {
             std::cout << "Command not found : " ;

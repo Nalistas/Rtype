@@ -44,6 +44,19 @@ void SystemMovement::operator()(ecs::registry &registry, sparse_array<Position> 
         position.value().x += (speed.value().x * time_elapsed / 10);
         position.value().y += (speed.value().y * time_elapsed / 10);
         if (isAPlayerEntity(index)) {
+            if (position.value().x < 0) {
+                position.value().x = 0;
+                speed.value().x = 0;
+            } if (position.value().y < 0) {
+                position.value().y = 0;
+                speed.value().y = 0;
+            } if (position.value().x > 1000) {
+                position.value().x = 1000;
+                speed.value().x = 0;
+            } if (position.value().y > 1000) {
+                position.value().y = 1000;
+                speed.value().y = 0;
+            }
             continue;
         }
         if (position.value().x < -100 || position.value().y < -100 || position.value().x > 1000 || position.value().y > 1000) {

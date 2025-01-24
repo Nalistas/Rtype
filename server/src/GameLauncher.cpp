@@ -96,12 +96,10 @@ void GameLauncher::positionUpdater(std::size_t player_id, std::size_t e_id, int 
 
 void GameLauncher::creater(std::size_t player_id, std::size_t e_id, std::size_t e_g_id, int x, int y, uint8_t speed_x, uint8_t speed_y)
 {
-    std::cout << "sending an entity " << e_id << " of type " << e_g_id  << " to player " << player_id << std::endl;
     if (_players_endpoints.find(player_id) == _players_endpoints.end()) {
         std::cout << "player not found" << std::endl;
         return;
     }
-    std::cout << "player found" << std::endl;
     std::vector<uint8_t> data(14);
     data[0] = 2;
     data[1] = e_g_id & 0xFF;
@@ -117,10 +115,6 @@ void GameLauncher::creater(std::size_t player_id, std::size_t e_id, std::size_t 
     data[11] = y & 0xFF;
     data[12] = speed_x;
     data[13] = speed_y;
-    for (auto c : data) {
-        std::cout << static_cast<int>(c) << " ";
-    }
-    std::cout << std::endl;
     this->_server.sendTo(_players_endpoints.at(player_id), data);
 }
 

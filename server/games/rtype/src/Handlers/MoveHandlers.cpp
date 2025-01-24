@@ -152,10 +152,8 @@ void ShootHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigne
     if (_deads.find(client) != _deads.end()) {
         return;
     }
-    std::cout << "handler Shoot: " << client << " " << mouse_x << " " << mouse_y << std::endl;
     auto player = _registry->get_components<Position>()[client];
     auto bullet = _registry->create_entity();
-    std::cout << "bullet: " << bullet << std::endl;
     _registry->get_components<Position>().emplace_at(bullet, Position{player.value().x + 35, player.value().y});
     _registry->get_components<Speed>().emplace_at(bullet, Speed{1, 0});
     _registry->get_components<Hitbox>().emplace_at(bullet, Hitbox{1, 1});
@@ -165,8 +163,6 @@ void ShootHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigne
     std::cout << std::endl;
     std::cout << std::endl;
     for (auto player : _players) {
-        std::cout << "player: " << player.first << std::endl;
-        std::cout << "sending entity " << bullet << " to player " << player.first << std::endl;
         _creater(player.first, bullet, 2,
             _registry->get_components<Position>()[bullet].value().x,
             _registry->get_components<Position>()[bullet].value().y,

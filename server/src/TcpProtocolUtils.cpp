@@ -77,9 +77,7 @@ int TcpProtocol::interpreter(std::shared_ptr<asio::ip::tcp::socket> &client, std
     // stream >> commandId;
 
     if (_commandMap.find(commandId) != _commandMap.end()) {
-        std::cout << "Command founded\n";
         _commandMap[commandId](client, stream);
-        std::cout << "Command executed\n";
         return 0;
     }
     std::cout << "Command not found : " << static_cast<int>(commandId) << std::endl;
