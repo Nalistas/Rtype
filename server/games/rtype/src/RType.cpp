@@ -27,6 +27,7 @@ void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
 {
     _registry = reg;
     _registry->register_component<Position>();
+    _registry->register_component<Score>();
     _registry->register_component<Life>();
     _registry->register_component<Speed>();
     _registry->register_component<SIDE>();
@@ -74,6 +75,11 @@ std::vector<std::string> RType::getMusics(void) const
     return std::vector<std::string>();
 }
 
+std::vector<rtype::Text> RType::getTexts(void) const
+{
+    return std::vector<rtype::Text>();
+}
+
 void RType::setUpdateSpeed(SpeedUpdater const &func)
 {
     _speedUpdater = func;
@@ -102,6 +108,11 @@ void RType::setUseBackground(BackgroundChanger const &func)
 void RType::setUseMusic(MusicChanger const &func)
 {
     _musicChanger = func;
+}
+
+void RType::setUpdateScore(ScoreUpdater const &func)
+{
+    _scoreUpdater = func;
 }
 
 std::size_t RType::createPlayer(void)

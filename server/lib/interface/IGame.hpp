@@ -94,6 +94,21 @@ namespace rtype {
     };
 
     /**
+     * @brief The Text struct
+     * This struct is used to store the text
+     */
+    struct Text {
+        Text() = default;
+        Text(const Text&) = default;
+        Text& operator=(const Text&) = default;
+        ~Text() = default;
+        std::string text;
+        uint32_t x;
+        uint32_t y;
+        uint32_t size;
+    };
+
+    /**
      * @brief The IGame class
      * This class is an interface to create a game
      */
@@ -119,6 +134,7 @@ namespace rtype {
             using BackgroundChanger = std::function<void(std::size_t client_id, std::size_t background_id)>;
             using MusicChanger = std::function<void(std::size_t client_id, std::size_t music_id)>;
             using ScreenUpdater = std::function<void(std::size_t client_id)>;
+            using ScoreUpdater = std::function<void(std::size_t client_id, std::size_t score)>;
 
             /**
              * @brief Set the broadcast create function
@@ -149,6 +165,11 @@ namespace rtype {
              * @brief Set the broadcast delete function
              */
             virtual void setUseMusic(MusicChanger const &func) = 0;
+
+            /**
+             * @brief Set the broadcast delete function
+             */
+            virtual void setUpdateScore(ScoreUpdater const &func) = 0;
 
             /// @}
 
@@ -188,6 +209,12 @@ namespace rtype {
              * @return the screen updater, a function that will be called to update the screen of a specific client
              */
             virtual ScreenUpdater getScreenUpdater(void) = 0;
+
+            /**
+             * @brief Get the texts used in the game
+             * @return the vector of the texts, we suppose that the id of the text is the same as the index
+             */
+            virtual std::vector<Text> getTexts(void) const = 0;
 
 
             /// @}

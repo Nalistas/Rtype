@@ -44,6 +44,14 @@ struct Life {
 };
 
 /**
+ * @brief Score component
+ */
+struct Score {
+    Score(int score) : score(score) {}
+    int score;
+};
+
+/**
  * @brief Damage component
  */
 struct Damage {
