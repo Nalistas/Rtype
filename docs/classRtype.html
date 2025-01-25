@@ -100,8 +100,8 @@ Collaboration diagram for Rtype:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acbbffffa6a63d8443ec9f1292a3ea7a6" id="r_acbbffffa6a63d8443ec9f1292a3ea7a6"><td class="memItemLeft" align="right" valign="top"><a id="acbbffffa6a63d8443ec9f1292a3ea7a6" name="acbbffffa6a63d8443ec9f1292a3ea7a6"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> (void) override</td></tr>
+<tr class="memitem:acbbffffa6a63d8443ec9f1292a3ea7a6" id="r_acbbffffa6a63d8443ec9f1292a3ea7a6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRtype.html#acbbffffa6a63d8443ec9f1292a3ea7a6">getName</a> (void) override</td></tr>
+<tr class="memdesc:acbbffffa6a63d8443ec9f1292a3ea7a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the display.  <br /></td></tr>
 <tr class="separator:acbbffffa6a63d8443ec9f1292a3ea7a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af325a1483c794133c382847c7b1fcc41" id="r_af325a1483c794133c382847c7b1fcc41"><td class="memItemLeft" align="right" valign="top"><a id="af325a1483c794133c382847c7b1fcc41" name="af325a1483c794133c382847c7b1fcc41"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setRegistry</b> (std::shared_ptr&lt; <a class="el" href="classecs_1_1registry.html">ecs::registry</a> &gt; reg) override</td></tr>
@@ -144,9 +144,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~IGame</b> ()=defa
 <tr class="memitem:a01b6e5e871b2f14c0fe4845aa463bf58 inherit pub_methods_classrtype_1_1IGame" id="r_a01b6e5e871b2f14c0fe4845aa463bf58"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1IGame.html#a01b6e5e871b2f14c0fe4845aa463bf58">getMusics</a> (void) const =0</td></tr>
 <tr class="memdesc:a01b6e5e871b2f14c0fe4845aa463bf58 inherit pub_methods_classrtype_1_1IGame"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the music used in the game.  <br /></td></tr>
 <tr class="separator:a01b6e5e871b2f14c0fe4845aa463bf58 inherit pub_methods_classrtype_1_1IGame"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5218473f36f397f4bb59089ae02612a4 inherit pub_methods_classrtype_1_1IGame" id="r_a5218473f36f397f4bb59089ae02612a4"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1IGame.html#a5218473f36f397f4bb59089ae02612a4">getName</a> () const =0</td></tr>
-<tr class="memdesc:a5218473f36f397f4bb59089ae02612a4 inherit pub_methods_classrtype_1_1IGame"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the display.  <br /></td></tr>
-<tr class="separator:a5218473f36f397f4bb59089ae02612a4 inherit pub_methods_classrtype_1_1IGame"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dd50f08ee3aa28c25a76b5697f3f89b inherit pub_methods_classrtype_1_1IGame" id="r_a6dd50f08ee3aa28c25a76b5697f3f89b"><td class="memItemLeft" align="right" valign="top">virtual ScreenUpdater&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1IGame.html#a6dd50f08ee3aa28c25a76b5697f3f89b">getScreenUpdater</a> (void)=0</td></tr>
 <tr class="memdesc:a6dd50f08ee3aa28c25a76b5697f3f89b inherit pub_methods_classrtype_1_1IGame"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the screen updater.  <br /></td></tr>
 <tr class="separator:a6dd50f08ee3aa28c25a76b5697f3f89b inherit pub_methods_classrtype_1_1IGame"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -274,6 +271,37 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#af71a3843fc5563b85bcd0f4d8a77112b">rtype::IGame</a>.</p>
+
+</div>
+</div>
+<a id="acbbffffa6a63d8443ec9f1292a3ea7a6" name="acbbffffa6a63d8443ec9f1292a3ea7a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbbffffa6a63d8443ec9f1292a3ea7a6">&#9670;&#160;</a></span>getName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Rtype::getName </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the name of the display. </p>
+<dl class="section return"><dt>Returns</dt><dd>the name of the display </dd></dl>
+
+<p>Implements <a class="el" href="classrtype_1_1IGame.html#a5218473f36f397f4bb59089ae02612a4">rtype::IGame</a>.</p>
 
 </div>
 </div>

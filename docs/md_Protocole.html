@@ -138,67 +138,35 @@ UDP</h1>
 <h2><a class="anchor" id="autotoc_md7"></a>
 General Notes</h2>
 <p>Unlike the TCP protocol, there is no prefix to indicate the packet length in UDP. However, the structure of packets is strictly defined. Below are the instructions:</p>
-<hr  />
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 Client -&gt; Server</h2>
-<h3><a class="anchor" id="autotoc_md10"></a>
-1. Ping to Stay Alive</h3>
-<p>A simple packet sent to inform the server that the client is still connected. <br  />
- <b>Format:</b> <br  />
- <code>...[0]</code></p>
-<hr  />
-<h3><a class="anchor" id="autotoc_md12"></a>
-2. Trigger an Action</h3>
-<p>A packet sent to initiate an action by the client. <br  />
- <b>Format:</b> <br  />
- <code>...[1][Action ID /1o][Mouse X <a class="el" href="structPosition.html" title="Position component.">Position</a> /4o][Mouse Y <a class="el" href="structPosition.html" title="Position component.">Position</a> /4o]</code></p>
-<hr  />
-<h3><a class="anchor" id="autotoc_md14"></a>
-3. Request Screen Refresh</h3>
-<p>A packet sent when the client needs the server to refresh the screen. <br  />
- <b>Format:</b> <br  />
- <code>...[2]</code></p>
-<hr  />
-<h2><a class="anchor" id="autotoc_md16"></a>
+<ol type="1">
+<li>Ping to Stay Alive A simple packet sent to inform the server that the client is still connected. <br  />
+ <b>Format:</b> <code>...[0]</code></li>
+<li>Trigger an Action A packet sent to initiate an action by the client. <br  />
+ <b>Format:</b> <code>...[1][Action ID /1o][Mouse X <a class="el" href="structPosition.html" title="Position component.">Position</a> /4o][Mouse Y <a class="el" href="structPosition.html" title="Position component.">Position</a> /4o]</code></li>
+<li>Request Screen Refresh A packet sent when the client needs the server to refresh the screen. <br  />
+ <b>Format:</b> <code>...[2]</code></li>
+</ol>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Server -&gt; Client</h2>
-<h3><a class="anchor" id="autotoc_md17"></a>
-1. Define a Background</h3>
-<p>A packet sent to define the background to be displayed on the client. All graphical parameters are pre-configured via TCP. <br  />
- <b>Format:</b> <br  />
- <code>...[1][<a class="el" href="classBackground.html" title="Background class to handle the background and the parallax.">Background</a> ID /1o]</code></p>
+<ol type="1">
+<li>Define a <a class="el" href="classBackground.html" title="Background class to handle the background and the parallax.">Background</a> A packet sent to define the background to be displayed on the client. All graphical parameters are pre-configured via TCP. <br  />
+ <b>Format:</b> <code>...[1][<a class="el" href="classBackground.html" title="Background class to handle the background and the parallax.">Background</a> ID /1o]</code></li>
+<li>Create an Entity A packet sent to instruct the client to create a new entity on the screen. <br  />
+ <b>Format:</b> <code>...[2][Entity Type ID /1o][Entity ID /2o][X <a class="el" href="structPosition.html" title="Position component.">Position</a> /4o][Y <a class="el" href="structPosition.html" title="Position component.">Position</a> /4o][<a class="el" href="structSpeed.html" title="Speed component.">Speed</a> X /1o][<a class="el" href="structSpeed.html" title="Speed component.">Speed</a> Y /1o]</code></li>
+<li>Delete an Entity A packet sent to instruct the client to remove an entity from the screen. <br  />
+ <b>Format:</b> <code>...[3][Entity ID /2o]</code></li>
+<li>Update <a class="el" href="structSpeed.html" title="Speed component.">Speed</a> A packet sent to update the speed of an existing entity. <br  />
+ <b>Format:</b> <code>...[4][Entity ID /2o][<a class="el" href="structSpeed.html" title="Speed component.">Speed</a> X /1o][<a class="el" href="structSpeed.html" title="Speed component.">Speed</a> Y /1o]</code></li>
+<li>Update <a class="el" href="structPosition.html" title="Position component.">Position</a> A packet sent to update the position of an existing entity. <br  />
+ <b>Format:</b> <code>...[5][Entity ID /2o][X <a class="el" href="structPosition.html" title="Position component.">Position</a> /4o][Y <a class="el" href="structPosition.html" title="Position component.">Position</a> /4o]</code></li>
+<li>Play Music A packet sent to instruct the client to play a specific music file. <br  />
+ <b>Format:</b> <code>...[6][Music ID /1o]</code></li>
+</ol>
 <hr  />
-<h3><a class="anchor" id="autotoc_md19"></a>
-2. Create an Entity</h3>
-<p>A packet sent to instruct the client to create a new entity on the screen. <br  />
- <b>Format:</b> <br  />
- <code>...[2][Entity Type ID /1o][Entity ID /2o][X <a class="el" href="structPosition.html" title="Position component.">Position</a> /4o][Y <a class="el" href="structPosition.html" title="Position component.">Position</a> /4o][<a class="el" href="structSpeed.html" title="Speed component.">Speed</a> X /1o][<a class="el" href="structSpeed.html" title="Speed component.">Speed</a> Y /1o]</code></p>
-<hr  />
-<h3><a class="anchor" id="autotoc_md21"></a>
-3. Delete an Entity</h3>
-<p>A packet sent to instruct the client to remove an entity from the screen. <br  />
- <b>Format:</b> <br  />
- <code>...[3][Entity ID /2o]</code></p>
-<hr  />
-<h3><a class="anchor" id="autotoc_md23"></a>
-4. Update Speed</h3>
-<p>A packet sent to update the speed of an existing entity. <br  />
- <b>Format:</b> <br  />
- <code>...[4][Entity ID /2o][<a class="el" href="structSpeed.html" title="Speed component.">Speed</a> X /1o][<a class="el" href="structSpeed.html" title="Speed component.">Speed</a> Y /1o]</code></p>
-<hr  />
-<h3><a class="anchor" id="autotoc_md25"></a>
-5. Update Position</h3>
-<p>A packet sent to update the position of an existing entity. <br  />
- <b>Format:</b> <br  />
- <code>...[5][Entity ID /2o][X <a class="el" href="structPosition.html" title="Position component.">Position</a> /4o][Y <a class="el" href="structPosition.html" title="Position component.">Position</a> /4o]</code></p>
-<hr  />
-<h3><a class="anchor" id="autotoc_md27"></a>
-6. Play Music</h3>
-<p>A packet sent to instruct the client to play a specific music file. <br  />
- <b>Format:</b> <br  />
- <code>...[6][Music ID /1o]</code></p>
-<hr  />
-<h2><a class="anchor" id="autotoc_md29"></a>
-Notes on UDP Communication</h2>
+<h1><a class="anchor" id="autotoc_md11"></a>
+Notes on UDP Communication</h1>
 <ol type="1">
 <li><b>Unreliability</b>: Since UDP does not guarantee delivery, some packets may not reach their destination. This is acceptable for non-critical updates like position or speed changes, as newer updates will overwrite missing ones.</li>
 <li><b>Real-Time Focus</b>: UDP is primarily used for real-time actions where delays should be minimal (e.g., triggering actions or updating positions). </li>

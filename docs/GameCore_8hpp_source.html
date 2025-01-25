@@ -111,21 +111,30 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGameCore.html#a569272d491d1d7540187d4975ba24161">run</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        std::mutex _registry_mutex;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        std::shared_ptr&lt;ecs::registry&gt; _registry;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        ServerActionsGetter <span class="keyword">const</span> &amp;_get_actions;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        std::function&lt;void(std::size_t)&gt; _updateScreen;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordtype">bool</span> isRunning = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        std::chrono::_V2::system_clock::time_point _time_last_update;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
-</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGameCore.html#af94d3bdb7c560c41f63e3614b5a33a06">getActionsClient</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGameCore.html#a5c911d84a67aa31d73bf9ed7aaac1867">executeActions</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif </span><span class="comment">/* !GAMECORE_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        std::mutex _registry_mutex;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        std::shared_ptr&lt;ecs::registry&gt; _registry;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        ServerActionsGetter <span class="keyword">const</span> &amp;_get_actions;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        std::function&lt;void(std::size_t)&gt; _updateScreen;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordtype">bool</span> isRunning = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        std::chrono::system_clock::time_point _time_last_update;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        std::mutex _actions_mutex;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        std::list&lt;std::function&lt;void()&gt;&gt; _actions;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>};</div>
+</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#endif </span><span class="comment">/* !GAMECORE_HPP_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aclassGameCore_html"><div class="ttname"><a href="classGameCore.html">GameCore</a></div><div class="ttdoc">The core of the game, it will run the game.</div><div class="ttdef"><b>Definition</b> GameCore.hpp:20</div></div>
 <div class="ttc" id="aclassGameCore_html_a065550c7481cd6ed1878b66dac3e583f"><div class="ttname"><a href="classGameCore.html#a065550c7481cd6ed1878b66dac3e583f">GameCore::~GameCore</a></div><div class="ttdeci">~GameCore()</div><div class="ttdoc">Destroy the Game Core object.</div><div class="ttdef"><b>Definition</b> GameCore.cpp:21</div></div>
-<div class="ttc" id="aclassGameCore_html_a569272d491d1d7540187d4975ba24161"><div class="ttname"><a href="classGameCore.html#a569272d491d1d7540187d4975ba24161">GameCore::run</a></div><div class="ttdeci">void run(void)</div><div class="ttdoc">Run the game core.</div><div class="ttdef"><b>Definition</b> GameCore.cpp:25</div></div>
+<div class="ttc" id="aclassGameCore_html_a569272d491d1d7540187d4975ba24161"><div class="ttname"><a href="classGameCore.html#a569272d491d1d7540187d4975ba24161">GameCore::run</a></div><div class="ttdeci">void run(void)</div><div class="ttdoc">Run the game core.</div><div class="ttdef"><b>Definition</b> GameCore.cpp:60</div></div>
+<div class="ttc" id="aclassGameCore_html_a5c911d84a67aa31d73bf9ed7aaac1867"><div class="ttname"><a href="classGameCore.html#a5c911d84a67aa31d73bf9ed7aaac1867">GameCore::executeActions</a></div><div class="ttdeci">void executeActions(void)</div><div class="ttdoc">Execute the server actions.</div><div class="ttdef"><b>Definition</b> GameCore.cpp:37</div></div>
+<div class="ttc" id="aclassGameCore_html_af94d3bdb7c560c41f63e3614b5a33a06"><div class="ttname"><a href="classGameCore.html#af94d3bdb7c560c41f63e3614b5a33a06">GameCore::getActionsClient</a></div><div class="ttdeci">void getActionsClient(void)</div><div class="ttdoc">Get the server actions.</div><div class="ttdef"><b>Definition</b> GameCore.cpp:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

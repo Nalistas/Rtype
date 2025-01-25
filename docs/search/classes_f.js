@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['tcpclient_0',['TcpClient',['../classTcpClient.html',1,'']]],
-  ['tcpprotocol_1',['TcpProtocol',['../classTcpProtocol.html',1,'']]],
-  ['tcpserver_2',['TcpServer',['../classTcpServer.html',1,'']]],
-  ['texturecpp_3',['TextureCpp',['../classraylib_1_1TextureCpp.html',1,'raylib']]],
-  ['texturemanager_4',['TextureManager',['../classraylib_1_1TextureManager.html',1,'raylib']]]
+  ['udpclient_0',['UdpClient',['../classUdpClient.html',1,'']]],
+  ['udpserver_1',['UdpServer',['../classUdpServer.html',1,'']]],
+  ['unrightlefthandlers_2',['UnRightLeftHandlers',['../classUnRightLeftHandlers.html',1,'']]],
+  ['unupdownhandlers_3',['UnUpDownHandlers',['../classUnUpDownHandlers.html',1,'']]],
+  ['uphandlers_4',['UpHandlers',['../classUpHandlers.html',1,'']]]
 ];
