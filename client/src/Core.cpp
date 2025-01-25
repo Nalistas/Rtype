@@ -302,17 +302,29 @@ void Core::interpretor()
 
 void Core::drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int &focus)
 {
-    _window.draw_rectangle(100, 100, 1000, 400, raylib::RED);
-    _window.draw_text("Enter room name: ", 120, 120, 20, raylib::BLACK);
-    _window.draw_text("Enter game name: ", 120, 200, 20, raylib::BLACK);
-    _window.draw_text("Press enter to validate", 120, 300, 20, raylib::BLACK);
-    _window.draw_rectangle(400, 120 + focus * 80, 300, 40, raylib::GRAY);
+    _window.draw_rectangle(200, 70, 600, 450, {31, 81, 255, 180});
+    _window.draw_text("x", 765, 80, 20, raylib::RED);
+    _window.draw_text("Enter room name: ", 220, 120, 20, raylib::BLACK);
+    _window.draw_text("Enter game name: ", 220, 200, 20, raylib::BLACK);
+    _window.draw_text("Press enter to validate", 220, 300, 20, raylib::BLACK);
+    _window.draw_rectangle(420, 120 + focus * 80, 300, 40, raylib::GRAY);
 
-    _window.draw_text(inputs[0].getText(), 400, 120, 20, raylib::BLACK);
-    _window.draw_text(inputs[1].getText(), 400, 200, 20, raylib::BLACK);
+    _window.draw_text(inputs[0].getText(), 420, 120, 20, raylib::BLACK);
+    _window.draw_text(inputs[1].getText(), 420, 200, 20, raylib::BLACK);
 
     for (size_t i = 0; i < _gameList.size(); ++i) {
-        _window.draw_text(_gameList[i], 120, 330 + 20 * i, 20, raylib::BLUE);
+        _window.draw_text(_gameList[i], 220, 330 + 20 * i, 20, raylib::BLUE);
+    }
+
+    if (_window.is_mouse_button(raylib::Window::PRESSED, 0) &&
+        _window.get_mouse_position().x > 765 &&
+        _window.get_mouse_position().x < 785 &&
+        _window.get_mouse_position().y > 80 &&
+        _window.get_mouse_position().y < 100) {
+        inputs[0].setText("");
+        inputs[1].setText("");
+        showPopup = false;
+        return;
     }
 
     char key = _window.get_char_pressed();
@@ -390,8 +402,10 @@ void Core::run(void)
 
         if (_roomId == 0) { // Main menu
             background.draw();
-            _window.draw_text("Create room", 10, 10, 20, raylib::WHITE);
-            if (isEltPressed(10, 10, 100, 20) && !showPopup) {
+            _window.draw_rectangle(5, 65, 180, 35, raylib::BLUE);
+            _window.draw_text("Create a room", 15, 70, 20, raylib::BLACK);
+            _window.draw_text("List of rooms:", 10, 120, 20, raylib::WHITE);
+            if (isEltPressed(5, 65, 180, 35) && !showPopup) {
                 showPopup = true;
                 inputs[0].setText("");
                 inputs[1].setText("");
@@ -420,7 +434,7 @@ void Core::run(void)
                 }
             }
         } else { // Room
-            _window.draw_rectangle(0, 0, _window.get_size().first, _window.get_size().second, raylib::RED);
+            _window.draw_rectangle(0, 0, _window.get_size().first, _window.get_size().second, {31, 81, 255, 255});
             for (auto &text : _texts_room) {
                 text.draw();
             }

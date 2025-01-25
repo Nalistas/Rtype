@@ -80,7 +80,7 @@ Game::Game(
         }
         this->_entitiesSprites[entityId] = this->_graphics.addSprite(sprite->second);
         this->_spritesSpeed[entityId] = {speedX, speedY};
-        this->_graphics.onSpriteClick(this->_entitiesSprites[entityId], [this, entityId]() {
+        this->_graphics.onSpriteClick(6, [this, entityId]() {
             std::cout << "Entity " << entityId << " clicked" << std::endl;
         });
     };
