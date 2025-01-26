@@ -24,7 +24,7 @@ class SystemCollision : public ecs::isystem<Position, Hitbox, Damage, Life, SIDE
          * @param deleter
          * @param players
          */
-        SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads);
+        SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads, rtype::IGame::LifeUpdater const &updater);
         ~SystemCollision();
 
         /**
@@ -35,7 +35,7 @@ class SystemCollision : public ecs::isystem<Position, Hitbox, Damage, Life, SIDE
          * @param position
          */
         void operator()(ecs::registry &registry, sparse_array<Position> &position, sparse_array<Hitbox> &hitbox, sparse_array<Damage> &damage, sparse_array<Life> &health, sparse_array<SIDE> &side);
-        
+
         /**
          * @brief Check if two entities are colliding
          * 
@@ -58,6 +58,7 @@ class SystemCollision : public ecs::isystem<Position, Hitbox, Damage, Life, SIDE
 
 
         rtype::IGame::Deleter const &_deleter;
+        rtype::IGame::LifeUpdater const &_updater;
         std::unordered_map<std::size_t, std::size_t> &_players;
         std::unordered_set<std::size_t> &_deads;
 };

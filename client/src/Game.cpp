@@ -54,6 +54,8 @@ Game::Game(
         //define a background
         uint16_t backgroundId = data[1] * 256 + data[2]; 
         auto background = this->_backgrounds[backgroundId];
+        background.auto_resize_x();
+        background.auto_resize_y();
         this->_graphics.addBackground(background);
         std::cout << "Background " << backgroundId << " added" << std::endl;
     };
@@ -78,7 +80,7 @@ Game::Game(
         }
         this->_entitiesSprites[entityId] = this->_graphics.addSprite(sprite->second);
         this->_spritesSpeed[entityId] = {speedX, speedY};
-        this->_graphics.onSpriteClick(this->_entitiesSprites[entityId], [this, entityId]() {
+        this->_graphics.onSpriteClick(6, [this, entityId]() {
             std::cout << "Entity " << entityId << " clicked" << std::endl;
         });
     };

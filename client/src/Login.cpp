@@ -11,18 +11,19 @@
 
 Login::Login() :
     focus(0),
-    _window(500, 500),
+    _window(620, 350),
     _is_running(true),
     _titles({
-        raylib::RayText("Name:", 10, 10, 30, raylib::BLUE),
-        raylib::RayText("Ip   :", 10, 60, 30, raylib::BLUE),
-        raylib::RayText("Port:", 10, 110, 30, raylib::BLUE),
-        raylib::RayText("Click to connect", 10, 200, 40, raylib::BLACK)
+        raylib::RayText("Login", 250, 10, 50, raylib::WHITE),
+        raylib::RayText("Name:", 10, 70, 30, raylib::WHITE),
+        raylib::RayText("Ip:", 10, 120, 30, raylib::WHITE),
+        raylib::RayText("Port:", 10, 170, 30, raylib::WHITE),
+        raylib::RayText("Click to connect", 310, 300, 35, raylib::WHITE)
     }),
     _inputs({
-        raylib::RayText("", 150, 10 + 50 * 0, 30, raylib::BLACK),
-        raylib::RayText("", 150, 10 + 50 * 1, 30, raylib::BLACK),
-        raylib::RayText("", 150, 10 + 50 * 2, 30, raylib::BLACK),
+        raylib::RayText("", 150, 70 + 50 * 0, 30, raylib::WHITE),
+        raylib::RayText("", 150, 70 + 50 * 1, 30, raylib::WHITE),
+        raylib::RayText("", 150, 70 + 50 * 2, 30, raylib::WHITE),
     })
 {
 }
@@ -50,10 +51,10 @@ std::string Login::get_username() const
 void Login::handleInput(void)
 {
     if (_window.is_mouse_button(raylib::Window::PRESSED, 0) &&
-        _window.get_mouse_position().x > 10 &&
-        _window.get_mouse_position().x < 10 + 300 &&
-        _window.get_mouse_position().y > 200 &&
-        _window.get_mouse_position().y < 200 + 50
+        _window.get_mouse_position().x > 310 &&
+        _window.get_mouse_position().x < 310 + 300 &&
+        _window.get_mouse_position().y > 300 &&
+        _window.get_mouse_position().y < 300 + 50
         && !_inputs[InputType::USERNAME].getText().empty()) {
         _is_running = false;
     }
@@ -72,7 +73,7 @@ void Login::handleInput(void)
 
 bool Login::run()
 {
-    Background background("../background.png", _window.get_size().first, _window.get_size().second);
+    Background background("../assets/space.png", _window.get_size().first, _window.get_size().second);
     background.setSpeed(0.5);
     background.setMoveType(Background::BACKGROUND_MOVE_TYPE::PARALLAX);
     background.loop(true);
@@ -84,8 +85,8 @@ bool Login::run()
         this->handleInput();
         background.draw();
         _window.start_drawing();
-        _window.draw_rectangle(150, 10 + focus * 50, 300, 40, raylib::GRAY);
-        _window.draw_rectangle(8, 190, 350, 70, raylib::RED);
+        _window.draw_rectangle(150, 70 + focus * 50, 300, 40, {211, 211, 211, 200});
+        _window.draw_rectangle(300, 290, 350, 70, {153, 50, 204, 255});
         for (auto &title : _titles) {
             title.draw();
         }

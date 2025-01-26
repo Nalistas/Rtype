@@ -57,6 +57,13 @@ class RType : public rtype::IGame {
          */
         std::vector<std::string> getMusics(void) const override;
 
+        /**
+         * @brief Get the list of texts
+         * 
+         * @return std::vector<rtype::Text>
+         */
+        std::vector<rtype::Text> getTexts(void) const override;
+
 
         /**
          * @brief Set the update speed function
@@ -104,6 +111,13 @@ class RType : public rtype::IGame {
         void setUseMusic(MusicChanger const &func) override;
 
         /**
+         * @brief Set the update score function
+         * 
+         * @param func
+         */
+        void setUpdateScore(ScoreUpdater const &func) override; 
+
+        /**
          * @brief Create a player
          * 
          * @return std::size_t
@@ -133,9 +147,11 @@ class RType : public rtype::IGame {
         PositionUpdater _positionUpdater;
         Creater _creater;
         Deleter _deleter;
+        LifeUpdater _updater;
         BackgroundChanger _backgroundChanger;
         MusicChanger _musicChanger;
         ScreenUpdater _screenUpdater;
+        ScoreUpdater _scoreUpdater;
 
         std::unordered_map<std::size_t, std::size_t> _players;
         std::unordered_set<std::size_t> _deadPlayers;

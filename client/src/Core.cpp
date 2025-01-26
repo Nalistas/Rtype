@@ -43,6 +43,9 @@ Core::Core(std::string ip, std::string port, std::string username) :
 
     std::string tcpMessage = std::string(1, SET_NAME) + username;
     _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
+
+    std::string tcpMessage2 = std::string(1, LIST_ROOMS) + "";
+    _tcpClient.send(std::vector<uint8_t>(tcpMessage2.begin(), tcpMessage2.end()));
     _instructions[OK] = [this](std::vector<uint8_t> tcpResponse) {
         std::cout << "OK" << static_cast<int>(tcpResponse[0]) << std::endl;
         if (_commandQueue.size() > 0) {
@@ -302,17 +305,29 @@ void Core::interpretor()
 
 void Core::drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int &focus)
 {
-    _window.draw_rectangle(100, 100, 1000, 400, raylib::RED);
-    _window.draw_text("Enter room name: ", 120, 120, 20, raylib::BLACK);
-    _window.draw_text("Enter game name: ", 120, 200, 20, raylib::BLACK);
-    _window.draw_text("Press enter to validate", 120, 300, 20, raylib::BLACK);
-    _window.draw_rectangle(400, 120 + focus * 80, 300, 40, raylib::GRAY);
+    _window.draw_rectangle(200, 70, 600, 450, {31, 81, 255, 180});
+    _window.draw_text("x", 765, 80, 20, raylib::RED);
+    _window.draw_text("Enter room name: ", 220, 120, 20, raylib::BLACK);
+    _window.draw_text("Enter game name: ", 220, 200, 20, raylib::BLACK);
+    _window.draw_text("Press enter to validate", 220, 300, 20, raylib::BLACK);
+    _window.draw_rectangle(420, 120 + focus * 80, 300, 40, raylib::GRAY);
 
-    _window.draw_text(inputs[0].getText(), 400, 120, 20, raylib::BLACK);
-    _window.draw_text(inputs[1].getText(), 400, 200, 20, raylib::BLACK);
+    _window.draw_text(inputs[0].getText(), 420, 120, 20, raylib::BLACK);
+    _window.draw_text(inputs[1].getText(), 420, 200, 20, raylib::BLACK);
 
     for (size_t i = 0; i < _gameList.size(); ++i) {
-        _window.draw_text(_gameList[i], 120, 330 + 20 * i, 20, raylib::BLUE);
+        _window.draw_text(_gameList[i], 220, 380 + 20 * i, 20, raylib::BLUE);
+    }
+
+    if (_window.is_mouse_button(raylib::Window::PRESSED, 0) &&
+        _window.get_mouse_position().x > 765 &&
+        _window.get_mouse_position().x < 785 &&
+        _window.get_mouse_position().y > 80 &&
+        _window.get_mouse_position().y < 100) {
+        inputs[0].setText("");
+        inputs[1].setText("");
+        showPopup = false;
+        return;
     }
 
     char key = _window.get_char_pressed();
@@ -378,14 +393,22 @@ void Core::run(void)
     bool showPopup = false;
     int focus = 0; 
 
+    Background background("../assets/bg_room.png", _window.get_size().first, _window.get_size().second);
+    background.auto_resize_x();
+    background.auto_resize_y();
+
+
     while (_window.is_running()) {
         interpretor();
         _window.start_drawing();
         _window.clear(raylib::WHITE);
 
         if (_roomId == 0) { // Main menu
-            _window.draw_text("Create room", 10, 10, 20, raylib::BLACK);
-            if (isEltPressed(10, 10, 100, 20) && !showPopup) {
+            background.draw();
+            _window.draw_rectangle(5, 65, 180, 35, raylib::BLUE);
+            _window.draw_text("Create a room", 15, 70, 20, raylib::BLACK);
+            _window.draw_text("List of rooms:", 10, 120, 20, raylib::WHITE);
+            if (isEltPressed(5, 65, 180, 35) && !showPopup) {
                 showPopup = true;
                 inputs[0].setText("");
                 inputs[1].setText("");
@@ -406,15 +429,15 @@ void Core::run(void)
             }
 
             for (auto &room : _rooms) {
-                _window.draw_text(room.getName(), 10, 50 + room.getId() * 20, 20, raylib::BLACK);
-                if (isEltPressed(10, 50 + room.getId() * 20, 200, 20)) {
+                _window.draw_text(room.getName(), 10, 180 + room.getId() * 20, 20, raylib::WHITE);
+                if (isEltPressed(10, 180 + room.getId() * 20, 200, 20)) {
                     std::cout << "Enter room" << static_cast<int>(_roomId) << std::endl;
                     _tcpClient.send(std::vector<uint8_t>({ENTER_ROOM, room.getId()}));
                     _commandQueue.push_back(std::make_pair("enterRoom", [this, room](std::vector<uint8_t> tcpResponse) { (void) tcpResponse; setRoom(room.getId()); }));
                 }
             }
         } else { // Room
-            _window.draw_rectangle(0, 0, _window.get_size().first, _window.get_size().second, raylib::RED);
+            _window.draw_rectangle(0, 0, _window.get_size().first, _window.get_size().second, {31, 81, 255, 255});
             for (auto &text : _texts_room) {
                 text.draw();
             }

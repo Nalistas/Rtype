@@ -44,6 +44,14 @@ struct Life {
 };
 
 /**
+ * @brief Score component
+ */
+struct Score {
+    Score(int score) : score(score) {}
+    int score;
+};
+
+/**
  * @brief Damage component
  */
 struct Damage {
@@ -57,6 +65,11 @@ struct Damage {
 enum SIDE {
     PLAYER,
     ENEMY
+};
+
+enum Type {
+    SHOOTER,
+    BASIC
 };
 
 #endif /* !POSITION_HPP_ */

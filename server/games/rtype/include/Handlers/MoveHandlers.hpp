@@ -169,37 +169,37 @@ class RightHandlers : public rtype::IClientActionHandler {
         std::unordered_set<std::size_t> const &_deads;
 };
 
-/**
- * @brief ShootHandlers class to handle the shoot action
- */
-class ShootHandlers : public rtype::IClientActionHandler {
-    public:
-        /**
-         * @brief Construct a new ShootHandlers object
-         * 
-         * @param reg
-         * @param creater
-         * @param players
-         */
-        ShootHandlers(const std::shared_ptr<ecs::registry> &reg, rtype::IGame::Creater const &creater, std::unordered_map<std::size_t, std::size_t> const &players, std::unordered_set<std::size_t> const &_deads);
-        ~ShootHandlers();
+// /**
+//  * @brief ShootHandlers class to handle the shoot action
+//  */
+// class ShootHandlers : public rtype::IClientActionHandler {
+//     public:
+//         /**
+//          * @brief Construct a new ShootHandlers object
+//          * 
+//          * @param reg
+//          * @param creater
+//          * @param players
+//          */
+//         ShootHandlers(const std::shared_ptr<ecs::registry> &reg, rtype::IGame::Creater const &creater, std::unordered_map<std::size_t, std::size_t> const &players, std::unordered_set<std::size_t> const &_deads);
+//         ~ShootHandlers();
 
-        /**
-         * @brief ShootHandlers
-         * 
-         * @param client 
-         * @param mouse_x 
-         * @param mouse_y
-         */
-        void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override;
+//         /**
+//          * @brief ShootHandlers
+//          * 
+//          * @param client 
+//          * @param mouse_x 
+//          * @param mouse_y
+//          */
+//         void operator()(std::size_t client, unsigned int mouse_x, unsigned int mouse_y) override;
 
-    private:
-        std::shared_ptr<ecs::registry> _registry;
-        rtype::IGame::Creater const &_creater;
-        std::unordered_map<std::size_t, std::size_t> const &_players;
-        std::unordered_set<std::size_t> const &_deads;
-        std::unordered_map<std::size_t, std::size_t> _players_shoot;
-};
+//     private:
+//         std::shared_ptr<ecs::registry> _registry;
+//         rtype::IGame::Creater const &_creater;
+//         std::unordered_map<std::size_t, std::size_t> const &_players;
+//         std::unordered_set<std::size_t> const &_deads;
+//         std::unordered_map<std::size_t, std::size_t> _players_shoot;
+// };
 
 
 #endif /* !MOVEHANDLERS_HPP_ */
