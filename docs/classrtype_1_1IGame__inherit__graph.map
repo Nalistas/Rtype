@@ -1,7 +1,5 @@
 <map id="rtype::IGame" name="rtype::IGame">
-<area shape="rect" id="Node000001" title="The IGame class This class is an interface to create a game." alt="" coords="23,5,130,31"/>
-<area shape="rect" id="Node000002" href="$classRType.html" title="RType class to handle the game RType." alt="" coords="5,79,65,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,44,44,80,40,77,61,41"/>
-<area shape="rect" id="Node000003" href="$classRtype.html" title=" " alt="" coords="89,79,149,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="93,41,115,77,110,80,88,44"/>
+<area shape="rect" id="Node000001" title="The IGame class This class is an interface to create a game." alt="" coords="5,5,112,31"/>
+<area shape="rect" id="Node000002" href="$classRType.html" title="RType class to handle the game RType." alt="" coords="29,79,89,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,44,61,79,56,79,56,44"/>
 </map>

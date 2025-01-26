@@ -23,11 +23,11 @@ var searchData=
   ['getbackgrounds_20',['getbackgrounds',['../classRType.html#acf281e650aee17f0d6bede9a66efd5e3',1,'RType::getBackgrounds()'],['../classrtype_1_1IGame.html#ae776878b695504073b7518ed221e7034',1,'rtype::IGame::getBackgrounds()']]],
   ['getclientactionhandlers_21',['getclientactionhandlers',['../classRType.html#ab734a8546b617e6c65dd36a86263dc3e',1,'RType::getClientActionHandlers()'],['../classrtype_1_1IGame.html#a4a46c441c9cf3f0b33ca003817814e01',1,'rtype::IGame::getClientActionHandlers()']]],
   ['getendpoint_22',['getEndpoint',['../classUdpServer.html#af2ff7654b51a8690f45e7a4cf6c867a5',1,'UdpServer']]],
-  ['getgamename_23',['getgamename',['../classRoom.html#a8e4ede35efd58fbe49f7ed288adc3181',1,'Room::getGameName()'],['../classClientRoom.html#a3638afad76a62c721fa726c9b6dca740',1,'ClientRoom::getGameName()'],['../classRessourcesManager.html#af30bb1de560048bf1f147554263d9f79',1,'RessourcesManager::getGameName()']]],
+  ['getgamename_23',['getgamename',['../classClientRoom.html#a3638afad76a62c721fa726c9b6dca740',1,'ClientRoom::getGameName()'],['../classRessourcesManager.html#af30bb1de560048bf1f147554263d9f79',1,'RessourcesManager::getGameName()'],['../classRoom.html#a8e4ede35efd58fbe49f7ed288adc3181',1,'Room::getGameName()']]],
   ['getid_24',['getId',['../classClientRoom.html#ae69af6b393cfc4be90fe332e738d3e57',1,'ClientRoom']]],
   ['getmusic_25',['getMusic',['../classGraphicsManager.html#a6791dca6bf2bf5e6d92f46726cfa49c9',1,'GraphicsManager']]],
   ['getmusics_26',['getmusics',['../classRType.html#ac64978db4b1a9f0019b816b3747d0b9b',1,'RType::getMusics()'],['../classrtype_1_1IGame.html#a01b6e5e871b2f14c0fe4845aa463bf58',1,'rtype::IGame::getMusics()']]],
-  ['getname_27',['getname',['../classClientRoom.html#a9abdbf65afed210cbdab5b45b3de8c05',1,'ClientRoom::getName()'],['../classRtype.html#acbbffffa6a63d8443ec9f1292a3ea7a6',1,'Rtype::getName()'],['../classRType.html#a61b4d9e65d74ea5f823f500ff0301f62',1,'RType::getName()'],['../classClient.html#a6865c5e1c8179faa4f3d2a47e500b772',1,'Client::getName()'],['../classRoom.html#aa1692ba72d3e06dc0858e4b52d2cc58a',1,'Room::getName()'],['../classrtype_1_1IGame.html#a5218473f36f397f4bb59089ae02612a4',1,'rtype::IGame::getName()']]],
+  ['getname_27',['getname',['../classClientRoom.html#a9abdbf65afed210cbdab5b45b3de8c05',1,'ClientRoom::getName()'],['../classRType.html#a61b4d9e65d74ea5f823f500ff0301f62',1,'RType::getName()'],['../classClient.html#a6865c5e1c8179faa4f3d2a47e500b772',1,'Client::getName()'],['../classRoom.html#aa1692ba72d3e06dc0858e4b52d2cc58a',1,'Room::getName()'],['../classrtype_1_1IGame.html#a5218473f36f397f4bb59089ae02612a4',1,'rtype::IGame::getName()']]],
   ['getnbplayers_28',['getNbPlayers',['../classClientRoom.html#ad10c9630b79620f2cd2782920e9253f4',1,'ClientRoom']]],
   ['getowner_29',['getOwner',['../classRoom.html#aaf49a03e6b517426fc035c71ccbd5d5f',1,'Room']]],
   ['getpid_30',['getPid',['../classprocess_1_1Process.html#a352962e6dc1a9974c7e13d9bcac4fac3',1,'process::Process']]],
@@ -42,7 +42,8 @@ var searchData=
   ['getsym_39',['getSym',['../classDLLdr_1_1DLLoader.html#a7329cf2ab55bbe7b07f301ec51e3ce7a',1,'DLLdr::DLLoader']]],
   ['gettext_40',['gettext',['../classGraphicsManager.html#ac0300ea47c16037f1a312ca0fe8f8e16',1,'GraphicsManager::getText()'],['../classraylib_1_1RayText.html#a809780b5c90aaf04be7a298ac21b7300',1,'raylib::RayText::getText()']]],
   ['gettextidbinded_41',['getTextIdBinded',['../classGraphicsManager.html#a113f8ca42f83b7e04046934974198550',1,'GraphicsManager']]],
-  ['gettexture_42',['getTexture',['../classraylib_1_1TextureManager.html#ab1961cf54b678724c31c17f5959faeea',1,'raylib::TextureManager']]],
-  ['getx_43',['getX',['../classraylib_1_1RayText.html#ac976cbb35c77d7b5d25f4d22a830c4e4',1,'raylib::RayText']]],
-  ['gety_44',['getY',['../classraylib_1_1RayText.html#a5cdb04495614c304776dc82fceb36c38',1,'raylib::RayText']]]
+  ['gettexts_42',['gettexts',['../classRType.html#a65e19af2bf8da1c0555b0e1a7a1dd820',1,'RType::getTexts()'],['../classrtype_1_1IGame.html#aed0e31dde81c12b74f3a34eca11e8516',1,'rtype::IGame::getTexts()']]],
+  ['gettexture_43',['getTexture',['../classraylib_1_1TextureManager.html#ab1961cf54b678724c31c17f5959faeea',1,'raylib::TextureManager']]],
+  ['getx_44',['getX',['../classraylib_1_1RayText.html#ac976cbb35c77d7b5d25f4d22a830c4e4',1,'raylib::RayText']]],
+  ['gety_45',['getY',['../classraylib_1_1RayText.html#a5cdb04495614c304776dc82fceb36c38',1,'raylib::RayText']]]
 ];

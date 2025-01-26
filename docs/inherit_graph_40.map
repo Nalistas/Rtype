@@ -1,3 +1,21 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ..." alt="" coords="5,5,65,31"/>
+<area shape="rect" id="Node000000" href="$classrtype_1_1IClientActionHandler.html" title="IClientActionHandler class This class is an interface to handle the client actions." alt="" coords="5,203,204,228"/>
+<area shape="rect" id="Node000001" href="$classDownHandlers.html" title="DownHandlers class to handle the down action." alt="" coords="271,5,389,31"/>
+<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="118,189,170,115,208,75,251,40,273,28,275,33,253,44,211,79,175,119,123,192"/>
+<area shape="rect" id="Node000002" href="$classLeftHandlers.html" title="LeftHandlers class to handle the left action." alt="" coords="278,55,382,80"/>
+<area shape="poly" id="edge8_Node000000_Node000002" title=" " alt="" coords="125,191,179,140,214,113,251,89,277,78,279,82,253,94,217,117,183,144,129,195"/>
+<area shape="rect" id="Node000003" href="$classRightHandlers.html" title="RightHandlers class to handle the right action." alt="" coords="273,104,387,129"/>
+<area shape="poly" id="edge9_Node000000_Node000003" title=" " alt="" coords="139,193,191,166,251,138,283,127,285,132,253,143,193,171,141,198"/>
+<area shape="rect" id="Node000004" href="$classShootHandlers.html" title="ShootHandlers class to handle the shoot action." alt="" coords="271,153,389,179"/>
+<area shape="poly" id="edge10_Node000000_Node000004" title=" " alt="" coords="176,197,271,176,272,181,177,202"/>
+<area shape="rect" id="Node000005" href="$classUnRightLeftHandlers.html" title="UnRightLeftHandlers class to handle the right and left actions." alt="" coords="252,203,408,228"/>
+<area shape="poly" id="edge11_Node000000_Node000005" title=" " alt="" coords="218,213,252,213,252,218,218,218"/>
+<area shape="rect" id="Node000006" href="$classUnUpDownHandlers.html" title="UnUpDownHandlers class to handle the up and down actions." alt="" coords="253,252,407,277"/>
+<area shape="poly" id="edge12_Node000000_Node000006" title=" " alt="" coords="177,228,272,249,271,255,176,234"/>
+<area shape="rect" id="Node000007" href="$classUpHandlers.html" title="UpHandlers class to handle the up action." alt="" coords="281,301,379,327"/>
+<area shape="poly" id="edge13_Node000000_Node000007" title=" " alt="" coords="142,232,253,286,287,299,286,304,251,291,140,237"/>
+<area shape="rect" id="Node000008" href="$classhandler1.html" title=" " alt="" coords="291,351,369,376"/>
+<area shape="poly" id="edge14_Node000000_Node000008" title=" " alt="" coords="129,236,183,286,217,312,253,336,291,351,289,356,251,340,214,317,180,290,126,240"/>
+<area shape="rect" id="Node000009" href="$classhandler2.html" title=" " alt="" coords="291,400,369,425"/>
+<area shape="poly" id="edge15_Node000000_Node000009" title=" " alt="" coords="123,238,175,311,212,351,253,385,292,402,289,407,251,390,208,355,171,314,118,241"/>
 </map>

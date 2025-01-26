@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['damage_0',['Damage',['../classDamage.html',1,'']]],
+  ['damage_0',['Damage',['../structDamage.html',1,'']]],
   ['delete_5fentity_1',['delete_entity',['../classecs_1_1registry.html#a00e2fbde9b3ce99b1aa4f0c0b12ff13d',1,'ecs::registry']]],
-  ['deleteplayer_2',['deleteplayer',['../classRtype.html#a7fbf7a70aa8778f12df9427b27ab56da',1,'Rtype::deletePlayer()'],['../classRType.html#a7a0f0c160c5687345283d61f6dcc5d64',1,'RType::deletePlayer()'],['../classrtype_1_1IGame.html#af71a3843fc5563b85bcd0f4d8a77112b',1,'rtype::IGame::deletePlayer()']]],
+  ['deleteplayer_2',['deleteplayer',['../classRType.html#a7a0f0c160c5687345283d61f6dcc5d64',1,'RType::deletePlayer()'],['../classrtype_1_1IGame.html#af71a3843fc5563b85bcd0f4d8a77112b',1,'rtype::IGame::deletePlayer()']]],
   ['deleter_3',['Deleter',['../classGameLauncher.html#a43d988d56db3fba59f562b6beb6a47a6',1,'GameLauncher']]],
   ['deleteroom_4',['deleteRoom',['../classTcpProtocol.html#aa18486f801d9ba3f0095468b7f9cc604',1,'TcpProtocol']]],
   ['display_5',['display',['../classGraphicsManager.html#a9494c37ae1180264381dca6ece79d0d8',1,'GraphicsManager']]],

@@ -24,7 +24,7 @@ var searchData=
   ['room_21',['room',['../classRoom.html#a70e1efa965960e3126ac4ea368da6947',1,'Room::Room(std::string const &amp;name, std::string const &amp;gameName, std::shared_ptr&lt; asio::ip::tcp::socket &gt; &amp;owner)'],['../classRoom.html#a5bffa463a0e0f077f786ac1594775b95',1,'Room::Room(Room const &amp;room)=default'],['../classRoom.html',1,'Room']]],
   ['roomscore_22',['roomscore',['../classRoomsCore.html#a0eafdd5437fdcf13e9b6a0dcf30a82ea',1,'RoomsCore::RoomsCore()'],['../classRoomsCore.html',1,'RoomsCore']]],
   ['roomupdate_23',['roomUpdate',['../classCore.html#afb641775ea9e26b9309991ba925ecead',1,'Core']]],
-  ['rtype_24',['rtype',['../classRtype.html',1,'Rtype'],['../classRType.html',1,'RType']]],
+  ['rtype_24',['RType',['../classRType.html',1,'']]],
   ['run_25',['run',['../classCore.html#af968596fe136d8faebf8517de5411380',1,'Core::run()'],['../classGame.html#a46165f87463fa8114fa44596ced90dbd',1,'Game::run()'],['../classLogin.html#a33963a870db789eaf888a00949668115',1,'Login::run()'],['../classGameCore.html#a569272d491d1d7540187d4975ba24161',1,'GameCore::run()'],['../classRoomsCore.html#aa9f10091a4d01d74d4d0399aa52dd88b',1,'RoomsCore::run()']]],
   ['run_5fsingle_5fsystem_26',['run_single_system',['../classecs_1_1registry.html#a2e37bee5dde94844a0421f51265aedde',1,'ecs::registry']]],
   ['run_5fsystems_27',['run_systems',['../classecs_1_1registry.html#a2a7c2252aa8be3c9adfc9b3e511789f2',1,'ecs::registry']]]

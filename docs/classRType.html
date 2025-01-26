@@ -119,6 +119,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac64978db4b1a9f0019b816b3747d0b9b" id="r_ac64978db4b1a9f0019b816b3747d0b9b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#ac64978db4b1a9f0019b816b3747d0b9b">getMusics</a> (void) const override</td></tr>
 <tr class="memdesc:ac64978db4b1a9f0019b816b3747d0b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the list of musics.  <br /></td></tr>
 <tr class="separator:ac64978db4b1a9f0019b816b3747d0b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65e19af2bf8da1c0555b0e1a7a1dd820" id="r_a65e19af2bf8da1c0555b0e1a7a1dd820"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structrtype_1_1Text.html">rtype::Text</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#a65e19af2bf8da1c0555b0e1a7a1dd820">getTexts</a> (void) const override</td></tr>
+<tr class="memdesc:a65e19af2bf8da1c0555b0e1a7a1dd820"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the list of texts.  <br /></td></tr>
+<tr class="separator:a65e19af2bf8da1c0555b0e1a7a1dd820"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a268f6afd26e634e7e237764563b7b49b" id="r_a268f6afd26e634e7e237764563b7b49b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#a268f6afd26e634e7e237764563b7b49b">setUpdateSpeed</a> (SpeedUpdater const &amp;func) override</td></tr>
 <tr class="memdesc:a268f6afd26e634e7e237764563b7b49b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the update speed function.  <br /></td></tr>
 <tr class="separator:a268f6afd26e634e7e237764563b7b49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,6 +140,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af12e3c5f78d1a8f03311dc65d33c031b" id="r_af12e3c5f78d1a8f03311dc65d33c031b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#af12e3c5f78d1a8f03311dc65d33c031b">setUseMusic</a> (MusicChanger const &amp;func) override</td></tr>
 <tr class="memdesc:af12e3c5f78d1a8f03311dc65d33c031b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the use music function.  <br /></td></tr>
 <tr class="separator:af12e3c5f78d1a8f03311dc65d33c031b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9228f91b9bc6a5b3b1f526e7a3aa2eb6" id="r_a9228f91b9bc6a5b3b1f526e7a3aa2eb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#a9228f91b9bc6a5b3b1f526e7a3aa2eb6">setUpdateScore</a> (ScoreUpdater const &amp;func) override</td></tr>
+<tr class="memdesc:a9228f91b9bc6a5b3b1f526e7a3aa2eb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the update score function.  <br /></td></tr>
+<tr class="separator:a9228f91b9bc6a5b3b1f526e7a3aa2eb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ff2753581ab28463edbd84a150c9ef6" id="r_a6ff2753581ab28463edbd84a150c9ef6"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRType.html#a6ff2753581ab28463edbd84a150c9ef6">createPlayer</a> (void) override</td></tr>
 <tr class="memdesc:a6ff2753581ab28463edbd84a150c9ef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a player.  <br /></td></tr>
 <tr class="separator:a6ff2753581ab28463edbd84a150c9ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -183,6 +189,12 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>MusicChanger</b> = s
 <tr class="memitem:a5ccbd957eb1c334d6a670c1e259d3ed9 inherit pub_types_classrtype_1_1IGame" id="r_a5ccbd957eb1c334d6a670c1e259d3ed9"><td class="memItemLeft" align="right" valign="top">
 using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = std::function&lt; void(std::size_t client_id)&gt;</td></tr>
 <tr class="separator:a5ccbd957eb1c334d6a670c1e259d3ed9 inherit pub_types_classrtype_1_1IGame"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdad275a531cf5b0edf030afd9909c18 inherit pub_types_classrtype_1_1IGame" id="r_afdad275a531cf5b0edf030afd9909c18"><td class="memItemLeft" align="right" valign="top">
+using&#160;</td><td class="memItemRight" valign="bottom"><b>ScoreUpdater</b> = std::function&lt; void(std::size_t client_id, std::size_t score)&gt;</td></tr>
+<tr class="separator:afdad275a531cf5b0edf030afd9909c18 inherit pub_types_classrtype_1_1IGame"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a716c9fe1087713aa7e6d205d20eb05ef inherit pub_types_classrtype_1_1IGame" id="r_a716c9fe1087713aa7e6d205d20eb05ef"><td class="memItemLeft" align="right" valign="top">
+using&#160;</td><td class="memItemRight" valign="bottom"><b>LifeUpdater</b> = std::function&lt; void(std::size_t player_id, std::size_t e_id, uint8_t life)&gt;</td></tr>
+<tr class="separator:a716c9fe1087713aa7e6d205d20eb05ef inherit pub_types_classrtype_1_1IGame"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classRType.html" title="RType class to handle the game RType.">RType</a> class to handle the game <a class="el" href="classRType.html" title="RType class to handle the game RType.">RType</a>. </p>
@@ -403,6 +415,37 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 
 </div>
 </div>
+<a id="a65e19af2bf8da1c0555b0e1a7a1dd820" name="a65e19af2bf8da1c0555b0e1a7a1dd820"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65e19af2bf8da1c0555b0e1a7a1dd820">&#9670;&#160;</a></span>getTexts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="structrtype_1_1Text.html">rtype::Text</a> &gt; RType::getTexts </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the list of texts. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;rtype::Text&gt; </dd></dl>
+
+<p>Implements <a class="el" href="classrtype_1_1IGame.html#aed0e31dde81c12b74f3a34eca11e8516">rtype::IGame</a>.</p>
+
+</div>
+</div>
 <a id="a7938d8ef0cc7338fbf36e349a9ce28cb" name="a7938d8ef0cc7338fbf36e349a9ce28cb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7938d8ef0cc7338fbf36e349a9ce28cb">&#9670;&#160;</a></span>initGameRegistry()</h2>
 
@@ -544,6 +587,42 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = 
 </dl>
 
 <p>Implements <a class="el" href="classrtype_1_1IGame.html#a62e0d9ae1384fcb91a89dfff05017818">rtype::IGame</a>.</p>
+
+</div>
+</div>
+<a id="a9228f91b9bc6a5b3b1f526e7a3aa2eb6" name="a9228f91b9bc6a5b3b1f526e7a3aa2eb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9228f91b9bc6a5b3b1f526e7a3aa2eb6">&#9670;&#160;</a></span>setUpdateScore()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RType::setUpdateScore </td>
+          <td>(</td>
+          <td class="paramtype">ScoreUpdater const &amp;&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the update score function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classrtype_1_1IGame.html#a229cb2e776cdac6b7d1c6301035f73c5">rtype::IGame</a>.</p>
 
 </div>
 </div>
