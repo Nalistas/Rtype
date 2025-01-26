@@ -34,11 +34,26 @@ class SystemCreateEnemy : public ecs::isystem<> {
          */
         void operator()(ecs::registry &registry);
 
+        /**
+         * @brief Create the enemy 1
+         * 
+         * @param registry
+         */
+        void createEnemy1(ecs::registry &registry);
+
+        /**
+         * @brief Create the enemy 2
+         * 
+         * @param registry
+         */
+        void createEnemy2(ecs::registry &registry);
+
     protected:
     private:
         int64_t _ms_last_update;
         rtype::IGame::Creater const &_creater;
         std::unordered_map<std::size_t, std::size_t> const &_players;
+        int _nb_enemies;
 };
 
 #endif /* !SYSTEMCREATEENEMY_HPP_ */

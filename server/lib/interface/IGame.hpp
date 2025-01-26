@@ -135,6 +135,7 @@ namespace rtype {
             using MusicChanger = std::function<void(std::size_t client_id, std::size_t music_id)>;
             using ScreenUpdater = std::function<void(std::size_t client_id)>;
             using ScoreUpdater = std::function<void(std::size_t client_id, std::size_t score)>;
+            using LifeUpdater = std::function<void(std::size_t player_id, std::size_t e_id, uint8_t life)>;
 
             /**
              * @brief Set the broadcast create function

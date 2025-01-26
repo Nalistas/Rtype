@@ -147,6 +147,7 @@ class RType : public rtype::IGame {
         PositionUpdater _positionUpdater;
         Creater _creater;
         Deleter _deleter;
+        LifeUpdater _updater;
         BackgroundChanger _backgroundChanger;
         MusicChanger _musicChanger;
         ScreenUpdater _screenUpdater;

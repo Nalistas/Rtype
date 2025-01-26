@@ -43,6 +43,9 @@ Core::Core(std::string ip, std::string port, std::string username) :
 
     std::string tcpMessage = std::string(1, SET_NAME) + username;
     _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
+
+    std::string tcpMessage2 = std::string(1, LIST_ROOMS) + "";
+    _tcpClient.send(std::vector<uint8_t>(tcpMessage2.begin(), tcpMessage2.end()));
     _instructions[OK] = [this](std::vector<uint8_t> tcpResponse) {
         std::cout << "OK" << static_cast<int>(tcpResponse[0]) << std::endl;
         if (_commandQueue.size() > 0) {
@@ -313,7 +316,7 @@ void Core::drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int 
     _window.draw_text(inputs[1].getText(), 420, 200, 20, raylib::BLACK);
 
     for (size_t i = 0; i < _gameList.size(); ++i) {
-        _window.draw_text(_gameList[i], 220, 330 + 20 * i, 20, raylib::BLUE);
+        _window.draw_text(_gameList[i], 220, 380 + 20 * i, 20, raylib::BLUE);
     }
 
     if (_window.is_mouse_button(raylib::Window::PRESSED, 0) &&
@@ -426,8 +429,8 @@ void Core::run(void)
             }
 
             for (auto &room : _rooms) {
-                _window.draw_text(room.getName(), 10, 50 + room.getId() * 20, 20, raylib::BLACK);
-                if (isEltPressed(10, 50 + room.getId() * 20, 200, 20)) {
+                _window.draw_text(room.getName(), 10, 180 + room.getId() * 20, 20, raylib::WHITE);
+                if (isEltPressed(10, 180 + room.getId() * 20, 200, 20)) {
                     std::cout << "Enter room" << static_cast<int>(_roomId) << std::endl;
                     _tcpClient.send(std::vector<uint8_t>({ENTER_ROOM, room.getId()}));
                     _commandQueue.push_back(std::make_pair("enterRoom", [this, room](std::vector<uint8_t> tcpResponse) { (void) tcpResponse; setRoom(room.getId()); }));

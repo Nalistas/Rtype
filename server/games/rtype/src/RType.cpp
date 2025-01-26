@@ -12,7 +12,10 @@
 #include "Systems/SystemMovement.hpp"
 #include "Systems/SystemCollision.hpp"
 #include "Systems/SystemCreateEnemy.hpp"
+#include "Systems/SystemShootEnemyBullet.hpp"
 #include "Systems/SystemBroadcast.hpp"
+#include "Handlers/ShootHandlers.hpp"
+
 
 
 RType::RType()
@@ -33,10 +36,12 @@ void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
     _registry->register_component<SIDE>();
     _registry->register_component<Hitbox>();
     _registry->register_component<Damage>();
+    _registry->register_component<Type>();
     _registry->add_system<Position, Speed>(SystemMovement(_players, _deleter));
-    _registry->add_system<Position, Hitbox, Damage, Life, SIDE>(SystemCollision(_deleter, _players, _deadPlayers));
+    _registry->add_system<Position, Hitbox, Damage, Life, SIDE>(SystemCollision(_deleter, _players, _deadPlayers, _updater));
     _registry->add_system<>(SystemCreateEnemy(_creater, _players));
     _registry->add_system<Speed, Position>(SystemBroadcast(_speedUpdater, _positionUpdater, _players));
+    _registry->add_system<Position, Type, SIDE>(SystemShootEnemyBullet(_creater, _players));
 }
 
 std::vector<rtype::ClientAction> RType::getClientActionHandlers(void) const
@@ -65,8 +70,10 @@ std::vector<rtype::Sprite> RType::getSprites(void) const
 {
     return std::vector<rtype::Sprite>({
         rtype::Sprite{std::string("../assets/ship.png"), 50, 50, 0, 0, 1, 0, 20, 20},
-        rtype::Sprite{std::string("../assets/enemy.png"), 25, 25, 0, 0, 1, 0, 20, 20},
-        rtype::Sprite{std::string("../assets/bullet.png"), 10, 10, 0, 0, 1, 0, 20, 20}
+        rtype::Sprite{std::string("../assets/enemy.png"), 50, 50, 0, 0, 1, 0, 20, 20},
+        rtype::Sprite{std::string("../assets/bullet.png"), 10, 10, 0, 0, 1, 0, 20, 20},
+        rtype::Sprite{std::string("../assets/enemy2.png"), 50, 50, 0, 0, 1, 0, 20, 20},
+        rtype::Sprite{std::string("../assets/bullet_enemy.png"), 10, 10, 0, 0, 1, 0, 20, 20}
     });
 }
 

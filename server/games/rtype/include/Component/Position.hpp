@@ -67,4 +67,9 @@ enum SIDE {
     ENEMY
 };
 
+enum Type {
+    SHOOTER,
+    BASIC
+};
+
 #endif /* !POSITION_HPP_ */

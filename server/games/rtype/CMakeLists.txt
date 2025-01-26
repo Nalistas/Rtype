@@ -4,10 +4,12 @@ add_library(${PROJECT_NAME} SHARED
     src/entry_point.cpp
     src/RType.cpp
     src/Handlers/MoveHandlers.cpp
+    src/Handlers/ShootHandlers.cpp
     src/Systems/SystemMovement.cpp
     src/Systems/SystemCreateEnemy.cpp
     src/Systems/SystemCollision.cpp
     src/Systems/SystemBroadcast.cpp
+    src/Systems/SystemShootEnemyBullet.cpp
 )
 
 target_include_directories(${PROJECT_NAME}
