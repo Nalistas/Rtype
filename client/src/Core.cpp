@@ -78,7 +78,7 @@ Core::Core(std::string ip, std::string port, std::string username) :
         this->_window.close();
     };
     _instructions[DECLARE_GAME] = [this](std::vector<uint8_t> tcpResponse) {
-        std::string gameName(reinterpret_cast<char*>(tcpResponse.data() + 1));
+        std::string gameName(tcpResponse.begin() + 1, tcpResponse.end());
         std::cout << "Declare game " << gameName << std::endl;
         _gameList.push_back(gameName);
     };
@@ -110,7 +110,7 @@ void Core::forceInRoom(std::vector<uint8_t> tcpResponse)
 {
     uint8_t roomId = tcpResponse[1];
     std::cout << "Force in room " << static_cast<int>(roomId) << std::endl;
-    std::string roomName(reinterpret_cast<char*>(tcpResponse.data() + 2));
+    std::string roomName(tcpResponse.begin() + 2, tcpResponse.end());
     auto it = std::find_if(_rooms.begin(), _rooms.end(), [roomId](const ClientRoom& room) {
         return room.getId() == roomId;
     });
@@ -135,7 +135,7 @@ void Core::load_background(std::vector<uint8_t> tcpResponse)
     bool resize = tcpResponse[7];
     bool repeat = tcpResponse[8];
     int moveType = tcpResponse[9];
-    std::string path(reinterpret_cast<char*>(tcpResponse.data() + 10));
+    std::string path(tcpResponse.begin() + 10, tcpResponse.end());
 
     std::cout << static_cast<int>(speed) << std::endl;
     Background background(path, _window.get_size().first, _window.get_size().second);
@@ -170,7 +170,7 @@ void Core::load_music(std::vector<uint8_t> tcpResponse)
 {
     // 5[id musique][path to musique]
     int id = *(int *)(tcpResponse.data() + 1);
-    std::string path(reinterpret_cast<char*>(tcpResponse.data() + 5));
+    std::string path(tcpResponse.begin() + 5, tcpResponse.end());
     _musics.emplace(id, raylib::RayMusic(path));
 
     checkIfFileExist(path);
@@ -215,7 +215,7 @@ void Core::load_sprite(std::vector<uint8_t> tcpResponse)
     int offsetY = getUint32(tcpResponse, 25);
     // uint8_t nbFrames = tcpResponse[29];
     // int msPerFrame = getUint32(tcpResponse, 30);
-    std::string path(reinterpret_cast<char*>(tcpResponse.data() + 34));
+    std::string path(tcpResponse.begin() + 34, tcpResponse.end());
     auto texture = raylib::TextureManager::getTexture(path);
     raylib::Sprite sprite;
 
@@ -247,10 +247,14 @@ void Core::leaveEnterRoom(std::vector<uint8_t> tcpResponse)
     }
     std::cout << "player " << std::string(tcpResponse.begin() + 3, tcpResponse.end())
         << (tcpResponse[1] == 1 ? " has entered the room" : " has quit") << " the room " << static_cast<int>(tcpResponse[2]) << std::endl;
+    auto it = std::find_if(_rooms.begin(), _rooms.end(), [tcpResponse](const ClientRoom& room) { return room.getId() == tcpResponse[2];});
+    if (it == _rooms.end()) {
+        return;
+    }
     if (tcpResponse[1] == 0) {
-        _rooms[tcpResponse[2]].setNbPlayers(_rooms[tcpResponse[2]].getNbPlayers() + 1);
+        it->setNbPlayers(it->getNbPlayers() + 1);
     } else {
-        _rooms[tcpResponse[2]].setNbPlayers(_rooms[tcpResponse[2]].getNbPlayers() - 1);
+        it->setNbPlayers(it->getNbPlayers() - 1);
     }
 }
 
