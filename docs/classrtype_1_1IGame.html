@@ -160,12 +160,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5ccbd957eb1c334d6a670c1e259d3ed9" id="r_a5ccbd957eb1c334d6a670c1e259d3ed9"><td class="memItemLeft" align="right" valign="top"><a id="a5ccbd957eb1c334d6a670c1e259d3ed9" name="a5ccbd957eb1c334d6a670c1e259d3ed9"></a>
 <a class="el" href="classsparse__array.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ScreenUpdater</b> = std::function&lt; <a class="el" href="classsparse__array.html">void</a>(std::size_t <a class="el" href="classsparse__array.html">client_id</a>)&gt;</td></tr>
 <tr class="separator:a5ccbd957eb1c334d6a670c1e259d3ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdad275a531cf5b0edf030afd9909c18" id="r_afdad275a531cf5b0edf030afd9909c18"><td class="memItemLeft" align="right" valign="top"><a id="afdad275a531cf5b0edf030afd9909c18" name="afdad275a531cf5b0edf030afd9909c18"></a>
-<a class="el" href="classsparse__array.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ScoreUpdater</b> = std::function&lt; <a class="el" href="classsparse__array.html">void</a>(std::size_t <a class="el" href="classsparse__array.html">client_id</a>, std::size_t score)&gt;</td></tr>
-<tr class="separator:afdad275a531cf5b0edf030afd9909c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a716c9fe1087713aa7e6d205d20eb05ef" id="r_a716c9fe1087713aa7e6d205d20eb05ef"><td class="memItemLeft" align="right" valign="top"><a id="a716c9fe1087713aa7e6d205d20eb05ef" name="a716c9fe1087713aa7e6d205d20eb05ef"></a>
-<a class="el" href="classsparse__array.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>LifeUpdater</b> = std::function&lt; <a class="el" href="classsparse__array.html">void</a>(std::size_t <a class="el" href="classsparse__array.html">player_id</a>, std::size_t <a class="el" href="classsparse__array.html">e_id</a>, <a class="el" href="classsparse__array.html">uint8_t</a> life)&gt;</td></tr>
-<tr class="separator:a716c9fe1087713aa7e6d205d20eb05ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b83036a2e56fea2b33ec6e27c15de6d" id="r_a4b83036a2e56fea2b33ec6e27c15de6d"><td class="memItemLeft" align="right" valign="top"><a id="a4b83036a2e56fea2b33ec6e27c15de6d" name="a4b83036a2e56fea2b33ec6e27c15de6d"></a>
+<a class="el" href="classsparse__array.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>TextUpdater</b> = std::function&lt; <a class="el" href="classsparse__array.html">void</a>(std::size_t <a class="el" href="classsparse__array.html">client_id</a>, <a class="el" href="classsparse__array.html">uint8_t</a> <a class="el" href="classsparse__array.html">text_id</a>, std::string <a class="el" href="classsparse__array.html">const</a> &amp;text, <a class="el" href="classsparse__array.html">uint8_t</a> size, <a class="el" href="classsparse__array.html">uint32_t</a> x, <a class="el" href="classsparse__array.html">uint32_t</a> y)&gt;</td></tr>
+<tr class="separator:a4b83036a2e56fea2b33ec6e27c15de6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af414b3100384a4448d6f571c4c460ea9" id="r_af414b3100384a4448d6f571c4c460ea9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsparse__array.html">virtual</a> <a class="el" href="classsparse__array.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1IGame.html#af414b3100384a4448d6f571c4c460ea9">setUpdateSpeed</a> (SpeedUpdater <a class="el" href="classsparse__array.html">const</a> &amp;<a class="el" href="classsparse__array.html">func</a>)=0</td></tr>
 <tr class="memdesc:af414b3100384a4448d6f571c4c460ea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the broadcast create function.  <br /></td></tr>
 <tr class="separator:af414b3100384a4448d6f571c4c460ea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,9 +181,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6622e6f793b791dafd678049cd05ebd5" id="r_a6622e6f793b791dafd678049cd05ebd5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsparse__array.html">virtual</a> <a class="el" href="classsparse__array.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1IGame.html#a6622e6f793b791dafd678049cd05ebd5">setUseMusic</a> (MusicChanger <a class="el" href="classsparse__array.html">const</a> &amp;<a class="el" href="classsparse__array.html">func</a>)=0</td></tr>
 <tr class="memdesc:a6622e6f793b791dafd678049cd05ebd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the broadcast delete function.  <br /></td></tr>
 <tr class="separator:a6622e6f793b791dafd678049cd05ebd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a229cb2e776cdac6b7d1c6301035f73c5" id="r_a229cb2e776cdac6b7d1c6301035f73c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsparse__array.html">virtual</a> <a class="el" href="classsparse__array.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1IGame.html#a229cb2e776cdac6b7d1c6301035f73c5">setUpdateScore</a> (ScoreUpdater <a class="el" href="classsparse__array.html">const</a> &amp;<a class="el" href="classsparse__array.html">func</a>)=0</td></tr>
-<tr class="memdesc:a229cb2e776cdac6b7d1c6301035f73c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the broadcast delete function.  <br /></td></tr>
-<tr class="separator:a229cb2e776cdac6b7d1c6301035f73c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40a07936bf9400eed23e30e253bf57bf" id="r_a40a07936bf9400eed23e30e253bf57bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsparse__array.html">virtual</a> <a class="el" href="classsparse__array.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1IGame.html#a40a07936bf9400eed23e30e253bf57bf">setTextUpdater</a> (TextUpdater <a class="el" href="classsparse__array.html">const</a> &amp;<a class="el" href="classsparse__array.html">func</a>)=0</td></tr>
+<tr class="memdesc:a40a07936bf9400eed23e30e253bf57bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the broadcast delete function.  <br /></td></tr>
+<tr class="separator:a40a07936bf9400eed23e30e253bf57bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classrtype_1_1IGame.html" title="The IGame class This class is an interface to create a game.">IGame</a> class This class is an interface to create a game. </p>
@@ -568,6 +565,36 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a40a07936bf9400eed23e30e253bf57bf" name="a40a07936bf9400eed23e30e253bf57bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40a07936bf9400eed23e30e253bf57bf">&#9670;&#160;</a></span>setTextUpdater()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsparse__array.html">virtual</a> <a class="el" href="classsparse__array.html">void</a> rtype::IGame::setTextUpdater </td>
+          <td>(</td>
+          <td class="paramtype">TextUpdater <a class="el" href="classsparse__array.html">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the broadcast delete function. </p>
+
+<p>Implemented in <a class="el" href="classRType.html#afca1ce121790615a4fdd39873470f60f">RType</a>.</p>
+
+</div>
+</div>
 <a id="a62e0d9ae1384fcb91a89dfff05017818" name="a62e0d9ae1384fcb91a89dfff05017818"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a62e0d9ae1384fcb91a89dfff05017818">&#9670;&#160;</a></span>setUpdatePosition()</h2>
 
@@ -595,36 +622,6 @@ Public Member Functions</h2></td></tr>
 <p>Set the broadcast update function. </p>
 
 <p>Implemented in <a class="el" href="classRType.html#aa1900dddf944964bdb7a0cc4ba899176">RType</a>.</p>
-
-</div>
-</div>
-<a id="a229cb2e776cdac6b7d1c6301035f73c5" name="a229cb2e776cdac6b7d1c6301035f73c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a229cb2e776cdac6b7d1c6301035f73c5">&#9670;&#160;</a></span>setUpdateScore()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classsparse__array.html">virtual</a> <a class="el" href="classsparse__array.html">void</a> rtype::IGame::setUpdateScore </td>
-          <td>(</td>
-          <td class="paramtype">ScoreUpdater <a class="el" href="classsparse__array.html">const</a> &amp;&#160;</td>
-          <td class="paramname"><em>func</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set the broadcast delete function. </p>
-
-<p>Implemented in <a class="el" href="classRType.html#a9228f91b9bc6a5b3b1f526e7a3aa2eb6">RType</a>.</p>
 
 </div>
 </div>

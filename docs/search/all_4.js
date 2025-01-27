@@ -3,7 +3,7 @@ var searchData=
   ['damage_0',['Damage',['../structDamage.html',1,'']]],
   ['delete_5fentity_1',['delete_entity',['../classecs_1_1registry.html#a00e2fbde9b3ce99b1aa4f0c0b12ff13d',1,'ecs::registry']]],
   ['deleteplayer_2',['deleteplayer',['../classRType.html#a7a0f0c160c5687345283d61f6dcc5d64',1,'RType::deletePlayer()'],['../classrtype_1_1IGame.html#af71a3843fc5563b85bcd0f4d8a77112b',1,'rtype::IGame::deletePlayer()']]],
-  ['deleter_3',['Deleter',['../classGameLauncher.html#a43d988d56db3fba59f562b6beb6a47a6',1,'GameLauncher']]],
+  ['deleter_3',['deleter',['../classGameLauncher.html#a5ea89fbcce3d9205ed39733a007b97c5',1,'GameLauncher']]],
   ['deleteroom_4',['deleteRoom',['../classTcpProtocol.html#aa18486f801d9ba3f0095468b7f9cc604',1,'TcpProtocol']]],
   ['display_5',['display',['../classGraphicsManager.html#a9494c37ae1180264381dca6ece79d0d8',1,'GraphicsManager']]],
   ['dlloader_6',['dlloader',['../classDLLdr_1_1DLLoader.html',1,'DLLdr::DLLoader&lt; T &gt;'],['../classDLLdr_1_1DLLoader.html#a94bb99ab694440173c8ef130dcd8784c',1,'DLLdr::DLLoader::DLLoader()']]],

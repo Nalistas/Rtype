@@ -33,8 +33,8 @@ var searchData=
   ['setsize_30',['setSize',['../classraylib_1_1RayText.html#a483e1e1a6bdbb67fb3414e899632b6b1',1,'raylib::RayText']]],
   ['setspeed_31',['setSpeed',['../classBackground.html#ad4b28c38124e7924cdb3dcc4d3736e81',1,'Background']]],
   ['settext_32',['setText',['../classraylib_1_1RayText.html#a559baf357189bfbebb100c41fb4bc749',1,'raylib::RayText']]],
-  ['setupdateposition_33',['setupdateposition',['../classRType.html#aa1900dddf944964bdb7a0cc4ba899176',1,'RType::setUpdatePosition()'],['../classrtype_1_1IGame.html#a62e0d9ae1384fcb91a89dfff05017818',1,'rtype::IGame::setUpdatePosition()']]],
-  ['setupdatescore_34',['setupdatescore',['../classRType.html#a9228f91b9bc6a5b3b1f526e7a3aa2eb6',1,'RType::setUpdateScore()'],['../classrtype_1_1IGame.html#a229cb2e776cdac6b7d1c6301035f73c5',1,'rtype::IGame::setUpdateScore()']]],
+  ['settextupdater_33',['settextupdater',['../classRType.html#afca1ce121790615a4fdd39873470f60f',1,'RType::setTextUpdater()'],['../classrtype_1_1IGame.html#a40a07936bf9400eed23e30e253bf57bf',1,'rtype::IGame::setTextUpdater()']]],
+  ['setupdateposition_34',['setupdateposition',['../classRType.html#aa1900dddf944964bdb7a0cc4ba899176',1,'RType::setUpdatePosition()'],['../classrtype_1_1IGame.html#a62e0d9ae1384fcb91a89dfff05017818',1,'rtype::IGame::setUpdatePosition()']]],
   ['setupdatespeed_35',['setupdatespeed',['../classRType.html#a268f6afd26e634e7e237764563b7b49b',1,'RType::setUpdateSpeed()'],['../classrtype_1_1IGame.html#af414b3100384a4448d6f571c4c460ea9',1,'rtype::IGame::setUpdateSpeed()']]],
   ['setusebackground_36',['setusebackground',['../classRType.html#a15464b886a0dd72c40dea2c4773e295f',1,'RType::setUseBackground()'],['../classrtype_1_1IGame.html#a7ccf66e4cccedbe7654ac892e0746f5d',1,'rtype::IGame::setUseBackground(BackgroundChanger const &amp;func)=0']]],
   ['setusemusic_37',['setusemusic',['../classrtype_1_1IGame.html#a6622e6f793b791dafd678049cd05ebd5',1,'rtype::IGame::setUseMusic()'],['../classRType.html#af12e3c5f78d1a8f03311dc65d33c031b',1,'RType::setUseMusic()']]],
@@ -47,7 +47,7 @@ var searchData=
   ['start_5fdrawing_44',['start_drawing',['../classraylib_1_1Window.html#aaa3caf140c64d380ab28463746e30191',1,'raylib::Window']]],
   ['stop_45',['stop',['../classraylib_1_1RayMusic.html#a3c6f79dfbee29272e7b5650efce54b45',1,'raylib::RayMusic::stop()'],['../classraylib_1_1RaySound.html#a50bbd21d6e6f24ed33463ed1fe960716',1,'raylib::RaySound::stop()']]],
   ['systembroadcast_46',['SystemBroadcast',['../classSystemBroadcast.html#a5546f66a5f8c9346363f7fce3ccf68be',1,'SystemBroadcast']]],
-  ['systemcollision_47',['SystemCollision',['../classSystemCollision.html#a80516c2664edcaaa5fc4b15396e19dfc',1,'SystemCollision']]],
+  ['systemcollision_47',['SystemCollision',['../classSystemCollision.html#afce3fc06ef60eaac928783b16ab75809',1,'SystemCollision']]],
   ['systemcreateenemy_48',['SystemCreateEnemy',['../classSystemCreateEnemy.html#a07e4f228f1ba0677edcadb5f22f62eba',1,'SystemCreateEnemy']]],
   ['systemmovement_49',['SystemMovement',['../classSystemMovement.html#a94c4fc1faa7917b966a3e344756c20df',1,'SystemMovement']]]
 ];
