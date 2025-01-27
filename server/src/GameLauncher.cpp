@@ -40,7 +40,7 @@ GameCore::ServerActions GameLauncher::getServerActions()
         }
         printf("\n");
         std::string endpoint_to_string = endpoint.address().to_string() + std::to_string(endpoint.port());
-        std::cout << "endpoint_to_string: " << endpoint_to_string << std::endl;
+        // std::cout << "endpoint_to_string: " << endpoint_to_string << std::endl;
         if (_players.find(endpoint_to_string) == _players.end()) {
             std::cout << "new player added" << std::endl;
             auto playerId = this->_game->createPlayer();

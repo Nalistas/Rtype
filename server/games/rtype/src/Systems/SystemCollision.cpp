@@ -7,11 +7,16 @@
 
 #include "Systems/SystemCollision.hpp"
 #include "registry.hpp"
+// #include <chrono>
+
 
 
 SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads, rtype::IGame::LifeUpdater const &updater)
     : _deleter(deleter), _players(players), _deads(deads), _updater(updater)
 {
+    // _ms_last_update = std::chrono::duration_cast<std::chrono::milliseconds>(
+    //     std::chrono::system_clock::now().time_since_epoch()
+    // ).count();
 }
 
 SystemCollision::~SystemCollision()
@@ -57,6 +62,18 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
             int top2 = position2->y - hitbox2->height / 2;
             int bottom2 = position2->y + hitbox2->height / 2;
 
+            // if (std::chrono::duration_cast<std::chrono::milliseconds>(
+            //         std::chrono::system_clock::now().time_since_epoch()
+            //     ).count() - _ms_last_update > 2000) {
+            //             if (side.value() == PLAYER && health.has_value())
+            //                 std::cout << "player life: " << health.value().life << std::endl;
+            //             if (side2.value() == PLAYER && health2.has_value())
+            //                 std::cout << "player life: " << health2.value().life << std::endl;
+            //         _ms_last_update = std::chrono::duration_cast<std::chrono::milliseconds>(
+            //             std::chrono::system_clock::now().time_since_epoch()
+            //         ).count();
+            //     }
+
             if (left < right2 && right > left2 && top < bottom2 && bottom > top2) {
                 if (damage.has_value() && health2.has_value()) {
                     std::cout << "collision" << std::endl;
@@ -78,8 +95,22 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
                     continue;
                 }
                 if (health.has_value() && damage2.has_value()) {
-                    this->broadcast(index, registry);
+                    std::cout << "collision" << std::endl;
+                    if (side.value() == PLAYER) {
+                        health.value().life -= damage2.value().damage;
+                        if (health.value().life <= 0) {
+                            auto entity = registry.entity_from_index(index);
+                            this->broadcast(entity, registry);
+                        }
+                    } else {
+                        health2.value().life -= damage.value().damage;
+                        if (health.value().life <= 0) {
+                            auto entity = registry.entity_from_index(index2);
+                            this->broadcast(entity, registry);
+                        }
+                    }
                     this->broadcast(index2, registry);
+                    // this->broadcast(index, registry);
                     continue;
                 }
             }

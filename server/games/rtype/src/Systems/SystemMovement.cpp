@@ -50,16 +50,16 @@ void SystemMovement::operator()(ecs::registry &registry, sparse_array<Position> 
             } if (position.value().y < 0) {
                 position.value().y = 0;
                 speed.value().y = 0;
-            } if (position.value().x > 1500) {
-                position.value().x = 1500;
+            } if (position.value().x > 800) {
+                position.value().x = 800;
                 speed.value().x = 0;
-            } if (position.value().y > 1000) {
-                position.value().y = 1000;
+            } if (position.value().y > 600) {
+                position.value().y = 600;
                 speed.value().y = 0;
             }
             continue;
         }
-        if (position.value().x < -100 || position.value().y < -100 || position.value().x > 1000 || position.value().y > 1000) {
+        if (position.value().x < 0 || position.value().y < 0 || position.value().x > 1000 || position.value().y > 1000) {
             for (auto player : _players) {
                 _deleter(player.first, index);
             }

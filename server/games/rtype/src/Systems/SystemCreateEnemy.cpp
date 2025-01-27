@@ -45,7 +45,7 @@ void SystemCreateEnemy::operator()(ecs::registry &registry)
 void SystemCreateEnemy::createEnemy1(ecs::registry &registry)
 {
     auto enemy = registry.create_entity();
-    registry.get_components<Position>().emplace_at(enemy, Position{950, random() % 500});
+    registry.get_components<Position>().emplace_at(enemy, Position{950, std::rand() % 500});
     registry.get_components<Hitbox>().emplace_at(enemy, Hitbox{50, 50});
     registry.get_components<Speed>().emplace_at(enemy, Speed{-1, 0});
     registry.get_components<Life>().emplace_at(enemy, Life{1});
@@ -64,7 +64,7 @@ void SystemCreateEnemy::createEnemy1(ecs::registry &registry)
 void SystemCreateEnemy::createEnemy2(ecs::registry &registry)
 {
     auto enemy = registry.create_entity();
-    registry.get_components<Position>().emplace_at(enemy, Position{950, random() % 500});
+    registry.get_components<Position>().emplace_at(enemy, Position{950, std::rand() % 500});
     registry.get_components<Hitbox>().emplace_at(enemy, Hitbox{50, 50});
     registry.get_components<Speed>().emplace_at(enemy, Speed{-1, 0});
     registry.get_components<Life>().emplace_at(enemy, Life{3});

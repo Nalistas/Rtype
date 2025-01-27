@@ -199,6 +199,7 @@ class Core {
 
         uint8_t _roomId;
         bool _startGame;
+        bool _is_ready;
         GraphicsManager _graphicsManager;
 };
 

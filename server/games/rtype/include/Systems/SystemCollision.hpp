@@ -61,6 +61,7 @@ class SystemCollision : public ecs::isystem<Position, Hitbox, Damage, Life, SIDE
         rtype::IGame::LifeUpdater const &_updater;
         std::unordered_map<std::size_t, std::size_t> &_players;
         std::unordered_set<std::size_t> &_deads;
+        // int64_t _ms_last_update;
 };
 
 #endif /* !SYSTEMCOLLISION_HPP_ */
