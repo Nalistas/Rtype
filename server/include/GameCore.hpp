@@ -41,6 +41,16 @@ class GameCore {
          */
         void run(void);
 
+        /**
+         * @brief Get the server actions
+         */
+        void getActionsClient(void);
+
+        /**
+         * @brief Execute the server actions
+         */
+        void executeActions(void);
+
     private:
         std::mutex _registry_mutex;
 
@@ -48,7 +58,10 @@ class GameCore {
         ServerActionsGetter const &_get_actions;
         std::function<void(std::size_t)> _updateScreen;
         bool isRunning = true;
-        std::chrono::_V2::system_clock::time_point _time_last_update;
+        std::chrono::system_clock::time_point _time_last_update;
+
+        std::mutex _actions_mutex;
+        std::list<std::function<void()>> _actions;
 };
 
 #endif /* !GAMECORE_HPP_ */

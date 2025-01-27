@@ -154,78 +154,60 @@ Client <-{Declare a new Room}-- Server
 Client <-{OK to the creation}-- Server
 as we can see here, the declaration of a new random room has been sent by the server before the confirmation of the room creation.
 
-# UDP
+## UDP
 
 The UDP protocol is simpler compared to the TCP protocol. It focuses primarily on real-time interactions with limited responses.
 
-## General Notes
+### General Notes
 Unlike the TCP protocol, there is no prefix to indicate the packet length in UDP. However, the structure of packets is strictly defined. Below are the instructions:
 
----
+### Client -> Server
 
-## Client -> Server
-
-### 1. Ping to Stay Alive
+1. Ping to Stay Alive
 A simple packet sent to inform the server that the client is still connected.  
-**Format:**  
+**Format:**
 `...[0]`
 
----
-
-### 2. Trigger an Action
+2. Trigger an Action
 A packet sent to initiate an action by the client.  
-**Format:**  
+**Format:**
 `...[1][Action ID /1o][Mouse X Position /4o][Mouse Y Position /4o]`
 
----
-
-### 3. Request Screen Refresh
+3. Request Screen Refresh
 A packet sent when the client needs the server to refresh the screen.  
-**Format:**  
+**Format:**
 `...[2]`
 
----
+### Server -> Client
 
-## Server -> Client
-
-### 1. Define a Background
+1. Define a Background
 A packet sent to define the background to be displayed on the client. All graphical parameters are pre-configured via TCP.  
-**Format:**  
+**Format:**
 `...[1][Background ID /1o]`
 
----
-
-### 2. Create an Entity
+2. Create an Entity
 A packet sent to instruct the client to create a new entity on the screen.  
-**Format:**  
+**Format:**
 `...[2][Entity Type ID /1o][Entity ID /2o][X Position /4o][Y Position /4o][Speed X /1o][Speed Y /1o]`
 
----
-
-### 3. Delete an Entity
+3. Delete an Entity
 A packet sent to instruct the client to remove an entity from the screen.  
-**Format:**  
+**Format:**
 `...[3][Entity ID /2o]`
 
----
-
-### 4. Update Speed
+4. Update Speed
 A packet sent to update the speed of an existing entity.  
-**Format:**  
+**Format:**
 `...[4][Entity ID /2o][Speed X /1o][Speed Y /1o]`
 
----
-
-### 5. Update Position
+5. Update Position
 A packet sent to update the position of an existing entity.  
-**Format:**  
+**Format:**
 `...[5][Entity ID /2o][X Position /4o][Y Position /4o]`
 
----
-
-### 6. Play Music
+6. Play Music
 A packet sent to instruct the client to play a specific music file.  
-**Format:**  
+**Format:**
 `...[6][Music ID /1o]`
 
 ---
