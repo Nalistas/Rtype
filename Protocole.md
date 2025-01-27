@@ -66,7 +66,7 @@ If the previous instruction previously made did not succeed
 
 3. Room declaration
 This request is here to add a new room waiting for new player
-`...[1][new = 1 | deleted = 0][room id /1o][room name /?o]`
+`...[1][new = 1 | deleted = 0][room id /1o][Nb player in the room /1o][room name /?o][0][game name of the room /?o]`
 
 4. Set ready
 It will declare you ready to play. You need to be in a room to set you ready.
@@ -136,7 +136,7 @@ Server response : OK | KO
 
 7. List rooms
 `...[8]`
-Server response : `...[1][1][room id /1o][room name /?o][character '\'][[game name /?o]]`
+Server response : `...[1][1][room id /1o][room name /?o]`
 
 8. Delete rooms
 `...[9][Id room]`

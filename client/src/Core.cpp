@@ -32,14 +32,8 @@ Core::Core(std::string ip, std::string port, std::string username) :
     _startGame(false),
     _graphicsManager(_window) // pas sur
 {
-    _buttons_room.emplace(
-        raylib::RayText("Exit room", 10, 200, 20, raylib::BLUE),
-        [&]() { manageExitRoom(); }
-    );
-    _buttons_room.emplace(
-        raylib::RayText("Get ready", 200, 200, 20, raylib::BLUE),
-        [&]() { manageGetReady(); }
-    );
+    _buttons_room.emplace(raylib::RayText("Exit room", 10, 200, 20, raylib::BLUE), [&]() { manageExitRoom(); });
+    _buttons_room.emplace( raylib::RayText("Get ready", 200, 200, 20, raylib::BLUE), [&]() { manageGetReady(); });
 
     std::string tcpMessage = std::string(1, SET_NAME) + username;
     _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
@@ -58,13 +52,6 @@ Core::Core(std::string ip, std::string port, std::string username) :
         if (_commandQueue.size() > 0) {
             _commandQueue.erase(_commandQueue.begin());
         }
-    };
-    _instructions[ROOM_UPDATE] = [this](std::vector<uint8_t> tcpResponse) {
-        std::cout << "ROOM_UPDATE" << static_cast<int>(tcpResponse[0]) << std::endl;
-        roomUpdate(tcpResponse);
-    };
-    _instructions[LEAVE_ENTER_ROOM] = [this](std::vector<uint8_t> tcpResponse) {
-        leaveEnterRoom(tcpResponse);
     };
     _instructions[DECLARE_GAME] = [this](std::vector<uint8_t> tcpResponse) {
         std::string gameName(tcpResponse.begin() + 1, tcpResponse.end());
@@ -90,26 +77,19 @@ Core::Core(std::string ip, std::string port, std::string username) :
         game.run();
         this->_window.close();
     };
-    _instructions[LOAD_SPRITE] = [this](std::vector<uint8_t> tcpResponse) {
-        load_sprite(tcpResponse);
-    };
-    _instructions[LOAD_MUSIC] = [this](std::vector<uint8_t> tcpResponse) {
-        load_music(tcpResponse);
-    };
-    _instructions[LOAD_BACKGROUND] = [this](std::vector<uint8_t> tcpResponse) {
-        load_background(tcpResponse);
-    };
-    _instructions[LOAD_ACTION] = [this](std::vector<uint8_t> tcpResponse) {
-        load_action(tcpResponse);
-    };
-    _instructions[FORCE_REGISTER_IN_ROOM] = [this](std::vector<uint8_t> tcpResponse) {
-        forceInRoom(tcpResponse);
-    };
     _instructions[DECLARE_GAME] = [this](std::vector<uint8_t> tcpResponse) {
         std::string gameName(reinterpret_cast<char*>(tcpResponse.data() + 1));
         std::cout << "Declare game " << gameName << std::endl;
         _gameList.push_back(gameName);
     };
+
+    _instructions[LOAD_SPRITE] = [this](std::vector<uint8_t> tcpResponse) { load_sprite(tcpResponse); };
+    _instructions[LOAD_MUSIC] = [this](std::vector<uint8_t> tcpResponse) { load_music(tcpResponse); };
+    _instructions[LOAD_BACKGROUND] = [this](std::vector<uint8_t> tcpResponse) { load_background(tcpResponse); };
+    _instructions[LOAD_ACTION] = [this](std::vector<uint8_t> tcpResponse) { load_action(tcpResponse); };
+    _instructions[ROOM_UPDATE] = [this](std::vector<uint8_t> tcpResponse) { roomUpdate(tcpResponse); };
+    _instructions[LEAVE_ENTER_ROOM] = [this](std::vector<uint8_t> tcpResponse) { leaveEnterRoom(tcpResponse); };
+    _instructions[FORCE_REGISTER_IN_ROOM] = [this](std::vector<uint8_t> tcpResponse) { forceInRoom(tcpResponse); };
 }
 
 Core::~Core()
@@ -262,6 +242,11 @@ void Core::save_image(const std::string &path, const std::vector<char> &buffer) 
 
 void Core::leaveEnterRoom(std::vector<uint8_t> tcpResponse)
 {
+    if (tcpResponse.size() < 4) {
+        return;
+    }
+    std::cout << "player " << std::string(tcpResponse.begin() + 3, tcpResponse.end())
+        << (tcpResponse[1] == 1 ? " has entered the room" : " has quit") << " the room " << static_cast<int>(tcpResponse[2]) << std::endl;
     if (tcpResponse[1] == 0) {
         _rooms[tcpResponse[2]].setNbPlayers(_rooms[tcpResponse[2]].getNbPlayers() + 1);
     } else {
@@ -269,22 +254,30 @@ void Core::leaveEnterRoom(std::vector<uint8_t> tcpResponse)
     }
 }
 
-void Core::roomUpdate(std::vector<uint8_t> tcpResponse)
+void Core::roomUpdate(std::vector<uint8_t> data)
 {
-    if (tcpResponse.size() > 1) {
-        std::cout << "Room update" << static_cast<int>(tcpResponse[1]) << std::endl;
-        if (tcpResponse[1] == 1) {
-            _rooms.push_back(ClientRoom(std::string(tcpResponse.begin() + 3, tcpResponse.end() - 2), tcpResponse[2], tcpResponse[tcpResponse.size() - 1]));
-            _rooms.back().setGameName("R-Type");
-            std::cout << "New room" << std::string(tcpResponse.begin() + 3, tcpResponse.end() - 2) << std::endl;
-        } else {
-            auto it = std::find_if(_rooms.begin(), _rooms.end(), [&](const ClientRoom& room) {
-                return room.getId() == tcpResponse[2];
-            });
+    if (data.size() < 7) {
+        return;
+    }
 
-            if (it != _rooms.end()) {
+    bool created = data[1];
+    uint8_t roomId = data[2];
+    uint8_t nbPlayer = data[3];
+
+    auto it = data.begin() + 4;
+    auto copy_it = it;
+    while (it != data.end() && (*it) != 0) {
+        ++it;
+    }
+    std::string room_name(copy_it, it);
+    std::string game_name(it, data.end());
+
+    if (created) {
+        _rooms.push_back(ClientRoom(room_name + " Game: " + game_name, roomId, nbPlayer));
+    } else {
+        auto it = std::find_if(_rooms.begin(), _rooms.end(), [&](const ClientRoom& room) { return room.getId() == roomId; });
+        if (it != _rooms.end()) {
                 _rooms.erase(it);
-            }
         }
     }
 }
