@@ -25,19 +25,19 @@ int main() {
     bool asBeenConnected = false;
 
     while (!asBeenConnected) {
-        // {
-        //     Login login;
-        //     if (login.run() == true) {
-        //         return 0;
-        //     }
-        //     ip = login.get_ip();
-        //     port = login.get_port();
-        //     username = login.get_username();
-        // }
-        // if (std::count(ip.begin(), ip.end(), '.') != 3) {
-        //     std::cerr << "Invalid IP address" << std::endl;
-        //     continue;
-        // }
+        {
+            Login login;
+            if (login.run() == true) {
+                return 0;
+            }
+            ip = login.get_ip();
+            port = login.get_port();
+            username = login.get_username();
+        }
+        if (std::count(ip.begin(), ip.end(), '.') != 3) {
+            std::cerr << "Invalid IP address" << std::endl;
+            continue;
+        }
         try {
             Core core(ip, port, username);
             core.run();

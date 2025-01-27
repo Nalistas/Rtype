@@ -59,7 +59,7 @@ void SystemMovement::operator()(ecs::registry &registry, sparse_array<Position> 
             }
             continue;
         }
-        if (position.value().x < -100 || position.value().y < -100 || position.value().x > 1000 || position.value().y > 1000) {
+        if (position.value().x < 0 || position.value().y < 0 || position.value().x > 1000 || position.value().y > 1000) {
             for (auto player : _players) {
                 _deleter(player.first, index);
             }

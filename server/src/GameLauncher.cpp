@@ -35,12 +35,7 @@ GameCore::ServerActions GameLauncher::getServerActions()
         asio::ip::udp::endpoint endpoint;
         std::vector<uint8_t> data;
         _server.readFrom(endpoint, data);
-        for (auto it : data) {
-            printf("%02hhd ", it);
-        }
-        printf("\n");
         std::string endpoint_to_string = endpoint.address().to_string() + std::to_string(endpoint.port());
-        std::cout << "endpoint_to_string: " << endpoint_to_string << std::endl;
         if (_players.find(endpoint_to_string) == _players.end()) {
             std::cout << "new player added" << std::endl;
             auto playerId = this->_game->createPlayer();
