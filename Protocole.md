@@ -136,7 +136,7 @@ Server response : OK | KO
 
 7. List rooms
 `...[8]`
-Server response : `...[1][1][room id /1o][room name /?o]`
+Server response : `...[1][1][room id /1o][room name /?o][character '\'][[game name /?o]]`
 
 8. Delete rooms
 `...[9][Id room]`

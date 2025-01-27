@@ -59,7 +59,6 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
 
             if (left < right2 && right > left2 && top < bottom2 && bottom > top2) {
                 if (damage.has_value() && health2.has_value()) {
-                    std::cout << "collision" << std::endl;
                     if (side.value() == PLAYER) {
                         health2.value().life -= damage.value().damage;
                         if (health2.value().life <= 0) {

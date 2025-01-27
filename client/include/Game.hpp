@@ -49,6 +49,53 @@ class Game {
          */
         void moveSprites(void);
 
+    private:
+        /**
+         * 
+         */
+        void sendAction(raylib::Vector2 pos, uint32_t id);
+
+        /**
+         * 
+         */
+        uint32_t invert(uint32_t value);
+
+
+        /**
+         * 
+         */
+        void processBackground(std::vector<uint8_t> &data);
+
+        /**
+         * 
+         */
+        void processCreateEntity(std::vector<uint8_t> &data);
+
+        /**
+         * 
+         */
+        void processDeleteEntity(std::vector<uint8_t> &data);
+
+        /**
+         * 
+         */
+        void processUpdateSpeed(std::vector<uint8_t> &data);
+
+        /**
+         * 
+         */
+        void processUpdatePosition(std::vector<uint8_t> &data);
+
+        /**
+         * 
+         */
+        void playMusic(std::vector<uint8_t> &data);
+
+        /**
+         * 
+         */
+        void processText(std::vector<uint8_t> &data);
+
 
     private:
         std::array<std::map<uint32_t, uint32_t>, 2> _actions;
@@ -65,6 +112,7 @@ class Game {
 
         std::unordered_map<uint32_t, uint64_t> _entitiesSprites;
         std::unordered_map<uint8_t, std::function<void(std::vector<uint8_t>&)>> _commandMap;
+        std::unordered_map<uint8_t, uint64_t> _entitiesText;
 };
 
 #endif /* !GAME_HPP_ */
