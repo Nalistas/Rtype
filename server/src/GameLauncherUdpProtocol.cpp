@@ -115,13 +115,13 @@ void GameLauncher::textChanger(std::size_t player_id, uint8_t text_id, std::stri
     data[1] = text_id;
     data[2] = size;
     data[3] = (x / 16777216) & 0xFF;
-    data[5] = (x / 65536) & 0xFF;
-    data[6] = (x / 256) & 0xFF;
-    data[7] = x & 0xFF;
-    data[8] = (y / 16777216) & 0xFF;
-    data[9] = (y / 65536) & 0xFF;
-    data[10] = (y / 256) & 0xFF;
-    data[11] = y & 0xFF;
+    data[4] = (x / 65536) & 0xFF;
+    data[5] = (x / 256) & 0xFF;
+    data[6] = x & 0xFF;
+    data[7] = (y / 16777216) & 0xFF;
+    data[8] = (y / 65536) & 0xFF;
+    data[9] = (y / 256) & 0xFF;
+    data[10] = y & 0xFF;
     std::copy(text.begin(), text.end(), data.begin() + 11);
     this->_server.sendTo(_players_endpoints.at(player_id), data);
 }

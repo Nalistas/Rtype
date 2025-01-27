@@ -156,21 +156,27 @@ void RType::deletePlayer(std::size_t player_id)
 rtype::IGame::ScreenUpdater RType::getScreenUpdater(void)
 {
     return [this](std::size_t player_id) {
-        auto position = _registry->get_components<Position>();
-        if (this->_positionUpdater) {
-            for (auto [index, pos] : zipper(position)) {
-                if (pos.has_value()) {
-                    this->_positionUpdater(player_id, index, pos.value().x, pos.value().y);
-                }
+        auto positions = this->_registry->get_components<Position>();
+        auto speeds = this->_registry->get_components<Speed>();
+        uint8_t speed_x;
+        uint8_t speed_y;
+        for (auto [index, pos, speed] : zipper(positions, speeds)) {
+            if (speed.has_value()) {
+                speed_x = speed.value().x;
+                speed_y = speed.value().y;
+            } else {
+                speed_x = 0;
+                speed_y = 0;
             }
-        }
-        for (auto [index, pos] : zipper(position)) {
             if (pos.has_value()) {
-                this->_creater(player_id, index, 0, pos.value().x, pos.value().y, 0, 0);
+                this->_creater(player_id, index, 0, pos.value().x, pos.value().y, speed_x, speed_y);
             }
         }
         if (this->_backgroundChanger) {
             this->_backgroundChanger(player_id, 0);
+        }
+        if (this->_textUpdater) {
+            this->_textUpdater(player_id, 0, "Bonjour", 5, 200, 200 );
         }
     };
 }

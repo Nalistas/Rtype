@@ -27,9 +27,9 @@
 Core::Core(std::string ip, std::string port, std::string username) : 
     _window(800, 600),
     _tcpClient(ip, port),
+    _udpClient(),
     _roomId(0),
     _startGame(false),
-    _udpClient(),
     _graphicsManager(_window) // pas sur
 {
     _buttons_room.emplace(
@@ -233,8 +233,8 @@ void Core::load_sprite(std::vector<uint8_t> tcpResponse)
     float height = getUint32(tcpResponse, 17);;
     int offsetX = getUint32(tcpResponse, 21);
     int offsetY = getUint32(tcpResponse, 25);
-    uint8_t nbFrames = tcpResponse[29];
-    int msPerFrame = getUint32(tcpResponse, 30);
+    // uint8_t nbFrames = tcpResponse[29];
+    // int msPerFrame = getUint32(tcpResponse, 30);
     std::string path(reinterpret_cast<char*>(tcpResponse.data() + 34));
     auto texture = raylib::TextureManager::getTexture(path);
     raylib::Sprite sprite;

@@ -23,7 +23,6 @@ void UpHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned i
     if (_deads.find(client) != _deads.end()) {
         return;
     }
-    std::cout << "handler Left: " << client << " " << mouse_x << " " << mouse_y << std::endl;
     auto &speed = _registry->get_components<Speed>()[client];
     if (speed.has_value()) {
         speed.value().y = -1;
@@ -45,7 +44,6 @@ void DownHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned
     if (_deads.find(client) != _deads.end()) {
         return;
     }
-    std::cout << "handler Left: " << client << " " << mouse_x << " " << mouse_y << std::endl;
     auto &speed = _registry->get_components<Speed>()[client];
     if (speed.has_value()) {
         speed.value().y = 1;
@@ -67,7 +65,6 @@ void LeftHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned
     if (_deads.find(client) != _deads.end()) {
         return;
     }
-    std::cout << "handler Left: " << client << " " << mouse_x << " " << mouse_y << std::endl;
     auto &speed = _registry->get_components<Speed>()[client];
     if (speed.has_value()) {
         speed.value().x = -1;
