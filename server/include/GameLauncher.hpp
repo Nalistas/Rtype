@@ -94,7 +94,7 @@ class GameLauncher {
          * @param player_id the id of the player
          * @param e_id the id of the entity
          */
-        void Deleter(std::size_t player_id, std::size_t e_id);
+        void deleter(std::size_t player_id, std::size_t e_id);
 
         /**
          * @brief Update background of a client
@@ -102,7 +102,7 @@ class GameLauncher {
          * @param client_id the id of the client
          * @param background_id the id of the background
          */
-        void BackgroundChanger(std::size_t client_id, std::size_t background_id);
+        void backgroundChanger(std::size_t client_id, std::size_t background_id);
 
         /**
          * @brief Change the music of a client
@@ -110,7 +110,9 @@ class GameLauncher {
          * @param client_id the id of the client
          * @param music_id the id of the music
          */
-        void MusicChanger(std::size_t client_id, std::size_t music_id);
+        void musicChanger(std::size_t client_id, std::size_t music_id);
+
+        void textChanger(std::size_t client_id, uint8_t text_id, std::string const &text, uint8_t size, uint32_t x, uint32_t y);
 
     private:
         std::unique_ptr<rtype::IGame> _game;

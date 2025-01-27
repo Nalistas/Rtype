@@ -22,6 +22,7 @@ target_sources(r-type_server
         src/GameCore.cpp
         src/RessourcesManager.cpp
         src/GameLauncher.cpp
+        src/GameLauncherUdpProtocol.cpp
         src/ClientActionLog.cpp
         src/TcpProtocol.cpp
         src/TcpProtocolToClient.cpp

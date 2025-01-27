@@ -9,8 +9,8 @@
 #include "registry.hpp"
 
 
-SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads, rtype::IGame::LifeUpdater const &updater)
-    : _deleter(deleter), _players(players), _deads(deads), _updater(updater)
+SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads)
+    : _deleter(deleter), _players(players), _deads(deads)
 {
 }
 

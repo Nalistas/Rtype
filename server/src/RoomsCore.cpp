@@ -125,6 +125,7 @@ int RoomsCore::find_available_port(unsigned short start_port)
             continue;
         }
     }
+    return -1;
 }
 
 void RoomsCore::launchGame()
@@ -168,7 +169,7 @@ void RoomsCore::launchGame()
         for (auto &client : this->_clientsToLaunch) {
             if (client.second.getRoomId() != room.first)
                 continue;
-            int client_id = getClientId(room.first, client.first);
+            // int client_id = getClientId(room.first, client.first);
             _tcpServer.send(client.first, data);
         }
     }

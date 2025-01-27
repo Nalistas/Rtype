@@ -210,6 +210,9 @@ A packet sent to instruct the client to play a specific music file.
 **Format:**
 `[6][Music ID /1o]`
 
+7. Create/Modify Text
+`[7][Text id /1o][size / 1o][Pos X /4o][Pos Y /4o][Value /?o]`
+
 ---
 
 ## Notes on UDP Communication

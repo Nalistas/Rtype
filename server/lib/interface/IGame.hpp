@@ -134,8 +134,7 @@ namespace rtype {
             using BackgroundChanger = std::function<void(std::size_t client_id, std::size_t background_id)>;
             using MusicChanger = std::function<void(std::size_t client_id, std::size_t music_id)>;
             using ScreenUpdater = std::function<void(std::size_t client_id)>;
-            using ScoreUpdater = std::function<void(std::size_t client_id, std::size_t score)>;
-            using LifeUpdater = std::function<void(std::size_t player_id, std::size_t e_id, uint8_t life)>;
+            using TextUpdater = std::function<void(std::size_t client_id, uint8_t text_id, std::string const &text, uint8_t size, uint32_t x, uint32_t y)>;
 
             /**
              * @brief Set the broadcast create function
@@ -170,7 +169,7 @@ namespace rtype {
             /**
              * @brief Set the broadcast delete function
              */
-            virtual void setUpdateScore(ScoreUpdater const &func) = 0;
+            virtual void setTextUpdater(TextUpdater const &func) = 0;
 
             /// @}
 

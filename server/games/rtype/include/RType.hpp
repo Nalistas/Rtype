@@ -115,7 +115,7 @@ class RType : public rtype::IGame {
          * 
          * @param func
          */
-        void setUpdateScore(ScoreUpdater const &func) override; 
+        void setTextUpdater(TextUpdater const &func) override; 
 
         /**
          * @brief Create a player
@@ -147,11 +147,10 @@ class RType : public rtype::IGame {
         PositionUpdater _positionUpdater;
         Creater _creater;
         Deleter _deleter;
-        LifeUpdater _updater;
         BackgroundChanger _backgroundChanger;
         MusicChanger _musicChanger;
         ScreenUpdater _screenUpdater;
-        ScoreUpdater _scoreUpdater;
+        TextUpdater _textUpdater;
 
         std::unordered_map<std::size_t, std::size_t> _players;
         std::unordered_set<std::size_t> _deadPlayers;
