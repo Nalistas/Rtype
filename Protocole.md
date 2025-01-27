@@ -136,7 +136,7 @@ Server response : OK | KO
 
 7. List rooms
 `...[8]`
-Server response : `...[1][1][room id /1o][room name /?o]`
+Server response : `...[1][1][room id /1o][room name /?o][character '\'][[game name /?o]]`
 
 8. Delete rooms
 `...[9][Id room]`
@@ -166,49 +166,52 @@ Unlike the TCP protocol, there is no prefix to indicate the packet length in UDP
 1. Ping to Stay Alive
 A simple packet sent to inform the server that the client is still connected.  
 **Format:**
-`...[0]`
+`[0]`
 
 2. Trigger an Action
 A packet sent to initiate an action by the client.  
 **Format:**
-`...[1][Action ID /1o][Mouse X Position /4o][Mouse Y Position /4o]`
+`[1][Action ID /1o][Mouse X Position /4o][Mouse Y Position /4o]`
 
 3. Request Screen Refresh
 A packet sent when the client needs the server to refresh the screen.  
 **Format:**
-`...[2]`
+`[2]`
 
 ### Server -> Client
 
 1. Define a Background
 A packet sent to define the background to be displayed on the client. All graphical parameters are pre-configured via TCP.  
 **Format:**
-`...[1][Background ID /1o]`
+`[1][Background ID /1o]`
 
 2. Create an Entity
 A packet sent to instruct the client to create a new entity on the screen.  
 **Format:**
-`...[2][Entity Type ID /1o][Entity ID /2o][X Position /4o][Y Position /4o][Speed X /1o][Speed Y /1o]`
+`[2][Entity Type ID /1o][Entity ID /2o][X Position /4o][Y Position /4o][Speed X /1o][Speed Y /1o]`
 
 3. Delete an Entity
 A packet sent to instruct the client to remove an entity from the screen.  
 **Format:**
-`...[3][Entity ID /2o]`
+`[3][Entity ID /2o]`
 
 4. Update Speed
 A packet sent to update the speed of an existing entity.  
 **Format:**
-`...[4][Entity ID /2o][Speed X /1o][Speed Y /1o]`
+`[4][Entity ID /2o][Speed X /1o][Speed Y /1o]`
 
 5. Update Position
 A packet sent to update the position of an existing entity.  
 **Format:**
-`...[5][Entity ID /2o][X Position /4o][Y Position /4o]`
+`[5][Entity ID /2o][X Position /4o][Y Position /4o]`
 
 6. Play Music
 A packet sent to instruct the client to play a specific music file.  
 **Format:**
-`...[6][Music ID /1o]`
+`[6][Music ID /1o]`
+
+7. Create/Modify Text
+`[7][Text id /1o][size / 1o][Pos X /4o][Pos Y /4o][Value /?o]`
 
 ---
 

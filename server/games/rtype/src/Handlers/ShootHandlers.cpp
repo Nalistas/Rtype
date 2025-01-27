@@ -32,8 +32,6 @@ void ShootHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigne
     _registry->get_components<Damage>().emplace_at(bullet, Damage{1});
     _registry->get_components<SIDE>().emplace_at(bullet, SIDE::PLAYER);
 
-    std::cout << std::endl;
-    std::cout << std::endl;
     for (auto player : _players) {
         _creater(player.first, bullet, 2,
             _registry->get_components<Position>()[bullet].value().x,

@@ -66,7 +66,6 @@ void LeftHandlers::operator()(std::size_t client, unsigned int mouse_x, unsigned
     if (_deads.find(client) != _deads.end()) {
         return;
     }
-
     auto &speed = _registry->get_components<Speed>()[client];
     if (speed.has_value()) {
         speed.value().x = -2;

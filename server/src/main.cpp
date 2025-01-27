@@ -35,9 +35,8 @@ int main(int ac, char **av)
     if (args.size() == 4) {
         std::string port_string = args[2];
         std::string gameName = args[3];
-        uint16_t port;
         try {
-            port = std::stoi(port_string);
+            std::stoi(port_string);
         } catch (const std::exception &e) {
             std::cerr << "Error :" << e.what() << std::endl;
             return 84;
@@ -49,9 +48,8 @@ int main(int ac, char **av)
         }
     } else if (args.size() <= 2) {
         std::string port_string = args.size() == 2 ? args[1] : "2000";
-        uint16_t port;
         try {
-            port = std::stoi(port_string);
+            std::stoi(port_string);
             launcher.LaunchTcpServer(port_string);
         } catch (const std::exception &e) {
             std::cerr << "Error :" << e.what() << std::endl;

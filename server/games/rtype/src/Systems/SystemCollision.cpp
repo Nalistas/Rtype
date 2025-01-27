@@ -11,8 +11,8 @@
 
 
 
-SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads, rtype::IGame::LifeUpdater const &updater)
-    : _deleter(deleter), _players(players), _deads(deads), _updater(updater)
+SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads)
+    : _deleter(deleter), _players(players), _deads(deads)
 {
     // _ms_last_update = std::chrono::duration_cast<std::chrono::milliseconds>(
     //     std::chrono::system_clock::now().time_since_epoch()
@@ -76,7 +76,6 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
 
             if (left < right2 && right > left2 && top < bottom2 && bottom > top2) {
                 if (damage.has_value() && health2.has_value()) {
-                    std::cout << "collision" << std::endl;
                     if (side.value() == PLAYER) {
                         health2.value().life -= damage.value().damage;
                         if (health2.value().life <= 0) {

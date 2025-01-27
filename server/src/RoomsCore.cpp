@@ -117,11 +117,15 @@ int RoomsCore::find_available_port(unsigned short start_port)
         try {
             asio::ip::tcp::acceptor acceptor(io_context, 
                 asio::ip::tcp::endpoint(asio::ip::tcp::v4(), port));
+
+            asio::ip::udp::socket udp_socket(io_context, 
+                asio::ip::udp::endpoint(asio::ip::udp::v4(), port));
             return port;
         } catch (const std::exception &e) {
             continue;
         }
     }
+    return -1;
 }
 
 void RoomsCore::launchGame()
@@ -165,7 +169,7 @@ void RoomsCore::launchGame()
         for (auto &client : this->_clientsToLaunch) {
             if (client.second.getRoomId() != room.first)
                 continue;
-            int client_id = getClientId(room.first, client.first);
+            // int client_id = getClientId(room.first, client.first);
             _tcpServer.send(client.first, data);
         }
     }
