@@ -33,11 +33,15 @@ void SystemBroadcast::operator()(ecs::registry &registry, sparse_array<Speed> &s
         for (auto player : _players) {
             auto spe = speeds[player.second];
             if (spe.has_value()) {
-                _speedUpdater(player.first, player.second, spe.value().x, spe.value().y);
+                for (auto p2 : _players) {
+                    _speedUpdater(p2.first, player.second, spe.value().x, spe.value().y);
+                }
             }
             auto pos = positions[player.second];
             if (pos.has_value()) {
-                _positionUpdater(player.first, player.second, pos.value().x, pos.value().y);
+                for (auto p2 : _players) {
+                    _positionUpdater(p2.first, player.second, pos.value().x, pos.value().y);
+                }
             }
         }
         _ms_last_update_main = time;
