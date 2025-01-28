@@ -14,8 +14,8 @@
 
 using namespace std::chrono;
 
-SystemMovement::SystemMovement(std::unordered_map<std::size_t, std::size_t> &players, rtype::IGame::Deleter const &deleter) :
-    _players(players), _deleter(deleter)
+SystemMovement::SystemMovement(std::unordered_map<std::size_t, std::size_t> &players, rtype::IGame::Deleter const &deleter, bool &lose) :
+    _players(players), _deleter(deleter), _lose(lose)
 {
     _ms_last_update = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 }
@@ -31,6 +31,9 @@ bool SystemMovement::isAPlayerEntity(std::size_t entity)
 
 void SystemMovement::operator()(ecs::registry &registry, sparse_array<Position> &positions, sparse_array<Speed> &speeds)
 {
+    if (_lose) {
+        return;
+    }
     auto millisec_since_epoch = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
     auto time_elapsed = millisec_since_epoch - _ms_last_update;
 

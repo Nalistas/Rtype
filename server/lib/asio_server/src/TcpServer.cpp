@@ -86,7 +86,7 @@ std::vector<uint8_t> TcpServer::receive(std::shared_ptr<asio::ip::tcp::socket> c
         return {};
     }
 
-    std::cout << "Received " << data_received << " bytes" << std::endl;
+    // std::cout << "Received " << data_received << " bytes" << std::endl;
 
     if (data_received < length) {
         std::cerr << "Incomplete data received. Expected " << length << " bytes, but got " << data_received << " bytes." << std::endl;

@@ -83,12 +83,12 @@ void RoomsCore::treatClient(std::shared_ptr<asio::ip::tcp::socket> &client, TcpP
 {
     std::vector<uint8_t> data = _tcpServer.receive(client);
 
-    std::cout << "-------------------------------------------------------------------------" << std::endl;
-    std::cout << "Received data from client: " << client << " \"" << this->_clients[client].getName() << "\"" << std::endl;
+    // std::cout << "-------------------------------------------------------------------------" << std::endl;
+    // std::cout << "Received data from client: " << client << " \"" << this->_clients[client].getName() << "\"" << std::endl;
     // std::cout << "Received data (Raw values): " << std::string(data.begin(), data.end()) << std::endl;
-    for (uint8_t c : data) {
-        std::cout << static_cast<int>(c) << " ";
-    }
+    // for (uint8_t c : data) {
+    //     std::cout << static_cast<int>(c) << " ";
+    // }
     std::cout << std::endl << std::endl << "Launching interpreter..." << std::endl;
     tcpProtocol.interpreter(client, data);
 }
@@ -254,10 +254,10 @@ std::vector<uint8_t> RoomsCore::get_local_ip()
                 return transformed_ip;
             }
         }
-        throw std::runtime_error("Aucune adresse IPv4 trouvée.");
+        throw std::runtime_error("No IPv4 adress founded.");
 
     } catch (const std::exception& e) {
-        std::cerr << "Erreur : " << e.what() << std::endl;
+        std::cerr << "Error : " << e.what() << std::endl;
         throw;
     }
 }
