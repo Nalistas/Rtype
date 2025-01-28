@@ -23,7 +23,6 @@ int main() {
     std::string port = "2000";
     std::string username = "Player1";
     bool asBeenConnected = false;
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
     while (!asBeenConnected) {
         {
