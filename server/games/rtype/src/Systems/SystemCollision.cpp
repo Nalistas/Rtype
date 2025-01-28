@@ -7,12 +7,13 @@
 
 #include "Systems/SystemCollision.hpp"
 #include "registry.hpp"
+#include <iostream>
 // #include <chrono>
 
 
 
-SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads, bool &lose, rtype::IGame::Creater const &creater)
-    : _deleter(deleter), _players(players), _deads(deads), _lose(lose), _creater(creater)
+SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads, bool &lose, rtype::IGame::Creater const &creater, rtype::IGame::TextUpdater &_textUpdater, int &score)
+    : _deleter(deleter), _players(players), _deads(deads), _lose(lose), _creater(creater), _textUpdater(_textUpdater), _score(score)
 {
 }
 
@@ -39,6 +40,9 @@ void SystemCollision::broadcast(std::size_t entity_deleted, ecs::registry &regis
         registry.get_components<Speed>()[entity_deleted].reset();
     } else {
         registry.delete_entity(registry.entity_from_index(entity_deleted));
+        for (auto it = _players.begin(); it != _players.end(); it++) {
+            _textUpdater(it->first, 0, "score: " + std::to_string(_score), 30, 25, 20);
+        }
     }
 }
 
@@ -69,6 +73,7 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
                         health2.value().life -= damage.value().damage;
                         if (health2.value().life <= 0) {
                             auto entity = registry.entity_from_index(index2);
+                            _score += 1;
                             this->broadcast(entity, registry);
                         }
                     } else {
@@ -78,7 +83,6 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
                             this->broadcast(entity, registry);
                         }
                     }
-                    // this->broadcast(index2, registry);
                     this->broadcast(index, registry);
                     continue;
                 }
@@ -98,7 +102,6 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
                         }
                     }
                     this->broadcast(index2, registry);
-                    // this->broadcast(index, registry);
                     continue;
                 }
             }

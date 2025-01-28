@@ -77,7 +77,7 @@ Core::Core(std::string ip, std::string port, std::string username) :
         _udpClient.setServer(ip, port);
         Game game(this->_actions, this->_sprites, this->_backgrounds, this->_musics, this->_udpClient, this->_window); // ICI
         #ifdef WIN32
-            Sleep(1000);
+            Sleep(2000);
         #endif
         game.run();
         this->_window.close();
@@ -410,7 +410,6 @@ void Core::setRoom(uint8_t roomId)
         return;
     }
 
-    std::cout << "DISPLAY " << it->getNbPlayers() << " " << it->getName() << std::endl;
     _texts_room.push_back(raylib::RayText("Room id: " + std::to_string(_roomId), 10, 10, 20, raylib::BLACK));
     _texts_room.push_back(raylib::RayText("Room name: " + it->getName(), 10, 40, 20, raylib::BLACK));
     _texts_room.push_back(raylib::RayText("Game name: " + it->getGameName(), 10, 70, 20, raylib::BLACK));
