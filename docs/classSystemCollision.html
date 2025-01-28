@@ -104,9 +104,9 @@ Collaboration diagram for SystemCollision:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac13515fdf745a0291bc5bd0fcff2c767" id="r_ac13515fdf745a0291bc5bd0fcff2c767"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemCollision.html#ac13515fdf745a0291bc5bd0fcff2c767">SystemCollision</a> (rtype::IGame::Deleter const &amp;deleter, std::unordered_map&lt; std::size_t, std::size_t &gt; &amp;players, std::unordered_set&lt; std::size_t &gt; &amp;deads, bool &amp;lose, rtype::IGame::Creater const &amp;creater)</td></tr>
-<tr class="memdesc:ac13515fdf745a0291bc5bd0fcff2c767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classSystemCollision.html" title="SystemCollision class to handle the collision between entities.">SystemCollision</a> object.  <br /></td></tr>
-<tr class="separator:ac13515fdf745a0291bc5bd0fcff2c767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5be2754898d5300707b265ca70ca628a" id="r_a5be2754898d5300707b265ca70ca628a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemCollision.html#a5be2754898d5300707b265ca70ca628a">SystemCollision</a> (rtype::IGame::Deleter const &amp;deleter, std::unordered_map&lt; std::size_t, std::size_t &gt; &amp;players, std::unordered_set&lt; std::size_t &gt; &amp;deads, bool &amp;lose, rtype::IGame::Creater const &amp;creater, rtype::IGame::TextUpdater &amp;_textUpdater, int &amp;score)</td></tr>
+<tr class="memdesc:a5be2754898d5300707b265ca70ca628a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classSystemCollision.html" title="SystemCollision class to handle the collision between entities.">SystemCollision</a> object.  <br /></td></tr>
+<tr class="separator:a5be2754898d5300707b265ca70ca628a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d6a4541510973ef7544a3bb816fc0d6" id="r_a3d6a4541510973ef7544a3bb816fc0d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemCollision.html#a3d6a4541510973ef7544a3bb816fc0d6">operator()</a> (<a class="el" href="classecs_1_1registry.html">ecs::registry</a> &amp;registry, <a class="el" href="classsparse__array.html">sparse_array</a>&lt; <a class="el" href="structPosition.html">Position</a> &gt; &amp;position, <a class="el" href="classsparse__array.html">sparse_array</a>&lt; <a class="el" href="structHitbox.html">Hitbox</a> &gt; &amp;hitbox, <a class="el" href="classsparse__array.html">sparse_array</a>&lt; <a class="el" href="structDamage.html">Damage</a> &gt; &amp;damage, <a class="el" href="classsparse__array.html">sparse_array</a>&lt; <a class="el" href="structLife.html">Life</a> &gt; &amp;health, <a class="el" href="classsparse__array.html">sparse_array</a>&lt; SIDE &gt; &amp;side)</td></tr>
 <tr class="memdesc:a3d6a4541510973ef7544a3bb816fc0d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the speed and position of the player.  <br /></td></tr>
 <tr class="separator:a3d6a4541510973ef7544a3bb816fc0d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,8 +132,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~isystem</b> ()=de
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classSystemCollision.html" title="SystemCollision class to handle the collision between entities.">SystemCollision</a> class to handle the collision between entities. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac13515fdf745a0291bc5bd0fcff2c767" name="ac13515fdf745a0291bc5bd0fcff2c767"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac13515fdf745a0291bc5bd0fcff2c767">&#9670;&#160;</a></span>SystemCollision()</h2>
+<a id="a5be2754898d5300707b265ca70ca628a" name="a5be2754898d5300707b265ca70ca628a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5be2754898d5300707b265ca70ca628a">&#9670;&#160;</a></span>SystemCollision()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -166,7 +166,19 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~isystem</b> ()=de
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">rtype::IGame::Creater const &amp;&#160;</td>
-          <td class="paramname"><em>creater</em>&#160;</td>
+          <td class="paramname"><em>creater</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">rtype::IGame::TextUpdater &amp;&#160;</td>
+          <td class="paramname"><em>_textUpdater</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>score</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
