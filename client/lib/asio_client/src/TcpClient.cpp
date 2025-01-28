@@ -71,7 +71,7 @@ std::vector<uint8_t> TcpClient::receive()
             return {};
         }
     } catch (const std::exception &e) {
-        std::cerr << "Receive error: " << e.what() << std::endl;
+        std::cerr << "Receive error on server TCP: " << e.what() << std::endl;
         return {};
     }
 

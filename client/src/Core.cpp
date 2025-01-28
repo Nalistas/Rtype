@@ -76,6 +76,9 @@ Core::Core(std::string ip, std::string port, std::string username) :
         std::cout << "Start game " << ip << ":" << port << std::endl;
         _udpClient.setServer(ip, port);
         Game game(this->_actions, this->_sprites, this->_backgrounds, this->_musics, this->_udpClient, this->_window); // ICI
+        #ifdef WIN32
+            Sleep(1000);
+        #endif
         game.run();
         this->_window.close();
     };
