@@ -63,10 +63,7 @@ void TcpProtocol::enterRoom(std::shared_ptr<asio::ip::tcp::socket> &client, uint
     bool room_exists = false;
     auto clientIt = this->_clients.find(client);
 
-    std::cout << std::endl << std::endl;
     for (auto &room : this->_rooms) {
-        std::cout << static_cast<int>(room.first) << " " << static_cast<int>(roomId) << std::endl;
-        std::cout << (room.first == roomId) << std::endl;
         if (room.first == roomId) {
             room_exists = true;
             break;
