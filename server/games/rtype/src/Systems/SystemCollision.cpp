@@ -38,10 +38,11 @@ void SystemCollision::broadcast(std::size_t entity_deleted, ecs::registry &regis
 
     if (is_player_dead) {
         _deads.insert(player_dead);
-        _players.erase(player_dead);
-        _players[player_dead] = registry.create_entity();
+        registry.get_components<Position>()[entity_deleted].reset();
+        registry.get_components<Speed>()[entity_deleted].reset();
+    } else {
+        registry.delete_entity(registry.entity_from_index(entity_deleted));
     }
-    registry.delete_entity(registry.entity_from_index(entity_deleted));
 }
 
 void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position> &positions, sparse_array<Hitbox> &hitboxs, sparse_array<Damage> &damages, sparse_array<Life> &healths, sparse_array<SIDE> &sides)

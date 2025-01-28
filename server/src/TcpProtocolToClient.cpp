@@ -19,23 +19,25 @@ std::vector<uint8_t> TcpProtocol::formatLaunchRoom(uint8_t roomId)
 std::vector<uint8_t> TcpProtocol::formatRoomCreatedDeleted(uint8_t roomId, bool created)
 {
     auto room = _rooms.find(roomId);
-    std::size_t size = 5 + room->second.getName().size();
+    std::string const &room_name = room->second.getName();
+    std::string const &game_name = room->second.getGameName();
+    std::size_t size = 5 + room_name.size() + game_name.size();
     std::cout << "Room name size : " << size << std::endl;
     std::vector<uint8_t> data(size);
-    uint8_t nbPlayers = 0;
 
     data[0] = static_cast<uint8_t>(INSTRUCTIONS_SERVER_TO_CLIENT::ROOM_UPDATE);
     data[1] = created;
     data[2] = roomId;
-    std::copy(room->second.getName().begin(), room->second.getName().end(), data.begin() + 3);
-    data[size - 2] = '\\';
+    data[3] = 0;
+    std::copy(room_name.begin(), room_name.end(), data.begin() + 4);
+    data[room_name.size() + 4] = 0;
+    std::copy(game_name.begin(), game_name.end(), data.begin() + 5 + room_name.size());
 
     for (auto &client : _clients) {
         if (client.second.getRoomId() == roomId) {
-            ++nbPlayers;
+            ++data[3];
         }
     }
-    data[size - 1] = nbPlayers;
     return data;
 }
 
