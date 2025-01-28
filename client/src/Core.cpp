@@ -30,10 +30,12 @@ Core::Core(std::string ip, std::string port, std::string username) :
     _udpClient(),
     _roomId(0),
     _startGame(false),
-    _graphicsManager(_window) // pas sur
+    _is_ready(false),
+    _graphicsManager(_window)
 {
     _buttons_room.emplace(raylib::RayText("Exit room", 10, 200, 20, raylib::BLUE), [&]() { manageExitRoom(); });
     _buttons_room.emplace( raylib::RayText("Get ready", 200, 200, 20, raylib::BLUE), [&]() { manageGetReady(); });
+
 
     std::string tcpMessage = std::string(1, SET_NAME) + username;
     _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
@@ -271,6 +273,7 @@ void Core::leaveEnterRoom(std::vector<uint8_t> tcpResponse)
         it->setNbPlayers(it->getNbPlayers() + 1);
     } else {
         it->setNbPlayers(it->getNbPlayers() - 1);
+
     }
 }
 
