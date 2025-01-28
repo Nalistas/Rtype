@@ -7,14 +7,14 @@
 
 #include "Systems/SystemCollision.hpp"
 #include "registry.hpp"
+#include <iostream>
 // #include <chrono>
 
 
 
-SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads, rtype::IGame::TextUpdater &_textUpdater)
-    : _deleter(deleter), _players(players), _deads(deads), _textUpdater(_textUpdater)
+SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads, rtype::IGame::TextUpdater &_textUpdater, int &score)
+    : _deleter(deleter), _players(players), _deads(deads), _textUpdater(_textUpdater), _score(score)
 {
-    _score = 0;
     // _ms_last_update = std::chrono::duration_cast<std::chrono::milliseconds>(
     //     std::chrono::system_clock::now().time_since_epoch()
     // ).count();
@@ -43,6 +43,9 @@ void SystemCollision::broadcast(std::size_t entity_deleted, ecs::registry &regis
         registry.get_components<Speed>()[entity_deleted].reset();
     } else {
         registry.delete_entity(registry.entity_from_index(entity_deleted));
+        for (auto it = _players.begin(); it != _players.end(); it++) {
+            _textUpdater(it->first, 0, "score: " + std::to_string(_score), 30, 25, 20);
+        }
     }
 }
 
@@ -63,28 +66,14 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
             int right2 = position2->x + hitbox2->width / 2;
             int top2 = position2->y - hitbox2->height / 2;
             int bottom2 = position2->y + hitbox2->height / 2;
-
-            // if (std::chrono::duration_cast<std::chrono::milliseconds>(
-            //         std::chrono::system_clock::now().time_since_epoch()
-            //     ).count() - _ms_last_update > 2000) {
-            //             if (side.value() == PLAYER && health.has_value())
-            //                 std::cout << "player life: " << health.value().life << std::endl;
-            //             if (side2.value() == PLAYER && health2.has_value())
-            //                 std::cout << "player life: " << health2.value().life << std::endl;
-            //         _ms_last_update = std::chrono::duration_cast<std::chrono::milliseconds>(
-            //             std::chrono::system_clock::now().time_since_epoch()
-            //         ).count();
-            //     }
-
             if (left < right2 && right > left2 && top < bottom2 && bottom > top2) {
                 if (damage.has_value() && health2.has_value()) {
                     if (side.value() == PLAYER) {
                         health2.value().life -= damage.value().damage;
                         if (health2.value().life <= 0) {
                             auto entity = registry.entity_from_index(index2);
+                            _score += 1;
                             this->broadcast(entity, registry);
-                            _score++;
-                            // _textUpdater(, 0,, 5, 200, 200 );
                         }
                     } else {
                         health.value().life -= damage2.value().damage;
@@ -93,7 +82,6 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
                             this->broadcast(entity, registry);
                         }
                     }
-                    // this->broadcast(index2, registry);
                     this->broadcast(index, registry);
                     continue;
                 }
@@ -113,40 +101,11 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
                         }
                     }
                     this->broadcast(index2, registry);
-                    // this->broadcast(index, registry);
                     continue;
                 }
             }
         }
     }
-    // for (size_t i = 0; i < position.size(); i++) {
-    //     if (!position[i].has_value() || !hitbox[i].has_value() || !side[i].has_value()) continue;
-
-    //     const Position &posA = position[i].value();
-    //     const Hitbox &hitboxA = hitbox[i].value();
-    //     const SIDE &sideA = side[i].value();
-
-    //     for (size_t j = 0; j < position.size(); j++) {
-    //         if (i == j || !position[j].has_value() || !hitbox[j].has_value() || !side[j].has_value()) continue;
-
-    //         const Position &posB = position[j].value();
-    //         const Hitbox &hitboxB = hitbox[j].value();
-    //         const SIDE &sideB = side[j].value();
-
-    //         if (sideB == PLAYER && sideA == ENEMY) {
-    //             if (checkCollision(posA, hitboxA, posB, hitboxB)) {
-    //                 if (damage[i].has_value() && health[j].has_value()) {
-    //                     health[j].value().life -= damage[i].value().damage;
-
-    //                     if (health[j].value().life <= 0) {
-    //                         auto entity = registry.entity_from_index(j);
-    //                         this->broadcast(entity, registry);
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
 }
 
 bool SystemCollision::checkCollision(const Position &posA, const Hitbox &hitboxA, const Position &posB, const Hitbox &hitboxB)

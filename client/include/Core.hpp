@@ -82,8 +82,9 @@ class Core {
          * @param showPopup the popup state
          * @param inputs the inputs
          * @param focus the focus
+         * @param error_game_not_found the error game not found
          */
-        void drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int &focus);
+        void drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int &focus, bool &error_game_not_found);
 
         /**
          * @brief verify if an element is pressed

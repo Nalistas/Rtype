@@ -13,7 +13,7 @@
     #define WINDOW_HPP_
 
 namespace raylib {
-#include "raylib.h"
+    #include "raylib.h"
 
 /**
  * @brief Window class to handle the window
@@ -118,11 +118,6 @@ class Window {
          * @brief Get the size of the window
          */
         std::pair<unsigned int, unsigned int> get_size() const;
-
-        /**
-         * @brief Draw a string
-         */
-        void draw_text(std::string const &text, int x, int y, int fontSize, Color color) { DrawText(text.c_str(), x, y, fontSize, color); }
 
         /**
          * @brief Draw a rectangle

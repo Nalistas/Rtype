@@ -33,8 +33,8 @@ Core::Core(std::string ip, std::string port, std::string username) :
     _is_ready(false),
     _graphicsManager(_window)
 {
-    _buttons_room.emplace(raylib::RayText("Exit room", 10, 200, 20, raylib::BLUE), [&]() { manageExitRoom(); });
-    _buttons_room.emplace( raylib::RayText("Get ready", 200, 200, 20, raylib::BLUE), [&]() { manageGetReady(); });
+    _buttons_room.emplace(raylib::RayText("Exit room", 10, 200, 20, raylib::WHITE), [&]() { manageExitRoom(); });
+    _buttons_room.emplace( raylib::RayText("Get ready", 200, 200, 20, raylib::WHITE), [&]() { manageGetReady(); });
 
 
     std::string tcpMessage = std::string(1, SET_NAME) + username;
@@ -76,11 +76,14 @@ Core::Core(std::string ip, std::string port, std::string username) :
         std::cout << "Start game " << ip << ":" << port << std::endl;
         _udpClient.setServer(ip, port);
         Game game(this->_actions, this->_sprites, this->_backgrounds, this->_musics, this->_udpClient, this->_window); // ICI
+        #ifdef WIN32
+            Sleep(2000);
+        #endif
         game.run();
         this->_window.close();
     };
     _instructions[DECLARE_GAME] = [this](std::vector<uint8_t> tcpResponse) {
-        std::string gameName(tcpResponse.begin() + 1, tcpResponse.end());
+        std::string gameName(tcpResponse.begin() + 1, tcpResponse.end() - 1);
         std::cout << "Declare game " << gameName << std::endl;
         _gameList.push_back(gameName);
     };
@@ -135,7 +138,7 @@ void Core::forceInRoom(std::vector<uint8_t> tcpResponse)
 
     if (it == _rooms.end()) {
         _rooms.push_back(ClientRoom(roomName, roomId, 1));
-        // _rooms.back().setGameName("R-Type");
+        // _rooms.back().setGameName("");
     } else {
         std::cout << "Enter in room" << std::endl;
         it->setNbPlayers(it->getNbPlayers() + 1);
@@ -231,8 +234,6 @@ void Core::load_sprite(std::vector<uint8_t> tcpResponse)
     float height = getUint32(tcpResponse, 17);;
     int offsetX = getUint32(tcpResponse, 21);
     int offsetY = getUint32(tcpResponse, 25);
-    // uint8_t nbFrames = tcpResponse[29];
-    // int msPerFrame = getUint32(tcpResponse, 30);
     std::string path(tcpResponse.begin() + 34, tcpResponse.end());
     auto texture = raylib::TextureManager::getTexture(path);
     raylib::Sprite sprite;
@@ -293,10 +294,13 @@ void Core::roomUpdate(std::vector<uint8_t> data)
         ++it;
     }
     std::string room_name(copy_it, it);
-    std::string game_name(it, data.end());
+    std::string game_name(++it, data.end());
+
+    std::cout << "Room update " << static_cast<int>(roomId) << " " << room_name << " " << game_name << " " << static_cast<int>(nbPlayer) << std::endl;
 
     if (created) {
-        _rooms.push_back(ClientRoom(room_name + " Game: " + game_name, roomId, nbPlayer));
+        _rooms.push_back(ClientRoom(room_name, roomId, nbPlayer));
+        _rooms.back().setGameName(game_name);
     } else {
         auto it = std::find_if(_rooms.begin(), _rooms.end(), [&](const ClientRoom& room) { return room.getId() == roomId; });
         if (it != _rooms.end()) {
@@ -309,30 +313,30 @@ void Core::interpretor()
 {
     while (_tcpClient.hasData()) {
         auto tcpResponse = _tcpClient.receive();
-        // for (auto c : tcpResponse) {
-        //     std::cout << static_cast<int>(c) << " ";
-        // }
-        // std::cout << std::endl;
+
         if (_instructions.find(static_cast<INSTRUCTIONS_SERVER_TO_CLIENT>(tcpResponse[0])) != _instructions.end()) {
             _instructions[static_cast<INSTRUCTIONS_SERVER_TO_CLIENT>(tcpResponse[0])](tcpResponse);
         }
     }
 }
 
-void Core::drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int &focus)
+void Core::drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int &focus, bool &error_game_not_found)
 {
     _window.draw_rectangle(200, 70, 600, 450, {31, 81, 255, 180});
-    _window.draw_text("x", 765, 80, 20, raylib::RED);
-    _window.draw_text("Enter room name: ", 220, 120, 20, raylib::BLACK);
-    _window.draw_text("Enter game name: ", 220, 200, 20, raylib::BLACK);
-    _window.draw_text("Press enter to validate", 220, 300, 20, raylib::BLACK);
+    raylib::RayText("x", 765, 80, 20, raylib::RED).draw();
+    raylib::RayText("Enter room name: ", 220, 120, 20, raylib::BLACK).draw();
+    raylib::RayText("Enter game name: ", 220, 200, 20, raylib::BLACK).draw();
+    if (error_game_not_found) {
+        raylib::RayText("Game not found", 220, 250, 20, raylib::RED).draw();
+    }
+    raylib::RayText("Press enter to validate", 220, 300, 20, raylib::BLACK).draw();
     _window.draw_rectangle(420, 120 + focus * 80, 300, 40, raylib::GRAY);
 
-    _window.draw_text(inputs[0].getText(), 420, 120, 20, raylib::BLACK);
-    _window.draw_text(inputs[1].getText(), 420, 200, 20, raylib::BLACK);
+    raylib::RayText(inputs[0].getText(), 420, 120, 20, raylib::BLACK).draw();
+    raylib::RayText(inputs[1].getText(), 420, 200, 20, raylib::BLACK).draw();
 
     for (size_t i = 0; i < _gameList.size(); ++i) {
-        _window.draw_text(_gameList[i], 220, 380 + 20 * i, 20, raylib::BLUE);
+        raylib::RayText(_gameList[i], 220, 380 + 20 * i, 20, raylib::WHITE).draw();
     }
 
     if (_window.is_mouse_button(raylib::Window::PRESSED, 0) &&
@@ -343,6 +347,7 @@ void Core::drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int 
         inputs[0].setText("");
         inputs[1].setText("");
         showPopup = false;
+        error_game_not_found = false;
         return;
     }
 
@@ -353,8 +358,15 @@ void Core::drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int 
     if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_BACKSPACE) && !inputs[focus].getText().empty()) {
         inputs[focus].setText(inputs[focus].getText().substr(0, inputs[focus].getText().size() - 1));
     }
+
     if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_ENTER) && focus == static_cast<int>(inputs.size() - 1) && !inputs[0].getText().empty() && !inputs[1].getText().empty()) {
-        showPopup = false;
+        for (auto &game : _gameList) {
+            if (game == inputs[1].getText()) {
+                showPopup = false;
+                return;
+            }
+        }
+        error_game_not_found = true;
     }
     if (_window.is_key(raylib::Window::PRESSED, raylib::KEY_TAB) ||
         _window.is_key(raylib::Window::PRESSED, raylib::KEY_ENTER)) {
@@ -394,6 +406,8 @@ void Core::setRoom(uint8_t roomId)
     if (it == _rooms.end()) {
         return;
     }
+
+    std::cout << "DISPLAY " << it->getGameName() << " " << it->getName() << std::endl;
     _texts_room.push_back(raylib::RayText("Room id: " + std::to_string(_roomId), 10, 10, 20, raylib::BLACK));
     _texts_room.push_back(raylib::RayText("Room name: " + it->getName(), 10, 40, 20, raylib::BLACK));
     _texts_room.push_back(raylib::RayText("Game name: " + it->getGameName(), 10, 70, 20, raylib::BLACK));
@@ -406,7 +420,11 @@ void Core::run(void)
         raylib::RayText("", 150, 10 + 50 * 0, 30, raylib::BLACK),
         raylib::RayText("", 150, 10 + 50 * 1, 30, raylib::BLACK)
     });
+    raylib::RayText create_room("Create a room", 15, 70, 20, raylib::BLACK);
+    raylib::RayText list_of_rooms("List of rooms:", 10, 120, 20, raylib::WHITE);
+    raylib::RayText name("Enter room name: ", 220, 120, 20, raylib::WHITE);
     bool showPopup = false;
+    bool error_game_not_found = false;
     int focus = 0; 
 
     Background background("../assets/bg_room.png", _window.get_size().first, _window.get_size().second);
@@ -422,30 +440,34 @@ void Core::run(void)
         if (_roomId == 0) { // Main menu
             background.draw();
             _window.draw_rectangle(5, 65, 180, 35, raylib::BLUE);
-            _window.draw_text("Create a room", 15, 70, 20, raylib::BLACK);
-            _window.draw_text("List of rooms:", 10, 120, 20, raylib::WHITE);
+            create_room.draw();
+            list_of_rooms.draw();
             if (isEltPressed(5, 65, 180, 35) && !showPopup) {
                 showPopup = true;
                 inputs[0].setText("");
                 inputs[1].setText("");
+                error_game_not_found = false;
                 std::string tcpMessage = std::string(1, LIST_GAMES);
                 _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
                 _gameList.clear();
             }
 
             if (showPopup) {
-                drawPopup(showPopup, inputs, focus);
+                drawPopup(showPopup, inputs, focus, error_game_not_found);
             } else {
                 if (!inputs[0].getText().empty() && !inputs[1].getText().empty()) {
                     std::string tcpMessage = std::string(1, CREATE_ROOM) + inputs[0].getText() + "\\" + inputs[1].getText();
                     _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
                     inputs[0].setText("");
                     inputs[1].setText("");
+                    error_game_not_found = false;
                 }
             }
 
             for (auto &room : _rooms) {
-                _window.draw_text(room.getName(), 10, 180 + room.getId() * 20, 20, raylib::WHITE);
+                name.setText(room.getName());
+                name.setPosition(10, 180 + room.getId() * 20);
+                name.draw();
                 if (isEltPressed(10, 180 + room.getId() * 20, 200, 20)) {
                     std::cout << "Enter room" << static_cast<int>(_roomId) << std::endl;
                     _tcpClient.send(std::vector<uint8_t>({ENTER_ROOM, room.getId()}));

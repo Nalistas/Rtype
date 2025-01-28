@@ -43,9 +43,9 @@ std::vector<uint8_t> UdpClient::receive()
     try {
         asio::ip::udp::endpoint sender_endpoint;
         size_t bytes_received = _socket.receive_from(asio::buffer(buffer), sender_endpoint);
-        buffer.resize(bytes_received); // Ajuster la taille des données reçues
+        buffer.resize(bytes_received);
     } catch (const std::exception &e) {
-        std::cerr << "Receive error: " << e.what() << std::endl;
+        std::cerr << "Receive error on server UDP: " << e.what() << std::endl;
     }
     return buffer;
 }

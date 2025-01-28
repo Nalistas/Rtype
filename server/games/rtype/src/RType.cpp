@@ -20,6 +20,7 @@
 
 RType::RType()
 {
+    _score = 0;
 }
 
 RType::~RType()
@@ -38,7 +39,7 @@ void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
     _registry->register_component<Damage>();
     _registry->register_component<Type>();
     _registry->add_system<Position, Speed>(SystemMovement(_players, _deleter));
-    _registry->add_system<Position, Hitbox, Damage, Life, SIDE>(SystemCollision(_deleter, _players, _deadPlayers));
+    _registry->add_system<Position, Hitbox, Damage, Life, SIDE>(SystemCollision(_deleter, _players, _deadPlayers, _textUpdater, _score));
     _registry->add_system<>(SystemCreateEnemy(_creater, _players));
     _registry->add_system<Speed, Position>(SystemBroadcast(_speedUpdater, _positionUpdater, _players));
     _registry->add_system<Position, Type, SIDE>(SystemShootEnemyBullet(_creater, _players));
@@ -176,7 +177,7 @@ rtype::IGame::ScreenUpdater RType::getScreenUpdater(void)
             this->_backgroundChanger(player_id, 0);
         }
         if (this->_textUpdater) {
-            this->_textUpdater(player_id, 0, "test", 5, 200, 200 );
+            this->_textUpdater(player_id, 0, "score: 0", 30, 25, 20);
         }
     };
 }
