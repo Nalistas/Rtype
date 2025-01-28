@@ -12,8 +12,8 @@
 #include <chrono>
 #include <thread>
 
-RoomsCore::RoomsCore(std::string const &executable_name, std::string const &port) :
-    _tcpServer("0.0.0.0", port), _rooms(), _clients(), _gameList(), _executable_name(executable_name)
+RoomsCore::RoomsCore(std::string const &executable_name, std::string const &port, bool &running) :
+    _tcpServer("0.0.0.0", port), _rooms(), _clients(), _gameList(), _executable_name(executable_name), _run(running)
 {
     setGamesRessources();
 
@@ -26,12 +26,17 @@ RoomsCore::~RoomsCore()
 {
 }
 
+void RoomsCore::stop(void)
+{
+    _run = false;
+}
+
 void RoomsCore::run(void)
 {
     std::function<void(uint8_t roomId)> launchGame = [this](uint8_t roomId) { this->setGameToLaunch(roomId); };
     TcpProtocol tcp_protocol(_rooms, _clients, _tcpServer, launchGame, _gameList);
 
-    while (true) {
+    while (_run) {
         checkNewClients();
         checkClients(tcp_protocol);
         this->launchGame();
