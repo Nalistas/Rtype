@@ -98,9 +98,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>interpretor</b> ()</t
 void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (void)</td></tr>
 <tr class="memdesc:af968596fe136d8faebf8517de5411380"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the core. <br /></td></tr>
 <tr class="separator:af968596fe136d8faebf8517de5411380"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12db883e297c256d62bb7bea4247df9c" id="r_a12db883e297c256d62bb7bea4247df9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCore.html#a12db883e297c256d62bb7bea4247df9c">drawPopup</a> (bool &amp;showPopup, std::vector&lt; <a class="el" href="classraylib_1_1RayText.html">raylib::RayText</a> &gt; &amp;inputs, int &amp;focus)</td></tr>
-<tr class="memdesc:a12db883e297c256d62bb7bea4247df9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display the rooms.  <br /></td></tr>
-<tr class="separator:a12db883e297c256d62bb7bea4247df9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4411b186c6c358ce3af87af58697e342" id="r_a4411b186c6c358ce3af87af58697e342"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCore.html#a4411b186c6c358ce3af87af58697e342">drawPopup</a> (bool &amp;showPopup, std::vector&lt; <a class="el" href="classraylib_1_1RayText.html">raylib::RayText</a> &gt; &amp;inputs, int &amp;focus, bool &amp;error_game_not_found)</td></tr>
+<tr class="memdesc:a4411b186c6c358ce3af87af58697e342"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display the rooms.  <br /></td></tr>
+<tr class="separator:a4411b186c6c358ce3af87af58697e342"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67002642b538b379ba2453d16626da0e" id="r_a67002642b538b379ba2453d16626da0e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCore.html#a67002642b538b379ba2453d16626da0e">isEltPressed</a> (int x, int y, int width, int height)</td></tr>
 <tr class="memdesc:a67002642b538b379ba2453d16626da0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">verify if an element is pressed  <br /></td></tr>
 <tr class="separator:a67002642b538b379ba2453d16626da0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -218,8 +218,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>manageGetReady</b> ()
 
 </div>
 </div>
-<a id="a12db883e297c256d62bb7bea4247df9c" name="a12db883e297c256d62bb7bea4247df9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12db883e297c256d62bb7bea4247df9c">&#9670;&#160;</a></span>drawPopup()</h2>
+<a id="a4411b186c6c358ce3af87af58697e342" name="a4411b186c6c358ce3af87af58697e342"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4411b186c6c358ce3af87af58697e342">&#9670;&#160;</a></span>drawPopup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -240,7 +240,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>manageGetReady</b> ()
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>focus</em>&#160;</td>
+          <td class="paramname"><em>focus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>error_game_not_found</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -256,6 +262,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>manageGetReady</b> ()
     <tr><td class="paramname">showPopup</td><td>the popup state </td></tr>
     <tr><td class="paramname">inputs</td><td>the inputs </td></tr>
     <tr><td class="paramname">focus</td><td>the focus </td></tr>
+    <tr><td class="paramname">error_game_not_found</td><td>the error game not found </td></tr>
   </table>
   </dd>
 </dl>
