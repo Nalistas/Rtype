@@ -13,6 +13,5 @@ var searchData=
   ['downhandlers_10',['downhandlers',['../classDownHandlers.html',1,'DownHandlers'],['../classDownHandlers.html#a713a9dfd9d096b24333263bb56d28f10',1,'DownHandlers::DownHandlers()']]],
   ['draw_11',['draw',['../classBackground.html#a96e7cf94d75e3f104f79862c21f43850',1,'Background::draw()'],['../classraylib_1_1RayText.html#adc8f75a9894db0dded6426ed5d62b25b',1,'raylib::RayText::draw()'],['../classraylib_1_1Sprite.html#ad7ccef78066df1939d39c760aac9cafb',1,'raylib::Sprite::draw()']]],
   ['draw_5frectangle_12',['draw_rectangle',['../classraylib_1_1Window.html#aaa1b0c351ea614ad701fab872eeb25d8',1,'raylib::Window']]],
-  ['draw_5ftext_13',['draw_text',['../classraylib_1_1Window.html#a16addf4dd065850a56bbc55287baac5d',1,'raylib::Window']]],
-  ['drawpopup_14',['drawPopup',['../classCore.html#a12db883e297c256d62bb7bea4247df9c',1,'Core']]]
+  ['drawpopup_13',['drawPopup',['../classCore.html#a12db883e297c256d62bb7bea4247df9c',1,'Core']]]
 ];
