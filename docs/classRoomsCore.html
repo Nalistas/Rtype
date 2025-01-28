@@ -84,9 +84,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0eafdd5437fdcf13e9b6a0dcf30a82ea" id="r_a0eafdd5437fdcf13e9b6a0dcf30a82ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoomsCore.html#a0eafdd5437fdcf13e9b6a0dcf30a82ea">RoomsCore</a> (std::string const &amp;executable_name, std::string const &amp;port)</td></tr>
-<tr class="memdesc:a0eafdd5437fdcf13e9b6a0dcf30a82ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Rooms <a class="el" href="classCore.html" title="Client Core.">Core</a> object.  <br /></td></tr>
-<tr class="separator:a0eafdd5437fdcf13e9b6a0dcf30a82ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5949cfb4d3a6d09ec843bffde9061ecd" id="r_a5949cfb4d3a6d09ec843bffde9061ecd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoomsCore.html#a5949cfb4d3a6d09ec843bffde9061ecd">RoomsCore</a> (std::string const &amp;executable_name, std::string const &amp;port, bool &amp;running)</td></tr>
+<tr class="memdesc:a5949cfb4d3a6d09ec843bffde9061ecd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Rooms <a class="el" href="classCore.html" title="Client Core.">Core</a> object.  <br /></td></tr>
+<tr class="separator:a5949cfb4d3a6d09ec843bffde9061ecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af56fe16e20ca0aade628c0a7acc2b4b7" id="r_af56fe16e20ca0aade628c0a7acc2b4b7"><td class="memItemLeft" align="right" valign="top"><a id="af56fe16e20ca0aade628c0a7acc2b4b7" name="af56fe16e20ca0aade628c0a7acc2b4b7"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>~RoomsCore</b> ()</td></tr>
 <tr class="memdesc:af56fe16e20ca0aade628c0a7acc2b4b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the Rooms <a class="el" href="classCore.html" title="Client Core.">Core</a> object. <br /></td></tr>
@@ -98,12 +98,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (void)</td></
 <tr class="memitem:a186b3342ea7666522ea2dc4a0c2fb6fc" id="r_a186b3342ea7666522ea2dc4a0c2fb6fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoomsCore.html#a186b3342ea7666522ea2dc4a0c2fb6fc">setGameToLaunch</a> (uint8_t roomId)</td></tr>
 <tr class="memdesc:a186b3342ea7666522ea2dc4a0c2fb6fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch a game.  <br /></td></tr>
 <tr class="separator:a186b3342ea7666522ea2dc4a0c2fb6fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab83df666dcc0e732e4cc79cf22d2067c" id="r_ab83df666dcc0e732e4cc79cf22d2067c"><td class="memItemLeft" align="right" valign="top"><a id="ab83df666dcc0e732e4cc79cf22d2067c" name="ab83df666dcc0e732e4cc79cf22d2067c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> (void)</td></tr>
+<tr class="memdesc:ab83df666dcc0e732e4cc79cf22d2067c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the rooms core. <br /></td></tr>
+<tr class="separator:ab83df666dcc0e732e4cc79cf22d2067c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The core of the rooms server This class is used to manage the rooms server It will manage the rooms, the clients, the games and the ressources. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a0eafdd5437fdcf13e9b6a0dcf30a82ea" name="a0eafdd5437fdcf13e9b6a0dcf30a82ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0eafdd5437fdcf13e9b6a0dcf30a82ea">&#9670;&#160;</a></span>RoomsCore()</h2>
+<a id="a5949cfb4d3a6d09ec843bffde9061ecd" name="a5949cfb4d3a6d09ec843bffde9061ecd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5949cfb4d3a6d09ec843bffde9061ecd">&#9670;&#160;</a></span>RoomsCore()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -118,7 +122,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (void)</td></
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::string const &amp;&#160;</td>
-          <td class="paramname"><em>port</em>&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>running</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

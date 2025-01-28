@@ -22,7 +22,7 @@ var searchData=
   ['ressourcesmanager_19',['ressourcesmanager',['../classRessourcesManager.html',1,'RessourcesManager'],['../classRessourcesManager.html#a740f38a443a851b7c41208c71f9beb5d',1,'RessourcesManager::RessourcesManager()']]],
   ['righthandlers_20',['righthandlers',['../classRightHandlers.html',1,'RightHandlers'],['../classRightHandlers.html#a0e84c55946dd0e3dbbb25d5d1ad7ea67',1,'RightHandlers::RightHandlers()']]],
   ['room_21',['room',['../classRoom.html#a70e1efa965960e3126ac4ea368da6947',1,'Room::Room(std::string const &amp;name, std::string const &amp;gameName, std::shared_ptr&lt; asio::ip::tcp::socket &gt; &amp;owner)'],['../classRoom.html#a5bffa463a0e0f077f786ac1594775b95',1,'Room::Room(Room const &amp;room)=default'],['../classRoom.html',1,'Room']]],
-  ['roomscore_22',['roomscore',['../classRoomsCore.html#a0eafdd5437fdcf13e9b6a0dcf30a82ea',1,'RoomsCore::RoomsCore()'],['../classRoomsCore.html',1,'RoomsCore']]],
+  ['roomscore_22',['roomscore',['../classRoomsCore.html#a5949cfb4d3a6d09ec843bffde9061ecd',1,'RoomsCore::RoomsCore()'],['../classRoomsCore.html',1,'RoomsCore']]],
   ['roomupdate_23',['roomUpdate',['../classCore.html#afb641775ea9e26b9309991ba925ecead',1,'Core']]],
   ['rtype_24',['RType',['../classRType.html',1,'']]],
   ['run_25',['run',['../classCore.html#af968596fe136d8faebf8517de5411380',1,'Core::run()'],['../classGame.html#a46165f87463fa8114fa44596ced90dbd',1,'Game::run()'],['../classLogin.html#a33963a870db789eaf888a00949668115',1,'Login::run()'],['../classGameCore.html#a569272d491d1d7540187d4975ba24161',1,'GameCore::run()'],['../classRoomsCore.html#aa9f10091a4d01d74d4d0399aa52dd88b',1,'RoomsCore::run()']]],
