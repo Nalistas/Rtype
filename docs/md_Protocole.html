@@ -107,7 +107,7 @@ Server -&gt; Client</h2>
 <ol type="1">
 <li>OK If the previous instruction previously made succeed <code>...[200]</code></li>
 <li>KO If the previous instruction previously made did not succeed <code>...[201]</code></li>
-<li><a class="el" href="classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ...">Room</a> declaration This request is here to add a new room waiting for new player <code>...[1][new = 1 | deleted = 0][room id /1o][room name /?o]</code></li>
+<li><a class="el" href="classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ...">Room</a> declaration This request is here to add a new room waiting for new player <code>...[1][new = 1 | deleted = 0][room id /1o][Nb player in the room /1o][room name /?o][0][game name of the room /?o]</code></li>
 <li>Set ready It will declare you ready to play. You need to be in a room to set you ready. The game will start when all player are ready ! <code>...[2]</code></li>
 <li>Load a sprite When the game is starting, the server will send to the client everything they need to play. <code>...[3][Id of the sprite /4o][Width /4o][Height /4o][Width text rect /4o][Height text rect /4o][X offset /4o][Y offset /4o][Number of frames /4o][nb milisecond per frame /4o][path to the image /?o]</code></li>
 <li>Load a background <code>...[4][<a class="el" href="structSpeed.html" title="Speed component.">Speed</a>][move on X axis = 1 | move on Y axis = 2][resize = 1 | do not = 0][loop = 1 | do not loop][Do not move = 1 | Parallax = 2 | Perpetual movement = 3][Path to image /?o]</code></li>
@@ -127,7 +127,7 @@ Client -&gt; Server</h2>
 <li>List Games <code>...[5]</code> Server response : <code>...[8][game name]</code></li>
 <li>Missing file <code>...[6][File path /?o]</code> Server response : OK[followed by the file (binary)] | KO when the server give you all the ressourses, it just gives the path. By default it assumes the client has everything. However, you can ask him the document and then it will give it to you</li>
 <li>New <a class="el" href="classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ...">Room</a> <code>...[7][<a class="el" href="classRoom.html" title="Class to represent a room This class is used to represent a room A room is a place where clients can ...">Room</a> Name /?o][92][Name of the game /?o]</code> Server response : OK | KO</li>
-<li>List rooms <code>...[8]</code> Server response : &lsquo;...[1][1][room id /1o][room name /?o][character &rsquo;\'][[game name /?o]]`</li>
+<li>List rooms <code>...[8]</code> Server response : <code>...[1][1][room id /1o][room name /?o]</code></li>
 <li>Delete rooms <code>...[9][Id room]</code></li>
 <li>Set ready or unready : <code>...[10]</code> Server response : OK | KO the game is launched if All player are set ready this command will set you ready is you are not and will set you not ready if you are</li>
 </ol>
