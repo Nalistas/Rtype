@@ -100,10 +100,26 @@ void Core::manageGetReady()
 {
     std::string tcpMessage = std::string(1, SET_READY) + "";
     _tcpClient.send(std::vector<uint8_t>(tcpMessage.begin(), tcpMessage.end()));
-    _commandQueue.push_back(std::make_pair("getReady", [this](std::vector<uint8_t> tcpResponse) {
-        (void) tcpResponse;
-        _texts_room.push_back(raylib::RayText("Ready, waiting for other players to get ready", 10, 40, 20, raylib::BLACK));
-    }));
+    _is_ready = !_is_ready;
+    if (_is_ready) {
+         std::cout <<  "gtReady" << std::endl;
+        _commandQueue.push_back(std::make_pair("getReady", [this](std::vector<uint8_t> tcpResponse) {
+            (void) tcpResponse;
+            _texts_room.push_back(raylib::RayText("Ready, waiting for other players to get ready", 10, 300, 20, raylib::BLACK));
+        }));
+    } else {
+         std::cout << "Not ready" << std::endl;
+
+        auto textIt = std::find_if(_texts_room.begin(), _texts_room.end(),
+            [](const raylib::RayText& text) {
+                return text.getText() == "Ready, waiting for other players to get ready";
+            });
+
+        if (textIt != _texts_room.end()) {
+            std::cout << "Erase text from _texts_room" << std::endl;
+            _texts_room.erase(textIt);
+        }
+    }
 }
 
 void Core::forceInRoom(std::vector<uint8_t> tcpResponse)
@@ -117,7 +133,7 @@ void Core::forceInRoom(std::vector<uint8_t> tcpResponse)
 
     if (it == _rooms.end()) {
         _rooms.push_back(ClientRoom(roomName, roomId, 1));
-        _rooms.back().setGameName("R-Type");
+        // _rooms.back().setGameName("R-Type");
     } else {
         std::cout << "Enter in room" << std::endl;
         it->setNbPlayers(it->getNbPlayers() + 1);
@@ -290,10 +306,10 @@ void Core::interpretor()
 {
     while (_tcpClient.hasData()) {
         auto tcpResponse = _tcpClient.receive();
-        for (auto c : tcpResponse) {
-            std::cout << static_cast<int>(c) << " ";
-        }
-        std::cout << std::endl;
+        // for (auto c : tcpResponse) {
+        //     std::cout << static_cast<int>(c) << " ";
+        // }
+        // std::cout << std::endl;
         if (_instructions.find(static_cast<INSTRUCTIONS_SERVER_TO_CLIENT>(tcpResponse[0])) != _instructions.end()) {
             _instructions[static_cast<INSTRUCTIONS_SERVER_TO_CLIENT>(tcpResponse[0])](tcpResponse);
         }

@@ -36,6 +36,7 @@ void Game::processCreateEntity(std::vector<uint8_t> &data)
         std::cerr << "Sprite not found" << std::endl;
         return;
     }
+    std::cout << "Entity " << entityId << " added at " << pos_x << " " << pos_y << std::endl;
     sprite->second.set_position(pos_x, pos_y);
     if (this->_entitiesSprites.find(entityId) != this->_entitiesSprites.end()) {
         this->_graphics.removeSprite(this->_entitiesSprites[entityId]);
