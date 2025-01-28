@@ -176,7 +176,7 @@ rtype::IGame::ScreenUpdater RType::getScreenUpdater(void)
             this->_backgroundChanger(player_id, 0);
         }
         if (this->_textUpdater) {
-            this->_textUpdater(player_id, 0, "Bonjour", 5, 200, 200 );
+            this->_textUpdater(player_id, 0, "test", 5, 200, 200 );
         }
     };
 }

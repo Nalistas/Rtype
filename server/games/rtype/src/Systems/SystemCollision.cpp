@@ -11,9 +11,10 @@
 
 
 
-SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads)
-    : _deleter(deleter), _players(players), _deads(deads)
+SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads, rtype::IGame::TextUpdater &_textUpdater)
+    : _deleter(deleter), _players(players), _deads(deads), _textUpdater(_textUpdater)
 {
+    _score = 0;
     // _ms_last_update = std::chrono::duration_cast<std::chrono::milliseconds>(
     //     std::chrono::system_clock::now().time_since_epoch()
     // ).count();
@@ -82,6 +83,8 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
                         if (health2.value().life <= 0) {
                             auto entity = registry.entity_from_index(index2);
                             this->broadcast(entity, registry);
+                            _score++;
+                            // _textUpdater(, 0,, 5, 200, 200 );
                         }
                     } else {
                         health.value().life -= damage2.value().damage;
