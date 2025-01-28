@@ -20,6 +20,7 @@ SystemCreateEnemy::SystemCreateEnemy(rtype::IGame::Creater const &creater, std::
     ).count();
 
     _nb_enemies = 0;
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
 }
 
 SystemCreateEnemy::~SystemCreateEnemy()
