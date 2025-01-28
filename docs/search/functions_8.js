@@ -10,8 +10,9 @@ var searchData=
   ['is_5fplaying_7',['is_playing',['../classraylib_1_1RayMusic.html#a111faa065b09a5f0d11b588636c7ee75',1,'raylib::RayMusic']]],
   ['is_5frunning_8',['is_running',['../classraylib_1_1Window.html#ac8073501a03257ddd27808fb291d29a7',1,'raylib::Window']]],
   ['iseltpressed_9',['isEltPressed',['../classCore.html#a67002642b538b379ba2453d16626da0e',1,'Core']]],
-  ['isgood_10',['isgood',['../classIDirectoryLister.html#aa63ba71f649ec4a02a512d1189055453',1,'IDirectoryLister::isGood()'],['../classSafeDirectoryLister.html#ab4d745201f033000683efc1e70a88470',1,'SafeDirectoryLister::isGood()']]],
-  ['isready_11',['isReady',['../classClient.html#a6154c72b988f3a91d08e3a37776b09b7',1,'Client']]],
-  ['isroomempty_12',['isRoomEmpty',['../classTcpProtocol.html#a6091fe4e1b601ebd3f82c5b0bec1ceaa',1,'TcpProtocol']]],
-  ['isystem_13',['isystem',['../classecs_1_1isystem.html#acf994aa668e56219129cb03d59936dcc',1,'ecs::isystem']]]
+  ['iseveryplayerdead_10',['isEveryPlayerDead',['../classSystemCollision.html#a2340788b4a6799e86631c340d473bd9f',1,'SystemCollision']]],
+  ['isgood_11',['isgood',['../classIDirectoryLister.html#aa63ba71f649ec4a02a512d1189055453',1,'IDirectoryLister::isGood()'],['../classSafeDirectoryLister.html#ab4d745201f033000683efc1e70a88470',1,'SafeDirectoryLister::isGood()']]],
+  ['isready_12',['isReady',['../classClient.html#a6154c72b988f3a91d08e3a37776b09b7',1,'Client']]],
+  ['isroomempty_13',['isRoomEmpty',['../classTcpProtocol.html#a6091fe4e1b601ebd3f82c5b0bec1ceaa',1,'TcpProtocol']]],
+  ['isystem_14',['isystem',['../classecs_1_1isystem.html#acf994aa668e56219129cb03d59936dcc',1,'ecs::isystem']]]
 ];

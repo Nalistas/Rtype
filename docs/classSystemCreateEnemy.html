@@ -104,9 +104,9 @@ Collaboration diagram for SystemCreateEnemy:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a07e4f228f1ba0677edcadb5f22f62eba" id="r_a07e4f228f1ba0677edcadb5f22f62eba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemCreateEnemy.html#a07e4f228f1ba0677edcadb5f22f62eba">SystemCreateEnemy</a> (rtype::IGame::Creater const &amp;creater, std::unordered_map&lt; std::size_t, std::size_t &gt; const &amp;players)</td></tr>
-<tr class="memdesc:a07e4f228f1ba0677edcadb5f22f62eba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classSystemCreateEnemy.html" title="SystemCreateEnemy class to handle the creation of the enemies.">SystemCreateEnemy</a> object.  <br /></td></tr>
-<tr class="separator:a07e4f228f1ba0677edcadb5f22f62eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d0a8fcda4b165e8e9eaa5e1a7fb06f8" id="r_a4d0a8fcda4b165e8e9eaa5e1a7fb06f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemCreateEnemy.html#a4d0a8fcda4b165e8e9eaa5e1a7fb06f8">SystemCreateEnemy</a> (rtype::IGame::Creater const &amp;creater, std::unordered_map&lt; std::size_t, std::size_t &gt; const &amp;players, bool &amp;lose)</td></tr>
+<tr class="memdesc:a4d0a8fcda4b165e8e9eaa5e1a7fb06f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classSystemCreateEnemy.html" title="SystemCreateEnemy class to handle the creation of the enemies.">SystemCreateEnemy</a> object.  <br /></td></tr>
+<tr class="separator:a4d0a8fcda4b165e8e9eaa5e1a7fb06f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a113f0cb367974c09fe58ee37e6f351d1" id="r_a113f0cb367974c09fe58ee37e6f351d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemCreateEnemy.html#a113f0cb367974c09fe58ee37e6f351d1">operator()</a> (<a class="el" href="classecs_1_1registry.html">ecs::registry</a> &amp;registry)</td></tr>
 <tr class="memdesc:a113f0cb367974c09fe58ee37e6f351d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the speed and position of the player.  <br /></td></tr>
 <tr class="separator:a113f0cb367974c09fe58ee37e6f351d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,8 +132,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~isystem</b> ()=de
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classSystemCreateEnemy.html" title="SystemCreateEnemy class to handle the creation of the enemies.">SystemCreateEnemy</a> class to handle the creation of the enemies. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a07e4f228f1ba0677edcadb5f22f62eba" name="a07e4f228f1ba0677edcadb5f22f62eba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07e4f228f1ba0677edcadb5f22f62eba">&#9670;&#160;</a></span>SystemCreateEnemy()</h2>
+<a id="a4d0a8fcda4b165e8e9eaa5e1a7fb06f8" name="a4d0a8fcda4b165e8e9eaa5e1a7fb06f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d0a8fcda4b165e8e9eaa5e1a7fb06f8">&#9670;&#160;</a></span>SystemCreateEnemy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -148,7 +148,13 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~isystem</b> ()=de
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::unordered_map&lt; std::size_t, std::size_t &gt; const &amp;&#160;</td>
-          <td class="paramname"><em>players</em>&#160;</td>
+          <td class="paramname"><em>players</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>lose</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

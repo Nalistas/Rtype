@@ -104,9 +104,9 @@ Collaboration diagram for SystemMovement:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a94c4fc1faa7917b966a3e344756c20df" id="r_a94c4fc1faa7917b966a3e344756c20df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemMovement.html#a94c4fc1faa7917b966a3e344756c20df">SystemMovement</a> (std::unordered_map&lt; std::size_t, std::size_t &gt; &amp;players, rtype::IGame::Deleter const &amp;deleter)</td></tr>
-<tr class="memdesc:a94c4fc1faa7917b966a3e344756c20df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classSystemMovement.html" title="SystemMovement class to handle the movement of the player.">SystemMovement</a> object.  <br /></td></tr>
-<tr class="separator:a94c4fc1faa7917b966a3e344756c20df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac1477769035c0dbf4f6c8e6b7b256ea" id="r_aac1477769035c0dbf4f6c8e6b7b256ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemMovement.html#aac1477769035c0dbf4f6c8e6b7b256ea">SystemMovement</a> (std::unordered_map&lt; std::size_t, std::size_t &gt; &amp;players, rtype::IGame::Deleter const &amp;deleter, bool &amp;lose)</td></tr>
+<tr class="memdesc:aac1477769035c0dbf4f6c8e6b7b256ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classSystemMovement.html" title="SystemMovement class to handle the movement of the player.">SystemMovement</a> object.  <br /></td></tr>
+<tr class="separator:aac1477769035c0dbf4f6c8e6b7b256ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0685769b26a4563f0627729344e2f258" id="r_a0685769b26a4563f0627729344e2f258"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystemMovement.html#a0685769b26a4563f0627729344e2f258">operator()</a> (<a class="el" href="classecs_1_1registry.html">ecs::registry</a> &amp;registry, <a class="el" href="classsparse__array.html">sparse_array</a>&lt; <a class="el" href="structPosition.html">Position</a> &gt; &amp;positions, <a class="el" href="classsparse__array.html">sparse_array</a>&lt; <a class="el" href="structSpeed.html">Speed</a> &gt; &amp;speeds) override</td></tr>
 <tr class="memdesc:a0685769b26a4563f0627729344e2f258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the speed and position of the player.  <br /></td></tr>
 <tr class="separator:a0685769b26a4563f0627729344e2f258"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,8 +126,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~isystem</b> ()=de
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classSystemMovement.html" title="SystemMovement class to handle the movement of the player.">SystemMovement</a> class to handle the movement of the player. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a94c4fc1faa7917b966a3e344756c20df" name="a94c4fc1faa7917b966a3e344756c20df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94c4fc1faa7917b966a3e344756c20df">&#9670;&#160;</a></span>SystemMovement()</h2>
+<a id="aac1477769035c0dbf4f6c8e6b7b256ea" name="aac1477769035c0dbf4f6c8e6b7b256ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac1477769035c0dbf4f6c8e6b7b256ea">&#9670;&#160;</a></span>SystemMovement()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -142,7 +142,13 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~isystem</b> ()=de
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">rtype::IGame::Deleter const &amp;&#160;</td>
-          <td class="paramname"><em>deleter</em>&#160;</td>
+          <td class="paramname"><em>deleter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>lose</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
