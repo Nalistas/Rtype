@@ -7,6 +7,7 @@
 
 #include "raylib.h"
 #include "Window.hpp"
+#include "RayText.hpp"
 
 #include <list>
 #include <functional>

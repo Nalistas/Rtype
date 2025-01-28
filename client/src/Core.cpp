@@ -320,20 +320,20 @@ void Core::interpretor()
 void Core::drawPopup(bool &showPopup, std::vector<raylib::RayText> &inputs, int &focus, bool &error_game_not_found)
 {
     _window.draw_rectangle(200, 70, 600, 450, {31, 81, 255, 180});
-    _window.draw_text("x", 765, 80, 20, raylib::RED);
-    _window.draw_text("Enter room name: ", 220, 120, 20, raylib::BLACK);
-    _window.draw_text("Enter game name: ", 220, 200, 20, raylib::BLACK);
+    raylib::RayText("x", 765, 80, 20, raylib::RED).draw();
+    raylib::RayText("Enter room name: ", 220, 120, 20, raylib::BLACK).draw();
+    raylib::RayText("Enter game name: ", 220, 200, 20, raylib::BLACK).draw();
     if (error_game_not_found) {
-        _window.draw_text("Game not found", 220, 250, 20, raylib::RED);
+        raylib::RayText("Game not found", 220, 250, 20, raylib::RED).draw();
     }
-    _window.draw_text("Press enter to validate", 220, 300, 20, raylib::BLACK);
+    raylib::RayText("Press enter to validate", 220, 300, 20, raylib::BLACK).draw();
     _window.draw_rectangle(420, 120 + focus * 80, 300, 40, raylib::GRAY);
 
-    _window.draw_text(inputs[0].getText(), 420, 120, 20, raylib::BLACK);
-    _window.draw_text(inputs[1].getText(), 420, 200, 20, raylib::BLACK);
+    raylib::RayText(inputs[0].getText(), 420, 120, 20, raylib::BLACK).draw();
+    raylib::RayText(inputs[1].getText(), 420, 200, 20, raylib::BLACK).draw();
 
     for (size_t i = 0; i < _gameList.size(); ++i) {
-        _window.draw_text(_gameList[i], 220, 380 + 20 * i, 20, raylib::WHITE);
+        raylib::RayText(_gameList[i], 220, 380 + 20 * i, 20, raylib::WHITE).draw();
     }
 
     if (_window.is_mouse_button(raylib::Window::PRESSED, 0) &&
@@ -417,6 +417,9 @@ void Core::run(void)
         raylib::RayText("", 150, 10 + 50 * 0, 30, raylib::BLACK),
         raylib::RayText("", 150, 10 + 50 * 1, 30, raylib::BLACK)
     });
+    raylib::RayText create_room("Create a room", 15, 70, 20, raylib::BLACK);
+    raylib::RayText list_of_rooms("List of rooms:", 10, 120, 20, raylib::WHITE);
+    raylib::RayText name("Enter room name: ", 220, 120, 20, raylib::WHITE);
     bool showPopup = false;
     bool error_game_not_found = false;
     int focus = 0; 
@@ -434,8 +437,8 @@ void Core::run(void)
         if (_roomId == 0) { // Main menu
             background.draw();
             _window.draw_rectangle(5, 65, 180, 35, raylib::BLUE);
-            _window.draw_text("Create a room", 15, 70, 20, raylib::BLACK);
-            _window.draw_text("List of rooms:", 10, 120, 20, raylib::WHITE);
+            create_room.draw();
+            list_of_rooms.draw();
             if (isEltPressed(5, 65, 180, 35) && !showPopup) {
                 showPopup = true;
                 inputs[0].setText("");
@@ -459,7 +462,9 @@ void Core::run(void)
             }
 
             for (auto &room : _rooms) {
-                _window.draw_text(room.getName(), 10, 180 + room.getId() * 20, 20, raylib::WHITE);
+                name.setText(room.getName());
+                name.setPosition(10, 180 + room.getId() * 20);
+                name.draw();
                 if (isEltPressed(10, 180 + room.getId() * 20, 200, 20)) {
                     std::cout << "Enter room" << static_cast<int>(_roomId) << std::endl;
                     _tcpClient.send(std::vector<uint8_t>({ENTER_ROOM, room.getId()}));
