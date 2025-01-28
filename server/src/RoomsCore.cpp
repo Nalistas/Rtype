@@ -12,8 +12,8 @@
 #include <chrono>
 #include <thread>
 
-RoomsCore::RoomsCore(std::string const &executable_name, std::string const &port) :
-    _tcpServer("0.0.0.0", port), _rooms(), _clients(), _gameList(), _executable_name(executable_name)
+RoomsCore::RoomsCore(std::string const &executable_name, std::string const &port, bool &running) :
+    _tcpServer("0.0.0.0", port), _rooms(), _clients(), _gameList(), _executable_name(executable_name), _run(running)
 {
     setGamesRessources();
 
@@ -26,12 +26,17 @@ RoomsCore::~RoomsCore()
 {
 }
 
+void RoomsCore::stop(void)
+{
+    _run = false;
+}
+
 void RoomsCore::run(void)
 {
     std::function<void(uint8_t roomId)> launchGame = [this](uint8_t roomId) { this->setGameToLaunch(roomId); };
     TcpProtocol tcp_protocol(_rooms, _clients, _tcpServer, launchGame, _gameList);
 
-    while (true) {
+    while (_run) {
         checkNewClients();
         checkClients(tcp_protocol);
         this->launchGame();
@@ -78,12 +83,12 @@ void RoomsCore::treatClient(std::shared_ptr<asio::ip::tcp::socket> &client, TcpP
 {
     std::vector<uint8_t> data = _tcpServer.receive(client);
 
-    std::cout << "-------------------------------------------------------------------------" << std::endl;
-    std::cout << "Received data from client: " << client << " \"" << this->_clients[client].getName() << "\"" << std::endl;
+    // std::cout << "-------------------------------------------------------------------------" << std::endl;
+    // std::cout << "Received data from client: " << client << " \"" << this->_clients[client].getName() << "\"" << std::endl;
     // std::cout << "Received data (Raw values): " << std::string(data.begin(), data.end()) << std::endl;
-    for (uint8_t c : data) {
-        std::cout << static_cast<int>(c) << " ";
-    }
+    // for (uint8_t c : data) {
+    //     std::cout << static_cast<int>(c) << " ";
+    // }
     std::cout << std::endl << std::endl << "Launching interpreter..." << std::endl;
     tcpProtocol.interpreter(client, data);
 }
@@ -249,10 +254,10 @@ std::vector<uint8_t> RoomsCore::get_local_ip()
                 return transformed_ip;
             }
         }
-        throw std::runtime_error("Aucune adresse IPv4 trouvée.");
+        throw std::runtime_error("No IPv4 adress founded.");
 
     } catch (const std::exception& e) {
-        std::cerr << "Erreur : " << e.what() << std::endl;
+        std::cerr << "Error : " << e.what() << std::endl;
         throw;
     }
 }

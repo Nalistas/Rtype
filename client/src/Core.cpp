@@ -141,7 +141,7 @@ void Core::forceInRoom(std::vector<uint8_t> tcpResponse)
         // _rooms.back().setGameName("");
     } else {
         std::cout << "Enter in room" << std::endl;
-        it->setNbPlayers(it->getNbPlayers() + 1);
+        // it->setNbPlayers(it->getNbPlayers() + 1);
     }
     setRoom(roomId);
 }
@@ -264,17 +264,22 @@ void Core::leaveEnterRoom(std::vector<uint8_t> tcpResponse)
     if (tcpResponse.size() < 4) {
         return;
     }
-    std::cout << "player " << std::string(tcpResponse.begin() + 3, tcpResponse.end())
-        << (tcpResponse[1] == 1 ? " has entered the room" : " has quit") << " the room " << static_cast<int>(tcpResponse[2]) << std::endl;
     auto it = std::find_if(_rooms.begin(), _rooms.end(), [tcpResponse](const ClientRoom& room) { return room.getId() == tcpResponse[2];});
     if (it == _rooms.end()) {
         return;
     }
     if (tcpResponse[1] == 0) {
-        it->setNbPlayers(it->getNbPlayers() + 1);
-    } else {
         it->setNbPlayers(it->getNbPlayers() - 1);
-
+        if (it->getNbPlayers() == 0) {
+            it->setNbPlayers(1);
+        }
+    } else {
+        it->setNbPlayers(it->getNbPlayers() + 1);
+    }
+    if (_texts_room.size() == 0) {
+        _texts_room.push_back(raylib::RayText("Number of players: " + std::to_string(it->getNbPlayers()), 10, 100, 20, raylib::BLACK));
+    } else {
+        _texts_room[_texts_room.size() - 1] = raylib::RayText("Number of players: " + std::to_string(it->getNbPlayers()), 10, 100, 20, raylib::BLACK);
     }
 }
 
@@ -295,8 +300,6 @@ void Core::roomUpdate(std::vector<uint8_t> data)
     }
     std::string room_name(copy_it, it);
     std::string game_name(++it, data.end());
-
-    std::cout << "Room update " << static_cast<int>(roomId) << " " << room_name << " " << game_name << " " << static_cast<int>(nbPlayer) << std::endl;
 
     if (created) {
         _rooms.push_back(ClientRoom(room_name, roomId, nbPlayer));
@@ -407,7 +410,6 @@ void Core::setRoom(uint8_t roomId)
         return;
     }
 
-    std::cout << "DISPLAY " << it->getGameName() << " " << it->getName() << std::endl;
     _texts_room.push_back(raylib::RayText("Room id: " + std::to_string(_roomId), 10, 10, 20, raylib::BLACK));
     _texts_room.push_back(raylib::RayText("Room name: " + it->getName(), 10, 40, 20, raylib::BLACK));
     _texts_room.push_back(raylib::RayText("Game name: " + it->getGameName(), 10, 70, 20, raylib::BLACK));

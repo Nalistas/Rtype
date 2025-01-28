@@ -12,12 +12,9 @@
 
 
 
-SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads, rtype::IGame::TextUpdater &_textUpdater, int &score)
-    : _deleter(deleter), _players(players), _deads(deads), _textUpdater(_textUpdater), _score(score)
+SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads, bool &lose, rtype::IGame::Creater const &creater, rtype::IGame::TextUpdater &_textUpdater, int &score)
+    : _deleter(deleter), _players(players), _deads(deads), _lose(lose), _creater(creater), _textUpdater(_textUpdater), _score(score)
 {
-    // _ms_last_update = std::chrono::duration_cast<std::chrono::milliseconds>(
-    //     std::chrono::system_clock::now().time_since_epoch()
-    // ).count();
 }
 
 SystemCollision::~SystemCollision()
@@ -51,6 +48,9 @@ void SystemCollision::broadcast(std::size_t entity_deleted, ecs::registry &regis
 
 void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position> &positions, sparse_array<Hitbox> &hitboxs, sparse_array<Damage> &damages, sparse_array<Life> &healths, sparse_array<SIDE> &sides)
 {
+    if (_lose) {
+        return;
+    }
     for (auto [index, position, hitbox, damage, health, side] : zipper(positions, hitboxs, damages, healths, sides)) {
         if (!side.has_value() || side.value() == SIDE::ENEMY) continue;
         if (!position.has_value() || !hitbox.has_value() || !side.has_value()) continue;
@@ -66,6 +66,7 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
             int right2 = position2->x + hitbox2->width / 2;
             int top2 = position2->y - hitbox2->height / 2;
             int bottom2 = position2->y + hitbox2->height / 2;
+
             if (left < right2 && right > left2 && top < bottom2 && bottom > top2) {
                 if (damage.has_value() && health2.has_value()) {
                     if (side.value() == PLAYER) {
@@ -86,7 +87,7 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
                     continue;
                 }
                 if (health.has_value() && damage2.has_value()) {
-                    std::cout << "collision" << std::endl;
+                    // std::cout << "collision" << std::endl;
                     if (side.value() == PLAYER) {
                         health.value().life -= damage2.value().damage;
                         if (health.value().life <= 0) {
@@ -106,6 +107,26 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
             }
         }
     }
+
+    if (isEveryPlayerDead() == true) {
+        _lose = true;
+        for (auto player : _players) {
+            for (auto [index, pos, side] : zipper(registry.get_components<Position>(), registry.get_components<SIDE>())) {
+                if (pos.has_value() && side.has_value() && side.value() == SIDE::ENEMY) {
+                    registry.delete_entity(registry.entity_from_index(index));  
+                    _deleter(player.first, index);
+                }
+            }
+            auto bg_lose = registry.create_entity();
+            registry.get_components<Position>().emplace_at(bg_lose, Position{400, 250});
+            _creater(player.first, bg_lose, 5, 400, 250, 0, 0);
+        }
+    }
+}
+
+bool SystemCollision::isEveryPlayerDead()
+{
+    return _deads.size() == _players.size() && _players.size() != 0;
 }
 
 bool SystemCollision::checkCollision(const Position &posA, const Hitbox &hitboxA, const Position &posB, const Hitbox &hitboxB)

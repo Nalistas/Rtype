@@ -156,6 +156,7 @@ class RType : public rtype::IGame {
         std::unordered_set<std::size_t> _deadPlayers;
         std::shared_ptr<ecs::registry> _registry;
         int _score;
+        bool _lose;
 };
 
 #endif /* !RTYPE_HPP_ */

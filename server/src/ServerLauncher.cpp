@@ -9,6 +9,16 @@
 #include "GameLauncher.hpp"
 #include "RoomsCore.hpp"
 
+#include <csignal>
+#include <cstdlib>
+
+static bool running = true;
+
+void signal_handler(int signum)
+{
+    running = false;
+}
+
 ServerLauncher::ServerLauncher(std::string const &executable_name) :
     _executable_name(executable_name)
 {
@@ -25,8 +35,11 @@ void ServerLauncher::LaunchUdpServer(std::string const &port, std::string const 
     core.launch();
 }
 
+
 void ServerLauncher::LaunchTcpServer(std::string const &port)
 {
-    RoomsCore core(_executable_name, port);
+    RoomsCore core(_executable_name, port, running);
+    signal(SIGINT, signal_handler);
+
     core.run();
 }

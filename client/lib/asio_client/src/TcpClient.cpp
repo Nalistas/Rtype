@@ -64,7 +64,7 @@ std::vector<uint8_t> TcpClient::receive()
 
         size_t data_received = _socket.read_some(asio::buffer(buffer, length));
 
-        std::cout << "Received " << data_received << " bytes" << std::endl;
+        // std::cout << "Received " << data_received << " bytes" << std::endl;
 
         if (data_received < length) {
             std::cerr << "Incomplete data received. Expected " << length << " bytes, but got " << data_received << " bytes." << std::endl;

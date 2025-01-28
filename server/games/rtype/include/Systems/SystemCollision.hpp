@@ -25,7 +25,7 @@ class SystemCollision : public ecs::isystem<Position, Hitbox, Damage, Life, SIDE
          * @param deleter
          * @param players
          */
-        SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads, rtype::IGame::TextUpdater &_textUpdater, int &score);
+        SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads, bool &lose, rtype::IGame::Creater const &creater, rtype::IGame::TextUpdater &_textUpdater, int &score);
         ~SystemCollision();
 
         /**
@@ -49,6 +49,14 @@ class SystemCollision : public ecs::isystem<Position, Hitbox, Damage, Life, SIDE
          */
         bool checkCollision(const Position &posA, const Hitbox &hitboxA, const Position &posB, const Hitbox &hitboxB);
 
+        /**
+         * @brief Check if every player is dead
+         * 
+         * @return true 
+         * @return false
+         */
+        bool isEveryPlayerDead();
+
     private:
         /**
          * @brief Broadcast the deletion of an entity
@@ -59,10 +67,12 @@ class SystemCollision : public ecs::isystem<Position, Hitbox, Damage, Life, SIDE
 
 
         rtype::IGame::Deleter const &_deleter;
+        rtype::IGame::Creater const &_creater;
         std::unordered_map<std::size_t, std::size_t> &_players;
         std::unordered_set<std::size_t> &_deads;
         rtype::IGame::TextUpdater &_textUpdater;
         int &_score;
+        bool &_lose;
         // int64_t _ms_last_update;
 };
 

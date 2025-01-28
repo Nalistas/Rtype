@@ -21,6 +21,7 @@
 RType::RType()
 {
     _score = 0;
+    _lose = false;
 }
 
 RType::~RType()
@@ -38,11 +39,11 @@ void RType::initGameRegistry(std::shared_ptr<ecs::registry> &reg)
     _registry->register_component<Hitbox>();
     _registry->register_component<Damage>();
     _registry->register_component<Type>();
-    _registry->add_system<Position, Speed>(SystemMovement(_players, _deleter));
-    _registry->add_system<Position, Hitbox, Damage, Life, SIDE>(SystemCollision(_deleter, _players, _deadPlayers, _textUpdater, _score));
-    _registry->add_system<>(SystemCreateEnemy(_creater, _players));
+    _registry->add_system<Position, Speed>(SystemMovement(_players, _deleter, _lose));
+    _registry->add_system<Position, Hitbox, Damage, Life, SIDE>(SystemCollision(_deleter, _players, _deadPlayers, _lose, _creater, _textUpdater, _score));
+    _registry->add_system<>(SystemCreateEnemy(_creater, _players, _lose));
     _registry->add_system<Speed, Position>(SystemBroadcast(_speedUpdater, _positionUpdater, _players));
-    _registry->add_system<Position, Type, SIDE>(SystemShootEnemyBullet(_creater, _players));
+    _registry->add_system<Position, Type, SIDE>(SystemShootEnemyBullet(_creater, _players, _lose));
 }
 
 std::vector<rtype::ClientAction> RType::getClientActionHandlers(void) const
@@ -74,7 +75,8 @@ std::vector<rtype::Sprite> RType::getSprites(void) const
         rtype::Sprite{std::string("../assets/enemy.png"), 50, 50, 0, 0, 1, 0, 20, 20},
         rtype::Sprite{std::string("../assets/bullet.png"), 10, 10, 0, 0, 1, 0, 20, 20},
         rtype::Sprite{std::string("../assets/enemy2.png"), 50, 50, 0, 0, 1, 0, 20, 20},
-        rtype::Sprite{std::string("../assets/bullet_enemy.png"), 10, 10, 0, 0, 1, 0, 20, 20}
+        rtype::Sprite{std::string("../assets/bullet_enemy.png"), 10, 10, 0, 0, 1, 0, 20, 20},
+        rtype::Sprite{std::string("../assets/lose_bg.png"), 300, 300, 0, 0, 1, 0, 20, 20}
     });
 }
 
@@ -132,7 +134,7 @@ std::size_t RType::createPlayer(void)
         if (_players.find(i) == _players.end()) {
             _players[i] = this->_registry->create_entity();
             std::cout << "player " << i << " created" << std::endl;
-            _registry->get_components<Position>().emplace_at(_players[i], Position{100, 0});
+            _registry->get_components<Position>().emplace_at(_players[i], Position{100, 250});
             _registry->get_components<Hitbox>().emplace_at(_players[i], Hitbox{50, 50});
             _registry->get_components<Life>().emplace_at(_players[i], Life{5});
             _registry->get_components<SIDE>().emplace_at(_players[i], SIDE::PLAYER);

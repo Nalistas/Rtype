@@ -61,7 +61,7 @@ std::optional<std::function<void()>> ClientActionLog::treatAction(std::string co
     }
     if (message[0] == 2) {
         return std::optional<std::function<void()>>([this, player_id](){
-            std::cout << "player need to be updated: " << player_id << std::endl;
+            // std::cout << "player need to be updated: " << player_id << std::endl;
             this->_update_screen(player_id);
         });
     }

@@ -31,7 +31,7 @@ class RoomsCore {
          * @brief Construct a new Rooms Core object
          * @param port the port of the server
          */
-        RoomsCore(std::string const &executable_name, std::string const &port);
+        RoomsCore(std::string const &executable_name, std::string const &port, bool &running);
 
         /**
          * @brief Destroy the Rooms Core object
@@ -49,6 +49,11 @@ class RoomsCore {
          */
         void setGameToLaunch(uint8_t roomId);
 
+        /**
+         * @brief Stop the rooms core
+         */
+        void stop(void);
+
     private:
         /**
          * @brief Check if there are new clients
@@ -64,7 +69,6 @@ class RoomsCore {
          * @brief Treat a client command
          */
         void treatClient(std::shared_ptr<asio::ip::tcp::socket> &client, TcpProtocol &tcpProtocol);
-
 
         /**
          * @brief Launch a game
@@ -124,6 +128,8 @@ class RoomsCore {
         std::unordered_map<std::string, std::string> _gameNameToPath;
         process::Process _my_process;
         std::string _executable_name;
+
+        bool &_run;
 };
 
 #endif /* !CORE_HPP_ */

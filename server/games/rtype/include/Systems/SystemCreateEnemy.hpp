@@ -24,7 +24,7 @@ class SystemCreateEnemy : public ecs::isystem<> {
          * @param creater
          * @param players
          */
-        SystemCreateEnemy(rtype::IGame::Creater const &creater, std::unordered_map<std::size_t, std::size_t> const &players);
+        SystemCreateEnemy(rtype::IGame::Creater const &creater, std::unordered_map<std::size_t, std::size_t> const &players, bool &lose);
         ~SystemCreateEnemy();
 
         /**
@@ -54,6 +54,7 @@ class SystemCreateEnemy : public ecs::isystem<> {
         rtype::IGame::Creater const &_creater;
         std::unordered_map<std::size_t, std::size_t> const &_players;
         int _nb_enemies;
+        bool &_lose;
 };
 
 #endif /* !SYSTEMCREATEENEMY_HPP_ */
