@@ -57,7 +57,6 @@ void raylib::Sprite::draw()
         DrawRectangle(_destination_rect.x - _center.x, _destination_rect.y - _center.y, _destination_rect.width, _destination_rect.height, raylib::GRAY);
         return;
     }
-    std::cout << "destination rect: " << _destination_rect.x << ", " << _destination_rect.y << ", " << _destination_rect.width << ", " << _destination_rect.height << std::endl;
     DrawTexturePro(_texture->get_texture(), _source_rect, _destination_rect, _center, _rotation, WHITE);
 }
 
