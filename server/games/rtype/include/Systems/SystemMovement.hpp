@@ -26,7 +26,7 @@ class SystemMovement : public ecs::isystem<Position, Speed> {
          * @param players
          * @param deleter
          */
-        SystemMovement(std::unordered_map<std::size_t, std::size_t> &players, rtype::IGame::Deleter const &deleter);
+        SystemMovement(std::unordered_map<std::size_t, std::size_t> &players, rtype::IGame::Deleter const &deleter, bool &lose);
         ~SystemMovement();
 
         /**
@@ -50,6 +50,7 @@ class SystemMovement : public ecs::isystem<Position, Speed> {
         int64_t _ms_last_update;
         std::unordered_map<std::size_t, std::size_t> &_players;
         rtype::IGame::Deleter const &_deleter;
+        bool &_lose;
 
 };
 

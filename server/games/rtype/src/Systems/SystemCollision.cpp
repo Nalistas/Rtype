@@ -11,12 +11,9 @@
 
 
 
-SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads)
-    : _deleter(deleter), _players(players), _deads(deads)
+SystemCollision::SystemCollision(rtype::IGame::Deleter const &deleter, std::unordered_map<std::size_t, std::size_t> &players, std::unordered_set<std::size_t> &deads, bool &lose, rtype::IGame::Creater const &creater)
+    : _deleter(deleter), _players(players), _deads(deads), _lose(lose), _creater(creater)
 {
-    // _ms_last_update = std::chrono::duration_cast<std::chrono::milliseconds>(
-    //     std::chrono::system_clock::now().time_since_epoch()
-    // ).count();
 }
 
 SystemCollision::~SystemCollision()
@@ -47,6 +44,9 @@ void SystemCollision::broadcast(std::size_t entity_deleted, ecs::registry &regis
 
 void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position> &positions, sparse_array<Hitbox> &hitboxs, sparse_array<Damage> &damages, sparse_array<Life> &healths, sparse_array<SIDE> &sides)
 {
+    if (_lose) {
+        return;
+    }
     for (auto [index, position, hitbox, damage, health, side] : zipper(positions, hitboxs, damages, healths, sides)) {
         if (!side.has_value() || side.value() == SIDE::ENEMY) continue;
         if (!position.has_value() || !hitbox.has_value() || !side.has_value()) continue;
@@ -116,6 +116,21 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
             }
         }
     }
+
+    if (isEveryPlayerDead() == true) {
+        _lose = true;
+        for (auto player : _players) {
+            for (auto [index, pos] : zipper(registry.get_components<Position>())) {
+                if (pos.has_value()) {
+                    registry.delete_entity(registry.entity_from_index(index));  
+                    _deleter(player.first, index);
+                }
+            }
+            auto bg_lose = registry.create_entity();
+            registry.get_components<Position>().emplace_at(bg_lose, Position{400, 250});
+            _creater(player.first, bg_lose, 5, 400, 250, 0, 0);
+        }
+    }
     // for (size_t i = 0; i < position.size(); i++) {
     //     if (!position[i].has_value() || !hitbox[i].has_value() || !side[i].has_value()) continue;
 
@@ -144,6 +159,11 @@ void SystemCollision::operator()(ecs::registry &registry, sparse_array<Position>
     //         }
     //     }
     // }
+}
+
+bool SystemCollision::isEveryPlayerDead()
+{
+    return _deads.size() == _players.size() && _players.size() != 0;
 }
 
 bool SystemCollision::checkCollision(const Position &posA, const Hitbox &hitboxA, const Position &posB, const Hitbox &hitboxB)

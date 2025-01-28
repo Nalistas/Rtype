@@ -10,8 +10,8 @@
 #include "zipper.hpp"
 #include "registry.hpp"
 
-SystemShootEnemyBullet::SystemShootEnemyBullet(rtype::IGame::Creater const &creater, std::unordered_map<std::size_t, std::size_t> const &players) :
-    _creater(creater), _players(players)
+SystemShootEnemyBullet::SystemShootEnemyBullet(rtype::IGame::Creater const &creater, std::unordered_map<std::size_t, std::size_t> const &players, bool &lose) :
+    _creater(creater), _players(players), _lose(lose)
 {
     _ms_last_update = std::chrono::duration_cast<std::chrono::milliseconds>(
         std::chrono::system_clock::now().time_since_epoch()
@@ -24,6 +24,8 @@ SystemShootEnemyBullet::~SystemShootEnemyBullet()
 
 void SystemShootEnemyBullet::operator()(ecs::registry &registry, sparse_array<Position> &positions, sparse_array<Type> &types, sparse_array<SIDE> &sides)
 {
+    if (_lose) return;
+
     if (std::chrono::duration_cast<std::chrono::milliseconds>(
         std::chrono::system_clock::now().time_since_epoch()
     ).count() - _ms_last_update < 2000) {
